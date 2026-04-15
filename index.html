@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longhu Mountain Destiny Reading — Authentic Taoist Bazi Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1e;
+            --bg-mid: #24242b;
+            --paper: #F5F0E6;
+            --ink: #1A1A1A;
+            --cinnabar: #B91C1C;
+            --gold: #C5A059;
+            --cream: #faf8f4;
+            --jade: #2D5A4A;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+            font-weight: 600;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='none' stroke='%23C5A059' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge::before {
+            content: '●';
+            color: #22c55e;
+            font-size: 8px;
+        }
+        
+        .hero h1 {
+            font-size: 50px;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero p {
+            font-size: 19px;
+            color: rgba(255,255,255,0.82);
+            max-width: 640px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .delivery-note {
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: var(--cinnabar);
+            color: white;
+            padding: 18px 46px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(185,28,28,0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(185,28,28,0.35);
+        }
+        
+        .trust-strip {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        
+        .trust-item {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .trust-item .num {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .trust-item .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            padding: 90px 20px;
+        }
+        
+        .section.alt { background: var(--cream); }
+        .section.dark { background: var(--bg-dark); color: rgba(255,255,255,0.9); }
+        
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 50px;
+        }
+        
+        .master-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            align-items: center;
+            background: white;
+            padding: 50px;
+            border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--cinnabar);
+        }
+        
+        .master-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e8e4db 0%, #d4cfc2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .master-photo::after {
+            content: 'Master Photo';
+            position: absolute;
+            opacity: 0.6;
+        }
+        
+        .master-info h3 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+        
+        .master-title {
+            color: var(--cinnabar);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .master-info p {
+            color: #444;
+            margin-bottom: 14px;
+        }
+        
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .credential-tag {
+            background: var(--cream);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #555;
+            border: 1px solid #e5e1d8;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--cinnabar);
+            color: var(--cinnabar);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .step p {
+            color: #555;
+        }
+        
+        .highlight-time {
+            background: var(--cinnabar);
+            color: white;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 6px;
+            padding: 40px 34px;
+            text-align: center;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .card.featured {
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        
+        .card.featured::before {
+            content: 'Most Requested';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--ink);
+            padding: 5px 18px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .card .delivery {
+            font-size: 13px;
+            color: var(--cinnabar);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+            font-size: 14px;
+        }
+        
+        .card ul li::before {
+            content: '✦';
+            color: var(--cinnabar);
+            margin-right: 10px;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--cinnabar);
+            padding: 14px 36px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1.5px solid var(--cinnabar);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--cinnabar);
+            color: white;
+        }
+        
+        .faq-item {
+            max-width: 780px;
+            margin: 0 auto 24px;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 24px;
+        }
+        
+        .faq-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--ink);
+        }
+        
+        .faq-item p {
+            color: #555;
+        }
+        
+        .guarantee-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .guarantee-item {
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .guarantee-item h4 {
+            color: var(--gold);
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .guarantee-item p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.65);
+        }
+        
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--bg-dark);
+            color: rgba(255,255,255,0.45);
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        @media (max-width: 720px) {
+            .hero h1 { font-size: 32px; }
+            .master-card { grid-template-columns: 1fr; }
+            .section h2 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-badge">Longhu Mountain Certified</div>
+        <h1>Your Destiny, Handwritten by a Taoist Master from China's Longhu Mountain</h1>
+        <p>No AI. No algorithms. Just centuries-old Chinese metaphysics, interpreted by ordained Taoist masters with decades of practice.</p>
+        <p class="delivery-note">⏱ Every reading is prepared by hand. Please allow 3–6 hours for delivery.</p>
+        <a href="#order" class="btn-primary">Request Your Reading</a>
+        
+        <div class="trust-strip">
+            <div class="trust-item">
+                <div class="num">1,400+</div>
+                <div class="label">Readings Delivered</div>
+            </div>
+            <div class="trust-item">
+                <div class="num">40+</div>
+                <div class="label">Years Combined Experience</div>
+            </div>
+            <div class="trust-item">
+                <div class="num">4.9</div>
+                <div class="label">Average Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Meet the Masters</h2>
+            <div class="master-card">
+                <div class="master-photo"></div>
+                <div class="master-info">
+                    <div class="master-title">Senior Master, Longhu Mountain</div>
+                    <h3>Master Zhang (张道长)</h3>
+                    <p>Ordained at Longhu Mountain (龙虎山), the ancestral home of Taoism and the birthplace of Chinese talismanic tradition. Master Zhang has practiced BaZi, Feng Shui, and I Ching divination for over 30 years.</p>
+                    <p>He does not use software to mass-produce answers. Each chart is plotted by hand on rice paper, examined against the classical texts, and then transcribed into a personal report written specifically for you.</p>
+                    <div class="credentials">
+                        <span class="credential-tag">Longhu Mountain Ordained</span>
+                        <span class="credential-tag">Zi Wei Dou Shu Master</span>
+                        <span class="credential-tag">Feng Shui Consultant</span>
+                        <span class="credential-tag">I Ching Diviner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">壹</div>
+                    <h3>Submit Your Birth Details</h3>
+                    <p>Share your birth date, time, and location. If your birth time is unknown, we can still perform a day-based reading with adjusted accuracy.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">贰</div>
+                    <h3>Master Reviews Your Chart</h3>
+                    <p>Your information is assigned to an available master. He calculates your Four Pillars by hand, studies your elemental balance, and consults the classical texts.</p>
+                    <div class="highlight-time">Handwritten in 3–6 hours</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">叁</div>
+                    <h3>Receive Your Personal Report</h3>
+                    <p>You will receive a beautifully formatted PDF report — your destiny analysis, career guidance, relationship insights, and Feng Shui recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Choose Your Reading</h2>
+            <div class="pricing-cards">
+                <div class="card">
+                    <h3>Destiny Brief</h3>
+                    <div class="price">$49</div>
+                    <div class="delivery">Delivered within 6 hours</div>
+                    <ul>
+                        <li>Day Master identity analysis</li>
+                        <li>Five Elements breakdown</li>
+                        <li>Current year forecast</li>
+                        <li>1 personalized recommendation</li>
+                        <li>~1,500 words, PDF format</li>
+                    </ul>
+                    <a href="#order" class="btn-secondary">Request Brief</a>
+                </div>
+                <div class="card featured">
+                    <h3>Complete Destiny Book</h3>
+                    <div class="price">$89</div>
+                    <div class="delivery">Delivered within 3–5 hours</div>
+                    <ul>
+                        <li>Full Four Pillars deep analysis</li>
+                        <li>Personality &amp; career path</li>
+                        <li>Wealth pattern &amp; timing</li>
+                        <li>Relationship dynamics</li>
+                        <li>10-year luck pillar guidance</li>
+                        <li>Feng Shui recommendations</li>
+                        <li>~4,000 words, PDF format</li>
+                    </ul>
+                    <a href="#order" class="btn-primary" style="padding: 14px 36px; font-size: 14px;">Request Complete Book</a>
+                </div>
+                <div class="card">
+                    <h3>Premium Consultation</h3>
+                    <div class="price">$199</div>
+                    <div class="delivery">Delivered within 3 hours</div>
+                    <ul>
+                        <li>Everything in Complete Book</li>
+                        <li>Written by Senior Master Zhang</li>
+                        <li>Relationship compatibility add-on</li>
+                        <li>Hand-selected auspicious dates</li>
+                        <li>30-minute follow-up voice message</li>
+                    </ul>
+                    <a href="#order" class="btn-secondary">Request Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this really done by a real person?</h3>
+                <p>Yes. Every report is calculated and written by one of our ordained Taoist masters. We do not use AI to generate the interpretations. The 3–6 hour delivery window exists because your master is working on your chart by hand.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What is Longhu Mountain?</h3>
+                <p>Longhu Mountain (龙虎山) in Jiangxi Province is the birthplace of Taoism and one of China's most sacred spiritual mountains. It has been the center of Taoist talismanic tradition for over 1,900 years. Our masters are ordained within this lineage.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if I don't know my exact birth time?</h3>
+                <p>We can still perform a highly accurate day-based reading. However, the Hour Pillar (which influences later-life themes and children) will be omitted. We will note this in your report.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Why does it take 3–6 hours?</h3>
+                <p>A genuine BaZi reading cannot be rushed. Your master must calculate your True Solar Time, plot the Four Pillars, analyze the Ten Gods and elemental balance, check your current Luck Pillar, and then write a coherent, personalized narrative. This takes time.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I ask follow-up questions?</h3>
+                <p>Follow-up questions are included with the Premium Consultation. For the Complete Destiny Book, you may purchase a follow-up session separately if you need clarification.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark">
+        <div class="container">
+            <h2 style="color: white;">Our Promise</h2>
+            <div class="guarantee-box">
+                <div class="guarantee-item">
+                    <h4>Authentic Lineage</h4>
+                    <p>All masters are ordained Taoist practitioners from Longhu Mountain.</p>
+                </div>
+                <div class="guarantee-item">
+                    <h4>Handwritten Analysis</h4>
+                    <p>No automated templates. Every word is written for you alone.</p>
+                </div>
+                <div class="guarantee-item">
+                    <h4>Privacy Guaranteed</h4>
+                    <p>Your birth data is confidential and seen only by your assigned master.</p>
+                </div>
+                <div class="guarantee-item">
+                    <h4>Satisfaction Policy</h4>
+                    <p>If the reading does not resonate, contact us within 7 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="order">
+        <div class="container" style="text-align: center;">
+            <h2>Begin Your Reading</h2>
+            <p style="color: #555; max-width: 500px; margin: 0 auto 30px;">Your master is standing by. Submit your details and receive your handwritten destiny analysis within 3–6 hours.</p>
+            <a href="#" class="btn-primary">Request Your Reading Now</a>
+            <p style="margin-top: 16px; font-size: 13px; color: #777;">Secure payment via Stripe or PayPal. Encrypted checkout.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Longhu Mountain Destiny Readings. All rights reserved.<br>
+        For entertainment and self-reflection purposes only. Not a substitute for professional advice.</p>
+    </footer>
+
+</body>
+</html>

@@ -9,10 +9,9 @@
         :root {
             --paper: #F5F0E6;
             --ink: #1A1A1A;
-            --cinnabar: #C9372C;
+            --cinnabar: #B91C1C;
             --gold: #D4AF37;
             --cream: #faf8f4;
-            --jade: #2D5A4A;
             --charcoal: #333;
         }
         
@@ -37,7 +36,6 @@
             padding: 40px 20px;
         }
         
-        /* Header */
         header {
             text-align: center;
             padding: 30px 0 20px;
@@ -51,6 +49,8 @@
             letter-spacing: 3px;
             color: var(--cinnabar);
             margin-bottom: 8px;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .tagline {
@@ -59,7 +59,23 @@
             font-style: italic;
         }
         
-        /* Hero / Input Section */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 14px;
+            font-size: 13px;
+        }
+        
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: var(--cinnabar);
+        }
+        
         .hero {
             text-align: center;
             margin-bottom: 50px;
@@ -169,12 +185,6 @@
             transform: translateY(-1px);
         }
         
-        .btn-primary:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
         .note {
             font-size: 12px;
             color: #888;
@@ -182,7 +192,6 @@
             text-align: center;
         }
         
-        /* Results Section */
         .results {
             display: none;
             animation: fadeIn 0.6s ease-out;
@@ -199,7 +208,6 @@
         }
         
         .kua-badge {
-            display: inline-block;
             width: 90px;
             height: 90px;
             border: 3px solid var(--cinnabar);
@@ -330,13 +338,13 @@
             font-size: 15px;
         }
         
-        /* Upsell Section */
         .upsell {
-            background: linear-gradient(135deg, var(--bg-dark, #1a1a1e) 0%, #2d2d3a 100%);
+            background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
             border-radius: 12px;
             padding: 36px 28px;
             text-align: center;
             color: white;
+            margin-top: 40px;
         }
         
         .upsell h3 {
@@ -415,8 +423,12 @@
 <body>
     <div class="container">
         <header>
-            <div class="brand">Oriental Destiny</div>
+            <a href="index.html" class="brand">Oriental Destiny</a>
             <div class="tagline">Rooted in Longhu Mountain tradition, refined for modern living</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="report_demo.html">Sample Report</a>
+            </div>
         </header>
         
         <!-- INPUT SECTION -->
@@ -472,12 +484,12 @@
                 <!-- Filled by JS -->
             </div>
             
-            <div class="upsell" style="margin-top: 40px;">
-                <h3>Want the Complete Picture?</h3>
-                <p>Your Kua Number guides your spatial energy. But your full BaZi chart reveals your optimal timing, career path, relationship patterns, and life cycles — all written into a personalized 4,000-word report.</p>
-                <div class="price">$29</div>
-                <a href="#" class="btn-upsell">Unlock My Complete Destiny Book</a>
-                <p class="guarantee-text">Delivered within 24 hours · One-time purchase</p>
+            <div class="upsell">
+                <h3>Want Your Complete Energetic Blueprint?</h3>
+                <p>Your Kua Number guides your spatial energy. But your full BaZi chart — hand-calculated in the Longhu Mountain tradition — reveals your optimal timing, career path, relationship patterns, and life cycles.</p>
+                <div class="price">$89</div>
+                <a href="checkout.html?product=complete" class="btn-upsell">Unlock My Handcrafted Destiny Book</a>
+                <p class="guarantee-text">Delivered within 3–6 hours · One-time purchase</p>
             </div>
             
             <div class="back-link">
@@ -491,7 +503,6 @@
     </footer>
 
     <script>
-        // Populate birth year dropdown
         const yearSelect = document.getElementById('birthYear');
         const currentYear = new Date().getFullYear();
         for (let y = currentYear; y >= 1920; y--) {
@@ -670,7 +681,6 @@
             const kua = getKuaNumber(year, selectedGender);
             const data = kuaData[kua];
             
-            // Populate results
             document.getElementById('kuaNum').textContent = kua;
             document.getElementById('guaTitle').textContent = `Kua ${kua} — ${data.name} (${data.element})`;
             document.getElementById('guaSubtitle').textContent = 
@@ -678,7 +688,6 @@
             document.getElementById('groupTag').textContent = `${data.group} Group`;
             document.getElementById('personalTip').textContent = data.tip;
             
-            // Auspicious directions
             const ausGrid = document.getElementById('auspiciousGrid');
             ausGrid.innerHTML = data.auspicious.map(d => `
                 <div class="dir-card auspicious">
@@ -691,7 +700,6 @@
                 </div>
             `).join('');
             
-            // Inauspicious directions
             const inausGrid = document.getElementById('inauspiciousGrid');
             inausGrid.innerHTML = data.inauspicious.map(d => `
                 <div class="dir-card mixed">
@@ -704,7 +712,6 @@
                 </div>
             `).join('');
             
-            // Switch views
             document.getElementById('inputSection').style.display = 'none';
             document.getElementById('resultsSection').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });

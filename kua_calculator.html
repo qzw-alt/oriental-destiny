@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Feng Shui Directions Calculator | Oriental Destiny</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #F5F0E6;
+            --ink: #1A1A1A;
+            --cinnabar: #C9372C;
+            --gold: #D4AF37;
+            --cream: #faf8f4;
+            --jade: #2D5A4A;
+            --charcoal: #333;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, .brand {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 0 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 40px;
+        }
+        
+        .brand {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cinnabar);
+            margin-bottom: 8px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Hero / Input Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: var(--ink);
+        }
+        
+        .hero p {
+            font-size: 17px;
+            color: #555;
+            max-width: 540px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+        
+        .calculator-box {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            max-width: 460px;
+            margin: 0 auto;
+            border-top: 4px solid var(--cinnabar);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        select, input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0dcd3;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            transition: border-color 0.2s;
+            appearance: none;
+        }
+        
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .gender-options {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .gender-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1.5px solid #e0dcd3;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .gender-btn:hover {
+            border-color: var(--gold);
+        }
+        
+        .gender-btn.selected {
+            background: var(--cinnabar);
+            color: white;
+            border-color: var(--cinnabar);
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: var(--cinnabar);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn-primary:hover {
+            background: #a81f1f;
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        /* Results Section */
+        .results {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        
+        .kua-badge {
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+            border: 3px solid var(--cinnabar);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--cinnabar);
+        }
+        
+        .kua-badge .num {
+            font-size: 38px;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+        
+        .kua-badge .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        
+        .result-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .result-header .subtitle {
+            font-size: 16px;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .group-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--ink);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 14px;
+        }
+        
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .dir-card {
+            background: white;
+            border-radius: 10px;
+            padding: 22px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .dir-card.auspicious {
+            border-left-color: var(--jade);
+        }
+        
+        .dir-card.mixed {
+            border-left-color: var(--gold);
+        }
+        
+        .dir-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .dir-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        
+        .dir-compass {
+            font-size: 13px;
+            color: #777;
+            font-weight: 500;
+        }
+        
+        .dir-type {
+            font-size: 12px;
+            color: var(--jade);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .dir-card.mixed .dir-type {
+            color: #b8860b;
+        }
+        
+        .dir-desc {
+            font-size: 14px;
+            color: #555;
+            margin-top: 6px;
+        }
+        
+        .tip-box {
+            background: white;
+            border-radius: 10px;
+            padding: 26px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px dashed #d8d4c8;
+        }
+        
+        .tip-box h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--cinnabar);
+        }
+        
+        .tip-box p {
+            color: #444;
+            font-size: 15px;
+        }
+        
+        /* Upsell Section */
+        .upsell {
+            background: linear-gradient(135deg, var(--bg-dark, #1a1a1e) 0%, #2d2d3a 100%);
+            border-radius: 12px;
+            padding: 36px 28px;
+            text-align: center;
+            color: white;
+        }
+        
+        .upsell h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: white;
+        }
+        
+        .upsell p {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+        
+        .upsell .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 20px;
+        }
+        
+        .btn-upsell {
+            display: inline-block;
+            background: var(--cinnabar);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        
+        .btn-upsell:hover {
+            background: #a81f1f;
+            transform: translateY(-2px);
+        }
+        
+        .guarantee-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 16px;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            .calculator-box { padding: 30px 20px; }
+            .directions-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">Oriental Destiny</div>
+            <div class="tagline">Rooted in Longhu Mountain tradition, refined for modern living</div>
+        </header>
+        
+        <!-- INPUT SECTION -->
+        <div class="hero" id="inputSection">
+            <h1>Find Your Feng Shui Directions</h1>
+            <p>Discover your personal Kua Number and the four directions that support your wealth, health, relationships, and stability — in 30 seconds.</p>
+            
+            <div class="calculator-box">
+                <div class="form-group">
+                    <label for="birthYear">Birth Year</label>
+                    <select id="birthYear">
+                        <option value="">Select your birth year</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="gender-options">
+                        <div class="gender-btn" data-value="male" onclick="selectGender('male')">Male</div>
+                        <div class="gender-btn" data-value="female" onclick="selectGender('female')">Female</div>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" onclick="calculateKua()" id="calcBtn">Calculate My Directions</button>
+                <p class="note">No email required. Based on classical Eight Mansions (Ba Zhai) Feng Shui.</p>
+            </div>
+        </div>
+        
+        <!-- RESULTS SECTION -->
+        <div class="results" id="resultsSection">
+            <div class="result-header">
+                <div class="kua-badge">
+                    <div class="num" id="kuaNum">-</div>
+                    <div class="label">Kua</div>
+                </div>
+                <h2 id="guaTitle">Your Gua</h2>
+                <div class="subtitle" id="guaSubtitle">Element & Meaning</div>
+                <div class="group-tag" id="groupTag">East Group</div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧭 Your Personal Tip</h3>
+                <p id="personalTip">Loading your personalized Feng Shui recommendation...</p>
+            </div>
+            
+            <h3 style="font-size: 20px; margin-bottom: 16px; text-align: center;">Your Four Auspicious Directions</h3>
+            <div class="directions-grid" id="auspiciousGrid">
+                <!-- Filled by JS -->
+            </div>
+            
+            <h3 style="font-size: 20px; margin-bottom: 16px; text-align: center; margin-top: 30px;">Directions to Avoid</h3>
+            <div class="directions-grid" id="inauspiciousGrid">
+                <!-- Filled by JS -->
+            </div>
+            
+            <div class="upsell" style="margin-top: 40px;">
+                <h3>Want the Complete Picture?</h3>
+                <p>Your Kua Number guides your spatial energy. But your full BaZi chart reveals your optimal timing, career path, relationship patterns, and life cycles — all written into a personalized 4,000-word report.</p>
+                <div class="price">$29</div>
+                <a href="#" class="btn-upsell">Unlock My Complete Destiny Book</a>
+                <p class="guarantee-text">Delivered within 24 hours · One-time purchase</p>
+            </div>
+            
+            <div class="back-link">
+                <a href="#" onclick="resetForm(); return false;">← Calculate again</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2026 Oriental Destiny. For entertainment and self-reflection purposes only.</p>
+    </footer>
+
+    <script>
+        // Populate birth year dropdown
+        const yearSelect = document.getElementById('birthYear');
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear; y >= 1920; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+        
+        let selectedGender = null;
+        
+        function selectGender(gender) {
+            selectedGender = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.value === gender);
+            });
+        }
+        
+        const kuaData = {
+            1: { name: 'Kan', element: 'Water', group: 'East', 
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'Southeast', desc: 'Best for career advancement, new ventures, and financial growth.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'East', desc: 'Ideal for bedrooms and rest spaces. Supports physical recovery and longevity.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'South', desc: 'Perfect for dining rooms and shared spaces. Strengthens marriage and partnerships.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'North', desc: 'Your natural direction. Good for meditation, study, and maintaining inner calm.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'Southwest', desc: 'Avoid major decisions and long-term stays in this direction.' },
+                     { type: 'Wu Gui', dir: 'West', desc: 'Prone to disturbance and miscommunication. Not ideal for work desks.' },
+                     { type: 'Liu Sha', dir: 'Northeast', desc: 'Can bring emotional turbulence. Avoid placing your bed here.' },
+                     { type: 'Huo Hai', dir: 'Northwest', desc: 'Minor frustrations and delays. Use with caution.' }
+                 ],
+                 tip: 'As a Water person, place a small water feature or dark blue object in the North area of your home to amplify your natural energy.'
+            },
+            2: { name: 'Kun', element: 'Earth', group: 'West',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'Northeast', desc: 'Excellent for home offices and business calls.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'Northwest', desc: 'Supports digestion and overall wellness.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'West', desc: 'Strengthens family bonds and romantic stability.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'Southwest', desc: 'Your home base. Good for quiet reflection.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'North', desc: 'Avoid sleeping with your head pointing North.' },
+                     { type: 'Wu Gui', dir: 'Southeast', desc: 'Can lead to unexpected expenses. Keep this area tidy.' },
+                     { type: 'Liu Sha', dir: 'South', desc: 'Emotional ups and downs. Avoid heated discussions here.' },
+                     { type: 'Huo Hai', dir: 'East', desc: 'Minor obstacles. Not ideal for important meetings.' }
+                 ],
+                 tip: 'As an Earth person, ceramics, yellow tones, and square shapes in the Southwest will ground and stabilize your energy.'
+            },
+            3: { name: 'Zhen', element: 'Thunder/Wood', group: 'East',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'South', desc: 'Your most powerful direction for success and recognition.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'Southeast', desc: 'Promotes vitality and physical strength.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'North', desc: 'Builds trust and deepens friendships.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'East', desc: 'Your natural home direction. Use for rest and recovery.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'West', desc: 'Avoid this direction for major life decisions.' },
+                     { type: 'Wu Gui', dir: 'Northwest', desc: 'Prone to stress and restless energy.' },
+                     { type: 'Liu Sha', dir: 'Northeast', desc: 'Can create health irritations. Keep clear of clutter.' },
+                     { type: 'Huo Hai', dir: 'Southwest', desc: 'Misunderstandings and delays may arise.' }
+                 ],
+                 tip: 'As a Wood person, tall plants, green colors, and vertical lines in the East and Southeast directions will fuel your growth energy.'
+            },
+            4: { name: 'Xun', element: 'Wind/Wood', group: 'East',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'North', desc: 'Opens doors to opportunity and financial flow.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'East', desc: 'Supports respiratory health and mental clarity.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'South', desc: 'Enhances charm and social connection.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'Southeast', desc: 'Your natural anchor. Good for study and planning.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'Northeast', desc: 'Avoid long-term occupation of this direction.' },
+                     { type: 'Wu Gui', dir: 'Southwest', desc: 'Can attract gossip and interference.' },
+                     { type: 'Liu Sha', dir: 'Northwest', desc: 'Emotional vulnerability. Not ideal for bedrooms.' },
+                     { type: 'Huo Hai', dir: 'West', desc: 'Small setbacks and frustrations.' }
+                 ],
+                 tip: 'As a Wind/Wood person, fresh flowers, flowing fabrics, and gentle movement in the Southeast will keep your energy flexible and prosperous.'
+            },
+            6: { name: 'Qian', element: 'Heaven/Metal', group: 'West',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'West', desc: 'Best for leadership, authority, and financial expansion.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'Southwest', desc: 'Supports lung health and immune strength.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'Northeast', desc: 'Builds loyal networks and mentorship.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'Northwest', desc: 'Your natural direction. Use for clarity and decision-making.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'South', desc: 'Avoid this direction for sleep and long-term projects.' },
+                     { type: 'Wu Gui', dir: 'East', desc: 'Can create conflict and restless ambition.' },
+                     { type: 'Liu Sha', dir: 'North', desc: 'Emotional coldness or isolation may arise.' },
+                     { type: 'Huo Hai', dir: 'Southeast', desc: 'Minor losses and delays.' }
+                 ],
+                 tip: 'As a Metal person, round objects, white and silver tones, and clean minimalist spaces in the West and Northwest will sharpen your clarity and authority.'
+            },
+            7: { name: 'Dui', element: 'Lake/Metal', group: 'West',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'Northwest', desc: 'Excellent for creative projects and financial opportunities.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'Northeast', desc: 'Promotes joy and emotional well-being.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'Southwest', desc: 'Deepens romantic and family harmony.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'West', desc: 'Your natural direction. Use for relaxation and pleasure.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'East', desc: 'Avoid starting new ventures while facing East.' },
+                     { type: 'Wu Gui', dir: 'South', desc: 'Can lead to impulsive decisions and conflict.' },
+                     { type: 'Liu Sha', dir: 'Southeast', desc: 'Emotional turbulence and misunderstandings.' },
+                     { type: 'Huo Hai', dir: 'North', desc: 'Minor frustrations and slow progress.' }
+                 ],
+                 tip: 'As a Lake/Metal person, mirrors, circular art, and metallic accents in the West and Northwest will reflect positive energy back to you.'
+            },
+            8: { name: 'Gen', element: 'Mountain/Earth', group: 'West',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'Southwest', desc: 'Builds lasting wealth through patience and discipline.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'West', desc: 'Supports bone health and physical endurance.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'Northwest', desc: 'Strengthens trust and mutual support.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'Northeast', desc: 'Your natural mountain. Use for study and contemplation.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'Southeast', desc: 'Avoid major financial decisions in this direction.' },
+                     { type: 'Wu Gui', dir: 'North', desc: 'Can create mental blocks and insomnia.' },
+                     { type: 'Liu Sha', dir: 'South', desc: 'Emotional heaviness and stagnation.' },
+                     { type: 'Huo Hai', dir: 'East', desc: 'Small obstacles and miscommunications.' }
+                 ],
+                 tip: 'As a Mountain/Earth person, heavy furniture, earth tones, and mountain imagery in the Northeast and Southwest will give you strength and stability.'
+            },
+            9: { name: 'Li', element: 'Fire', group: 'East',
+                 auspicious: [
+                     { type: 'Sheng Qi', name: 'Wealth & Vitality', dir: 'East', desc: 'Ignites recognition, fame, and rapid growth.' },
+                     { type: 'Tian Yi', name: 'Health & Healing', dir: 'North', desc: 'Supports heart health and circulation.' },
+                     { type: 'Yan Nian', name: 'Relationships & Harmony', dir: 'Southeast', desc: 'Enhances passion and social magnetism.' },
+                     { type: 'Fu Wei', name: 'Stability & Grounding', dir: 'South', desc: 'Your natural fire. Use for creativity and self-expression.' }
+                 ],
+                 inauspicious: [
+                     { type: 'Jue Ming', dir: 'Northwest', desc: 'Avoid this direction for rest and recuperation.' },
+                     { type: 'Wu Gui', dir: 'Northeast', desc: 'Can create anxiety and scattered energy.' },
+                     { type: 'Liu Sha', dir: 'Southwest', desc: 'Emotional burnout and relationship strain.' },
+                     { type: 'Huo Hai', dir: 'West', desc: 'Minor disappointments and delays.' }
+                 ],
+                 tip: 'As a Fire person, candles, red accents, triangular shapes, and bright lighting in the South will fuel your natural charisma and creative power.'
+            }
+        };
+        
+        function getKuaNumber(year, gender) {
+            let sum = year % 100;
+            sum = Math.floor(sum / 10) + (sum % 10);
+            while (sum >= 10) {
+                sum = Math.floor(sum / 10) + (sum % 10);
+            }
+            
+            let kua;
+            if (year >= 2000) {
+                kua = gender === 'male' ? (9 - sum) : (6 + sum);
+            } else {
+                kua = gender === 'male' ? (10 - sum) : (5 + sum);
+            }
+            
+            while (kua >= 10) {
+                kua = Math.floor(kua / 10) + (kua % 10);
+            }
+            if (kua === 0) kua = 9;
+            if (kua === 5) kua = gender === 'male' ? 2 : 8;
+            
+            return kua;
+        }
+        
+        function calculateKua() {
+            const year = parseInt(document.getElementById('birthYear').value);
+            if (!year) {
+                alert('Please select your birth year.');
+                return;
+            }
+            if (!selectedGender) {
+                alert('Please select your gender.');
+                return;
+            }
+            
+            const kua = getKuaNumber(year, selectedGender);
+            const data = kuaData[kua];
+            
+            // Populate results
+            document.getElementById('kuaNum').textContent = kua;
+            document.getElementById('guaTitle').textContent = `Kua ${kua} — ${data.name} (${data.element})`;
+            document.getElementById('guaSubtitle').textContent = 
+                `You are a ${data.group} Group person. Your best directions support wealth, health, love, and inner peace.`;
+            document.getElementById('groupTag').textContent = `${data.group} Group`;
+            document.getElementById('personalTip').textContent = data.tip;
+            
+            // Auspicious directions
+            const ausGrid = document.getElementById('auspiciousGrid');
+            ausGrid.innerHTML = data.auspicious.map(d => `
+                <div class="dir-card auspicious">
+                    <div class="dir-header">
+                        <div class="dir-name">${d.dir}</div>
+                        <div class="dir-compass">${getCompassEmoji(d.dir)}</div>
+                    </div>
+                    <div class="dir-type">${d.type} — ${d.name}</div>
+                    <div class="dir-desc">${d.desc}</div>
+                </div>
+            `).join('');
+            
+            // Inauspicious directions
+            const inausGrid = document.getElementById('inauspiciousGrid');
+            inausGrid.innerHTML = data.inauspicious.map(d => `
+                <div class="dir-card mixed">
+                    <div class="dir-header">
+                        <div class="dir-name">${d.dir}</div>
+                        <div class="dir-compass">${getCompassEmoji(d.dir)}</div>
+                    </div>
+                    <div class="dir-type">${d.type}</div>
+                    <div class="dir-desc">${d.desc}</div>
+                </div>
+            `).join('');
+            
+            // Switch views
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function getCompassEmoji(dir) {
+            const map = {
+                'North': '⬆️ N', 'South': '⬇️ S', 'East': '➡️ E', 'West': '⬅️ W',
+                'Northeast': '↗️ NE', 'Northwest': '↖️ NW', 'Southeast': '↘️ SE', 'Southwest': '↙️ SW'
+            };
+            return map[dir] || dir;
+        }
+        
+        function resetForm() {
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('birthYear').value = '';
+            selectGender(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

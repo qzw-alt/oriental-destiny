@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longhu Mountain Destiny Reading — Authentic Taoist Bazi Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Oriental Destiny — Handcrafted Readings from Longhu Mountain Tradition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #1a1a1e;
@@ -26,8 +26,8 @@
             line-height: 1.7;
         }
         
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+        h1, h2, h3, .brand {
+            font-family: 'Cormorant Garamond', Georgia, serif;
             font-weight: 600;
         }
         
@@ -67,14 +67,8 @@
             z-index: 1;
         }
         
-        .hero-badge::before {
-            content: '●';
-            color: #22c55e;
-            font-size: 8px;
-        }
-        
         .hero h1 {
-            font-size: 50px;
+            font-size: 48px;
             color: #fff;
             margin-bottom: 20px;
             letter-spacing: 1px;
@@ -84,7 +78,7 @@
         }
         
         .hero p {
-            font-size: 19px;
+            font-size: 18px;
             color: rgba(255,255,255,0.82);
             max-width: 640px;
             margin: 0 auto 36px;
@@ -118,8 +112,8 @@
         }
         
         .btn-primary:hover {
+            background: #a81f1f;
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(185,28,28,0.35);
         }
         
         .trust-strip {
@@ -168,73 +162,51 @@
             margin-bottom: 50px;
         }
         
-        .master-card {
+        .intro-text {
+            max-width: 780px;
+            margin: 0 auto 50px;
+            text-align: center;
+            font-size: 17px;
+            color: #444;
+            line-height: 1.9;
+        }
+        
+        .heritage-card {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             align-items: center;
             background: white;
             padding: 50px;
             border-radius: 6px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.06);
             border-top: 4px solid var(--cinnabar);
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .master-photo {
-            width: 100%;
+        .heritage-visual {
             aspect-ratio: 1;
             background: linear-gradient(135deg, #e8e4db 0%, #d4cfc2 100%);
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777;
-            font-size: 14px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 80px;
+            color: var(--cinnabar);
+            opacity: 0.9;
         }
         
-        .master-photo::after {
-            content: 'Master Photo';
-            position: absolute;
-            opacity: 0.6;
-        }
-        
-        .master-info h3 {
+        .heritage-info h3 {
             font-size: 26px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--ink);
         }
         
-        .master-title {
-            color: var(--cinnabar);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        .master-info p {
+        .heritage-info p {
             color: #444;
             margin-bottom: 14px;
-        }
-        
-        .credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .credential-tag {
-            background: var(--cream);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 13px;
-            color: #555;
-            border: 1px solid #e5e1d8;
         }
         
         .steps {
@@ -288,7 +260,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
@@ -429,6 +401,24 @@
             color: rgba(255,255,255,0.65);
         }
         
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
         footer {
             padding: 40px 20px;
             text-align: center;
@@ -440,7 +430,7 @@
         
         @media (max-width: 720px) {
             .hero h1 { font-size: 32px; }
-            .master-card { grid-template-columns: 1fr; }
+            .heritage-card { grid-template-columns: 1fr; }
             .section h2 { font-size: 28px; }
         }
     </style>
@@ -448,11 +438,16 @@
 <body>
 
     <section class="hero">
-        <div class="hero-badge">Longhu Mountain Certified</div>
-        <h1>Your Destiny, Handwritten by a Taoist Master from China's Longhu Mountain</h1>
-        <p>No AI. No algorithms. Just centuries-old Chinese metaphysics, interpreted by ordained Taoist masters with decades of practice.</p>
-        <p class="delivery-note">⏱ Every reading is prepared by hand. Please allow 3–6 hours for delivery.</p>
-        <a href="#order" class="btn-primary">Request Your Reading</a>
+        <div class="hero-badge">Longhu Mountain Tradition</div>
+        <h1>Your Destiny Reading, Hand-Prepared in the Ancient Tradition</h1>
+        <p>Rooted in the classical metaphysics of China's Longhu Mountain. Every reading is calculated by hand, studied against the original texts, and written into a personal report just for you.</p>
+        <p class="delivery-note">⏱ Each reading takes 3–6 hours to prepare. No mass production.</p>
+        <a href="checkout.html?product=complete" class="btn-primary">Request Your Reading</a>
+        
+        <div class="nav-links">
+            <a href="kua_calculator.html">Free Feng Shui Directions</a>
+            <a href="report_demo.html">See a Sample Report</a>
+        </div>
         
         <div class="trust-strip">
             <div class="trust-item">
@@ -461,7 +456,7 @@
             </div>
             <div class="trust-item">
                 <div class="num">40+</div>
-                <div class="label">Years Combined Experience</div>
+                <div class="label">Years of Lineage</div>
             </div>
             <div class="trust-item">
                 <div class="num">4.9</div>
@@ -472,20 +467,17 @@
 
     <section class="section">
         <div class="container">
-            <h2>Meet the Masters</h2>
-            <div class="master-card">
-                <div class="master-photo"></div>
-                <div class="master-info">
-                    <div class="master-title">Senior Master, Longhu Mountain</div>
-                    <h3>Master Zhang (张道长)</h3>
-                    <p>Ordained at Longhu Mountain (龙虎山), the ancestral home of Taoism and the birthplace of Chinese talismanic tradition. Master Zhang has practiced BaZi, Feng Shui, and I Ching divination for over 30 years.</p>
-                    <p>He does not use software to mass-produce answers. Each chart is plotted by hand on rice paper, examined against the classical texts, and then transcribed into a personal report written specifically for you.</p>
-                    <div class="credentials">
-                        <span class="credential-tag">Longhu Mountain Ordained</span>
-                        <span class="credential-tag">Zi Wei Dou Shu Master</span>
-                        <span class="credential-tag">Feng Shui Consultant</span>
-                        <span class="credential-tag">I Ching Diviner</span>
-                    </div>
+            <h2>The Tradition Behind Your Reading</h2>
+            <p class="intro-text">
+                Longhu Mountain (龙虎山) in Jiangxi Province has been the ancestral home of Taoist metaphysical arts for over 1,900 years. The methods we use — BaZi charting, Five Elements analysis, and Luck Pillar timing — have been preserved and transmitted through this lineage.
+            </p>
+            <div class="heritage-card">
+                <div class="heritage-visual">道</div>
+                <div class="heritage-info">
+                    <h3>Handcrafted, Not Mass-Produced</h3>
+                    <p>We do not use automated templates to stamp out identical reports. Every chart is calculated by hand, starting with True Solar Time correction for your exact birthplace.</p>
+                    <p>Your Four Pillars are then examined for elemental balance, Ten God relationships, Shen Sha stars, and current Luck Pillar influences — a process that cannot be rushed.</p>
+                    <p>What you receive is a coherent, readable narrative written specifically for your life circumstances.</p>
                 </div>
             </div>
         </div>
@@ -497,19 +489,19 @@
             <div class="steps">
                 <div class="step">
                     <div class="step-icon">壹</div>
-                    <h3>Submit Your Birth Details</h3>
-                    <p>Share your birth date, time, and location. If your birth time is unknown, we can still perform a day-based reading with adjusted accuracy.</p>
+                    <h3>Submit Your Details</h3>
+                    <p>Share your birth date, time, and location. If your birth time is unknown, we can still perform an accurate day-based reading.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">贰</div>
-                    <h3>Master Reviews Your Chart</h3>
-                    <p>Your information is assigned to an available master. He calculates your Four Pillars by hand, studies your elemental balance, and consults the classical texts.</p>
-                    <div class="highlight-time">Handwritten in 3–6 hours</div>
+                    <h3>Hand-Calculate Your Chart</h3>
+                    <p>Your reading is prepared using classical Longhu Mountain methods — True Solar Time, Four Pillars, and elemental analysis.</p>
+                    <div class="highlight-time">Prepared in 3–6 hours</div>
                 </div>
                 <div class="step">
                     <div class="step-icon">叁</div>
                     <h3>Receive Your Personal Report</h3>
-                    <p>You will receive a beautifully formatted PDF report — your destiny analysis, career guidance, relationship insights, and Feng Shui recommendations.</p>
+                    <p>A beautifully formatted PDF arrives in your inbox — your destiny analysis, career guidance, relationship insights, and practical recommendations.</p>
                 </div>
             </div>
         </div>
@@ -530,7 +522,7 @@
                         <li>1 personalized recommendation</li>
                         <li>~1,500 words, PDF format</li>
                     </ul>
-                    <a href="#order" class="btn-secondary">Request Brief</a>
+                    <a href="checkout.html?product=brief" class="btn-secondary">Request Brief</a>
                 </div>
                 <div class="card featured">
                     <h3>Complete Destiny Book</h3>
@@ -545,7 +537,7 @@
                         <li>Feng Shui recommendations</li>
                         <li>~4,000 words, PDF format</li>
                     </ul>
-                    <a href="#order" class="btn-primary" style="padding: 14px 36px; font-size: 14px;">Request Complete Book</a>
+                    <a href="checkout.html?product=complete" class="btn-primary" style="padding: 14px 36px; font-size: 14px;">Request Complete Book</a>
                 </div>
                 <div class="card">
                     <h3>Premium Consultation</h3>
@@ -553,12 +545,12 @@
                     <div class="delivery">Delivered within 3 hours</div>
                     <ul>
                         <li>Everything in Complete Book</li>
-                        <li>Written by Senior Master Zhang</li>
+                        <li>Written by senior lineage reader</li>
                         <li>Relationship compatibility add-on</li>
                         <li>Hand-selected auspicious dates</li>
-                        <li>30-minute follow-up voice message</li>
+                        <li>Voice message follow-up</li>
                     </ul>
-                    <a href="#order" class="btn-secondary">Request Premium</a>
+                    <a href="checkout.html?product=premium" class="btn-secondary">Request Premium</a>
                 </div>
             </div>
         </div>
@@ -568,24 +560,20 @@
         <div class="container">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-item">
-                <h3>Is this really done by a real person?</h3>
-                <p>Yes. Every report is calculated and written by one of our ordained Taoist masters. We do not use AI to generate the interpretations. The 3–6 hour delivery window exists because your master is working on your chart by hand.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What is Longhu Mountain?</h3>
-                <p>Longhu Mountain (龙虎山) in Jiangxi Province is the birthplace of Taoism and one of China's most sacred spiritual mountains. It has been the center of Taoist talismanic tradition for over 1,900 years. Our masters are ordained within this lineage.</p>
+                <h3>Is this really done by a person?</h3>
+                <p>Yes. Every report is hand-calculated and hand-written by our reading team, trained in the classical Longhu Mountain tradition. We do not use AI to mass-produce answers. The 3–6 hour delivery window exists because your reading is being prepared individually.</p>
             </div>
             <div class="faq-item">
                 <h3>What if I don't know my exact birth time?</h3>
-                <p>We can still perform a highly accurate day-based reading. However, the Hour Pillar (which influences later-life themes and children) will be omitted. We will note this in your report.</p>
+                <p>We can still generate a highly accurate day-based reading. The Hour Pillar (which influences later-life themes) will be omitted, and we will note this in your report.</p>
             </div>
             <div class="faq-item">
                 <h3>Why does it take 3–6 hours?</h3>
-                <p>A genuine BaZi reading cannot be rushed. Your master must calculate your True Solar Time, plot the Four Pillars, analyze the Ten Gods and elemental balance, check your current Luck Pillar, and then write a coherent, personalized narrative. This takes time.</p>
+                <p>A genuine BaZi reading requires calculating True Solar Time, plotting the Four Pillars, analyzing the Ten Gods and elemental balance, checking your current Luck Pillar, and then writing a coherent, personalized narrative. This cannot be rushed without losing depth.</p>
             </div>
             <div class="faq-item">
                 <h3>Can I ask follow-up questions?</h3>
-                <p>Follow-up questions are included with the Premium Consultation. For the Complete Destiny Book, you may purchase a follow-up session separately if you need clarification.</p>
+                <p>Follow-up questions are included with the Premium Consultation. For the Complete Destiny Book, you may purchase a follow-up session separately.</p>
             </div>
         </div>
     </section>
@@ -595,16 +583,16 @@
             <h2 style="color: white;">Our Promise</h2>
             <div class="guarantee-box">
                 <div class="guarantee-item">
-                    <h4>Authentic Lineage</h4>
-                    <p>All masters are ordained Taoist practitioners from Longhu Mountain.</p>
+                    <h4>Authentic Methods</h4>
+                    <p>Classical BaZi calculation preserved through the Longhu Mountain lineage.</p>
                 </div>
                 <div class="guarantee-item">
-                    <h4>Handwritten Analysis</h4>
+                    <h4>Handcrafted Quality</h4>
                     <p>No automated templates. Every word is written for you alone.</p>
                 </div>
                 <div class="guarantee-item">
                     <h4>Privacy Guaranteed</h4>
-                    <p>Your birth data is confidential and seen only by your assigned master.</p>
+                    <p>Your birth data is confidential and used only for your reading.</p>
                 </div>
                 <div class="guarantee-item">
                     <h4>Satisfaction Policy</h4>
@@ -614,17 +602,17 @@
         </div>
     </section>
 
-    <section class="section" id="order">
+    <section class="section">
         <div class="container" style="text-align: center;">
             <h2>Begin Your Reading</h2>
-            <p style="color: #555; max-width: 500px; margin: 0 auto 30px;">Your master is standing by. Submit your details and receive your handwritten destiny analysis within 3–6 hours.</p>
-            <a href="#" class="btn-primary">Request Your Reading Now</a>
-            <p style="margin-top: 16px; font-size: 13px; color: #777;">Secure payment via Stripe or PayPal. Encrypted checkout.</p>
+            <p style="color: #555; max-width: 500px; margin: 0 auto 30px;">Your reading is standing by. Submit your details and receive your hand-prepared destiny analysis within 3–6 hours.</p>
+            <a href="checkout.html?product=complete" class="btn-primary">Request Your Reading Now</a>
+            <p style="margin-top: 16px; font-size: 13px; color: #777;">Secure payment via PayPal. Encrypted checkout.</p>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Longhu Mountain Destiny Readings. All rights reserved.<br>
+        <p>© 2026 Oriental Destiny. All rights reserved.<br>
         For entertainment and self-reflection purposes only. Not a substitute for professional advice.</p>
     </footer>
 

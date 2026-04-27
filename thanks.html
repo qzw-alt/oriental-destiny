@@ -3,170 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You | Oriental Destiny</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Oriental Destiny | Order Received</title>
     <style>
         :root {
-            --paper: #F5F0E6;
-            --ink: #1A1A1A;
-            --cinnabar: #B91C1C;
-            --gold: #D4AF37;
-            --cream: #faf8f4;
+            --ink: #241915;
+            --paper: #fbf5ec;
+            --cinnabar: #a63a2c;
+            --line: rgba(36, 25, 21, 0.1);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--paper);
-            color: var(--ink);
-            line-height: 1.7;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .brand {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--cinnabar);
-            margin-bottom: 30px;
-            text-decoration: none;
-        }
-        
-        .seal {
-            width: 70px;
-            height: 70px;
-            border: 3px solid var(--cinnabar);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            color: var(--cinnabar);
-            font-weight: 700;
-            margin-bottom: 30px;
-            transform: rotate(-3deg);
-        }
-        
-        h1 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 36px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-        
-        .subtitle {
-            font-size: 17px;
-            color: #555;
-            max-width: 520px;
-            margin-bottom: 36px;
-            font-weight: 300;
-        }
-        
-        .info-box {
-            background: white;
-            border-radius: 12px;
-            padding: 30px 28px;
-            max-width: 480px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--gold);
-            margin-bottom: 30px;
-            text-align: left;
-        }
-        
-        .info-box h3 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 18px;
-            margin-bottom: 12px;
+            display: grid;
+            place-items: center;
+            padding: 36px 20px;
+            font-family: Georgia, "Times New Roman", serif;
             color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 32%),
+                linear-gradient(180deg, #f6e7d6 0%, var(--paper) 48%, #fffaf4 100%);
+            line-height: 1.75;
         }
-        
-        .info-box p {
-            color: #444;
-            font-size: 14px;
-            margin-bottom: 8px;
+
+        .card {
+            width: min(640px, 100%);
+            padding: 38px;
+            border-radius: 28px;
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+            text-align: center;
         }
-        
-        .info-box ul {
-            margin-left: 18px;
-            margin-top: 10px;
-            color: #444;
-            font-size: 14px;
-        }
-        
-        .info-box li {
-            margin-bottom: 6px;
-        }
-        
-        .highlight {
-            color: var(--cinnabar);
-            font-weight: 500;
-        }
-        
-        .btn-primary {
+
+        .brand {
             display: inline-block;
-            background: var(--cinnabar);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
+            margin-bottom: 22px;
+            color: var(--cinnabar);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 13px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: all 0.2s;
         }
-        
-        .btn-primary:hover {
-            background: #a81f1f;
-            transform: translateY(-2px);
+
+        h1 {
+            font-size: clamp(30px, 6vw, 44px);
+            line-height: 1.12;
+            margin-bottom: 14px;
         }
-        
-        .footer-note {
-            margin-top: 40px;
+
+        .subtitle {
+            color: rgba(36, 25, 21, 0.74);
+            margin-bottom: 28px;
+        }
+
+        .info {
+            text-align: left;
+            display: grid;
+            gap: 12px;
+            padding: 22px;
+            border-radius: 20px;
+            background: rgba(242, 227, 208, 0.44);
+            margin-bottom: 28px;
+        }
+
+        .info p {
+            color: rgba(36, 25, 21, 0.76);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            color: #fff8ef;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .note {
+            margin-top: 22px;
             font-size: 12px;
-            color: #888;
+            color: rgba(36, 25, 21, 0.54);
         }
-        
-        @media (max-width: 480px) {
-            h1 { font-size: 28px; }
+
+        .followup {
+            margin-bottom: 26px;
+            color: rgba(36, 25, 21, 0.74);
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="brand">Oriental Destiny</a>
-    
-    <div class="seal">道</div>
-    
-    <h1>Thank You for Your Order</h1>
-    <p class="subtitle">
-        Your reading request has been received. Our reader will begin hand-calculating your chart shortly.
-    </p>
-    
-    <div class="info-box">
-        <h3>What happens next?</h3>
-        <p>1. We have received your birth details and payment confirmation.</p>
-        <p>2. Your reader will plot your Four Pillars by hand, using True Solar Time for precision.</p>
-        <p>3. You will receive your personalized PDF report via email within:</p>
-        <ul>
-            <li><span class="highlight">Destiny Brief:</span> 6 hours</li>
-            <li><span class="highlight">Complete Destiny Book:</span> 3–5 hours</li>
-            <li><span class="highlight">Premium Consultation:</span> 3 hours</li>
-        </ul>
-        <p style="margin-top: 14px; font-style: italic; color: #666;">
-            If you have any questions, simply reply to the confirmation email you will receive shortly.
-        </p>
-    </div>
-    
-    <a href="index.html" class="btn-primary">Return to Home</a>
-    
-    <p class="footer-note">
-        © 2026 Oriental Destiny · For entertainment and self-reflection purposes only.
-    </p>
+    <main class="card">
+        <a class="brand" href="index.html">Oriental Destiny</a>
+        <h1>Your order details have been received.</h1>
+        <p class="subtitle">We will review your $99 order, birth details, zodiac sign, Five Elements balance, and chosen life focus before preparing your jewelry recommendation.</p>
+
+        <div class="info">
+            <p>1. We first confirm the physical jewelry plan and carrier you selected.</p>
+            <p>2. Your reading is used to choose a suitable material, bracelet, pendant, or guardian symbol.</p>
+            <p>3. We confirm the final recommendation with you before arranging shipment.</p>
+            <p>4. If anything is missing, we will contact you through the email or contact method you provided.</p>
+        </div>
+
+        <p class="followup">Please keep an eye on your email after payment. We use your submitted details first, then follow up manually with the final recommendation and shipment confirmation.</p>
+
+        <a class="btn" href="index.html">Back to Home</a>
+        <p class="note">Products and readings are for self-reflection and personal styling guidance. They do not replace medical, legal, financial, or other professional advice.</p>
+    </main>
 </body>
 </html>

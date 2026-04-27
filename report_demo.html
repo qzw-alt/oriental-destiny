@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <title>Destiny Reading Sample | Oriental Destiny</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
         :root {
-            --bg-paper: #F7F5F0;
-            --ink: #1A1A1A;
-            --cinnabar: #B91C1C;
-            --gold: #B8954F;
-            --seal-red: #C23A2B;
-            --faded-ink: #4A4A4A;
+            --bg-paper: #f7f5f0;
+            --ink: #1a1a1a;
+            --cinnabar: #b91c1c;
+            --gold: #b8954f;
+            --seal-red: #c23a2b;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+            font-family: "Cormorant Garamond", Georgia, serif;
             background: var(--bg-paper);
             color: var(--ink);
-            line-height: 1.9;
+            line-height: 1.85;
             font-size: 11.5pt;
         }
-        
+
         .page {
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
             padding: 22mm 18mm;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
             page-break-after: always;
             position: relative;
         }
-        
+
         @media print {
-            body { background: white; }
+            body { background: #fff; }
             .page { box-shadow: none; margin: 0; padding: 18mm 15mm; }
             .no-print { display: none; }
         }
-        
-        h1 { font-size: 26pt; font-weight: 700; color: var(--cinnabar); margin-bottom: 8pt; letter-spacing: 1px; }
-        h2 { font-size: 17pt; font-weight: 600; color: var(--ink); margin-top: 22pt; margin-bottom: 10pt; border-bottom: 1px solid var(--gold); padding-bottom: 5pt; }
-        h3 { font-size: 13.5pt; font-weight: 600; color: var(--ink); margin-top: 14pt; margin-bottom: 7pt; }
-        
+
+        h1 { font-size: 30pt; font-weight: 700; color: var(--ink); margin-bottom: 10pt; }
+        h2 { font-size: 18pt; font-weight: 600; color: var(--ink); margin-top: 22pt; margin-bottom: 10pt; border-bottom: 1px solid var(--gold); padding-bottom: 5pt; }
+        h3 { font-size: 14pt; font-weight: 600; color: var(--ink); margin-top: 14pt; margin-bottom: 7pt; }
         p { margin-bottom: 10pt; text-align: justify; }
-        
+
         .cover {
             display: flex;
             flex-direction: column;
@@ -56,10 +54,10 @@
             text-align: center;
             min-height: 253mm;
         }
-        
+
         .mountain-seal {
-            width: 90px;
-            height: 90px;
+            width: 92px;
+            height: 92px;
             border: 3px solid var(--seal-red);
             display: flex;
             flex-direction: column;
@@ -67,37 +65,19 @@
             justify-content: center;
             color: var(--seal-red);
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             transform: rotate(-2deg);
-            font-family: 'Noto Serif SC', serif;
         }
-        
-        .mountain-seal .top { font-size: 14px; letter-spacing: 3px; }
-        .mountain-seal .mid { font-size: 32px; margin: 2px 0; }
-        .mountain-seal .bot { font-size: 10px; letter-spacing: 2px; }
-        
-        .cover h1 { font-size: 32pt; color: var(--ink); margin-bottom: 14px; }
-        .cover .subtitle { font-size: 15pt; font-style: italic; color: #555; margin-bottom: 70px; }
-        .cover .meta { font-size: 11.5pt; color: #444; line-height: 2; }
-        .cover .master-line { margin-top: 50px; font-size: 12pt; color: var(--cinnabar); font-weight: 600; }
-        .cover .disclaimer { font-size: 9pt; color: #777; margin-top: 60px; max-width: 80%; }
-        
-        .master-stamp {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--seal-red);
-            color: var(--seal-red);
-            font-family: 'Noto Serif SC', serif;
-            font-size: 18px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 46px;
-            transform: rotate(-8deg);
-            margin-left: 10px;
-            opacity: 0.9;
-        }
-        
+
+        .mountain-seal .top { font-size: 12px; letter-spacing: 3px; }
+        .mountain-seal .mid { font-size: 24px; margin: 2px 0; }
+        .mountain-seal .bot { font-size: 9px; letter-spacing: 2px; }
+
+        .subtitle { font-size: 15pt; font-style: italic; color: #555; margin-bottom: 60px; }
+        .meta { font-size: 11.5pt; color: #444; line-height: 2; }
+        .master-line { margin-top: 44px; font-size: 12pt; color: var(--cinnabar); font-weight: 600; }
+        .disclaimer { font-size: 9pt; color: #777; margin-top: 56px; max-width: 80%; }
+
         .section-header {
             font-size: 10pt;
             text-transform: uppercase;
@@ -105,34 +85,39 @@
             color: var(--gold);
             margin-bottom: 4pt;
         }
-        
+
         .chapter-title {
             font-size: 20pt;
             font-weight: 700;
             color: var(--cinnabar);
             margin-bottom: 14pt;
         }
-        
-        .handwritten-box {
-            background: #FDFCF8;
+
+        .handwritten-box,
+        .master-note,
+        .jewelry-box {
+            background: #fdfbf5;
             border-left: 3px solid var(--gold);
             padding: 14pt 18pt;
             margin: 14pt 0;
-            font-style: italic;
-            position: relative;
         }
-        
-        .handwritten-box::before {
-            content: '批';
-            position: absolute;
-            top: 8px;
-            right: 14px;
-            font-family: 'Noto Serif SC', serif;
-            font-size: 24px;
-            color: var(--seal-red);
-            opacity: 0.25;
+
+        .master-note {
+            border-left-color: var(--cinnabar);
+            border: 1px dashed #c8c2b0;
         }
-        
+
+        .jewelry-box {
+            background: linear-gradient(180deg, #f7f1e6 0%, #fcfaf5 100%);
+        }
+
+        .master-note-header {
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--cinnabar);
+            margin-bottom: 8pt;
+        }
+
         .pillars-table {
             width: 100%;
             border-collapse: collapse;
@@ -140,430 +125,196 @@
             font-size: 11pt;
             text-align: center;
         }
+
         .pillars-table th {
             background: var(--ink);
             color: var(--bg-paper);
             padding: 8pt;
             font-weight: 600;
         }
+
         .pillars-table td {
             padding: 10pt 8pt;
             border: 1px solid #d8d4c8;
         }
-        .pillars-table .stem { font-size: 14pt; font-weight: 700; }
-        .pillars-table .branch { font-size: 14pt; color: var(--cinnabar); font-weight: 700; }
-        
-        .master-note {
-            background: #FDFBF5;
-            border: 1px dashed #C8C2B0;
-            padding: 14pt;
-            margin: 16pt 0;
-            border-radius: 2px;
-        }
-        
-        .master-note-header {
-            font-size: 11pt;
-            font-weight: 600;
-            color: var(--cinnabar);
-            margin-bottom: 8pt;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        ul { margin-left: 20pt; margin-bottom: 12pt; }
-        li { margin-bottom: 6pt; }
-        
+
         .signature-block {
             margin-top: 40pt;
             text-align: right;
         }
-        
-        .signature-name {
-            font-size: 14pt;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        
-        .signature-title {
-            font-size: 11pt;
-            color: #666;
-            margin-top: 4pt;
-        }
-        
+
+        .signature-name { font-size: 14pt; font-weight: 600; }
+        .signature-title { font-size: 11pt; color: #666; margin-top: 4pt; }
+        .red-ink { color: var(--cinnabar); font-weight: 600; }
+        .emphasis { font-weight: 600; }
+
         .print-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--cinnabar);
-            color: white;
+            color: #fff;
             border: none;
             padding: 14px 28px;
             font-size: 14pt;
             font-family: inherit;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(185,28,28,0.3);
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
         }
-        
-        .red-ink { color: var(--cinnabar); font-weight: 600; }
-        .emphasis { font-weight: 600; }
-        
+
         .cta-banner {
             background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
-            color: white;
+            color: #fff;
             padding: 30pt;
             text-align: center;
             border-radius: 4px;
             margin-top: 30pt;
         }
-        
+
         .cta-banner h3 {
-            color: white;
+            color: #fff;
             font-size: 18pt;
             margin-bottom: 10pt;
         }
-        
+
         .cta-banner p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.82);
             margin-bottom: 16pt;
             text-align: center;
         }
-        
+
         .cta-link {
             display: inline-block;
             background: var(--cinnabar);
-            color: white;
+            color: #fff;
             padding: 12px 28px;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <button class="print-btn no-print" onclick="window.print()">📄 Print / Save as PDF</button>
+    <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
 
-    <!-- PAGE 1: COVER -->
     <div class="page cover">
         <div class="mountain-seal">
-            <div class="top">龍虎山</div>
-            <div class="mid">道</div>
-            <div class="bot">傳承</div>
+            <div class="top">LONGHU</div>
+            <div class="mid">DAO</div>
+            <div class="bot">LINEAGE</div>
         </div>
         <h1>Personal Destiny Reading</h1>
-        <div class="subtitle">Based on the Four Pillars of Destiny (BaZi)</div>
+        <div class="subtitle">A sample Four Pillars reading with jewelry guidance</div>
         <div class="meta">
             <strong>Prepared for:</strong> Alex Chen<br>
             <strong>Date of Birth:</strong> May 15, 1990 at 11:42 AM<br>
             <strong>Birth Location:</strong> Los Angeles, California, USA<br>
             <strong>Report Date:</strong> April 15, 2026
         </div>
-        <div class="master-line">
-            Hand-prepared in the Longhu Mountain tradition <span class="master-stamp">道</span>
-        </div>
+        <div class="master-line">Prepared in the Oriental Destiny reading style</div>
         <div class="disclaimer">
-            This reading is offered as a tool for self-reflection and decision support. It is not a substitute for professional legal, medical, or financial advice.
+            This reading is offered for self-reflection, personal meaning, and symbolic guidance. It is not a substitute for professional legal, medical, financial, or psychological advice.
         </div>
     </div>
 
-    <!-- PAGE 2: OPENING LETTER -->
     <div class="page">
         <div class="section-header">From the Reader</div>
-        <h2>Greetings, Alex</h2>
+        <h2>Opening Note</h2>
         <p>
-            I am your reader at Oriental Destiny, trained in the classical methods passed down through the Longhu Mountain lineage. For generations, these techniques have been used to map the energetic blueprint of a person's life.
+            This sample shows how an Oriental Destiny report reads in English for an international client. The tone is personal, symbolic, and practical at the same time. We explain the chart clearly, then connect the reading to a simple physical recommendation.
         </p>
         <p>
-            The chart you hold is not a prediction carved in stone. It is a <span class="emphasis">mirror</span> — a reflection of the energetic conditions present at the moment of your birth. By understanding these patterns, you may better recognize your own nature, avoid unnecessary resistance, and move with the current of your life rather than against it.
+            Your chart is not a fixed sentence. It is a map of tendencies: where energy flows easily, where it stalls, and what kinds of timing or support may help you move with less friction.
         </p>
-        <p>
-            I have calculated your Four Pillars by hand, corrected your birth time to True Solar Time, and examined the interaction of your Stems and Branches. What follows is my reading of your chart.
-        </p>
-        
+
         <div class="master-note">
-            <div class="master-note-header">🖋 Reader's Note</div>
-            <p>Your Day Master is <span class="red-ink">Ren Water (壬水)</span> — the great river. This is a noble stem: intelligent, far-reaching, and endlessly adaptable. But a river without banks becomes scattered. Your life task is to find the right channel for your vast mental energy.</p>
+            <div class="master-note-header">Reader's Note</div>
+            <p>Your Day Master is <span class="red-ink">Ren Water</span>, often compared to a river. This points to intelligence, adaptability, sensitivity to timing, and a mind that naturally tracks patterns. When your direction is clear, this is a strong chart for strategy and guidance.</p>
         </div>
-        
+
+        <div class="jewelry-box">
+            <div class="master-note-header">How Jewelry Is Chosen</div>
+            <p>Clients do not need to pick the exact stone first. The report identifies the useful direction, such as stronger Fire for visibility, stronger Earth for steadiness, or a guardian symbol for protection. The final bracelet or pendant is then matched to that reading and confirmed before shipping.</p>
+        </div>
+
         <div class="signature-block">
-            <div class="signature-name">Your Longhu Mountain Reader</div>
-            <div class="signature-title">Oriental Destiny</div>
+            <div class="signature-name">Your Oriental Destiny Reader</div>
+            <div class="signature-title">Sample Reading Format</div>
         </div>
-        
+
+        <div class="handwritten-box" style="margin-top: 24pt;">
+            <strong>A Closing Word from the Lineage</strong><br><br>
+            <span id="lineageClosing">Those who study fate in the old manner do not look only at what is prosperous or troubled in the moment. They look to the root, the season, and whether the person's steps accord with the current beneath the surface. Your chart should not be handled in haste. What is favorable should be nourished, what is excessive should be moderated, and what is weak should be supported with patience. Keep your conduct upright, keep your living space orderly, and let the proper symbol remain near the body. In time, what is unsettled may gather itself again.</span>
+        </div>
+
         <div class="cta-banner no-print">
-            <h3>Order Your Own Reading</h3>
-            <p>Receive a hand-prepared 4,000-word destiny analysis written specifically for you.</p>
-            <a href="checkout.html?product=complete" class="cta-link">Request My Complete Destiny Book — $89</a>
+            <h3>Get Your Own Reading and Jewelry Match</h3>
+            <p>Choose your life focus, submit your birth details, and we will recommend the final bracelet or pendant after the reading.</p>
+            <a href="checkout.html" class="cta-link">Start My Order</a>
         </div>
     </div>
 
-    <!-- PAGE 3: FOUR PILLARS -->
     <div class="page">
-        <div class="section-header">The Foundation</div>
-        <div class="chapter-title">Your Four Pillars</div>
-        
+        <div class="section-header">Chart Summary</div>
+        <div class="chapter-title">Four Pillars Snapshot</div>
         <p>
-            Below are the Eight Characters that form the structure of your destiny. Each Pillar represents a layer of time: the Year governs ancestry and early influence; the Month governs career and parents; the Day governs the self and marriage; the Hour governs children and later aspirations.
+            A full report normally shows the Four Pillars in detail and explains how the birth season, hidden stems, and timing cycles affect the reading. For this sample, we present the chart in a simplified English-friendly format.
         </p>
-        
+
         <table class="pillars-table">
             <tr>
-                <th>Year Pillar<br><small>Ancestory / Early Life</small></th>
-                <th>Month Pillar<br><small>Career / Parents</small></th>
-                <th>Day Pillar<br><small>Self / Spouse</small></th>
-                <th>Hour Pillar<br><small>Children / Later Life</small></th>
+                <th>Year Pillar</th>
+                <th>Month Pillar</th>
+                <th>Day Pillar</th>
+                <th>Hour Pillar</th>
             </tr>
             <tr>
-                <td><div class="stem">庚</div><span style="font-size:10pt;color:#666">Geng Metal</span></td>
-                <td><div class="stem">辛</div><span style="font-size:10pt;color:#666">Xin Metal</span></td>
-                <td><div class="stem">壬</div><span style="font-size:10pt;color:#666">Ren Water</span></td>
-                <td><div class="stem">癸</div><span style="font-size:10pt;color:#666">Gui Water</span></td>
-            </tr>
-            <tr>
-                <td><div class="branch">午</div><span style="font-size:10pt;color:#666">Horse / Fire</span></td>
-                <td><div class="branch">巳</div><span style="font-size:10pt;color:#666">Snake / Fire</span></td>
-                <td><div class="branch">辰</div><span style="font-size:10pt;color:#666">Dragon / Earth</span></td>
-                <td><div class="branch">卯</div><span style="font-size:10pt;color:#666">Rabbit / Wood</span></td>
+                <td>Geng Wu<br><small>Metal Horse</small></td>
+                <td>Xin Si<br><small>Metal Snake</small></td>
+                <td>Ren Chen<br><small>Water Dragon</small></td>
+                <td>Gui Mao<br><small>Water Rabbit</small></td>
             </tr>
         </table>
-        
+
         <div class="handwritten-box">
-            The Heavenly Stem of your Day Pillar is <span class="red-ink">Ren Water</span>. This is you — the captain of the ship. All other elements in the chart must be judged in relation to this stem. Ren Water people are thinkers, connectors, and strategists. You are at your best when information flows through you.
+            The chart carries strong Water and supportive Metal, with weaker Fire and Earth. In plain language: the client thinks deeply and reads situations well, but benefits from more visibility, warmth, grounded follow-through, and structure.
         </div>
-        
-        <h3>True Solar Time Correction</h3>
-        <p>
-            You were born in Los Angeles at 11:42 AM local time. Because Los Angeles lies at 118.2°W — west of the standard 120°W meridian — the sun was not yet directly overhead at your recorded birth time. After longitude correction and the Equation of Time, your <span class="emphasis">True Solar Time</span> is 11:23 AM. Your Hour Pillar is therefore the <span class="red-ink">Si Hour (巳时)</span>, not the Wu Hour.
-        </p>
-        <p>
-            <em>This correction is essential. Many modern calculators ignore it.</em>
-        </p>
-    </div>
 
-    <!-- PAGE 4: ELEMENTAL ANALYSIS -->
-    <div class="page">
-        <div class="section-header">The Five Elements</div>
-        <div class="chapter-title">Your Elemental Balance</div>
-        
+        <h3>Five Elements Reading</h3>
         <p>
-            Your chart is composed of five elemental forces. Their relative strength tells me where your natural power lies — and what you must consciously cultivate.
+            Water supports perception, flexibility, and emotional depth. Metal sharpens judgment. The weaker areas are Fire, which rules confidence and expression, and Earth, which rules stability and containment. A reading like this often leads to advice about speaking up more, finishing what has already been started, and choosing symbols that add steady support instead of more mental stimulation.
         </p>
-        
-        <table class="pillars-table" style="text-align: left;">
-            <tr style="background: var(--ink); color: white;">
-                <th style="text-align:left">Element</th>
-                <th style="text-align:left">Strength</th>
-                <th style="text-align:left">Reader's Reading</th>
-            </tr>
-            <tr>
-                <td><strong>Water</strong></td>
-                <td><span class="red-ink">Strong</span></td>
-                <td>Your core self — intuition, adaptability, mental depth</td>
-            </tr>
-            <tr>
-                <td><strong>Metal</strong></td>
-                <td>Moderate</td>
-                <td>Your source of clarity, precision, and discernment</td>
-            </tr>
-            <tr>
-                <td><strong>Wood</strong></td>
-                <td>Moderate</td>
-                <td>Your creativity and drive for expansion</td>
-            </tr>
-            <tr>
-                <td><strong>Fire</strong></td>
-                <td><span class="red-ink">Weak</span></td>
-                <td>Your visibility, social warmth, and expressive power</td>
-            </tr>
-            <tr>
-                <td><strong>Earth</strong></td>
-                <td><span class="red-ink">Weak</span></td>
-                <td>Your stability, discipline, and grounding force</td>
-            </tr>
-        </table>
-        
-        <div class="master-note">
-            <div class="master-note-header">🖋 Reader's Reading</div>
-            <p>You possess abundant <span class="red-ink">Water and Metal</span> energy. This makes you intellectually formidable — you see patterns, read people, and think several moves ahead. However, your weaker <span class="red-ink">Fire and Earth</span> create two challenges:</p>
-            <ul>
-                <li><strong>Fire deficiency:</strong> You may hesitate to promote yourself or speak publicly, even when you are the most qualified person in the room.</li>
-                <li><strong>Earth deficiency:</strong> You generate ideas constantly, but may struggle to finish one project before starting the next.</li>
-            </ul>
-            <p>These are not flaws. They are simply the terrain of your life. A wise sailor does not curse the wind; he learns to adjust his sails.</p>
-        </div>
-    </div>
 
-    <!-- PAGE 5: PERSONALITY -->
-    <div class="page">
-        <div class="section-header">Character</div>
-        <div class="chapter-title">Personality & Nature</div>
-        
-        <h3>Your Natural Strengths</h3>
-        <ol>
-            <li><span class="emphasis">Analytical Depth</span> — You do not accept easy answers. You enjoy reaching the root of a problem, even when the surface solution would suffice.</li>
-            <li><span class="emphasis">Emotional Perception</span> — You often sense what others are feeling before they speak it. This makes you a natural counselor, negotiator, or strategist.</li>
-            <li><span class="emphasis">Strategic Patience</span> — Unlike Fire-dominant people who rush to action, you are willing to wait for the right moment. You do not force outcomes.</li>
-        </ol>
-        
-        <h3>Your Recurring Blind Spots</h3>
-        <ol>
-            <li><span class="emphasis">Analysis Paralysis</span> — Your gift for deep thinking can become a prison. You may delay action until you feel "certain," and certainty rarely arrives.</li>
-            <li><span class="emphasis">Emotional Absorption</span> — Because you read others so well, you can absorb their stress. Chaotic social environments drain you quickly.</li>
-            <li><span class="emphasis">Reluctance to Self-Promote</span> — You may believe that good work speaks for itself. In most worlds, it does not. You must learn to make your value visible.</li>
-        </ol>
-        
-        <div class="handwritten-box">
-            In the classical texts, Ren Water seated on Chen Earth (your Day Pillar) is called "The River Meets the Reservoir." You have depth, but you also have containment. This means that when you find the right environment — the right team, the right city, the right partner — you can accumulate tremendous power. But in the wrong environment, you feel dammed up, restless, and out of place.
+        <h3>Sample Jewelry Recommendation</h3>
+        <div class="jewelry-box">
+            <p><strong>Recommended focus:</strong> <span id="focusPlan">Career visibility and grounding</span></p>
+            <p><strong>Suggested carrier:</strong> <span id="focusCarrier">Bracelet for daily wear</span></p>
+            <p><strong>Suggested material direction:</strong> <span id="focusMaterial">Citrine, tiger eye, warm-toned stone, or a Fire-and-Earth balancing mix</span></p>
+            <p><strong>Why this works:</strong> <span id="focusReason">The chart already has plenty of thought and sensitivity. The jewelry should reinforce confidence, momentum, and steady execution rather than add more introspective energy.</span></p>
         </div>
-    </div>
 
-    <!-- PAGE 6: CAREER -->
-    <div class="page">
-        <div class="section-header">Vocation & Wealth</div>
-        <div class="chapter-title">Career & Wealth Path</div>
-        
-        <h3>Your Wealth Pattern</h3>
         <p>
-            In BaZi, wealth is not only money. It is the <span class="emphasis">value you create and your capacity to receive it.</span>
+            This is the key commercial shift for the site: the report is not separate from the product. The report is the logic that makes the physical product feel personal, guided, and worth buying.
         </p>
-        <p>
-            Your chart shows that your strongest wealth potential comes from <span class="red-ink">intellectual property, strategic counsel, or creative problem-solving</span> — not from routine labor or a fixed salary. You are what the classics call an <span class="emphasis">"Indirect Wealth"</span> soul.
-        </p>
-        
-        <div class="master-note">
-            <div class="master-note-header">🖋 Reader's Reading</div>
-            <p>Indirect Wealth personalities thrive in open-ended situations where there is no fixed playbook. You are restless in jobs with rigid pay scales and no upside. Even if you are currently employed, you have an entrepreneurial mind. Your ideal income structure involves multiple streams: salary + consulting + royalties + equity.</p>
-        </div>
-        
-        <h3>Your Current Life Chapter</h3>
-        <p>
-            You are now in the <span class="red-ink">Gui Chou</span> Luck Pillar (ages 36–45). This is a Water-Earth cycle — a time of <span class="emphasis">consolidation, deep learning, and quiet accumulation.</span>
-        </p>
-        <p>
-            This is not a decade for reckless expansion. It is a season to sharpen your skills, clarify your reputation, and build assets that will mature in the next cycle. The seeds you plant now — a book, a course, a consulting practice, a portfolio — will bear fruit between ages 46 and 55.
-        </p>
-        
-        <h3>Practical Guidance</h3>
-        <ul>
-            <li><strong>Diversify your income.</strong> Do not rely on a single paycheck. Explore side projects or consulting.</li>
-            <li><strong>Build your name.</strong> Your ideas are valuable, but they must be seen. Writing, speaking, or teaching will serve you well.</li>
-            <li><strong>Partner with Earth-strong people.</strong> Find collaborators who excel in execution and detail. They will ground your vision.</li>
-        </ul>
-    </div>
 
-    <!-- PAGE 7: RELATIONSHIPS -->
-    <div class="page">
-        <div class="section-header">Human Connections</div>
-        <div class="chapter-title">Relationships & Love</div>
-        
-        <h3>Your Relationship Nature</h3>
-        <p>
-            Your Day Pillar suggests that you are <span class="emphasis">deeply loyal but selectively intimate.</span> You do not collect acquaintances. You maintain a small circle of people you truly trust, and you are fiercely protective of them.
-        </p>
-        <p>
-            In love, you are drawn to partners who are:
-        </p>
-        <ul>
-            <li>Intellectually stimulating</li>
-            <li>Emotionally stable (they provide the grounding you lack)</li>
-            <li>Independent enough to give you mental space</li>
-        </ul>
-        
-        <h3>Points of Caution</h3>
-        <ul>
-            <li>Your need for solitude can be misread as coldness. You must learn to say: <em>"I need silence to recharge — this is not rejection."</em></li>
-            <li>Your tendency to overthink can create conflict where none exists. You may rehearse arguments in your mind before they happen.</li>
-            <li>Your attraction to complexity can draw you toward dramatic or unstable partners. Watch for this pattern.</li>
-        </ul>
-        
-        <div class="handwritten-box">
-            The Earthly Branch of your Day Pillar is Chen (辰, Dragon). In relationship matters, Chen people are often slow to open, but once committed, they are immovable. Do not rush your heart. When you find someone with strong Fire and Earth energy — someone warm, steady, and patient — that is the match that will balance your water-cold nature.
-        </div>
-    </div>
-
-    <!-- PAGE 8: CURRENT YEAR -->
-    <div class="page">
-        <div class="section-header">The Year Ahead</div>
-        <div class="chapter-title">2026 Forecast & Guidance</div>
-        
-        <p>
-            The year 2026 is <span class="red-ink">Bing Wu (丙午)</span> — the Year of the Fire Horse. This is a year of <span class="emphasis">visibility, movement, and social expansion</span> for you.
-        </p>
-        
-        <h3>What to Expect</h3>
-        <ul>
-            <li><strong>Career:</strong> Opportunities to speak, publish, or lead will arise. Say yes, even if you feel unprepared. Fire years favor those who step into the light.</li>
-            <li><strong>Wealth:</strong> Income may fluctuate, but creative and intellectual assets increase in value. This is a good year to invest in your own brand.</li>
-            <li><strong>Health:</strong> Fire years can over-stimulate Water-dominant charts. Guard your sleep. Avoid burning the midnight oil.</li>
-            <li><strong>Relationships:</strong> Social energy expands. New connections are likely. Remember: quality still matters more than quantity.</li>
-        </ul>
-        
-        <div class="master-note">
-            <div class="master-note-header">🖋 Reader's Counsel for 2026</div>
-            <p><strong>Favor:</strong> Learning, writing, short journeys, strategic networking, building an online presence.</p>
-            <p><strong>Avoid:</strong> Impulsive job changes, speculative investments, overcommitting socially, neglecting rest.</p>
-            <p>The months of <span class="red-ink">July and November</span> are especially favorable for major decisions this year.</p>
-        </div>
-    </div>
-
-    <!-- PAGE 9: RECOMMENDATIONS -->
-    <div class="page">
-        <div class="section-header">Closing Counsel</div>
-        <div class="chapter-title">Personalized Recommendations</div>
-        
-        <p>
-            Based on your unique chart, here are three steps I recommend you take in the next 90 days:
-        </p>
-        
-        <h3>1. Adjust Your Environment</h3>
-        <p>
-            Your chart benefits from Water and Metal energy.
-        </p>
-        <ul>
-            <li>Place a small water feature, a dark blue object, or an image of flowing water in the <span class="red-ink">North</span> sector of your home or office.</li>
-            <li>Wear or surround yourself with colors of blue, black, silver, and white.</li>
-            <li>Reduce clutter. Stagnant Earth energy overwhelms your flow.</li>
-        </ul>
-        
-        <h3>2. Time Your Decisions</h3>
-        <p>
-            As noted above, <span class="red-ink">July and November</span> of 2026 are your optimal windows for important decisions. If possible, schedule launches, signings, or relocations during these months.
-        </p>
-        
-        <h3>3. Cultivate One Earth Habit</h3>
-        <p>
-            To balance your natural scatter, commit to <span class="emphasis">one</span> grounding habit for 90 days:
-        </p>
-        <ul>
-            <li>A 10-minute morning planning ritual</li>
-            <li>A weekly financial review</li>
-            <li>A fixed bedtime</li>
-        </ul>
-        <p>
-            Start small. In BaZi, consistency is more powerful than intensity.
-        </p>
-        
-        <div class="handwritten-box" style="margin-top: 26pt;">
-            <strong>Final Words</strong><br><br>
-            Your chart is not a prison. It is a map. And like any map, its value is in helping you choose your route with clearer eyes.<br><br>
-            You were born with a mind that sees beneath the surface, an intuition that reads invisible currents, and a patience that outlasts short-term noise. Cultivate these gifts. Make them visible. And may your river find the sea.
-        </div>
-        
-        <div class="signature-block">
-            <div class="signature-name">Your Longhu Mountain Reader</div>
-            <div class="signature-title">Oriental Destiny</div>
-        </div>
-        
         <div class="cta-banner no-print">
-            <h3>Order Your Own Reading</h3>
-            <p>Receive a hand-prepared 4,000-word destiny analysis written specifically for you.</p>
-            <a href="checkout.html?product=complete" class="cta-link">Request My Complete Destiny Book — $89</a>
+            <h3>Choose a Bracelet or Pendant First</h3>
+            <p>The exact material and symbolic form are recommended after the reading, then confirmed with the client before shipping.</p>
+            <a href="checkout.html" class="cta-link">Choose My Plan</a>
         </div>
-        
+
         <div style="margin-top: 36pt; font-size: 9pt; color: #777; border-top: 1px solid #ddd; padding-top: 12pt;">
-            <strong>Disclaimer:</strong> This reading is prepared using traditional Chinese metaphysical methods (BaZi / Four Pillars of Destiny) and the interpretive judgment of the reader. It is intended for entertainment, self-reflection, and personal insight only. It does not constitute professional advice in legal, medical, financial, or psychological matters. You remain the author of your own life.
+            <strong>Disclaimer:</strong> This sample uses traditional Chinese metaphysical language in a client-friendly English format. It is presented for self-reflection and symbolic guidance only.
         </div>
     </div>
+    <script src="report_focus.js"></script>
+    <script src="lineage_voice.js"></script>
+    <script>
+        window.ReportFocus.applyTier("demo");
+    </script>
+    <script>
+        window.LineageVoice.applyLineageVoice("demo");
+    </script>
 </body>
 </html>

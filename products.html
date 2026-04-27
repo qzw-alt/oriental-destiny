@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriental Destiny | Personalized Feng Shui Jewelry Plans</title>
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #fbf6ef;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 44px rgba(70, 41, 24, 0.11);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top right, rgba(183, 138, 66, 0.14), transparent 32%),
+                linear-gradient(180deg, #f6e8d7 0%, var(--paper) 42%, #fffaf4 100%);
+            line-height: 1.72;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 30px 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand-mark {
+            display: block;
+            color: var(--cinnabar);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav a,
+        .btn {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 253, 249, 0.82);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            color: #fff8ef;
+            border: none;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            box-shadow: 0 12px 26px rgba(166, 58, 44, 0.22);
+        }
+
+        .hero {
+            padding: 12px 0 48px;
+        }
+
+        .hero-card,
+        .plan-card,
+        .carrier-card,
+        .zodiac-card,
+        .cta-card {
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card {
+            border-radius: 28px;
+            padding: 38px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        h1 {
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.08;
+            margin-bottom: 14px;
+        }
+
+        .hero-card p,
+        .section-head p,
+        .plan-card p,
+        .carrier-card p,
+        .zodiac-card p,
+        .cta-card p {
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        .hero-side {
+            border-radius: 22px;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(49, 82, 71, 0.98), rgba(33, 58, 49, 0.98));
+            color: #fff8ef;
+        }
+
+        .hero-side h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .hero-side li {
+            color: rgba(255, 248, 239, 0.82);
+        }
+
+        .hero-side ul {
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        section { padding: 0 0 56px; }
+
+        .section-head {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.18;
+            margin-bottom: 8px;
+        }
+
+        .section-head p { max-width: 720px; }
+
+        .carrier-grid,
+        .plan-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .carrier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .carrier-card,
+        .plan-card,
+        .zodiac-card {
+            border-radius: 26px;
+            padding: 28px;
+        }
+
+        .carrier-card h3,
+        .plan-card h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .carrier-card ul,
+        .plan-card ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-top: 16px;
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        .carrier-card li::before,
+        .plan-card li::before {
+            content: "· ";
+            color: var(--cinnabar);
+            font-weight: 700;
+        }
+
+        .plan-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+        .plan-card {
+            display: grid;
+            align-content: space-between;
+            min-height: 100%;
+        }
+
+        .plan-tag {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 28px;
+            align-items: center;
+            padding: 0 11px;
+            border-radius: 999px;
+            background: rgba(183, 138, 66, 0.13);
+            color: var(--gold);
+            font-size: 12px;
+            margin-bottom: 14px;
+        }
+
+        .zodiac-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .zodiac-list div {
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(240, 223, 202, 0.52);
+            border: 1px solid rgba(36, 25, 21, 0.06);
+        }
+
+        .zodiac-list strong {
+            display: block;
+            color: var(--cinnabar);
+            margin-bottom: 4px;
+        }
+
+        .cta-card {
+            border-radius: 28px;
+            padding: 34px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            background:
+                linear-gradient(180deg, rgba(36, 25, 21, 0.9), rgba(68, 38, 24, 0.92)),
+                #241915;
+            color: #fff8ef;
+        }
+
+        .cta-card h2 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .cta-card p {
+            color: rgba(255, 248, 239, 0.82);
+            max-width: 680px;
+        }
+
+        footer { padding: 0 0 40px; }
+
+        .footer-note {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            color: rgba(36, 25, 21, 0.58);
+            font-size: 13px;
+        }
+
+        @media (max-width: 960px) {
+            .hero-card,
+            .carrier-grid,
+            .plan-grid,
+            .zodiac-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero-card,
+            .carrier-card,
+            .plan-card,
+            .zodiac-card,
+            .cta-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <a href="index.html">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">Personalized Jewelry Plans</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="instant_reading.html">Free Preview</a>
+            <a href="#plans">Plans</a>
+            <a href="#carriers">Bracelet / Pendant</a>
+            <a href="checkout.html">Order</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-card">
+                <div>
+                    <h1>Choose a life focus. We match the jewelry after reading your chart.</h1>
+                    <p>The physical item is intentionally simple: a bracelet or a pendant. The real value is the personalized Five Elements, zodiac, and Feng Shui matching behind it. You do not need to compare dozens of similar stones, and every full order uses one simple $99 price.</p>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:22px;">
+                        <a class="btn" href="instant_reading.html">Try the Free Preview</a>
+                        <a class="btn btn-primary" href="checkout.html">Go to Full Order</a>
+                    </div>
+                </div>
+                <aside class="hero-side">
+                    <h2>How it works</h2>
+                    <ul>
+                        <li>Choose the area of life you want support for</li>
+                        <li>Choose bracelet or pendant as the physical carrier</li>
+                        <li>Optional: start with a free mini reading first</li>
+                        <li>Submit your birth details after checkout</li>
+                        <li>We recommend the exact material and confirm before shipping</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section id="carriers">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Only two physical options</h2>
+                        <p>This keeps the storefront real and physical while preventing customers from thinking like they are buying cheap stones. The report decides the final material, color, and symbolic form.</p>
+                    </div>
+                </div>
+
+                <div class="carrier-grid">
+                    <article class="carrier-card">
+                        <h3>Bracelet</h3>
+                        <p>Best for daily wear, energy balancing, career support, wealth focus, relationships, and Five Elements adjustment.</p>
+                        <ul>
+                            <li>May use crystal, jade, wood, cinnabar, or similar materials</li>
+                            <li>Good for customers who want something to wear every day</li>
+                            <li>Final bead size, color, and material are confirmed after the reading</li>
+                        </ul>
+                    </article>
+
+                    <article class="carrier-card">
+                        <h3>Pendant</h3>
+                        <p>Best for guardian symbols, zodiac pieces, Buddha protectors, safety charms, Pixiu, and protective Feng Shui use.</p>
+                        <ul>
+                            <li>May use zodiac symbols, guardian Buddha imagery, Pixiu, or safety forms</li>
+                            <li>Good for customers who prefer a clear protective meaning</li>
+                            <li>Final symbol, material, and cord style are confirmed after the reading</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Six personalized plans</h2>
+                        <p>Every plan can be fulfilled as either a bracelet or a pendant. The customer buys the direction; the reading decides the exact item. All six plans are priced at $99.</p>
+                    </div>
+                    <a class="btn btn-primary" href="checkout.html">Choose a Plan</a>
+                </div>
+
+                <div class="plan-grid">
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Five Elements</span>
+                            <h3>Elemental Balance</h3>
+                            <p>For customers who want their birth chart reviewed for Wood, Fire, Earth, Metal, or Water support.</p>
+                            <ul>
+                                <li>Best when the customer is unsure what they need</li>
+                                <li>The report explains the element recommendation</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Zodiac</span>
+                            <h3>Zodiac Guardian</h3>
+                            <p>Uses Chinese zodiac, guardian Buddha, and symbolic protection logic to select the final carrier.</p>
+                            <ul>
+                                <li>Best for customers drawn to their zodiac animal</li>
+                                <li>The report recommends guardian symbol and material</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Career</span>
+                            <h3>Career & Allies</h3>
+                            <p>For promotion, exams, business expansion, authority, helpful people, and reducing workplace friction.</p>
+                            <ul>
+                                <li>Best during career pressure or transition</li>
+                                <li>Common matches include green phantom, amethyst, and Wen Chang symbols</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Wealth</span>
+                            <h3>Wealth & Retention</h3>
+                            <p>For regular income, windfalls, money retention, business flow, and reducing financial leakage.</p>
+                            <ul>
+                                <li>Best for business owners or variable income</li>
+                                <li>Common matches include citrine, golden rutilated quartz, and Pixiu forms</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Love</span>
+                            <h3>Love & Harmony</h3>
+                            <p>For attracting better relationships, improving connection, reconciliation, and emotional harmony.</p>
+                            <ul>
+                                <li>Best for romance, social charm, and relationship repair</li>
+                                <li>Common matches include rose quartz, strawberry quartz, rhodochrosite, and moonstone</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="plan-card">
+                        <div>
+                            <span class="plan-tag">Protection</span>
+                            <h3>Safety & Protection</h3>
+                            <p>For peace, grounding, reducing negative influence, personal protection, and family stability.</p>
+                            <ul>
+                                <li>Best for customers seeking calm and protection</li>
+                                <li>Common matches include obsidian, cinnabar, safety coin forms, and jade plaques</li>
+                                <li>Available as bracelet or pendant</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="zodiac-card" style="margin-bottom: 18px;">
+                    <h2>Want a lower-friction first step?</h2>
+                    <p>Not every visitor is ready to order immediately. The instant mini reading gives a quick symbolic preview on the spot, then leads into the paid service for the bracelet or pendant plus detailed report.</p>
+                    <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+                        <a class="btn btn-primary" href="instant_reading.html">Open Free Preview</a>
+                        <a class="btn" href="report_demo.html">See Sample Report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="zodiac-card">
+                    <h2>The 12 zodiac system still guides the reading</h2>
+                    <p>We no longer split every zodiac animal into many store products. Instead, the full zodiac guardian system stays inside the personalized recommendation: guardian Buddha, material, bracelet meaning, and pendant symbolism.</p>
+                    <div class="zodiac-list">
+                        <div><strong>Rat</strong>Thousand-Armed Guanyin, water support, noble help</div>
+                        <div><strong>Ox</strong>Akasagarbha, wealth storage, steady career</div>
+                        <div><strong>Tiger</strong>Akasagarbha, courage, expansion, competition</div>
+                        <div><strong>Rabbit</strong>Manjushri, wisdom, relationships, harmony</div>
+                        <div><strong>Dragon</strong>Samantabhadra, authority, status, noble help</div>
+                        <div><strong>Snake</strong>Samantabhadra, social energy, conflict reduction</div>
+                        <div><strong>Horse</strong>Mahasthamaprapta, confidence, career recognition</div>
+                        <div><strong>Goat</strong>Vairocana, stability, family, steady fortune</div>
+                        <div><strong>Monkey</strong>Vairocana, intelligence, cooperation, wealth</div>
+                        <div><strong>Rooster</strong>Acala, focus, protection, breakthrough</div>
+                        <div><strong>Dog</strong>Amitabha, peace, stability, longevity</div>
+                        <div><strong>Pig</strong>Amitabha, water support, stable money, relationships</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="cta-card">
+                    <div>
+                        <h2>Customers buy the direction, not the stone.</h2>
+                        <p>The store remains a physical jewelry offer, but the decision stays simple: choose what you want support with, then choose bracelet or pendant. Full service: $99.</p>
+                    </div>
+                    <a class="btn btn-primary" href="checkout.html">Start My Matching</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-note">
+            &copy; 2026 Oriental Destiny. Customers purchase a physical Feng Shui jewelry plan. The personalized reading is used to recommend and confirm the final item before shipping.
+        </div>
+    </footer>
+</body>
+</html>

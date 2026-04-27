@@ -1,617 +1,714 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oriental Destiny — Handcrafted Readings from Longhu Mountain Tradition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Oriental Destiny | Personalized Feng Shui Jewelry</title>
     <style>
         :root {
-            --bg-dark: #1a1a1e;
-            --bg-mid: #24242b;
-            --paper: #F5F0E6;
-            --ink: #1A1A1A;
-            --cinnabar: #B91C1C;
-            --gold: #C5A059;
-            --cream: #faf8f4;
-            --jade: #2D5A4A;
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Georgia, "Times New Roman", serif;
             color: var(--ink);
-            background: var(--paper);
-            line-height: 1.7;
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
         }
-        
-        h1, h2, h3, .brand {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 600;
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
         }
-        
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .topbar-inner {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
+            gap: 2px;
         }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='none' stroke='%23C5A059' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
-            pointer-events: none;
+
+        .brand-mark {
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
         }
-        
-        .hero-badge {
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.78);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .hero {
+            padding: 74px 0 56px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .hero-copy,
+        .hero-panel,
+        .story-card,
+        .plan-card,
+        .carrier-card,
+        .step,
+        .faq-item,
+        .closing-card {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-copy {
+            padding: 44px;
+            border-radius: 28px;
+        }
+
+        .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 22px;
-            border-radius: 40px;
             font-size: 12px;
-            letter-spacing: 2px;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            color: #fff;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.82);
-            max-width: 640px;
-            margin: 0 auto 36px;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .delivery-note {
             color: var(--gold);
-            font-size: 14px;
-            margin-bottom: 32px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 18px;
         }
-        
-        .btn-primary {
-            display: inline-block;
-            background: var(--cinnabar);
-            color: white;
-            padding: 18px 46px;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 20px rgba(185,28,28,0.25);
-            border: 1px solid rgba(255,255,255,0.1);
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: currentColor;
         }
-        
-        .btn-primary:hover {
-            background: #a81f1f;
-            transform: translateY(-2px);
+
+        h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.05;
+            margin-bottom: 18px;
         }
-        
-        .trust-strip {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 60px;
-            position: relative;
-            z-index: 1;
-            flex-wrap: wrap;
+
+        .hero-copy p,
+        .section-head p,
+        .story-card p,
+        .plan-card p,
+        .carrier-card p,
+        .step p,
+        .faq-item p {
+            color: rgba(36, 25, 21, 0.76);
         }
-        
-        .trust-item {
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-        }
-        
-        .trust-item .num {
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--gold);
-            font-family: 'Cormorant Garamond', serif;
-        }
-        
-        .trust-item .label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .section {
-            padding: 90px 20px;
-        }
-        
-        .section.alt { background: var(--cream); }
-        .section.dark { background: var(--bg-dark); color: rgba(255,255,255,0.9); }
-        
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
-        }
-        
-        .section h2 {
-            text-align: center;
-            font-size: 38px;
-            margin-bottom: 50px;
-        }
-        
-        .intro-text {
-            max-width: 780px;
-            margin: 0 auto 50px;
-            text-align: center;
+
+        .hero-copy p {
             font-size: 17px;
-            color: #444;
-            line-height: 1.9;
+            max-width: 650px;
         }
-        
-        .heritage-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
             align-items: center;
-            background: white;
-            padding: 50px;
-            border-radius: 6px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--cinnabar);
-            max-width: 900px;
-            margin: 0 auto;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: transform 0.2s ease;
         }
-        
-        .heritage-visual {
-            aspect-ratio: 1;
-            background-image: url('dao_200.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 4px;
-            opacity: 0.95;
+
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-primary {
+            color: #fff8ef;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            box-shadow: 0 14px 28px rgba(166, 58, 44, 0.24);
         }
-        
-        .heritage-info h3 {
-            font-size: 26px;
-            margin-bottom: 12px;
+
+        .btn-secondary {
             color: var(--ink);
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.12);
         }
-        
-        .heritage-info p {
-            color: #444;
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .meta-item {
+            padding: 16px 18px;
+            background: rgba(239, 225, 207, 0.45);
+            border-radius: 18px;
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 22px;
+            color: var(--cinnabar);
+        }
+
+        .meta-item span {
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.72);
+        }
+
+        .hero-panel {
+            border-radius: 28px;
+            padding: 28px;
+            background: linear-gradient(180deg, rgba(49, 82, 71, 0.98), rgba(33, 58, 49, 0.98));
+            color: #fdf8ef;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .panel-badge {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 7px 14px;
+            border: 1px solid rgba(255, 248, 235, 0.22);
+            border-radius: 999px;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-panel h2 {
+            font-size: 30px;
+            line-height: 1.18;
             margin-bottom: 14px;
         }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
+
+        .hero-panel p,
+        .hero-panel li {
+            color: rgba(253, 248, 239, 0.82);
         }
-        
-        .step {
-            text-align: center;
-            padding: 30px;
+
+        .panel-list {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+            margin: 24px 0;
+        }
+
+        .panel-list li {
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        section { padding: 30px 0 70px; }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 20px;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+        }
+
+        .section-head h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.16;
+            margin-bottom: 8px;
+        }
+
+        .section-head p {
+            max-width: 680px;
+        }
+
+        .story-card {
+            border-radius: 28px;
+            padding: 34px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 26px;
+        }
+
+        .story-card ul,
+        .carrier-card ul,
+        .plan-card ul {
+            list-style: none;
+            display: grid;
+            gap: 9px;
+            margin-top: 18px;
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        .story-card li,
+        .carrier-card li,
+        .plan-card li {
+            padding-left: 14px;
             position: relative;
         }
-        
-        .step-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--cinnabar);
-            color: var(--cinnabar);
+
+        .story-card li::before,
+        .carrier-card li::before,
+        .plan-card li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            display: flex;
+            background: var(--cinnabar);
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        .carrier-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .carrier-card,
+        .plan-card,
+        .step,
+        .faq-item {
+            border-radius: 24px;
+            padding: 26px;
+        }
+
+        .carrier-card h3,
+        .plan-card h3,
+        .step h3,
+        .faq-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .plan-tag {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 28px;
+            align-items: center;
+            padding: 0 11px;
+            border-radius: 999px;
+            background: rgba(183, 138, 66, 0.13);
+            color: var(--gold);
+            font-size: 12px;
+            margin-bottom: 14px;
+        }
+
+        .steps-grid,
+        .faq-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .steps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .step-no {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            font-weight: 600;
-            font-family: 'Cormorant Garamond', serif;
-            margin: 0 auto 20px;
-        }
-        
-        .step h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-        
-        .step p {
-            color: #555;
-        }
-        
-        .highlight-time {
-            background: var(--cinnabar);
-            color: white;
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 500;
-            margin-top: 12px;
-        }
-        
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 6px;
-            padding: 40px 34px;
-            text-align: center;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
-            transition: transform 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-4px);
-        }
-        
-        .card.featured {
-            border: 2px solid var(--gold);
-            position: relative;
-        }
-        
-        .card.featured::before {
-            content: 'Most Requested';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gold);
-            color: var(--ink);
-            padding: 5px 18px;
-            font-size: 11px;
-            font-weight: 600;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        
-        .card h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-        
-        .card .price {
-            font-size: 40px;
+            margin-bottom: 16px;
+            color: #fff8ef;
+            background: linear-gradient(135deg, var(--gold), var(--cinnabar));
             font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 6px;
-            font-family: 'Cormorant Garamond', serif;
         }
-        
-        .card .delivery {
-            font-size: 13px;
-            color: var(--cinnabar);
-            margin-bottom: 24px;
-            font-weight: 500;
+
+        .closing-card {
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            background:
+                linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
+                #261a16;
+            color: #fff8ef;
         }
-        
-        .card ul {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 30px;
+
+        .closing-card h2 {
+            font-size: clamp(30px, 4.4vw, 46px);
+            margin-bottom: 14px;
         }
-        
-        .card ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-            color: #444;
-            font-size: 14px;
-        }
-        
-        .card ul li::before {
-            content: '✓';
-            color: var(--cinnabar);
-            margin-right: 10px;
-        }
-        
-        .btn-secondary {
-            display: inline-block;
-            background: transparent;
-            color: var(--cinnabar);
-            padding: 14px 36px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 4px;
-            text-decoration: none;
-            border: 1.5px solid var(--cinnabar);
-            transition: all 0.3s;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--cinnabar);
-            color: white;
-        }
-        
-        .faq-item {
-            max-width: 780px;
+
+        .closing-card p {
+            max-width: 720px;
             margin: 0 auto 24px;
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 24px;
+            color: rgba(255, 248, 239, 0.82);
         }
-        
-        .faq-item h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--ink);
-        }
-        
-        .faq-item p {
-            color: #555;
-        }
-        
-        .guarantee-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-        
-        .guarantee-item {
-            padding: 30px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        
-        .guarantee-item h4 {
-            color: var(--gold);
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        
-        .guarantee-item p {
-            font-size: 14px;
-            color: rgba(255,255,255,0.65);
-        }
-        
-        .nav-links {
+
+        footer { padding: 0 0 42px; }
+
+        .footer-card {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 28px;
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-        
-        .nav-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-        
-        footer {
-            padding: 40px 20px;
-            text-align: center;
-            background: var(--bg-dark);
-            color: rgba(255,255,255,0.45);
+            justify-content: space-between;
+            gap: 20px;
+            color: rgba(36, 25, 21, 0.6);
             font-size: 13px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            flex-wrap: wrap;
         }
-        
+
+        @media (max-width: 980px) {
+            .hero-grid,
+            .story-card,
+            .carrier-grid,
+            .plan-grid,
+            .steps-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 720px) {
-            .hero h1 { font-size: 32px; }
-            .heritage-card { grid-template-columns: 1fr; }
-            .section h2 { font-size: 28px; }
+            .topbar-inner,
+            .section-head,
+            .footer-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav { gap: 12px; }
+            .hero { padding-top: 36px; }
+            .hero-copy,
+            .hero-panel,
+            .story-card,
+            .closing-card { padding: 26px; }
+            .hero-meta { grid-template-columns: 1fr; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
-
-    <section class="hero">
-        <div class="hero-badge">Longhu Mountain Tradition</div>
-        <h1>Your Destiny Reading, Hand-Prepared in the Ancient Tradition</h1>
-        <p>Rooted in the classical metaphysics of China's Longhu Mountain. Every reading is calculated by hand, studied against the original texts, and written into a personal report just for you.</p>
-        <p class="delivery-note">⏳ Each reading takes 3–6 hours to prepare. No mass production.</p>
-        <a href="checkout.html?product=complete" class="btn-primary">Request Your Reading</a>
-        
-        <div class="nav-links">
-            <a href="kua_calculator.html">Free Feng Shui Directions</a>
-            <a href="report_demo.html">See a Sample Report</a>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui Jewelry Matching</span>
+            </a>
+            <nav class="nav">
+                <a href="instant_reading.html">Free Preview</a>
+                <a href="#plans">Plans</a>
+                <a href="#carriers">Bracelet / Pendant</a>
+                <a href="products.html">How It Works</a>
+                <a href="checkout.html">Order</a>
+            </nav>
         </div>
-        
-        <div class="trust-strip">
-            <div class="trust-item">
-                <div class="num">1,400+</div>
-                <div class="label">Readings Delivered</div>
-            </div>
-            <div class="trust-item">
-                <div class="num">40+</div>
-                <div class="label">Years of Lineage</div>
-            </div>
-            <div class="trust-item">
-                <div class="num">4.9</div>
-                <div class="label">Average Rating</div>
-            </div>
-        </div>
-    </section>
+    </header>
 
-    <section class="section">
-        <div class="container">
-            <h2>The Tradition Behind Your Reading</h2>
-            <p class="intro-text">
-                Longhu Mountain (龙虎山) in Jiangxi Province has been the ancestral home of Taoist metaphysical arts for over 1,900 years. The methods we use — BaZi charting, Five Elements analysis, and Luck Pillar timing — have been preserved and transmitted through this lineage.
-            </p>
-            <div class="heritage-card">
-                <div class="heritage-visual"></div>
-                <div class="heritage-info">
-                    <h3>Handcrafted, Not Mass-Produced</h3>
-                    <p>We do not use automated templates to stamp out identical reports. Every chart is calculated by hand, starting with True Solar Time correction for your exact birthplace.</p>
-                    <p>Your Four Pillars are then examined for elemental balance, Ten God relationships, Shen Sha stars, and current Luck Pillar influences — a process that cannot be rushed.</p>
-                    <p>What you receive is a coherent, readable narrative written specifically for your life circumstances.</p>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">Physical jewelry + personalized destiny matching</div>
+                    <h1>Personalized Feng Shui jewelry, matched to your birth chart.</h1>
+                    <p>Choose the area of life you want support with. We prepare a personalized Five Elements and zodiac-based recommendation, confirm the final bracelet or pendant with you, then ship the physical item.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-secondary" href="instant_reading.html">Try a Free Preview</a>
+                        <a class="btn btn-primary" href="checkout.html">Start My Matching</a>
+                        <a class="btn btn-secondary" href="products.html">View Plans</a>
+                    </div>
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <strong>6 Plans</strong>
+                            <span>Elements, zodiac, career, wealth, love, and protection</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>2 Carriers</strong>
+                            <span>Bracelet or pendant, with final style confirmed later</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>$99</strong>
+                            <span>One simple price for the full reading plus physical jewelry plan</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section alt">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">1</div>
-                    <h3>Submit Your Details</h3>
-                    <p>Share your birth date, time, and location. If your birth time is unknown, we can still perform an accurate day-based reading.</p>
-                </div>
-                <div class="step">
-                    <div class="step-icon">2</div>
-                    <h3>Hand-Calculate Your Chart</h3>
-                    <p>Your reading is prepared using classical Longhu Mountain methods — True Solar Time, Four Pillars, and elemental analysis.</p>
-                    <div class="highlight-time">Prepared in 3–6 hours</div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">3</div>
-                    <h3>Receive Your Personal Report</h3>
-                    <p>A beautifully formatted PDF arrives in your inbox — your destiny analysis, career guidance, relationship insights, and practical recommendations.</p>
-                </div>
+                <aside class="hero-panel">
+                    <div>
+                        <span class="panel-badge">Not a mass-market jewelry shop</span>
+                        <h2>You are not buying a random stone. You are buying a matched plan.</h2>
+                        <p>The physical jewelry keeps the order tangible. The personalized reading is what decides the material, color, symbol, and final recommendation.</p>
+                        <ul class="panel-list">
+                            <li>Choose a life focus</li>
+                            <li>Choose bracelet or pendant</li>
+                            <li>Submit birth date, time, and location</li>
+                            <li>Confirm the recommended item before shipping</li>
+                        </ul>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-secondary" href="instant_reading.html">See an Instant Reading</a>
+                        <a class="btn btn-primary" href="checkout.html">Order a Personalized Plan</a>
+                    </div>
+                </aside>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <h2>Choose Your Reading</h2>
-            <div class="pricing-cards">
-                <div class="card">
-                    <h3>Destiny Brief</h3>
-                    <div class="price">$49</div>
-                    <div class="delivery">Delivered within 6 hours</div>
+        <section>
+            <div class="container story-card">
+                <div>
+                    <div class="section-head">
+                        <div>
+                            <h2>Start with a quick preview</h2>
+                            <p>Many international customers want to feel something before they buy. The instant mini reading gives them a short symbolic result on the spot, then leads naturally into the full paid service.</p>
+                        </div>
+                    </div>
                     <ul>
-                        <li>Day Master identity analysis</li>
-                        <li>Five Elements breakdown</li>
-                        <li>Current year forecast</li>
-                        <li>1 personalized recommendation</li>
-                        <li>~1,500 words, PDF format</li>
+                        <li>Immediate result after entering birth details</li>
+                        <li>Short enough to create trust without giving away the full service</li>
+                        <li>Natural upsell into bracelet or pendant plus detailed report</li>
                     </ul>
-                    <a href="checkout.html?product=brief" class="btn-secondary">Request Brief</a>
                 </div>
-                <div class="card featured">
-                    <h3>Complete Destiny Book</h3>
-                    <div class="price">$89</div>
-                    <div class="delivery">Delivered within 3–6 hours</div>
+                <div>
+                    <h3 style="font-size: 26px; margin-bottom: 12px;">Good first step for cold traffic</h3>
+                    <p style="color: rgba(36, 25, 21, 0.76); margin-bottom: 18px;">The preview gives a taste of the experience. The paid service is a single $99 order with deeper interpretation, the final jewelry recommendation, and the manual follow-up by email.</p>
+                    <a class="btn btn-primary" href="instant_reading.html">Open the Free Preview</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container story-card">
+                <div>
+                    <div class="section-head">
+                        <div>
+                            <h2>The simple offer</h2>
+                            <p>The storefront stays physical: every order includes a real bracelet or pendant. But customers do not need to compare many low-cost items. The final match is based on the reading.</p>
+                        </div>
+                    </div>
                     <ul>
-                        <li>Full Four Pillars deep analysis</li>
-                        <li>Personality &amp; career path</li>
-                        <li>Wealth pattern &amp; timing</li>
-                        <li>Relationship dynamics</li>
-                        <li>10-year luck pillar guidance</li>
-                        <li>Feng Shui recommendations</li>
-                        <li>~4,000 words, PDF format</li>
+                        <li>Customers buy a plan, not a pile of product variations.</li>
+                        <li>The report recommends the material and symbolic direction.</li>
+                        <li>The final bracelet or pendant is confirmed before shipment.</li>
                     </ul>
-                    <a href="checkout.html?product=complete" class="btn-primary" style="padding: 14px 36px; font-size: 14px;">Request Complete Book</a>
                 </div>
-                <div class="card">
-                    <h3>Premium Consultation</h3>
-                    <div class="price">$199</div>
-                    <div class="delivery">Delivered within 3 hours</div>
+                <div>
+                    <h3 style="font-size: 26px; margin-bottom: 12px;">Each order includes</h3>
                     <ul>
-                        <li>Everything in Complete Book</li>
-                        <li>Written by senior lineage reader</li>
-                        <li>Relationship compatibility add-on</li>
-                        <li>Hand-selected auspicious dates</li>
-                        <li>Voice message follow-up</li>
+                        <li>One physical jewelry carrier</li>
+                        <li>Personalized Five Elements and zodiac matching</li>
+                        <li>Material, color, and symbol recommendation</li>
+                        <li>Final confirmation before shipping</li>
                     </ul>
-                    <a href="checkout.html?product=premium" class="btn-secondary">Request Premium</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section alt">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>Is this really done by a person?</h3>
-                <p>Yes. Every report is hand-calculated and hand-written by our reading team, trained in the classical Longhu Mountain tradition. We do not use AI to mass-produce answers. The 3–6 hour delivery window exists because your reading is being prepared individually.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What if I don't know my exact birth time?</h3>
-                <p>We can still generate a highly accurate day-based reading. The Hour Pillar (which influences later-life themes) will be omitted, and we will note this in your report.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Why does it take 3–6 hours?</h3>
-                <p>A genuine BaZi reading requires calculating True Solar Time, plotting the Four Pillars, analyzing the Ten Gods and elemental balance, checking your current Luck Pillar, and then writing a coherent, personalized narrative. This cannot be rushed without losing depth.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I ask follow-up questions?</h3>
-                <p>Follow-up questions are included with the Premium Consultation. For the Complete Destiny Book, you may purchase a follow-up session separately.</p>
-            </div>
-        </div>
-    </section>
+        <section id="carriers">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Bracelet or pendant</h2>
+                        <p>Two physical options are enough. This keeps the order tangible while letting the personalized reading do the real matching work.</p>
+                    </div>
+                </div>
 
-    <section class="section dark">
-        <div class="container">
-            <h2 style="color: white;">Our Promise</h2>
-            <div class="guarantee-box">
-                <div class="guarantee-item">
-                    <h4>Authentic Methods</h4>
-                    <p>Classical BaZi calculation preserved through the Longhu Mountain lineage.</p>
-                </div>
-                <div class="guarantee-item">
-                    <h4>Handcrafted Quality</h4>
-                    <p>No automated templates. Every word is written for you alone.</p>
-                </div>
-                <div class="guarantee-item">
-                    <h4>Privacy Guaranteed</h4>
-                    <p>Your birth data is confidential and used only for your reading.</p>
-                </div>
-                <div class="guarantee-item">
-                    <h4>Satisfaction Policy</h4>
-                    <p>If the reading does not resonate, contact us within 7 days.</p>
+                <div class="carrier-grid">
+                    <article class="carrier-card">
+                        <h3>Bracelet</h3>
+                        <p>Best for daily wear and ongoing energetic support.</p>
+                        <ul>
+                            <li>Often suited to wealth, career, relationships, and Five Elements balancing</li>
+                            <li>May be matched with crystal, jade, wood, cinnabar, or similar materials</li>
+                            <li>Final material and color are confirmed after the reading</li>
+                        </ul>
+                    </article>
+
+                    <article class="carrier-card">
+                        <h3>Pendant</h3>
+                        <p>Best for symbolic protection and clear guardian meaning.</p>
+                        <ul>
+                            <li>Often suited to zodiac, guardian Buddha, safety charms, and Pixiu forms</li>
+                            <li>May be matched with jade, obsidian, silver, cinnabar, or crystal</li>
+                            <li>Final symbol and cord style are confirmed after the reading</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container" style="text-align: center;">
-            <h2>Begin Your Reading</h2>
-            <p style="color: #555; max-width: 500px; margin: 0 auto 30px;">Your reading is standing by. Submit your details and receive your hand-prepared destiny analysis within 3–6 hours.</p>
-            <a href="checkout.html?product=complete" class="btn-primary">Request Your Reading Now</a>
-            <p style="margin-top: 16px; font-size: 13px; color: #777;">Secure payment via PayPal. Encrypted checkout.</p>
-        </div>
-    </section>
+        <section id="plans">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Choose your focus</h2>
+                        <p>All plans can be fulfilled as either a bracelet or pendant. The customer chooses the direction; the reading decides the exact material. All six plans use the same $99 price.</p>
+                    </div>
+                    <a class="btn btn-primary" href="checkout.html">Choose My Plan</a>
+                </div>
+
+                <div class="plan-grid">
+                    <article class="plan-card">
+                        <span class="plan-tag">Five Elements</span>
+                        <h3>Elemental Balance</h3>
+                        <p>For Wood, Fire, Earth, Metal, or Water support based on your chart.</p>
+                    </article>
+                    <article class="plan-card">
+                        <span class="plan-tag">Zodiac</span>
+                        <h3>Zodiac Guardian</h3>
+                        <p>For Chinese zodiac, guardian Buddha, and symbolic protection matching.</p>
+                    </article>
+                    <article class="plan-card">
+                        <span class="plan-tag">Career</span>
+                        <h3>Career & Allies</h3>
+                        <p>For promotion, business growth, exams, authority, and helpful people.</p>
+                    </article>
+                    <article class="plan-card">
+                        <span class="plan-tag">Wealth</span>
+                        <h3>Wealth & Retention</h3>
+                        <p>For income stability, business flow, windfalls, and reducing leakage.</p>
+                    </article>
+                    <article class="plan-card">
+                        <span class="plan-tag">Love</span>
+                        <h3>Love & Harmony</h3>
+                        <p>For romance, social charm, emotional repair, and relationship harmony.</p>
+                    </article>
+                    <article class="plan-card">
+                        <span class="plan-tag">Protection</span>
+                        <h3>Safety & Protection</h3>
+                        <p>For peace, grounding, negative influence, and family stability.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>How the order is fulfilled</h2>
+                        <p>The process is intentionally clear so international customers understand that this is a physical product with a personalized recommendation step.</p>
+                    </div>
+                </div>
+
+                <div class="steps-grid">
+                    <article class="step">
+                        <div class="step-no">1</div>
+                        <h3>Choose focus</h3>
+                        <p>Select the life area you want the jewelry to support.</p>
+                    </article>
+                    <article class="step">
+                        <div class="step-no">2</div>
+                        <h3>Choose carrier</h3>
+                        <p>Pick bracelet or pendant as the physical item.</p>
+                    </article>
+                    <article class="step">
+                        <div class="step-no">3</div>
+                        <h3>Submit details</h3>
+                        <p>Send your birth date, time, location, and preferences.</p>
+                    </article>
+                    <article class="step">
+                        <div class="step-no">4</div>
+                        <h3>Confirm & ship</h3>
+                        <p>We confirm the recommended item before shipping it.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Common questions</h2>
+                    </div>
+                </div>
+
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>Do I choose the exact stone?</h3>
+                        <p>No. You choose the focus and physical carrier. We recommend the exact material after reviewing your birth details.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Is this a physical product?</h3>
+                        <p>Yes. Every order includes a physical bracelet or pendant, confirmed with you before shipping.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>What if I do not know my birth time?</h3>
+                        <p>You can still order. We will use a safer day-based reading and note any limits in the recommendation.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>What is the reading for?</h3>
+                        <p>It explains why a material, color, symbol, or carrier is recommended for your situation.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="closing-card">
+                    <h2>Start with the direction. Let the reading choose the jewelry.</h2>
+                    <p>Simple for the customer, clear for checkout, and still grounded in a real physical item. The full service is $99.</p>
+                    <div class="hero-actions" style="justify-content:center;">
+                        <a class="btn btn-primary" href="checkout.html">Start My Matching</a>
+                        <a class="btn btn-secondary" href="products.html">View Plan Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>© 2026 Oriental Destiny. All rights reserved.<br>
-        For entertainment and self-reflection purposes only. Not a substitute for professional advice.</p>
+        <div class="container footer-card">
+            <div>© 2026 Oriental Destiny. Physical Feng Shui jewelry with personalized matching.</div>
+            <div>For self-reflection and symbolic lifestyle use. Not medical, legal, or financial advice.</div>
+        </div>
     </footer>
-
 </body>
 </html>

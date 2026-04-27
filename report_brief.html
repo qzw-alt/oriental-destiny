@@ -4,50 +4,45 @@
     <meta charset="UTF-8">
     <title>Destiny Brief | Oriental Destiny</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
         :root {
-            --bg-paper: #F7F5F0;
-            --ink: #1A1A1A;
-            --cinnabar: #B91C1C;
-            --gold: #B8954F;
-            --seal-red: #C23A2B;
-            --faded-ink: #4A4A4A;
+            --bg-paper: #f7f5f0;
+            --ink: #1a1a1a;
+            --cinnabar: #b91c1c;
+            --gold: #b8954f;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+            font-family: "Cormorant Garamond", Georgia, serif;
             background: var(--bg-paper);
             color: var(--ink);
             line-height: 1.9;
             font-size: 11.5pt;
         }
-        
+
         .page {
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
             padding: 22mm 18mm;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
             page-break-after: always;
-            position: relative;
         }
-        
+
         @media print {
-            body { background: white; }
+            body { background: #fff; }
             .page { box-shadow: none; margin: 0; padding: 18mm 15mm; }
             .no-print { display: none; }
         }
-        
-        h1 { font-size: 26pt; font-weight: 700; color: var(--cinnabar); margin-bottom: 8pt; letter-spacing: 1px; }
+
+        h1 { font-size: 28pt; margin-bottom: 10px; }
         h2 { font-size: 17pt; font-weight: 600; color: var(--ink); margin-top: 22pt; margin-bottom: 10pt; border-bottom: 1px solid var(--gold); padding-bottom: 5pt; }
-        h3 { font-size: 13.5pt; font-weight: 600; color: var(--ink); margin-top: 14pt; margin-bottom: 7pt; }
-        
         p { margin-bottom: 10pt; text-align: justify; }
-        
+
         .cover {
             display: flex;
             flex-direction: column;
@@ -56,126 +51,101 @@
             text-align: center;
             min-height: 253mm;
         }
-        
-        .mountain-seal {
-            width: 80px;
-            height: 80px;
-            border: 3px solid var(--seal-red);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--seal-red);
+
+        .seal {
+            width: 84px;
+            height: 84px;
+            border: 3px solid var(--cinnabar);
+            display: grid;
+            place-items: center;
+            color: var(--cinnabar);
+            margin-bottom: 28px;
             font-weight: 700;
-            margin-bottom: 30px;
-            transform: rotate(-2deg);
-            font-family: 'Noto Serif SC', serif;
+            letter-spacing: 2px;
         }
-        
-        .mountain-seal .top { font-size: 12px; letter-spacing: 3px; }
-        .mountain-seal .mid { font-size: 28px; margin: 2px 0; }
-        .mountain-seal .bot { font-size: 9px; letter-spacing: 2px; }
-        
-        .cover h1 { font-size: 28pt; color: var(--ink); margin-bottom: 10px; }
-        .cover .subtitle { font-size: 13pt; font-style: italic; color: #555; margin-bottom: 50px; }
-        .cover .meta { font-size: 11pt; color: #444; line-height: 2; }
-        .cover .disclaimer { font-size: 9pt; color: #777; margin-top: 50px; max-width: 80%; }
-        
-        .pillars-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16pt 0;
-            font-size: 11pt;
-            text-align: center;
-        }
-        .pillars-table th {
-            background: var(--ink);
-            color: var(--bg-paper);
-            padding: 8pt;
-            font-weight: 600;
-        }
-        .pillars-table td {
-            padding: 10pt 8pt;
-            border: 1px solid #d8d4c8;
-        }
-        .pillars-table .stem { font-size: 14pt; font-weight: 700; }
-        .pillars-table .branch { font-size: 14pt; color: var(--cinnabar); font-weight: 700; }
-        
+
+        .subtitle { font-size: 13pt; font-style: italic; color: #555; margin-bottom: 50px; }
+        .meta { font-size: 11pt; color: #444; line-height: 2; }
+        .disclaimer { font-size: 9pt; color: #777; margin-top: 50px; max-width: 80%; }
+
+        .pillars-table,
         .element-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 12pt 0;
+            margin: 14pt 0;
             font-size: 11pt;
         }
+
+        .pillars-table th,
         .element-table th {
             background: var(--ink);
-            color: white;
-            padding: 6pt 10pt;
+            color: #fff;
+            padding: 8pt;
             text-align: left;
         }
+
+        .pillars-table td,
         .element-table td {
-            padding: 6pt 10pt;
-            border-bottom: 1px solid #e0dcd3;
+            padding: 8pt;
+            border: 1px solid #ddd6c9;
         }
-        
-        .highlight-box {
-            background: #FDFBF5;
+
+        .highlight-box,
+        .jewelry-box {
+            background: #fdfbf5;
             border-left: 3px solid var(--cinnabar);
             padding: 12pt 16pt;
             margin: 14pt 0;
         }
-        
+
+        .jewelry-box { border-left-color: var(--gold); }
         .red-ink { color: var(--cinnabar); font-weight: 600; }
         .emphasis { font-weight: 600; }
-        
+
         .print-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--cinnabar);
-            color: white;
+            color: #fff;
             border: none;
             padding: 14px 28px;
             font-size: 14pt;
             font-family: inherit;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(185,28,28,0.3);
         }
-        
+
         .upgrade-banner {
             background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
-            color: white;
+            color: #fff;
             padding: 20pt;
             text-align: center;
             border-radius: 4px;
             margin-top: 20pt;
         }
-        .upgrade-banner h3 { color: white; font-size: 16pt; margin-bottom: 8pt; }
-        .upgrade-banner p { color: rgba(255,255,255,0.8); margin-bottom: 12pt; text-align: center; }
+
+        .upgrade-banner h3 { color: #fff; font-size: 16pt; margin-bottom: 8pt; }
+        .upgrade-banner p { color: rgba(255, 255, 255, 0.82); margin-bottom: 12pt; text-align: center; }
+
         .cta-link {
             display: inline-block;
             background: var(--cinnabar);
-            color: white;
+            color: #fff;
             padding: 10px 24px;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <button class="print-btn no-print" onclick="window.print()">📄 Print / Save as PDF</button>
+    <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
 
-    <!-- PAGE 1: COVER -->
     <div class="page cover">
-        <div class="mountain-seal">
-            <div class="top">龍虎山</div>
-            <div class="mid">道</div>
-            <div class="bot">傳承</div>
-        </div>
+        <div class="seal">DAO</div>
         <h1>Destiny Brief</h1>
-        <div class="subtitle">A Concise Energetic Reading</div>
+        <div class="subtitle">A concise reading with a recommended jewelry direction</div>
         <div class="meta">
             <strong>Prepared for:</strong> Alex Chen<br>
             <strong>Date of Birth:</strong> May 15, 1990 at 11:42 AM<br>
@@ -183,82 +153,90 @@
             <strong>Report Date:</strong> April 15, 2026
         </div>
         <div class="disclaimer">
-            This reading is offered as a tool for self-reflection and decision support. It is not a substitute for professional legal, medical, or financial advice.
+            This reading is offered for self-reflection and symbolic guidance. It is not a substitute for professional legal, medical, financial, or health advice.
         </div>
     </div>
 
-    <!-- PAGE 2: CORE READING -->
     <div class="page">
-        <h2>Your Day Master</h2>
+        <h2>Your Core Reading</h2>
         <p>
-            Your Day Master is <span class="red-ink">Ren Water (壬水)</span> — the great river. This is a noble stem: intelligent, far-reaching, and endlessly adaptable. But a river without banks becomes scattered. Your life task is to find the right channel for your vast mental energy.
+            Your Day Master is <span class="red-ink">Ren Water</span>. In practical terms, this suggests a person who reads patterns well, adapts quickly, and often thinks several steps ahead. The chart favors perception and strategy, but it may need help with confidence, warmth, and grounded follow-through.
         </p>
-        
+
         <div class="highlight-box">
-            <strong>Core Identity:</strong> You are a thinker, connector, and strategist. You are at your best when information flows through you. Your intuition reads invisible currents that others miss entirely.
+            <strong>Core identity:</strong> thoughtful, intuitive, observant, and mentally agile. This is a chart that tends to understand the room before the room understands itself.
         </div>
-        
-        <h2>Your Four Pillars</h2>
+
+        <h2>Four Pillars Summary</h2>
         <table class="pillars-table">
             <tr>
-                <th>Year<br><small>Ancestory</small></th>
-                <th>Month<br><small>Career</small></th>
-                <th>Day<br><small>Self</small></th>
-                <th>Hour<br><small>Later Life</small></th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Day</th>
+                <th>Hour</th>
             </tr>
             <tr>
-                <td><div class="stem">庚</div><span style="font-size:10pt;color:#666">Geng Metal</span></td>
-                <td><div class="stem">辛</div><span style="font-size:10pt;color:#666">Xin Metal</span></td>
-                <td><div class="stem">壬</div><span style="font-size:10pt;color:#666">Ren Water</span></td>
-                <td><div class="stem">癸</div><span style="font-size:10pt;color:#666">Gui Water</span></td>
-            </tr>
-            <tr>
-                <td><div class="branch">午</div><span style="font-size:10pt;color:#666">Horse / Fire</span></td>
-                <td><div class="branch">巳</div><span style="font-size:10pt;color:#666">Snake / Fire</span></td>
-                <td><div class="branch">辰</div><span style="font-size:10pt;color:#666">Dragon / Earth</span></td>
-                <td><div class="branch">卯</div><span style="font-size:10pt;color:#666">Rabbit / Wood</span></td>
+                <td>Geng Wu<br><small>Metal Horse</small></td>
+                <td>Xin Si<br><small>Metal Snake</small></td>
+                <td>Ren Chen<br><small>Water Dragon</small></td>
+                <td>Gui Mao<br><small>Water Rabbit</small></td>
             </tr>
         </table>
-        
-        <h2>Your Elemental Balance</h2>
+
+        <h2>Elemental Balance</h2>
         <table class="element-table">
-            <tr><th>Element</th><th>Strength</th><th>What It Means for You</th></tr>
-            <tr><td><strong>Water</strong></td><td><span class="red-ink">Strong</span></td><td>Your core — intuition, adaptability, mental depth</td></tr>
-            <tr><td><strong>Metal</strong></td><td>Moderate</td><td>Your clarity, precision, and discernment</td></tr>
-            <tr><td><strong>Wood</strong></td><td>Moderate</td><td>Your creativity and drive for expansion</td></tr>
-            <tr><td><strong>Fire</strong></td><td><span class="red-ink">Weak</span></td><td>Your visibility and expressive power</td></tr>
-            <tr><td><strong>Earth</strong></td><td><span class="red-ink">Weak</span></td><td>Your stability and grounding force</td></tr>
+            <tr><th>Element</th><th>Strength</th><th>Meaning</th></tr>
+            <tr><td><strong>Water</strong></td><td><span class="red-ink">Strong</span></td><td>Intuition, adaptability, mental depth</td></tr>
+            <tr><td><strong>Metal</strong></td><td>Moderate</td><td>Clarity, precision, discernment</td></tr>
+            <tr><td><strong>Wood</strong></td><td>Moderate</td><td>Growth, ideas, expansion</td></tr>
+            <tr><td><strong>Fire</strong></td><td><span class="red-ink">Weak</span></td><td>Visibility, expression, momentum</td></tr>
+            <tr><td><strong>Earth</strong></td><td><span class="red-ink">Weak</span></td><td>Stability, structure, completion</td></tr>
         </table>
-        
+
         <div class="highlight-box">
-            <strong>Key Insight:</strong> Your abundant Water and Metal make you intellectually formidable. Your weaker Fire and Earth create two challenges: you may hesitate to promote yourself, and you may struggle to finish projects before starting new ones.
+            <strong>Key insight:</strong> this chart does not need more sensitivity. It benefits more from support that strengthens confidence, steadiness, and visible action.
         </div>
-        
+
+        <h2>Recommended Jewelry Direction</h2>
+        <div class="jewelry-box">
+            <p><strong>Recommended plan:</strong> Career and Allies</p>
+            <p><strong>Suggested carrier:</strong> <span id="focusCarrier">Bracelet</span></p>
+            <p><strong>Suggested materials:</strong> <span id="focusMaterial">tiger eye, citrine, warm amber-toned stones, or a grounding Earth-Fire combination</span></p>
+            <p><strong>Reading logic:</strong> <span id="focusReason">the chart benefits from energy that helps the client be seen, trusted, and more consistent in execution.</span></p>
+        </div>
+
         <h2>2026 Forecast</h2>
-        <p>
-            The year 2026 is <span class="red-ink">Bing Wu (丙午)</span> — the Year of the Fire Horse. This is a year of <span class="emphasis">visibility, movement, and social expansion</span> for you.
+        <p id="focusForecast">
+            The year 2026, the Year of the Fire Horse, is a more visible year for this chart. It favors speaking, publishing, asking for recognition, and stepping into the public side of work rather than staying only in the background.
         </p>
         <ul style="margin-left: 20pt; margin-bottom: 12pt;">
-            <li><strong>Career:</strong> Opportunities to speak, publish, or lead will arise. Say yes, even if you feel unprepared.</li>
-            <li><strong>Wealth:</strong> Income may fluctuate, but creative assets increase in value. Invest in your own brand.</li>
-            <li><strong>Health:</strong> Fire years can over-stimulate Water-dominant charts. Guard your sleep.</li>
-            <li><strong>Relationships:</strong> Social energy expands. New connections are likely.</li>
+            <li><strong>Career:</strong> stronger chances to be noticed</li>
+            <li><strong>Wealth:</strong> better returns from personal expertise than routine effort</li>
+            <li><strong>Relationships:</strong> more social movement, but quality still matters more than quantity</li>
+            <li><strong>Health:</strong> avoid burnout from mental overactivity</li>
         </ul>
-        
-        <h2>Your Personalized Recommendation</h2>
-        <div class="highlight-box">
-            <strong>Adjust Your Environment:</strong> Place a small water feature or dark blue object in the <span class="red-ink">North</span> sector of your home or office to amplify your natural Water energy. Wear or surround yourself with colors of blue, black, silver, and white. Reduce clutter — stagnant Earth energy overwhelms your flow.
-        </div>
-        
+
         <div class="upgrade-banner no-print">
-            <h3>Want the Full Picture?</h3>
-            <p>Your Complete Destiny Book includes personality deep-dive, career & wealth path, relationship dynamics, 10-year luck pillars, and Feng Shui recommendations — ~4,000 words.</p>
-            <a href="checkout.html?product=complete" class="cta-link">Upgrade to Complete Book — $89</a>
+            <h3>Order the Matching Jewelry Plan</h3>
+            <p>The report explains the direction. The bracelet or pendant turns that direction into a physical item that can be worn, confirmed, and shipped.</p>
+            <a href="checkout.html" class="cta-link">Choose My Jewelry Plan</a>
         </div>
-        
+
+        <div class="highlight-box">
+            <strong>A Closing Word from the Lineage:</strong> <span id="lineageClosing">The old readers do not fear a difficult chart, nor do they flatter an easy one. They look to what should be restrained, what should be nourished, and what should be carried close to the body so that the person's path may become more settled. What is shown here is only a brief opening. The fuller reading is where the hidden turns of the chart are judged with greater care.</span>
+        </div>
+
         <div style="margin-top: 30pt; font-size: 9pt; color: #777; border-top: 1px solid #ddd; padding-top: 12pt;">
-            <strong>Disclaimer:</strong> This reading is prepared using traditional Chinese metaphysical methods (BaZi / Four Pillars of Destiny). It is intended for entertainment, self-reflection, and personal insight only. It does not constitute professional advice.
+            <strong>Disclaimer:</strong> This reading is prepared in a client-friendly English format based on traditional Chinese metaphysical ideas. It is intended for self-reflection and symbolic guidance only.
         </div>
     </div>
+    <script src="report_focus.js"></script>
+    <script src="lineage_voice.js"></script>
+    <script>
+        window.ReportFocus.applyTier("brief");
+    </script>
+    <script>
+        window.LineageVoice.applyLineageVoice("brief");
+    </script>
 </body>
 </html>

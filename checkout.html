@@ -3,436 +3,681 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | Oriental Destiny</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Oriental Destiny | Order Your Jewelry Plan</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
     <style>
         :root {
-            --paper: #F5F0E6;
-            --ink: #1A1A1A;
-            --cinnabar: #B91C1C;
-            --gold: #D4AF37;
-            --cream: #faf8f4;
-            --charcoal: #333;
+            --ink: #241915;
+            --paper: #fbf5ec;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 46px rgba(70, 41, 24, 0.12);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--paper);
+            font-family: Georgia, "Times New Roman", serif;
             color: var(--ink);
-            line-height: 1.6;
-            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.15), transparent 32%),
+                linear-gradient(180deg, #f6e7d6 0%, var(--paper) 44%, #fffaf4 100%);
+            line-height: 1.68;
         }
-        
-        h1, h2, h3, .brand {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 600;
-        }
-        
+
         .container {
-            max-width: 560px;
+            width: min(1120px, calc(100% - 40px));
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 0 52px;
         }
-        
-        header {
-            text-align: center;
-            padding: 20px 0 30px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            margin-bottom: 40px;
-        }
-        
-        .brand {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--cinnabar);
-            margin-bottom: 8px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .tagline {
-            font-size: 14px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .checkout-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-        
-        .checkout-subtitle {
-            text-align: center;
-            color: #555;
-            margin-bottom: 36px;
-            font-size: 15px;
-        }
-        
-        .checkout-box {
-            background: white;
-            border-radius: 12px;
-            padding: 36px 30px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--cinnabar);
-        }
-        
-        .form-group {
+
+        a { color: inherit; text-decoration: none; }
+
+        .topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
             margin-bottom: 22px;
         }
-        
-        label {
+
+        .brand-mark {
             display: block;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #e0dcd3;
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--ink);
-            transition: border-color 0.2s;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-        
-        small {
-            display: block;
-            font-size: 12px;
-            color: #888;
-            margin-top: 4px;
-        }
-        
-        .product-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .product-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
-            border: 1.5px solid #e0dcd3;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .product-btn:hover {
-            border-color: var(--gold);
-        }
-        
-        .product-btn.selected {
-            border-color: var(--cinnabar);
-            background: #fdf6f6;
-        }
-        
-        .product-btn .name {
-            font-weight: 500;
-            font-size: 15px;
-        }
-        
-        .product-btn .delivery {
-            font-size: 11px;
-            color: #888;
-            margin-top: 2px;
-        }
-        
-        .product-btn .price {
-            font-weight: 600;
-            font-size: 16px;
             color: var(--cinnabar);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
         }
-        
-        .gender-options {
-            display: flex;
-            gap: 10px;
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 700;
         }
-        
-        .gender-btn {
-            flex: 1;
-            padding: 12px;
-            border: 1.5px solid #e0dcd3;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
+
+        .back-link,
+        .btn-primary {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+
+        .back-link {
+            border: 1px solid var(--line);
+            background: rgba(255, 253, 249, 0.82);
+            color: rgba(36, 25, 21, 0.8);
+        }
+
+        .hero,
+        .form-card,
+        .side-card {
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero {
+            border-radius: 28px;
+            padding: 34px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+            gap: 26px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.08;
+            margin-bottom: 14px;
+        }
+
+        .hero p,
+        .side-card p,
+        .side-card li,
+        .section-note,
+        .option-desc,
+        .hint {
+            color: rgba(36, 25, 21, 0.72);
+        }
+
+        .hero-side {
+            border-radius: 22px;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(49, 82, 71, 0.98), rgba(33, 58, 49, 0.98));
+            color: #fff8ef;
+        }
+
+        .hero-side h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .hero-side li {
+            color: rgba(255, 248, 239, 0.82);
+        }
+
+        .hero-side ul {
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 22px;
+        }
+
+        .form-card {
+            border-radius: 28px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .section-note {
+            margin-bottom: 18px;
             font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-            transition: all 0.2s;
         }
-        
-        .gender-btn:hover {
-            border-color: var(--gold);
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 28px;
         }
-        
-        .gender-btn.selected {
-            background: var(--cinnabar);
-            color: white;
+
+        .plan-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+        .option-btn {
+            border: 1.5px solid rgba(36, 25, 21, 0.1);
+            border-radius: 20px;
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(240, 223, 202, 0.48), rgba(255, 253, 249, 0.94));
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .option-btn.selected {
             border-color: var(--cinnabar);
+            box-shadow: 0 10px 24px rgba(166, 58, 44, 0.12);
         }
-        
-        .total-row {
+
+        .option-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .option-desc { font-size: 14px; }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            color: rgba(36, 25, 21, 0.72);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1.5px solid rgba(36, 25, 21, 0.12);
+            border-radius: 16px;
+            padding: 14px 15px;
+            background: rgba(255, 253, 249, 0.95);
+            color: var(--ink);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 118px;
+            resize: vertical;
+        }
+
+        .hint { font-size: 12px; }
+
+        .total-box {
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(36, 25, 21, 0.94), rgba(73, 42, 28, 0.92));
+            color: #fff8ef;
             display: flex;
             justify-content: space-between;
+            gap: 14px;
             align-items: center;
-            padding: 18px 0;
-            border-top: 2px solid #eee;
-            margin: 24px 0 16px;
+            flex-wrap: wrap;
         }
-        
-        .total-row .label {
+
+        .total-box strong {
+            display: block;
             font-size: 14px;
-            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255, 248, 239, 0.72);
         }
-        
-        .total-row .amount {
-            font-size: 26px;
+
+        .total-box span {
+            font-size: 32px;
             font-weight: 700;
-            color: var(--ink);
-            font-family: 'Cormorant Garamond', serif;
         }
-        
-        #paypal-button-container {
-            margin-top: 10px;
-            min-height: 45px;
+
+        .btn-primary {
+            border: 0;
+            min-height: 54px;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            color: #fff8ef;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 14px 28px rgba(166, 58, 44, 0.24);
         }
-        
-        .paypal-note {
-            font-size: 12px;
-            color: #888;
-            text-align: center;
-            margin-top: 12px;
-        }
-        
-        .placeholder-msg {
-            background: #fff8e1;
-            border: 1px dashed #ffc107;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #856404;
-            text-align: center;
-            margin-top: 10px;
+
+        .form-status {
             display: none;
+            padding: 14px 16px;
+            border-radius: 16px;
+            font-size: 14px;
         }
-        
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 24px;
-            font-size: 12px;
-            color: #777;
+
+        .form-status.visible {
+            display: block;
         }
-        
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 12px;
-            color: #888;
-            border-top: 1px solid rgba(0,0,0,0.06);
-            margin-top: 40px;
+
+        .form-status.success {
+            background: rgba(49, 82, 71, 0.12);
+            color: #234136;
+            border: 1px solid rgba(49, 82, 71, 0.18);
         }
-        
-        @media (max-width: 480px) {
-            .checkout-title { font-size: 26px; }
-            .checkout-box { padding: 24px 20px; }
+
+        .form-status.error {
+            background: rgba(166, 58, 44, 0.1);
+            color: #7d2218;
+            border: 1px solid rgba(166, 58, 44, 0.16);
+        }
+
+        .paypal-box {
+            display: none;
+            margin-top: 16px;
+            padding: 20px;
+            border-radius: 22px;
+            background: rgba(240, 223, 202, 0.38);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .paypal-box.visible {
+            display: block;
+        }
+
+        .paypal-box h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .paypal-box p {
+            color: rgba(36, 25, 21, 0.72);
+            margin-bottom: 14px;
+        }
+
+        .side-stack {
+            display: grid;
+            gap: 16px;
+            align-content: start;
+        }
+
+        .side-card {
+            border-radius: 22px;
+            padding: 22px;
+        }
+
+        .side-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .side-card ul {
+            padding-left: 18px;
+            display: grid;
+            gap: 7px;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .layout,
+            .plan-grid,
+            .option-grid,
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero,
+            .form-card {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="index.html" class="brand">Oriental Destiny</a>
-            <div class="tagline">Rooted in Longhu Mountain tradition</div>
-        </header>
-        
-        <h1 class="checkout-title">Complete Your Order</h1>
-        <p class="checkout-subtitle">Each reading is hand-prepared and delivered within 3–6 hours.</p>
-        
-        <div class="checkout-box">
-            <form id="order-form" action="https://formspree.io/f/xwvavoqz" method="POST">
-                <input type="hidden" name="product" id="productInput" value="complete">
-                <input type="hidden" name="paypal_transaction_id" id="paypal_id" value="">
-                
-                <div class="form-group">
-                    <label>Choose Your Reading</label>
-                    <div class="product-options">
-                        <div class="product-btn" data-value="brief" onclick="selectProduct('brief')">
-                            <div>
-                                <div class="name">Destiny Brief</div>
-                                <div class="delivery">~1,500 words · 6 hours</div>
-                            </div>
-                            <div class="price">$49</div>
-                        </div>
-                        <div class="product-btn" data-value="complete" onclick="selectProduct('complete')">
-                            <div>
-                                <div class="name">Complete Destiny Book</div>
-                                <div class="delivery">~4,000 words · 3–5 hours</div>
-                            </div>
-                            <div class="price">$89</div>
-                        </div>
-                        <div class="product-btn" data-value="premium" onclick="selectProduct('premium')">
-                            <div>
-                                <div class="name">Premium Consultation</div>
-                                <div class="delivery">Full book + voice follow-up · 3 hours</div>
-                            </div>
-                            <div class="price">$199</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" placeholder="you@example.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="birth_date">Birth Date</label>
-                    <input type="date" name="birth_date" id="birth_date" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="birth_time">Birth Time</label>
-                    <input type="time" name="birth_time" id="birth_time">
-                    <small>If your exact birth time is unknown, you may leave this blank. We will perform a day-based reading.</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="birth_location">Birth City & Country</label>
-                    <input type="text" name="birth_location" id="birth_location" placeholder="e.g. Los Angeles, California, USA" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Gender</label>
-                    <div class="gender-options">
-                        <div class="gender-btn" data-value="male" onclick="selectGender('male')">Male</div>
-                        <div class="gender-btn" data-value="female" onclick="selectGender('female')">Female</div>
-                        <div class="gender-btn" data-value="other" onclick="selectGender('other')">Other</div>
-                    </div>
-                    <input type="hidden" name="gender" id="genderInput" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="notes">Special Requests (optional)</label>
-                    <textarea name="notes" id="notes" rows="3" placeholder="e.g. Please focus on career transition or relationship timing"></textarea>
-                </div>
-                
-                <div class="total-row">
-                    <div class="label">Total</div>
-                    <div class="amount" id="priceDisplay">$89</div>
-                </div>
-                
-                <div id="paypal-button-container"></div>
-                <div class="placeholder-msg" id="paypalPlaceholder">
-                    ⚠️ PayPal is currently in test mode. Please replace <strong>YOUR_PAYPAL_CLIENT_ID</strong> in the code to accept real payments.
-                </div>
-                
-                <p class="paypal-note">Secure checkout via PayPal. You will receive a confirmation email after payment.</p>
-            </form>
-            
-            <div class="trust-badges">
-                <span>🔒 Secure Checkout</span>
-                <span>📧 Email Delivery</span>
-                <span>✓ 7-Day Satisfaction</span>
+        <div class="topline">
+            <div>
+                <span class="brand-mark">Oriental Destiny</span>
+                <div class="brand-name">Order Your Plan</div>
             </div>
+            <a class="back-link" href="products.html">View Plan Details</a>
+        </div>
+
+        <section class="hero">
+            <div>
+                <h1>Choose a focus and a carrier. We match the exact item after the reading.</h1>
+                <p>No need to compare many low-cost items. Choose what you want support with, then choose bracelet or pendant. After you submit your birth details, we recommend the material and final style before shipping.</p>
+            </div>
+            <aside class="hero-side">
+                <h2>Your order includes</h2>
+                <ul>
+                    <li>One physical jewelry carrier: bracelet or pendant</li>
+                    <li>A personalized Feng Shui and destiny matching note</li>
+                    <li>A recommendation for material, color, and symbol</li>
+                    <li>Final confirmation before the physical item ships</li>
+                </ul>
+            </aside>
+        </section>
+
+        <div class="layout">
+            <section class="form-card">
+                <h2 class="section-title">1. Choose your focus</h2>
+                <p class="section-note">All plans use the same price so customers focus on the matching, not the cost of the base jewelry.</p>
+
+                <div class="option-grid plan-grid" id="planGrid">
+                    <button class="option-btn" type="button" data-plan="elements" onclick="selectPlan('elements')">
+                        <div class="option-name">Elemental Balance</div>
+                        <div class="option-desc">Wood, Fire, Earth, Metal, or Water support based on your chart.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-plan="zodiac" onclick="selectPlan('zodiac')">
+                        <div class="option-name">Zodiac Guardian</div>
+                        <div class="option-desc">Chinese zodiac, guardian Buddha, and symbolic protection.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-plan="career" onclick="selectPlan('career')">
+                        <div class="option-name">Career & Allies</div>
+                        <div class="option-desc">Promotion, business, exams, helpful people, and workplace friction.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-plan="wealth" onclick="selectPlan('wealth')">
+                        <div class="option-name">Wealth & Retention</div>
+                        <div class="option-desc">Income, windfalls, money retention, and business flow.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-plan="love" onclick="selectPlan('love')">
+                        <div class="option-name">Love & Harmony</div>
+                        <div class="option-desc">Romance, social charm, reconciliation, and emotional harmony.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-plan="protection" onclick="selectPlan('protection')">
+                        <div class="option-name">Safety & Protection</div>
+                        <div class="option-desc">Peace, grounding, negative influence, and family stability.</div>
+                    </button>
+                </div>
+
+                <h2 class="section-title">2. Choose the physical carrier</h2>
+                <p class="section-note">Only two choices. Material, color, symbol, and style are confirmed after the reading.</p>
+
+                <div class="option-grid" id="carrierGrid">
+                    <button class="option-btn" type="button" data-carrier="bracelet" onclick="selectCarrier('bracelet')">
+                        <div class="option-name">Bracelet</div>
+                        <div class="option-desc">Best for daily wear, energy balancing, career, wealth, and relationships.</div>
+                    </button>
+                    <button class="option-btn" type="button" data-carrier="pendant" onclick="selectCarrier('pendant')">
+                        <div class="option-name">Pendant</div>
+                        <div class="option-desc">Best for guardian symbols, zodiac pieces, Pixiu, safety charms, and protection.</div>
+                    </button>
+                </div>
+
+                <h2 class="section-title">3. Submit your birth details</h2>
+                <form id="orderForm" action="https://formspree.io/f/xwvavoqz" method="POST">
+                    <input type="hidden" name="plan_key" id="planKey" value="elements">
+                    <input type="hidden" name="plan_name" id="planName" value="Elemental Balance">
+                    <input type="hidden" name="carrier_key" id="carrierKey" value="bracelet">
+                    <input type="hidden" name="carrier_name" id="carrierName" value="Bracelet">
+                    <input type="hidden" name="order_total" id="orderTotal" value="99">
+                    <input type="hidden" name="_subject" value="New Oriental Destiny order">
+                    <input type="hidden" name="_next" id="formNext" value="">
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Contact method</label>
+                            <input id="phone" name="phone" type="text" placeholder="WhatsApp / Instagram / phone">
+                        </div>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="birthDate">Birth date</label>
+                            <input id="birthDate" name="birth_date" type="date" required>
+                        </div>
+                        <div class="field">
+                            <label for="birthTime">Birth time</label>
+                            <input id="birthTime" name="birth_time" type="time">
+                            <div class="hint">Leave blank if unknown. We will use a safer day-based reading.</div>
+                        </div>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="birthLocation">Birth city and country</label>
+                            <input id="birthLocation" name="birth_location" type="text" placeholder="Los Angeles, USA" required>
+                        </div>
+                        <div class="field">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="zodiac">Chinese zodiac</label>
+                            <select id="zodiac" name="zodiac">
+                                <option value="">Optional if known</option>
+                                <option>Rat</option>
+                                <option>Ox</option>
+                                <option>Tiger</option>
+                                <option>Rabbit</option>
+                                <option>Dragon</option>
+                                <option>Snake</option>
+                                <option>Horse</option>
+                                <option>Goat</option>
+                                <option>Monkey</option>
+                                <option>Rooster</option>
+                                <option>Dog</option>
+                                <option>Pig</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="material">Material preference</label>
+                            <input id="material" name="preferred_material" type="text" placeholder="Jade, obsidian, citrine, silver...">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="notes">What would you like support with?</label>
+                        <textarea id="notes" name="notes" placeholder="Example: I am under career pressure and want more helpful people, or I want to improve wealth retention and stability."></textarea>
+                    </div>
+
+                    <div class="total-box">
+                        <div>
+                            <strong>Current selection</strong>
+                            <div id="selectionLabel">Elemental Balance - Bracelet</div>
+                        </div>
+                        <span>$99</span>
+                    </div>
+
+                    <button class="btn-primary" type="submit" id="saveDetailsButton">1. Save Order Details</button>
+                    <div class="form-status" id="formStatus"></div>
+
+                    <div class="paypal-box" id="paypalBox">
+                        <h3>2. Complete payment</h3>
+                        <p>Your details are saved. You can now pay the fixed $99 order total with PayPal.</p>
+                        <div id="paypal-container-HLSEQWZLQCNVC"></div>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="side-stack">
+                <div class="side-card">
+                    <h3>Why so few product choices?</h3>
+                    <p>The value is not the base jewelry cost. The value is the personalized destiny matching. Too many product choices make customers compare cheap items instead of buying the plan.</p>
+                </div>
+
+                <div class="side-card">
+                    <h3>After payment</h3>
+                    <ul>
+                        <li>We receive your chosen focus and birth details.</li>
+                        <li>Your report recommends material, color, and symbol.</li>
+                        <li>We confirm the final bracelet or pendant with you.</li>
+                        <li>The physical item is shipped after confirmation.</li>
+                    </ul>
+                </div>
+
+                <div class="side-card">
+                    <h3>Next site upgrades</h3>
+                    <ul>
+                        <li>Add one bracelet reference image.</li>
+                        <li>Add one pendant reference image.</li>
+                        <li>Add shipping address fields for direct collection.</li>
+                    </ul>
+                </div>
+            </aside>
         </div>
     </div>
-    
-    <footer>
-        <p>© 2026 Oriental Destiny. For entertainment and self-reflection purposes only.</p>
-    </footer>
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+
+    <script src="reading_state.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const defaultProduct = urlParams.get('product') || 'complete';
-        
-        const prices = {
-            brief: 49,
-            complete: 89,
-            premium: 199
+        const plans = {
+            elements: "Elemental Balance",
+            zodiac: "Zodiac Guardian",
+            career: "Career & Allies",
+            wealth: "Wealth & Retention",
+            love: "Love & Harmony",
+            protection: "Safety & Protection"
         };
-        
-        function selectProduct(product) {
-            document.querySelectorAll('.product-btn').forEach(btn => {
-                btn.classList.toggle('selected', btn.dataset.value === product);
+
+        const carriers = {
+            bracelet: "Bracelet",
+            pendant: "Pendant"
+        };
+
+        let selectedPlan = "elements";
+        let selectedCarrier = "bracelet";
+
+        const focusToPlan = {
+            balance: "elements",
+            career: "career",
+            wealth: "wealth",
+            love: "love",
+            protection: "protection"
+        };
+
+        function syncSelection() {
+            document.querySelectorAll("[data-plan]").forEach((button) => {
+                button.classList.toggle("selected", button.dataset.plan === selectedPlan);
             });
-            document.getElementById('productInput').value = product;
-            document.getElementById('priceDisplay').textContent = '$' + prices[product];
-        }
-        
-        function selectGender(gender) {
-            document.querySelectorAll('.gender-btn').forEach(btn => {
-                btn.classList.toggle('selected', btn.dataset.value === gender);
+            document.querySelectorAll("[data-carrier]").forEach((button) => {
+                button.classList.toggle("selected", button.dataset.carrier === selectedCarrier);
             });
-            document.getElementById('genderInput').value = gender;
+
+            document.getElementById("planKey").value = selectedPlan;
+            document.getElementById("planName").value = plans[selectedPlan];
+            document.getElementById("carrierKey").value = selectedCarrier;
+            document.getElementById("carrierName").value = carriers[selectedCarrier];
+            document.getElementById("selectionLabel").textContent = plans[selectedPlan] + " - " + carriers[selectedCarrier];
         }
-        
-        selectProduct(defaultProduct);
-        
-        // PayPal Integration
-        if (typeof paypal !== 'undefined') {
-            try {
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        const form = document.getElementById('order-form');
-                        if (!form.checkValidity()) {
-                            const tempBtn = document.createElement('button');
-                            tempBtn.type = 'submit';
-                            tempBtn.style.display = 'none';
-                            form.appendChild(tempBtn);
-                            tempBtn.click();
-                            tempBtn.remove();
-                            throw new Error('Form validation failed');
-                        }
-                        
-                        const product = document.getElementById('productInput').value;
-                        const amount = prices[product].toFixed(2);
-                        
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: { value: amount, currency_code: 'USD' }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            document.getElementById('paypal_id').value = details.id;
-                            document.getElementById('order-form').submit();
-                        });
-                    },
-                    onError: function(err) {
-                        console.error('PayPal error:', err);
-                        document.getElementById('paypalPlaceholder').style.display = 'block';
-                    }
-                }).render('#paypal-button-container');
-            } catch (e) {
-                console.error('PayPal init failed:', e);
-                document.getElementById('paypalPlaceholder').style.display = 'block';
+
+        function selectPlan(key) {
+            selectedPlan = key;
+            syncSelection();
+        }
+
+        function selectCarrier(key) {
+            selectedCarrier = key;
+            syncSelection();
+        }
+
+        function applyIncomingState() {
+            const incoming = { ...window.ReadingState.read(), ...window.ReadingState.fromQuery() };
+            const mappedPlan = focusToPlan[incoming.focus] || incoming.plan_key;
+
+            if (mappedPlan && plans[mappedPlan]) selectedPlan = mappedPlan;
+            if (incoming.carrier && carriers[incoming.carrier]) selectedCarrier = incoming.carrier;
+            if (incoming.birth_date) document.getElementById("birthDate").value = incoming.birth_date;
+            if (incoming.birth_time) document.getElementById("birthTime").value = incoming.birth_time;
+            if (incoming.notes) document.getElementById("notes").value = incoming.notes;
+            if (incoming.full_name && !document.getElementById("notes").value.includes("Client name:")) {
+                document.getElementById("notes").value = `Client name: ${incoming.full_name}\n${document.getElementById("notes").value}`.trim();
             }
-        } else {
-            document.getElementById('paypalPlaceholder').style.display = 'block';
         }
+
+        const orderForm = document.getElementById("orderForm");
+        const formStatus = document.getElementById("formStatus");
+        const paypalBox = document.getElementById("paypalBox");
+        const saveDetailsButton = document.getElementById("saveDetailsButton");
+
+        function setStatus(message, type) {
+            formStatus.textContent = message;
+            formStatus.className = "form-status visible " + type;
+        }
+
+        function persistReadingState() {
+            const notesValue = document.getElementById("notes").value;
+            const storedName = (notesValue.match(/Client name:\s*(.+)/) || [])[1] || "";
+            window.ReadingState.merge({
+                focus: Object.keys(focusToPlan).find((key) => focusToPlan[key] === selectedPlan) || "balance",
+                plan_key: selectedPlan,
+                carrier: selectedCarrier,
+                birth_date: document.getElementById("birthDate").value,
+                birth_time: document.getElementById("birthTime").value,
+                notes: notesValue,
+                full_name: storedName
+            });
+        }
+
+        async function submitOrderDetails(event) {
+            event.preventDefault();
+
+            if (!orderForm.reportValidity()) return;
+
+            persistReadingState();
+
+            saveDetailsButton.disabled = true;
+            saveDetailsButton.textContent = "Saving your details...";
+            setStatus("Saving your order details now...", "success");
+
+            try {
+                const response = await fetch(orderForm.action, {
+                    method: "POST",
+                    body: new FormData(orderForm),
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Unable to save details");
+                }
+
+                setStatus("Your details are saved. Continue below with PayPal to complete the $99 payment.", "success");
+                paypalBox.classList.add("visible");
+                paypalBox.scrollIntoView({ behavior: "smooth", block: "start" });
+                saveDetailsButton.textContent = "Details Saved";
+            } catch (error) {
+                setStatus("We could not save your details just now. Please try again in a moment.", "error");
+                saveDetailsButton.disabled = false;
+                saveDetailsButton.textContent = "1. Save Order Details";
+            }
+        }
+
+        document.getElementById("formNext").value = `${window.location.origin}/thanks.html`;
+        orderForm.addEventListener("submit", submitOrderDetails);
+
+        applyIncomingState();
+        syncSelection();
+
+        paypal.HostedButtons({
+            hostedButtonId: "HLSEQWZLQCNVC",
+        }).render("#paypal-container-HLSEQWZLQCNVC");
     </script>
 </body>
 </html>

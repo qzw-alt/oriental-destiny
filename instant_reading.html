@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriental Destiny | Instant Mini Reading</title>
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.7;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand-mark {
+            display: block;
+            color: var(--cinnabar);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav a,
+        .btn,
+        .submit-btn {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 253, 249, 0.88);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .btn-primary,
+        .submit-btn {
+            color: #fff8ef;
+            border: none;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            box-shadow: 0 14px 28px rgba(166, 58, 44, 0.22);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 24px;
+            padding-bottom: 34px;
+        }
+
+        .hero-card,
+        .form-card,
+        .result-card,
+        .teaser-card,
+        .upgrade-card {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card,
+        .form-card,
+        .upgrade-card {
+            border-radius: 28px;
+            padding: 34px;
+        }
+
+        .result-card,
+        .teaser-card {
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.06;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hero-card p,
+        .helper-list li,
+        .form-note,
+        .field-help,
+        .result-card p,
+        .teaser-card p,
+        .upgrade-card p {
+            color: rgba(36, 25, 21, 0.76);
+        }
+
+        .helper-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .helper-list li {
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(239, 225, 207, 0.48);
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            gap: 22px;
+            padding-bottom: 60px;
+        }
+
+        .form-intro {
+            margin-bottom: 22px;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1.5px solid rgba(36, 25, 21, 0.12);
+            border-radius: 16px;
+            padding: 14px 15px;
+            background: rgba(255, 253, 249, 0.95);
+            color: var(--ink);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .field-help,
+        .form-note {
+            font-size: 13px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .results {
+            display: none;
+            gap: 18px;
+        }
+
+        .result-chip {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 30px;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(183, 138, 66, 0.14);
+            color: var(--gold);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .result-card strong,
+        .teaser-card strong {
+            color: var(--cinnabar);
+        }
+
+        .upgrade-card {
+            background:
+                linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
+                #261a16;
+            color: #fff8ef;
+        }
+
+        .upgrade-card p,
+        .upgrade-card li {
+            color: rgba(255, 248, 239, 0.82);
+        }
+
+        .upgrade-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 24px;
+        }
+
+        .upgrade-list li {
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .upgrade-list li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        .upgrade-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .price-tag {
+            display: inline-block;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: var(--gold);
+        }
+
+        footer {
+            padding: 0 0 40px;
+        }
+
+        .footer-note {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: rgba(36, 25, 21, 0.58);
+            font-size: 13px;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .form-layout,
+            .field-grid,
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .topbar,
+            .footer-note {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-card,
+            .form-card,
+            .upgrade-card {
+                padding: 24px;
+            }
+
+            .nav,
+            .upgrade-actions {
+                width: 100%;
+            }
+
+            .nav a,
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container topbar">
+        <a href="index.html">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">Instant Mini Reading</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="products.html">Plans</a>
+            <a href="report_demo.html">Sample Report</a>
+            <a href="checkout.html">Order Full Service</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-card">
+                <div class="eyebrow">A first opening of the chart</div>
+                <h1>Enter your birth details and receive the first opening of your fate.</h1>
+                <p>This page does not reveal the whole reading. It opens the gate only a little, enough for the visitor to see the direction of the chart, and then points the way toward the fuller bracelet or pendant service with the complete written report.</p>
+                <ul class="helper-list">
+                    <li>No waiting for email to get the first result</li>
+                    <li>Short enough to create curiosity, not replace the paid reading</li>
+                    <li>Built to lead naturally into your manual premium service</li>
+                </ul>
+            </div>
+
+            <aside class="upgrade-card">
+                <h2>What is revealed in the fuller service</h2>
+                <p>This instant reading is only the first glimpse. The fuller order adds a human-reviewed report, a more careful judgment of the chart, and the final physical bracelet or pendant.</p>
+                <ul class="upgrade-list">
+                    <li>Deeper Five Elements and zodiac interpretation</li>
+                    <li>Career, wealth, love, or protection focus</li>
+                    <li>Final jewelry recommendation confirmed before shipping</li>
+                    <li>Manual email delivery for the detailed version</li>
+                </ul>
+                <a class="btn btn-primary" href="checkout.html">Order the Full Service</a>
+            </aside>
+        </section>
+
+        <section class="form-layout">
+            <div class="form-card">
+                <div class="form-intro">
+                    <div class="eyebrow">Initial consultation</div>
+                    <h2>Open the chart</h2>
+                    <p class="form-note">This is a short automated opening of the chart. It offers the first indication only and does not replace the fuller paid reading.</p>
+                </div>
+
+                <form id="readingForm">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="fullName">First name</label>
+                            <input id="fullName" name="full_name" type="text" placeholder="Alex" required>
+                        </div>
+                        <div class="field">
+                            <label for="birthDate">Birth date</label>
+                            <input id="birthDate" name="birth_date" type="date" required>
+                        </div>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="birthTime">Birth time</label>
+                            <input id="birthTime" name="birth_time" type="time">
+                            <div class="field-help">Optional. The mini version still works if time is unknown.</div>
+                        </div>
+                        <div class="field">
+                            <label for="lifeFocus">Main area of focus</label>
+                            <select id="lifeFocus" name="life_focus" required>
+                                <option value="">Select one</option>
+                                <option value="career">Career and opportunity</option>
+                                <option value="wealth">Wealth and money flow</option>
+                                <option value="love">Love and relationships</option>
+                                <option value="protection">Protection and peace</option>
+                                <option value="balance">General balance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="notes">Current situation</label>
+                        <textarea id="notes" name="notes" placeholder="Example: I feel stuck in career, I want better money stability, or I want calmer relationships."></textarea>
+                    </div>
+
+                    <button class="submit-btn" type="submit">Show My Instant Reading</button>
+                </form>
+            </div>
+
+            <div class="results" id="resultsPanel">
+                <article class="result-card">
+                    <div class="result-chip">Root of the chart</div>
+                    <h3 id="resultTitle">Your symbolic profile</h3>
+                    <p id="resultSummary"></p>
+                </article>
+
+                <div class="result-grid">
+                    <article class="result-card">
+                        <div class="result-chip">Four Pillars</div>
+                        <p id="zodiacText"></p>
+                    </article>
+
+                    <article class="result-card">
+                        <div class="result-chip">Day Master</div>
+                        <p id="elementText"></p>
+                    </article>
+
+                    <article class="result-card">
+                    <div class="result-chip">Matter before you</div>
+                        <p id="focusText"></p>
+                    </article>
+
+                    <article class="result-card">
+                    <div class="result-chip">Suitable support</div>
+                        <p id="supportText"></p>
+                    </article>
+                </div>
+
+                <article class="teaser-card">
+                    <div class="result-chip">Reader's Counsel</div>
+                    <p id="counselText"></p>
+                </article>
+
+                <article class="teaser-card">
+                    <div class="result-chip">What remains unseen</div>
+                    <p id="teaserText"></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 60px;">
+            <div class="eyebrow" style="color:#d8b26a;">Further unveiling</div>
+            <h2>Proceed to the full bracelet or pendant reading</h2>
+            <span class="price-tag">$99</span>
+            <p>This first opening shows only the outer pattern. The fuller service turns it into a human-reviewed recommendation, a more complete written judgment, and a physical bracelet or pendant confirmed before shipping.</p>
+            <ul class="upgrade-list">
+                <li>Manual interpretation using your birth details and chosen focus</li>
+                <li>More complete reading for career, wealth, love, or protection</li>
+                <li>Suggested carrier, material family, and symbolic direction</li>
+                <li>Detailed report sent by email after review</li>
+            </ul>
+            <div class="upgrade-actions">
+                <a class="btn btn-primary" href="checkout.html" id="upgradeLink">Upgrade to Full Service</a>
+                <a class="btn" href="report_demo.html" id="sampleReportLink">View Sample Report</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-note">
+            <div>&copy; 2026 Oriental Destiny. Instant symbolic preview for overseas customers.</div>
+            <div>For self-reflection and symbolic guidance. The premium service is reviewed and fulfilled manually.</div>
+        </div>
+    </footer>
+
+    <script src="bazi_engine.js"></script>
+    <script src="reading_state.js"></script>
+    <script>
+        const focusCopy = {
+            career: {
+                summary: "Career progress usually improves when the chart is supported toward clearer visibility, steadier execution, and better timing with other people.",
+                teaser: "The detailed version would expand this into work patterns, authority, timing windows, and a jewelry direction for career momentum."
+            },
+            wealth: {
+                summary: "Wealth support usually depends on how well the chart can hold, direct, and stabilize energy rather than only generate more activity.",
+                teaser: "The detailed version would expand this into money habits, cash-flow style, and a jewelry direction for wealth support."
+            },
+            love: {
+                summary: "Relationship support usually depends on emotional pacing, trust, expression, and what kind of warmth or steadiness the chart responds to best.",
+                teaser: "The detailed version would expand this into attraction patterns, compatibility themes, and a jewelry direction for love and harmony."
+            },
+            protection: {
+                summary: "Protection support usually depends on reducing drain, strengthening boundaries, and choosing symbols that feel calming rather than merely dramatic.",
+                teaser: "The detailed version would expand this into stress patterns, symbolic protection, and a jewelry direction for peace and stability."
+            },
+            balance: {
+                summary: "General balance usually depends on identifying which element is overactive, which is weak, and where the chart most needs support first.",
+                teaser: "The detailed version would expand this into a fuller Five Elements reading and the most suitable jewelry direction overall."
+            }
+        };
+
+        document.getElementById("readingForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("fullName").value.trim() || "Friend";
+            const birthDate = document.getElementById("birthDate").value;
+            const birthTime = document.getElementById("birthTime").value;
+            const lifeFocus = document.getElementById("lifeFocus").value;
+            const notes = document.getElementById("notes").value.trim();
+            const focusData = focusCopy[lifeFocus];
+            const profile = window.BaziEngine.calculateProfile({
+                birthDate,
+                birthTime,
+                lifeFocus
+            });
+            const carriedState = window.ReadingState.merge({
+                focus: lifeFocus,
+                full_name: name,
+                birth_date: birthDate,
+                birth_time: birthTime,
+                notes
+            });
+            const query = window.ReadingState.toQuery(carriedState);
+            const noteLine = notes
+                ? " The situation you described suggests that this theme is already active, so a focused upgrade path makes sense."
+                : "";
+
+            document.getElementById("resultTitle").textContent = `${name}, the chart has opened enough to show its first meaning.`;
+            document.getElementById("resultSummary").textContent = `Your Day Master appears as ${profile.dayMasterStem} ${profile.dayMasterElement}, and this often shows one who is ${profile.dayMasterProfile}. At this first opening, the chart reads as ${profile.strength.band.toLowerCase()} in day-master strength, while ${profile.favorableElements[0].toLowerCase()} and ${profile.favorableElements[1].toLowerCase()} appear more beneficial as support. ${profile.note}${noteLine}`;
+            document.getElementById("zodiacText").innerHTML = `<strong>Year Pillar:</strong> ${profile.pillarLabels.year}<br><strong>Month Pillar:</strong> ${profile.pillarLabels.month}<br><strong>Day Pillar:</strong> ${profile.pillarLabels.day}<br><strong>Hour Pillar:</strong> ${profile.pillarLabels.hour}`;
+            document.getElementById("elementText").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> stands as the Day Master in this opening. The chart is born in ${profile.season}, and the year of birth still carries the tone of the ${profile.zodiac}.`;
+            document.getElementById("focusText").textContent = `${focusData.summary} ${profile.focusReading}`;
+            document.getElementById("supportText").innerHTML = profile.jewelry.copy;
+            document.getElementById("counselText").textContent = profile.readerCounsel;
+            document.getElementById("teaserText").textContent = `${focusData.teaser} The fuller service opens the rest of the chart: hidden stems, ten gods, element balance, support logic, and the final bracelet or pendant direction before confirmation.`;
+            document.getElementById("upgradeLink").href = `checkout.html?${query}`;
+            document.getElementById("sampleReportLink").href = `report_demo.html?focus=${encodeURIComponent(lifeFocus)}`;
+
+            document.getElementById("resultsPanel").style.display = "grid";
+            document.getElementById("upgradeSection").style.display = "block";
+            document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    </script>
+</body>
+</html>

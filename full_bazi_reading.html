@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriental Destiny | Full BaZi Reading Layer</title>
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand-mark {
+            display: block;
+            color: var(--cinnabar);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav a,
+        .btn,
+        .submit-btn {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 253, 249, 0.88);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .btn-primary,
+        .submit-btn {
+            color: #fff8ef;
+            border: none;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            box-shadow: 0 14px 28px rgba(166, 58, 44, 0.22);
+        }
+
+        .hero,
+        .form-card,
+        .panel,
+        .upgrade-card {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero,
+        .form-card,
+        .upgrade-card {
+            border-radius: 28px;
+            padding: 34px;
+        }
+
+        .hero {
+            margin-bottom: 24px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.06;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .hero p,
+        .form-note,
+        .panel p,
+        .upgrade-card p,
+        .upgrade-card li {
+            color: rgba(36, 25, 21, 0.76);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 360px minmax(0, 1fr);
+            gap: 22px;
+            padding-bottom: 60px;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1.5px solid rgba(36, 25, 21, 0.12);
+            border-radius: 16px;
+            padding: 14px 15px;
+            background: rgba(255, 253, 249, 0.95);
+            color: var(--ink);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .results {
+            display: none;
+            gap: 18px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .panel {
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .chip {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 30px;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(183, 138, 66, 0.14);
+            color: var(--gold);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .pillar-box,
+        .mini-box {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(239, 225, 207, 0.45);
+        }
+
+        .pillar-box strong,
+        .mini-box strong,
+        .panel strong {
+            color: var(--cinnabar);
+        }
+
+        .list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .list li {
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .list li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--cinnabar);
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        .upgrade-card {
+            background:
+                linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
+                #261a16;
+            color: #fff8ef;
+            margin-bottom: 60px;
+        }
+
+        .upgrade-card p,
+        .upgrade-card li {
+            color: rgba(255, 248, 239, 0.82);
+        }
+
+        .upgrade-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 24px;
+        }
+
+        .upgrade-list li {
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .upgrade-list li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+
+        footer {
+            padding: 0 0 40px;
+        }
+
+        .footer-note {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: rgba(36, 25, 21, 0.58);
+            font-size: 13px;
+        }
+
+        @media (max-width: 980px) {
+            .layout,
+            .field-grid,
+            .grid-2,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container topbar">
+        <a href="index.html">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">Full BaZi Reading Layer</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="instant_reading.html">Free Preview</a>
+            <a href="checkout.html">Order</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="eyebrow">Full unveiling of the chart</div>
+            <h1>The same chart, but opened more completely.</h1>
+            <p>This page uses the same BaZi foundation as the instant opening, but here the inner structure is laid out more fully: pillars, hidden stems, ten gods, element balance, support logic, and the symbolic jewelry direction.</p>
+        </section>
+
+        <section class="layout">
+            <div class="form-card">
+                <div class="eyebrow">Input</div>
+                <h2>Unfold the chart more completely</h2>
+                <p class="form-note">This page is the fuller presentation layer. In production, it may sit behind payment, email delivery, or a private client link.</p>
+                <form id="fullForm">
+                    <div class="field">
+                        <label for="fullName">First name</label>
+                        <input id="fullName" type="text" placeholder="Alex" required>
+                    </div>
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="birthDate">Birth date</label>
+                            <input id="birthDate" type="date" required>
+                        </div>
+                        <div class="field">
+                            <label for="birthTime">Birth time</label>
+                            <input id="birthTime" type="time">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="lifeFocus">Main area of focus</label>
+                        <select id="lifeFocus" required>
+                            <option value="">Select one</option>
+                            <option value="career">Career and opportunity</option>
+                            <option value="wealth">Wealth and money flow</option>
+                            <option value="love">Love and relationships</option>
+                            <option value="protection">Protection and peace</option>
+                            <option value="balance">General balance</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="notes">Current situation</label>
+                        <textarea id="notes" placeholder="Example: I want better career recognition, calmer relationships, or stronger money stability."></textarea>
+                    </div>
+                    <button class="submit-btn" type="submit">Generate Full Reading Layer</button>
+                </form>
+            </div>
+
+            <div class="results" id="resultsPanel">
+                <div class="panel">
+                    <div class="chip">Root judgment</div>
+                    <h3 id="headline">Full profile headline</h3>
+                    <p id="summary"></p>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Four Pillars</div>
+                    <div class="grid-4">
+                        <div class="pillar-box"><strong>Year</strong><div id="yearPillar"></div></div>
+                        <div class="pillar-box"><strong>Month</strong><div id="monthPillar"></div></div>
+                        <div class="pillar-box"><strong>Day</strong><div id="dayPillar"></div></div>
+                        <div class="pillar-box"><strong>Hour</strong><div id="hourPillar"></div></div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Hidden Stems</div>
+                        <div id="hiddenStems"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Day Master and Strength</div>
+                        <p id="dayMasterBlock"></p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Five Elements</div>
+                        <div id="elementCounts"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Ten Gods Emphasis</div>
+                        <div id="tenGods"></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Reading and support</div>
+                    <p id="focusReading"></p>
+                    <p id="jewelryDirection" style="margin-top:12px;"></p>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Reader's Counsel</div>
+                    <p id="readerCounsel"></p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Personality Reading</div>
+                        <p id="personalityReading"></p>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Theme Readings</div>
+                        <ul class="list">
+                            <li id="careerReading"></li>
+                            <li id="wealthReading"></li>
+                            <li id="loveReading"></li>
+                            <li id="protectionReading"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Reading note</div>
+                    <p id="engineNote"></p>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Master's Closing Words</div>
+                    <p id="masterMessage"></p>
+                    <div style="margin-top:16px; color:#7b6358; font-size:13px;">Signed in the voice of a Longhu Mountain lineage reader.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="upgrade-card">
+            <div class="eyebrow" style="color:#d8b26a;">Application</div>
+            <h2>This is the fuller paid-display layer.</h2>
+            <ul class="upgrade-list">
+                <li>`bazi_engine.js` calculates the structured chart beneath both experiences.</li>
+                <li>`instant_reading.html` reveals only the first opening.</li>
+                <li>`full_bazi_reading.html` reveals the fuller display layer.</li>
+                <li>This page can later sit behind payment, email token, or a private client link.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-note">
+            <div>&copy; 2026 Oriental Destiny. Full BaZi reading layer prototype.</div>
+            <div>Built on the same engine as the free preview, with more of the structure exposed.</div>
+        </div>
+    </footer>
+
+    <script src="bazi_engine.js"></script>
+    <script src="reading_state.js"></script>
+    <script>
+        function hiddenStemHtml(label, entries) {
+            if (!entries.length) {
+                return `<div class="mini-box"><strong>${label}</strong><div>Open because no birth time was supplied.</div></div>`;
+            }
+
+            const lines = entries.map((entry) => `${entry.stem} ${entry.element} / ${entry.tenGod}`).join("<br>");
+            return `<div class="mini-box"><strong>${label}</strong><div>${lines}</div></div>`;
+        }
+
+        function renderFullReading() {
+            const name = document.getElementById("fullName").value.trim() || "Friend";
+            const birthDate = document.getElementById("birthDate").value;
+            const birthTime = document.getElementById("birthTime").value;
+            const lifeFocus = document.getElementById("lifeFocus").value;
+            const notes = document.getElementById("notes").value.trim();
+
+            if (!birthDate || !lifeFocus) return;
+
+            const profile = window.BaziEngine.calculateProfile({
+                birthDate,
+                birthTime,
+                lifeFocus
+            });
+
+            const noteLine = notes
+                ? ` The client note suggests this issue is already active: ${notes}`
+                : "";
+
+            document.getElementById("headline").textContent = `${name}'s chart is rooted in ${profile.dayMasterStem} ${profile.dayMasterElement}.`;
+            document.getElementById("summary").textContent = `Here the chart is opened more fully. The Day Master reads as ${profile.strength.band.toLowerCase()} in strength, the birth season falls in ${profile.season}, and ${profile.favorableElements[0].toLowerCase()} with ${profile.favorableElements[1].toLowerCase()} appear more suitable as support at this time.${noteLine}`;
+
+            document.getElementById("yearPillar").textContent = profile.pillarLabels.year;
+            document.getElementById("monthPillar").textContent = profile.pillarLabels.month;
+            document.getElementById("dayPillar").textContent = profile.pillarLabels.day;
+            document.getElementById("hourPillar").textContent = profile.pillarLabels.hour;
+
+            document.getElementById("hiddenStems").innerHTML = [
+                hiddenStemHtml("Year Branch", profile.hiddenStems.year),
+                hiddenStemHtml("Month Branch", profile.hiddenStems.month),
+                hiddenStemHtml("Day Branch", profile.hiddenStems.day),
+                hiddenStemHtml("Hour Branch", profile.hiddenStems.hour)
+            ].join("<div style='height:12px;'></div>");
+
+            document.getElementById("dayMasterBlock").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> often reads as ${profile.dayMasterProfile}. The automated strength score is <strong>${profile.strength.score.toFixed(1)}</strong>, placing the chart in the <strong>${profile.strength.band}</strong> band before human refinement.`;
+
+            document.getElementById("elementCounts").innerHTML = profile.elementRanking
+                .map(([element, value]) => `<div class="mini-box"><strong>${element}</strong><div>${value.toFixed(1)} points</div></div>`)
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("tenGods").innerHTML = profile.tenGodRanking
+                .slice(0, 6)
+                .map(([god, value]) => `<div class="mini-box"><strong>${god}</strong><div>${value.toFixed(1)} weight</div></div>`)
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("focusReading").textContent = profile.focusReading;
+            document.getElementById("jewelryDirection").textContent = profile.jewelry.copy;
+            document.getElementById("readerCounsel").textContent = profile.readerCounsel;
+            document.getElementById("personalityReading").textContent = profile.interpretations.personality;
+            document.getElementById("careerReading").textContent = profile.interpretations.career;
+            document.getElementById("wealthReading").textContent = profile.interpretations.wealth;
+            document.getElementById("loveReading").textContent = profile.interpretations.love;
+            document.getElementById("protectionReading").textContent = profile.interpretations.protection;
+            document.getElementById("engineNote").textContent = profile.note;
+            document.getElementById("masterMessage").textContent = profile.masterMessage;
+
+            document.getElementById("resultsPanel").style.display = "grid";
+        }
+
+        function hydrateFromState() {
+            const incoming = { ...window.ReadingState.read(), ...window.ReadingState.fromQuery() };
+            if (incoming.full_name) document.getElementById("fullName").value = incoming.full_name;
+            if (incoming.birth_date) document.getElementById("birthDate").value = incoming.birth_date;
+            if (incoming.birth_time) document.getElementById("birthTime").value = incoming.birth_time;
+            if (incoming.focus) document.getElementById("lifeFocus").value = incoming.focus;
+            if (incoming.notes) document.getElementById("notes").value = incoming.notes;
+            if (incoming.birth_date && incoming.focus) renderFullReading();
+        }
+
+        document.getElementById("fullForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            window.ReadingState.merge({
+                full_name: document.getElementById("fullName").value,
+                birth_date: document.getElementById("birthDate").value,
+                birth_time: document.getElementById("birthTime").value,
+                focus: document.getElementById("lifeFocus").value,
+                notes: document.getElementById("notes").value
+            });
+
+            renderFullReading();
+            document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        hydrateFromState();
+    </script>
+</body>
+</html>

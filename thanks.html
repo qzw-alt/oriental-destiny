@@ -13,6 +13,7 @@
             --ink: #241915;
             --paper: #fbf5ec;
             --cinnabar: #a63a2c;
+            --jade: #2d6a4f;
             --line: rgba(36, 25, 21, 0.1);
         }
 
@@ -49,6 +50,29 @@
             text-transform: uppercase;
             font-size: 13px;
             text-decoration: none;
+        }
+
+        .payment-confirmed {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border-radius: 14px;
+            background: rgba(45, 106, 79, 0.1);
+            border: 1.5px solid rgba(45, 106, 79, 0.3);
+            margin-bottom: 22px;
+            font-size: 15px;
+            color: var(--jade);
+            font-weight: 600;
+        }
+
+        .payment-confirmed.show {
+            display: flex;
+        }
+
+        .payment-confirmed svg {
+            flex-shrink: 0;
         }
 
         h1 {
@@ -100,10 +124,27 @@
             color: rgba(36, 25, 21, 0.74);
         }
     </style>
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const paid = params.has('tx') || params.has('paymentId') || params.has('token');
+            if (paid) {
+                const badge = document.getElementById('paymentBadge');
+                if (badge) badge.classList.add('show');
+            }
+        })();
+    </script>
 </head>
 <body>
     <main class="card">
         <a class="brand" href="index.html">Oriental Destiny</a>
+        <div class="payment-confirmed" id="paymentBadge">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Payment Confirmed — Thank you!
+        </div>
         <h1>Your order details have been received.</h1>
         <p class="subtitle">We will review your $99 order, birth details, zodiac sign, Five Elements balance, and chosen life focus before preparing your jewelry recommendation.</p>
 

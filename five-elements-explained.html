@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Five Elements explained: Wood, Fire, Earth, Metal, Water in Chinese metaphysics. Learn what each element means, how they interact, and why they matter in BaZi and Feng Shui.">
+    <link rel="canonical" href="https://oriental-destiny.com/five-elements-explained.html">
+    <meta property="og:title" content="The Five Elements Explained | Oriental Destiny">
+    <meta property="og:description" content="Wood, Fire, Earth, Metal, Water — what each element means and how they interact in BaZi and Feng Shui.">
+    <meta property="og:type" content="website">
+    <title>The Five Elements Explained | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Georgia, "Times New Roman", serif; color: var(--ink); background: radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%), linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%); line-height: 1.72; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .topbar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(248, 241, 231, 0.88); border-bottom: 1px solid rgba(36, 25, 21, 0.08); }
+        .topbar-inner { padding: 28px 0 22px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; }
+        .brand-name { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; }
+        .nav { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav a { font-size: 0.9rem; color: var(--ink); opacity: 0.75; transition: opacity 0.2s; }
+        .nav a:hover { opacity: 1; }
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.15rem; color: var(--cinnabar); font-style: italic; margin-bottom: 16px; }
+        .hero .lead { max-width: 640px; margin: 0 auto; font-size: 1.05rem; color: rgba(36, 25, 21, 0.8); }
+
+        .element-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin: 40px 0; }
+        .e-card { background: rgba(248, 241, 231, 0.6); border: 1px solid var(--line); border-radius: 12px; padding: 28px 16px; text-align: center; }
+        .e-card .symbol { font-size: 2.4rem; margin-bottom: 12px; }
+        .e-card .name { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+        .e-card .yinyang { font-size: 0.75rem; color: rgba(36, 25, 21, 0.5); margin-bottom: 12px; font-style: italic; }
+        .e-card .body-part { font-size: 0.8rem; color: var(--cinnabar); margin-bottom: 10px; font-weight: 500; }
+        .e-card .traits { font-size: 0.82rem; color: rgba(36, 25, 21, 0.75); line-height: 1.5; }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 40px 0 60px; }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 16px; color: var(--ink); }
+        .content-block p { font-size: 1rem; color: rgba(36, 25, 21, 0.85); margin-bottom: 16px; }
+
+        .cycle-diagram { background: rgba(36, 25, 21, 0.03); border: 1px solid var(--line); border-radius: 12px; padding: 32px; margin: 24px 0; text-align: center; }
+        .cycle-flow { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 1.1rem; flex-wrap: wrap; margin-bottom: 16px; }
+        .cycle-step { padding: 8px 14px; border-radius: 6px; font-weight: 600; }
+        .c-wood { background: rgba(60, 100, 60, 0.15); color: #2d5a1e; }
+        .c-fire { background: rgba(200, 60, 30, 0.12); color: #a63a2c; }
+        .c-earth { background: rgba(160, 120, 60, 0.15); color: #7a5c1e; }
+        .c-metal { background: rgba(120, 120, 130, 0.2); color: #444; }
+        .c-water { background: rgba(40, 80, 140, 0.15); color: #2a4f8a; }
+        .cycle-arrow { color: rgba(36, 25, 21, 0.4); font-size: 1.2rem; }
+
+        .interaction-section { margin: 40px 0; }
+        .interaction-section h2 { font-size: 1.5rem; margin-bottom: 20px; }
+        .interact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .interact-card { background: rgba(248, 241, 231, 0.5); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px; }
+        .interact-card .title { font-weight: 600; margin-bottom: 8px; font-size: 1rem; }
+        .interact-card .desc { font-size: 0.9rem; color: rgba(36, 25, 21, 0.75); line-height: 1.6; }
+
+        .cta-section { background: rgba(36, 25, 21, 0.04); border: 1px solid var(--line); border-radius: 12px; padding: 40px; text-align: center; margin: 20px 0 60px; }
+        .cta-section h2 { font-size: 1.6rem; margin-bottom: 12px; }
+        .cta-section p { font-size: 1rem; color: rgba(36, 25, 21, 0.75); margin-bottom: 24px; }
+        .cta-btn { display: inline-block; background: var(--cinnabar); color: white; padding: 14px 32px; border-radius: 6px; font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: background 0.2s; }
+        .cta-btn:hover { background: #8c2f23; }
+
+        footer { text-align: center; padding: 2rem; font-size: 0.85rem; color: rgba(36, 25, 21, 0.5); border-top: 1px solid var(--line); margin-top: 40px; }
+        footer a { color: var(--cinnabar); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .element-cards { grid-template-columns: repeat(3, 1fr); }
+            .content-grid, .interact-grid { grid-template-columns: 1fr; }
+            .topbar-inner { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui Jewelry Matching</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="what-is-day-master.html">Day Master</a>
+                <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="subtitle">BaZi Fundamentals</p>
+            <h1>The Five Elements Explained</h1>
+            <p class="lead">Wood, Fire, Earth, Metal, Water — these aren't just philosophical categories. In BaZi and Feng Shui, they're the operating system of your birth chart, determining what you're naturally strong at and what you need more of.</p>
+        </section>
+
+        <div class="element-cards">
+            <div class="e-card">
+                <div class="symbol">🪵</div>
+                <div class="name">Wood</div>
+                <div class="yinyang">Yang: 🌳 Pine / Yin: 🌿 Bush</div>
+                <div class="body-part">Liver · Tendons · Eyes</div>
+                <div class="traits">Growth · Expansion · Structure · Creativity · Patience · Determination</div>
+            </div>
+            <div class="e-card">
+                <div class="symbol">🔥</div>
+                <div class="name">Fire</div>
+                <div class="yinyang">Yang: ☀️ Sun / Yin: 🔥 Lamp</div>
+                <div class="body-part">Heart · Small Intestine · Tongue</div>
+                <div class="traits">Passion · Energy · Ambition · Communication · Inspiration · Fame</div>
+            </div>
+            <div class="e-card">
+                <div class="symbol">🪨</div>
+                <div class="name">Earth</div>
+                <div class="yinyang">Yang: ⛰ Mountain / Yin: 🌾 Earth</div>
+                <div class="body-part">Spleen · Stomach · Mouth · Flesh</div>
+                <div class="traits">Stability · Nurturing · Grounding · Security · Digestion · Nourishment</div>
+            </div>
+            <div class="e-card">
+                <div class="symbol">🔩</div>
+                <div class="name">Metal</div>
+                <div class="yinyang">Yang: ⬜ Sky / Yin: 🔘 Moon</div>
+                <div class="body-part">Lungs · Colon · Nose · Skin</div>
+                <div class="traits">Clarity · Precision · Justice · Structure · Rigidity · Cleanliness</div>
+            </div>
+            <div class="e-card">
+                <div class="symbol">💧</div>
+                <div class="name">Water</div>
+                <div class="yinyang">Yang: 🌊 Ocean / Yin: 🌧️ Rain</div>
+                <div class="body-part">Kidneys · Bladder · Ears · Bones</div>
+                <div class="traits">Wisdom · Adaptability · Flow · Intuition · Secrets · Fluency</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="content-block">
+                <h2>The Generating Cycle</h2>
+                <p>Elements don't exist in isolation — they interact in predictable patterns. The Generating (Sheng) Cycle is how elements support and nourish each other:</p>
+                <div class="cycle-diagram">
+                    <div class="cycle-flow">
+                        <span class="cycle-step c-wood">🪵 Wood</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-fire">🔥 Fire</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-earth">🪨 Earth</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-metal">🔩 Metal</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-water">💧 Water</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-wood">🪵 Wood</span>
+                    </div>
+                    <p style="font-size:0.9rem;color:rgba(36,25,21,0.6);">Wood feeds Fire → Fire creates Earth → Earth bears Metal → Metal collects Water → Water nourishes Wood</p>
+                </div>
+                <p>In a BaZi chart, if your chart has weak Fire, having strong Wood nearby helps — because Wood feeds Fire. This is how elemental support works: you don't just add the element you need directly; you can also strengthen its source.</p>
+
+                <h2>The Controlling Cycle</h2>
+                <p>There's also a Controlling (Ke) Cycle, where elements keep each other in check:</p>
+                <div class="cycle-diagram">
+                    <div class="cycle-flow">
+                        <span class="cycle-step c-wood">🪵 Wood</span>
+                        <span class="cycle-arrow">→</span>
+                        <span class="cycle-step c-earth">🪨 Earth</span>
+                        <span class="cycle-arrow">←</span>
+                        <span class="cycle-step c-water">💧 Water</span>
+                        <span class="cycle-arrow">←</span>
+                        <span class="cycle-step c-fire">🔥 Fire</span>
+                        <span class="cycle-arrow">←</span>
+                        <span class="cycle-step c-metal">🔩 Metal</span>
+                        <span class="cycle-arrow">←</span>
+                        <span class="cycle-step c-wood">🪵 Wood</span>
+                    </div>
+                    <p style="font-size:0.9rem;color:rgba(36,25,21,0.6);">Wood parts Earth → Earth dams Water → Water extinguishes Fire → Fire melts Metal → Metal chops Wood</p>
+                </div>
+                <p>The Controlling Cycle is how elements restrain or reduce each other. If your chart has too much Fire overwhelming your Day Master, introducing Metal can help — because Metal controls Wood, and Wood feeds Fire. Reducing Wood reduces the fuel feeding the excess Fire.</p>
+            </div>
+
+            <div class="content-block">
+                <h2>Your Chart Has an Elemental Balance</h2>
+                <p>Every BaZi chart has a balance — or imbalance — of elements. Your Day Master is one element. The other three pillars, the hidden stems, the seasonal context — all add up to a total elemental picture.</p>
+                <p>Some people are born with too much of one element and not enough of another. Some are well-balanced. The imbalance is what drives the chart's character and its needs.</p>
+
+                <div class="interaction-section">
+                    <h2>Element Interactions in Your Chart</h2>
+                    <div class="interact-grid">
+                        <div class="interact-card">
+                            <div class="title">Too Much Wood</div>
+                            <div class="desc">Rigid thinking, stubbornness, excessive competition, liver pressure. May overwhelm a weak Fire Day Master. Control with Metal or drain with Earth.</div>
+                        </div>
+                        <div class="interact-card">
+                            <div class="title">Too Much Fire</div>
+                            <div class="desc">Burnout, inflammation, anger, impatience, overexcitement. May drain a weak Water Day Master. Cool with Water or contain with Earth.</div>
+                        </div>
+                        <div class="interact-card">
+                            <div class="title">Too Much Earth</div>
+                            <div class="desc">Overthinking, heaviness, digestive issues, resistance to change. May smother a weak Metal Day Master. Extract with Metal or reduce with Wood.</div>
+                        </div>
+                        <div class="interact-card">
+                            <div class="title">Too Much Metal</div>
+                            <div class="desc">Excessive criticism, coldness, rigidity, respiratory issues. May overwhelm a weak Wood Day Master. Weaken with Fire or supplement with Water.</div>
+                        </div>
+                        <div class="interact-card">
+                            <div class="title">Too Much Water</div>
+                            <div class="desc">Over-adaptation, anxiety, fear, kidney/bladder issues. May drown a weak Earth Day Master. Anchor with Earth or energize with Fire.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>These imbalances aren't problems to solve — they're patterns to work with. A Feng Shui direction adds elemental energy to support what's missing. If your chart is Water-weak, a Water-direction bracelet gives your chart the elemental support it was born lacking.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>See Your Chart's Elemental Balance</h2>
+            <p>Enter your birth details and get a free instant reading that shows your elemental balance — what you have and what you're missing. No signup, no email required.</p>
+            <a href="instant_reading.html" class="cta-btn">Get Your Free Mini Reading →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Explore more:</p>
+        <p><a href="what-is-day-master.html">What is Day Master</a> · <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a> · <a href="feng-shui-bracelet-meaning.html">Feng Shui Bracelet Meaning</a> · <a href="instant_reading.html">Free Mini Reading</a></p>
+    </footer>
+</body>
+</html>

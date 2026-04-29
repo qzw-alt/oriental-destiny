@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What is the Oriental Destiny instant mini reading? See exactly what you get — your Day Master, elemental balance, life focus options — before you decide if the full reading is for you. Free, instant, no signup.">
+    <link rel="canonical" href="https://oriental-destiny.com/instant-reading-preview.html">
+    <meta property="og:title" content="Free Mini Reading Preview | Oriental Destiny">
+    <meta property="og:description" content="See what the instant reading reveals — Day Master, Five Elements, life focus — before you commit.">
+    <meta property="og:type" content="website">
+    <title>Free Mini Reading Preview | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Georgia, "Times New Roman", serif; color: var(--ink); background: radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%), linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%); line-height: 1.72; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .topbar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(248, 241, 231, 0.88); border-bottom: 1px solid rgba(36, 25, 21, 0.08); }
+        .topbar-inner { padding: 28px 0 22px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; }
+        .brand-name { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; }
+        .nav { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav a { font-size: 0.9rem; color: var(--ink); opacity: 0.75; transition: opacity 0.2s; }
+        .nav a:hover { opacity: 1; }
+
+        .hero { padding: 80px 0 40px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.15rem; color: var(--cinnabar); font-style: italic; margin-bottom: 16px; }
+        .hero .lead { max-width: 640px; margin: 0 auto; font-size: 1.05rem; color: rgba(36, 25, 21, 0.8); }
+
+        .preview-flow { max-width: 680px; margin: 0 auto 40px; }
+        .flow-step { display: flex; gap: 24px; margin-bottom: 32px; align-items: flex-start; }
+        .flow-num { background: var(--cinnabar); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+        .flow-content h3 { font-size: 1.15rem; margin-bottom: 6px; }
+        .flow-content p { font-size: 0.95rem; color: rgba(36, 25, 21, 0.75); }
+
+        .sample-reading { background: rgba(36, 25, 21, 0.03); border: 1px solid var(--line); border-radius: 16px; padding: 40px; margin: 40px 0; }
+        .sample-reading h2 { font-size: 1.4rem; text-align: center; margin-bottom: 8px; }
+        .sample-reading .note { text-align: center; font-size: 0.82rem; color: rgba(36, 25, 21, 0.45); margin-bottom: 28px; font-style: italic; }
+
+        .reading-section { margin-bottom: 28px; }
+        .reading-section:last-child { margin-bottom: 0; }
+        .reading-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-family: 'Inter', sans-serif; margin-bottom: 6px; font-weight: 600; }
+        .reading-value { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+        .reading-desc { font-size: 0.9rem; color: rgba(36, 25, 21, 0.7); line-height: 1.6; }
+
+        .element-bar { display: flex; gap: 6px; margin: 8px 0; }
+        .element-bar .bar { height: 10px; flex: 1; border-radius: 3px; }
+        .bar-wood { background: rgba(60, 100, 60, 0.6); }
+        .bar-fire { background: rgba(200, 60, 30, 0.6); }
+        .bar-earth { background: rgba(160, 120, 60, 0.6); }
+        .bar-metal { background: rgba(100, 100, 110, 0.6); }
+        .bar-water { background: rgba(40, 80, 140, 0.6); }
+        .element-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: rgba(36, 25, 21, 0.5); margin-bottom: 4px; }
+
+        .focus-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+        .focus-card { background: rgba(248, 241, 231, 0.5); border: 1px solid var(--line); border-radius: 8px; padding: 14px 12px; text-align: center; }
+        .focus-card .icon { font-size: 1.4rem; margin-bottom: 6px; }
+        .focus-card .name { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+        .focus-card .desc { font-size: 0.72rem; color: rgba(36, 25, 21, 0.6); line-height: 1.4; }
+
+        .divider { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+
+        .upgrade-section { background: rgba(166, 58, 44, 0.06); border: 1px solid rgba(166, 58, 44, 0.2); border-radius: 12px; padding: 24px 28px; margin: 28px 0; }
+        .upgrade-section h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--cinnabar); }
+        .upgrade-section ul { list-style: none; padding: 0; }
+        .upgrade-section li { font-size: 0.9rem; color: rgba(36, 25, 21, 0.75); padding: 6px 0; padding-left: 20px; position: relative; }
+        .upgrade-section li::before { content: "→"; position: absolute; left: 0; color: var(--cinnabar); }
+
+        .cta-section { background: rgba(36, 25, 21, 0.04); border: 1px solid var(--line); border-radius: 12px; padding: 40px; text-align: center; margin: 20px 0 60px; }
+        .cta-section h2 { font-size: 1.6rem; margin-bottom: 12px; }
+        .cta-section p { font-size: 1rem; color: rgba(36, 25, 21, 0.75); margin-bottom: 24px; }
+        .cta-btn { display: inline-block; background: var(--cinnabar); color: white; padding: 14px 32px; border-radius: 6px; font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: background 0.2s; }
+        .cta-btn:hover { background: #8c2f23; }
+
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+        .comp-card { background: rgba(248, 241, 231, 0.5); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
+        .comp-card h3 { font-size: 1.1rem; margin-bottom: 16px; text-align: center; }
+        .comp-card ul { list-style: none; padding: 0; }
+        .comp-card li { font-size: 0.9rem; color: rgba(36, 25, 21, 0.75); padding: 6px 0; border-bottom: 1px solid var(--line); }
+        .comp-card li:last-child { border-bottom: none; }
+        .comp-card li strong { color: var(--ink); }
+
+        footer { text-align: center; padding: 2rem; font-size: 0.85rem; color: rgba(36, 25, 21, 0.5); border-top: 1px solid var(--line); margin-top: 40px; }
+        footer a { color: var(--cinnabar); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .focus-cards { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .topbar-inner { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui Jewelry Matching</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="full_bazi_reading.html">Full BaZi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="subtitle">How It Works</p>
+            <h1>What the Free Mini Reading Reveals</h1>
+            <p class="lead">You enter your birth details. In seconds, you get a personalized Five Elements reading. Here's exactly what the free instant reading shows — and what it doesn't — so you can decide if the full reading is worth it.</p>
+        </section>
+
+        <div class="preview-flow">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-content">
+                    <h3>Enter Your Birth Details</h3>
+                    <p>Your birth date, gender, and birth time. That's all. No account, no email, no payment — just your birth information.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-content">
+                    <h3>Select a Life Focus</h3>
+                    <p>Choose the area you want guidance on: Career & Ambition, Wealth & Abundance, Love & Relationships, or Protection & Clearing. Your reading will center on what this area needs most.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-content">
+                    <h3>Receive Your Mini Reading</h3>
+                    <p>Instantly see your Day Master, elemental balance, and a recommended direction — with a brief explanation of why this direction fits your chart and chosen focus.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sample-reading">
+            <h2>Sample Mini Reading Output</h2>
+            <p class="note">Based on a fictional birth chart for illustration purposes</p>
+
+            <div class="reading-section">
+                <div class="reading-label">Your Day Master</div>
+                <div class="reading-value">Yang Wood (甲木)</div>
+                <div class="reading-desc">Your core nature is growth and structure — like a large tree. You are principled, growth-oriented, and naturally inclined toward building and expanding. But your inner Wood nature can become rigid when stressed, and may struggle in contexts that demand flexibility over structure.</div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="reading-section">
+                <div class="reading-label">Elemental Balance</div>
+                <div class="element-labels"><span>Water</span><span>Wood</span><span>Fire</span><span>Earth</span><span>Metal</span></div>
+                <div class="element-bar">
+                    <div class="bar bar-water" style="flex:2;"></div>
+                    <div class="bar bar-wood" style="flex:4;"></div>
+                    <div class="bar bar-fire" style="flex:3;"></div>
+                    <div class="bar bar-earth" style="flex:1;"></div>
+                    <div class="bar bar-metal" style="flex:5;"></div>
+                </div>
+                <div class="reading-desc">Your chart has strong Metal and moderate Water, but Wood — your own Day Master element — is only moderately present. Metal overwhelms your Wood nature, which can manifest as feeling constantly criticized, struggling to stand your ground, or projects that don't get the support they need.</div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="reading-section">
+                <div class="reading-label">Life Focus: Career & Ambition</div>
+                <div class="reading-value">Recommended Direction: East</div>
+                <div class="reading-desc">For a Wood Day Master overwhelmed by Metal, the East — Wood's own direction — provides direct elemental support. The East strengthens your Day Master, giving you clearer standing in competitive contexts, better support for your projects, and more resilience against criticism that would normally shake you.</div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="reading-section">
+                <div class="reading-label">For This Focus, Your Chart Is Best Supported By</div>
+                <div class="focus-cards">
+                    <div class="focus-card">
+                        <div class="icon">🌱</div>
+                        <div class="name">East</div>
+                        <div class="desc">Strengthens Wood Day Master directly. Best for career in structured environments.</div>
+                    </div>
+                    <div class="focus-card">
+                        <div class="icon">🌊</div>
+                        <div class="name">North</div>
+                        <div class="desc">Water nourishes Wood indirectly. Good for wisdom, flow, and creative work.</div>
+                    </div>
+                    <div class="focus-card">
+                        <div class="icon">🌲</div>
+                        <div class="name">Southeast</div>
+                        <div class="desc">Wood's prosperity direction. Adds growth energy to existing efforts.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="comp-card">
+                <h3>What's in the Free Mini Reading</h3>
+                <ul>
+                    <li><strong>Day Master</strong> — your core elemental nature</li>
+                    <li><strong>Elemental balance</strong> — what you have and what's missing</li>
+                    <li><strong>Direction recommendation</strong> — which direction supports your chart</li>
+                    <li><strong>Life focus options</strong> — which 4 areas you can center the reading on</li>
+                    <li><strong>Brief explanation</strong> — why this direction fits your chart</li>
+                </ul>
+            </div>
+            <div class="comp-card">
+                <h3>What the Full Reading Adds</h3>
+                <ul>
+                    <li><strong>Full Four Pillars</strong> — all 8 characters analyzed in depth</li>
+                    <li><strong>Ten Gods</strong> — the relationships between your elements and your chart's structure</li>
+                    <li><strong>Hidden stems analysis</strong> — what's hidden in your chart that shapes you beneath the surface</li>
+                    <li><strong>Chart-to-direction logic</strong> — the complete reasoning from your chart to the recommended direction</li>
+                    <li><strong>Personalized Feng Shui bracelet</strong> — direction-matched item selected for your chart</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="upgrade-section">
+            <h3>Why Get the Full Reading?</h3>
+            <ul>
+                <li>The mini reading identifies <strong>one</strong> direction. The full reading explains <strong>why</strong> that direction is optimal for your specific chart structure — not just the Day Master, but how all eight characters point toward it.</li>
+                <li>The full reading includes the <strong>Ten Gods analysis</strong> — which elements in your chart act as resources, obstacles, allies, or stressors. This gives you a much deeper understanding of your own operating patterns.</li>
+                <li>The full reading comes with a <strong>matched Feng Shui bracelet or accessory</strong> — selected specifically for your chart and confirmed with you before it ships. The mini reading shows the direction; the full reading delivers the matched object.</li>
+                <li>The direction recommendation is <strong>confirmed with you</strong> before any item ships. You're never locked in. The reading comes first; the object second.</li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <h2>Get Your Free Mini Reading Now</h2>
+            <p>No signup, no email, no payment. Enter your birth details and get an instant Five Elements reading. See if it resonates.</p>
+            <a href="instant_reading.html" class="cta-btn">Try the Free Mini Reading →</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Explore more:</p>
+        <p><a href="what-is-day-master.html">What is Day Master</a> · <a href="five-elements-explained.html">Five Elements Explained</a> · <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a> · <a href="feng-shui-bracelet-meaning.html">Feng Shui Bracelet Meaning</a></p>
+    </footer>
+</body>
+</html>

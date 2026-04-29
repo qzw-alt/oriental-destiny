@@ -383,7 +383,7 @@
             <div class="hero-card">
                 <div class="eyebrow">Free birth chart preview</div>
                 <h1>See your Day Master and elemental balance — instantly, no signup needed.</h1>
-                <p>Enter your birth details and get your first reading in under a minute. The preview shows your chart's main direction, what supports you, and what kind of jewelry might help. If it resonates, the full service turns this into a complete personalized report with your exact bracelet or pendant match.</p>
+                <p>Enter your birth details and get your first reading in under a minute. The preview shows your chart's main direction and what supports you. If it resonates, the full service turns this into a complete personalized report with your exact recommended direction.</p>
                 <ul class="helper-list">
                     <li>No signup or email required — results are instant</li>
                     <li>See your Day Master, Four Pillars, and Five Elements balance</li>
@@ -393,11 +393,11 @@
 
             <aside class="upgrade-card">
                 <h2>What the full $99 service adds</h2>
-                <p>The free preview shows your chart's first direction. The full service goes deeper — a human-reviewed report, a more complete chart analysis, and your exact jewelry recommendation confirmed before it ships.</p>
+                <p>The free preview shows your chart's first direction. The full service goes deeper — a human-reviewed report, a more complete chart analysis, and your exact recommended direction confirmed before anything ships.</p>
                 <ul class="upgrade-list">
                     <li>Manual review of your full birth chart</li>
                     <li>Complete written report for your chosen life focus</li>
-                    <li>Personalized jewelry recommendation: bracelet or pendant</li>
+                    <li>Personalized direction recommendation: bracelet or pendant form</li>
                     <li>Item confirmed with you before shipping</li>
                 </ul>
                 <a class="btn btn-primary" href="checkout.html">Start the Full Service — $99</a>
@@ -495,9 +495,9 @@
 
         <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 60px;">
             <div class="eyebrow" style="color:#d8b26a;">Go further</div>
-            <h2>Ready for the full reading and your jewelry match?</h2>
+            <h2>Ready for the full reading and your personalized direction?</h2>
             <span class="price-tag">$99</span>
-            <p>This first opening shows only the outer pattern. The fuller service turns it into a human-reviewed recommendation, a more complete written judgment, and a physical bracelet or pendant confirmed before shipping.</p>
+            <p>This first opening shows only the outer pattern. The fuller service turns it into a human-reviewed recommendation, a more complete written judgment, and your confirmed direction before the symbolic item ships.</p>
             <ul class="upgrade-list">
                 <li>Manual interpretation using your birth details and chosen focus</li>
                 <li>More complete reading for career, wealth, love, or protection</li>
@@ -513,7 +513,7 @@
 
     <footer>
         <div class="container footer-note">
-            © 2026 Oriental Destiny. Physical Feng Shui jewelry with personalized birth chart matching. For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.
+            © 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching. For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.
         </div>
     </footer>
 
@@ -523,23 +523,23 @@
         const focusCopy = {
             career: {
                 summary: "Career progress usually improves when the chart is supported toward clearer visibility, steadier execution, and better timing with other people.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact jewelry direction for your chosen life area."
+                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
             },
             wealth: {
                 summary: "Wealth support usually depends on how well the chart can hold, direct, and stabilize energy rather than only generate more activity.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact jewelry direction for your chosen life area."
+                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
             },
             love: {
                 summary: "Relationship support usually depends on emotional pacing, trust, expression, and what kind of warmth or steadiness the chart responds to best.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact jewelry direction for your chosen life area."
+                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
             },
             protection: {
                 summary: "Protection support usually depends on reducing drain, strengthening boundaries, and choosing symbols that feel calming rather than merely dramatic.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact jewelry direction for your chosen life area."
+                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
             },
             balance: {
                 summary: "General balance usually depends on identifying which element is overactive, which is weak, and where the chart most needs support first.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact jewelry direction for your chosen life area."
+                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
             }
         };
 
@@ -574,9 +574,9 @@
             document.getElementById("zodiacText").innerHTML = `<strong>Year Pillar:</strong> ${profile.pillarLabels.year}<br><strong>Month Pillar:</strong> ${profile.pillarLabels.month}<br><strong>Day Pillar:</strong> ${profile.pillarLabels.day}<br><strong>Hour Pillar:</strong> ${profile.pillarLabels.hour}`;
             document.getElementById("elementText").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> stands as the Day Master in this opening. The chart is born in ${profile.season}, and the year of birth still carries the tone of the ${profile.zodiac}.`;
             document.getElementById("focusText").textContent = `${focusData.summary} ${profile.focusReading}`;
-            document.getElementById("supportText").innerHTML = profile.jewelry.copy;
+            document.getElementById("supportText").innerHTML = profile.direction.copy;
             document.getElementById("counselText").textContent = profile.readerCounsel;
-            document.getElementById("teaserText").textContent = `${focusData.teaser} The fuller service opens the rest of the chart: hidden stems, ten gods, element balance, support logic, and the final bracelet or pendant direction before confirmation.`;
+            document.getElementById("teaserText").textContent = `${focusData.teaser} The fuller service opens the rest of the chart: hidden stems, ten gods, element balance, support logic, and the final recommended direction before confirmation.`;
             document.getElementById("upgradeLink").href = `checkout.html?${query}`;
             document.getElementById("sampleReportLink").href = `report_demo.html?focus=${encodeURIComponent(lifeFocus)}`;
 

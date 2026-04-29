@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Order your personalized Feng Shui jewelry plan. Choose your life focus, pick bracelet or pendant, submit your birth details, and confirm the item before it ships. $99, worldwide shipping included.">
-    <meta property="og:title" content="Order Your Plan | Oriental Destiny">
-    <meta property="og:description" content="Personalized Feng Shui jewelry, matched to your birth chart. $99, confirmed before shipping.">
+    <meta name="description" content="Order your personalized Feng Shui reading. Choose your life focus, submit your birth details, and receive a confirmed direction before the symbolic item ships. $99, worldwide shipping included.">
+    <meta property="og:title" content="Order Your Reading | Oriental Destiny">
+    <meta property="og:description" content="Personalized Feng Shui reading, matched to your birth chart. $99, confirmed before shipping.">
     <meta property="og:type" content="website">
-    <title>Oriental Destiny | Order Your Jewelry Plan</title>
+    <title>Oriental Destiny | Order Your Feng Shui Reading</title>
     <script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
     <style>
         :root {
@@ -46,6 +46,24 @@
             align-items: center;
             flex-wrap: wrap;
             margin-bottom: 22px;
+        }
+
+        .topline-nav {
+            display: flex;
+            gap: 6px;
+        }
+        .topline-nav a {
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--pine);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .topline-nav a:hover {
+            background: rgba(49, 82, 71, 0.1);
         }
 
         .brand-mark {
@@ -357,21 +375,25 @@
                 <span class="brand-mark">Oriental Destiny</span>
                 <div class="brand-name">Order Your Plan</div>
             </div>
-            <a class="back-link" href="products.html">View Plan Details</a>
+            <nav class="topline-nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Preview</a>
+                <a href="index.html#plans">Plans</a>
+            </nav>
         </div>
 
         <section class="hero">
             <div>
-                <h1>Choose a focus and a carrier. We match the exact item after the reading.</h1>
-                <p>No need to compare many low-cost items. Choose what you want support with, then choose bracelet or pendant. After you submit your birth details, we recommend the material and final style before shipping.</p>
+                <h1>Choose a focus. We match the exact direction after reading your chart.</h1>
+                <p>No need to compare many low-cost items. Choose what you want support with, then choose bracelet or pendant if you have a preference. After you submit your birth details, we read your chart and recommend the material and final style before shipping.</p>
             </div>
             <aside class="hero-side">
                 <h2>Your order includes</h2>
                 <ul>
-                    <li>One physical jewelry carrier: bracelet or pendant</li>
-                    <li>A personalized Feng Shui and destiny matching note</li>
-                    <li>A recommendation for material, color, and symbol</li>
-                    <li>Final confirmation before the physical item ships</li>
+                    <li>A personalized Feng Shui and destiny reading for your chosen life focus</li>
+                    <li>The confirmed direction: recommended material, color, and symbol</li>
+                    <li>Final direction confirmed with you before the symbolic item ships</li>
+                    <li>Tracking number and follow-up included</li>
                 </ul>
             </aside>
         </section>
@@ -379,7 +401,7 @@
         <div class="layout">
             <section class="form-card">
                 <h2 class="section-title">1. Choose your focus</h2>
-                <p class="section-note">All plans use the same price so customers focus on the matching, not the cost of the base jewelry.</p>
+                <p class="section-note">All plans use the same price so customers focus on the reading and matching — not on comparing different items.</p>
 
                 <div class="option-grid plan-grid" id="planGrid">
                     <button class="option-btn" type="button" data-plan="elements" onclick="selectPlan('elements')">
@@ -408,8 +430,8 @@
                     </button>
                 </div>
 
-                <h2 class="section-title">2. Choose the physical carrier</h2>
-                <p class="section-note">Only two choices. Material, color, symbol, and style are confirmed after the reading.</p>
+                <h2 class="section-title">2. Choose a physical form (optional)</h2>
+                <p class="section-note">Only two choices. If you don't have a preference, leave it blank and we'll recommend based on your chart. Material, color, symbol, and style are always confirmed after the reading.</p>
 
                 <div class="option-grid" id="carrierGrid">
                     <button class="option-btn" type="button" data-carrier="bracelet" onclick="selectCarrier('bracelet')">
@@ -590,16 +612,16 @@
             <aside class="side-stack">
                 <div class="side-card">
                     <h3>Why only two options?</h3>
-                    <p>This is not a jewelry shop. You are not choosing a product — you are buying a birth chart reading. The jewelry is matched to your chart after we review it. That is the service. The carrier — bracelet or pendant — is the only choice you make.</p>
+                    <p>This is not a generic reading app. You are buying a personalized birth chart reading. The direction is matched to your chart after we review it. That is the service. Bracelet or pendant is the only form choice — and even that can be left to our recommendation.</p>
                 </div>
 
                 <div class="side-card">
                     <h3>What happens after you pay</h3>
                     <ul>
                         <li>We receive your details and read your chart.</li>
-                        <li>We recommend the material and style for your bracelet or pendant.</li>
+                        <li>We recommend the exact direction: material, color, and symbol for your chosen life focus.</li>
                         <li>We send the recommendation to you for approval.</li>
-                        <li>Once you confirm, we ship. Tracking by email.</li>
+                        <li>Once you confirm, we ship the symbolic item. Tracking by email.</li>
                     </ul>
                 </div>
             </aside>

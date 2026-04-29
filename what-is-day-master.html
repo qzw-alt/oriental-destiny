@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What is the Day Master in BaZi? Learn what your Day Master means in Chinese astrology, how it shapes your personality and life direction, and how to read your Day Master from your Four Pillars.">
+    <link rel="canonical" href="https://oriental-destiny.com/what-is-day-master.html">
+    <meta property="og:title" content="What is Day Master in BaZi? | Oriental Destiny">
+    <meta property="og:description" content="Your Day Master is the core of your BaZi chart. Learn what it means and how it shapes everything.">
+    <meta property="og:type" content="website">
+    <title>What is Day Master in BaZi? | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .topbar-inner {
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; }
+        .brand-name { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-family: 'Inter', sans-serif; }
+
+        .nav { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav a { font-size: 0.9rem; color: var(--ink); opacity: 0.75; transition: opacity 0.2s; }
+        .nav a:hover { opacity: 1; }
+
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.15rem; color: var(--cinnabar); font-style: italic; margin-bottom: 16px; }
+        .hero .lead { max-width: 640px; margin: 0 auto; font-size: 1.05rem; color: rgba(36, 25, 21, 0.8); }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 40px 0 60px; }
+        .content-block h2 { font-size: 1.5rem; margin-bottom: 16px; color: var(--ink); }
+        .content-block p { font-size: 1rem; color: rgba(36, 25, 21, 0.85); margin-bottom: 16px; }
+
+        .daymaster-types { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 24px 0; }
+        .dm-type { background: rgba(248, 241, 231, 0.6); border: 1px solid var(--line); border-radius: 8px; padding: 14px 6px; text-align: center; }
+        .dm-type .element { font-size: 1.6rem; margin-bottom: 6px; }
+        .dm-type .name { font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+        .dm-type .desc { font-size: 0.7rem; color: rgba(36, 25, 21, 0.7); line-height: 1.35; }
+
+        .chart-example { background: rgba(36, 25, 21, 0.03); border: 1px solid var(--line); border-radius: 10px; padding: 28px; margin: 24px 0; font-family: 'Courier New', monospace; font-size: 0.95rem; line-height: 1.8; }
+        .chart-example .label { font-size: 0.8rem; color: rgba(36, 25, 21, 0.5); margin-bottom: 8px; font-family: Georgia, serif; }
+
+        .highlight-box { background: rgba(166, 58, 44, 0.07); border-left: 3px solid var(--cinnabar); padding: 20px 24px; margin: 24px 0; font-style: italic; }
+        .highlight-box p { margin-bottom: 0; }
+
+        .cta-section { background: rgba(36, 25, 21, 0.04); border: 1px solid var(--line); border-radius: 12px; padding: 40px; text-align: center; margin: 20px 0 60px; }
+        .cta-section h2 { font-size: 1.6rem; margin-bottom: 12px; }
+        .cta-section p { font-size: 1rem; color: rgba(36, 25, 21, 0.75); margin-bottom: 24px; }
+        .cta-btn { display: inline-block; background: var(--cinnabar); color: white; padding: 14px 32px; border-radius: 6px; font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: background 0.2s; }
+        .cta-btn:hover { background: #8c2f23; }
+
+        .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q { font-weight: 600; font-size: 1.05rem; margin-bottom: 8px; }
+        .faq-a { font-size: 0.95rem; color: rgba(36, 25, 21, 0.8); line-height: 1.65; }
+
+        footer { text-align: center; padding: 2rem; font-size: 0.85rem; color: rgba(36, 25, 21, 0.5); border-top: 1px solid var(--line); margin-top: 40px; }
+        footer a { color: var(--cinnabar); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .daymaster-types { grid-template-columns: repeat(3, 1fr); }
+            .topbar-inner { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui Jewelry Matching</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="full_bazi_reading.html">Full BaZi</a>
+                <a href="five-elements-explained.html">Five Elements</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="subtitle">BaZi Fundamentals</p>
+            <h1>What is the Day Master?</h1>
+            <p class="lead">In BaZi, your Day Master is the foundation of your entire chart. It's the thread that runs through everything — your personality, your strengths, what you need, and what challenges you. Understanding your Day Master is the first step to understanding your chart.</p>
+        </section>
+
+        <div class="content-grid">
+            <div class="content-block">
+                <h2>The Day Master Is You</h2>
+                <p>The BaZi chart is built around eight characters — four pillars, each with a Heaven Stem and Earthly Branch. But one character is special: the Day Stem. This is the Day Master, and it represents the person whose chart it is.</p>
+                <p>You are, fundamentally, your Day Master. Every other element in the chart is evaluated in relation to it.</p>
+                <p>Is the Day Master strong or weak? Is it supported by nearby elements or overwhelmed by them? Does it have resources nearby or is it isolated? These questions determine everything about how your chart functions.</p>
+
+                <div class="highlight-box">
+                    <p>Think of your Day Master as the center of gravity of your chart. All other elements — the other three pillars, the hidden stems, the elemental interactions — exist in relationship to it.</p>
+                </div>
+
+                <p>A strong, supported Day Master feels like clarity, direction, and ease. A weak or unsupported Day Master feels like struggling against the current, like things should be easier than they are but aren't.</p>
+            </div>
+
+            <div class="content-block">
+                <h2>The Five Day Master Types</h2>
+                <p>Your Day Master belongs to one of the five elements. Each type has a distinct character:</p>
+
+                <div class="daymaster-types">
+                    <div class="dm-type">
+                        <div class="element">🪵</div>
+                        <div class="name">Wood</div>
+                        <div class="desc">Growth-oriented, principled, sometimes stubborn</div>
+                    </div>
+                    <div class="dm-type">
+                        <div class="element">🔥</div>
+                        <div class="name">Fire</div>
+                        <div class="desc">Passionate, communicative, can burn out fast</div>
+                    </div>
+                    <div class="dm-type">
+                        <div class="element">🪨</div>
+                        <div class="name">Earth</div>
+                        <div class="desc">Stable, reliable, nurturing, slow to change</div>
+                    </div>
+                    <div class="dm-type">
+                        <div class="element">🔩</div>
+                        <div class="name">Metal</div>
+                        <div class="desc">Clear-minded, decisive, can be overly critical</div>
+                    </div>
+                    <div class="dm-type">
+                        <div class="element">💧</div>
+                        <div class="name">Water</div>
+                        <div class="desc">Adaptive, wise, can be inconsistent or indecisive</div>
+                    </div>
+                </div>
+
+                <p>But the element alone isn't enough. A Wood Day Master born in summer (Fire season) behaves very differently from one born in winter (Water season). Context matters enormously.</p>
+            </div>
+        </div>
+
+        <div class="content-block" style="margin-bottom: 0;">
+            <h2>How to Read Your Day Master</h2>
+            <p>A BaZi chart is organized as four columns — Year, Month, Day, Hour. The Day column contains your Day Master:</p>
+
+            <div class="chart-example">
+                <div class="label">Example BaZi Chart — Day Master is the Day Stem</div>
+                <strong>Year Pillar</strong>  丁卯 (Fire Rabbit) — your ancestral/large picture influences<br>
+                <strong>Month Pillar</strong>  壬寅 (Water Tiger) — your career and social environment<br>
+                <strong>Day Pillar</strong>      甲午 (Wood Horse) ← This is your Day Master: Wood<br>
+                <strong>Hour Pillar</strong>     丙申 (Fire Monkey) — your children, later life, how others see you
+            </div>
+
+            <p>In this example, the Day Master is 甲 (Yang Wood). This person's core nature is Growth, Structure, and Expansion — like a large tree. But they're born in the Hour of Fire (Horse = Fire), which gives them an active, communicative, passionate outer layer that doesn't always match the grounded, principled inner nature.</p>
+        </div>
+
+        <div class="cta-section">
+            <h2>See Your Day Master Now</h2>
+            <p>Enter your birth details and get an instant reading that identifies your Day Master, your elemental balance, and what your chart needs most. Free, no signup required.</p>
+            <a href="instant_reading.html" class="cta-btn">Get Your Free Mini Reading →</a>
+        </div>
+
+        <div class="content-block" style="margin-bottom: 60px;">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">Can my Day Master change?</div>
+                <div class="faq-a">No — your Day Master is fixed at birth and never changes. It's the foundation of your chart throughout your life. What changes is how well-supported or challenged your Day Master is, which shifts with time cycles (Da Yun). But the core nature is always the same.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">What does it mean if my Day Master is weak?</div>
+                <div class="faq-a">A weak Day Master doesn't mean weak person. It means your chart lacks the elemental support your core nature needs. This can show up as: feeling like you're working harder than you should, life feeling more difficult than it looks from outside, or struggling to get grounded. A Feng Shui direction can provide external support for what the chart lacks internally.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">What's the difference between Day Master and zodiac sign?</div>
+                <div class="faq-a">Western zodiac uses the sun's position at birth — one factor. BaZi uses the full birth date and time to construct four pillars, giving a far more detailed picture. A person's zodiac sign is just one slice. Their Day Master and full elemental structure is the whole story.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Does a strong Day Master mean a better life?</div>
+                <div class="faq-a">Not necessarily. A strong Day Master means your chart is well-resourced — you have the internal support to execute your intentions. But the quality of that strength matters. A Fire Day Master that's too strong might be impulsive and burn out. Balance is the goal, not raw strength.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How is my Feng Shui bracelet direction chosen in relation to my Day Master?</div>
+                <div class="faq-a">The direction is chosen to support or strengthen whatever your Day Master is lacking. If your Day Master is weak in Water, a Water-direction bracelet gives external support. If your Day Master is overwhelmed by too much Metal, a direction that weakens Metal might be recommended. The bracelet is always in service of the Day Master's needs.</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Explore more:</p>
+        <p><a href="feng-shui-bracelet-meaning.html">Feng Shui Bracelet Meaning</a> · <a href="five-elements-explained.html">Five Elements Explained</a> · <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a> · <a href="instant_reading.html">Free Mini Reading</a></p>
+    </footer>
+</body>
+</html>

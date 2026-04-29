@@ -60,23 +60,12 @@
             min-height: 253mm;
         }
 
-        .mountain-seal {
-            width: 92px;
-            height: 92px;
-            border: 3px solid var(--seal-red);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--seal-red);
-            font-weight: 700;
+        .seal-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
             margin-bottom: 28px;
-            transform: rotate(-2deg);
         }
-
-        .mountain-seal .top { font-size: 12px; letter-spacing: 3px; }
-        .mountain-seal .mid { font-size: 24px; margin: 2px 0; }
-        .mountain-seal .bot { font-size: 9px; letter-spacing: 2px; }
 
         .subtitle { font-size: 14pt; font-style: italic; color: #555; margin-bottom: 50px; }
         .meta { font-size: 11.5pt; color: #444; line-height: 2; }
@@ -341,11 +330,7 @@
 
     <!-- PAGE 1: COVER -->
     <div class="page cover">
-        <div class="mountain-seal">
-            <div class="top">LONGHU</div>
-            <div class="mid">DAO</div>
-            <div class="bot">LINEAGE</div>
-        </div>
+        <img class="seal-img" src="assets/seal.png" alt="Official Seal">
         <h1>Personal Destiny Reading</h1>
         <div class="subtitle">Complete Four Pillars BaZi Analysis</div>
         <div class="meta">

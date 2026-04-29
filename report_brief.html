@@ -52,16 +52,11 @@
             min-height: 253mm;
         }
 
-        .seal {
-            width: 84px;
-            height: 84px;
-            border: 3px solid var(--cinnabar);
-            display: grid;
-            place-items: center;
-            color: var(--cinnabar);
+        .seal-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
             margin-bottom: 28px;
-            font-weight: 700;
-            letter-spacing: 2px;
         }
 
         .subtitle { font-size: 13pt; font-style: italic; color: #555; margin-bottom: 50px; }
@@ -143,7 +138,7 @@
     <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
 
     <div class="page cover">
-        <div class="seal">DAO</div>
+        <img class="seal-img" src="assets/seal.png" alt="Official Seal">
         <h1>Destiny Brief</h1>
         <div class="subtitle">A concise BaZi reading with directional guidance</div>
         <div class="meta">

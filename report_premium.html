@@ -54,18 +54,11 @@
             min-height: 253mm;
         }
 
-        .mountain-seal {
-            width: 98px;
-            height: 98px;
-            border: 3px solid var(--seal-red);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--seal-red);
-            margin-bottom: 30px;
-            transform: rotate(-2deg);
-            font-weight: 700;
+        .seal-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 28px;
         }
 
         .premium-badge {
@@ -200,7 +193,7 @@
     <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
 
     <div class="page cover">
-        <div class="mountain-seal">DAO</div>
+        <img class="seal-img" src="assets/seal.png" alt="Official Seal">
         <div class="premium-badge">Premium Consultation</div>
         <h1>Personal Destiny Reading</h1>
         <div class="subtitle">Complete Four Pillars analysis with actionable life guidance</div>

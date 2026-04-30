@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="[^"]*">
-    <link rel="canonical" href="https://oriental-destiny.com/report_demo.html">
-    <meta property="og:title" content="Sample Report | Oriental Destiny">
-    <meta property="og:description" content="A complete sample BaZi reading. See how a real Four Pillars analysis reads — deep, specific, and personal.">
+    <meta name="description" content="Read a complete fictional Oriental Destiny case report updated to match the latest BaZi engine structure, including Four Pillars, hidden stems, ten gods, seasonal command, timing, and practical support.">
+    <meta property="og:title" content="Case Report | Oriental Destiny">
+    <meta property="og:description" content="A complete fictional BaZi case report aligned with the latest Oriental Destiny reading model.">
     <meta property="og:type" content="website">
-    <title>Sample Report | Oriental Destiny</title>
+    <title>Case Report | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
 
         :root {
-            --bg-paper: #f7f5f0;
-            --ink: #1a1a1a;
-            --cinnabar: #b91c1c;
-            --gold: #b8954f;
-            --seal-red: #c23a2b;
+            --bg-paper: #f7f4ee;
+            --ink: #1f1a17;
+            --cinnabar: #a92b20;
+            --gold: #ad8650;
+            --line: #ddd4c7;
+            --soft: #faf7f1;
+            --soft-gold: #f3ecde;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +28,7 @@
             font-family: "Cormorant Garamond", Georgia, serif;
             background: var(--bg-paper);
             color: var(--ink);
-            line-height: 1.88;
+            line-height: 1.86;
             font-size: 11.5pt;
         }
 
@@ -48,9 +49,9 @@
             .no-print { display: none; }
         }
 
-        h1 { font-size: 30pt; font-weight: 700; color: var(--ink); margin-bottom: 10pt; }
-        h2 { font-size: 18pt; font-weight: 600; color: var(--ink); margin-top: 22pt; margin-bottom: 10pt; border-bottom: 1px solid var(--gold); padding-bottom: 5pt; }
-        h3 { font-size: 13.5pt; font-weight: 600; color: var(--ink); margin-top: 14pt; margin-bottom: 7pt; }
+        h1 { font-size: 31pt; font-weight: 700; margin-bottom: 10pt; }
+        h2 { font-size: 18pt; font-weight: 600; margin-top: 22pt; margin-bottom: 10pt; border-bottom: 1px solid var(--gold); padding-bottom: 5pt; }
+        h3 { font-size: 13.5pt; font-weight: 600; margin-top: 14pt; margin-bottom: 7pt; }
         p { margin-bottom: 10pt; text-align: justify; }
 
         .cover {
@@ -69,10 +70,10 @@
             margin-bottom: 28px;
         }
 
-        .subtitle { font-size: 14pt; font-style: italic; color: #555; margin-bottom: 50px; }
-        .meta { font-size: 11.5pt; color: #444; line-height: 2; }
+        .subtitle { font-size: 14pt; font-style: italic; color: #555; margin-bottom: 24px; }
+        .meta { font-size: 11.2pt; color: #444; line-height: 2; }
         .master-line { margin-top: 40px; font-size: 12pt; color: var(--cinnabar); font-weight: 600; }
-        .disclaimer { font-size: 9pt; color: #777; margin-top: 50px; max-width: 80%; }
+        .disclaimer { font-size: 9pt; color: #777; margin-top: 46px; max-width: 82%; }
 
         .section-header {
             font-size: 10pt;
@@ -92,23 +93,19 @@
         .handwritten-box,
         .master-note,
         .jewelry-box,
-        .ten-god-table-wrap {
-            background: #fdfbf5;
-            border: 1px solid #e0dcd3;
-            padding: 14pt 18pt;
+        .table-wrap,
+        .note-box,
+        .timing-box,
+        .compat-card {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            padding: 14pt 16pt;
             margin: 14pt 0;
         }
 
         .handwritten-box { border-left: 3px solid var(--gold); }
         .master-note { border-left: 3px solid var(--cinnabar); }
-        .jewelry-box {
-            background: linear-gradient(180deg, #f7f1e6 0%, #fcfaf5 100%);
-            border: 1px solid #d8ccb8;
-        }
-
-        .ten-god-table-wrap {
-            padding: 10pt 14pt;
-        }
+        .jewelry-box { background: linear-gradient(180deg, var(--soft-gold) 0%, #fcfaf5 100%); }
 
         .master-note-header {
             font-size: 11pt;
@@ -117,73 +114,80 @@
             margin-bottom: 8pt;
         }
 
-        .pillars-table {
+        .pillars-table,
+        .detail-table {
             width: 100%;
             border-collapse: collapse;
             margin: 14pt 0;
             font-size: 10.5pt;
         }
 
-        .pillars-table th {
+        .pillars-table th,
+        .detail-table th {
             background: var(--ink);
-            color: var(--bg-paper);
-            padding: 7pt;
-            font-weight: 600;
-            text-align: left;
-        }
-
-        .pillars-table td {
-            padding: 7pt;
-            border: 1px solid #d8d4c8;
-            vertical-align: top;
-        }
-
-        .ten-god-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 10.5pt;
-            margin-top: 6pt;
-        }
-
-        .ten-god-table th {
-            background: #2d2d3a;
             color: #fff;
-            padding: 6pt 8pt;
+            padding: 7pt 8pt;
             font-weight: 600;
             text-align: left;
         }
 
-        .ten-god-table td {
-            padding: 6pt 8pt;
-            border: 1px solid #d8d4c8;
+        .pillars-table td,
+        .detail-table td {
+            padding: 7pt 8pt;
+            border: 1px solid var(--line);
             vertical-align: top;
         }
 
-        .element-row {
-            display: flex;
-            gap: 6pt;
-            margin: 6pt 0;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12pt;
+            margin: 12pt 0;
         }
 
-        .element-bar {
-            height: 10px;
-            border-radius: 2px;
+        .compat-card h3,
+        .timing-box h3,
+        .note-box h3 {
+            margin-top: 0;
+            color: var(--cinnabar);
+        }
+
+        .mini-list {
+            list-style: none;
+            display: grid;
+            gap: 8pt;
+            margin: 0;
+        }
+
+        .mini-list li {
+            padding-left: 12pt;
+            position: relative;
+        }
+
+        .mini-list li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
             background: var(--gold);
-            min-width: 12px;
+            position: absolute;
+            left: 0;
+            top: 11px;
         }
 
-        .element-label {
-            font-size: 9pt;
-            color: #555;
-            min-width: 60px;
-            padding-top: 1px;
+        .date-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 6pt 0;
+            border-bottom: 1px solid #eee5d8;
         }
 
-        .signature-block {
-            margin-top: 36pt;
-            text-align: right;
-        }
+        .date-row:last-child { border-bottom: none; }
+        .date-label { font-weight: 600; }
+        .date-desc { color: #666; text-align: right; }
 
+        .signature-block { margin-top: 38pt; text-align: right; }
         .signature-name { font-size: 14pt; font-weight: 600; }
         .signature-title { font-size: 11pt; color: #666; margin-top: 4pt; }
         .red-ink { color: var(--cinnabar); font-weight: 600; }
@@ -201,455 +205,481 @@
             font-family: inherit;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
-        }
-
-        .cta-banner {
-            background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
-            color: #fff;
-            padding: 26pt;
-            text-align: center;
-            border-radius: 4px;
-            margin-top: 26pt;
-        }
-
-        .cta-banner h3 { color: #fff; font-size: 17pt; margin-bottom: 9pt; }
-        .cta-banner p { color: rgba(255, 255, 255, 0.82); margin-bottom: 14pt; text-align: center; }
-
-        .cta-link {
-            display: inline-block;
-            background: var(--cinnabar);
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        ul, ol { margin-left: 20pt; margin-bottom: 10pt; }
-        li { margin-bottom: 6pt; }
-
-        .hidden-stems-header {
-            font-size: 10pt;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin-bottom: 8pt;
-            font-weight: 600;
-        }
-
-        .pillar-detail {
-            margin-bottom: 12pt;
-        }
-
-        .pillar-name {
-            font-weight: 600;
-            color: var(--ink);
-            font-size: 11pt;
-        }
-
-        .pillar-stems {
-            font-size: 10pt;
-            color: #555;
-            margin-top: 2pt;
-        }
-
-        .pillar-stems strong {
-            color: var(--ink);
-        }
-
-        .date-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 5pt 0;
-            border-bottom: 1px solid #f0ece0;
-        }
-
-        .date-row:last-child { border-bottom: none; }
-        .date-label { font-weight: 600; font-size: 11pt; }
-        .date-desc { color: #555; font-size: 11pt; }
-
-        .timing-box {
-            background: #fdfbf5;
-            border: 1px solid #d8ccb8;
-            padding: 12pt 14pt;
-            margin: 12pt 0;
-        }
-
-        .key-insight-box {
-            background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
-            color: #fff;
-            padding: 16pt;
-            border-radius: 3px;
-            margin: 16pt 0;
-        }
-
-        .key-insight-box p {
-            color: rgba(255, 255, 255, 0.88);
-            margin-bottom: 8pt;
-        }
-
-        .key-insight-box p:last-child { margin-bottom: 0; }
-
-        .key-insight-box strong {
-            color: var(--gold);
-        }
-
-        .compatibility-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12pt;
-            margin: 12pt 0;
-        }
-
-        .compat-card {
-            background: #fdfbf5;
-            border: 1px solid #e0dcd3;
-            padding: 12pt;
-        }
-
-        .compat-card h3 {
-            font-size: 12pt;
-            color: var(--cinnabar);
-            margin-bottom: 6pt;
-            margin-top: 0;
-        }
-
-        .compat-card p {
-            font-size: 10.5pt;
-            margin-bottom: 0;
-            color: #444;
+            box-shadow: 0 4px 12px rgba(169, 43, 32, 0.28);
         }
 
         @media (max-width: 900px) {
-            .compatibility-grid { grid-template-columns: 1fr; }
+            .page {
+                width: 100%;
+                min-height: auto;
+                padding: 32px 18px;
+            }
+
+            .grid-2 { grid-template-columns: 1fr; }
+            .date-row { flex-direction: column; }
+            .date-desc { text-align: left; }
         }
     </style>
 </head>
 <body>
     <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
 
-    <!-- PAGE 1: COVER -->
     <div class="page cover">
         <img class="seal-img" src="assets/seal.jpg" alt="Official Seal">
-        <h1>Personal Destiny Reading</h1>
-        <div class="subtitle">Complete Four Pillars BaZi Analysis</div>
+        <h1>Personal Destiny Case Report</h1>
+        <div class="subtitle">A fictional full BaZi reading updated to the latest Oriental Destiny engine structure</div>
         <div class="meta">
-            <strong>Prepared for:</strong> Alex Chen<br>
-            <strong>Date of Birth:</strong> May 15, 1990 at 11:42 AM<br>
-            <strong>Birth Location:</strong> Los Angeles, California, USA<br>
-            <strong>Report Date:</strong> April 15, 2026
+            <strong>Prepared for:</strong> Evelyn Zhao<br>
+            <strong>Date of Birth:</strong> March 14, 1988 at 9:36 PM<br>
+            <strong>Birth Location:</strong> Vancouver, British Columbia, Canada<br>
+            <strong>Primary Focus:</strong> Wealth, retention, and the keeping of resources<br>
+            <strong>Report Date:</strong> April 29, 2026
         </div>
-        <div class="master-line">Prepared by Oriental Destiny Senior Reading Service</div>
+        <div class="master-line">Prepared in the Oriental Destiny reading style</div>
         <div class="disclaimer">
-            This reading is based on traditional Chinese Four Pillars (BaZi) methodology. It is offered for self-reflection, symbolic guidance, and personal meaning. It is not a substitute for professional medical, legal, financial, or psychological advice.
+            This case report uses the profile of a fictional person and is presented as a model reading page. It is offered for self-reflection, symbolic guidance, and product illustration only. It is not medical, legal, or financial advice.
         </div>
     </div>
 
-    <!-- PAGE 2: THE DAY MASTER -->
-    <div class="page">
-        <div class="section-header">Chart Structure</div>
-        <h2>Who You Are at the Core</h2>
-        <p>
-            Your Day Master is <span class="red-ink">Ren Water</span> — yang water, the kind that moves like a river: fast, perceptive, and always finding the path of least resistance. Water people tend to be adaptable, emotionally attuned, and quick to read a room. Ren Water specifically carries an element of nobility — it is the water of an open channel, not a stagnant pool.
-        </p>
-        <p>
-            What this means in practice: you likely notice things before others do. You read patterns, sense undercurrents, and adjust easily. There is something naturally fluent about how you navigate complex situations — you find the flow rather than force it.
-        </p>
-        <p>
-            The challenge with Ren Water is that water without a container disperses. When there is too much water and not enough structure to hold it, the mind races, the emotions move too fast, and the sense of self can feel less solid than it should. This is the central tension of your chart: you perceive powerfully, but you may struggle to hold your ground with the same ease.
-        </p>
-
-        <div class="ten-god-table-wrap">
-            <div class="ten-god-table-header" style="font-weight: 600; color: var(--gold); font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8pt;">Day Master: Ren Water — Ten God Relationships</div>
-            <table class="ten-god-table">
-                <tr>
-                    <th>Role</th>
-                    <th>Pillar</th>
-                    <th>Stem / Branch</th>
-                    <th>What This Means</th>
-                </tr>
-                <tr>
-                    <td><strong>Year Pillar</strong></td>
-                    <td>Geng Wu</td>
-                    <td>Metal · Horse</td>
-                    <td>Your output and public expression. Geng Metal cuts and clarifies — this is where you produce work and make yourself understood in the world. The Horse branch brings restless movement.</td>
-                </tr>
-                <tr>
-                    <td><strong>Month Pillar</strong></td>
-                    <td>Xin Si</td>
-                    <td>Metal · Snake</td>
-                    <td>Your career structure and how authority sees you. Xin Metal is refined and precise — a sharp eye for quality and value. The Snake brings depth and a certain intensity underneath.</td>
-                </tr>
-                <tr>
-                    <td><strong>Day Pillar</strong></td>
-                    <td>Ren Chen</td>
-                    <td>Water · Dragon</td>
-                    <td>Yourself — your body, your identity, your physical presence in the world. The Dragon branch is ambitious and expansion-oriented, but as a Water branch it can also feel internally restless.</td>
-                </tr>
-                <tr>
-                    <td><strong>Hour Pillar</strong></td>
-                    <td>Gui Mao</td>
-                    <td>Water · Rabbit</td>
-                    <td>How you present to others and how others perceive you. Gui Water is gentle and receptive. The Rabbit brings a social, approachable quality — but Gui Mao also competes with the Day Master directly.</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="key-insight-box">
-            <p><strong>The central dynamic of your chart:</strong> Ren Water sits between three sources of Water (the Day Branch, the Hour Stem, and the hidden Gui within Xin Si), while the resources that should support you — Fire for warmth and Earth for structure — are present but under pressure. This creates a person who is highly perceptive and mentally active, but who may struggle to feel grounded, to finish what they start, and to be consistently seen and recognized for what they produce.</p>
-        </div>
-    </div>
-
-    <!-- PAGE 3: FOUR PILLARS BREAKDOWN -->
-    <div class="page">
-        <div class="section-header">Chart Structure</div>
-        <div class="chapter-title">How Each Pillar Functions</div>
-
-        <div class="pillar-detail">
-            <div class="pillar-name">Year Pillar — Geng Wu (Metal Horse)</div>
-            <div class="pillar-stems">
-                <strong>Surface:</strong> Geng (yang metal) + Wu (yang fire, Horse branch)<br>
-                <strong>Hidden stems:</strong> Ding (yin fire), Wu (yang fire) — fire is present but in a Metal-dominated pillar
-            </div>
-            <p style="font-size: 10.5pt; margin-top: 6pt; margin-bottom: 0;">
-                This pillar governs how you put yourself into the world — what you produce, how you communicate, how visible you are. Geng Metal is sharp, decisive, and quality-oriented. It wants things to be clean, clear, and well-defined. But the Horse branch is restless — it wants movement, travel, and variety. The hidden Fire suggests that underneath the surface output, there is passion and energy, but it is constrained by the Metal framework. For you, this means: your output tends to be strong and well-crafted, but there can be a sense of doing a lot without feeling properly seen or recognized.
-            </p>
-        </div>
-
-        <div class="pillar-detail">
-            <div class="pillar-name">Month Pillar — Xin Si (Metal Snake)</div>
-            <div class="pillar-stems">
-                <strong>Surface:</strong> Xin (yin metal) + Si (yin fire, Snake branch)<br>
-                <strong>Hidden stems:</strong> Bing (yang fire), Wu (yang fire), Geng (yang metal), Xin (yin metal), Ren (yang water) — the most complex hidden structure in the chart
-            </div>
-            <p style="font-size: 10.5pt; margin-top: 6pt; margin-bottom: 0;">
-                This is your career and social authority pillar. Xin Metal is refined, aesthetic, and discerning — it has taste, standards, and a sharp sense of what is valuable. The Snake brings depth, intuition, and sometimes a certain secretive intensity. The hidden stems are remarkable: this pillar contains the chart's only significant Fire AND its only significant Earth, plus additional Metal and a secret trace of Water. This makes Xin Si the most structurally complex pillar — it is where the chart's internal tensions are most concentrated. For you: career and authority figures are never simple. There is usually something underneath the surface of how work and status function in your life.
-            </p>
-        </div>
-
-        <div class="pillar-detail">
-            <div class="pillar-name">Day Pillar — Ren Chen (Water Dragon)</div>
-            <div class="pillar-stems">
-                <strong>Surface:</strong> Ren (yang water) + Chen (yang earth, Dragon branch)<br>
-                <strong>Hidden stems:</strong> Yi (yin wood), Wu (yang earth), Gui (yang water)
-            </div>
-            <p style="font-size: 10.5pt; margin-top: 6pt; margin-bottom: 0;">
-                This pillar is your body, your physical presence, and your core identity. Ren Water gives you adaptability, intelligence, and emotional sensitivity. The Dragon branch is one of the four noble branches — it carries ambition, expansion, and a sense of destiny. But here is the tension: as a Water branch, Chen carries water energy, which means this pillar — your own foundation — is partially composed of the same element as your Day Master. The Chen branch also contains Wu (yang earth) and Yi (yin wood). Earth here is the anchor that this chart most needs. For you: your sense of self is strong and intelligent, but it lacks physical grounding. There is a tendency to feel mentally sharp but physically restless, or to have great ideas without the structure to execute them.
-            </p>
-        </div>
-
-        <div class="pillar-detail" style="margin-bottom: 0;">
-            <div class="pillar-name">Hour Pillar — Gui Mao (Water Rabbit)</div>
-            <div class="pillar-stems">
-                <strong>Surface:</strong> Gui (yin water) + Mao (yin wood, Rabbit branch)<br>
-                <strong>Hidden stems:</strong> Jia (yang wood), Yi (yin wood), Wu (yang earth)
-            </div>
-            <p style="font-size: 10.5pt; margin-top: 6pt; margin-bottom: 0;">
-                This pillar governs your close relationships, how others actually see you day to day, and your domestic life. Gui Water is gentle, receptive, and perceptive — it is water that yields rather than pushes. The Rabbit brings sociability, charm, and a certain diplomatic quality. The hidden Wood is the chart's strongest Wood — it is the food and comfort element. The hidden Wu Earth is a secondary anchor. For you: in close relationships and in how you come across to others, there is more warmth and social grace than the rest of your chart might suggest. The Gui Mao pillar softens the harder edges of the Ren Water nature. But because Gui Mao and Ren Water are the same element (Water competes with Water), there can be an inner tension — a feeling of the self not quite aligning with how it is received by others.
-            </p>
-        </div>
-    </div>
-
-    <!-- PAGE 4: FIVE ELEMENTS + KEY FINDINGS -->
-    <div class="page">
-        <div class="section-header">Elemental Analysis</div>
-        <div class="chapter-title">Where Energy Flows and Where It Stalls</div>
-
-        <p>
-            The Five Elements in BaZi are not just about what is present — they are about relationships, proportions, and what is missing. A chart can have all five elements and still be deeply imbalanced. Here is what the elemental picture actually says about you.
-        </p>
-
-        <div class="ten-god-table-wrap" style="padding: 10pt 14pt;">
-            <table class="ten-god-table">
-                <tr>
-                    <th>Element</th>
-                    <th>Strength</th>
-                    <th>Key Pillars</th>
-                    <th>What This Means for You</th>
-                </tr>
-                <tr>
-                    <td><strong class="red-ink">Water</strong></td>
-                    <td><span class="red-ink">Very Strong</span></td>
-                    <td>Day Stem, Hour Stem, hidden in Month</td>
-                    <td>Exceptional perception, emotional sensitivity, mental speed. You see what others miss. But water that is not contained scatters — there is a real tendency toward overthinking, scattered energy, and difficulty finishing things.</td>
-                </tr>
-                <tr>
-                    <td><strong class="red-ink">Metal</strong></td>
-                    <td><span class="red-ink">Strong</span></td>
-                    <td>Year Stem, Month Stem</td>
-                    <td>Clarity of judgment, high standards, ability to cut through noise. You know quality when you see it. Metal also gives the capacity to produce polished, well-crafted output. But Metal alone is cold without fire to warm it.</td>
-                </tr>
-                <tr>
-                    <td><strong>Fire</strong></td>
-                    <td>Weak</td>
-                    <td>Hidden in Year, Month</td>
-                    <td>Fire is your visibility element — the ability to be seen, recognized, and heard. It is also warmth, passion, and momentum. Its weakness here shows up as: people not noticing your work, ideas not landing the way they should, a feeling of doing a lot without getting proper credit.</td>
-                </tr>
-                <tr>
-                    <td><strong>Earth</strong></td>
-                    <td>Weak</td>
-                    <td>Hidden in Day, Hour</td>
-                    <td>Earth is stability, completion, and physical grounding. It is what holds everything together. Its absence shows up as difficulty finishing what you start, a sense of not being rooted, and sometimes an instability in how you hold resources or manage physical health.</td>
-                </tr>
-                <tr>
-                    <td><strong>Wood</strong></td>
-                    <td>Weak</td>
-                    <td>Hidden in Hour</td>
-                    <td>Wood is growth, expansion, and kindness. It is also the element of the chart's hidden resources — what sustains you when nothing else is flowing. Its weakness here means that recovery from setbacks can be slow, and that patience with long-term plans is tested.</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="key-insight-box">
-            <p><strong>The pattern in plain language:</strong> You are someone who thinks faster than you act, who sees more than you say, and who often produces work that is genuinely excellent but does not get the recognition it deserves. Your chart is not lacking in intelligence or capability — it is lacking in the elements that create visibility, warmth, and a stable platform from which to operate. This is not a weakness. It is a configuration that requires deliberate support for confidence, consistency, and getting yourself noticed.</p>
-        </div>
-
-        <h3>The Two Missing Officers</h3>
-        <p>
-            In BaZi, the Ten Gods represent the roles people and forces play in your life. Your chart has six of the ten — two are notably absent, and this absence tells a specific story.
-        </p>
-        <ul>
-            <li><strong>No Wealth God (Cai Guan):</strong> There is no direct wealth deity in your chart. This does not mean you cannot accumulate resources — it means that straightforward money-making is not your natural path. Wealth for you is more likely to come through refined work, recognized expertise, and the quality of what you produce rather than opportunistic gains.</li>
-            <li><strong>No印 (Seal / Mother):</strong> The stabilizing, grounding, credentialing energy is notably absent. This explains why formal credentials, institutions, or traditional structures may feel less supportive than they should. You are more self-taught than formally taught. Your learning tends to be experiential rather than academic.</li>
-        </ul>
-
-        <div class="handwritten-box">
-            <strong>The most important structural note:</strong> Your chart is a <em>Water with competing Water</em> configuration. Gui Mao at the hour pillar is the same element as your Day Master — they oppose rather than support each other. This is not catastrophic. But it does mean that the self and the public face do not fully align without deliberate work. What you show to the world does not always feel like what you know yourself to be. This is one of the core reasons grounding and consistency matter so much for you.
-        </div>
-    </div>
-
-    <!-- PAGE 5: PERSONAL DIRECTION -->
-    <div class="page">
-        <div class="section-header">Personal Direction</div>
-        <div class="chapter-title">What You Most Need and Why</div>
-        <p>
-            Most BaZi reports tell you what is in your chart. Here we go further: we identify the specific imbalance that causes the most friction, and we explain exactly why certain kinds of support help while others do not.
-        </p>
-
-        <h3>The Core Imbalance</h3>
-        <p>
-            Your chart has an excess of Water and a deficit of its opposites — Fire for visibility and warmth, and Earth for structure and completion. This is a <em>dispersal pattern</em>: energy moves fast and far but has difficulty settling, completing, or making a lasting impression.
-        </p>
-        <p>
-            This is why you may recognize something in yourself: you have good ideas, you understand complex situations quickly, you may even produce excellent work — but something always seems to slip. The project does not quite finish. The conversation does not quite land. The recognition does not quite arrive. This is not a failure of talent. It is a structural issue that correct support addresses directly.
-        </p>
-
-        <h3>What Helps and What Does Not</h3>
-        <p>
-            Not all support is equally useful for this chart. The wrong kind of stimulation — more water energy, more mental activity, more information — can actually make the imbalance worse.
-        </p>
-        <ul>
-            <li><strong>More analysis, more books, more input:</strong> Your chart is already water-heavy. More mental input adds to the dispersal. If you feel stuck, consuming more information is usually the wrong move.</li>
-            <li><strong>Physical grounding:</strong> Earth is the element most missing from your chart. Anything that creates physical presence, body awareness, and structural routine has an outsized positive effect. Exercise, walking, time in nature, and consistent sleep schedules are not luxuries for you — they are foundational.</li>
-            <li><strong>Finishing before starting:</strong> Your chart naturally gravitates toward beginning new things. Deliberately forcing yourself to complete existing projects before moving to new ones counteracts your natural tendency in a healthy way.</li>
-            <li><strong>Speaking up:</strong> Fire is your visibility element. Speaking plainly about what you have done, what you have produced, and what you want is not natural for this chart — but it is one of the highest-return actions available to you.</li>
-        </ul>
-
-        <div class="jewelry-box">
-            <div class="master-note-header">Symbolic Direction for This Chart</div>
-            <p>
-                The reading points to a specific symbolic need: <strong>Earth and Fire together</strong>, in a form that is worn close to the body and confirmed through the reading before any item is selected.
-            </p>
-            <p>
-                The role of the bracelet or pendant in this context is not decorative. It is a physical anchor — something that holds the direction of the chart in a tangible form, worn daily, that acts as a reminder and a structural support. When the symbolic form matches what the chart actually needs, the effect is quieter and steadier than you might expect.
-            </p>
-            <p>
-                <em>For this sample, the recommended direction is: Career and Public Standing. The most useful symbolic forms are Tiger Eye, Citrine, and warm-toned Earth-Fire combinations. The exact final selection is made after the full reading is confirmed.</em>
-            </p>
-        </div>
-    </div>
-
-    <!-- PAGE 6: TIMING + COMPATIBILITY -->
-    <div class="page">
-        <div class="section-header">Practical Guidance</div>
-        <div class="chapter-title">When to Act and What to Watch For</div>
-
-        <p>
-            BaZi timing guidance is not about picking lucky dates from a calendar. It is about understanding when your chart's natural strengths are best supported by the current cycle, and when the environment is working against you.
-        </p>
-
-        <div class="timing-box">
-            <h3 style="margin-top: 0; font-size: 12pt; color: var(--cinnabar);">2026 Annual Outlook</h3>
-            <p style="margin-bottom: 10pt;">
-                2026 is a Fire Horse year — Fire is your visibility and recognition element, and Horse is your Year Branch. This creates a mixed picture: the year has energy that could work for you, but Horse carries restlessness and the Horse's instinct for movement and change can destabilize your already volatile Water. Key things to watch:
-            </p>
-            <div class="date-row"><span class="date-label">January – March</span><span class="date-desc">A quieter, planning phase. Useful for organizing existing work rather than launching new initiatives.</span></div>
-            <div class="date-row"><span class="date-label">April – June</span><span class="date-desc">More external activity and visibility. Good for presenting work, speaking up, and asking for recognition. Fire Horse energy supports these actions.</span></div>
-            <div class="date-row"><span class="date-label">July – September</span><span class="date-desc">Highest risk of dispersal and overcommitment. Horse energy peaks in summer. Guard against starting too many things. Focus on completion, not expansion.</span></div>
-            <div class="date-row"><span class="date-label">October – December</span><span class="date-desc">Grounding phase. The year closes with a push toward finishing what is already in progress. Earth-element dates help stabilize.</span></div>
-        </div>
-
-        <div class="timing-box">
-            <h3 style="margin-top: 0; font-size: 12pt; color: var(--cinnabar);">Favorable Periods for Key Actions</h3>
-            <div class="date-row"><span class="date-label">March 18 – 24</span><span class="date-desc">Strong for launching, signing, beginning anything that requires clarity and initial momentum.</span></div>
-            <div class="date-row"><span class="date-label">July 12 – 18</span><span class="date-desc">Best window in the year for speaking up, publishing, asking for recognition, or making yourself more visible.</span></div>
-            <div class="date-row"><span class="date-label">November 5 – 12</span><span class="date-desc">Grounding and restructuring period. Good for contracts, reorganizing existing work, and consolidating.</span></div>
-        </div>
-
-        <div class="chapter-title" style="margin-top: 18pt;">Relationship Patterns</div>
-        <p>
-            Your chart tends toward selectivity in trust and depth in attachment. You are not naturally casual with emotional investment — the Water sensitivity means you feel the weight of bonds more than you may show.
-        </p>
-
-        <div class="compatibility-grid">
-            <div class="compat-card">
-                <h3>What Supports You</h3>
-                <p>Partners who bring warmth, steadiness, and patience help this chart significantly. Earth and Fire qualities in a partner — practical, warm, consistent — address the chart's structural gaps in a way that benefits the whole relationship.</p>
-            </div>
-            <div class="compat-card">
-                <h3>What Challenges You</h3>
-                <p>Highly erratic, unpredictable, or emotionally dramatic people can overload your sensitivity and push the chart further into dispersal. The risk is withdrawal — pulling back rather than engaging — which can then create the very isolation you were trying to avoid.</p>
-            </div>
-            <div class="compat-card">
-                <h3>The Dynamic to Cultivate</h3>
-                <p>The healthiest bonds for your chart combine mental respect with emotional steadiness. You need room to think and adapt, but also grounded companionship that does not add to the internal volatility. Quality matters more than quantity in relationships.</p>
-            </div>
-            <div class="compat-card">
-                <h3>Your Part in This</h3>
-                <p>The tendency to hide your depth behind adaptability is strong in this chart. You read others well but may not let yourself be read. Letting someone closer requires deliberate vulnerability — and for you, that is a growth edge, not a weakness.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PAGE 7: CLOSING + CTA -->
     <div class="page">
         <div class="section-header">From the Reader</div>
-        <h2>A Closing Note on This Chart</h2>
+        <h2>Opening Counsel</h2>
         <p>
-            This reading has described a person who is genuinely talented, perceptive, and capable — and who also faces a specific, structural challenge that does not announce itself but quietly affects everything: the difficulty of holding ground, finishing what begins, and being properly recognized for what is actually produced.
+            This report has been rewritten to reflect the updated reading engine rather than the older sample logic. The chart is now read through a combined layer of Day Master strength, element distribution, hidden stems, ten-god structure, seasonal command, branch dynamics, and practical support direction.
         </p>
         <p>
-            This is not a diagnosis. It is a description of a tendency — and tendencies can be supported. The elements missing from this chart (Fire for visibility, Earth for structure) are not impossible to introduce. Symbolic support, when it matches what the chart actually needs, works precisely because it addresses the specific gap rather than adding more of what is already abundant.
+            Evelyn's chart opens through <span class="red-ink">Bing Fire</span>, born in <span class="red-ink">Spring</span> and judged <span class="red-ink">Balanced</span> in simplified Day Master strength. That matters because this is not a fate that first needs more raw force. It needs better structure around what it already does well, especially in the realm of money, work output, and keeping what has been earned.
         </p>
+
+        <div class="master-note">
+            <div class="master-note-header">Senior Reader's Note</div>
+            <p>
+                The latest engine reads this chart with <strong>Wood high, Earth high, and Metal notably thin</strong>. The wealth question is therefore not only how resources arrive, but how they are retained. The first correction is not urgency. The first correction is order.
+            </p>
+        </div>
+
+        <h3>The First Meaning of the Chart</h3>
         <p>
-            What this chart needs most is not more insight. It is more follow-through, more physical grounding, and more willingness to be visible in the exact way that does not come naturally.
+            Bing Fire as Day Master often shows one who is open, radiant, and naturally drawn toward visible expression. In this case the chart is not weak, but neither is it so strong that it can spend itself carelessly. The profile points toward a person whose talent and output are real, whose capacity to generate movement is strong, and whose next stage of growth depends on systems, boundaries, and more disciplined resource handling.
         </p>
 
         <div class="handwritten-box">
-            <strong>A Word from the Longhu Mountain Lineage</strong><br><br>
-            In the old practice, one does not look only at what is prosperous or troubled in the moment. One looks to where Heaven has given excess, where Earth has left a lack, and how a person's conduct may carry them between the two without wasting spirit. Your pillars show a person of genuine depth and perception — one who reads the undercurrent of things before others see it. But depth that is not grounded becomes dispersal. Warmth that is not recognized becomes resentment. The proper support does not change who you are. It allows what is already there to find its proper form in the world.
+            <strong>Core reading in plain language:</strong> this is a person who can create, attract, and move opportunity, but who benefits most when wealth is slowed down, contained, documented, and turned into something that stays.
         </div>
 
         <div class="signature-block">
             <div class="signature-name">Your Oriental Destiny Senior Reader</div>
-            <div class="signature-title">Longhu Mountain Lineage · Premium Consultation</div>
+            <div class="signature-title">Longhu Mountain Lineage Reading</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="section-header">Chart Structure</div>
+        <div class="chapter-title">Four Pillars and the Main Architecture</div>
+
+        <table class="pillars-table">
+            <tr>
+                <th>Year Pillar</th>
+                <th>Month Pillar</th>
+                <th>Day Pillar</th>
+                <th>Hour Pillar</th>
+            </tr>
+            <tr>
+                <td>Wu Chen / Earth Dragon</td>
+                <td>Yi Mao / Wood Rabbit</td>
+                <td>Bing Yin / Fire Tiger</td>
+                <td>Ji Hai / Earth Pig</td>
+            </tr>
+        </table>
+
+        <p>
+            The Year Pillar places Earth over Dragon, giving the ancestral field a practical and productive tone. The Month Pillar places Wood over Rabbit, which strengthens growth, planning, responsiveness, and the seasonal gate of the chart. The Day Pillar roots the self in Bing Fire over Tiger, while the Hour Pillar closes the chart with Earth over Pig, adding a second Earth stem to the private ambition and later-development layer.
+        </p>
+
+        <div class="table-wrap">
+            <table class="detail-table">
+                <tr>
+                    <th>Pillar</th>
+                    <th>Field of Life</th>
+                    <th>Visible God Pattern</th>
+                    <th>How It Reads</th>
+                </tr>
+                <tr>
+                    <td><strong>Year Pillar</strong></td>
+                    <td>Ancestral field, early environment, distant networks</td>
+                    <td>Eating God over Eating God</td>
+                    <td>Productivity and practical output are already present in the background of the chart. The person often learns early that skill can produce value.</td>
+                </tr>
+                <tr>
+                    <td><strong>Month Pillar</strong></td>
+                    <td>Career field, adult responsibility, strongest seasonal gate</td>
+                    <td>Direct Resource over Direct Resource</td>
+                    <td>This is a chart that benefits from method, learning, and repeatable structure. Guidance, systems, and competence matter more than improvisation alone.</td>
+                </tr>
+                <tr>
+                    <td><strong>Day Pillar</strong></td>
+                    <td>Self, partner palace, intimate pattern</td>
+                    <td>Friend over Indirect Resource</td>
+                    <td>The self is warm and expressive, but it also thinks in layers. Personal choices are shaped by instinct, insight, and a need to keep inner reserves intact.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hour Pillar</strong></td>
+                    <td>Private ambition, later life, legacy</td>
+                    <td>Hurting Officer over Seven Killings</td>
+                    <td>Later development carries edge: the capacity to challenge limits, take risks, and turn pressure into action. Without structure, this same layer can scatter energy.</td>
+                </tr>
+            </table>
         </div>
 
-        <div class="cta-banner">
-            <h3>Ready for Your Own Full Reading?</h3>
-            <p>Submit your birth details, choose your life focus, and receive a complete BaZi report written specifically for your chart — with symbolic direction matched after the reading, not before.</p>
-            <a href="checkout.html" class="cta-link">Start My Reading — $99</a>
+        <div class="note-box">
+            <h3>The Main Dynamic</h3>
+            <p>
+                The updated engine shows a chart that is well supplied with growth and usable earth, but lacking the clean Metal function that cuts, sorts, and keeps. That is why the money question is not read as lack of earning power. It is read as a question of refinement, retention, and disciplined handling.
+            </p>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="section-header">Hidden Structure</div>
+        <div class="chapter-title">Hidden Stems, Elements, and Ten Gods</div>
+
+        <p>
+            A modern sample report must go further than surface stems. The hidden stem layer shows where the chart stores its quieter motivations, its concealed support, and the roles that only become visible under pressure or over time.
+        </p>
+
+        <div class="table-wrap">
+            <table class="detail-table">
+                <tr>
+                    <th>Branch</th>
+                    <th>Hidden Stems</th>
+                    <th>Reading</th>
+                </tr>
+                <tr>
+                    <td><strong>Year Branch Chen</strong></td>
+                    <td>Wu Earth, Yi Wood, Gui Water</td>
+                    <td>Main Qi is Earth as Eating God, with Wood as Direct Resource and Water as Direct Officer beneath it. Productive output sits on top, but learning and outer expectations are also stored inside the field.</td>
+                </tr>
+                <tr>
+                    <td><strong>Month Branch Mao</strong></td>
+                    <td>Yi Wood</td>
+                    <td>The seasonal gate is clean and singular: Direct Resource. This supports study, planning, refinement, and growth through method rather than force.</td>
+                </tr>
+                <tr>
+                    <td><strong>Day Branch Yin</strong></td>
+                    <td>Jia Wood, Bing Fire, Wu Earth</td>
+                    <td>The self sits on renewal, visible spirit, and residual productivity. This is one reason the chart can keep generating motion, ideas, and openings.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hour Branch Hai</strong></td>
+                    <td>Ren Water, Jia Wood</td>
+                    <td>The private and future-facing layer stores Seven Killings and Indirect Resource. Pressure and instinct both live here, so ambition sharpens as life progresses.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Five Elements Diagnosis</h3>
+        <table class="detail-table">
+            <tr>
+                <th>Element</th>
+                <th>Engine Weight</th>
+                <th>Status</th>
+                <th>Meaning in This Chart</th>
+            </tr>
+            <tr>
+                <td><strong class="red-ink">Wood</strong></td>
+                <td>7.0</td>
+                <td><span class="red-ink">High</span></td>
+                <td>Growth, planning, responsiveness, and movement are abundant. The person can generate direction quickly, but excess Wood can keep money circulating instead of settling.</td>
+            </tr>
+            <tr>
+                <td><strong class="red-ink">Earth</strong></td>
+                <td>6.5</td>
+                <td><span class="red-ink">High</span></td>
+                <td>Earth gives the chart one of its best remedies: containment, routine, management, and practical follow-through. This is why Earth is read as a primary support element.</td>
+            </tr>
+            <tr>
+                <td><strong>Fire</strong></td>
+                <td>2.5</td>
+                <td>Low</td>
+                <td>Fire is present through the Day Master but not overwhelmingly strong in the full spread. Expression exists, but it cannot be allowed to outrun structure.</td>
+            </tr>
+            <tr>
+                <td><strong>Water</strong></td>
+                <td>2.5</td>
+                <td>Low</td>
+                <td>Water adds pressure, instinct, and adaptive response. In moderation it helps timing. In excess it would weaken retention, so it is not the first medicine here.</td>
+            </tr>
+            <tr>
+                <td><strong>Metal</strong></td>
+                <td>0.0</td>
+                <td>Thin</td>
+                <td>Metal is the cleanest missing function in the chart. It governs sorting, accounting, boundaries, discernment, and the discipline required to keep gain from leaking away.</td>
+            </tr>
+        </table>
+
+        <div class="handwritten-box">
+            <strong>The structural message:</strong> Wood is the loudest element and Metal is the thinnest. The chart therefore reads for both excess and absence. Opportunity can be generated more easily than it can be organized. That is the entire wealth story in one sentence.
+        </div>
+
+        <h3>Ten-God Structure</h3>
+        <table class="detail-table">
+            <tr>
+                <th>Ten God</th>
+                <th>Weight</th>
+                <th>What It Adds</th>
+            </tr>
+            <tr>
+                <td><strong>Eating God</strong></td>
+                <td>2.2</td>
+                <td>Talent, nourishment, productive output, the ability to make something useful.</td>
+            </tr>
+            <tr>
+                <td><strong>Direct Resource</strong></td>
+                <td>2.2</td>
+                <td>Formal support, method, learning, patience, and recovery through good structure.</td>
+            </tr>
+            <tr>
+                <td><strong>Friend</strong></td>
+                <td>1.4</td>
+                <td>Self-will, independence, and the need to act on one's own judgment.</td>
+            </tr>
+            <tr>
+                <td><strong>Indirect Resource</strong></td>
+                <td>1.2</td>
+                <td>Instinct, inner intelligence, and unconventional support.</td>
+            </tr>
+            <tr>
+                <td><strong>Hurting Officer</strong></td>
+                <td>1.0</td>
+                <td>Sharp expression, challenge to limits, and visible edge.</td>
+            </tr>
+            <tr>
+                <td><strong>Seven Killings</strong></td>
+                <td>0.8</td>
+                <td>Pressure, urgency, risk, and the need to master rather than fear challenge.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="page">
+        <div class="section-header">Deeper Timing</div>
+        <div class="chapter-title">Seasonal Command, Branch Dynamics, and Life Phase</div>
+
+        <p>
+            The Month Branch Mao places the chart under <span class="red-ink">Spring command</span>, with Wood carrying seasonal authority. For a Bing Fire Day Master, this is read as support from the season itself. Growth, planning, and movement are naturally available. That is helpful, but it also explains why momentum comes more easily than closure.
+        </p>
+
+        <div class="grid-2">
+            <div class="timing-box">
+                <h3>Seasonal Command</h3>
+                <p>
+                    The chart is supported by season. This gives the person natural initiative and responsiveness. It also means that when life becomes too busy or too open-ended, the chart may keep expanding instead of consolidating.
+                </p>
+            </div>
+            <div class="timing-box">
+                <h3>Branch Dynamic</h3>
+                <p>
+                    Day Branch Yin and Hour Branch Hai form a <strong>combination</strong>. The engine reads this as affinity, binding, cooperation, and patterns that grow stronger under the right conditions. In money terms, relationships and opportunities can become entangled quickly, for good or ill.
+                </p>
+            </div>
+        </div>
+
+        <h3>Twelve-Stage Layer</h3>
+        <p>
+            The strongest twelve-stage signal is <strong>Chang Sheng</strong> at the Day Branch, read as birth, renewal, fresh support, and the beginning of strength. This confirms that the chart still has generative power. It is not exhausted. It is simply at a stage where renewal needs to be directed into something more stable.
+        </p>
+
+        <div class="table-wrap">
+            <table class="detail-table">
+                <tr>
+                    <th>Branch</th>
+                    <th>Stage</th>
+                    <th>What It Suggests</th>
+                </tr>
+                <tr>
+                    <td>Chen</td>
+                    <td>Guan Dai</td>
+                    <td>Formation, presentation, and preparing to stand in visible rank.</td>
+                </tr>
+                <tr>
+                    <td>Mao</td>
+                    <td>Mu Yu</td>
+                    <td>Exposure and refinement. Attractive, but still somewhat vulnerable to instability.</td>
+                </tr>
+                <tr>
+                    <td>Yin</td>
+                    <td>Chang Sheng</td>
+                    <td>Renewal and the beginning of strength. The self has regenerative capacity.</td>
+                </tr>
+                <tr>
+                    <td>Hai</td>
+                    <td>Jue</td>
+                    <td>Severance and transition. What is old must be cut away cleanly to protect future development.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="master-note">
+            <div class="master-note-header">Life-Stage Reading</div>
+            <p>
+                At about age <strong>38</strong>, the simplified stage layer reads as <strong>Expansion</strong>. This is the period of career building, wealth circulation, partnership choice, and visible responsibility. The reading therefore treats the money theme as active, immediate, and highly practical rather than distant or symbolic.
+            </p>
+        </div>
+
+        <div class="timing-box">
+            <h3>2026 Annual Layer</h3>
+            <p>
+                The current annual layer is read as <strong>Bing Wu</strong>, the Fire Horse year. In the simplified timing view used here, there is no major annual clash or combination with the natal branches. This does not mean the year is empty. It means the natal chart itself remains the main story, so success depends more on internal discipline than on waiting for a dramatically lucky external trigger.
+            </p>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="section-header">Useful God Logic</div>
+        <div class="chapter-title">What Helps This Chart Keep What It Earns</div>
+
+        <p>
+            The updated engine now judges the wealth question through four use-god layers rather than by strength alone: <em>support and control, climate regulation, bridge function, and disease-medicine correction</em>. Here the answer is still yes, but only when Earth is taken as the primary useful god and Metal is brought in as disciplined support. Left to itself, the chart creates motion faster than it creates containment.
+        </p>
+
+        <div class="table-wrap">
+            <table class="detail-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Primary Logic</th>
+                    <th>What It Chooses</th>
+                </tr>
+                <tr>
+                    <td><strong>Fu Yi</strong></td>
+                    <td>The Day Master does not need more unchecked expansion. It needs grounded handling.</td>
+                    <td>Earth first, then Metal to structure output.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tiao Hou</strong></td>
+                    <td>Spring Wood season gives growth and movement, but also makes the chart too ready to keep opening.</td>
+                    <td>Metal prunes excess Wood and Earth stabilizes the field.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tong Guan</strong></td>
+                    <td>The branch combination increases affinity and flow, which helps opportunity but can blur boundaries.</td>
+                    <td>Earth and Metal bridge desire with procedure.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bing Yao</strong></td>
+                    <td>Wood is excessive and Metal is thin. The chart's “illness” is overgrowth without enough clean filtering.</td>
+                    <td>Raise Metal gently, carry it through Earth habit.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>The Wealth Pattern</h3>
+        <p>
+            Eating God leads the ten-god structure, with Direct Resource close behind. This is one of the clearest signatures of useful talent combined with a need for system. The person may make value through output, service, products, ideas, teaching, strategy, or other forms of useful production. But productivity is not the same as preservation. Preservation comes later, through procedure.
+        </p>
+        <p>
+            This is why the engine's guidance now places <strong>Earth as the primary useful god</strong> and <strong>Metal as the leading support god</strong>. Earth slows things down, gives a place for value to rest, and creates habits that are boring in the best possible way. Metal adds sorting, accounting, precision, review, and the willingness to say no.
+        </p>
+
+        <div class="grid-2">
+            <div class="compat-card">
+                <h3>What Helps</h3>
+                <ul class="mini-list">
+                    <li>Budgeting, savings rules, clean account separation, and visible tracking.</li>
+                    <li>Longer decision windows before large purchases or new commitments.</li>
+                    <li>Choosing income paths that reward consistency, quality, and repeatable delivery.</li>
+                    <li>Allowing practical mentors, accountants, operators, or systems to support the work.</li>
+                </ul>
+            </div>
+            <div class="compat-card">
+                <h3>What Leaks Energy</h3>
+                <ul class="mini-list">
+                    <li>Too many simultaneous projects under the illusion that movement itself equals progress.</li>
+                    <li>Loose boundaries around lending, sharing, or investing attention without clear terms.</li>
+                    <li>Letting emotional momentum make financial decisions that should be procedural.</li>
+                    <li>Believing that talent alone will produce order without routine.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="jewelry-box">
+            <div class="master-note-header">Symbolic Support Direction</div>
+            <p>
+                The latest engine points toward <strong>Earth as primary useful support, with Metal as secondary support</strong>. If one were to choose a supporting object, a <strong>bracelet</strong> carrying that direction would be more fitting than something dramatic or overstimulating.
+            </p>
+            <p>
+                In practical symbolic terms, this points toward <em>golden or earthy materials, grounding bracelets, calmer protective forms, cleaner shapes, and white-metal or gold-toned finishes</em>. The purpose is not decoration. The purpose is to reinforce containment, steadiness, and discernment.
+            </p>
+            <p>
+                <em>For this case, the most fitting support direction is wealth retention rather than wealth chasing. The object should remind the wearer to keep what is earned, not merely to seek more movement.</em>
+            </p>
+        </div>
+
+        <div class="handwritten-box">
+            <strong>Practical correction:</strong> this chart should treat money like a field to be cultivated, not a current to be chased. Slower decisions, clearer records, and better filters will outperform bursts of inspiration.
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="section-header">Human Pattern</div>
+        <div class="chapter-title">Relationships, Character, and Closing Note</div>
+
+        <p>
+            Although the primary focus of this report is wealth, the chart cannot be read as if money exists apart from character. Bing Fire still gives warmth, presence, and sincerity when it is well held. The Day Branch and Hour Branch combination also shows that affinity is meaningful here: relationships can become close quickly, and cooperation can be a source of opportunity.
+        </p>
+
+        <div class="grid-2">
+            <div class="compat-card">
+                <h3>Character Reading</h3>
+                <p>
+                    The personality layer reads as expressive, responsive, and able to generate momentum. But because Wood rises strongly and Metal is thin, the person does better when paired with calm standards and people who respect order rather than constant novelty.
+                </p>
+            </div>
+            <div class="compat-card">
+                <h3>Relationship Reading</h3>
+                <p>
+                    In affection, this chart responds best where feeling is steady and not overly turbulent. Strong connection is possible, but emotional openness should not be allowed to weaken judgment in money or partnership agreements.
+                </p>
+            </div>
+            <div class="compat-card">
+                <h3>Career Reading</h3>
+                <p>
+                    Work advances best through useful output, competence, and systems that scale. Recognition grows when the person lets process support talent instead of relying on talent to rescue poor process.
+                </p>
+            </div>
+            <div class="compat-card">
+                <h3>Protection Reading</h3>
+                <p>
+                    Protection in this chart is not achieved by adding force. It is achieved by reducing noise, tightening boundaries, and removing unnecessary points of leakage in time, money, and attention.
+                </p>
+            </div>
+        </div>
+
+        <h2>A Closing Note on This Chart</h2>
+        <p>
+            This report describes a chart with genuine capacity: productive, intelligent, warm, and able to generate movement. The updated engine does not treat Evelyn's challenge as lack of opportunity. It treats the challenge as <strong>retention</strong>. Value appears. The work is to keep it, shape it, and stop it from dispersing through speed and overextension.
+        </p>
+        <p>
+            When the old method says to restrain what is excessive and nourish what is thin, that is exactly the message here. Wood has enough voice. Movement has enough voice. What must now be raised is the Metal function of review, record, precision, and clean boundaries, all carried by the Earth habit of steady routine.
+        </p>
+        <p>
+            In this way, the fate does not need to become someone else. It only needs to become more orderly than its own first instinct.
+        </p>
+
+        <div class="master-note">
+            <div class="master-note-header">Word from the Reader</div>
+            <p>
+                I have looked upon the four pillars and do not speak carelessly. Your Day Master is Bing Fire, and the movement of this life should not be spent only on brightness. The chart can create. The chart can attract. But the greater blessing comes when what is created is also kept. If Earth and Metal are brought near in conduct, environment, and symbol, then gain is more easily gathered and leakage is reduced. In this way, what is scattered may collect and what is earned may remain.
+            </p>
+        </div>
+
+        <div class="signature-block">
+            <div class="signature-name">Your Oriental Destiny Senior Reader</div>
+            <div class="signature-title">Longhu Mountain Lineage Reading</div>
         </div>
 
         <div style="margin-top: 30pt; font-size: 9pt; color: #777; border-top: 1px solid #ddd; padding-top: 12pt;">
-            <strong>Disclaimer:</strong> This sample report uses the birth data of a fictional person for demonstration purposes. A real Oriental Destiny reading is prepared individually from your submitted birth details and is non-refundable once delivered. This reading is offered for self-reflection and symbolic guidance only.
+            <strong>Disclaimer:</strong> This case report uses the birth data of a fictional person for illustration purposes and reflects the current automated reading schema, noted internally as <em>2026-04-30.yongshen-1</em>. It is offered for self-reflection and symbolic guidance only.
         </div>
     </div>
-    <footer style="text-align:center;padding:1.5rem;font-size:0.85rem;color:#666;border-top:1px solid #e5e5e5;margin-top:2rem;">
-        <p>Explore more:</p>
-        <p><a href="instant_reading.html">Free Mini Reading</a> · <a href="full_bazi_reading.html">Full BaZi Reading</a> · <a href="products.html">All Plans</a></p>
-    </footer>
 </body>
 </html>

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://oriental-destiny.com/full_bazi_reading.html">
     <title>Oriental Destiny | Full BaZi Reading Layer</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
@@ -350,7 +349,7 @@
             <div class="form-card">
                 <div class="eyebrow">Input</div>
                 <h2>Unfold the chart more completely</h2>
-                <p class="form-note">This page is the fuller presentation layer. In production, it may sit behind payment, email delivery, or a private client link.</p>
+                <p class="form-note">This page opens the chart in fuller detail, with more structure, timing, and practical direction brought into view.</p>
                 <form id="fullForm">
                     <div class="field">
                         <label for="fullName">First name</label>
@@ -381,7 +380,7 @@
                         <label for="notes">Current situation</label>
                         <textarea id="notes" placeholder="Example: I want better career recognition, calmer relationships, or stronger money stability."></textarea>
                     </div>
-                    <button class="submit-btn" type="submit">Generate Full Reading Layer</button>
+                    <button class="submit-btn" type="submit">Open Full Reading</button>
                 </form>
             </div>
 
@@ -424,9 +423,67 @@
                     </div>
                 </div>
 
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Element Diagnosis</div>
+                        <p id="elementDiagnosis"></p>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Ten-God Structure</div>
+                        <p id="tenGodStructure"></p>
+                        <div id="topTenGods" style="margin-top:12px;"></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Use God Logic</div>
+                    <p id="usefulGodSummary"></p>
+                    <div id="usefulGodRanking" style="margin-top:12px;"></div>
+                    <div id="usefulGodLayers" style="margin-top:12px;"></div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Branch Dynamics</div>
+                        <div id="branchDynamics"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Annual Trigger</div>
+                        <p id="annualTrigger"></p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Season Command</div>
+                        <p id="seasonalCommand"></p>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Luck Phase</div>
+                        <p id="luckPhase"></p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="chip">Hidden Stem Influence</div>
+                        <div id="hiddenStemInfluence"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="chip">Twelve Stages</div>
+                        <div id="twelveStages"></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="chip">Ten Gods by Pillar</div>
+                    <div id="tenGodByPillar"></div>
+                </div>
+
                 <div class="panel">
                     <div class="chip">Reading and support</div>
                     <p id="focusReading"></p>
+                    <p id="deepFocusReading" style="margin-top:12px;"></p>
                     <p id="jewelryDirection" style="margin-top:12px;"></p>
                 </div>
 
@@ -465,21 +522,21 @@
         </section>
 
         <section class="upgrade-card">
-            <div class="eyebrow" style="color:#d8b26a;">Application</div>
-            <h2>This is the fuller paid-display layer.</h2>
+            <div class="eyebrow" style="color:#d8b26a;">Reading Frame</div>
+            <h2>How to understand what is being shown here.</h2>
             <ul class="upgrade-list">
-                <li>`bazi_engine.js` calculates the structured chart beneath both experiences.</li>
-                <li>`instant_reading.html` reveals only the first opening.</li>
-                <li>`full_bazi_reading.html` reveals the fuller display layer.</li>
-                <li>This page can later sit behind payment, email token, or a private client link.</li>
+                <li>The chart is opened in more detail than in the initial reading.</li>
+                <li>Hidden stems, element balance, and structural pressure are brought into clearer view.</li>
+                <li>The life theme is read together with timing, support, and practical direction.</li>
+                <li>These sections are meant to show how the root pattern becomes daily experience.</li>
             </ul>
         </section>
     </main>
 
     <footer>
         <div class="container footer-note">
-            <div>&copy; 2026 Oriental Destiny. Full BaZi reading layer prototype.</div>
-            <div>Built on the same engine as the free preview, with more of the structure exposed.</div>
+            <div>&copy; 2026 Oriental Destiny. Full BaZi reading format.</div>
+            <div>A fuller chart reading with more of the hidden structure brought into view.</div>
         </div>
     </footer>
 
@@ -502,16 +559,25 @@
             const lifeFocus = document.getElementById("lifeFocus").value;
             const notes = document.getElementById("notes").value.trim();
 
-            if (!birthDate || !lifeFocus) return;
+            if (!birthDate || !lifeFocus) {
+                alert("Please enter a valid birth date and choose the main area of focus.");
+                return;
+            }
 
-            const profile = window.BaziEngine.calculateProfile({
-                birthDate,
-                birthTime,
-                lifeFocus
-            });
+            let profile;
+            try {
+                profile = window.BaziEngine.calculateProfile({
+                    birthDate,
+                    birthTime,
+                    lifeFocus
+                });
+            } catch (error) {
+                alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
+                return;
+            }
 
             const noteLine = notes
-                ? ` The client note suggests this issue is already active: ${notes}`
+                ? ` The note provided suggests this issue is already active: ${notes}`
                 : "";
 
             document.getElementById("headline").textContent = `${name}'s chart is rooted in ${profile.dayMasterStem} ${profile.dayMasterElement}.`;
@@ -529,7 +595,7 @@
                 hiddenStemHtml("Hour Branch", profile.hiddenStems.hour)
             ].join("<div style='height:12px;'></div>");
 
-            document.getElementById("dayMasterBlock").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> often reads as ${profile.dayMasterProfile}. The automated strength score is <strong>${profile.strength.score.toFixed(1)}</strong>, placing the chart in the <strong>${profile.strength.band}</strong> band before human refinement.`;
+            document.getElementById("dayMasterBlock").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> often reads as ${profile.dayMasterProfile}. The strength score in this draft reading is <strong>${profile.strength.score.toFixed(1)}</strong>, placing the chart in the <strong>${profile.strength.band}</strong> band before a more refined human judgment. ${profile.favorableElementReasoning}`;
 
             document.getElementById("elementCounts").innerHTML = profile.elementRanking
                 .map(([element, value]) => `<div class="mini-box"><strong>${element}</strong><div>${value.toFixed(1)} points</div></div>`)
@@ -540,7 +606,42 @@
                 .map(([god, value]) => `<div class="mini-box"><strong>${god}</strong><div>${value.toFixed(1)} weight</div></div>`)
                 .join("<div style='height:12px;'></div>");
 
+            document.getElementById("elementDiagnosis").textContent = profile.advancedAnalysis.elementDiagnosis.summary;
+            document.getElementById("tenGodStructure").textContent = profile.advancedAnalysis.tenGodStructure.summary;
+            document.getElementById("topTenGods").innerHTML = profile.advancedAnalysis.tenGodStructure.topThree
+                .map((entry) => `<div class="mini-box"><strong>${entry.god}</strong><div>${entry.meaning}</div></div>`)
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("usefulGodSummary").textContent = profile.usefulGodAnalysis.summary;
+            document.getElementById("usefulGodRanking").innerHTML = profile.usefulGodAnalysis.ranked
+                .slice(0, 5)
+                .map((entry) => `<div class="mini-box"><strong>${entry.element}</strong><div>${entry.score.toFixed(1)} useful-god weight</div></div>`)
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("usefulGodLayers").innerHTML = Object.entries(profile.usefulGodAnalysis.layers)
+                .map(([key, entries]) => {
+                    const label = entries[0] && entries[0].reasons[0] ? entries[0].reasons[0].label : key;
+                    const lines = entries
+                        .flatMap((entry) => entry.reasons.map((reason) => `${entry.element}: ${reason.reason}`))
+                        .join("<br>");
+                    return `<div class="mini-box"><strong>${label}</strong><div>${lines}</div></div>`;
+                })
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("branchDynamics").innerHTML = profile.advancedAnalysis.branchDynamics
+                .map((entry) => `<div class="mini-box"><strong>${entry.type}</strong><div>${entry.meaning}</div></div>`)
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("annualTrigger").textContent = profile.advancedAnalysis.annualTrigger.summary;
+            document.getElementById("seasonalCommand").textContent = profile.advancedAnalysis.seasonalCommand.summary;
+            document.getElementById("luckPhase").textContent = profile.advancedAnalysis.luckPhase.summary;
+            document.getElementById("hiddenStemInfluence").innerHTML = Object.values(profile.advancedAnalysis.hiddenStemInfluence)
+                .map((entry) => `<div class="mini-box"><strong>${entry.label}</strong><div>${entry.summary}</div></div>`)
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("twelveStages").innerHTML = profile.advancedAnalysis.twelveStages.entries
+                .map((entry) => `<div class="mini-box"><strong>${entry.pillar} ${entry.branch}</strong><div>${entry.stage}: ${entry.meaning}</div></div>`)
+                .join("<div style='height:12px;'></div>");
+            document.getElementById("tenGodByPillar").innerHTML = profile.advancedAnalysis.tenGodByPillar
+                .map((entry) => `<div class="mini-box"><strong>${entry.label}</strong><div>${entry.summary}</div></div>`)
+                .join("<div style='height:12px;'></div>");
             document.getElementById("focusReading").textContent = profile.focusReading;
+            document.getElementById("deepFocusReading").textContent = profile.deepFocusReading;
             document.getElementById("jewelryDirection").textContent = profile.jewelry.copy;
             document.getElementById("readerCounsel").textContent = profile.readerCounsel;
             document.getElementById("personalityReading").textContent = profile.interpretations.personality;
@@ -548,7 +649,7 @@
             document.getElementById("wealthReading").textContent = profile.interpretations.wealth;
             document.getElementById("loveReading").textContent = profile.interpretations.love;
             document.getElementById("protectionReading").textContent = profile.interpretations.protection;
-            document.getElementById("engineNote").textContent = profile.note;
+            document.getElementById("engineNote").textContent = `${profile.note} ${profile.calculationNotes.solarTerms} ${profile.calculationNotes.hourPillar}`;
             document.getElementById("masterMessage").textContent = profile.masterMessage;
 
             document.getElementById("resultsPanel").style.display = "grid";

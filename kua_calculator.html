@@ -407,18 +407,62 @@
         }
         
         footer {
-            text-align: center;
             padding: 40px 20px;
             font-size: 12px;
             color: #888;
             border-top: 1px solid rgba(0,0,0,0.06);
             margin-top: 40px;
         }
+
+        .footer-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .footer-meta {
+            display: grid;
+            gap: 10px;
+            max-width: 360px;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            min-width: min(100%, 340px);
+        }
+
+        .footer-links a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(0,0,0,0.06);
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .footer-links strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--ink);
+        }
+
+        .footer-links span {
+            color: #666;
+        }
         
         @media (max-width: 600px) {
             .hero h1 { font-size: 28px; }
             .calculator-box { padding: 30px 20px; }
-            .directions-grid { grid-template-columns: 1fr; }
+            .directions-grid,
+            .footer-links { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -503,7 +547,26 @@
     </div>
     
     <footer>
-        <p>&copy; 2026 Oriental Destiny. For entertainment and self-reflection purposes only.</p>
+        <div class="footer-inner">
+            <div class="footer-meta">
+                <div>&copy; 2026 Oriental Destiny. For entertainment and self-reflection purposes only.</div>
+                <div>Direction tools are a starting point. Full readings use your broader chart, element balance, and life focus together.</div>
+            </div>
+            <div class="footer-links" aria-label="Resources">
+                <a href="report_demo.html">
+                    <strong>Case Report</strong>
+                    <span>Read a full chart-based example</span>
+                </a>
+                <a href="kua_calculator.html">
+                    <strong>Kua Calculator</strong>
+                    <span>Return to the directions tool</span>
+                </a>
+                <a href="instant_reading.html">
+                    <strong>Free Preview</strong>
+                    <span>See the instant BaZi opening</span>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script>

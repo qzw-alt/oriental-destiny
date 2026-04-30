@@ -315,11 +315,43 @@
             font-size: 13px;
         }
 
+        .footer-meta {
+            display: grid;
+            gap: 10px;
+            max-width: 560px;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            min-width: min(100%, 420px);
+        }
+
+        .footer-links a {
+            display: block;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 253, 249, 0.72);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .footer-links strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .footer-links span {
+            color: rgba(36, 25, 21, 0.68);
+        }
+
         @media (max-width: 980px) {
             .layout,
             .field-grid,
             .grid-2,
-            .grid-4 {
+            .grid-4,
+            .footer-links {
                 grid-template-columns: 1fr;
             }
         }
@@ -535,8 +567,24 @@
 
     <footer>
         <div class="container footer-note">
-            <div>&copy; 2026 Oriental Destiny. Full BaZi reading format.</div>
-            <div>A fuller chart reading with more of the hidden structure brought into view.</div>
+            <div class="footer-meta">
+                <div>&copy; 2026 Oriental Destiny. Full BaZi reading format.</div>
+                <div>A fuller chart reading with more of the hidden structure brought into view.</div>
+            </div>
+            <div class="footer-links" aria-label="Resources">
+                <a href="report_demo.html">
+                    <strong>Case Report</strong>
+                    <span>See the full reading style in finished form</span>
+                </a>
+                <a href="kua_calculator.html">
+                    <strong>Kua Calculator</strong>
+                    <span>Compare chart detail with direction support</span>
+                </a>
+                <a href="instant_reading.html">
+                    <strong>Free Preview</strong>
+                    <span>Return to the lighter opening layer</span>
+                </a>
+            </div>
         </div>
     </footer>
 

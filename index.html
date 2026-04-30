@@ -397,6 +397,46 @@
             color: rgba(255, 248, 239, 0.82);
         }
 
+        .learn-card {
+            border-radius: 28px;
+            padding: 34px;
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .learn-grid,
+        .footer-links {
+            display: grid;
+            gap: 14px;
+        }
+
+        .learn-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-top: 24px;
+        }
+
+        .learn-link {
+            display: block;
+            padding: 22px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(239, 225, 207, 0.42), rgba(255, 253, 249, 0.94));
+            border: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .learn-link strong,
+        .footer-links a strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .learn-link span,
+        .footer-links a span {
+            color: rgba(36, 25, 21, 0.68);
+            font-size: 14px;
+        }
+
         footer { padding: 0 0 42px; }
 
         .footer-card {
@@ -410,13 +450,38 @@
             flex-wrap: wrap;
         }
 
+        .footer-meta {
+            display: grid;
+            gap: 10px;
+            max-width: 560px;
+        }
+
+        .footer-card > div:first-child {
+            display: none;
+        }
+
+        .footer-links {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            min-width: min(100%, 420px);
+        }
+
+        .footer-links a {
+            display: block;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 253, 248, 0.72);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
         @media (max-width: 980px) {
             .hero-grid,
             .story-card,
             .carrier-grid,
             .plan-grid,
             .steps-grid,
-            .faq-grid {
+            .faq-grid,
+            .learn-grid,
+            .footer-links {
                 grid-template-columns: 1fr;
             }
         }
@@ -721,12 +786,51 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container">
+                <div class="learn-card">
+                    <div class="section-head">
+                        <div>
+                            <h2>See how a reading unfolds before you order</h2>
+                            <p>These pages are here to make the method easier to understand. Start with a complete case report, or use a simple direction tool before deciding on the full reading.</p>
+                        </div>
+                    </div>
+                    <div class="learn-grid">
+                        <a class="learn-link" href="report_demo.html">
+                            <strong>Case Report</strong>
+                            <span>Read a full fictional example built from the same reading structure used across the site.</span>
+                        </a>
+                        <a class="learn-link" href="kua_calculator.html">
+                            <strong>Kua Calculator</strong>
+                            <span>Find your supportive directions quickly and compare that with the fuller chart-based approach.</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <div class="container footer-card">
             <div>© 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching and confirmed symbolic directions.</div>
-            <div>For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</div>
+            <div class="footer-meta">
+                <div>&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching and confirmed symbolic directions.</div>
+                <div>For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</div>
+            </div>
+            <div class="footer-links" aria-label="Resources">
+                <a href="report_demo.html">
+                    <strong>Case Report</strong>
+                    <span>See a complete sample reading</span>
+                </a>
+                <a href="kua_calculator.html">
+                    <strong>Kua Calculator</strong>
+                    <span>Check your favorable directions</span>
+                </a>
+                <a href="instant_reading.html">
+                    <strong>Free Preview</strong>
+                    <span>Open a quick first reading</span>
+                </a>
+            </div>
         </div>
     </footer>
 </body>

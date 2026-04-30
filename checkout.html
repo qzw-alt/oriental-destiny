@@ -368,6 +368,52 @@
                 padding: 24px;
             }
         }
+
+        footer {
+            padding: 0 0 42px;
+        }
+
+        .footer-note {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            color: rgba(36, 25, 21, 0.58);
+            font-size: 13px;
+        }
+
+        .footer-meta {
+            display: grid;
+            gap: 10px;
+            max-width: 560px;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            min-width: min(100%, 420px);
+        }
+
+        .footer-links a {
+            display: block;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 253, 249, 0.72);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+        }
+
+        .footer-links strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .footer-links span {
+            color: rgba(36, 25, 21, 0.68);
+        }
     </style>
 </head>
 <body>
@@ -765,5 +811,28 @@
             hostedButtonId: "HLSEQWZLQCNVC",
         }).render("#paypal-container-HLSEQWZLQCNVC");
     </script>
+
+    <footer>
+        <div class="container footer-note">
+            <div class="footer-meta">
+                <div>&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching.</div>
+                <div>For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</div>
+            </div>
+            <div class="footer-links" aria-label="Resources">
+                <a href="report_demo.html">
+                    <strong>Case Report</strong>
+                    <span>See a full sample reading before ordering</span>
+                </a>
+                <a href="kua_calculator.html">
+                    <strong>Kua Calculator</strong>
+                    <span>Compare chart matching with direction support</span>
+                </a>
+                <a href="instant_reading.html">
+                    <strong>Free Preview</strong>
+                    <span>Open the lighter instant version first</span>
+                </a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

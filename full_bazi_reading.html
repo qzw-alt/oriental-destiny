@@ -667,6 +667,7 @@
 
         document.getElementById("fullForm").addEventListener("submit", (event) => {
             event.preventDefault();
+            console.log("Form submitted, calling renderFullReading...");
 
             window.ReadingState.merge({
                 full_name: document.getElementById("fullName").value,
@@ -676,8 +677,13 @@
                 notes: document.getElementById("notes").value
             });
 
-            renderFullReading();
-            document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+            try {
+                renderFullReading();
+                document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+            } catch (e) {
+                console.error("renderFullReading error:", e);
+                alert("Error: " + e.message);
+            }
         });
 
         // Demo mode: auto-fill and render with sample data

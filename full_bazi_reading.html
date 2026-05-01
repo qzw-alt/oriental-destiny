@@ -680,6 +680,19 @@
             document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
         });
 
+        // Demo mode: auto-fill and render with sample data
+        if (new URLSearchParams(window.location.search).get("demo") === "true") {
+            document.getElementById("fullName").value = "Alex Chen";
+            document.getElementById("birthDate").value = "1990-06-15";
+            document.getElementById("birthTime").value = "14:30";
+            document.getElementById("lifeFocus").value = "career";
+            document.getElementById("notes").value = "I want better career recognition and stronger money stability.";
+            setTimeout(() => {
+                renderFullReading();
+                document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+        }
+
         hydrateFromState();
     </script>
 </body>

@@ -1,0 +1,9 @@
+Generate a personalized BaZi reading based on the following data.
+
+[CHART DATA WILL BE INSERTED HERE]
+
+[ANALYSIS RESULT WILL BE INSERTED HERE]
+
+Focus area: [FOCUS WILL BE INSERTED HERE]
+
+Provide the reading now.

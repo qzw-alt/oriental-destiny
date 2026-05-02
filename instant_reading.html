@@ -239,6 +239,25 @@
             cursor: pointer;
         }
 
+        .submit-btn:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        .loading-tip {
+            display: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(183, 138, 66, 0.10);
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .loading-tip.visible {
+            display: block;
+        }
+
         .results {
             display: none;
             gap: 18px;
@@ -450,7 +469,8 @@
                         <textarea id="notes" name="notes" placeholder="Example: I feel stuck in career, I want better money stability, or I want calmer relationships."></textarea>
                     </div>
 
-                    <button class="submit-btn" type="submit">Show My Instant Reading</button>
+                    <button class="submit-btn" id="submitBtn" type="submit">Show My Instant Reading</button>
+                    <div class="loading-tip" id="loadingTip">Your birth details have been received. The chart is opening—please wait a moment.</div>
                 </form>
             </div>
 
@@ -575,8 +595,25 @@
             window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
         }
 
+        const submitBtn = document.getElementById("submitBtn");
+        const loadingTip = document.getElementById("loadingTip");
+        const defaultBtnText = submitBtn.textContent;
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Generating your reading… Please wait";
+                loadingTip.classList.add("visible");
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.textContent = defaultBtnText;
+                loadingTip.classList.remove("visible");
+            }
+        }
+
         document.getElementById("readingForm").addEventListener("submit", async (event) => {
             event.preventDefault();
+            setLoading(true);
 
             const name = document.getElementById("fullName").value.trim() || "Friend";
             const birthDate = document.getElementById("birthDate").value;
@@ -586,6 +623,7 @@
             const focusData = focusCopy[lifeFocus];
             if (!focusData) {
                 alert("Please choose the life area you want the reading to focus on.");
+                setLoading(false);
                 return;
             }
 
@@ -598,6 +636,7 @@
                 });
             } catch (error) {
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
+                setLoading(false);
                 return;
             }
 
@@ -654,6 +693,7 @@
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("upgradeSection").style.display = "block";
             document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+            setLoading(false);
         });
     </script>
 </body>

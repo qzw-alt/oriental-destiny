@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your Feng Shui birth element in under a minute. Discover whether Wood, Fire, Earth, Metal, or Water governs your chart — and what it means for your energy, luck, and best directions.">
+    <link rel="canonical" href="https://oriental-destiny.com/element-calculator.html">
+    <meta property="og:title" content="What's Your Feng Shui Birth Element? | Free Calculator">
+    <meta property="og:description" content="Instantly discover whether Wood, Fire, Earth, Metal, or Water is your governing element. Takes 60 seconds.">
+    <meta property="og:type" content="website">
+    <title>What's Your Feng Shui Birth Element? | Free Calculator</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0;600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #fbf6ef;
+            --ink: #241915;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --jade: #2d6a4f;
+            --cream: #faf8f4;
+            --charcoal: #333;
+            --wood-color: #4a7c59;
+            --fire-color: #c0392b;
+            --earth-color: #8b6914;
+            --metal-color: #7f8c8d;
+            --water-color: #2c5f8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .brand {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cinnabar);
+            margin-bottom: 8px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 14px;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--cinnabar);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 14px;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #555;
+            max-width: 540px;
+            margin: 0 auto 10px;
+            font-weight: 300;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .calculator-box {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            max-width: 480px;
+            margin: 0 auto;
+            border-top: 4px solid var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0dcd3;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            transition: border-color 0.2s;
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0dcd3;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            transition: border-color 0.2s;
+            appearance: none;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .zodiac-note {
+            font-size: 13px;
+            color: #777;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: var(--cinnabar);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #a81f1f;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .element-badge {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            border: 3px solid currentColor;
+        }
+
+        .element-badge.wood    { color: var(--wood-color); background: rgba(74,124,89,0.08); }
+        .element-badge.fire    { color: var(--fire-color); background: rgba(192,57,43,0.08); }
+        .element-badge.earth   { color: var(--earth-color); background: rgba(139,105,20,0.08); }
+        .element-badge.metal   { color: var(--metal-color); background: rgba(127,140,141,0.08); }
+        .element-badge.water   { color: var(--water-color); background: rgba(44,95,138,0.08); }
+
+        .element-badge .symbol {
+            font-size: 42px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .element-badge .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .result-header h2 {
+            font-size: clamp(26px, 4vw, 36px);
+            margin-bottom: 8px;
+        }
+
+        .result-header .zodiac-tag {
+            display: inline-block;
+            background: rgba(183,138,66,0.12);
+            color: var(--gold);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .element-desc {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            border-left: 4px solid currentColor;
+        }
+
+        .element-desc.wood    { border-left-color: var(--wood-color); }
+        .element-desc.fire    { border-left-color: var(--fire-color); }
+        .element-desc.earth   { border-left-color: var(--earth-color); }
+        .element-desc.metal   { border-left-color: var(--metal-color); }
+        .element-desc.water   { border-left-color: var(--water-color); }
+
+        .element-desc h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--ink);
+        }
+
+        .element-desc p {
+            color: #444;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+
+        .element-desc p:last-child { margin-bottom: 0; }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .trait-card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px 14px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .trait-card .trait-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .trait-card .trait-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .trait-card .trait-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-top: 4px;
+        }
+
+        .directions-mini {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+
+        .directions-mini h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .direction-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .direction-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1.5px solid;
+        }
+
+        .direction-pill.supportive {
+            border-color: var(--jade);
+            color: var(--jade);
+            background: rgba(45,106,79,0.07);
+        }
+
+        .direction-pill.challenging {
+            border-color: #b8860b;
+            color: #8b6508;
+            background: rgba(184,134,11,0.07);
+        }
+
+        .upsell {
+            background: linear-gradient(135deg, #1a1a1e 0%, #2d2d3a 100%);
+            border-radius: 12px;
+            padding: 36px 28px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .upsell h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .upsell p {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+
+        .upsell .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 20px;
+        }
+
+        .btn-upsell {
+            display: inline-block;
+            background: var(--cinnabar);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .btn-upsell:hover {
+            background: #a81f1f;
+            transform: translateY(-2px);
+        }
+
+        .guarantee-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 16px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .back-link a {
+            color: #888;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+
+        .back-link a:hover {
+            color: var(--cinnabar);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            margin-top: 40px;
+        }
+
+        .disclaimer {
+            font-size: 11px;
+            color: rgba(36,25,21,0.5);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            .calculator-box { padding: 28px 20px; }
+            .traits-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="brand">Oriental Destiny</a>
+            <div class="tagline">Rooted in Longhu Mountain tradition, refined for modern living</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="report_demo.html">Sample Report</a>
+                <a href="checkout.html">Order</a>
+            </div>
+        </header>
+
+        <!-- INPUT -->
+        <div id="inputSection">
+            <div class="hero">
+                <h1>What's your Feng Shui birth element?</h1>
+                <p>Five Elements theory says your birth year carries an energetic signature — Wood, Fire, Earth, Metal, or Water. This shapes how you move through the world, what drains you, and where your luck flows.</p>
+                <p class="hero-sub">Takes 60 seconds. No email required.</p>
+            </div>
+
+            <div class="calculator-box">
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate" required>
+                    <div class="zodiac-note" id="zodiacNote">Your zodiac sign will appear here</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthYear">Birth Year (confirm)</label>
+                    <select id="birthYear">
+                        <option value="">Select birth year</option>
+                    </select>
+                </div>
+
+                <button class="btn-primary" id="calcBtn" onclick="calculateElement()">Find My Element</button>
+                <p class="note">Based on Chinese zodiac and Five Elements cycle. No personal data stored.</p>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results" id="resultsSection">
+            <div class="result-header">
+                <div class="element-badge" id="elementBadge">
+                    <div class="symbol" id="elementSymbol">—</div>
+                    <div class="label" id="elementLabel">—</div>
+                </div>
+                <h2 id="resultTitle">Your element</h2>
+                <div id="resultSubtitle"></div>
+                <div class="zodiac-tag" id="zodiacTag"></div>
+            </div>
+
+            <div class="traits-grid" id="traitsGrid"></div>
+
+            <div class="element-desc" id="elementDesc">
+                <h3 id="descTitle"></h3>
+                <p id="descBody"></p>
+                <p id="descExtra"></p>
+            </div>
+
+            <div class="directions-mini" id="directionsMini">
+                <h4>Element-compatible directions</h4>
+                <div class="direction-pills" id="directionPills"></div>
+            </div>
+
+            <div class="upsell">
+                <h3>Want the full chart analysis?</h3>
+                <p>The element is just one layer. Your full BaZi reading covers your Day Master strength, favorable elements, luck phases, and the exact direction matched to your birth chart — confirmed before any jewelry ships.</p>
+                <div class="price">$99</div>
+                <a href="checkout.html" class="btn-upsell" id="upsellLink">Open My Full Reading</a>
+                <p class="guarantee-text">Personalized reading + confirmed direction, shipped worldwide</p>
+            </div>
+
+            <div class="back-link">
+                <a href="#" onclick="resetForm(); return false;">Calculate another year</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <a href="policies.html#shipping" style="color:#888;margin:0 6px;text-decoration:none;font-size:12px;">Shipping</a> ·
+            <a href="policies.html#refund" style="color:#888;margin:0 6px;text-decoration:none;font-size:12px;">Refund</a> ·
+            <a href="policies.html#privacy" style="color:#888;margin:0 6px;text-decoration:none;font-size:12px;">Privacy</a> ·
+            <a href="mailto:cinvea7@gmail.com" style="color:#888;margin:0 6px;text-decoration:none;font-size:12px;">Contact</a>
+        </div>
+        <p class="disclaimer">For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</p>
+        <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
+    </footer>
+
+    <script src="version.js"></script>
+    <script>
+        // Populate year select
+        const yearSelect = document.getElementById('birthYear');
+        const dateInput = document.getElementById('birthDate');
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear; y >= 1920; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+
+        // Sync date to year select
+        dateInput.addEventListener('change', function() {
+            if (this.value) {
+                const d = new Date(this.value);
+                const y = d.getFullYear();
+                yearSelect.value = y;
+                updateZodiacNote(y);
+            }
+        });
+
+        yearSelect.addEventListener('change', function() {
+            if (this.value) updateZodiacNote(parseInt(this.value));
+        });
+
+        const zodiacAnimals = ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'];
+        const zodiacElements = {
+            'Rat': 'Water', 'Ox': 'Earth', 'Tiger': 'Wood', 'Rabbit': 'Wood',
+            'Dragon': 'Earth', 'Snake': 'Fire', 'Horse': 'Fire', 'Goat': 'Earth',
+            'Monkey': 'Metal', 'Rooster': 'Metal', 'Dog': 'Metal', 'Pig': 'Water'
+        };
+        const stemNames = ['Jia (Wood)','Yi (Wood)','Bing (Fire)','Ding (Fire)','Wu (Earth)','Ji (Earth)','Geng (Metal)','Xin (Metal)','Ren (Water)','Gui (Water)'];
+        const branchNames = ['Zi (Rat)','Chou (Ox)','Yin (Tiger)','Mao (Rabbit)','Chen (Dragon)','Si (Snake)','Wu (Horse)','Wei (Goat)','Shen (Monkey)','You (Rooster)','Xu (Dog)','Hai (Pig)'];
+
+        function updateZodiacNote(year) {
+            const cycle = (year - 1900) % 12;
+            const animal = zodiacAnimals[cycle];
+            const element = zodiacElements[animal];
+            document.getElementById('zodiacNote').textContent = `Year of the ${animal} — ${element} energy`;
+        }
+
+        function getYearHeavenlyStem(year) {
+            const stems = ['Jia','Yi','Bing','Ding','Wu','Ji','Geng','Xin','Ren','Gui'];
+            return stems[(year - 4) % 10];
+        }
+
+        function getYearEarthlyBranch(year) {
+            return branchNames[(year - 4) % 12];
+        }
+
+        function getElementFromStem(stem) {
+            const map = { 'Jia': 'Wood', 'Yi': 'Wood', 'Bing': 'Fire', 'Ding': 'Fire',
+                          'Wu': 'Earth', 'Ji': 'Earth', 'Geng': 'Metal', 'Xin': 'Metal',
+                          'Ren': 'Water', 'Gui': 'Water' };
+            return map[stem] || 'Earth';
+        }
+
+        const elementData = {
+            Wood: {
+                symbol: '🌿',
+                keywords: ['Growth', 'Expansion', 'Flexibility'],
+                color: 'var(--wood-color)',
+                descTitle: 'You carry Wood energy',
+                descBody: 'Wood is the energy of growth — upward, outward, ambitious. If this is your governing element, you tend to think fast, move fast, and get frustrated when things don\'t progress. Your seasons of luck tend to arrive when you act on clear vision rather than impulse.',
+                descExtra: 'Wood types do best when they have direction. Without a target to grow toward, the same energy can become restlessness, criticism, or stubbornness. Learning to plan before acting is the cardinal skill for this element.',
+                traits: [
+                    { icon: '⚡', label: 'Best Quality', value: 'Visionary' },
+                    { icon: '⏰', label: 'Grows Best When', value: 'Has Direction' },
+                    { icon: '⚠️', label: 'Watch Out For', value: 'Restlessness' },
+                    { icon: '🎯', label: 'Needs', value: 'Clear Goals' }
+                ],
+                supportive: ['East', 'Southeast'],
+                challenging: ['Southwest', 'Northeast']
+            },
+            Fire: {
+                symbol: '🔥',
+                keywords: ['Energy', 'Passion', 'Recognition'],
+                color: 'var(--fire-color)',
+                descTitle: 'You carry Fire energy',
+                descBody: 'Fire is the energy of illumination and transformation. If this is your element, you bring warmth and magnetism wherever you go. You tend to be expressive, quick-witted, and drawn to being seen. Fame, recognition, and influence are natural territory for Fire.',
+                descExtra: 'Fire burns bright but also burns out. This type does best when they learn to sustain rather than flare. Emotional management — not suppressing feeling, but not being ruled by it — is the key growth edge.',
+                traits: [
+                    { icon: '☀️', label: 'Best Quality', value: 'Magnetism' },
+                    { icon: '🔥', label: 'Grows Best When', value: 'Seen & Heard' },
+                    { icon: '⚠️', label: 'Watch Out For', value: 'Burn-out' },
+                    { icon: '🎯', label: 'Needs', value: 'Expression' }
+                ],
+                supportive: ['South', 'Southeast'],
+                challenging: ['North', 'Northeast']
+            },
+            Earth: {
+                symbol: '🏔️',
+                keywords: ['Stability', 'Nurturing', 'Endurance'],
+                color: 'var(--earth-color)',
+                descTitle: 'You carry Earth energy',
+                descBody: 'Earth is the energy of stability, nourishment, and transformation. If this is your element, you tend to be reliable, patient, and deeply perceptive. You notice what others miss — the mood in a room, the thing someone isn\'t saying. You\'re drawn to helping and supporting others.',
+                descExtra: 'Earth\'s challenge is stuck-ness. When the environment around you becomes unstable, Earth types can over-worry or become resistant to change. The growth path is developing trust in your own stability — you\'re more grounded than you tend to believe.',
+                traits: [
+                    { icon: '🌱', label: 'Best Quality', value: 'Reliability' },
+                    { icon: '🏔️', label: 'Grows Best When', value: 'Environment is Stable' },
+                    { icon: '⚠️', label: 'Watch Out For', value: 'Over-worry' },
+                    { icon: '🎯', label: 'Needs', value: 'Patience' }
+                ],
+                supportive: ['Northeast', 'Southwest'],
+                challenging: ['North', 'Southeast']
+            },
+            Metal: {
+                symbol: '⚪',
+                keywords: ['Clarity', 'Structure', 'Precision'],
+                color: 'var(--metal-color)',
+                descTitle: 'You carry Metal energy',
+                descBody: 'Metal is the energy of refinement and structure. If this is your element, you tend to think in systems — you see what\'s inefficient, what\'s redundant, what\'s out of place. You value clarity, precision, and doing things right. You can be decisive in a way that others find either refreshing or unsettling.',
+                descExtra: 'Metal\'s challenge is rigidity. When structure becomes cage — when rules are followed for their own sake rather than their purpose — Metal types can become overly critical or inflexible. The growth path is learning when to hold form and when to let form serve a higher purpose.',
+                traits: [
+                    { icon: '⚙️', label: 'Best Quality', value: 'Clarity' },
+                    { icon: '📐', label: 'Grows Best When', value: 'Structure Works' },
+                    { icon: '⚠️', label: 'Watch Out For', value: 'Rigidity' },
+                    { icon: '🎯', label: 'Needs', value: 'Purpose' }
+                ],
+                supportive: ['West', 'Northwest'],
+                challenging: ['South', 'East']
+            },
+            Water: {
+                symbol: '💧',
+                keywords: ['Flow', 'Wisdom', 'Adaptability'],
+                color: 'var(--water-color)',
+                descTitle: 'You carry Water energy',
+                descBody: 'Water is the energy of flow, wisdom, and adaptation. If this is your element, you tend to go with the current rather than against it — not from weakness, but from perception. You see the path of least resistance and often choose it intentionally. Water types are often deep thinkers who carry more wisdom than they readily show.',
+                descExtra: 'Water\'s challenge is passivity. When the current goes wrong, Water types can go under rather than swim. The growth edge is developing the will to act even when the situation feels uncertain — knowing that flow doesn\'t mean standing still.',
+                traits: [
+                    { icon: '🌊', label: 'Best Quality', value: 'Adaptability' },
+                    { icon: '🧠', label: 'Grows Best When', value: 'Can Flow Freely' },
+                    { icon: '⚠️', label: 'Watch Out For', value: 'Passive Drift' },
+                    { icon: '🎯', label: 'Needs', value: 'Direction' }
+                ],
+                supportive: ['North', 'Northeast'],
+                challenging: ['South', 'Southwest']
+            }
+        };
+
+        function calculateElement() {
+            const yearVal = parseInt(document.getElementById('birthYear').value);
+            if (!yearVal) {
+                alert('Please enter or confirm your birth year.');
+                return;
+            }
+
+            const stem = getYearHeavenlyStem(yearVal);
+            const branch = getYearEarthlyBranch(yearVal);
+            const element = getElementFromStem(stem);
+            const animal = zodiacAnimals[(yearVal - 4) % 12];
+            const data = elementData[element];
+
+            // Build query params for upsell link
+            const carriedState = (window.ReadingState && window.ReadingState.read()) || {};
+            const params = new URLSearchParams({
+                birth_date: `${yearVal}-01-01`,
+                focus: carriedState.focus || 'balance',
+                full_name: carriedState.full_name || '',
+                notes: carriedState.notes || ''
+            });
+            document.getElementById('upsellLink').href = `checkout.html?${params.toString()}`;
+
+            // Element badge
+            const badge = document.getElementById('elementBadge');
+            badge.className = 'element-badge ' + element.toLowerCase();
+            document.getElementById('elementSymbol').textContent = data.symbol;
+            document.getElementById('elementLabel').textContent = element;
+
+            // Title
+            document.getElementById('resultTitle').textContent = `${animal} Year — ${element} Element`;
+            document.getElementById('resultSubtitle').textContent = `${stem} / ${branch} — energetic signature of your birth year`;
+
+            // Zodiac tag
+            document.getElementById('zodiacTag').textContent = `Year of the ${animal}`;
+
+            // Traits
+            document.getElementById('traitsGrid').innerHTML = data.traits.map(t => `
+                <div class="trait-card">
+                    <div class="trait-icon">${t.icon}</div>
+                    <div class="trait-label">${t.label}</div>
+                    <div class="trait-value">${t.value}</div>
+                </div>
+            `).join('');
+
+            // Description
+            const desc = document.getElementById('elementDesc');
+            desc.className = 'element-desc ' + element.toLowerCase();
+            document.getElementById('descTitle').textContent = data.descTitle;
+            document.getElementById('descBody').textContent = data.descBody;
+            document.getElementById('descExtra').textContent = data.descExtra;
+
+            // Direction pills
+            const pillHtml = data.supportive.map(d => `<span class="direction-pill supportive">↑ ${d}</span>`).join('') +
+                             data.challenging.map(d => `<span class="direction-pill challenging">↓ ${d}</span>`).join('');
+            document.getElementById('directionPills').innerHTML = pillHtml;
+
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('birthDate').value = '';
+            document.getElementById('birthYear').value = '';
+            document.getElementById('zodiacNote').textContent = 'Your zodiac sign will appear here';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script src="reading_state.js"></script>
+</body>
+</html>

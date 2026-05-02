@@ -575,6 +575,7 @@
             <div>&copy; 2026 Oriental Destiny. Full BaZi reading format.</div>
             <div>A fuller chart reading with more of the hidden structure brought into view.</div>
         </div>
+            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
 
     <div id="stickyCTA" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: rgba(255, 250, 244, 0.96); backdrop-filter: blur(12px); border-top: 1px solid rgba(36, 25, 21, 0.08); padding: 12px 20px; display: none;">
@@ -584,9 +585,17 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="bazi_engine.js"></script>
+    <script src="api_deepseek.js"></script>
+    <script src="ai_bazi_layer.js"></script>
     <script src="reading_state.js"></script>
+    <script src="version.js"></script>
     <script>
+        // Initialize AI layer if an API key is available
+        if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
+            window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+        }
         function hiddenStemHtml(label, entries) {
             if (!entries.length) {
                 return `<div class="mini-box"><strong>${label}</strong><div>Open because no birth time was supplied.</div></div>`;
@@ -596,7 +605,7 @@
             return `<div class="mini-box"><strong>${label}</strong><div>${lines}</div></div>`;
         }
 
-        function renderFullReading() {
+        async function renderFullReading() {
             const name = document.getElementById("fullName").value.trim() || "Friend";
             const birthDate = document.getElementById("birthDate").value;
             const birthTime = document.getElementById("birthTime").value;
@@ -618,6 +627,20 @@
             } catch (error) {
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
                 return;
+            }
+
+            // AI narrative enhancement
+            let aiResult = null;
+            if (window.AIBaziLayer.isReady()) {
+                try {
+                    aiResult = await window.AIBaziLayer.fullReading({
+                        birthDate,
+                        birthTime,
+                        focus: lifeFocus
+                    });
+                } catch (err) {
+                    console.warn("AI full reading failed, using engine static fallback:", err.message);
+                }
             }
 
             const noteLine = notes
@@ -684,16 +707,35 @@
             document.getElementById("tenGodByPillar").innerHTML = profile.advancedAnalysis.tenGodByPillar
                 .map((entry) => `<div class="mini-box"><strong>${entry.label}</strong><div>${entry.summary}</div></div>`)
                 .join("<div style='height:12px;'></div>");
-            document.getElementById("focusReading").textContent = profile.focusReading;
-            document.getElementById("deepFocusReading").textContent = profile.deepFocusReading;
-            document.getElementById("readerCounsel").textContent = profile.readerCounsel;
-            document.getElementById("personalityReading").textContent = profile.interpretations.personality;
-            document.getElementById("careerReading").textContent = profile.interpretations.career;
-            document.getElementById("wealthReading").textContent = profile.interpretations.wealth;
-            document.getElementById("loveReading").textContent = profile.interpretations.love;
-            document.getElementById("protectionReading").textContent = profile.interpretations.protection;
+
+            // AI-enhanced narrative fields (fall back to engine static copy)
+            if (aiResult && aiResult.reading && !aiResult.fallback) {
+                const r = aiResult.reading;
+                const a = aiResult.analysis || {};
+                document.getElementById("focusReading").textContent = r.currentYearAnalysis || profile.focusReading;
+                document.getElementById("deepFocusReading").textContent = (r.tailoredAdvice && r.tailoredAdvice.length)
+                    ? r.tailoredAdvice.join(" ")
+                    : profile.deepFocusReading;
+                document.getElementById("readerCounsel").textContent = r.personality || profile.readerCounsel;
+                document.getElementById("personalityReading").textContent = r.personality || profile.interpretations.personality;
+                document.getElementById("careerReading").textContent = profile.interpretations.career;
+                document.getElementById("wealthReading").textContent = profile.interpretations.wealth;
+                document.getElementById("loveReading").textContent = profile.interpretations.love;
+                document.getElementById("protectionReading").textContent = profile.interpretations.protection;
+                document.getElementById("masterMessage").textContent = r.masterClosing || profile.masterMessage;
+            } else {
+                document.getElementById("focusReading").textContent = profile.focusReading;
+                document.getElementById("deepFocusReading").textContent = profile.deepFocusReading;
+                document.getElementById("readerCounsel").textContent = profile.readerCounsel;
+                document.getElementById("personalityReading").textContent = profile.interpretations.personality;
+                document.getElementById("careerReading").textContent = profile.interpretations.career;
+                document.getElementById("wealthReading").textContent = profile.interpretations.wealth;
+                document.getElementById("loveReading").textContent = profile.interpretations.love;
+                document.getElementById("protectionReading").textContent = profile.interpretations.protection;
+                document.getElementById("masterMessage").textContent = profile.masterMessage;
+            }
+
             document.getElementById("engineNote").textContent = `${profile.note} ${profile.calculationNotes.solarTerms} ${profile.calculationNotes.hourPillar}`;
-            document.getElementById("masterMessage").textContent = profile.masterMessage;
 
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("stickyCTA").style.display = "block";
@@ -709,7 +751,7 @@
             if (incoming.birth_date && incoming.focus) renderFullReading();
         }
 
-        document.getElementById("fullForm").addEventListener("submit", (event) => {
+        document.getElementById("fullForm").addEventListener("submit", async (event) => {
             event.preventDefault();
 
             window.ReadingState.merge({
@@ -721,7 +763,7 @@
             });
 
             try {
-                renderFullReading();
+                await renderFullReading();
                 document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
             } catch (e) {
                 console.error("renderFullReading error:", e);

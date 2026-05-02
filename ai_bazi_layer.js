@@ -214,11 +214,11 @@
       if (typeof window.BaziEngine === "undefined") {
         throw new Error("bazi_engine.js not loaded");
       }
-      return window.BaziEngine.calculateBaZi(
-        userInput.birthDate,
-        userInput.birthTime || null,
-        userInput.focus || "balance"
-      );
+      return window.BaziEngine.calculateProfile({
+        birthDate: userInput.birthDate,
+        birthTime: userInput.birthTime || "",
+        lifeFocus: userInput.focus || "balance"
+      });
     },
 
     /**

@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="See the full structural layer of your BaZi chart — Four Pillars, Hidden Stems, Ten Gods, Element balance, Useful God, and starting Feng Shui direction — computed automatically from your birth details. The $99 confirmed reading adds the matched material and shipped piece.">
+    <link rel="canonical" href="https://oriental-destiny.com/full_bazi_reading.html">
+    <meta property="og:title" content="Full BaZi Reading Layer | Oriental Destiny">
+    <meta property="og:description" content="Automated structural reading of your BaZi chart: pillars, hidden stems, ten gods, useful god, element balance, and starting direction.">
+    <meta property="og:type" content="website">
     <title>Oriental Destiny | Full BaZi Reading Layer</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
@@ -446,6 +451,9 @@
                     <p id="usefulGodSummary"></p>
                     <div id="usefulGodRanking" style="margin-top:12px;"></div>
                     <div id="usefulGodLayers" style="margin-top:12px;"></div>
+                    <p style="margin: 14px 0 0; padding: 12px 16px; border-radius: 10px; background: rgba(45, 106, 79, 0.07); border-left: 3px solid #2d6a4f; font-size: 13.5px; color: rgba(36, 25, 21, 0.78);">
+                        The $99 confirmed reading interprets the Useful God against your stated life focus and ties it to a specific material and direction recommendation. <a href="checkout.html" style="color: var(--cinnabar); font-weight: 600; text-decoration: underline;">Order the confirmed reading →</a>
+                    </p>
                 </div>
 
                 <div class="grid-2">
@@ -490,7 +498,11 @@
                     <div class="chip">Reading and support</div>
                     <p id="focusReading"></p>
                     <p id="deepFocusReading" style="margin-top:12px;"></p>
-                    <p id="jewelryDirection" style="margin-top:12px;"></p>
+                    <div style="margin-top: 14px; padding: 18px 20px; border-radius: 14px; background: rgba(166, 58, 44, 0.06); border: 1px solid rgba(166, 58, 44, 0.18);">
+                        <p style="margin: 0 0 10px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cinnabar);">Confirmed Reading Output</p>
+                        <p style="margin: 0 0 12px; color: var(--ink);">The exact carrier (bracelet or pendant), matched material, and symbolic direction for your chart are part of the $99 confirmed reading. A reader cross-checks the chart against your stated focus before recommending.</p>
+                        <a href="checkout.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: linear-gradient(135deg, #b24636 0%, #8b251a 100%); color: #fff8ef; text-decoration: none; font-weight: 700; font-size: 14px;">Get the Confirmed Reading — $99 →</a>
+                    </div>
                 </div>
 
                 <div class="panel">
@@ -564,6 +576,13 @@
             <div>A fuller chart reading with more of the hidden structure brought into view.</div>
         </div>
     </footer>
+
+    <div id="stickyCTA" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: rgba(255, 250, 244, 0.96); backdrop-filter: blur(12px); border-top: 1px solid rgba(36, 25, 21, 0.08); padding: 12px 20px; display: none;">
+        <div style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+            <p style="margin: 0; font-size: 13px; color: rgba(36, 25, 21, 0.74);">This page shows your <strong>chart structure</strong>. Material + direction are the <strong>$99 confirmed reading</strong>.</p>
+            <a href="checkout.html" style="padding: 10px 20px; border-radius: 999px; background: linear-gradient(135deg, #b24636 0%, #8b251a 100%); color: #fff8ef; text-decoration: none; font-weight: 700; font-size: 14px; white-space: nowrap;">Get Mine — $99 →</a>
+        </div>
+    </div>
 
     <script src="bazi_engine.js"></script>
     <script src="reading_state.js"></script>
@@ -667,7 +686,6 @@
                 .join("<div style='height:12px;'></div>");
             document.getElementById("focusReading").textContent = profile.focusReading;
             document.getElementById("deepFocusReading").textContent = profile.deepFocusReading;
-            document.getElementById("jewelryDirection").textContent = profile.jewelry.copy;
             document.getElementById("readerCounsel").textContent = profile.readerCounsel;
             document.getElementById("personalityReading").textContent = profile.interpretations.personality;
             document.getElementById("careerReading").textContent = profile.interpretations.career;
@@ -678,6 +696,7 @@
             document.getElementById("masterMessage").textContent = profile.masterMessage;
 
             document.getElementById("resultsPanel").style.display = "grid";
+            document.getElementById("stickyCTA").style.display = "block";
         }
 
         function hydrateFromState() {
@@ -692,7 +711,6 @@
 
         document.getElementById("fullForm").addEventListener("submit", (event) => {
             event.preventDefault();
-            console.log("Form submitted, calling renderFullReading...");
 
             window.ReadingState.merge({
                 full_name: document.getElementById("fullName").value,
@@ -710,19 +728,6 @@
                 alert("Error: " + e.message);
             }
         });
-
-        // Demo mode: auto-fill and render with sample data
-        if (new URLSearchParams(window.location.search).get("demo") === "true") {
-            document.getElementById("fullName").value = "Alex Chen";
-            document.getElementById("birthDate").value = "1990-06-15";
-            document.getElementById("birthTime").value = "14:30";
-            document.getElementById("lifeFocus").value = "career";
-            document.getElementById("notes").value = "I want better career recognition and stronger money stability.";
-            setTimeout(() => {
-                renderFullReading();
-                document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 100);
-        }
 
         hydrateFromState();
     </script>

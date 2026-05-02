@@ -537,10 +537,15 @@
         <div class="container footer-note">
             &copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching. For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.
         </div>
+            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
 
+    <script src="config.js"></script>
     <script src="bazi_engine.js"></script>
+    <script src="api_deepseek.js"></script>
+    <script src="ai_bazi_layer.js"></script>
     <script src="reading_state.js"></script>
+    <script src="version.js"></script>
     <script>
         const focusCopy = {
             career: {
@@ -565,7 +570,12 @@
             }
         };
 
-        document.getElementById("readingForm").addEventListener("submit", (event) => {
+        // Initialize AI layer if an API key is available (injected at deploy time or via global)
+        if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
+            window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+        }
+
+        document.getElementById("readingForm").addEventListener("submit", async (event) => {
             event.preventDefault();
 
             const name = document.getElementById("fullName").value.trim() || "Friend";
@@ -590,6 +600,21 @@
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
                 return;
             }
+
+            // AI narrative enhancement (falls back to static copy on failure)
+            let aiReading = null;
+            if (window.AIBaziLayer.isReady()) {
+                try {
+                    aiReading = await window.AIBaziLayer.quickReading({
+                        birthDate,
+                        birthTime,
+                        focus: lifeFocus
+                    });
+                } catch (err) {
+                    console.warn("AI reading failed, using static fallback:", err.message);
+                }
+            }
+
             const carriedState = window.ReadingState.merge({
                 focus: lifeFocus,
                 full_name: name,
@@ -606,10 +631,22 @@
             document.getElementById("resultSummary").textContent = `Your Day Master appears as ${profile.dayMasterStem} ${profile.dayMasterElement}, and this often shows one who is ${profile.dayMasterProfile}. At this first opening, the chart reads as ${profile.strength.band.toLowerCase()} in day-master strength, while ${profile.favorableElements[0].toLowerCase()} and ${profile.favorableElements[1].toLowerCase()} appear more beneficial as support. ${profile.note}${noteLine}`;
             document.getElementById("zodiacText").innerHTML = `<strong>Year Pillar:</strong> ${profile.pillarLabels.year}<br><strong>Month Pillar:</strong> ${profile.pillarLabels.month}<br><strong>Day Pillar:</strong> ${profile.pillarLabels.day}<br><strong>Hour Pillar:</strong> ${profile.pillarLabels.hour}`;
             document.getElementById("elementText").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> stands as the Day Master in this opening. The chart is born in ${profile.season}, and the year of birth still carries the tone of the ${profile.zodiac}.`;
-            document.getElementById("focusText").textContent = `${focusData.summary} ${profile.focusReading} ${profile.deepFocusReading} ${profile.advancedAnalysis.seasonalCommand.dayMasterCondition} is the seasonal condition, and ${profile.advancedAnalysis.luckPhase.name.toLowerCase()} is the simplified life-stage layer.`;
+
+            // Use AI narrative when available, otherwise fallback to engine static copy
+            if (aiReading && aiReading.reading && !aiReading.fallback) {
+                const r = aiReading.reading;
+                document.getElementById("focusText").textContent = r.currentYearAnalysis || `${focusData.summary} ${profile.focusReading} ${profile.deepFocusReading} ${profile.advancedAnalysis.seasonalCommand.dayMasterCondition} is the seasonal condition, and ${profile.advancedAnalysis.luckPhase.name.toLowerCase()} is the simplified life-stage layer.`;
+                document.getElementById("counselText").textContent = r.personality || profile.readerCounsel;
+                document.getElementById("lifeStageText").textContent = (r.tailoredAdvice && r.tailoredAdvice.length)
+                    ? r.tailoredAdvice.join(" ")
+                    : `${profile.lifePhaseReading} ${profile.focusStrategy.ageEmphasis}`;
+            } else {
+                document.getElementById("focusText").textContent = `${focusData.summary} ${profile.focusReading} ${profile.deepFocusReading} ${profile.advancedAnalysis.seasonalCommand.dayMasterCondition} is the seasonal condition, and ${profile.advancedAnalysis.luckPhase.name.toLowerCase()} is the simplified life-stage layer.`;
+                document.getElementById("counselText").textContent = profile.readerCounsel;
+                document.getElementById("lifeStageText").textContent = `${profile.lifePhaseReading} ${profile.focusStrategy.ageEmphasis}`;
+            }
+
             document.getElementById("supportText").textContent = `${profile.jewelry.copy} ${profile.favorableElementReasoning}`;
-            document.getElementById("counselText").textContent = profile.readerCounsel;
-            document.getElementById("lifeStageText").textContent = `${profile.lifePhaseReading} ${profile.focusStrategy.ageEmphasis}`;
             document.getElementById("teaserText").textContent = `${focusData.teaser} A fuller reading opens the rest of the chart: hidden stems, ten gods by pillar, twelve stages, branch dynamics, annual triggers, element balance, support logic, and the final recommended direction before confirmation. Method note: ${profile.calculationNotes.solarTerms}`;
             document.getElementById("upgradeLink").href = `checkout.html?${query}`;
             document.getElementById("sampleReportLink").href = `report_demo.html?focus=${encodeURIComponent(lifeFocus)}`;

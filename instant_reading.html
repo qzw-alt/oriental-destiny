@@ -287,6 +287,62 @@
             color: var(--cinnabar);
         }
 
+        .email-capture {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        .email-capture h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+
+        .email-capture p {
+            color: rgba(36, 25, 21, 0.72);
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .email-form-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .email-form-row input[type="email"] {
+            flex: 1;
+            min-width: 200px;
+            border: 1.5px solid rgba(36, 25, 21, 0.14);
+            border-radius: 999px;
+            padding: 13px 18px;
+            background: rgba(255, 253, 249, 0.95);
+            color: var(--ink);
+            font: inherit;
+            font-size: 15px;
+        }
+
+        .email-form-row input[type="email"]::placeholder {
+            color: rgba(36, 25, 21, 0.42);
+        }
+
+        .email-success {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 16px;
+            background: rgba(49, 82, 71, 0.1);
+            color: var(--pine);
+            font-size: 14px;
+        }
+
+        .email-success.visible {
+            display: block;
+        }
+
         .upgrade-card {
             background:
                 linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
@@ -536,6 +592,19 @@
                 <a class="btn" href="report_demo.html" id="sampleReportLink">Read Case Report</a>
             </div>
         </section>
+
+        <!-- Email capture: shown after results, before footer -->
+        <section class="email-capture" id="emailCapture" style="display:none;">
+            <h3>Get a fuller view when you're ready</h3>
+            <p>Leave your email and we'll send the key takeaways from this reading — plus occasional updates on what your chart suggests next. No spam, no selling your data.</p>
+            <form class="email-form-row" id="emailCaptureForm" novalidate>
+                <input type="email" id="captureEmail" placeholder="your@email.com" required>
+                <button type="submit" class="btn btn-primary" id="captureSubmit">Send me the reading</button>
+            </form>
+            <div class="email-success" id="captureSuccess">
+                Received. We'll be in touch when there's more to share from your chart.
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -692,9 +761,49 @@
 
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("upgradeSection").style.display = "block";
-            document.getElementById("resultsPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+            document.getElementById("emailCapture").style.display = "block";
+            document.getElementById("emailCapture").scrollIntoView({ behavior: "smooth", block: "start" });
             setLoading(false);
         });
+            document.getElementById("emailCaptureForm").addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const emailInput = document.getElementById("captureEmail");
+                const email = emailInput.value.trim();
+                if (!email || !email.includes("@")) {
+                    emailInput.style.borderColor = "var(--cinnabar)";
+                    return;
+                }
+                emailInput.style.borderColor = "";
+
+                const btn = document.getElementById("captureSubmit");
+                btn.disabled = true;
+                btn.textContent = "Sending…";
+
+                const carriedState = window.ReadingState.read();
+                const payload = new FormData();
+                payload.set("email", email);
+                payload.set("source", "instant_reading_email_capture");
+                payload.set("life_focus", carriedState.focus || "");
+                payload.set("birth_date", carriedState.birth_date || "");
+                payload.set("notes", `Instant reading signup. Name: ${carriedState.full_name || "unknown"}. ${carriedState.notes || ""}`);
+
+                try {
+                    const res = await fetch("https://formspree.io/f/xwvgznkz", {
+                        method: "POST",
+                        body: payload,
+                        headers: { Accept: "application/json" }
+                    });
+                    if (res.ok) {
+                        document.getElementById("emailCaptureForm").style.display = "none";
+                        document.getElementById("captureSuccess").classList.add("visible");
+                    } else {
+                        throw new Error("server error");
+                    }
+                } catch {
+                    btn.disabled = false;
+                    btn.textContent = "Send me the reading";
+                }
+            });
     </script>
 </body>
 </html>

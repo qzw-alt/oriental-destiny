@@ -148,39 +148,48 @@
 </head>
 <body>
     <main class="card">
-        <a class="brand" href="index.html">Oriental Destiny</a>
+        <a class="brand" href="index.html" data-i18n="th_brand">Oriental Destiny</a>
         <div class="payment-confirmed" id="paymentBadge">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Payment Confirmed — Thank you!
+            <span data-i18n="th_badge">Payment Confirmed — Thank you!</span>
         </div>
-        <h1>Your order details have been received.</h1>
-        <p class="subtitle">We will review your $99 order, birth details, zodiac sign, Five Elements balance, and chosen life focus before preparing your jewelry recommendation. Most orders are confirmed and shipped within <strong>10–14 days</strong>.</p>
+        <h1 data-i18n="th_title">Your order details have been received.</h1>
+        <p class="subtitle" data-i18n="th_subtitle">We have received your $99 order. You will receive a personalized jewelry direction recommendation by email based on your birth chart, life focus, and Five Elements balance. Most recommendations are sent within <strong>7–10 days</strong>, and the piece ships after you confirm the direction.</p>
+
+        <div style="background: rgba(183, 138, 66, 0.08); border: 1px solid rgba(183, 138, 66, 0.2); border-radius: 16px; padding: 22px 24px; margin: 24px 0;">
+            <div style="font-weight: 600; color: var(--cinnabar); margin-bottom: 8px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;" data-i18n="th_instant_title">Available now — no waiting</div>
+            <h2 style="font-size: 22px; margin-bottom: 8px;" data-i18n="th_instant_heading">Your complete birth chart analysis is ready</h2>
+            <p style="color: rgba(36, 25, 21, 0.7); margin-bottom: 16px;" data-i18n="th_instant_desc">While we prepare your personalized jewelry recommendation, you can view your full Four Pillars, hidden stems, ten gods, and elemental breakdown right now.</p>
+            <a class="btn btn-primary" href="full_bazi_reading.html" style="display: inline-block;" data-i18n="th_instant_cta">View My Full Chart Analysis</a>
+        </div>
 
         <div class="info">
-            <p><strong>Day 1–2.</strong> We confirm receipt of your birth details and chosen life focus.</p>
-            <p><strong>Day 3–7.</strong> Your reading is used to choose a suitable material, bracelet, pendant, or guardian symbol.</p>
-            <p><strong>Day 7–10.</strong> We email the final recommendation and wait for your confirmation before any item is finalized.</p>
-            <p><strong>Day 10–14.</strong> Once confirmed, your piece is prepared and shipped worldwide. Tracking is sent by email.</p>
+            <p data-i18n-html="th_day_1_2"><strong>Day 1–2.</strong> We confirm receipt of your birth details and chosen life focus.</p>
+            <p data-i18n-html="th_day_3_7"><strong>Day 3–7.</strong> Your reading is used to choose a suitable material, bracelet, pendant, or guardian symbol.</p>
+            <p data-i18n-html="th_day_7_10"><strong>Day 7–10.</strong> We email the final recommendation and wait for your confirmation before any item is finalized.</p>
+            <p data-i18n-html="th_day_10_14"><strong>Day 10–14.</strong> Once confirmed, your piece is prepared and shipped worldwide. Tracking is sent by email.</p>
         </div>
 
-        <p class="followup">Please keep an eye on your email after payment — we send updates from <a href="mailto:cinvea7@gmail.com" style="color:var(--cinnabar);text-decoration:underline;">cinvea7@gmail.com</a>. If you need to change birth details, add notes, or ask a question, reply to that address with your order email and we will pick it up.</p>
+        <p class="followup" data-i18n="th_followup">Please keep an eye on your email after payment — we send updates from <a href="mailto:cinvea7@gmail.com" style="color:var(--cinnabar);text-decoration:underline;">cinvea7@gmail.com</a>. If you need to change birth details, add notes, or ask a question, reply to that address with your order email and we will pick it up.</p>
 
-        <a class="btn" href="index.html">Back to Home</a>
+        <a class="btn" href="index.html" data-i18n="th_back_home">Back to Home</a>
 
         <footer>
             <p style="margin-top: 18px; font-size: 12px; color: rgba(36, 25, 21, 0.55);">
-                <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Shipping</a> ·
-                <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Refund</a> ·
-                <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Privacy</a> ·
-                <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Contact</a>
+                <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
+                <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
+                <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
+                <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
             </p>
-            <p class="note">Products and readings are for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</p>
+            <p class="note" data-i18n="footer_disclaimer">Products and readings are for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</p>
                 <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
     </main>
+    <script src="i18n.js"></script>
+    <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
 </body>
 </html>

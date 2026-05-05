@@ -27,7 +27,7 @@
   function fromQuery() {
     const params = new URLSearchParams(window.location.search);
     const data = {};
-    ["focus", "full_name", "birth_date", "birth_time", "notes", "carrier"].forEach((key) => {
+    ["focus", "full_name", "birth_date", "birth_time", "notes", "carrier", "gender", "birth_location"].forEach((key) => {
       const value = params.get(key);
       if (value) data[key] = value;
     });

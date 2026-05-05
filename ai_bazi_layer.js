@@ -217,7 +217,9 @@
       return window.BaziEngine.calculateProfile({
         birthDate: userInput.birthDate,
         birthTime: userInput.birthTime || "",
-        lifeFocus: userInput.focus || "balance"
+        lifeFocus: userInput.focus || "balance",
+        gender: userInput.gender || "",
+        birthLocation: userInput.birthLocation || ""
       });
     },
 
@@ -237,7 +239,13 @@
      * 缓存 Key
      */
     _cacheKey(userInput) {
-      const str = JSON.stringify(userInput);
+      const str = JSON.stringify({
+        birthDate: userInput.birthDate,
+        birthTime: userInput.birthTime,
+        focus: userInput.focus,
+        gender: userInput.gender,
+        birthLocation: userInput.birthLocation
+      });
       // 简单 hash
       let hash = 0;
       for (let i = 0; i < str.length; i++) {

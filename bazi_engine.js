@@ -297,6 +297,8 @@
 
     const lifeFocus = supportedFocuses.includes(next.lifeFocus) ? next.lifeFocus : "balance";
     const birthTime = typeof next.birthTime === "string" ? next.birthTime : "";
+    const gender = typeof next.gender === "string" ? next.gender.toLowerCase() : "";
+    const birthLocation = typeof next.birthLocation === "string" ? next.birthLocation.trim() : "";
     if (birthTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(birthTime)) {
       throw new Error("Please enter birth time in HH:MM format, or leave it blank if unknown.");
     }
@@ -306,6 +308,8 @@
       birthDate: next.birthDate,
       birthTime,
       lifeFocus,
+      gender,
+      birthLocation,
       parsedBirthDate: birthDate,
       warnings: supportedFocuses.includes(next.lifeFocus)
         ? []
@@ -1141,7 +1145,9 @@
       input: {
         birthDate: normalizedInput.birthDate,
         birthTime: normalizedInput.birthTime,
-        lifeFocus: normalizedInput.lifeFocus
+        lifeFocus: normalizedInput.lifeFocus,
+        gender: normalizedInput.gender,
+        birthLocation: normalizedInput.birthLocation
       },
       isValid: true,
       warnings: normalizedInput.warnings,

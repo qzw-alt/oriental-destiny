@@ -457,148 +457,163 @@
             <span class="brand-name">Initial Reading</span>
         </a>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="products.html">Plans</a>
-            <a href="report_demo.html">Sample Report</a>
-            <a href="checkout.html">Order</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="products.html" data-i18n="nav_plans">Plans</a>
+            <a href="report_demo.html" data-i18n="nav_sample_report">Sample Report</a>
+            <a href="checkout.html" data-i18n="nav_order">Order</a>
         </nav>
     </header>
 
     <main class="container">
         <section class="hero">
             <div class="hero-card">
-                <div class="eyebrow">Initial chart opening</div>
-                <h1>Begin with the part people feel first: where life has become heavy, delayed, scattered, or hard to settle.</h1>
-                <p>This opening is not meant to say everything. It is meant to show whether the chart is already speaking to the concern that brought you here.</p>
+                <div class="eyebrow" data-i18n="ir_hero_eyebrow">Initial chart opening</div>
+                <h1 data-i18n="ir_hero_title">Begin with the part people feel first: where life has become heavy, delayed, scattered, or hard to settle.</h1>
+                <p data-i18n="ir_hero_desc">This opening is not meant to say everything. It is meant to show whether the chart is already speaking to the concern that brought you here.</p>
                 <ul class="helper-list">
-                    <li>No signup or email required</li>
-                    <li>See your Day Master, Four Pillars, and elemental balance</li>
-                    <li>A first reading that connects the chart to your present concerns</li>
+                    <li data-i18n="ir_hero_li_1">No signup or email required</li>
+                    <li data-i18n="ir_hero_li_2">See your Day Master, Four Pillars, and elemental balance</li>
+                    <li data-i18n="ir_hero_li_3">A first reading that connects the chart to your present concerns</li>
                 </ul>
             </div>
 
             <aside class="upgrade-card">
-                <h2>What people usually want to know first</h2>
-                <p>Most people do not come because they want theory. They come because one part of life has begun to feel harder than it should.</p>
+                <h2 data-i18n="ir_what_title">What people usually want to know first</h2>
+                <p data-i18n="ir_what_desc">Most people do not come because they want theory. They come because one part of life has begun to feel harder than it should.</p>
                 <ul class="upgrade-list">
-                    <li>Why effort is not landing in career, money, love, or peace of mind</li>
-                    <li>Why the same pattern seems to return in different forms</li>
-                    <li>What kind of support suits this stage of life</li>
-                    <li>Whether a bracelet or pendant makes better symbolic sense</li>
+                    <li data-i18n="ir_what_li_1">Why effort is not landing in career, money, love, or peace of mind</li>
+                    <li data-i18n="ir_what_li_2">Why the same pattern seems to return in different forms</li>
+                    <li data-i18n="ir_what_li_3">What kind of support suits this stage of life</li>
+                    <li data-i18n="ir_what_li_4">Whether a bracelet or pendant makes better symbolic sense</li>
                 </ul>
-                <a class="btn btn-primary" href="report_demo.html">Read a Complete Case Report</a>
+                <a class="btn btn-primary" href="report_demo.html" data-i18n="ir_what_cta">Read a Complete Case Report</a>
             </aside>
         </section>
 
         <section class="form-layout">
             <div class="form-card">
                 <div class="form-intro">
-                    <div class="eyebrow">Initial consultation</div>
-                    <h2>Open the chart</h2>
-                    <p class="form-note">Enter your birth details below. The reading runs instantly and shows your chart's first direction based on your chosen life focus.</p>
+                    <div class="eyebrow" data-i18n="ir_form_eyebrow">Initial consultation</div>
+                    <h2 data-i18n="ir_form_title">Open the chart</h2>
+                    <p class="form-note" data-i18n="ir_form_note">Enter your birth details below. The reading runs instantly and shows your chart's first direction based on your chosen life focus.</p>
                 </div>
 
                 <form id="readingForm">
                     <div class="field-grid">
                         <div class="field">
-                            <label for="fullName">First name</label>
-                            <input id="fullName" name="full_name" type="text" placeholder="Alex" required>
+                            <label for="fullName" data-i18n="ir_label_name">First name</label>
+                            <input id="fullName" name="full_name" type="text" placeholder="Alex" data-i18n-placeholder="ir_placeholder_name" required>
                         </div>
                         <div class="field">
-                            <label for="birthDate">Birth date</label>
+                            <label for="birthDate" data-i18n="ir_label_birth_date">Birth date</label>
                             <input id="birthDate" name="birth_date" type="date" required>
                         </div>
                     </div>
 
                     <div class="field-grid">
                         <div class="field">
-                            <label for="birthTime">Birth time</label>
-                            <input id="birthTime" name="birth_time" type="time">
-                            <div class="field-help">Optional. The mini version still works if time is unknown.</div>
+                            <label for="birthTime" data-i18n="ir_label_birth_time">Birth time <span style="color:#a92b20;">*</span></label>
+                            <input id="birthTime" name="birth_time" type="time" required>
+                            <div class="field-help" data-i18n="ir_help_birth_time">Required for the hour pillar. If unknown, enter 12:00 as an estimate.</div>
                         </div>
                         <div class="field">
-                            <label for="lifeFocus">Main area of focus</label>
+                            <label for="lifeFocus" data-i18n="ir_label_focus">Main area of focus</label>
                             <select id="lifeFocus" name="life_focus" required>
-                                <option value="">Select one</option>
-                                <option value="career">Career and opportunity</option>
-                                <option value="wealth">Wealth and money flow</option>
-                                <option value="love">Love and relationships</option>
-                                <option value="protection">Protection and peace</option>
-                                <option value="balance">General balance</option>
+                                <option value="" data-i18n="ir_option_focus_placeholder">Select one</option>
+                                <option value="career" data-i18n="ir_option_career">Career and opportunity</option>
+                                <option value="wealth" data-i18n="ir_option_wealth">Wealth and money flow</option>
+                                <option value="love" data-i18n="ir_option_love">Love and relationships</option>
+                                <option value="protection" data-i18n="ir_option_protection">Protection and peace</option>
+                                <option value="balance" data-i18n="ir_option_balance">General balance</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label for="notes">Current situation</label>
-                        <textarea id="notes" name="notes" placeholder="Example: I feel stuck in career, I want better money stability, or I want calmer relationships."></textarea>
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="gender" data-i18n="ir_label_gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="" data-i18n="ir_option_gender_placeholder">Select</option>
+                                <option value="male" data-i18n="ir_option_male">Male</option>
+                                <option value="female" data-i18n="ir_option_female">Female</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="birthLocation" data-i18n="ir_label_location">Birth city and country</label>
+                            <input id="birthLocation" name="birth_location" type="text" placeholder="Los Angeles, USA" data-i18n-placeholder="ir_placeholder_location" required>
+                        </div>
                     </div>
 
-                    <button class="submit-btn" id="submitBtn" type="submit">Show My Instant Reading</button>
-                    <div class="loading-tip" id="loadingTip">Your birth details have been received. The chart is opening—please wait a moment.</div>
+                    <div class="field">
+                        <label for="notes" data-i18n="ir_label_notes">Current situation</label>
+                        <textarea id="notes" name="notes" placeholder="Example: I feel stuck in career, I want better money stability, or I want calmer relationships." data-i18n-placeholder="ir_placeholder_notes"></textarea>
+                    </div>
+
+                    <button class="submit-btn" id="submitBtn" type="submit" data-i18n="ir_submit_btn">Show My Instant Reading</button>
+                    <div class="loading-tip" id="loadingTip" data-i18n="ir_loading_tip">Analyzing your birth chart... this takes about 5 seconds.</div>
                 </form>
             </div>
 
             <div class="results" id="resultsPanel">
                 <article class="result-card">
-                    <div class="result-chip">Root of the chart</div>
+                    <div class="result-chip" title="命盘核心身份与本质" data-i18n="ir_result_root">Root of the chart</div>
                     <h3 id="resultTitle">Your symbolic profile</h3>
                     <p id="resultSummary"></p>
                 </article>
 
                 <div class="result-grid">
                     <article class="result-card">
-                        <div class="result-chip">Four Pillars</div>
+                        <div class="result-chip" title="构成命盘结构的年、月、日、时柱" data-i18n="ir_result_pillars">Four Pillars</div>
                         <p id="zodiacText"></p>
                     </article>
 
                     <article class="result-card">
-                        <div class="result-chip">Day Master</div>
+                        <div class="result-chip" title="日柱天干——代表核心自我的中心元素" data-i18n="ir_result_day_master">Day Master</div>
                         <p id="elementText"></p>
                     </article>
 
                     <article class="result-card">
-                    <div class="result-chip">Matter before you</div>
+                    <div class="result-chip" title="您选择的生活重点与命盘当前能量如何互动" data-i18n="ir_result_matter">Matter before you</div>
                         <p id="focusText"></p>
                     </article>
 
                     <article class="result-card">
-                    <div class="result-chip">Suitable support</div>
+                    <div class="result-chip" title="最能平衡和支持您具体命盘的五行" data-i18n="ir_result_support">Suitable support</div>
                         <p id="supportText"></p>
                     </article>
                 </div>
 
                 <article class="teaser-card">
-                    <div class="result-chip">Reader's Counsel</div>
+                    <div class="result-chip" title="命盘对您情况的实用总结" data-i18n="ir_result_counsel">Reader's Counsel</div>
                     <p id="counselText"></p>
                 </article>
 
                 <article class="teaser-card">
-                    <div class="result-chip">Why this matters now</div>
+                    <div class="result-chip" title="您当前人生阶段与命盘时机的关联" data-i18n="ir_result_why_now">Why this matters now</div>
                     <p id="lifeStageText"></p>
                 </article>
 
                 <article class="teaser-card">
-                    <div class="result-chip">What a fuller reading would clarify</div>
+                    <div class="result-chip" title="完整个性化服务将包含哪些额外深度" data-i18n="ir_result_teaser">What a fuller reading would clarify</div>
                     <p id="teaserText"></p>
                 </article>
             </div>
         </section>
 
         <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 60px;">
-            <div class="eyebrow" style="color:#d8b26a;">Continue if it resonates</div>
-            <h2>Open the fuller reading and see where this pattern leads.</h2>
-            <span class="price-tag">$99</span>
-            <p>This opening shows the outer layer. The fuller reading goes into the structural knot, the repeating pattern behind it, the useful method for this stage of life, and the final symbolic direction confirmed before shipping.</p>
+            <div class="eyebrow" style="color:#d8b26a;" data-i18n="ir_upgrade_eyebrow">Continue if it resonates</div>
+            <h2 data-i18n="ir_upgrade_title">Confirm the direction and receive the matched piece.</h2>
+            <span class="price-tag" data-i18n="ir_upgrade_price">$99</span>
+            <p data-i18n="ir_upgrade_desc">The free preview above already shows your Four Pillars, Day Master, and elemental structure. The $99 service confirms the exact direction from that chart and prepares a personalized bracelet or pendant matched to it.</p>
             <ul class="upgrade-list">
-                <li>A fuller written judgment for the area that concerns you most</li>
-                <li>Timing, root strength, ten-god structure, and pattern diagnosis</li>
-                <li>Suggested carrier, material family, and symbolic direction</li>
-                <li>A confirmed bracelet or pendant prepared from that direction</li>
+                <li data-i18n="ir_upgrade_li_1"><strong>What you already have (free):</strong> Day Master, Four Pillars, elemental balance, and life-focus guidance</li>
+                <li data-i18n="ir_upgrade_li_2"><strong>What $99 adds:</strong> Human confirmation of the chart's recommended direction</li>
+                <li data-i18n="ir_upgrade_li_3"><strong>What ships to you:</strong> A bracelet or pendant chosen from the material, color, and symbol family that supports your specific chart</li>
+                <li data-i18n="ir_upgrade_li_4"><strong>Timeline:</strong> Direction confirmed by email within 7–10 days; piece ships after your approval</li>
             </ul>
             <div class="upgrade-actions">
-                <a class="btn btn-primary" href="checkout.html" id="upgradeLink">Continue to the Full Reading</a>
-                <a class="btn" href="report_demo.html" id="sampleReportLink">Read Case Report</a>
+                <a class="btn btn-primary" href="checkout.html" id="upgradeLink" data-i18n="ir_upgrade_cta">Order My Matched Piece — $99</a>
+                <a class="btn" href="report_demo.html" id="sampleReportLink" data-i18n="ir_upgrade_sample">Read Case Report</a>
             </div>
         </section>
 
@@ -618,21 +633,21 @@
 
     <footer>
         <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.08); padding: 30px 0 8px; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;">Learn more</div>
-            <a href="what-is-day-master.html" style="color: var(--cinnabar); margin: 0 8px;">What is Day Master</a> ·
-            <a href="five-elements-explained.html" style="color: var(--cinnabar); margin: 0 8px;">Five Elements</a> ·
-            <a href="bazi-reading-vs-zodiac.html" style="color: var(--cinnabar); margin: 0 8px;">BaZi vs Zodiac</a> ·
-            <a href="feng-shui-bracelet-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Bracelet Meaning</a> ·
-            <a href="full_bazi_reading.html" style="color: var(--cinnabar); margin: 0 8px;">Full BaZi Layer</a> ·
-            <a href="kua_calculator.html" style="color: var(--cinnabar); margin: 0 8px;">Kua Calculator</a>
+            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;" data-i18n="footer_learn_more">Learn more</div>
+            <a href="what-is-day-master.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_what_is_day_master">What is Day Master</a> ·
+            <a href="five-elements-explained.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_five_elements">Five Elements</a> ·
+            <a href="bazi-reading-vs-zodiac.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_bazi_vs_zodiac">BaZi vs Zodiac</a> ·
+            <a href="feng-shui-bracelet-meaning.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_bracelet_meaning">Bracelet Meaning</a> ·
+            <a href="full_bazi_reading.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_full_bazi_layer">Full BaZi Layer</a> ·
+            <a href="kua_calculator.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_kua_calculator">Kua Calculator</a>
         </div>
         <div class="container" style="padding: 14px 0 6px; font-size: 12px; color: rgba(36, 25, 21, 0.55); text-align: center;">
-            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Shipping</a> ·
-            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Refund</a> ·
-            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Privacy</a> ·
-            <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Contact</a>
+            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
+            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
+            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
+            <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
         </div>
-        <div class="container footer-note">
+        <div class="container footer-note" data-i18n="footer_disclaimer">
             &copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching. For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.
         </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
@@ -643,6 +658,8 @@
     <script src="api_deepseek.js"></script>
     <script src="ai_bazi_layer.js"></script>
     <script src="reading_state.js"></script>
+    <script src="i18n.js"></script>
+    <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
     <script>
         const focusCopy = {
@@ -680,7 +697,7 @@
         function setLoading(isLoading) {
             if (isLoading) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = "Generating your reading… Please wait";
+                submitBtn.textContent = (typeof window.I18n !== "undefined" ? window.I18n.t("ir_loading_btn", "Generating your reading… Please wait") : "Generating your reading… Please wait");
                 loadingTip.classList.add("visible");
             } else {
                 submitBtn.disabled = false;
@@ -697,6 +714,8 @@
             const birthDate = document.getElementById("birthDate").value;
             const birthTime = document.getElementById("birthTime").value;
             const lifeFocus = document.getElementById("lifeFocus").value;
+            const gender = document.getElementById("gender").value;
+            const birthLocation = document.getElementById("birthLocation").value.trim();
             const notes = document.getElementById("notes").value.trim();
             const focusData = focusCopy[lifeFocus];
             if (!focusData) {
@@ -707,11 +726,13 @@
 
             let profile;
             try {
-                profile = window.BaziEngine.calculateProfile({
+                profile = window.BaziTranslator.translate(window.BaziEngine.calculateProfile({
                     birthDate,
                     birthTime,
-                    lifeFocus
-                });
+                    lifeFocus,
+                    gender,
+                    birthLocation
+                }));
             } catch (error) {
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
                 setLoading(false);
@@ -725,7 +746,9 @@
                     aiReading = await window.AIBaziLayer.quickReading({
                         birthDate,
                         birthTime,
-                        focus: lifeFocus
+                        focus: lifeFocus,
+                        gender,
+                        birthLocation
                     });
                 } catch (err) {
                     console.warn("AI reading failed, using static fallback:", err.message);
@@ -737,7 +760,9 @@
                 full_name: name,
                 birth_date: birthDate,
                 birth_time: birthTime,
-                notes
+                notes,
+                gender,
+                birth_location: birthLocation
             });
             const query = window.ReadingState.toQuery(carriedState);
             const noteLine = notes

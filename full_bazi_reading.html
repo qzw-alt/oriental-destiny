@@ -346,11 +346,11 @@
             <span class="brand-name">Full BaZi Reading Layer</span>
         </a>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="instant_reading.html">Free Reading</a>
-            <a href="products.html">Plans</a>
-            <a href="report_demo.html">Sample Report</a>
-            <a href="checkout.html">Order</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="instant_reading.html" data-i18n="nav_free_reading">Free Reading</a>
+            <a href="products.html" data-i18n="nav_plans">Plans</a>
+            <a href="report_demo.html" data-i18n="nav_sample_report">Sample Report</a>
+            <a href="checkout.html" data-i18n="nav_order">Order</a>
         </nav>
     </header>
 
@@ -381,8 +381,23 @@
                             <input id="birthDate" type="date" required>
                         </div>
                         <div class="field">
-                            <label for="birthTime">Birth time</label>
-                            <input id="birthTime" type="time">
+                            <label for="birthTime">Birth time <span style="color:#a92b20;">*</span></label>
+                            <input id="birthTime" type="time" required>
+                            <div style="font-size:12px;color:rgba(36,25,21,0.55);margin-top:4px;">Required for the hour pillar. If unknown, enter 12:00 as an estimate.</div>
+                        </div>
+                    </div>
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="gender">Gender</label>
+                            <select id="gender" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="birthLocation">Birth city and country</label>
+                            <input id="birthLocation" type="text" placeholder="Los Angeles, USA" required>
                         </div>
                     </div>
                     <div class="field">
@@ -575,14 +590,14 @@
 
     <footer>
         <div class="container" style="padding: 14px 0 12px; font-size: 12px; color: rgba(36, 25, 21, 0.55); text-align: center;">
-            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Shipping</a> ·
-            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Refund</a> ·
-            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Privacy</a> ·
-            <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;">Contact</a>
+            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
+            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
+            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
+            <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
         </div>
         <div class="container footer-note">
-            <div>&copy; 2026 Oriental Destiny. Full BaZi reading format.</div>
-            <div>A fuller chart reading with more of the hidden structure brought into view.</div>
+            <div data-i18n="footer_copyright">&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching and confirmed symbolic directions.</div>
+            <div data-i18n="footer_disclaimer">For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</div>
         </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
@@ -599,6 +614,8 @@
     <script src="api_deepseek.js"></script>
     <script src="ai_bazi_layer.js"></script>
     <script src="reading_state.js"></script>
+    <script src="i18n.js"></script>
+    <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
     <script>
         // Initialize AI layer if an API key is available
@@ -618,6 +635,8 @@
             const name = document.getElementById("fullName").value.trim() || "Friend";
             const birthDate = document.getElementById("birthDate").value;
             const birthTime = document.getElementById("birthTime").value;
+            const gender = document.getElementById("gender").value;
+            const birthLocation = document.getElementById("birthLocation").value.trim();
             const lifeFocus = document.getElementById("lifeFocus").value;
             const notes = document.getElementById("notes").value.trim();
 
@@ -628,11 +647,13 @@
 
             let profile;
             try {
-                profile = window.BaziEngine.calculateProfile({
+                profile = window.BaziTranslator.translate(window.BaziEngine.calculateProfile({
                     birthDate,
                     birthTime,
-                    lifeFocus
-                });
+                    lifeFocus,
+                    gender,
+                    birthLocation
+                }));
             } catch (error) {
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
                 return;
@@ -645,7 +666,9 @@
                     aiResult = await window.AIBaziLayer.fullReading({
                         birthDate,
                         birthTime,
-                        focus: lifeFocus
+                        focus: lifeFocus,
+                        gender,
+                        birthLocation
                     });
                 } catch (err) {
                     console.warn("AI full reading failed, using engine static fallback:", err.message);
@@ -755,6 +778,8 @@
             if (incoming.full_name) document.getElementById("fullName").value = incoming.full_name;
             if (incoming.birth_date) document.getElementById("birthDate").value = incoming.birth_date;
             if (incoming.birth_time) document.getElementById("birthTime").value = incoming.birth_time;
+            if (incoming.gender) document.getElementById("gender").value = incoming.gender;
+            if (incoming.birth_location) document.getElementById("birthLocation").value = incoming.birth_location;
             if (incoming.focus) document.getElementById("lifeFocus").value = incoming.focus;
             if (incoming.notes) document.getElementById("notes").value = incoming.notes;
             if (incoming.birth_date && incoming.focus) renderFullReading();
@@ -767,6 +792,8 @@
                 full_name: document.getElementById("fullName").value,
                 birth_date: document.getElementById("birthDate").value,
                 birth_time: document.getElementById("birthTime").value,
+                gender: document.getElementById("gender").value,
+                birth_location: document.getElementById("birthLocation").value,
                 focus: document.getElementById("lifeFocus").value,
                 notes: document.getElementById("notes").value
             });

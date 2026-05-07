@@ -68,7 +68,7 @@ global.fetch = async (url, options) => {
 };
 
 global.window = {
-  DEEPSEEK_API_KEY: "test-api-key",
+  API_BASE_URL: "https://test-worker.example.workers.dev",
   localStorage: global.localStorage,
 };
 

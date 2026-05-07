@@ -618,9 +618,9 @@
     <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
     <script>
-        // Initialize AI layer if an API key is available
-        if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
-            window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+        // Initialize AI layer (Worker proxy handles authentication)
+        if (typeof window.API_BASE_URL === "string" && window.API_BASE_URL) {
+            window.AIBaziLayer.init();
         }
         function hiddenStemHtml(label, entries) {
             if (!entries.length) {

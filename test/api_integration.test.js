@@ -11,7 +11,28 @@ const path = require("path");
 // 加载 api_deepseek.js（Node 18+ 内置 fetch）
 const DeepSeekAPI = require(path.join(__dirname, "..", "api_deepseek.js"));
 
-const API_KEY = "sk-638f115a6a004f99a80401518db9d231";
+/**
+ * 安全说明：此测试不再硬编码 API Key。
+ * 运行方式（推荐，通过 Worker 代理）：
+ *   WORKER_URL=https://your-worker.workers.dev node test/api_integration.test.js
+ * 或直接测试 DeepSeek API：
+ *   API_BASE_URL=https://api.deepseek.com/v1 DEEPSEEK_API_KEY=sk-xxxxx node test/api_integration.test.js
+ */
+
+// 读取环境变量
+const WORKER_URL = process.env.WORKER_URL || "";
+const DIRECT_API_KEY = process.env.DEEPSEEK_API_KEY || "";
+
+if (!WORKER_URL && !DIRECT_API_KEY) {
+  console.error("Error: 必须设置环境变量。推荐方式：");
+  console.error("  WORKER_URL=https://your-worker.workers.dev node test/api_integration.test.js");
+  process.exit(1);
+}
+
+// 为 Node 环境模拟 window.API_BASE_URL
+global.window = {
+  API_BASE_URL: WORKER_URL || "https://api.deepseek.com/v1",
+};
 
 // 模拟真实 chartData（来自 bazi_engine.js 输出）
 const mockChartData = {
@@ -62,7 +83,7 @@ async function runIntegrationTests() {
     }
   }
 
-  const api = new DeepSeekAPI(API_KEY);
+  const api = new DeepSeekAPI();
 
   // ─── 测试 1: analyzeChart ─────────────────────
   await testAsync("analyzeChart returns valid JSON with expected fields", async () => {

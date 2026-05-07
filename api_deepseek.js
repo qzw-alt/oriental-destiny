@@ -1,16 +1,16 @@
 /**
- * api_deepseek.js — DeepSeek API 封装
+ * api_deepseek.js — DeepSeek API 封装（Worker 代理版）
  *
- * 使用方式：
- *   const api = new DeepSeekAPI('your-api-key');
- *   const result = await api.chat([{role:'user', content:'...'}]);
+ * 安全变更：不再直接调用 DeepSeek API，而是通过 Cloudflare Worker 代理。
+ * Worker 端点配置在 config.js 的 window.API_BASE_URL 中。
  */
 
 class DeepSeekAPI {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
-    this.baseURL = "https://api.deepseek.com/v1";
-    this.model = "deepseek-chat"; // 或 "deepseek-coder" 用于代码推理
+  constructor() {
+    this.baseURL =
+      (typeof window !== "undefined" && window.API_BASE_URL) ||
+      "https://api.deepseek.com/v1";
+    this.model = "deepseek-chat";
     this.defaultOptions = {
       temperature: 0.7,
       max_tokens: 800,
@@ -25,19 +25,23 @@ class DeepSeekAPI {
    */
   async chat(messages, options = {}) {
     const merged = { ...this.defaultOptions, ...options };
-    const response = await fetch(`${this.baseURL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.apiKey}`,
-      },
-      body: JSON.stringify({
-        model: merged.model || this.model,
-        messages,
-        temperature: merged.temperature,
-        max_tokens: merged.max_tokens,
-      }),
-    });
+    const isProxy = !this.baseURL.includes("deepseek.com");
+    const response = await fetch(
+      isProxy ? this.baseURL : `${this.baseURL}/chat/completions`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          endpoint: "chat/completions",
+          model: merged.model || this.model,
+          messages,
+          temperature: merged.temperature,
+          max_tokens: merged.max_tokens,
+        }),
+      }
+    );
 
     if (!response.ok) {
       const err = await response.text();

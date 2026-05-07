@@ -69,10 +69,10 @@
 
     /**
      * 初始化 API
-     * @param {string} apiKey - DeepSeek API Key
+     * 不再接收 apiKey；Worker 代理在服务端处理鉴权。
      */
-    init(apiKey) {
-      this.api = new DeepSeekAPI(apiKey);
+    init() {
+      this.api = new DeepSeekAPI();
     },
 
     /**

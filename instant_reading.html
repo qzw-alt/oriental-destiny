@@ -253,6 +253,58 @@
             cursor: wait;
         }
 
+        /* Enhanced loading state */
+        .loading-overlay {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            padding: 28px;
+            border-radius: 20px;
+            background: rgba(255, 253, 249, 0.96);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            margin-top: 16px;
+            text-align: center;
+        }
+        .loading-overlay.visible {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(183, 138, 66, 0.15);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-steps {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .loading-step {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(36, 25, 21, 0.1);
+            transition: background 0.3s ease;
+        }
+        .loading-step.active {
+            background: var(--gold);
+        }
+
+        .loading-text {
+            font-size: 15px;
+            color: rgba(36, 25, 21, 0.65);
+            min-height: 24px;
+        }
+
         .loading-tip {
             display: none;
             text-align: center;
@@ -551,6 +603,15 @@
 
                     <button class="submit-btn" id="submitBtn" type="submit" data-i18n="ir_submit_btn">Show My Instant Reading</button>
                     <div class="loading-tip" id="loadingTip" data-i18n="ir_loading_tip">Analyzing your birth chart... this takes about 5 seconds.</div>
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-steps" id="loadingSteps">
+                            <div class="loading-step active"></div>
+                            <div class="loading-step"></div>
+                            <div class="loading-step"></div>
+                        </div>
+                        <div class="loading-text" id="loadingText">Calculating your Four Pillars...</div>
+                    </div>
                 </form>
             </div>
 
@@ -685,25 +746,57 @@
             }
         };
 
-        // Initialize AI layer if an API key is available (injected at deploy time or via global)
-        if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
-            window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+        // Initialize AI layer (Worker proxy handles authentication)
+        if (typeof window.API_BASE_URL === "string" && window.API_BASE_URL) {
+            window.AIBaziLayer.init();
         }
 
         const submitBtn = document.getElementById("submitBtn");
         const loadingTip = document.getElementById("loadingTip");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        const loadingText = document.getElementById("loadingText");
+        const loadingSteps = document.getElementById("loadingSteps");
         const defaultBtnText = submitBtn.textContent;
+
+        const loadingMessages = [
+            "Calculating your Four Pillars...",
+            "Analyzing elemental balance...",
+            "Preparing your personalized reading..."
+        ];
+        let loadingInterval = null;
 
         function setLoading(isLoading) {
             if (isLoading) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = (typeof window.I18n !== "undefined" ? window.I18n.t("ir_loading_btn", "Generating your reading… Please wait") : "Generating your reading… Please wait");
+                submitBtn.textContent = (typeof window.I18n !== "undefined" ? window.I18n.t("ir_loading_btn", "Generating your reading…") : "Generating your reading…");
                 loadingTip.classList.add("visible");
+                loadingOverlay.classList.add("visible");
+
+                let step = 0;
+                loadingText.textContent = loadingMessages[0];
+                updateLoadingSteps(0);
+                loadingInterval = setInterval(() => {
+                    step = (step + 1) % loadingMessages.length;
+                    loadingText.textContent = loadingMessages[step];
+                    updateLoadingSteps(step);
+                }, 2200);
             } else {
                 submitBtn.disabled = false;
                 submitBtn.textContent = defaultBtnText;
                 loadingTip.classList.remove("visible");
+                loadingOverlay.classList.remove("visible");
+                if (loadingInterval) {
+                    clearInterval(loadingInterval);
+                    loadingInterval = null;
+                }
             }
+        }
+
+        function updateLoadingSteps(activeIndex) {
+            if (!loadingSteps) return;
+            loadingSteps.querySelectorAll(".loading-step").forEach((el, i) => {
+                el.classList.toggle("active", i <= activeIndex);
+            });
         }
 
         document.getElementById("readingForm").addEventListener("submit", async (event) => {
@@ -796,7 +889,7 @@
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("upgradeSection").style.display = "block";
             document.getElementById("emailCapture").style.display = "block";
-            document.getElementById("emailCapture").scrollIntoView({ behavior: "smooth", block: "start" });
+            document.getElementById("upgradeSection").scrollIntoView({ behavior: "smooth", block: "start" });
             setLoading(false);
         });
             document.getElementById("emailCaptureForm").addEventListener("submit", async (event) => {

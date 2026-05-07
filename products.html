@@ -280,6 +280,87 @@
             max-width: 680px;
         }
 
+        /* Recommendation wizard */
+        .wizard-card {
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            border-radius: 28px;
+            padding: 34px;
+            margin-bottom: 22px;
+        }
+        .wizard-card h2 {
+            font-size: clamp(26px, 3.5vw, 36px);
+            margin-bottom: 8px;
+        }
+        .wizard-card p {
+            color: rgba(36, 25, 21, 0.72);
+            margin-bottom: 20px;
+        }
+        .wizard-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .wizard-option {
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(36, 25, 21, 0.1);
+            background: rgba(255, 253, 249, 0.9);
+            font: inherit;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .wizard-option:hover {
+            border-color: var(--gold);
+            background: rgba(183, 138, 66, 0.08);
+        }
+        .wizard-option.selected {
+            border-color: var(--cinnabar);
+            background: rgba(166, 58, 44, 0.08);
+            color: var(--cinnabar);
+            font-weight: 700;
+        }
+        .wizard-result {
+            display: none;
+            padding: 18px 22px;
+            border-radius: 18px;
+            background: rgba(49, 82, 71, 0.06);
+            border: 1px solid rgba(49, 82, 71, 0.14);
+            font-size: 15px;
+            color: rgba(36, 25, 21, 0.8);
+        }
+        .wizard-result.visible {
+            display: block;
+        }
+        .wizard-result strong {
+            color: var(--pine);
+        }
+
+        /* Popularity tags on plan cards */
+        .pop-tag {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 24px;
+            align-items: center;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(166, 58, 44, 0.1);
+            color: var(--cinnabar);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .plan-card.highlighted {
+            border-color: var(--cinnabar);
+            box-shadow: 0 14px 32px rgba(166, 58, 44, 0.12);
+        }
+
         footer { padding: 0 0 40px; }
 
         .footer-note {
@@ -348,6 +429,23 @@
             </div>
         </section>
 
+        <section>
+            <div class="container">
+                <div class="wizard-card">
+                    <h2>Not sure which focus to choose?</h2>
+                    <p>Pick the area that feels heaviest right now. We'll highlight the plan that matches it best.</p>
+                    <div class="wizard-options" id="wizardOptions">
+                        <button class="wizard-option" data-recommend="career" type="button">Career feels blocked or stagnant</button>
+                        <button class="wizard-option" data-recommend="wealth" type="button">Money comes in but doesn't stay</button>
+                        <button class="wizard-option" data-recommend="love" type="button">Relationships feel draining or empty</button>
+                        <button class="wizard-option" data-recommend="protection" type="button">I need more peace and grounding</button>
+                        <button class="wizard-option" data-recommend="elements" type="button">I feel off-balance but can't name it</button>
+                    </div>
+                    <div class="wizard-result" id="wizardResult"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="carriers">
             <div class="container">
                 <div class="section-head">
@@ -391,16 +489,16 @@
                     <a class="btn btn-primary" href="checkout.html">Choose a Plan</a>
                 </div>
 
-                <div class="plan-grid">
-                    <article class="plan-card">
+                <div class="plan-grid" id="planGrid">
+                    <article class="plan-card" data-plan-id="elements">
                         <div>
-                            <span class="plan-tag">Five Elements</span>
+                            <span class="plan-tag">Five Elements</span><span class="pop-tag">Best for First Timers</span>
                             <h3>Elemental Balance</h3>
                             <p>Identifies which element in your chart needs support — Wood, Fire, Earth, Metal, or Water — and confirms the direction to balance it.</p>
                         </div>
                     </article>
 
-                    <article class="plan-card">
+                    <article class="plan-card" data-plan-id="zodiac">
                         <div>
                             <span class="plan-tag">Zodiac</span>
                             <h3>Zodiac Guardian</h3>
@@ -408,23 +506,23 @@
                         </div>
                     </article>
 
-                    <article class="plan-card">
+                    <article class="plan-card" data-plan-id="career">
                         <div>
-                            <span class="plan-tag">Career</span>
+                            <span class="plan-tag">Career</span><span class="pop-tag">Most Popular</span>
                             <h3>Career & Allies</h3>
                             <p>For promotion, business growth, exams, authority, and the people who can help you most at this time.</p>
                         </div>
                     </article>
 
-                    <article class="plan-card">
+                    <article class="plan-card" data-plan-id="wealth">
                         <div>
-                            <span class="plan-tag">Wealth</span>
+                            <span class="plan-tag">Wealth</span><span class="pop-tag">Top Rated</span>
                             <h3>Wealth & Retention</h3>
                             <p>For income stability, business flow, windfalls, and stopping the leaks in your financial picture.</p>
                         </div>
                     </article>
 
-                    <article class="plan-card">
+                    <article class="plan-card" data-plan-id="love">
                         <div>
                             <span class="plan-tag">Love</span>
                             <h3>Love & Harmony</h3>
@@ -432,7 +530,7 @@
                         </div>
                     </article>
 
-                    <article class="plan-card">
+                    <article class="plan-card" data-plan-id="protection">
                         <div>
                             <span class="plan-tag">Protection</span>
                             <h3>Safety & Protection</h3>
@@ -506,5 +604,56 @@
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
     <script src="version.js"></script>
+    <script>
+        const wizardMap = {
+            career: {
+                plan: "Career & Allies",
+                desc: "Your career block is often the loudest signal your chart gives. The Career plan reads your authority stars, helpful people, and timing — then confirms the direction that supports visibility and steadier progress."
+            },
+            wealth: {
+                plan: "Wealth & Retention",
+                desc: "If money comes but doesn't stay, the chart usually shows a leak in how energy is held. The Wealth plan identifies the retention pattern and confirms the material and color that help stabilize flow."
+            },
+            love: {
+                plan: "Love & Harmony",
+                desc: "When relationships feel draining, the chart often reveals an imbalance in how warmth and trust are exchanged. The Love plan reads your partnership pattern and confirms the direction that draws in steadier connection."
+            },
+            protection: {
+                plan: "Safety & Protection",
+                desc: "If you need grounding, the chart usually shows where boundaries are thin and which protective symbol matches your elemental structure. The Protection plan confirms the guardian direction that feels calming rather than dramatic."
+            },
+            elements: {
+                plan: "Elemental Balance",
+                desc: "When you feel off-balance but can't name it, the chart almost always reveals which element is overactive and which is depleted. The Elemental Balance plan is the gentlest entry point — it reads your overall structure and confirms the support direction first."
+            }
+        };
+
+        const wizardOptions = document.getElementById("wizardOptions");
+        const wizardResult = document.getElementById("wizardResult");
+        const planCards = document.querySelectorAll(".plan-card");
+
+        wizardOptions.addEventListener("click", (e) => {
+            const btn = e.target.closest(".wizard-option");
+            if (!btn) return;
+
+            // Clear previous selection
+            wizardOptions.querySelectorAll(".wizard-option").forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+
+            const key = btn.dataset.recommend;
+            const info = wizardMap[key];
+
+            // Highlight matching plan card
+            planCards.forEach((card) => card.classList.remove("highlighted"));
+            const targetCard = document.querySelector(`.plan-card[data-plan-id="${key}"]`);
+            if (targetCard) {
+                targetCard.classList.add("highlighted");
+                targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            wizardResult.innerHTML = `<strong>Recommended: ${info.plan}</strong> — ${info.desc} <a href="checkout.html?plan=${key}" style="color: var(--cinnabar); text-decoration: underline; white-space: nowrap;">Start this plan →</a>`;
+            wizardResult.classList.add("visible");
+        });
+    </script>
 </body>
 </html>

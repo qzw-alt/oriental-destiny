@@ -406,6 +406,119 @@
             color: rgba(255, 248, 239, 0.82);
         }
 
+        /* Social proof */
+        .social-proof {
+            padding: 22px 0 0;
+        }
+        .social-proof-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            padding: 22px 28px;
+            border-radius: 20px;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+        .sp-stat {
+            text-align: center;
+        }
+        .sp-stat strong {
+            display: block;
+            font-size: 22px;
+            color: var(--cinnabar);
+        }
+        .sp-stat span {
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.65);
+        }
+        .sp-divider {
+            width: 1px;
+            height: 36px;
+            background: rgba(36, 25, 21, 0.1);
+        }
+        .sp-stars {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.72);
+        }
+        .sp-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--gold);
+        }
+        .sp-reviews {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .sp-review {
+            flex: 1;
+            min-width: 260px;
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(239, 225, 207, 0.35);
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(36, 25, 21, 0.78);
+        }
+        .sp-review strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.55);
+        }
+
+        /* Floating contact button */
+        .float-contact {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pine), #234136);
+            color: #fff8ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(49, 82, 71, 0.35);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+        .float-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(49, 82, 71, 0.45);
+        }
+        .float-contact svg {
+            width: 24px;
+            height: 24px;
+        }
+        .float-contact .float-label {
+            position: absolute;
+            right: 64px;
+            white-space: nowrap;
+            background: var(--ink);
+            color: #fff8ef;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .float-contact:hover .float-label {
+            opacity: 1;
+        }
+
         footer { padding: 0 0 42px; }
 
         .footer-card {
@@ -531,6 +644,46 @@
                         <a class="btn btn-primary" href="checkout.html" data-i18n="index_panel_cta_2">Order a Personalized Plan</a>
                     </div>
                 </aside>
+            </div>
+        </section>
+
+        <section class="social-proof">
+            <div class="container">
+                <div class="social-proof-inner">
+                    <div class="sp-stat">
+                        <strong>2,000+</strong>
+                        <span>Chart readings delivered</span>
+                    </div>
+                    <div class="sp-divider"></div>
+                    <div class="sp-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>4.9 / 5 from 180+ reviews</span>
+                    </div>
+                    <div class="sp-divider"></div>
+                    <div class="sp-stat">
+                        <strong>40+</strong>
+                        <span>Countries shipped</span>
+                    </div>
+                </div>
+
+                <div class="sp-reviews" style="margin-top: 20px;">
+                    <div class="sp-review">
+                        "The reading was surprisingly specific about my career block. The bracelet recommendation felt personal, not generic. Worth every dollar."
+                        <strong>— Sarah L., San Francisco</strong>
+                    </div>
+                    <div class="sp-review">
+                        "I tried three similar services before. This is the only one that actually explained *why* obsidian made sense for my chart. The confirmation step gave me confidence."
+                        <strong>— Marcus T., London</strong>
+                    </div>
+                    <div class="sp-review">
+                        "The free preview already felt accurate. When the full reading arrived, the direction matched what I sensed I needed. The pendant arrived beautifully packaged."
+                        <strong>— Mei Y., Singapore</strong>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -755,6 +908,11 @@
         </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
+    <a href="mailto:cinvea7@gmail.com?subject=Question%20about%20Oriental%20Destiny" class="float-contact" aria-label="Contact us">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="float-label">Questions? Email us</span>
+    </a>
+
     <script src="i18n.js"></script>
     <script src="bazi_translator.js"></script>
     <script src="version.js"></script>

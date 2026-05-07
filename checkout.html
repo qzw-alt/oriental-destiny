@@ -361,6 +361,149 @@
             gap: 7px;
         }
 
+        /* Step progress bar */
+        .step-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+        .step-item {
+            flex: 1;
+            padding: 14px 10px;
+            border-radius: 16px;
+            background: rgba(255, 253, 249, 0.7);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.55);
+            transition: all 0.25s ease;
+        }
+        .step-item.active {
+            background: rgba(49, 82, 71, 0.08);
+            border-color: var(--pine);
+            color: var(--pine);
+            font-weight: 700;
+        }
+        .step-item .step-num {
+            display: block;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(36, 25, 21, 0.08);
+            color: rgba(36, 25, 21, 0.5);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 26px;
+            margin: 0 auto 6px;
+        }
+        .step-item.active .step-num {
+            background: var(--pine);
+            color: #fff;
+        }
+
+        /* Order summary */
+        .order-summary {
+            background: linear-gradient(180deg, rgba(49, 82, 71, 0.06), rgba(49, 82, 71, 0.02));
+            border: 1px solid rgba(49, 82, 71, 0.14);
+        }
+        .order-summary .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(36, 25, 21, 0.06);
+            font-size: 14px;
+        }
+        .order-summary .summary-row:last-child {
+            border-bottom: none;
+            padding-top: 12px;
+            margin-top: 4px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cinnabar);
+        }
+        .order-summary .summary-label {
+            color: rgba(36, 25, 21, 0.6);
+        }
+
+        /* Trust badges */
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(49, 82, 71, 0.06);
+            font-size: 12px;
+            color: var(--pine);
+            font-weight: 600;
+        }
+        .trust-badge svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* PayPal note */
+        .paypal-note {
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.6);
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(49, 82, 71, 0.06);
+        }
+
+        /* Floating contact button */
+        .float-contact {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pine), #234136);
+            color: #fff8ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(49, 82, 71, 0.35);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+        .float-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(49, 82, 71, 0.45);
+        }
+        .float-contact svg {
+            width: 24px;
+            height: 24px;
+        }
+        .float-contact .float-label {
+            position: absolute;
+            right: 64px;
+            white-space: nowrap;
+            background: var(--ink);
+            color: #fff8ef;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .float-contact:hover .float-label {
+            opacity: 1;
+        }
+
         @media (max-width: 980px) {
             .hero,
             .layout,
@@ -409,6 +552,26 @@
                 </ul>
             </aside>
         </section>
+
+        <!-- Step Progress Bar -->
+        <div class="step-bar" id="stepBar">
+            <div class="step-item active" data-step="1">
+                <span class="step-num">1</span>
+                Focus & Form
+            </div>
+            <div class="step-item" data-step="2">
+                <span class="step-num">2</span>
+                Birth Details
+            </div>
+            <div class="step-item" data-step="3">
+                <span class="step-num">3</span>
+                Shipping
+            </div>
+            <div class="step-item" data-step="4">
+                <span class="step-num">4</span>
+                Pay $99
+            </div>
+        </div>
 
         <div class="layout">
             <section class="form-card">
@@ -621,12 +784,55 @@
                     <div class="paypal-box" id="paypalBox">
                         <h3 data-i18n="ck_paypal_title">2. Complete payment</h3>
                         <p data-i18n="ck_paypal_desc">Your details are saved. You can now pay the fixed $99 order total with PayPal.</p>
+                        <div class="paypal-note">
+                            💳 You can pay with any credit or debit card via PayPal — no PayPal account required.
+                        </div>
                         <div id="paypal-container-HLSEQWZLQCNVC"></div>
                     </div>
                 </form>
             </section>
 
             <aside class="side-stack">
+                <!-- Order Summary Card -->
+                <div class="side-card order-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Plan</span>
+                        <span id="summaryPlan">Elemental Balance</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Form</span>
+                        <span id="summaryCarrier">Bracelet</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Chart reading</span>
+                        <span>Included</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Direction confirmed</span>
+                        <span>Before shipping</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Total due today</span>
+                        <span>$99</span>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <span class="trust-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Secure Payment
+                    </span>
+                    <span class="trust-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        14-Day Guarantee
+                    </span>
+                    <span class="trust-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        Ships Worldwide
+                    </span>
+                </div>
+
                 <div class="side-card">
                     <h3 data-i18n="ck_why_title">Why only two options?</h3>
                     <p data-i18n="ck_why_desc">This is not a generic reading app. You are buying a personalized birth chart reading. The direction is matched to your chart after we review it. That is the service. Bracelet or pendant is the only form choice — and even that can be left to our recommendation.</p>
@@ -699,7 +905,44 @@
             document.getElementById("carrierKey").value = selectedCarrier;
             document.getElementById("carrierName").value = carriers[selectedCarrier];
             document.getElementById("selectionLabel").textContent = plans[selectedPlan] + " - " + carriers[selectedCarrier];
+
+            // Sync sidebar order summary
+            const summaryPlan = document.getElementById("summaryPlan");
+            const summaryCarrier = document.getElementById("summaryCarrier");
+            if (summaryPlan) summaryPlan.textContent = plans[selectedPlan];
+            if (summaryCarrier) summaryCarrier.textContent = carriers[selectedCarrier];
         }
+
+        // Step bar tracking
+        function updateStepBar() {
+            const scrollY = window.scrollY + window.innerHeight / 2;
+            const sections = [
+                document.getElementById("planGrid"),
+                document.getElementById("carrierGrid"),
+                document.getElementById("orderForm"),
+                document.getElementById("paypalBox")
+            ];
+
+            let activeStep = 1;
+            sections.forEach((sec, i) => {
+                if (sec && sec.offsetTop <= scrollY) {
+                    activeStep = i + 1;
+                }
+            });
+
+            // If PayPal box is visible, force step 4
+            if (paypalBox && paypalBox.classList.contains("visible")) {
+                activeStep = 4;
+            }
+
+            document.querySelectorAll(".step-item").forEach((item) => {
+                const step = parseInt(item.dataset.step, 10);
+                item.classList.toggle("active", step === activeStep);
+            });
+        }
+
+        window.addEventListener("scroll", updateStepBar, { passive: true });
+        window.addEventListener("resize", updateStepBar, { passive: true });
 
         function selectPlan(key) {
             selectedPlan = key;
@@ -789,6 +1032,7 @@
                 paypalBox.classList.add("visible");
                 paypalBox.scrollIntoView({ behavior: "smooth", block: "start" });
                 saveDetailsButton.textContent = "Details Saved";
+                updateStepBar();
             } catch (error) {
                 setStatus("We could not save your details just now. Please try again in a moment.", "error");
                 saveDetailsButton.disabled = false;
@@ -801,10 +1045,16 @@
 
         applyIncomingState();
         syncSelection();
+        updateStepBar();
 
         paypal.HostedButtons({
             hostedButtonId: "HLSEQWZLQCNVC",
         }).render("#paypal-container-HLSEQWZLQCNVC");
     </script>
+
+    <a href="mailto:cinvea7@gmail.com?subject=Question%20about%20Oriental%20Destiny" class="float-contact" aria-label="Contact us">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="float-label">Questions? Email us</span>
+    </a>
 </body>
 </html>

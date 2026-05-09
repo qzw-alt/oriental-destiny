@@ -12,12 +12,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sacred Daoist treasures handcrafted at Longhushan — thunder-struck dates wood, golden incantation bronze, cinnabar talismans. Each piece carries centuries of Taoist lineage, sourced directly from the Taoist heartland.">
+    <meta name="description" content="$199 includes a personalized Feng Shui birth chart reading + one handcrafted Daoist treasure from Longhushan. Shipped directly from China.">
     <link rel="canonical" href="https://oriental-destiny.com/daoist-treasures.html">
-    <meta property="og:title" content="Daoist Treasures | Sacred Objects from Longhushan | Oriental Destiny">
-    <meta property="og:description" content="Sacred Daoist treasures handcrafted at Longhushan — thunder-struck dates wood, golden incantation bronze, cinnabar talismans.">
+    <meta property="og:title" content="Daoist Treasures from Longhushan | $199 Reading + Treasure | Oriental Destiny">
+    <meta property="og:description" content="Personalized birth chart reading + one handcrafted Daoist treasure from Longhushan. Bracelets, pendants, rings, and charms matched to your chart.">
     <meta property="og:type" content="website">
-    <title>Daoist Treasures | Sacred Objects from Longhushan | Oriental Destiny</title>
+    <title>Daoist Treasures from Longhushan | $199 Reading + Treasure | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         :root {
@@ -118,74 +118,90 @@
 
         /* ─── HERO ─── */
         .hero {
-            padding: 72px 0 64px;
+            padding: 72px 0 56px;
             text-align: center;
         }
-        .hero-eyebrow {
-            font-size: 0.72rem;
-            letter-spacing: 0.22em;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(166, 58, 44, 0.1);
+            color: var(--cinnabar);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 18px;
+            margin-bottom: 22px;
         }
         .hero h1 {
-            font-size: clamp(38px, 6vw, 68px);
-            line-height: 1.06;
-            margin-bottom: 22px;
+            font-size: clamp(34px, 5.5vw, 60px);
+            line-height: 1.08;
+            margin-bottom: 18px;
             color: var(--ink);
         }
         .hero-sub {
             font-size: 1.15rem;
             color: rgba(36, 25, 21, 0.68);
-            max-width: 620px;
-            margin: 0 auto 36px;
-            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            line-height: 1.75;
+        }
+        .hero-price {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            color: var(--cinnabar);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .hero-price-note {
+            font-size: 0.92rem;
+            color: rgba(36, 25, 21, 0.55);
+            margin-bottom: 28px;
         }
         .hero-divider {
             width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 0 auto 36px;
+            margin: 0 auto 32px;
         }
 
-        /* ─── INTRO ─── */
-        .intro {
-            padding: 0 0 72px;
-        }
-        .intro-grid {
+        /* ─── VALUE PROP ─── */
+        .value-section { padding: 0 0 80px; }
+        .value-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
-        .intro-image {
-            aspect-ratio: 4/3;
+        .value-card {
+            background: rgba(255, 253, 249, 0.94);
+            border: 1px solid rgba(36, 25, 21, 0.08);
             border-radius: 24px;
-            background: linear-gradient(160deg, #2a1f14 0%, #3d2e1e 50%, #241508 100%);
-            display: flex;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-        .intro-image::after {
-            content: "龍";
-            font-size: 120px;
-            color: rgba(183, 138, 66, 0.3);
-            font-weight: 700;
-            position: absolute;
-        }
-        .intro-content h2 {
-            font-size: clamp(26px, 3.5vw, 38px);
-            line-height: 1.2;
-            margin-bottom: 18px;
-        }
-        .intro-content p {
-            color: rgba(36, 25, 21, 0.72);
+            font-size: 24px;
             margin-bottom: 16px;
-            font-size: 1.05rem;
+            background: rgba(183, 138, 66, 0.12);
         }
-        .intro-content p:last-of-type { margin-bottom: 0; }
+        .value-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .value-card p {
+            color: rgba(36, 25, 21, 0.65);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
 
         /* ─── SECTION HEADER ─── */
         .section-head {
@@ -204,17 +220,34 @@
             margin: 0 auto;
         }
 
-        /* ─── ITEMS GRID ─── */
-        .items-section { padding: 0 0 80px; }
+        /* ─── CATEGORY SECTIONS ─── */
+        .cat-section { padding: 0 0 64px; }
+        .cat-section:last-of-type { padding-bottom: 80px; }
+        .cat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .cat-header h3 {
+            font-size: 1.35rem;
+        }
+        .cat-count {
+            font-size: 0.78rem;
+            color: rgba(36, 25, 21, 0.45);
+            background: rgba(36, 25, 21, 0.06);
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
         .items-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
         .item-card {
             background: rgba(255, 253, 249, 0.94);
             border: 1px solid rgba(36, 25, 21, 0.08);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -222,109 +255,46 @@
             flex-direction: column;
         }
         .item-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 28px 64px rgba(70, 41, 24, 0.18);
+            transform: translateY(-5px);
+            box-shadow: 0 24px 56px rgba(70, 41, 24, 0.16);
         }
         .item-image {
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 56px;
+            font-size: 48px;
             position: relative;
             overflow: hidden;
         }
         .item-image .placeholder-icon {
-            font-size: 64px;
+            font-size: 56px;
             opacity: 0.7;
         }
         .item-body {
-            padding: 24px;
+            padding: 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         .item-category {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .item-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-        .item-desc {
-            color: rgba(36, 25, 21, 0.68);
-            font-size: 0.92rem;
-            line-height: 1.7;
-            flex: 1;
-            margin-bottom: 18px;
-        }
-        .item-note {
-            font-size: 0.78rem;
-            color: rgba(36, 25, 21, 0.5);
-            font-style: italic;
-            border-top: 1px solid var(--line);
-            padding-top: 12px;
-            margin-top: auto;
-        }
-
-        /* ─── CATEGORIES BANNER ─── */
-        .categories {
-            padding: 0 0 80px;
-        }
-        .cat-pills {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 48px;
-        }
-        .cat-pill {
-            padding: 8px 20px;
-            border-radius: 999px;
-            background: rgba(255, 253, 249, 0.9);
-            border: 1px solid var(--line);
-            font-size: 0.88rem;
-            color: rgba(36, 25, 21, 0.7);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .cat-pill.active, .cat-pill:hover {
-            background: var(--ink);
-            color: #fff8ef;
-            border-color: var(--ink);
-        }
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .cat-card {
-            border-radius: 20px;
-            padding: 32px 24px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            transition: transform 0.2s;
-        }
-        .cat-card:hover { transform: translateY(-3px); }
-        .cat-icon { font-size: 48px; }
-        .cat-name {
             font-size: 1.1rem;
             font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
-        .cat-sub {
-            font-size: 0.82rem;
-            color: rgba(36, 25, 21, 0.58);
-            line-height: 1.5;
+        .item-desc {
+            color: rgba(36, 25, 21, 0.65);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            flex: 1;
         }
 
         /* ─── ORIGIN STORY ─── */
@@ -396,35 +366,77 @@
             letter-spacing: 0.06em;
         }
 
+        /* ─── HOW IT WORKS ─── */
+        .steps-section { padding: 0 0 80px; }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .step-card {
+            background: rgba(255, 253, 249, 0.94);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .step-no {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            color: #fff8ef;
+            background: linear-gradient(135deg, var(--gold), var(--cinnabar));
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .step-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+        .step-card p {
+            color: rgba(36, 25, 21, 0.62);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
         /* ─── CTA ─── */
         .cta-section {
             padding: 0 0 96px;
         }
         .cta-card {
-            background: rgba(255, 253, 249, 0.95);
-            border: 1px solid rgba(36, 25, 21, 0.09);
+            background: linear-gradient(160deg, #1c1208 0%, #2a1a0e 50%, #1a1008 100%);
             border-radius: 28px;
-            padding: 52px;
+            padding: 56px;
             text-align: center;
-            box-shadow: var(--shadow);
+            color: #fff8ef;
+            position: relative;
+            overflow: hidden;
         }
         .cta-card h2 {
             font-size: clamp(26px, 3.5vw, 42px);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
+            position: relative;
         }
         .cta-card p {
-            color: rgba(36, 25, 21, 0.65);
+            color: rgba(255, 248, 239, 0.7);
             font-size: 1.05rem;
-            max-width: 520px;
-            margin: 0 auto 30px;
+            max-width: 540px;
+            margin: 0 auto 28px;
             line-height: 1.75;
+            position: relative;
         }
         .cta-buttons {
             display: flex;
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            position: relative;
         }
         .btn {
             min-height: 50px;
@@ -432,20 +444,30 @@
             align-items: center;
             padding: 0 28px;
             border-radius: 999px;
-            border: 1px solid var(--line);
-            background: rgba(255, 253, 249, 0.9);
+            border: 1px solid rgba(255, 248, 239, 0.2);
+            background: rgba(255, 253, 249, 0.1);
+            color: #fff8ef;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
         .btn:hover {
+            background: rgba(255, 253, 249, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(70, 41, 24, 0.14);
+        }
+        .cta-card .btn-primary {
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%) !important;
+            border: none !important;
+            box-shadow: 0 12px 28px rgba(166, 58, 44, 0.3);
+        }
+        .cta-card .btn-primary:hover {
+            box-shadow: 0 18px 38px rgba(166, 58, 44, 0.4) !important;
         }
         .cta-note {
             font-size: 0.8rem;
-            color: rgba(36, 25, 21, 0.45);
+            color: rgba(255, 248, 239, 0.45);
+            position: relative;
         }
 
         /* ─── FOOTER ─── */
@@ -475,15 +497,14 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 900px) {
-            .items-grid, .cat-grid { grid-template-columns: repeat(2, 1fr); }
-            .intro-grid { grid-template-columns: 1fr; }
-            .intro-image { aspect-ratio: 16/7; }
-            .origin-card { padding: 36px 24px; }
+            .value-grid, .items-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .origin-card, .cta-card { padding: 36px 24px; }
         }
         @media (max-width: 600px) {
-            .items-grid, .cat-grid { grid-template-columns: 1fr; }
+            .value-grid, .items-grid, .steps-grid { grid-template-columns: 1fr; }
             .topnav a:not(.btn-primary) { display: none; }
-            .cta-card { padding: 32px 20px; }
+            .hero { padding-top: 48px; }
         }
     </style>
 </head>
@@ -499,8 +520,7 @@
             <nav class="topnav">
                 <a href="index.html">Home</a>
                 <a href="instant_reading.html">Free Reading</a>
-                <a href="products.html">Products</a>
-                <a href="feng-shui-bracelet-meaning.html">Feng Shui Guide</a>
+                <a href="checkout.html" class="btn-primary">Order — $199</a>
             </nav>
         </div>
     </div>
@@ -508,62 +528,54 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <p class="hero-eyebrow">From Longhushan — Taoist Homeland</p>
-            <h1>Objects That Carry<br>a Thousand Years of Lineage</h1>
+            <div class="hero-badge">From Longhushan, Jiangxi — Taoist Homeland</div>
+            <h1>Your Birth Chart Reading<br>+ A Handcrafted Daoist Treasure</h1>
             <div class="hero-divider"></div>
             <p class="hero-sub">
-                Thunder-struck wood, golden incantations, sacred bronze —
-                each piece consecrated at the Celestial Masters' dwelling in Jiangxi.
-                Not ornaments. Carriers of intention.
+                Every $199 order includes a personalized Feng Shui reading
+                and one handcrafted piece from the Longhushan collection.
+                We read your chart first. Then we match the treasure.
             </p>
-                <nav class="topnav" style="justify-content:center;">
-                    <a href="#treasures" class="btn">Browse the Collection</a>
-                    <a href="instant_reading.html" class="btn btn-primary">Get Your Free Reading →</a>
-                </nav>
+            <div class="hero-price">$199</div>
+            <div class="hero-price-note">One price. Reading + treasure. Shipped from China.</div>
+            <nav class="topnav" style="justify-content:center;">
+                <a href="checkout.html" class="btn-primary" style="font-size:16px; padding:0 32px;">Order My Reading + Treasure</a>
+                <a href="instant_reading.html" class="btn">Try Free Preview First</a>
+            </nav>
         </div>
     </section>
 
-    <!-- INTRO -->
-    <section class="intro">
+    <!-- VALUE PROP -->
+    <section class="value-section">
         <div class="container">
-            <div class="intro-grid">
-                <div class="intro-image">
-                    <!-- Placeholder: dark textured background representing ancient wood/metal -->
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">📜</div>
+                    <h3>Personalized Reading</h3>
+                    <p>We analyze your Four Pillars, Day Master, and elemental balance to understand what your chart needs.</p>
                 </div>
-                <div class="intro-content">
-                    <h2>More than objects.<br>Intentions made tangible.</h2>
-                    <p>
-                        Every piece in this collection comes from the Longhushan Taoist Temple complex —
-                        the historical seat of the Celestial Masters, where the Taoist tradition has
-                        been practiced unbroken for over 1,800 years.
-                    </p>
-                    <p>
-                        These are not mass-produced trinkets. They are worked by Taoist craftspeople,
-                        some of them ordained clergy, who understand the symbolic weight of each form,
-                        each material, each inscription.
-                    </p>
-                    <p>
-                        A thunder-struck dates wood bracelet is not bought for aesthetics —
-                        it is worn for what it represents. A Golden Incantation bronze wrist chain
-                        carries the resonance of the text engraved on it.
-                    </p>
-                    <a href="#treasures" class="btn" style="margin-top:20px;">Explore the Treasures ↓</a>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Matched Treasure</h3>
+                    <p>Based on your reading, we select one piece from bracelets, pendants, rings, or charms in the Longhushan collection.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📦</div>
+                    <h3>Shipped From China</h3>
+                    <p>Your treasure is consecrated at Longhushan and shipped directly to you with tracking. Worldwide delivery.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TREASURES GRID -->
-    <section class="items-section" id="treasures">
+    <!-- COLLECTION: BRACELETS -->
+    <section class="cat-section" id="treasures">
         <div class="container">
-            <div class="section-head">
-                <h2>The Collection</h2>
-                <p>Eight categories of sacred objects — each sourced directly from the Taoist temple compound and its affiliated artisan workshops.</p>
+            <div class="cat-header">
+                <h3>Bracelets</h3>
+                <span class="cat-count">4 pieces</span>
             </div>
-
             <div class="items-grid">
-
-                <!-- Item 1 -->
                 <article class="item-card">
                     <div class="item-image" style="background: linear-gradient(145deg, #3d2a0e 0%, #5c3d1a 50%, #2e1c06 100%);">
                         <span class="placeholder-icon">⚡</span>
@@ -571,59 +583,9 @@
                     <div class="item-body">
                         <p class="item-category">Thunder-Struck Dates Wood</p>
                         <h3 class="item-name">Thunder-Struck Dates Wood Bracelet — Ten Scriptures</h3>
-                        <p class="item-desc">
-                            Natural thunder-struck dates wood, carved with the Ten Heavenly Scriptures mantra. Dark grain, dense and cool to the touch. One of the most protective materials in the Taoist arsenal. Sourced directly from Longhushan.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
+                        <p class="item-desc">Natural thunder-struck dates wood carved with the Ten Heavenly Scriptures mantra. Dark grain, dense and cool. One of the most protective materials in the Taoist arsenal.</p>
                     </div>
                 </article>
-
-                <!-- Item 2 -->
-                <article class="item-card">
-                    <div class="item-image" style="background: linear-gradient(145deg, #b78a42 0%, #d4a84b 50%, #8a6418 100%);">
-                        <span class="placeholder-icon">錢</span>
-                    </div>
-                    <div class="item-body">
-                        <p class="item-category">Mountain Spirit Coin</p>
-                        <h3 class="item-name">Mountain Spirit Coin Necklace — Cinnabar Bronze</h3>
-                        <p class="item-desc">
-                            The classic Taoist protective amulet. Front: Mountain Spirit coin inscription. Back: protective talisman script. Cast in cinnabar-dusted bronze. Worn at the chest for shielding and grounding. A staple for over a thousand years.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
-                    </div>
-                </article>
-
-                <!-- Item 3 -->
-                <article class="item-card">
-                    <div class="item-image" style="background: linear-gradient(145deg, #7a1a0e 0%, #a63a2c 50%, #4a0e06 100%);">
-                        <span class="placeholder-icon">🔥</span>
-                    </div>
-                    <div class="item-body">
-                        <p class="item-category">Nine Purple Fire</p>
-                        <h3 class="item-name">Nine Purple Fire Luck Ring</h3>
-                        <p class="item-desc">
-                            For the 2024–2043 Li Fire Great Cycle. Designed to ride the wave of the Nine Purple Fire star. Supports career advancement, social magnetism, and authority. A ring that channels the era's dominant energy.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
-                    </div>
-                </article>
-
-                <!-- Item 4 -->
-                <article class="item-card">
-                    <div class="item-image" style="background: linear-gradient(145deg, #1a2e28 0%, #243d35 50%, #0f1e1a 100%);">
-                        <span class="placeholder-icon">📜</span>
-                    </div>
-                    <div class="item-body">
-                        <p class="item-category">Wenchang Lord</p>
-                        <h3 class="item-name">Wenchang Lord Pendant — Thunder-Struck Wood</h3>
-                        <p class="item-desc">
-                            The Wenchang Lord — patron of study, exams, and career advancement. Carved into thunder-struck dates wood for extra potency. Worn by students, professionals, and anyone facing a pivotal test or transition.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
-                    </div>
-                </article>
-
-                <!-- Item 5 -->
                 <article class="item-card">
                     <div class="item-image" style="background: linear-gradient(145deg, #2a1f14 0%, #3a2a1a 50%, #1a1208 100%);">
                         <span class="placeholder-icon">🙏</span>
@@ -631,44 +593,9 @@
                     <div class="item-body">
                         <p class="item-category">Incense Ash Liuli</p>
                         <h3 class="item-name">Incense Ash Liuli Bracelet — Wealth Beast</h3>
-                        <p class="item-desc">
-                            Liuli beads made from temple incense ash, paired with a golden wealth beast charm. Each bead carries the resonance of consecrated prayer. For attracting prosperity, turning luck, and deflecting negative influence.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
+                        <p class="item-desc">Liuli beads made from temple incense ash, paired with a golden wealth beast charm. Each bead carries the resonance of consecrated prayer.</p>
                     </div>
                 </article>
-
-                <!-- Item 6 -->
-                <article class="item-card">
-                    <div class="item-image" style="background: linear-gradient(145deg, #241915 0%, #3a2d20 50%, #1a1108 100%);">
-                        <span class="placeholder-icon">☯️</span>
-                    </div>
-                    <div class="item-body">
-                        <p class="item-category">Five Emperor Coins</p>
-                        <h3 class="item-name">Pure Brass Five Emperor Coins Charm</h3>
-                        <p class="item-desc">
-                            The five most prosperous Qing dynasty reigns — Shunzhi, Kangxi, Yongzheng, Qianlong, Jiaqing — strung in order on red cord. Used to dissolve sha qi, attract wealth, and stabilize a space. A foundational feng shui tool.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
-                    </div>
-                </article>
-
-                <!-- Item 7 -->
-                <article class="item-card">
-                    <div class="item-image" style="background: linear-gradient(145deg, #3a2a1a 0%, #4a3820 50%, #2a1e0e 100%);">
-                        <span class="placeholder-icon">☀️</span>
-                    </div>
-                    <div class="item-body">
-                        <p class="item-category">Golden Light Incantation</p>
-                        <h3 class="item-name">Golden Light Incantation Pendant — Nine Palaces</h3>
-                        <p class="item-desc">
-                            The Golden Light Incantation — one of the most recited protective texts in the Taoist canon. Engraved on one side, the Nine Palaces bagua on the other. Worn at the chest for daily protection and energy shielding.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
-                    </div>
-                </article>
-
-                <!-- Item 8 -->
                 <article class="item-card">
                     <div class="item-image" style="background: linear-gradient(145deg, #1a1520 0%, #2a2035 50%, #100e18 100%);">
                         <span class="placeholder-icon">朱</span>
@@ -676,14 +603,9 @@
                     <div class="item-body">
                         <p class="item-category">Cinnabar Essence</p>
                         <h3 class="item-name">Cinnabar Bracelet — Red Cord Woven</h3>
-                        <p class="item-desc">
-                            Natural cinnabar beads on hand-woven red cord. Cinnabar has been used in Taoist ritual for millennia — for centering, focus, and what practitioners call "gathering the qi." Especially potent during one's birth year.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
+                        <p class="item-desc">Natural cinnabar beads on hand-woven red cord. Used in Taoist ritual for millennia — for centering, focus, and "gathering the qi." Potent during one's birth year.</p>
                     </div>
                 </article>
-
-                <!-- Item 9 -->
                 <article class="item-card">
                     <div class="item-image" style="background: linear-gradient(145deg, #2a1510 0%, #3a1e12 50%, #1a0c06 100%);">
                         <span class="placeholder-icon">💎</span>
@@ -691,55 +613,101 @@
                     <div class="item-body">
                         <p class="item-category">Five Elements Crystal</p>
                         <h3 class="item-name">Five Elements Crystal Bracelet</h3>
-                        <p class="item-desc">
-                            Five colors of crystal beads representing Wood, Fire, Earth, Metal, and Water. Designed to balance whatever element your chart lacks. Each bracelet is matched to the specific elemental gap identified in your reading.
-                        </p>
-                        <p class="item-note">Part of the $199 reading + treasure package</p>
+                        <p class="item-desc">Five colors of crystal beads representing Wood, Fire, Earth, Metal, and Water. Matched to the specific elemental gap identified in your reading.</p>
                     </div>
                 </article>
-
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #4a1530 0%, #6a2048 50%, #2a0e1c 100%);">
+                        <span class="placeholder-icon">🔮</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Nine Purple Fire</p>
+                        <h3 class="item-name">Nine Purple Fire Amethyst Bracelet</h3>
+                        <p class="item-desc">Purple crystal beads for the 2024–2043 Li Fire Great Cycle. Supports career advancement and social magnetism during the dominant fire era.</p>
+                    </div>
+                </article>
+                <article class="item-card" style="background: linear-gradient(145deg, rgba(255,253,249,0.5), rgba(255,253,249,0.5)); border: 2px dashed rgba(36,25,21,0.15);">
+                    <div class="item-image" style="background: transparent;">
+                        <span class="placeholder-icon" style="opacity:0.3;">+</span>
+                    </div>
+                    <div class="item-body" style="justify-content:center; text-align:center;">
+                        <p class="item-desc" style="color:rgba(36,25,21,0.45);">More bracelets available. Your reading determines which material and style match your chart.</p>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- CATEGORIES -->
-    <section class="categories">
+    <!-- COLLECTION: PENDANTS -->
+    <section class="cat-section">
         <div class="container">
-            <div class="section-head">
-                <h2>Browse by Category</h2>
-                <p>Each category carries a different energetic intention. Choose what resonates.</p>
+            <div class="cat-header">
+                <h3>Pendants & Necklaces</h3>
+                <span class="cat-count">3 pieces</span>
             </div>
-            <div class="cat-grid">
-                <div class="cat-card" style="background: rgba(183,138,66,0.1); border: 1px solid rgba(183,138,66,0.2);">
-                    <span class="cat-icon">⚡</span>
-                    <span class="cat-name">Protective</span>
-                    <span class="cat-sub">Wards off negative influence, shields energy, grounds and fortifies</span>
-                </div>
-                <div class="cat-card" style="background: rgba(166,58,44,0.1); border: 1px solid rgba(166,58,44,0.2);">
-                    <span class="cat-icon">☀️</span>
-                    <span class="cat-name">Incantation</span>
-                    <span class="cat-sub">Carries sacred text, used in daily practice of recitation and contact</span>
-                </div>
-                <div class="cat-card" style="background: rgba(49,82,71,0.1); border: 1px solid rgba(49,82,71,0.2);">
-                    <span class="cat-icon">☯️</span>
-                    <span class="cat-name">Balance</span>
-                    <span class="cat-sub">Yin-yang harmony, energy regulation, centering and stillness</span>
-                </div>
-                <div class="cat-card" style="background: rgba(36,25,21,0.08); border: 1px solid rgba(36,25,21,0.15);">
-                    <span class="cat-icon">🙏</span>
-                    <span class="cat-name">Practice</span>
-                    <span class="cat-sub">Beads, counters, ritual tools for formal Taoist practice</span>
-                </div>
-                <div class="cat-card" style="background: rgba(183,138,66,0.06); border: 1px solid rgba(183,138,66,0.15);">
-                    <span class="cat-icon">錢</span>
-                    <span class="cat-name">Wealth</span>
-                    <span class="cat-sub">Ancient coins and prosperity symbols, anchored in feng shui tradition</span>
-                </div>
-                <div class="cat-card" style="background: rgba(49,82,71,0.06); border: 1px solid rgba(49,82,71,0.12);">
-                    <span class="cat-icon">☰</span>
-                    <span class="cat-name">Knowledge</span>
-                    <span class="cat-sub">Ba gua, Yijing, and cosmic structure — for those who work with energy patterns</span>
-                </div>
+            <div class="items-grid">
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #b78a42 0%, #d4a84b 50%, #8a6418 100%);">
+                        <span class="placeholder-icon">錢</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Mountain Spirit Coin</p>
+                        <h3 class="item-name">Mountain Spirit Coin Necklace — Cinnabar Bronze</h3>
+                        <p class="item-desc">The classic Taoist protective amulet. Front: Mountain Spirit coin. Back: talisman script. Cast in cinnabar-dusted bronze. A staple for over a thousand years.</p>
+                    </div>
+                </article>
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #1a2e28 0%, #243d35 50%, #0f1e1a 100%);">
+                        <span class="placeholder-icon">📜</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Wenchang Lord</p>
+                        <h3 class="item-name">Wenchang Lord Pendant — Thunder-Struck Wood</h3>
+                        <p class="item-desc">Patron of study, exams, and career advancement. Carved into thunder-struck dates wood for extra potency. For students and professionals facing pivotal transitions.</p>
+                    </div>
+                </article>
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #3a2a1a 0%, #4a3820 50%, #2a1e0e 100%);">
+                        <span class="placeholder-icon">☀️</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Golden Light Incantation</p>
+                        <h3 class="item-name">Golden Light Incantation Pendant — Nine Palaces</h3>
+                        <p class="item-desc">The Golden Light Incantation engraved on one side, the Nine Palaces bagua on the other. Worn at the chest for daily protection and energy shielding.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLECTION: RINGS & CHARMS -->
+    <section class="cat-section">
+        <div class="container">
+            <div class="cat-header">
+                <h3>Rings & Charms</h3>
+                <span class="cat-count">2 pieces</span>
+            </div>
+            <div class="items-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 740px; margin: 0 auto;">
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #7a1a0e 0%, #a63a2c 50%, #4a0e06 100%);">
+                        <span class="placeholder-icon">🔥</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Nine Purple Fire</p>
+                        <h3 class="item-name">Nine Purple Fire Luck Ring</h3>
+                        <p class="item-desc">For the 2024–2043 Li Fire Great Cycle. Channels the era's dominant energy. Supports career authority and social magnetism.</p>
+                    </div>
+                </article>
+                <article class="item-card">
+                    <div class="item-image" style="background: linear-gradient(145deg, #241915 0%, #3a2d20 50%, #1a1108 100%);">
+                        <span class="placeholder-icon">☯️</span>
+                    </div>
+                    <div class="item-body">
+                        <p class="item-category">Five Emperor Coins</p>
+                        <h3 class="item-name">Pure Brass Five Emperor Coins Charm</h3>
+                        <p class="item-desc">The five most prosperous Qing reigns strung on red cord. Dissolves sha qi, attracts wealth, and stabilizes a space.</p>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -774,19 +742,49 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>How It Works</h2>
+                <p>Four simple steps from your birth details to your matched treasure.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-no">1</div>
+                    <h4>Submit Details</h4>
+                    <p>Birth date, time, and location. Plus the life area you want support with.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-no">2</div>
+                    <h4>We Read Your Chart</h4>
+                    <p>We analyze your Four Pillars, Day Master, and elemental gaps.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-no">3</div>
+                    <h4>Match Your Treasure</h4>
+                    <p>We select the piece from Longhushan that best addresses what your chart needs.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-no">4</div>
+                    <h4>Confirm & Ship</h4>
+                    <p>You approve the selection. We consecrate and ship directly from China with tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-card">
-                <h2>Get Your Matched Daoist Treasure</h2>
+                <h2>One Reading. One Treasure. $199.</h2>
                 <p>
-                    Every $199 order includes a personalized birth chart reading
-                    and one handcrafted Daoist treasure from this collection.
-                    We read your chart first, then match the piece.
-                    Shipped directly from China.
+                    No hidden fees. No upsells. One price covers the full chart analysis
+                    and the handcrafted Daoist treasure matched to it.
                 </p>
                 <div class="cta-buttons">
-                    <a href="checkout.html" class="btn btn-primary" style="font-size:16px; padding:0 32px;">
+                    <a href="checkout.html" class="btn btn-primary" style="font-size:16px; padding:0 36px;">
                         Order My Reading + Treasure — $199
                     </a>
                     <a href="instant_reading.html" class="btn">
@@ -794,7 +792,7 @@
                     </a>
                 </div>
                 <p class="cta-note">
-                    All pieces are handcrafted at Longhushan and consecrated before shipping. You can choose a category you prefer, or leave the selection entirely to our chart-based recommendation.
+                    Shipped directly from Longhushan, China. Most orders arrive within 14–21 days.
                 </p>
             </div>
         </div>
@@ -806,15 +804,15 @@
             <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="instant_reading.html">Free Reading</a>
-                <a href="full_bazi_reading.html">Full BaZi Report</a>
-                <a href="products.html">Products</a>
-                <a href="feng-shui-bracelet-meaning.html">Feng Shui Guide</a>
-                <a href="five-elements-explained.html">Five Elements</a>
+                <a href="products.html">Plans</a>
+                <a href="daoist-treasures.html">Daoist Treasures</a>
                 <a href="policies.html">Policies</a>
             </div>
-            <p class="footer-copy">© 2026 Oriental Destiny. All objects sourced from Longhushan Temple workshops.</p>
+            <p class="footer-copy">© 2026 Oriental Destiny. All treasures handcrafted at Longhushan Temple workshops.</p>
+            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
         </div>
     </footer>
+    <script src="version.js"></script>
 
 </body>
 </html>

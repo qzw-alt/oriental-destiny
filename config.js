@@ -1,1 +1,3 @@
-window.DEEPSEEK_API_KEY = "sk-638f115a6a004f99a80401518db9d231";
+// Replace with your actual DeepSeek API key before deployment.
+// This file is gitignored — never commit real keys.
+window.DEEPSEEK_API_KEY = "";

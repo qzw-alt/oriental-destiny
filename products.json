@@ -1,0 +1,112 @@
+{
+  "categories": [
+    {
+      "id": "bracelets",
+      "name": "Bracelets",
+      "products": [
+        {
+          "id": "thunder-wood-bracelet",
+          "name": "Thunder-Struck Dates Wood Bracelet — Ten Scriptures",
+          "categoryLabel": "Thunder-Struck Dates Wood",
+          "description": "Natural thunder-struck dates wood carved with the Ten Heavenly Scriptures mantra. Dark grain, dense and cool. One of the most protective materials in the Taoist arsenal.",
+          "image": null,
+          "icon": "⚡",
+          "gradient": "linear-gradient(145deg, #3d2a0e 0%, #5c3d1a 50%, #2e1c06 100%)"
+        },
+        {
+          "id": "incense-ash-bracelet",
+          "name": "Incense Ash Liuli Bracelet — Wealth Beast",
+          "categoryLabel": "Incense Ash Liuli",
+          "description": "Liuli beads made from temple incense ash, paired with a golden wealth beast charm. Each bead carries the resonance of consecrated prayer.",
+          "image": null,
+          "icon": "🙏",
+          "gradient": "linear-gradient(145deg, #2a1f14 0%, #3a2a1a 50%, #1a1208 100%)"
+        },
+        {
+          "id": "cinnabar-bracelet",
+          "name": "Cinnabar Bracelet — Red Cord Woven",
+          "categoryLabel": "Cinnabar Essence",
+          "description": "Natural cinnabar beads on hand-woven red cord. Used in Taoist ritual for millennia — for centering, focus, and 'gathering the qi.' Potent during one's birth year.",
+          "image": null,
+          "icon": "朱",
+          "gradient": "linear-gradient(145deg, #1a1520 0%, #2a2035 50%, #100e18 100%)"
+        },
+        {
+          "id": "five-elements-bracelet",
+          "name": "Five Elements Crystal Bracelet",
+          "categoryLabel": "Five Elements Crystal",
+          "description": "Five colors of crystal beads representing Wood, Fire, Earth, Metal, and Water. Matched to the specific elemental gap identified in your reading.",
+          "image": null,
+          "icon": "💎",
+          "gradient": "linear-gradient(145deg, #2a1510 0%, #3a1e12 50%, #1a0c06 100%)"
+        },
+        {
+          "id": "nine-fire-bracelet",
+          "name": "Nine Purple Fire Amethyst Bracelet",
+          "categoryLabel": "Nine Purple Fire",
+          "description": "Purple crystal beads for the 2024–2043 Li Fire Great Cycle. Supports career advancement and social magnetism during the dominant fire era.",
+          "image": null,
+          "icon": "🔮",
+          "gradient": "linear-gradient(145deg, #4a1530 0%, #6a2048 50%, #2a0e1c 100%)"
+        }
+      ]
+    },
+    {
+      "id": "pendants",
+      "name": "Pendants & Necklaces",
+      "products": [
+        {
+          "id": "mountain-spirit-coin",
+          "name": "Mountain Spirit Coin Necklace — Cinnabar Bronze",
+          "categoryLabel": "Mountain Spirit Coin",
+          "description": "The classic Taoist protective amulet. Front: Mountain Spirit coin. Back: talisman script. Cast in cinnabar-dusted bronze. A staple for over a thousand years.",
+          "image": null,
+          "icon": "錢",
+          "gradient": "linear-gradient(145deg, #b78a42 0%, #d4a84b 50%, #8a6418 100%)"
+        },
+        {
+          "id": "wenchang-pendant",
+          "name": "Wenchang Lord Pendant — Thunder-Struck Wood",
+          "categoryLabel": "Wenchang Lord",
+          "description": "Patron of study, exams, and career advancement. Carved into thunder-struck dates wood for extra potency. For students and professionals facing pivotal transitions.",
+          "image": null,
+          "icon": "📜",
+          "gradient": "linear-gradient(145deg, #1a2e28 0%, #243d35 50%, #0f1e1a 100%)"
+        },
+        {
+          "id": "golden-light-pendant",
+          "name": "Golden Light Incantation Pendant — Nine Palaces",
+          "categoryLabel": "Golden Light Incantation",
+          "description": "The Golden Light Incantation engraved on one side, the Nine Palaces bagua on the other. Worn at the chest for daily protection and energy shielding.",
+          "image": null,
+          "icon": "☀️",
+          "gradient": "linear-gradient(145deg, #3a2a1a 0%, #4a3820 50%, #2a1e0e 100%)"
+        }
+      ]
+    },
+    {
+      "id": "rings",
+      "name": "Rings & Charms",
+      "products": [
+        {
+          "id": "nine-fire-ring",
+          "name": "Nine Purple Fire Luck Ring",
+          "categoryLabel": "Nine Purple Fire",
+          "description": "For the 2024–2043 Li Fire Great Cycle. Channels the era's dominant energy. Supports career authority and social magnetism.",
+          "image": null,
+          "icon": "🔥",
+          "gradient": "linear-gradient(145deg, #7a1a0e 0%, #a63a2c 50%, #4a0e06 100%)"
+        },
+        {
+          "id": "five-emperor-charm",
+          "name": "Pure Brass Five Emperor Coins Charm",
+          "categoryLabel": "Five Emperor Coins",
+          "description": "The five most prosperous Qing reigns strung on red cord. Dissolves sha qi, attracts wealth, and stabilizes a space.",
+          "image": null,
+          "icon": "☯️",
+          "gradient": "linear-gradient(145deg, #241915 0%, #3a2d20 50%, #1a1108 100%)"
+        }
+      ]
+    }
+  ]
+}

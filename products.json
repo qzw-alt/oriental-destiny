@@ -11,7 +11,15 @@
           "description": "Natural thunder-struck dates wood carved with the Ten Heavenly Scriptures mantra. Dark grain, dense and cool. One of the most protective materials in the Taoist arsenal.",
           "image": null,
           "icon": "⚡",
-          "gradient": "linear-gradient(145deg, #3d2a0e 0%, #5c3d1a 50%, #2e1c06 100%)"
+          "gradient": "linear-gradient(145deg, #3d2a0e 0%, #5c3d1a 50%, #2e1c06 100%)",
+          "visualType": "bracelet",
+          "materials": "Thunder-struck dates wood, hand-braided cord",
+          "symbolism": "Dates wood struck by lightning carries the most potent yang energy in the Taoist tradition. Used for protection against sha qi and for centering scattered energy.",
+          "bestFor": ["Protection", "Grounding", "Energy Clearing"],
+          "energyType": "Wood (Yang)",
+          "ritualNote": "Carved with the Ten Heavenly Scriptures mantra at Longhushan temple workshops.",
+          "beadCount": 8,
+          "beadColors": ["#6b4c2a", "#5a3a1e", "#4a2a10", "#3d2a0e", "#5c3d1a", "#6b4c2a", "#4a2a10", "#3a2010"]
         },
         {
           "id": "incense-ash-bracelet",
@@ -20,7 +28,15 @@
           "description": "Liuli beads made from temple incense ash, paired with a golden wealth beast charm. Each bead carries the resonance of consecrated prayer.",
           "image": null,
           "icon": "🙏",
-          "gradient": "linear-gradient(145deg, #2a1f14 0%, #3a2a1a 50%, #1a1208 100%)"
+          "gradient": "linear-gradient(145deg, #2a1f14 0%, #3a2a1a 50%, #1a1208 100%)",
+          "visualType": "bracelet",
+          "materials": "Temple incense ash liuli, gold-toned wealth beast charm",
+          "symbolism": "Liuli beads formed from temple incense ash carry the resonance of consecrated prayer. The wealth beast charm draws prosperity and guards accumulated resources.",
+          "bestFor": ["Wealth", "Prosperity", "Business"],
+          "energyType": "Earth (Yin)",
+          "ritualNote": "Beads formed from incense ash collected at Longhushan temple ceremonies.",
+          "beadCount": 8,
+          "beadColors": ["#3a2a1a", "#4a3a28", "#2a1f14", "#3a2a1a", "#4a3a28", "#2a1f14", "#3a2a1a", "#2a1f14"]
         },
         {
           "id": "cinnabar-bracelet",
@@ -29,7 +45,15 @@
           "description": "Natural cinnabar beads on hand-woven red cord. Used in Taoist ritual for millennia — for centering, focus, and 'gathering the qi.' Potent during one's birth year.",
           "image": null,
           "icon": "朱",
-          "gradient": "linear-gradient(145deg, #1a1520 0%, #2a2035 50%, #100e18 100%)"
+          "gradient": "linear-gradient(145deg, #1a1520 0%, #2a2035 50%, #100e18 100%)",
+          "visualType": "bracelet",
+          "materials": "Natural cinnabar, hand-woven red cord",
+          "symbolism": "Cinnabar has been used in Taoist ritual for millennia. It centers the mind, focuses intention, and gathers qi. Especially potent during one's zodiac birth year (ben ming nian).",
+          "bestFor": ["Centering", "Focus", "Birth Year Protection"],
+          "energyType": "Fire (Yang)",
+          "ritualNote": "Red cord woven in the traditional Longhushan pattern for qi gathering.",
+          "beadCount": 8,
+          "beadColors": ["#d44a3a", "#c43a2a", "#8b1a1a", "#d44a3a", "#c43a2a", "#8b1a1a", "#d44a3a", "#c43a2a"]
         },
         {
           "id": "five-elements-bracelet",
@@ -38,7 +62,15 @@
           "description": "Five colors of crystal beads representing Wood, Fire, Earth, Metal, and Water. Matched to the specific elemental gap identified in your reading.",
           "image": null,
           "icon": "💎",
-          "gradient": "linear-gradient(145deg, #2a1510 0%, #3a1e12 50%, #1a0c06 100%)"
+          "gradient": "linear-gradient(145deg, #2a1510 0%, #3a1e12 50%, #1a0c06 100%)",
+          "visualType": "bracelet",
+          "materials": "Five colors of natural crystal (green, red, amber, white, blue), elastic cord",
+          "symbolism": "Each bead represents one of the Five Elements — Wood, Fire, Earth, Metal, Water. The sequence is matched to the specific elemental gap identified in your birth chart reading.",
+          "bestFor": ["Elemental Balance", "Harmony", "All-Purpose"],
+          "energyType": "Five Elements (Balanced)",
+          "ritualNote": "Crystal selection adjusted to your chart's specific elemental needs after reading.",
+          "beadCount": 10,
+          "beadColors": ["#5a8a4a", "#d44a3a", "#c4a44a", "#d4d4d4", "#4a6a9a", "#5a8a4a", "#d44a3a", "#c4a44a", "#d4d4d4", "#4a6a9a"]
         },
         {
           "id": "nine-fire-bracelet",
@@ -47,7 +79,15 @@
           "description": "Purple crystal beads for the 2024–2043 Li Fire Great Cycle. Supports career advancement and social magnetism during the dominant fire era.",
           "image": null,
           "icon": "🔮",
-          "gradient": "linear-gradient(145deg, #4a1530 0%, #6a2048 50%, #2a0e1c 100%)"
+          "gradient": "linear-gradient(145deg, #4a1530 0%, #6a2048 50%, #2a0e1c 100%)",
+          "visualType": "bracelet",
+          "materials": "Natural amethyst crystal, elastic cord",
+          "symbolism": "Purple crystal aligned with the 2024–2043 Li Fire Great Cycle. Supports career advancement and social magnetism during the dominant fire era — a 20-year window of opportunity.",
+          "bestFor": ["Career", "Social Magnetism", "Fire Cycle"],
+          "energyType": "Fire (Li)",
+          "ritualNote": "Tuned to the Nine Purple Fire energy of the current 20-year Li Fire cycle.",
+          "beadCount": 8,
+          "beadColors": ["#9b4dca", "#8b3dba", "#4a1530", "#9b4dca", "#8b3dba", "#4a1530", "#9b4dca", "#8b3dba"]
         }
       ]
     },
@@ -62,7 +102,15 @@
           "description": "The classic Taoist protective amulet. Front: Mountain Spirit coin. Back: talisman script. Cast in cinnabar-dusted bronze. A staple for over a thousand years.",
           "image": null,
           "icon": "錢",
-          "gradient": "linear-gradient(145deg, #b78a42 0%, #d4a84b 50%, #8a6418 100%)"
+          "gradient": "linear-gradient(145deg, #b78a42 0%, #d4a84b 50%, #8a6418 100%)",
+          "visualType": "pendant",
+          "materials": "Cinnabar-dusted bronze, adjustable cord",
+          "symbolism": "The classic Taoist protective amulet for over a thousand years. Front bears the Mountain Spirit coin; back carries talisman script. Worn to deflect sha qi and guard the wearer's energy field.",
+          "bestFor": ["Protection", "Warding", "Daily Wear"],
+          "energyType": "Metal (Yang)",
+          "ritualNote": "Cast in cinnabar-dusted bronze at Longhushan, then consecrated.",
+          "beadCount": 0,
+          "beadColors": []
         },
         {
           "id": "wenchang-pendant",
@@ -71,7 +119,15 @@
           "description": "Patron of study, exams, and career advancement. Carved into thunder-struck dates wood for extra potency. For students and professionals facing pivotal transitions.",
           "image": null,
           "icon": "📜",
-          "gradient": "linear-gradient(145deg, #1a2e28 0%, #243d35 50%, #0f1e1a 100%)"
+          "gradient": "linear-gradient(145deg, #1a2e28 0%, #243d35 50%, #0f1e1a 100%)",
+          "visualType": "pendant",
+          "materials": "Thunder-struck dates wood, braided cord",
+          "symbolism": "Wenchang Wang is the Taoist patron of literature, study, and career advancement. Carved into thunder-struck wood for extra potency. For students, scholars, and professionals facing pivotal transitions.",
+          "bestFor": ["Study", "Exams", "Career Advancement"],
+          "energyType": "Wood (Yang)",
+          "ritualNote": "Carved by hand and consecrated at Wenchang Hall, Longhushan.",
+          "beadCount": 0,
+          "beadColors": []
         },
         {
           "id": "golden-light-pendant",
@@ -80,7 +136,15 @@
           "description": "The Golden Light Incantation engraved on one side, the Nine Palaces bagua on the other. Worn at the chest for daily protection and energy shielding.",
           "image": null,
           "icon": "☀️",
-          "gradient": "linear-gradient(145deg, #3a2a1a 0%, #4a3820 50%, #2a1e0e 100%)"
+          "gradient": "linear-gradient(145deg, #3a2a1a 0%, #4a3820 50%, #2a1e0e 100%)",
+          "visualType": "pendant",
+          "materials": "Bronze with gold finish, leather cord",
+          "symbolism": "The Golden Light Incantation engraved on one side, the Nine Palaces bagua on the other. Worn at the chest for daily protection and energy shielding — one of the most comprehensive protective amulets in the Taoist tradition.",
+          "bestFor": ["Energy Shielding", "Daily Protection", "Spiritual"],
+          "energyType": "Metal (Yang)",
+          "ritualNote": "Double-sided engraving with the full Golden Light Sutra incantation.",
+          "beadCount": 0,
+          "beadColors": []
         }
       ]
     },
@@ -95,7 +159,15 @@
           "description": "For the 2024–2043 Li Fire Great Cycle. Channels the era's dominant energy. Supports career authority and social magnetism.",
           "image": null,
           "icon": "🔥",
-          "gradient": "linear-gradient(145deg, #7a1a0e 0%, #a63a2c 50%, #4a0e06 100%)"
+          "gradient": "linear-gradient(145deg, #7a1a0e 0%, #a63a2c 50%, #4a0e06 100%)",
+          "visualType": "ring",
+          "materials": "Copper alloy with cinnabar inlay",
+          "symbolism": "Tuned to the 2024–2043 Li Fire Great Cycle. Channels the era's dominant energy through the hand — the ring finger connects to the heart meridian in traditional Chinese medicine.",
+          "bestFor": ["Career Authority", "Social Magnetism", "Fire Cycle"],
+          "energyType": "Fire (Li)",
+          "ritualNote": "Cinnabar inlay set by Longhushan craftsmen. Sized to fit most adults.",
+          "beadCount": 0,
+          "beadColors": []
         },
         {
           "id": "five-emperor-charm",
@@ -104,7 +176,15 @@
           "description": "The five most prosperous Qing reigns strung on red cord. Dissolves sha qi, attracts wealth, and stabilizes a space.",
           "image": null,
           "icon": "☯️",
-          "gradient": "linear-gradient(145deg, #241915 0%, #3a2d20 50%, #1a1108 100%)"
+          "gradient": "linear-gradient(145deg, #241915 0%, #3a2d20 50%, #1a1108 100%)",
+          "visualType": "charm",
+          "materials": "Pure brass, red cord",
+          "symbolism": "The five most prosperous Qing reigns — Shunzhi, Kangxi, Yongzheng, Qianlong, Jiaqing — strung on red cord. Dissolves sha qi, attracts wealth energy, and stabilizes the feng shui of any space.",
+          "bestFor": ["Wealth Attraction", "Space Clearing", "Feng Shui"],
+          "energyType": "Metal (Yang)",
+          "ritualNote": "Each coin bears the authentic reign title of its emperor. Strung in chronological order.",
+          "beadCount": 0,
+          "beadColors": []
         }
       ]
     }

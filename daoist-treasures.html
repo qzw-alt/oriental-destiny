@@ -12,10 +12,10 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="$199 includes a personalized Feng Shui birth chart reading + one handcrafted Daoist treasure from Longhushan. Shipped directly from China.">
+    <meta name="description" content="Browse handcrafted Daoist bracelets, pendants, rings, and charms from Longhushan. $199 includes a personalized birth chart reading and one matched treasure. Shipped from China.">
     <link rel="canonical" href="https://oriental-destiny.com/daoist-treasures.html">
     <meta property="og:title" content="Daoist Treasures from Longhushan | $199 Reading + Treasure | Oriental Destiny">
-    <meta property="og:description" content="Personalized birth chart reading + one handcrafted Daoist treasure from Longhushan. Bracelets, pendants, rings, and charms matched to your chart.">
+    <meta property="og:description" content="Browse handcrafted Daoist bracelets, pendants, rings, and charms from Longhushan. $199 includes a personalized birth chart reading and one matched treasure.">
     <meta property="og:type" content="website">
     <title>Daoist Treasures from Longhushan | $199 Reading + Treasure | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -495,16 +495,333 @@
             color: rgba(36, 25, 21, 0.4);
         }
 
+        /* ─── CATALOG HERO ─── */
+        .catalog-hero {
+            padding: 48px 0 20px;
+        }
+        .catalog-hero-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .catalog-hero-text h1 {
+            font-size: clamp(28px, 4.5vw, 48px);
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+        .catalog-hero-text p {
+            color: rgba(36, 25, 21, 0.65);
+            font-size: 1.05rem;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+        .catalog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(166, 58, 44, 0.1);
+            color: var(--cinnabar);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .catalog-hero-price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .price-badge {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cinnabar);
+            line-height: 1;
+        }
+        .price-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(36, 25, 21, 0.5);
+        }
+
+        /* ─── CATEGORY FILTER TABS ─── */
+        .catalog-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 36px;
+        }
+        .filter-pill {
+            min-height: 38px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 253, 249, 0.7);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(36, 25, 21, 0.7);
+            font-family: inherit;
+        }
+        .filter-pill:hover {
+            border-color: var(--gold);
+            color: var(--ink);
+        }
+        .filter-pill.active {
+            background: var(--ink);
+            color: #fff8ef;
+            border-color: var(--ink);
+        }
+
+        /* ─── CATALOG GRID ─── */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* ─── PRODUCT CARD ─── */
+        .product-card {
+            background: rgba(255, 253, 249, 0.94);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 56px rgba(70, 41, 24, 0.18);
+        }
+
+        /* ─── CARD VISUAL CANVAS ─── */
+        .card-visual {
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-visual[aria-hidden="true"] {
+            user-select: none;
+        }
+
+        /* ─── CARD BODY ─── */
+        .card-body {
+            padding: 20px 22px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .card-category {
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--ink);
+        }
+        .card-materials {
+            font-size: 0.82rem;
+            color: rgba(36, 25, 21, 0.55);
+            font-style: italic;
+        }
+        .card-symbolism {
+            font-size: 0.88rem;
+            color: rgba(36, 25, 21, 0.7);
+            line-height: 1.6;
+        }
+        .card-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 4px;
+        }
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(49, 82, 71, 0.08);
+            color: var(--pine);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        .tag.energy {
+            background: rgba(166, 58, 44, 0.08);
+            color: var(--cinnabar);
+        }
+        .card-ritual {
+            margin-top: 4px;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            font-size: 0.78rem;
+            color: rgba(36, 25, 21, 0.5);
+            line-height: 1.55;
+        }
+        .card-bundle-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            border: 1px solid rgba(166, 58, 44, 0.2);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(166, 58, 44, 0.05);
+        }
+
+        /* ─── CSS BEAD (bracelet) ─── */
+        .bead {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.25),
+                inset 0 -2px 3px rgba(0,0,0,0.2),
+                inset 0 2px 3px rgba(255,255,255,0.2);
+        }
+        .bead.thunder-wood  { background: radial-gradient(circle at 40% 35%, #6b4c2a, #3d2a0e 70%, #1e1004); }
+        .bead.incense-ash   { background: radial-gradient(circle at 40% 35%, #4a3a28, #2a1f14 60%, #1a1208); }
+        .bead.cinnabar      { background: radial-gradient(circle at 40% 35%, #e04a3a, #8b1a1a 60%, #4a0808); }
+        .bead.amethyst      { background: radial-gradient(circle at 40% 35%, #9b4dca, #4a1530 60%, #2a0a18); }
+        .bead.crystal-wood  { background: radial-gradient(circle at 40% 35%, #5a8a4a, #2a4a1a 70%, #1a2a0a); }
+        .bead.crystal-fire  { background: radial-gradient(circle at 40% 35%, #dd5a3a, #8a2a1a 70%, #4a0e06); }
+        .bead.crystal-earth { background: radial-gradient(circle at 40% 35%, #c4a44a, #8a6a2a 70%, #4a3a10); }
+        .bead.crystal-metal { background: radial-gradient(circle at 40% 35%, #e0e0e0, #8a8a8a 70%, #4a4a4a); }
+        .bead.crystal-water { background: radial-gradient(circle at 40% 35%, #4a6a9a, #1a2a4a 70%, #0a1220); }
+
+        /* Cord ellipse behind beads */
+        .bracelet-cord {
+            position: absolute;
+            border-bottom: 1.5px solid rgba(180,140,100,0.35);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ─── CSS PENDANT ─── */
+        .pendant-chain {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(180deg, #8a7a60, #3a2a18, #8a7a60);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pendant-body {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pendant-body.coin-gold {
+            border-radius: 50%;
+            background: radial-gradient(circle at 45% 40%, #e8c860, #b78a42 50%, #6b4a18 90%);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 3px rgba(0,0,0,0.12);
+        }
+        .coin-hole {
+            position: absolute;
+            width: 16%;
+            height: 16%;
+            background: transparent;
+            border: 2px solid rgba(0,0,0,0.18);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .pendant-body.wood-tablet {
+            border-radius: 6px 6px 3px 3px;
+            background: linear-gradient(175deg, #3a5a40, #1a2e28);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.08);
+        }
+        .pendant-body.golden-medallion {
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #f0d870, #b78a42 55%, #6b4a18 95%);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3), inset 0 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        /* ─── CSS RING ─── */
+        .ring-band {
+            position: absolute;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.25),
+                inset 0 2px 4px rgba(255,255,255,0.25),
+                inset 0 -3px 6px rgba(0,0,0,0.2);
+        }
+        .ring-band.cinnabar-ring {
+            border: 14px solid;
+            border-color: #d44a3a #a63a2c #8b1a1a #b84a3c;
+        }
+
+        /* ─── CSS COIN STACK (charm) ─── */
+        .charm-canvas { position: relative; width: 100%; height: 100%; }
+        .coin-stack {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(0,0,0,0.1);
+            background: radial-gradient(circle at 45% 40%, #e8d898, #b78a42 55%, #7a5a20 95%);
+        }
+
+        /* ─── INLINE BUNDLE CTA ─── */
+        .bundle-cta {
+            padding: 40px 0 64px;
+        }
+        .bundle-cta-card {
+            background: linear-gradient(135deg, rgba(166,58,44,0.06), rgba(183,138,66,0.08));
+            border: 1px solid rgba(166, 58, 44, 0.15);
+            border-radius: 20px;
+            padding: 32px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .bundle-cta-card p {
+            font-size: 1.05rem;
+            color: rgba(36, 25, 21, 0.75);
+            max-width: 520px;
+            line-height: 1.65;
+        }
+        .bundle-cta-card .btn-primary {
+            flex-shrink: 0;
+        }
+
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
             .value-grid, .items-grid { grid-template-columns: repeat(2, 1fr); }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
             .origin-card, .cta-card { padding: 36px 24px; }
         }
         @media (max-width: 600px) {
+            .catalog-grid { grid-template-columns: 1fr; }
             .value-grid, .items-grid, .steps-grid { grid-template-columns: 1fr; }
             .topnav a:not(.btn-primary) { display: none; }
-            .hero { padding-top: 48px; }
+            .catalog-hero-inner { flex-direction: column; }
+            .catalog-hero-price { flex-direction: row; gap: 8px; align-items: baseline; }
+            .bundle-cta-card { flex-direction: column; text-align: center; }
+            .catalog-hero { padding-top: 32px; }
         }
     </style>
 </head>
@@ -525,51 +842,42 @@
         </div>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- CATALOG HERO -->
+    <section class="catalog-hero">
         <div class="container">
-            <div class="hero-badge">From Longhushan, Jiangxi — Taoist Homeland</div>
-            <h1>Your Birth Chart Reading<br>+ A Handcrafted Daoist Treasure</h1>
-            <div class="hero-divider"></div>
-            <p class="hero-sub">
-                Every $199 order includes a personalized Feng Shui reading
-                and one handcrafted piece from the Longhushan collection.
-                We read your chart first. Then we match the treasure.
-            </p>
-            <div class="hero-price">$199</div>
-            <div class="hero-price-note">One price. Reading + treasure. Shipped from China.</div>
-            <nav class="topnav" style="justify-content:center;">
-                <a href="checkout.html" class="btn-primary" style="font-size:16px; padding:0 32px;">Order My Reading + Treasure</a>
-                <a href="instant_reading.html" class="btn">Try Free Preview First</a>
-            </nav>
-        </div>
-    </section>
-
-    <!-- VALUE PROP -->
-    <section class="value-section">
-        <div class="container">
-            <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-icon">📜</div>
-                    <h3>Personalized Reading</h3>
-                    <p>We analyze your Four Pillars, Day Master, and elemental balance to understand what your chart needs.</p>
+            <div class="catalog-hero-inner">
+                <div class="catalog-hero-text">
+                    <div class="catalog-hero-badge">From Longhushan, Jiangxi — Taoist Homeland</div>
+                    <h1>Daoist Treasures<br>from Longhushan</h1>
+                    <p>Browse the collection. Each piece is handcrafted at the temple workshops. Your birth chart reading determines which treasure matches your energy — every $199 order includes both.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">⚡</div>
-                    <h3>Matched Treasure</h3>
-                    <p>Based on your reading, we select one piece from bracelets, pendants, rings, or charms in the Longhushan collection.</p>
+                <div class="catalog-hero-price">
+                    <span class="price-badge">$199</span>
+                    <span class="price-label">Reading + Treasure</span>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">📦</div>
-                    <h3>Shipped From China</h3>
-                    <p>Your treasure is consecrated at Longhushan and shipped directly to you with tracking. Worldwide delivery.</p>
-                </div>
+            </div>
+            <div class="catalog-filters" id="catalog-filters">
+                <!-- Rendered by JS -->
             </div>
         </div>
     </section>
 
-    <!-- PRODUCT COLLECTIONS (rendered from products.json) -->
-    <div id="product-collections"></div>
+    <!-- PRODUCT CATALOG (rendered from products.json) -->
+    <section class="catalog-section">
+        <div class="container">
+            <div id="product-catalog" class="catalog-grid"></div>
+        </div>
+    </section>
+
+    <!-- INLINE BUNDLE CTA -->
+    <section class="bundle-cta">
+        <div class="container">
+            <div class="bundle-cta-card">
+                <p>You don't pick the exact piece. <strong>Your birth chart does.</strong> Every $199 order includes a full Four Pillars reading and one treasure — matched to what your chart needs, confirmed with you before shipping.</p>
+                <a href="checkout.html" class="btn btn-primary" style="font-size:16px; padding:0 32px;">Order My Reading + Treasure</a>
+            </div>
+        </div>
+    </section>
 
     <!-- ORIGIN STORY -->
     <section class="origin">
@@ -677,51 +985,202 @@
         try {
             const res = await fetch('products.json');
             const data = await res.json();
-            const container = document.getElementById('product-collections');
-            if (!container || !data.categories) return;
+            const filtersEl = document.getElementById('catalog-filters');
+            const catalogEl = document.getElementById('product-catalog');
+            if (!catalogEl || !data.categories) return;
 
-            data.categories.forEach((cat, catIndex) => {
-                const section = document.createElement('section');
-                section.className = 'cat-section';
-                if (catIndex === 0) section.id = 'treasures';
+            const allProducts = [];
+            const categoryLabels = {};
 
-                const gridStyle = cat.id === 'rings'
-                    ? 'grid-template-columns: repeat(2, 1fr); max-width: 740px; margin: 0 auto;'
-                    : '';
-
-                const cardsHtml = cat.products.map(p => {
-                    const imgHtml = p.image
-                        ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`
-                        : `<span class="placeholder-icon">${p.icon || '✦'}</span>`;
-                    return `
-                        <article class="item-card">
-                            <div class="item-image" style="background: ${p.gradient || '#333'};">
-                                ${imgHtml}
-                            </div>
-                            <div class="item-body">
-                                <p class="item-category">${p.categoryLabel}</p>
-                                <h3 class="item-name">${p.name}</h3>
-                                <p class="item-desc">${p.description}</p>
-                            </div>
-                        </article>
-                    `;
-                }).join('');
-
-                section.innerHTML = `
-                    <div class="container">
-                        <div class="cat-header">
-                            <h3>${cat.name}</h3>
-                            <span class="cat-count">${cat.products.length} piece${cat.products.length > 1 ? 's' : ''}</span>
-                        </div>
-                        <div class="items-grid" style="${gridStyle}">${cardsHtml}</div>
-                    </div>
-                `;
-                container.appendChild(section);
+            data.categories.forEach(cat => {
+                categoryLabels[cat.id] = cat.name;
+                cat.products.forEach(p => {
+                    p._catId = cat.id;
+                    allProducts.push(p);
+                });
             });
+
+            // Build filter pills
+            let filterHtml = '<button class="filter-pill active" data-category="all" aria-pressed="true">All Treasures</button>';
+            data.categories.forEach(cat => {
+                filterHtml += `<button class="filter-pill" data-category="${cat.id}" aria-pressed="false">${cat.name}</button>`;
+            });
+            filtersEl.innerHTML = filterHtml;
+
+            // Build all product cards
+            catalogEl.innerHTML = allProducts.map(p => buildProductCard(p)).join('');
+
+            // Filter click handlers
+            filtersEl.querySelectorAll('.filter-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    filtersEl.querySelectorAll('.filter-pill').forEach(p => {
+                        p.classList.remove('active');
+                        p.setAttribute('aria-pressed', 'false');
+                    });
+                    pill.classList.add('active');
+                    pill.setAttribute('aria-pressed', 'true');
+
+                    const filter = pill.dataset.category;
+                    catalogEl.querySelectorAll('.product-card').forEach(card => {
+                        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+                    });
+
+                    gtag('event', 'catalog_filter', { filter_category: filter });
+                });
+            });
+
+            // GA4 card click tracking
+            catalogEl.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    gtag('event', 'product_card_click', {
+                        product_name: card.querySelector('.card-name')?.textContent || '',
+                        product_category: card.querySelector('.card-category')?.textContent || ''
+                    });
+                });
+            });
+
         } catch (e) {
             console.error('Failed to load products:', e);
         }
     }
+
+    function buildProductCard(p) {
+        return `
+            <article class="product-card" data-category="${p._catId}">
+                ${getVisualHtml(p)}
+                <div class="card-body">
+                    <span class="card-category">${p.categoryLabel}</span>
+                    <h3 class="card-name">${p.name}</h3>
+                    <p class="card-symbolism">${p.symbolism || p.description}</p>
+                    <p class="card-materials">${p.materials || ''}</p>
+                    <div class="card-tags">
+                        ${(p.bestFor || []).map(t => `<span class="tag">${t}</span>`).join('')}
+                        ${p.energyType ? `<span class="tag energy">${p.energyType}</span>` : ''}
+                    </div>
+                    ${p.ritualNote ? `<p class="card-ritual">${p.ritualNote}</p>` : ''}
+                    <span class="card-bundle-badge">Included in $199 bundle</span>
+                </div>
+            </article>
+        `;
+    }
+
+    function getVisualHtml(p) {
+        switch (p.visualType) {
+            case 'bracelet': return renderBraceletVisual(p);
+            case 'pendant':  return renderPendantVisual(p);
+            case 'ring':     return renderRingVisual(p);
+            case 'charm':    return renderCharmVisual(p);
+            default:         return `<div class="card-visual" style="background:${p.gradient};"><span style="font-size:48px;opacity:0.5;">${p.icon || '✦'}</span></div>`;
+        }
+    }
+
+    function renderBraceletVisual(p) {
+        const beads = (p.beadColors && p.beadColors.length) ? p.beadColors : ['#6b4c2a'];
+        const count = p.beadCount || 8;
+        const beadSize = 15; // percent of canvas
+        const arcRx = 36; // horizontal radius percent
+        const arcRy = 18; // vertical radius percent
+        const cx = 50;
+        const cy = 52;
+
+        let beadsHtml = '';
+        for (let i = 0; i < count; i++) {
+            const angle = (i / (count - 1)) * Math.PI;
+            const x = cx - arcRx * Math.cos(angle);
+            const y = cy - arcRy * Math.sin(angle);
+            const color = beads[i % beads.length];
+            const beadClass = getBeadClass(p.id, i);
+            beadsHtml += `<span class="bead ${beadClass}" style="width:${beadSize}%;height:${beadSize}%;left:${(x - beadSize/2).toFixed(1)}%;top:${(y - beadSize/2).toFixed(1)}%;"></span>`;
+        }
+
+        const cordW = arcRx * 2;
+        const cordH = arcRy * 2;
+        const cordL = cx - arcRx;
+        const cordT = cy - arcRy;
+
+        return `
+            <div class="card-visual" aria-hidden="true" style="background:${p.gradient};">
+                <div class="bracelet-cord" style="width:${cordW}%;height:${cordH}%;left:${cordL.toFixed(0)}%;top:${cordT.toFixed(0)}%;"></div>
+                ${beadsHtml}
+            </div>`;
+    }
+
+    function getBeadClass(productId, index) {
+        if (productId === 'thunder-wood-bracelet') return 'thunder-wood';
+        if (productId === 'incense-ash-bracelet')  return 'incense-ash';
+        if (productId === 'cinnabar-bracelet')      return 'cinnabar';
+        if (productId === 'nine-fire-bracelet')     return 'amethyst';
+        if (productId === 'five-elements-bracelet') {
+            const classes = ['crystal-wood', 'crystal-fire', 'crystal-earth', 'crystal-metal', 'crystal-water'];
+            return classes[index % 5];
+        }
+        return 'thunder-wood';
+    }
+
+    function renderPendantVisual(p) {
+        const chainH = 28;
+        const pendantSz = 36;
+        const topPct = 50 - pendantSz / 2;
+
+        let bodyHtml = '';
+        switch (p.id) {
+            case 'mountain-spirit-coin':
+                bodyHtml = `
+                    <div class="pendant-body coin-gold" style="width:${pendantSz}%;aspect-ratio:1;top:${topPct + 12}%;left:50%;">
+                        <div class="coin-hole"></div>
+                    </div>`;
+                break;
+            case 'wenchang-pendant':
+                bodyHtml = `
+                    <div class="pendant-body wood-tablet" style="width:${pendantSz * 0.65}%;height:${pendantSz * 1.1}%;top:${topPct + 8}%;left:50%;"></div>`;
+                break;
+            case 'golden-light-pendant':
+                bodyHtml = `
+                    <div class="pendant-body golden-medallion" style="width:${pendantSz}%;aspect-ratio:1;top:${topPct + 12}%;left:50%;"></div>`;
+                break;
+        }
+
+        return `
+            <div class="card-visual" aria-hidden="true" style="background:${p.gradient};">
+                <div class="pendant-chain" style="height:${chainH}%;top:${8}%;"></div>
+                ${bodyHtml}
+            </div>`;
+    }
+
+    function renderRingVisual(p) {
+        const ringSz = 48;
+        const topPct = 50 - ringSz / 2;
+        const leftPct = 50 - ringSz / 2;
+
+        return `
+            <div class="card-visual" aria-hidden="true" style="background:${p.gradient};">
+                <div class="ring-band cinnabar-ring" style="width:${ringSz}%;height:${ringSz}%;top:${topPct}%;left:${leftPct}%;"></div>
+            </div>`;
+    }
+
+    function renderCharmVisual(p) {
+        const coins = [
+            { x: 42, y: 46, r: 12 },
+            { x: 28, y: 38, r: 11 },
+            { x: 56, y: 42, r: 10 },
+            { x: 36, y: 54, r: 11 },
+            { x: 50, y: 52, r: 9 }
+        ];
+
+        let coinsHtml = coins.map((c, i) =>
+            `<div class="coin-stack" style="width:${c.r*2}%;height:${c.r*2}%;left:${c.x - c.r}%;top:${c.y - c.r}%;z-index:${i};transform:rotate(${(i-2)*8}deg);"></div>`
+        ).join('');
+
+        return `
+            <div class="card-visual" aria-hidden="true" style="background:${p.gradient};">
+                <div class="charm-canvas">
+                    ${coinsHtml}
+                    <div style="position:absolute;top:24%;left:38%;width:3px;height:42%;background:linear-gradient(180deg,#c44a3a,#8b1a1a);border-radius:2px;transform:rotate(-8deg);z-index:10;"></div>
+                    <div style="position:absolute;top:34%;left:48%;width:3px;height:38%;background:linear-gradient(180deg,#c44a3a,#8b1a1a);border-radius:2px;transform:rotate(5deg);z-index:10;"></div>
+                </div>
+            </div>`;
+    }
+
     renderProducts();
     </script>
 

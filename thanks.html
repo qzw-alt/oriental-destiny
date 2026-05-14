@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google Analytics 4 -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,6 +26,7 @@
             --paper: #fbf5ec;
             --cinnabar: #a63a2c;
             --jade: #2d6a4f;
+            --gold: #b78a42;
             --line: rgba(36, 25, 21, 0.1);
         }
 
@@ -79,13 +80,9 @@
             font-weight: 600;
         }
 
-        .payment-confirmed.show {
-            display: flex;
-        }
+        .payment-confirmed.show { display: flex; }
 
-        .payment-confirmed svg {
-            flex-shrink: 0;
-        }
+        .payment-confirmed svg { flex-shrink: 0; }
 
         h1 {
             font-size: clamp(30px, 6vw, 44px);
@@ -108,9 +105,7 @@
             margin-bottom: 28px;
         }
 
-        .info p {
-            color: rgba(36, 25, 21, 0.76);
-        }
+        .info p { color: rgba(36, 25, 21, 0.76); }
 
         .btn {
             display: inline-flex;
@@ -123,6 +118,48 @@
             color: #fff8ef;
             text-decoration: none;
             font-weight: 700;
+            border: none;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn:hover { opacity: 0.9; }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(36, 25, 21, 0.2);
+            color: var(--ink);
+            box-shadow: none;
+        }
+
+        .instant-preview {
+            display: none;
+            background: rgba(183, 138, 66, 0.08);
+            border: 1px solid rgba(183, 138, 66, 0.2);
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .instant-preview.show { display: block; }
+
+        .instant-preview h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .instant-preview p {
+            color: rgba(36, 25, 21, 0.7);
+            margin-bottom: 16px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .note {
@@ -134,22 +171,25 @@
         .followup {
             margin-bottom: 26px;
             color: rgba(36, 25, 21, 0.74);
+            text-align: left;
+        }
+
+        footer {
+            margin-top: 18px;
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.55);
+        }
+
+        footer a {
+            color: rgba(36, 25, 21, 0.7);
+            margin: 0 6px;
         }
     </style>
-    <script>
-        (function() {
-            const params = new URLSearchParams(window.location.search);
-            const paid = params.has('tx') || params.has('paymentId') || params.has('token');
-            if (paid) {
-                const badge = document.getElementById('paymentBadge');
-                if (badge) badge.classList.add('show');
-            }
-        })();
-    </script>
 </head>
 <body>
     <main class="card">
         <a class="brand" href="index.html" data-i18n="th_brand">Oriental Destiny</a>
+
         <div class="payment-confirmed" id="paymentBadge">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
@@ -157,14 +197,19 @@
             </svg>
             <span data-i18n="th_badge">Payment Confirmed — Thank you!</span>
         </div>
+
         <h1 data-i18n="th_title">Your order details have been received.</h1>
         <p class="subtitle" data-i18n="th_subtitle">We have received your $199 order. You will receive a personalized reading and Daoist treasure recommendation by email based on your birth chart, life focus, and Five Elements balance. Most recommendations are sent within <strong>7–10 days</strong>, and the piece ships directly from China after you confirm.</p>
 
-        <div style="background: rgba(183, 138, 66, 0.08); border: 1px solid rgba(183, 138, 66, 0.2); border-radius: 16px; padding: 22px 24px; margin: 24px 0;">
+        <!-- Instant preview: shown when payment is confirmed -->
+        <div class="instant-preview" id="instantPreview">
             <div style="font-weight: 600; color: var(--cinnabar); margin-bottom: 8px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;" data-i18n="th_instant_title">Available now — no waiting</div>
-            <h2 style="font-size: 22px; margin-bottom: 8px;" data-i18n="th_instant_heading">Your complete birth chart analysis is ready</h2>
-            <p style="color: rgba(36, 25, 21, 0.7); margin-bottom: 16px;" data-i18n="th_instant_desc">While we prepare your personalized jewelry recommendation, you can view your full Four Pillars, hidden stems, ten gods, and elemental breakdown right now.</p>
-            <a class="btn btn-primary" href="full_bazi_reading.html" style="display: inline-block;" data-i18n="th_instant_cta">View My Full Chart Analysis</a>
+            <h2 data-i18n="th_instant_heading">Your complete birth chart analysis is ready</h2>
+            <p data-i18n="th_instant_desc">While we prepare your personalized jewelry recommendation, view your full Four Pillars, hidden stems, ten gods, and elemental breakdown right now — pre-filled with the details you submitted.</p>
+            <div class="cta-row">
+                <a class="btn" href="full_bazi_reading.html" id="viewReadingBtn" data-i18n="th_instant_cta">View My Full Chart Analysis</a>
+                <a class="btn btn-outline" href="report_demo.html" data-i18n="th_instant_sample">Read Sample Report</a>
+            </div>
         </div>
 
         <div class="info">
@@ -176,21 +221,53 @@
 
         <p class="followup" data-i18n="th_followup">Please keep an eye on your email after payment — we send updates from <a href="mailto:cinvea7@gmail.com" style="color:var(--cinnabar);text-decoration:underline;">cinvea7@gmail.com</a>. If you need to change birth details, add notes, or ask a question, reply to that address with your order email and we will pick it up.</p>
 
-        <a class="btn" href="index.html" data-i18n="th_back_home">Back to Home</a>
+        <a class="btn btn-outline" href="index.html" data-i18n="th_back_home">Back to Home</a>
 
         <footer>
-            <p style="margin-top: 18px; font-size: 12px; color: rgba(36, 25, 21, 0.55);">
-                <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
-                <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
-                <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
-                <a href="mailto:cinvea7@gmail.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
-            </p>
-            <p class="note" data-i18n="footer_disclaimer">Products and readings are for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</p>
-                <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
-    </footer>
+            <a href="policies.html#shipping" data-i18n="footer_shipping">Shipping</a> ·
+            <a href="policies.html#refund" data-i18n="footer_refund">Refund</a> ·
+            <a href="policies.html#privacy" data-i18n="footer_privacy">Privacy</a> ·
+            <a href="mailto:cinvea7@gmail.com" data-i18n="footer_contact">Contact</a>
+        </footer>
+        <p class="note" data-i18n="footer_disclaimer">Products and readings are for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</p>
+        <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </main>
+
+    <script src="config.js"></script>
+    <script src="bazi_engine.js"></script>
+    <script src="api_deepseek.js"></script>
+    <script src="ai_bazi_layer.js"></script>
+    <script src="reading_state.js"></script>
     <script src="i18n.js"></script>
     <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
+    <script>
+    (function() {
+        // Detect payment confirmation from PayPal return parameters
+        const params = new URLSearchParams(window.location.search);
+        const paid = params.has('tx') || params.has('paymentId') || params.has('token');
+
+        if (paid) {
+            document.getElementById('paymentBadge').classList.add('show');
+            document.getElementById('instantPreview').classList.add('show');
+
+            // Pre-fill the full reading URL with saved birth data, then redirect
+            const state = window.ReadingState ? window.ReadingState.read() : {};
+            const q = new URLSearchParams();
+            if (state.birth_date)       q.set('birth_date', state.birth_date);
+            if (state.birth_time)       q.set('birth_time', state.birth_time);
+            if (state.gender)            q.set('gender', state.gender);
+            if (state.birth_location)   q.set('birth_location', state.birth_location);
+            if (state.focus)            q.set('focus', state.focus);
+            if (state.notes)            q.set('notes', state.notes);
+            if (state.full_name)        q.set('full_name', state.full_name);
+
+            const qs = q.toString();
+            if (qs) {
+                document.getElementById('viewReadingBtn').href = 'full_bazi_reading.html?' + qs;
+            }
+        }
+    })();
+    </script>
 </body>
 </html>

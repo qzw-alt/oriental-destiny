@@ -285,22 +285,27 @@ window.I18N_TRANSLATIONS = {
     ck_saving: "正在保存您的详情...",
     ck_save_success: "您的详情已保存。点击下方 PayPal 完成 $199 付款。",
     ck_save_error: "暂时无法保存详情。请稍后再试。",
+    ck_trust_refund: "30天退款保障——无需理由",
+    ck_trust_ssl: "256位SSL加密支付（PayPal安全通道）",
+    ck_trust_confirm: "发货前与您确认方向",
+    ck_trust_shipping: "中国直发 · 追踪号邮件发送",
 
-    /* ─── thanks.html ──────────────────────────────── */
-    th_brand: "东方 destiny",
-    th_badge: "付款已确认 — 谢谢！",
-    th_title: "已收到您的订单详情。",
-    th_subtitle: "已收到您的 $199 订单。您将收到基于命盘、生活重点和五行平衡的个性化解读与道家饰品推荐邮件。大多数推荐在 7-10 天内发送，确认后从中国直发。",
-    th_instant_title: "立即可用 — 无需等待",
-    th_instant_heading: "您的完整命盘分析已就绪",
-    th_instant_desc: "在我们准备个性化道家饰品推荐的同时，您可以立即查看完整的四柱、藏干、十神和五行分解。",
-    th_instant_cta: "查看我的完整命盘分析",
-    th_day_1_2: "<strong>第 1–2 天。</strong>我们确认收到您的出生信息和选择的生活重点。",
-    th_day_3_7: "<strong>第 3–7 天。</strong>您的解读用于从龙虎山藏品中选择合适的道家饰品。",
-    th_day_7_10: "<strong>第 7–10 天。</strong>我们邮件发送最终推荐，等待您的确认后再最终定稿。",
-    th_day_10_14: "<strong>第 10–14 天。</strong>确认后，您的道家饰品从中国直发全球。追踪号通过邮件发送。",
-    th_followup: "付款后请留意邮箱——我们从 cinvea7@gmail.com 发送更新。如需更改出生信息、添加备注或提问，请用订单邮箱回复该地址。",
-    th_back_home: "返回首页",
+    /* ─── policies.html ───────────────────────────── */
+    pol_shipping_title: "配送政策",
+    pol_refund_title: "退款政策",
+    pol_privacy_title: "隐私政策",
+
+    /* ─── report_demo.html ───────────────────────── */
+    rd_brand: "东方 destiny",
+    rd_nav_home: "首页",
+    rd_nav_free: "免费测算",
+    rd_nav_order: "下单",
+
+    /* ─── instant_reading.html ──────────────────── */
+    ir_title: "东方 destiny | 免费命盘预览",
+
+    /* ─── full_bazi_reading.html ───────────────── */
+    fb_title: "东方 destiny | 完整八字层",
   },
 
   bazi: {

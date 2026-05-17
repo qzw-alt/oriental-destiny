@@ -162,6 +162,24 @@
             justify-content: center;
         }
 
+        .manual-confirm {
+            display: none;
+            margin-top: 22px;
+            padding: 18px 22px;
+            border-radius: 16px;
+            background: rgba(183, 138, 66, 0.06);
+            border: 1px solid rgba(183, 138, 66, 0.18);
+            text-align: center;
+        }
+
+        .manual-confirm.show { display: block; }
+
+        .manual-confirm p {
+            margin-bottom: 12px;
+            color: rgba(36, 25, 21, 0.7);
+            font-size: 14px;
+        }
+
         .note {
             margin-top: 22px;
             font-size: 12px;
@@ -221,6 +239,11 @@
 
         <p class="followup" data-i18n="th_followup">Please keep an eye on your email after payment — we send updates from <a href="mailto:cinvea7@gmail.com" style="color:var(--cinnabar);text-decoration:underline;">cinvea7@gmail.com</a>. If you need to change birth details, add notes, or ask a question, reply to that address with your order email and we will pick it up.</p>
 
+        <div class="manual-confirm" id="manualConfirm">
+            <p data-i18n="th_manual_confirm_text">If you completed payment but were not redirected back here, click below to access your reading and confirm your order status.</p>
+            <button class="btn" id="manualPaidBtn" data-i18n="th_manual_confirm_btn">I paid — show my reading</button>
+        </div>
+
         <a class="btn btn-outline" href="index.html" data-i18n="th_back_home">Back to Home</a>
 
         <footer>
@@ -243,18 +266,18 @@
     <script src="version.js"></script>
     <script>
     (function() {
-        // Detect payment confirmation from PayPal return parameters
         const params = new URLSearchParams(window.location.search);
         const paid = params.has('tx') || params.has('paymentId') || params.has('token');
 
-        if (paid) {
+        function unlockReading(transactionId) {
             document.getElementById('paymentBadge').classList.add('show');
             document.getElementById('instantPreview').classList.add('show');
+            document.getElementById('manualConfirm').classList.remove('show');
 
             gtag('event', 'purchase', {
                 currency: 'USD',
                 value: 199,
-                transaction_id: params.get('tx') || params.get('paymentId') || params.get('token') || '',
+                transaction_id: transactionId || '',
                 items: [{
                     item_name: 'Personalized Feng Shui Reading + Daoist Treasure',
                     price: 199,
@@ -262,7 +285,6 @@
                 }]
             });
 
-            // Pre-fill the full reading URL with saved birth data, then redirect
             const state = window.ReadingState ? window.ReadingState.read() : {};
             const q = new URLSearchParams();
             if (state.birth_date)       q.set('birth_date', state.birth_date);
@@ -277,6 +299,18 @@
             if (qs) {
                 document.getElementById('viewReadingBtn').href = 'full_bazi_reading.html?' + qs;
             }
+        }
+
+        if (paid) {
+            unlockReading(params.get('tx') || params.get('paymentId') || params.get('token'));
+        } else {
+            // Show manual confirmation fallback
+            document.getElementById('manualConfirm').classList.add('show');
+            document.getElementById('manualPaidBtn').addEventListener('click', function() {
+                this.disabled = true;
+                this.textContent = 'Confirmed — unlocking…';
+                unlockReading('manual-' + Date.now());
+            });
         }
     })();
     </script>

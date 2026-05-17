@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your basic BaZi data report — computed from your birth details. A master is reviewing your chart and will send the complete annotated report by email within 6 hours.">
+    <link rel="canonical" href="https://oriental-destiny.com/basic_report.html">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="Your Basic BaZi Data Report | Oriental Destiny">
+    <meta property="og:description" content="Your birth chart has been computed. The complete annotated report will arrive by email within 6 hours.">
+    <meta property="og:type" content="website">
+    <title>Oriental Destiny | Your Basic Data Report</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --jade: #2d6a4f;
+            --amber: #c07830;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.12), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(960px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            padding: 28px 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .brand-mark {
+            display: block;
+            color: var(--cinnabar);
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .hero, .panel, .master-callout {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            border-radius: 24px;
+            padding: 28px;
+        }
+
+        .hero {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        h1 {
+            font-size: clamp(30px, 5vw, 44px);
+            line-height: 1.08;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 3.5vw, 30px);
+            line-height: 1.14;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hero p { color: rgba(36, 25, 21, 0.72); }
+
+        .results {
+            display: none;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .chip {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 30px;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(183, 138, 66, 0.14);
+            color: var(--gold);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .chip.amber {
+            background: rgba(192, 120, 48, 0.12);
+            color: var(--amber);
+        }
+
+        .pillar-box, .mini-box {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(239, 225, 207, 0.45);
+        }
+
+        .pillar-box strong, .mini-box strong, .panel strong {
+            color: var(--cinnabar);
+        }
+
+        /* Master callout */
+        .master-callout {
+            background: linear-gradient(135deg, rgba(192, 120, 48, 0.06), rgba(183, 138, 66, 0.08));
+            border: 1.5px solid rgba(192, 120, 48, 0.25);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .master-callout .icon-ring {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(192, 120, 48, 0.14);
+            margin-bottom: 14px;
+        }
+
+        .master-callout h2 {
+            color: var(--amber);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .master-callout p {
+            color: rgba(36, 25, 21, 0.72);
+            max-width: 560px;
+            margin: 0 auto 6px;
+        }
+
+        .master-callout .email-ref {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(192, 120, 48, 0.1);
+            color: var(--amber);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .master-callout .note {
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.48);
+        }
+
+        /* AI overview section */
+        .ai-overview {
+            border-left: 3px solid var(--amber);
+            background: rgba(192, 120, 48, 0.04);
+        }
+
+        .ai-placeholder {
+            color: rgba(36, 25, 21, 0.45);
+            font-style: italic;
+        }
+
+        footer {
+            padding: 0 0 40px;
+            text-align: center;
+        }
+
+        .footer-note {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: rgba(36, 25, 21, 0.55);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: rgba(36, 25, 21, 0.7);
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 760px) {
+            .grid-2, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container topbar">
+        <a href="index.html">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">Your Basic Data Report</span>
+        </a>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="eyebrow">Computed from your birth details</div>
+            <h1>Your BaZi chart has been calculated.</h1>
+            <p>Below is the structural layer of your birth chart — computed automatically from the details you submitted. A <strong>brief system preliminary analysis</strong> is included. A master is now reviewing your chart and will send the <strong>complete annotated report</strong> to your email.</p>
+        </section>
+
+        <div class="results" id="resultsPanel">
+            <div class="panel">
+                <div class="chip">Summary</div>
+                <h3 id="headline">Chart profile headline</h3>
+                <p id="summary"></p>
+            </div>
+
+            <div class="panel">
+                <div class="chip">Four Pillars</div>
+                <div class="grid-4">
+                    <div class="pillar-box"><strong>Year</strong><div id="yearPillar"></div></div>
+                    <div class="pillar-box"><strong>Month</strong><div id="monthPillar"></div></div>
+                    <div class="pillar-box"><strong>Day</strong><div id="dayPillar"></div></div>
+                    <div class="pillar-box"><strong>Hour</strong><div id="hourPillar"></div></div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="chip">Hidden Stems</div>
+                    <div id="hiddenStems"></div>
+                </div>
+                <div class="panel">
+                    <div class="chip">Day Master and Strength</div>
+                    <p id="dayMasterBlock"></p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="chip">Five Elements</div>
+                    <div id="elementCounts"></div>
+                </div>
+                <div class="panel">
+                    <div class="chip">Ten Gods Emphasis</div>
+                    <div id="tenGods"></div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="chip">Element Diagnosis</div>
+                    <p id="elementDiagnosis"></p>
+                </div>
+                <div class="panel">
+                    <div class="chip">Ten-God Structure</div>
+                    <p id="tenGodStructure"></p>
+                    <div id="topTenGods" style="margin-top:12px;"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="chip">Useful God Logic</div>
+                <p id="usefulGodSummary"></p>
+                <div id="usefulGodRanking" style="margin-top:12px;"></div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="chip">Season Command</div>
+                    <p id="seasonalCommand"></p>
+                </div>
+                <div class="panel">
+                    <div class="chip">Luck Phase</div>
+                    <p id="luckPhase"></p>
+                </div>
+            </div>
+
+            <!-- AI Preliminary Overview -->
+            <div class="panel ai-overview" id="aiOverviewPanel">
+                <div class="chip amber">System Preliminary Analysis</div>
+                <div id="aiOverviewContent">
+                    <p class="ai-placeholder">Generating preliminary analysis…</p>
+                </div>
+                <p style="margin-top:10px;font-size:12px;color:rgba(36,25,21,0.45);">This is an automated overview. The master-reviewed complete reading will follow by email.</p>
+            </div>
+        </div>
+
+        <!-- Master Review Callout -->
+        <section class="master-callout">
+            <div class="icon-ring">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h2>A master is reviewing your chart now.</h2>
+            <p>The data above is the computed foundation. A teacher is now reading your chart against your life focus and preparing the complete annotated report — including personality analysis, theme readings across career/wealth/love/protection, and personalized counsel.</p>
+            <p><strong>You will receive the complete report by email within 6 hours.</strong></p>
+            <div class="email-ref" id="emailRef">Check your inbox for updates from cinvea7@gmail.com</div>
+            <p class="note">Orders placed after 10:00 PM Eastern may receive the report the following morning (within 12 hours).</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="policies.html#shipping">Shipping</a> ·
+                <a href="policies.html#refund">Refund</a> ·
+                <a href="policies.html#privacy">Privacy</a> ·
+                <a href="mailto:cinvea7@gmail.com">Contact</a>
+            </div>
+            <div class="footer-note">
+                <div>&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching.</div>
+                <div>For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice.</div>
+            </div>
+            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="bazi_engine.js"></script>
+    <script src="api_deepseek.js"></script>
+    <script src="ai_bazi_layer.js"></script>
+    <script src="reading_state.js"></script>
+    <script src="i18n.js"></script>
+    <script src="bazi_translator.js"></script>
+    <script src="version.js"></script>
+    <script>
+        // Initialize AI layer via Cloudflare Worker proxy
+        if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
+            window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
+        }
+
+        function hiddenStemHtml(label, entries) {
+            if (!entries || !entries.length) {
+                return `<div class="mini-box"><strong>${label}</strong><div>Open — no birth time supplied.</div></div>`;
+            }
+            const lines = entries.map(function(entry) {
+                return entry.stem + " " + entry.element + " / " + entry.tenGod;
+            }).join("<br>");
+            return `<div class="mini-box"><strong>${label}</strong><div>${lines}</div></div>`;
+        }
+
+        function renderBasicReport(profile, name, notes) {
+            var noteLine = notes
+                ? " The note provided suggests this issue is already active: " + notes
+                : "";
+
+            document.getElementById("headline").textContent =
+                name + "'s chart is rooted in " + profile.dayMasterStem + " " + profile.dayMasterElement + ".";
+            document.getElementById("summary").textContent =
+                "The Day Master reads as " + profile.strength.band.toLowerCase() +
+                " in strength, the birth season falls in " + profile.season +
+                ", and " + profile.favorableElements[0].toLowerCase() +
+                " with " + profile.favorableElements[1].toLowerCase() +
+                " appear more suitable as support at this time." + noteLine;
+
+            document.getElementById("yearPillar").textContent = profile.pillarLabels.year;
+            document.getElementById("monthPillar").textContent = profile.pillarLabels.month;
+            document.getElementById("dayPillar").textContent = profile.pillarLabels.day;
+            document.getElementById("hourPillar").textContent = profile.pillarLabels.hour;
+
+            document.getElementById("hiddenStems").innerHTML = [
+                hiddenStemHtml("Year Branch", profile.hiddenStems.year),
+                hiddenStemHtml("Month Branch", profile.hiddenStems.month),
+                hiddenStemHtml("Day Branch", profile.hiddenStems.day),
+                hiddenStemHtml("Hour Branch", profile.hiddenStems.hour)
+            ].join("<div style='height:12px;'></div>");
+
+            document.getElementById("dayMasterBlock").innerHTML =
+                "<strong>" + profile.dayMasterStem + " " + profile.dayMasterElement + "</strong> often reads as " +
+                profile.dayMasterProfile + ". The strength score in this draft reading is <strong>" +
+                profile.strength.score.toFixed(1) + "</strong>, placing the chart in the <strong>" +
+                profile.strength.band + "</strong> band. " + profile.favorableElementReasoning;
+
+            document.getElementById("elementCounts").innerHTML = profile.elementRanking
+                .map(function(_ref) {
+                    var element = _ref[0], value = _ref[1];
+                    return "<div class='mini-box'><strong>" + element + "</strong><div>" + value.toFixed(1) + " points</div></div>";
+                })
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("tenGods").innerHTML = profile.tenGodRanking
+                .slice(0, 6)
+                .map(function(_ref) {
+                    var god = _ref[0], value = _ref[1];
+                    return "<div class='mini-box'><strong>" + god + "</strong><div>" + value.toFixed(1) + " weight</div></div>";
+                })
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("elementDiagnosis").textContent =
+                profile.advancedAnalysis.elementDiagnosis.summary;
+            document.getElementById("tenGodStructure").textContent =
+                profile.advancedAnalysis.tenGodStructure.summary;
+            document.getElementById("topTenGods").innerHTML = profile.advancedAnalysis.tenGodStructure.topThree
+                .map(function(entry) {
+                    return "<div class='mini-box'><strong>" + entry.god + "</strong><div>" + entry.meaning + "</div></div>";
+                })
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("usefulGodSummary").textContent = profile.usefulGodAnalysis.summary;
+            document.getElementById("usefulGodRanking").innerHTML = profile.usefulGodAnalysis.ranked
+                .slice(0, 5)
+                .map(function(entry) {
+                    return "<div class='mini-box'><strong>" + entry.element + "</strong><div>" + entry.score.toFixed(1) + " useful-god weight</div></div>";
+                })
+                .join("<div style='height:12px;'></div>");
+
+            document.getElementById("seasonalCommand").textContent =
+                profile.advancedAnalysis.seasonalCommand.summary;
+            document.getElementById("luckPhase").textContent =
+                profile.advancedAnalysis.luckPhase.summary;
+        }
+
+        async function loadAIOverview(userInput) {
+            var contentEl = document.getElementById("aiOverviewContent");
+            try {
+                if (window.AIBaziLayer && window.AIBaziLayer.isReady()) {
+                    var result = await window.AIBaziLayer.basicOverview(userInput);
+                    var overviewHtml = "<p style='margin-bottom:10px;'>" +
+                        (result.overview || "Analysis pending.") + "</p>";
+                    if (result.keyObservation) {
+                        overviewHtml += "<p style='color:rgba(36,25,21,0.7);font-size:14px;'>" +
+                            "<strong>Key observation:</strong> " + result.keyObservation + "</p>";
+                    }
+                    if (result.fallback) {
+                        overviewHtml += "<p style='margin-top:8px;font-size:11px;color:rgba(36,25,21,0.4);'>" +
+                            "(Generated from engine analysis — API unavailable)</p>";
+                    }
+                    contentEl.innerHTML = overviewHtml;
+                } else {
+                    contentEl.innerHTML = "<p>System preliminary analysis will appear here once the AI service is available.</p>";
+                }
+            } catch (err) {
+                console.warn("AI overview load error:", err.message);
+                contentEl.innerHTML = "<p>The structural data above has been computed. The system preliminary analysis is being prepared.</p>";
+            }
+        }
+
+        async function init() {
+            var incoming = {};
+            if (window.ReadingState) {
+                incoming = window.ReadingState.read();
+                var queryData = window.ReadingState.fromQuery();
+                Object.assign(incoming, queryData);
+            }
+
+            var birthDate = incoming.birth_date || "";
+            var birthTime = incoming.birth_time || "";
+            var gender = incoming.gender || "";
+            var birthLocation = incoming.birth_location || "";
+            var focus = incoming.focus || "balance";
+            var notes = incoming.notes || "";
+            var fullName = incoming.full_name || "Friend";
+
+            if (!birthDate) {
+                document.getElementById("resultsPanel").style.display = "block";
+                document.getElementById("headline").textContent = "Waiting for your birth details.";
+                document.getElementById("summary").textContent = "Please return to the checkout page or click the link from your confirmation email to view your basic data report.";
+                return;
+            }
+
+            var profile;
+            try {
+                profile = window.BaziTranslator.translate(
+                    window.BaziEngine.calculateProfile({
+                        birthDate: birthDate,
+                        birthTime: birthTime,
+                        lifeFocus: focus,
+                        gender: gender,
+                        birthLocation: birthLocation
+                    })
+                );
+            } catch (error) {
+                document.getElementById("resultsPanel").style.display = "block";
+                document.getElementById("headline").textContent = "Unable to open chart.";
+                document.getElementById("summary").textContent = error.message || "Please check your birth details and try again.";
+                return;
+            }
+
+            renderBasicReport(profile, fullName, notes);
+            document.getElementById("resultsPanel").style.display = "grid";
+
+            // Show customer email reference if available
+            var state = window.ReadingState ? window.ReadingState.read() : {};
+            if (state.customer_email) {
+                document.getElementById("emailRef").textContent =
+                    "Complete report will be sent to: " + state.customer_email;
+            }
+
+            // Fire AI overview async
+            loadAIOverview({
+                birthDate: birthDate,
+                birthTime: birthTime,
+                focus: focus,
+                gender: gender,
+                birthLocation: birthLocation
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -202,6 +202,54 @@ IMPORTANT: Write in natural English narrative style, not templated phrases.`;
   }
 
   /**
+   * 简要概述：基础数据报告使用的单次 API 调用
+   * @param {Object} chartData - bazi_engine.js 输出的完整八字数据
+   * @param {string} focus - career|wealth|love|protection|balance
+   * @returns {Promise<Object>} { overview, keyObservation }
+   */
+  async generateOverview(chartData, focus) {
+    let systemPrompt = await this._loadPrompt("prompts/system_overview.txt");
+    if (!systemPrompt) {
+      systemPrompt = this._fallbackSystemOverview();
+    }
+    const userPrompt = this._buildOverviewUserPrompt(chartData, focus);
+
+    const response = await this.chat(
+      [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      {
+        temperature: 0.5,
+        max_tokens: 600,
+      }
+    );
+
+    return this._parseAnalysisResponse(response);
+  }
+
+  // ─── Overview helpers ──────────────────────────────
+
+  _buildOverviewUserPrompt(chartData, focus) {
+    return `Provide a brief system preliminary analysis for this BaZi chart.
+
+FOCUS: ${focus}
+
+CHART DATA:
+${JSON.stringify(chartData, null, 2)}
+
+Respond with JSON:
+{
+  "overview": "2-3 sentences summarizing the Day Master nature, dominant element, and primary structural observation. Write in English, natural narrative.",
+  "keyObservation": "1 sentence about the most important thing to know about this chart for the stated focus area."
+}`;
+  }
+
+  _fallbackSystemOverview() {
+    return `You are a BaZi system providing a brief preliminary analysis. Write 2-3 sentences in English that feel specific to the chart data provided. Reference exact stem names, element names, and scores. Label this as a preliminary automated analysis that a master will review. Output valid JSON only: {"overview": "...", "keyObservation": "..."}`;
+  }
+
+  /**
    * 内联兜底：当 prompts/system_analyze.txt 加载失败时使用
    */
   _fallbackSystemAnalyze() {

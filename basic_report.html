@@ -264,93 +264,93 @@
 <body>
     <header class="container topbar">
         <a href="index.html">
-            <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">Your Basic Data Report</span>
+            <span class="brand-mark" data-i18n="br_brand_mark">Oriental Destiny</span>
+            <span class="brand-name" data-i18n="br_brand_name">Your Basic Data Report</span>
         </a>
     </header>
 
     <main class="container">
         <section class="hero">
-            <div class="eyebrow">Computed from your birth details</div>
-            <h1>Your BaZi chart has been calculated.</h1>
-            <p>Below is the structural layer of your birth chart — computed automatically from the details you submitted. A <strong>brief system preliminary analysis</strong> is included. A master is now reviewing your chart and will send the <strong>complete annotated report</strong> to your email.</p>
+            <div class="eyebrow" data-i18n="br_hero_eyebrow">Computed from your birth details</div>
+            <h1 data-i18n="br_hero_title">Your BaZi chart has been calculated.</h1>
+            <p data-i18n-html="br_hero_desc">Below is the structural layer of your birth chart — computed automatically from the details you submitted. A <strong>brief system preliminary analysis</strong> is included. A master is now reviewing your chart and will send the <strong>complete annotated report</strong> to your email.</p>
         </section>
 
         <div class="results" id="resultsPanel">
             <div class="panel">
-                <div class="chip">Summary</div>
+                <div class="chip" data-i18n="br_chip_summary">Summary</div>
                 <h3 id="headline">Chart profile headline</h3>
                 <p id="summary"></p>
             </div>
 
             <div class="panel">
-                <div class="chip">Four Pillars</div>
+                <div class="chip" data-i18n="br_chip_pillars">Four Pillars</div>
                 <div class="grid-4">
-                    <div class="pillar-box"><strong>Year</strong><div id="yearPillar"></div></div>
-                    <div class="pillar-box"><strong>Month</strong><div id="monthPillar"></div></div>
-                    <div class="pillar-box"><strong>Day</strong><div id="dayPillar"></div></div>
-                    <div class="pillar-box"><strong>Hour</strong><div id="hourPillar"></div></div>
+                    <div class="pillar-box"><strong data-i18n="br_pillar_year">Year</strong><div id="yearPillar"></div></div>
+                    <div class="pillar-box"><strong data-i18n="br_pillar_month">Month</strong><div id="monthPillar"></div></div>
+                    <div class="pillar-box"><strong data-i18n="br_pillar_day">Day</strong><div id="dayPillar"></div></div>
+                    <div class="pillar-box"><strong data-i18n="br_pillar_hour">Hour</strong><div id="hourPillar"></div></div>
                 </div>
             </div>
 
             <div class="grid-2">
                 <div class="panel">
-                    <div class="chip">Hidden Stems</div>
+                    <div class="chip" data-i18n="br_chip_stems">Hidden Stems</div>
                     <div id="hiddenStems"></div>
                 </div>
                 <div class="panel">
-                    <div class="chip">Day Master and Strength</div>
+                    <div class="chip" data-i18n="br_chip_daymaster">Day Master and Strength</div>
                     <p id="dayMasterBlock"></p>
                 </div>
             </div>
 
             <div class="grid-2">
                 <div class="panel">
-                    <div class="chip">Five Elements</div>
+                    <div class="chip" data-i18n="br_chip_elements">Five Elements</div>
                     <div id="elementCounts"></div>
                 </div>
                 <div class="panel">
-                    <div class="chip">Ten Gods Emphasis</div>
+                    <div class="chip" data-i18n="br_chip_tengods">Ten Gods Emphasis</div>
                     <div id="tenGods"></div>
                 </div>
             </div>
 
             <div class="grid-2">
                 <div class="panel">
-                    <div class="chip">Element Diagnosis</div>
+                    <div class="chip" data-i18n="br_chip_elem_diag">Element Diagnosis</div>
                     <p id="elementDiagnosis"></p>
                 </div>
                 <div class="panel">
-                    <div class="chip">Ten-God Structure</div>
+                    <div class="chip" data-i18n="br_chip_tengod_struct">Ten-God Structure</div>
                     <p id="tenGodStructure"></p>
                     <div id="topTenGods" style="margin-top:12px;"></div>
                 </div>
             </div>
 
             <div class="panel">
-                <div class="chip">Useful God Logic</div>
+                <div class="chip" data-i18n="br_chip_useful_god">Useful God Logic</div>
                 <p id="usefulGodSummary"></p>
                 <div id="usefulGodRanking" style="margin-top:12px;"></div>
             </div>
 
             <div class="grid-2">
                 <div class="panel">
-                    <div class="chip">Season Command</div>
+                    <div class="chip" data-i18n="br_chip_season">Season Command</div>
                     <p id="seasonalCommand"></p>
                 </div>
                 <div class="panel">
-                    <div class="chip">Luck Phase</div>
+                    <div class="chip" data-i18n="br_chip_luck">Luck Phase</div>
                     <p id="luckPhase"></p>
                 </div>
             </div>
 
             <!-- AI Preliminary Overview -->
             <div class="panel ai-overview" id="aiOverviewPanel">
-                <div class="chip amber">System Preliminary Analysis</div>
+                <div class="chip amber" data-i18n="br_chip_sys_analysis">System Preliminary Analysis</div>
                 <div id="aiOverviewContent">
-                    <p class="ai-placeholder">Generating preliminary analysis…</p>
+                    <p class="ai-placeholder" data-i18n="br_ai_loading">Generating preliminary analysis…</p>
                 </div>
-                <p style="margin-top:10px;font-size:12px;color:rgba(36,25,21,0.45);">This is an automated overview. The master-reviewed complete reading will follow by email.</p>
+                <p style="margin-top:10px;font-size:12px;color:rgba(36,25,21,0.45);" data-i18n="br_ai_disclaimer">This is an automated overview. The master-reviewed complete reading will follow by email.</p>
             </div>
         </div>
 
@@ -363,25 +363,25 @@
                     <path d="M2 12l10 5 10-5"/>
                 </svg>
             </div>
-            <h2>A master is reviewing your chart now.</h2>
-            <p>The data above is the computed foundation. A teacher is now reading your chart against your life focus and preparing the complete annotated report — including personality analysis, theme readings across career/wealth/love/protection, and personalized counsel.</p>
-            <p><strong>You will receive the complete report by email within 6 hours.</strong></p>
-            <div class="email-ref" id="emailRef">Check your inbox for updates from cinvea7@gmail.com</div>
-            <p class="note">Orders placed after 10:00 PM Eastern may receive the report the following morning (within 12 hours).</p>
+            <h2 data-i18n="br_master_title">A master is reviewing your chart now.</h2>
+            <p data-i18n="br_master_desc">The data above is the computed foundation. A teacher is now reading your chart against your life focus and preparing the complete annotated report — including personality analysis, theme readings across career/wealth/love/protection, and personalized counsel.</p>
+            <p data-i18n-html="br_master_email_promise"><strong>You will receive the complete report by email within 6 hours.</strong></p>
+            <div class="email-ref" id="emailRef" data-i18n="br_master_check_email">Check your inbox for updates from cinvea7@gmail.com</div>
+            <p class="note" data-i18n="br_master_late_note">Orders placed after 10:00 PM Eastern may receive the report the following morning (within 12 hours).</p>
         </section>
     </main>
 
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="policies.html#shipping">Shipping</a> ·
-                <a href="policies.html#refund">Refund</a> ·
-                <a href="policies.html#privacy">Privacy</a> ·
-                <a href="mailto:cinvea7@gmail.com">Contact</a>
+                <a href="policies.html#shipping" data-i18n="footer_shipping">Shipping</a> ·
+                <a href="policies.html#refund" data-i18n="footer_refund">Refund</a> ·
+                <a href="policies.html#privacy" data-i18n="footer_privacy">Privacy</a> ·
+                <a href="mailto:cinvea7@gmail.com" data-i18n="footer_contact">Contact</a>
             </div>
             <div class="footer-note">
-                <div>&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching.</div>
-                <div>For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice.</div>
+                <div data-i18n="footer_copyright">&copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching.</div>
+                <div data-i18n="footer_disclaimer">For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice.</div>
             </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
         </div>
@@ -402,8 +402,9 @@
         }
 
         function hiddenStemHtml(label, entries) {
+            var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
             if (!entries || !entries.length) {
-                return `<div class="mini-box"><strong>${label}</strong><div>Open — no birth time supplied.</div></div>`;
+                return '<div class="mini-box"><strong>' + label + '</strong><div>' + t("br_js_no_birth_time", "Open — no birth time supplied.") + '</div></div>';
             }
             const lines = entries.map(function(entry) {
                 return entry.stem + " " + entry.element + " / " + entry.tenGod;
@@ -412,6 +413,7 @@
         }
 
         function renderBasicReport(profile, name, notes) {
+            var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
             var noteLine = notes
                 ? " The note provided suggests this issue is already active: " + notes
                 : "";
@@ -443,18 +445,20 @@
                 profile.strength.score.toFixed(1) + "</strong>, placing the chart in the <strong>" +
                 profile.strength.band + "</strong> band. " + profile.favorableElementReasoning;
 
+            var ptsLabel = t("br_js_points", "points");
             document.getElementById("elementCounts").innerHTML = profile.elementRanking
                 .map(function(_ref) {
                     var element = _ref[0], value = _ref[1];
-                    return "<div class='mini-box'><strong>" + element + "</strong><div>" + value.toFixed(1) + " points</div></div>";
+                    return "<div class='mini-box'><strong>" + element + "</strong><div>" + value.toFixed(1) + " " + ptsLabel + "</div></div>";
                 })
                 .join("<div style='height:12px;'></div>");
 
+            var wtLabel = t("br_js_weight", "weight");
             document.getElementById("tenGods").innerHTML = profile.tenGodRanking
                 .slice(0, 6)
                 .map(function(_ref) {
                     var god = _ref[0], value = _ref[1];
-                    return "<div class='mini-box'><strong>" + god + "</strong><div>" + value.toFixed(1) + " weight</div></div>";
+                    return "<div class='mini-box'><strong>" + god + "</strong><div>" + value.toFixed(1) + " " + wtLabel + "</div></div>";
                 })
                 .join("<div style='height:12px;'></div>");
 
@@ -469,10 +473,11 @@
                 .join("<div style='height:12px;'></div>");
 
             document.getElementById("usefulGodSummary").textContent = profile.usefulGodAnalysis.summary;
+            var ugLabel = t("br_js_useful_god_weight", "useful-god weight");
             document.getElementById("usefulGodRanking").innerHTML = profile.usefulGodAnalysis.ranked
                 .slice(0, 5)
                 .map(function(entry) {
-                    return "<div class='mini-box'><strong>" + entry.element + "</strong><div>" + entry.score.toFixed(1) + " useful-god weight</div></div>";
+                    return "<div class='mini-box'><strong>" + entry.element + "</strong><div>" + entry.score.toFixed(1) + " " + ugLabel + "</div></div>";
                 })
                 .join("<div style='height:12px;'></div>");
 
@@ -483,27 +488,28 @@
         }
 
         async function loadAIOverview(userInput) {
+            var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
             var contentEl = document.getElementById("aiOverviewContent");
             try {
                 if (window.AIBaziLayer && window.AIBaziLayer.isReady()) {
                     var result = await window.AIBaziLayer.basicOverview(userInput);
                     var overviewHtml = "<p style='margin-bottom:10px;'>" +
-                        (result.overview || "Analysis pending.") + "</p>";
+                        (result.overview || t("br_js_ai_preparing", "Analysis pending.")) + "</p>";
                     if (result.keyObservation) {
                         overviewHtml += "<p style='color:rgba(36,25,21,0.7);font-size:14px;'>" +
-                            "<strong>Key observation:</strong> " + result.keyObservation + "</p>";
+                            "<strong>" + t("br_js_key_observation", "Key observation:") + "</strong> " + result.keyObservation + "</p>";
                     }
                     if (result.fallback) {
                         overviewHtml += "<p style='margin-top:8px;font-size:11px;color:rgba(36,25,21,0.4);'>" +
-                            "(Generated from engine analysis — API unavailable)</p>";
+                            t("br_js_fallback_note", "(Generated from engine analysis — API unavailable)") + "</p>";
                     }
                     contentEl.innerHTML = overviewHtml;
                 } else {
-                    contentEl.innerHTML = "<p>System preliminary analysis will appear here once the AI service is available.</p>";
+                    contentEl.innerHTML = "<p>" + t("br_js_ai_unavailable", "System preliminary analysis will appear here once the AI service is available.") + "</p>";
                 }
             } catch (err) {
                 console.warn("AI overview load error:", err.message);
-                contentEl.innerHTML = "<p>The structural data above has been computed. The system preliminary analysis is being prepared.</p>";
+                contentEl.innerHTML = "<p>" + t("br_js_ai_preparing", "The structural data above has been computed. The system preliminary analysis is being prepared.") + "</p>";
             }
         }
 
@@ -524,9 +530,10 @@
             var fullName = incoming.full_name || "Friend";
 
             if (!birthDate) {
+                var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
                 document.getElementById("resultsPanel").style.display = "block";
-                document.getElementById("headline").textContent = "Waiting for your birth details.";
-                document.getElementById("summary").textContent = "Please return to the checkout page or click the link from your confirmation email to view your basic data report.";
+                document.getElementById("headline").textContent = t("br_js_waiting", "Waiting for your birth details.");
+                document.getElementById("summary").textContent = t("br_js_return_checkout", "Please return to the checkout page or click the link from your confirmation email to view your basic data report.");
                 return;
             }
 
@@ -542,9 +549,10 @@
                     })
                 );
             } catch (error) {
+                var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
                 document.getElementById("resultsPanel").style.display = "block";
-                document.getElementById("headline").textContent = "Unable to open chart.";
-                document.getElementById("summary").textContent = error.message || "Please check your birth details and try again.";
+                document.getElementById("headline").textContent = t("br_js_unable_open", "Unable to open chart.");
+                document.getElementById("summary").textContent = error.message || t("br_js_check_details", "Please check your birth details and try again.");
                 return;
             }
 
@@ -554,8 +562,9 @@
             // Show customer email reference if available
             var state = window.ReadingState ? window.ReadingState.read() : {};
             if (state.customer_email) {
+                var t = window.I18n ? window.I18n.t.bind(window.I18n) : function(k, f) { return f; };
                 document.getElementById("emailRef").textContent =
-                    "Complete report will be sent to: " + state.customer_email;
+                    t("br_js_report_sent_to", "Complete report will be sent to: ") + state.customer_email;
             }
 
             // Fire AI overview async

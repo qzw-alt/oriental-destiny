@@ -420,6 +420,12 @@
             </div>
 
             <div class="results" id="resultsPanel">
+                <div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
+                    <button id="copyEmailBtn" style="display:none;align-items:center;gap:6px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid rgba(36,25,21,0.15);background:rgba(255,253,249,0.88);color:var(--ink);font-size:13px;font-family:inherit;cursor:pointer;" onclick="copyReportAsEmail()" title="Copy all report text for email">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        Copy Report as Email Text
+                    </button>
+                </div>
                 <div class="panel">
                     <div class="chip">Root judgment</div>
                     <h3 id="headline">Full profile headline</h3>
@@ -771,6 +777,48 @@
 
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("stickyCTA").style.display = "block";
+            document.getElementById("copyEmailBtn").style.display = "inline-flex";
+        }
+
+        function copyReportAsEmail() {
+            var panel = document.getElementById("resultsPanel");
+            var sections = panel.querySelectorAll(".panel");
+            var lines = [];
+            lines.push("=== Your Complete BaZi Reading ===\n");
+            sections.forEach(function(section) {
+                var chip = section.querySelector(".chip");
+                var heading = section.querySelector("h3");
+                if (chip) lines.push("--- " + chip.textContent.trim() + " ---");
+                if (heading) lines.push(heading.textContent.trim());
+                var content = section.textContent.trim();
+                // Use heading + chip as section header, then add unique content
+                var paras = section.querySelectorAll("p, .pillar-box, .mini-box, ul, #usefulGodRanking, #topTenGods");
+                if (paras.length === 0) {
+                    lines.push(content);
+                }
+                paras.forEach(function(el) {
+                    var text = el.textContent.trim();
+                    if (text && !lines.includes(text)) {
+                        lines.push(text);
+                    }
+                });
+                lines.push("");
+            });
+            lines.push("--- End of Report ---");
+            lines.push("This reading was generated for your chart. The $199 confirmed reading includes a master review, material matching, and a handcrafted Daoist treasure.");
+            var text = lines.join("\n");
+            navigator.clipboard.writeText(text).then(function() {
+                var btn = document.getElementById("copyEmailBtn");
+                var orig = btn.textContent;
+                btn.textContent = "Copied!";
+                btn.style.color = "#2d6a4f";
+                setTimeout(function() {
+                    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Report as Email Text';
+                    btn.style.color = "";
+                }, 2000);
+            }).catch(function() {
+                alert("Copy failed. Please select and copy the report text manually.");
+            });
         }
 
         function hydrateFromState() {

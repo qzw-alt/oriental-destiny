@@ -144,6 +144,42 @@
     },
 
     /**
+     * 基础概述：基础数据报告使用，单次 API 调用
+     * @param {Object} userInput - { birthDate, birthTime, focus, gender, birthLocation }
+     * @returns {Promise<Object>} { overview, keyObservation, fallback }
+     */
+    async basicOverview(userInput) {
+      if (!this.isReady()) {
+        return this._basicFallback(userInput);
+      }
+
+      const cacheKey = "basic_" + this._cacheKey(userInput);
+      const cached = this._getCache(cacheKey);
+      if (cached) return cached;
+
+      try {
+        const chartData = this._runBaziEngine(userInput);
+        const overviewResult = await this._withTimeout(
+          this.api.generateOverview(chartData, userInput.focus || "balance"),
+          6000
+        );
+
+        const result = {
+          overview: overviewResult.overview || "",
+          keyObservation: overviewResult.keyObservation || "",
+          fallback: false,
+          timestamp: Date.now(),
+        };
+        this._setCache(cacheKey, result);
+        return result;
+
+      } catch (err) {
+        console.warn("basicOverview API error:", err.message);
+        return this._basicFallback(userInput);
+      }
+    },
+
+    /**
      * 仅解读层（instant_reading 使用，无计算层）
      * @param {Object} userInput - { birthDate, birthTime, focus }
      * @returns {Promise<Object} 解读结果
@@ -281,6 +317,32 @@
         this.cache.delete(firstKey);
       }
       this.cache.set(key, { data, ts: Date.now() });
+    },
+
+    /**
+     * basicOverview 回退：使用引擎静态文案
+     */
+    _basicFallback(userInput) {
+      try {
+        const chartData = this._runBaziEngine(userInput);
+        const profile = window.BaziTranslator
+          ? window.BaziTranslator.translate(chartData)
+          : chartData;
+        return {
+          overview: profile.advancedAnalysis?.elementDiagnosis?.summary || "",
+          keyObservation: profile.advancedAnalysis?.tenGodStructure?.summary || "",
+          fallback: true,
+          timestamp: Date.now(),
+        };
+      } catch (err) {
+        console.warn("_basicFallback error:", err.message);
+        return {
+          overview: "Your chart has been computed. The system preliminary analysis is being prepared.",
+          keyObservation: "",
+          fallback: true,
+          timestamp: Date.now(),
+        };
+      }
     },
 
     /**

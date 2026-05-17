@@ -11,29 +11,14 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://oriental-destiny.com/full_bazi_reading.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/kua_calculator.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/element-calculator.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://oriental-destiny.com/products.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oriental-destiny.com/daoist-treasures.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://oriental-destiny.com/feng-shui-bracelet-meaning.html</loc>

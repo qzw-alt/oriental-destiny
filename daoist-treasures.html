@@ -620,6 +620,12 @@
         .card-visual[aria-hidden="true"] {
             user-select: none;
         }
+        .card-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
         /* ─── CARD BODY ─── */
         .card-body {
@@ -1065,6 +1071,12 @@
     }
 
     function getVisualHtml(p) {
+        if (p.image) {
+            return `<div class="card-visual" style="background:${p.gradient};">
+                <img src="${p.image}" alt="${p.name}" loading="lazy"
+                    onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span style=\\'font-size:48px;opacity:0.5;\\'>${p.icon || '✦'}</span>');">
+            </div>`;
+        }
         switch (p.visualType) {
             case 'bracelet': return renderBraceletVisual(p);
             case 'pendant':  return renderPendantVisual(p);

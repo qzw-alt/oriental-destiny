@@ -698,6 +698,27 @@
             background: rgba(166, 58, 44, 0.05);
         }
 
+        .card-select-btn {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            min-height: 40px;
+            border-radius: 14px;
+            border: 1.5px solid var(--cinnabar);
+            background: rgba(166, 58, 44, 0.06);
+            color: var(--cinnabar);
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .card-select-btn:hover {
+            background: var(--cinnabar);
+            color: #fff8ef;
+        }
+
         /* ─── CSS BEAD (bracelet) ─── */
         .bead {
             position: absolute;
@@ -995,6 +1016,7 @@
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
         </div>
     </footer>
+    <script src="reading_state.js"></script>
     <script src="version.js"></script>
     <script>
     async function renderProducts() {
@@ -1075,6 +1097,7 @@
                     </div>
                     ${p.ritualNote ? `<p class="card-ritual">${p.ritualNote}</p>` : ''}
                     <span class="card-bundle-badge">Included in $199 bundle</span>
+                    <button class="card-select-btn" type="button" onclick="selectProductStyle('${p.id}', '${p.name.replace(/'/g, "\\'")}', event)" data-i18n="dt_select_style">I like this style →</button>
                 </div>
             </article>
         `;
@@ -1201,6 +1224,22 @@
                     <div style="position:absolute;top:34%;left:48%;width:3px;height:38%;background:linear-gradient(180deg,#c44a3a,#8b1a1a);border-radius:2px;transform:rotate(5deg);z-index:10;"></div>
                 </div>
             </div>`;
+    }
+
+    function selectProductStyle(productId, productName, event) {
+        event.stopPropagation();
+        if (window.ReadingState) {
+            window.ReadingState.merge({
+                preferred_product_id: productId,
+                preferred_product_name: productName,
+                notes: 'Preferred style: ' + productName
+            });
+        }
+        gtag('event', 'product_style_select', {
+            product_id: productId,
+            product_name: productName
+        });
+        window.location.href = 'checkout.html?preferred_product=' + encodeURIComponent(productId);
     }
 
     renderProducts();

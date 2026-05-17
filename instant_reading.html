@@ -685,9 +685,9 @@
             }
         };
 
-        // Initialize AI layer if an API key is available (injected at deploy time or via global)
-        if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
-            window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+        // Initialize AI layer via Cloudflare Worker proxy (API key stays server-side)
+        if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
+            window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
         }
 
         const submitBtn = document.getElementById("submitBtn");

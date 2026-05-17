@@ -2,15 +2,25 @@
  * api_deepseek.js — DeepSeek API 封装
  *
  * 使用方式：
- *   const api = new DeepSeekAPI('your-api-key');
+ *   // 直接调用 (需要 API key — 仅开发/测试环境)
+ *   const api = new DeepSeekAPI({ apiKey: 'sk-...' });
+ *   // 通过 Cloudflare Worker 代理 (生产环境 — key 在后端)
+ *   const api = new DeepSeekAPI({ proxyBaseURL: 'https://oriental-destiny.com/api/deepseek' });
  *   const result = await api.chat([{role:'user', content:'...'}]);
  */
 
 class DeepSeekAPI {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
-    this.baseURL = "https://api.deepseek.com/v1";
-    this.model = "deepseek-chat"; // 或 "deepseek-coder" 用于代码推理
+  constructor(options = {}) {
+    if (typeof options === "string") {
+      // Backward compat: plain string = apiKey for direct calls
+      this.apiKey = options;
+      this.proxyBaseURL = null;
+    } else {
+      this.apiKey = options.apiKey || null;
+      this.proxyBaseURL = options.proxyBaseURL || null;
+    }
+    this.baseURL = this.proxyBaseURL || "https://api.deepseek.com/v1";
+    this.model = "deepseek-chat";
     this.defaultOptions = {
       temperature: 0.7,
       max_tokens: 800,
@@ -25,12 +35,14 @@ class DeepSeekAPI {
    */
   async chat(messages, options = {}) {
     const merged = { ...this.defaultOptions, ...options };
+    const headers = { "Content-Type": "application/json" };
+    // Only send Authorization when calling DeepSeek directly (not via proxy)
+    if (!this.proxyBaseURL && this.apiKey) {
+      headers["Authorization"] = `Bearer ${this.apiKey}`;
+    }
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.apiKey}`,
-      },
+      headers,
       body: JSON.stringify({
         model: merged.model || this.model,
         messages,

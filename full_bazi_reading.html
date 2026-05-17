@@ -337,6 +337,149 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ─── Product recommendation cards ─── */
+        .rec-section { display: none; }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .rec-card {
+            background: rgba(255, 253, 249, 0.95);
+            border: 1px solid rgba(183, 138, 66, 0.22);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .rec-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .rec-card .rec-body {
+            padding: 14px 16px;
+        }
+
+        .rec-card h4 {
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: var(--cinnabar);
+        }
+
+        .rec-card .rec-why {
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.68);
+            margin-bottom: 6px;
+        }
+
+        .rec-card .rec-meta {
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.5);
+        }
+
+        .rec-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--cinnabar);
+            color: #fff8ef;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        .confirm-instructions {
+            margin-top: 16px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: rgba(45, 106, 79, 0.06);
+            border: 1px solid rgba(45, 106, 79, 0.2);
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.74);
+        }
+
+        /* ─── Print styles for PDF export ─── */
+        @media print {
+            @page { margin: 18mm 16mm; size: A4; }
+
+            body {
+                background: #fff !important;
+                color: #1a1a1a !important;
+                font-size: 11pt;
+                line-height: 1.55;
+            }
+
+            header, nav, .form-card, #stickyCTA,
+            .upgrade-card, footer, #copyEmailBtn,
+            .hero a, .hero .btn, .btn-primary, .submit-btn,
+            section[style*="background"], .nav {
+                display: none !important;
+            }
+
+            .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; }
+
+            .layout {
+                display: block !important;
+            }
+
+            .hero { box-shadow: none; border: none; padding: 0 0 16px; text-align: left; }
+            .hero h1 { font-size: 20pt; }
+            .hero p { font-size: 10pt; }
+
+            .panel {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                border-radius: 8px !important;
+                padding: 12px 16px !important;
+                page-break-inside: avoid;
+            }
+
+            .grid-4, .grid-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+
+            .rec-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
+            }
+
+            .rec-card img { height: 120px; }
+
+            .pillar-box, .mini-box {
+                background: #f9f6f0 !important;
+                padding: 10px !important;
+            }
+
+            .chip {
+                background: #f0e8d8 !important;
+                color: #8b6914 !important;
+                font-size: 10px !important;
+            }
+
+            .confirm-instructions {
+                background: #f0f7f2 !important;
+                border-color: #2d6a4f !important;
+                page-break-before: avoid;
+            }
+
+            .results { display: grid !important; gap: 12px !important; }
+
+            #resultsPanel .panel:last-of-type { page-break-after: auto; }
+            .rec-section { page-break-before: always; }
+
+            .rec-section h2 { font-size: 16pt; margin-bottom: 8px; }
+        }
     </style>
 </head>
 <body>
@@ -420,10 +563,10 @@
             </div>
 
             <div class="results" id="resultsPanel">
-                <div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
-                    <button id="copyEmailBtn" style="display:none;align-items:center;gap:6px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid rgba(36,25,21,0.15);background:rgba(255,253,249,0.88);color:var(--ink);font-size:13px;font-family:inherit;cursor:pointer;" onclick="copyReportAsEmail()" title="Copy all report text for email">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                        Copy Report as Email Text
+                <div style="display:flex;justify-content:flex-end;margin-bottom:4px;gap:8px;">
+                    <button id="downloadPdfBtn" style="display:none;align-items:center;gap:6px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid rgba(36,25,21,0.15);background:rgba(255,253,249,0.88);color:var(--ink);font-size:13px;font-family:inherit;cursor:pointer;" onclick="downloadPDF()" title="Save report as PDF">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Download PDF Report
                     </button>
                 </div>
                 <div class="panel">
@@ -566,20 +709,35 @@
                     <p id="masterMessage"></p>
                     <div style="margin-top:16px; color:#7b6358; font-size:13px;">Auto-generated from chart structure. The $199 confirmed reading replaces this with the reader's actual cross-checked counsel.</div>
                 </div>
+
+                <!-- Jewelry Recommendation -->
+                <div class="panel rec-section" id="recSection">
+                    <div class="chip" style="background:rgba(166,58,44,0.1);color:var(--cinnabar);">Jewelry Recommendation</div>
+                    <h3 style="margin-bottom:4px;">Recommended pieces for this chart</h3>
+                    <p style="color:rgba(36,25,21,0.65);margin-bottom:8px;font-size:14px;">Based on the favorable elements <strong id="recFavorableElems"></strong> and your focus on <strong id="recFocusLabel"></strong>.</p>
+                    <div class="rec-grid" id="recGrid"></div>
+                    <div class="confirm-instructions">
+                        <p style="margin-bottom:6px;"><strong>How to confirm your choice:</strong></p>
+                        <p>Reply to the email with your preferred piece number (<strong>#1</strong>, <strong>#2</strong>, or <strong>#3</strong>). If we don't hear back, we'll proceed with our top recommendation (#1).</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section style="background: linear-gradient(135deg, #fff8ef 0%, #f6e7d6 100%); border-radius: 28px; padding: 34px; margin-bottom: 24px; border: 1px solid rgba(166, 58, 44, 0.18); box-shadow: 0 18px 44px rgba(70, 41, 24, 0.08);">
-            <div class="eyebrow" style="color: var(--cinnabar);">What this page is not</div>
-            <h2 style="font-size: clamp(24px, 3vw, 32px); margin-bottom: 14px; line-height: 1.18;">The chart structure is automated. The recommendation is human.</h2>
-            <p style="color: rgba(36, 25, 21, 0.78); margin-bottom: 18px;">Everything above is computed directly from your birth details — no expert has reviewed it yet. The <strong>$199 confirmed reading</strong> gives you what an algorithm cannot:</p>
+            <div class="eyebrow" style="color: var(--cinnabar);">For the reader</div>
+            <h2 style="font-size: clamp(24px, 3vw, 32px); margin-bottom: 14px; line-height: 1.18;">This page is the master's review tool.</h2>
+            <p style="color: rgba(36, 25, 21, 0.78); margin-bottom: 18px;">Enter the customer's birth details, review the complete AI-assisted reading, then <strong>download the PDF report</strong> — it includes the chart analysis and 1–3 jewelry recommendations with images. Email the PDF to the customer. They reply with their choice; if no reply, ship the top recommendation.</p>
             <ul style="list-style: none; display: grid; gap: 10px; margin: 0 0 24px; padding: 0;">
-                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> A reader cross-checks the chart against your stated focus area</li>
-                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> Material, color, and symbol matched specifically to your chart</li>
-                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> The recommendation is confirmed with you by email before anything ships</li>
-                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> An actual bracelet or pendant prepared and shipped worldwide</li>
+                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> Enter the customer's exact birth details and focus area</li>
+                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> Review the AI-generated reading for accuracy</li>
+                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> Click <strong>Download PDF Report</strong> — the filename will be the customer's name</li>
+                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> Email the PDF to the customer — they reply with their choice (#1, #2, or #3)</li>
+                <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> If no reply, ship the #1 recommendation</li>
             </ul>
-            <a href="checkout.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;background:linear-gradient(135deg,#b24636 0%,#8b251a 100%);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 12px 26px rgba(166,58,44,0.22);">Get the Confirmed Reading + Piece — $199 →</a>
+            <div id="masterCta" style="display:none;">
+                <button onclick="downloadPDF()" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;background:linear-gradient(135deg,#b24636 0%,#8b251a 100%);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 12px 26px rgba(166,58,44,0.22);border:none;font-family:inherit;cursor:pointer;">Download PDF Report</button>
+            </div>
         </section>
 
         <section class="upgrade-card">
@@ -777,49 +935,152 @@
 
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("stickyCTA").style.display = "block";
-            document.getElementById("copyEmailBtn").style.display = "inline-flex";
+            document.getElementById("downloadPdfBtn").style.display = "inline-flex";
+            document.getElementById("masterCta").style.display = "block";
+
+            // Render product recommendations based on chart
+            renderProductRecommendations(profile);
         }
 
-        function copyReportAsEmail() {
-            var panel = document.getElementById("resultsPanel");
-            var sections = panel.querySelectorAll(".panel");
-            var lines = [];
-            lines.push("=== Your Complete BaZi Reading ===\n");
-            sections.forEach(function(section) {
-                var chip = section.querySelector(".chip");
-                var heading = section.querySelector("h3");
-                if (chip) lines.push("--- " + chip.textContent.trim() + " ---");
-                if (heading) lines.push(heading.textContent.trim());
-                var content = section.textContent.trim();
-                // Use heading + chip as section header, then add unique content
-                var paras = section.querySelectorAll("p, .pillar-box, .mini-box, ul, #usefulGodRanking, #topTenGods");
-                if (paras.length === 0) {
-                    lines.push(content);
-                }
-                paras.forEach(function(el) {
-                    var text = el.textContent.trim();
-                    if (text && !lines.includes(text)) {
-                        lines.push(text);
-                    }
+        function downloadPDF() {
+            var name = document.getElementById("fullName").value.trim() || "Client";
+            document.title = name + " - BaZi Report - Oriental Destiny";
+            window.print();
+        }
+
+        // ─── Product matching & recommendation ─────────
+
+        var _productsCache = null;
+
+        function loadProducts() {
+            if (_productsCache) return Promise.resolve(_productsCache);
+            return fetch("products.json")
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    // Flatten all categories
+                    var flat = [];
+                    (data.categories || []).forEach(function(cat) {
+                        (cat.products || []).forEach(function(p) {
+                            flat.push(p);
+                        });
+                    });
+                    _productsCache = flat;
+                    return flat;
+                })
+                .catch(function() {
+                    console.warn("Could not load products.json");
+                    _productsCache = [];
+                    return [];
                 });
-                lines.push("");
+        }
+
+        function matchProducts(profile, products, focus) {
+            var favorableElements = (profile.favorableElements || []).map(function(e) {
+                return e.toLowerCase();
             });
-            lines.push("--- End of Report ---");
-            lines.push("This reading was generated for your chart. The $199 confirmed reading includes a master review, material matching, and a handcrafted Daoist treasure.");
-            var text = lines.join("\n");
-            navigator.clipboard.writeText(text).then(function() {
-                var btn = document.getElementById("copyEmailBtn");
-                var orig = btn.textContent;
-                btn.textContent = "Copied!";
-                btn.style.color = "#2d6a4f";
-                setTimeout(function() {
-                    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Report as Email Text';
-                    btn.style.color = "";
-                }, 2000);
-            }).catch(function() {
-                alert("Copy failed. Please select and copy the report text manually.");
+
+            // Focus keyword mapping
+            var focusMap = {
+                career: ["Career", "Business", "Authority", "Breakthrough", "Decisive Action"],
+                wealth: ["Wealth", "Business", "Income Streams"],
+                love: ["Love", "Social Magnetism", "Charm", "Harmony"],
+                protection: ["Protection", "Safety", "Grounding", "Energy Shielding", "Daily Protection", "General Protection", "Versatility", "Longevity", "Vitality", "Centering", "Focus", "Spiritual", "Comprehensive"],
+                balance: ["General Protection", "Versatility", "Comprehensive", "Balance", "Daily Wear", "Focus", "Centering", "Spiritual"]
+            };
+
+            var focusKeywords = focusMap[focus] || focusMap.balance;
+
+            var scored = products.map(function(p) {
+                var score = 0;
+                // Element match: primary favorable element gets highest weight
+                var pElement = (p.energyType || "").split(" ")[0].toLowerCase();
+                if (favorableElements[0] === pElement) score += 5;
+                if (favorableElements[1] === pElement) score += 3;
+                if (favorableElements.indexOf(pElement) !== -1) score += 2;
+
+                // Focus match
+                var bestFor = (p.bestFor || []).map(function(b) { return b.toLowerCase(); });
+                var matchCount = 0;
+                focusKeywords.forEach(function(kw) {
+                    bestFor.forEach(function(bf) {
+                        if (bf.indexOf(kw.toLowerCase()) !== -1) matchCount++;
+                    });
+                });
+                score += matchCount * 2;
+
+                // Diversity bonus for carrier type
+                return { product: p, score: score };
+            });
+
+            scored.sort(function(a, b) { return b.score - a.score; });
+
+            // Pick top 3, ensure diversity in visualType
+            var selected = [];
+            var usedTypes = {};
+            scored.forEach(function(item) {
+                if (selected.length >= 3) return;
+                var vt = item.product.visualType || "";
+                if (!usedTypes[vt] || selected.length >= 2) {
+                    selected.push(item);
+                    usedTypes[vt] = true;
+                }
+            });
+
+            return selected;
+        }
+
+        function renderProductRecommendations(profile) {
+            var focus = document.getElementById("lifeFocus").value || "balance";
+            var focusLabels = {
+                career: "career & opportunity",
+                wealth: "wealth & money flow",
+                love: "love & relationships",
+                protection: "protection & peace",
+                balance: "general balance"
+            };
+
+            document.getElementById("recFavorableElems").textContent =
+                (profile.favorableElements || []).slice(0, 3).join(", ");
+            document.getElementById("recFocusLabel").textContent =
+                focusLabels[focus] || focus;
+
+            loadProducts().then(function(products) {
+                if (!products.length) {
+                    document.getElementById("recGrid").innerHTML =
+                        "<p style='color:rgba(36,25,21,0.5);'>Product catalog is loading. Please refresh if this persists.</p>";
+                    return;
+                }
+
+                var matches = matchProducts(profile, products, focus);
+                var grid = document.getElementById("recGrid");
+                grid.innerHTML = "";
+
+                matches.forEach(function(item, i) {
+                    var p = item.product;
+                    var whyMatch = "";
+                    if (i === 0) whyMatch = "Best overall match for " + (profile.favorableElements[0] || "your chart") + " energy and " + focusLabels[focus] + ".";
+                    else if (i === 1) whyMatch = "Strong alternative — " + (p.energyType || "balanced") + " alignment with secondary chart needs.";
+                    else whyMatch = "Supplemental choice for " + (p.energyType || "versatile") + " support in your focus area.";
+
+                    var card = document.createElement("div");
+                    card.className = "rec-card";
+                    card.innerHTML =
+                        "<img src='" + p.image + "' alt='" + p.name + "' loading='lazy' />" +
+                        "<div class='rec-body'>" +
+                            "<h4><span class='rec-number'>" + (i + 1) + "</span>" + p.name + "</h4>" +
+                            "<p class='rec-why'>" + whyMatch + "</p>" +
+                            "<p class='rec-meta'><strong>Materials:</strong> " + (p.materials || "White copper alloy") +
+                            " &middot; <strong>Type:</strong> " + (p.visualType || "pendant") +
+                            " &middot; <strong>Best for:</strong> " + (p.bestFor || []).join(", ") + "</p>" +
+                        "</div>";
+                    grid.appendChild(card);
+                });
+
+                document.getElementById("recSection").style.display = "block";
             });
         }
+
+        // ─── End product matching ────────────────────
 
         function hydrateFromState() {
             const incoming = { ...window.ReadingState.read(), ...window.ReadingState.fromQuery() };

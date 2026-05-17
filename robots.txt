@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Tools — not for Google indexing
+Disallow: /full_bazi_reading.html
+Disallow: /kua_calculator.html
+Disallow: /element-calculator.html
+
 Sitemap: https://oriental-destiny.com/sitemap.xml

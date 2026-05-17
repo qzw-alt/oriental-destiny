@@ -3,7 +3,10 @@
  * 
  * 依赖：bazi_engine.js, api_deepseek.js
  * 使用方式：
- *   AIBaziLayer.init('your-deepseek-api-key');
+ *   // 生产环境 (通过 Cloudflare Worker 代理)
+ *   AIBaziLayer.init({ proxyBaseURL: 'https://oriental-destiny.com/api/deepseek' });
+ *   // 开发环境 (直接调用)
+ *   AIBaziLayer.init({ apiKey: 'sk-...' });
  *   const result = await AIBaziLayer.fullReading(userInput);
  */
 
@@ -69,10 +72,15 @@
 
     /**
      * 初始化 API
-     * @param {string} apiKey - DeepSeek API Key
+     * @param {Object|string} options - { proxyBaseURL, apiKey } or plain apiKey string
      */
-    init(apiKey) {
-      this.api = new DeepSeekAPI(apiKey);
+    init(options) {
+      if (typeof options === "string") {
+        // Backward compat: plain string = apiKey for direct calls
+        this.api = new DeepSeekAPI({ apiKey: options });
+      } else {
+        this.api = new DeepSeekAPI(options);
+      }
     },
 
     /**

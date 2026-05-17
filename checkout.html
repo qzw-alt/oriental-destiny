@@ -318,16 +318,12 @@
         }
 
         .paypal-box {
-            display: none;
+            display: block;
             margin-top: 16px;
             padding: 20px;
             border-radius: 22px;
             background: rgba(240, 223, 202, 0.38);
             border: 1px solid rgba(36, 25, 21, 0.08);
-        }
-
-        .paypal-box.visible {
-            display: block;
         }
 
         .paypal-box h3 {
@@ -338,6 +334,122 @@
         .paypal-box p {
             color: rgba(36, 25, 21, 0.72);
             margin-bottom: 14px;
+        }
+
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 32px;
+            padding: 0 10px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .progress-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            border: 2px solid rgba(36, 25, 21, 0.15);
+            background: rgba(255, 253, 249, 0.9);
+            color: rgba(36, 25, 21, 0.4);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .progress-dot.active {
+            border-color: var(--cinnabar);
+            background: var(--cinnabar);
+            color: #fff8ef;
+            box-shadow: 0 4px 14px rgba(166, 58, 44, 0.22);
+        }
+
+        .progress-dot.done {
+            border-color: var(--pine);
+            background: var(--pine);
+            color: #fff8ef;
+        }
+
+        .progress-line {
+            width: 52px;
+            height: 2px;
+            background: rgba(36, 25, 21, 0.12);
+            margin: 0 6px;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .progress-line.done {
+            background: var(--pine);
+        }
+
+        .progress-label {
+            display: block;
+            text-align: center;
+            font-size: 11px;
+            color: rgba(36, 25, 21, 0.5);
+            margin-top: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .progress-step-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-section {
+            display: none;
+        }
+
+        .step-section.active {
+            display: block;
+        }
+
+        .step-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .step-nav button {
+            min-height: 46px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font: inherit;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1.5px solid rgba(36, 25, 21, 0.15);
+            background: rgba(255, 253, 249, 0.9);
+            color: var(--ink);
+            transition: all 0.2s;
+        }
+
+        .step-nav button:hover {
+            border-color: var(--cinnabar);
+        }
+
+        .step-nav button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .step-nav button.btn-next {
+            background: var(--cinnabar);
+            color: #fff8ef;
+            border-color: var(--cinnabar);
         }
 
         .side-stack {
@@ -413,6 +525,24 @@
 
         <div class="layout">
             <section class="form-card">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-step-container">
+                        <div class="progress-dot active" id="progressDot1">1</div>
+                        <span class="progress-label" data-i18n="ck_progress_1">Focus & Form</span>
+                    </div>
+                    <div class="progress-line" id="progressLine1"></div>
+                    <div class="progress-step-container">
+                        <div class="progress-dot" id="progressDot2">2</div>
+                        <span class="progress-label" data-i18n="ck_progress_2">Your Details</span>
+                    </div>
+                    <div class="progress-line" id="progressLine2"></div>
+                    <div class="progress-step-container">
+                        <div class="progress-dot" id="progressDot3">3</div>
+                        <span class="progress-label" data-i18n="ck_progress_3">Shipping & Pay</span>
+                    </div>
+                </div>
+
+                <div class="step-section active" id="step1">
                 <h2 class="section-title" data-i18n="ck_step_1">1. Choose your focus</h2>
                 <p class="section-note" data-i18n="ck_step_1_note">All plans use the same price. You focus on the reading and matching — we handle the treasure selection from the Longhushan collection.</p>
 
@@ -456,8 +586,10 @@
                         <div class="option-desc" data-i18n="ck_carrier_pendant_desc">Best for guardian symbols, zodiac pieces, Pixiu, safety charms, and protection.</div>
                     </button>
                 </div>
+                </div>
 
-                <h2 class="section-title" data-i18n="ck_step_3">3. Submit your birth details</h2>
+                <div class="step-section" id="step2">
+                <h2 class="section-title" data-i18n="ck_step_3">2. Your birth details</h2>
                 <form id="orderForm" action="https://formspree.io/f/xwvavoqz" method="POST">
                     <input type="hidden" name="plan_key" id="planKey" value="elements">
                     <input type="hidden" name="plan_name" id="planName" value="Elemental Balance">
@@ -542,7 +674,10 @@
                         <textarea id="notes" name="notes" placeholder="Example: I am under career pressure and want more helpful people, or I want to improve wealth retention and stability." data-i18n-placeholder="ck_placeholder_notes"></textarea>
                     </div>
 
-                    <h2 class="section-title" data-i18n="ck_step_4">4. Shipping address</h2>
+                </div>
+
+                <div class="step-section" id="step3">
+                    <h2 class="section-title" data-i18n="ck_step_4">3. Shipping address</h2>
                     <p class="section-note" data-i18n="ck_shipping_note">International standard shipping is included. We confirm the item and your address before it ships — no surprises.</p>
 
                     <div class="field-grid">
@@ -616,11 +751,11 @@
                         <span>$199</span>
                     </div>
 
-                    <button class="btn-primary" type="submit" id="saveDetailsButton" data-i18n="ck_save_btn">1. Save Order Details</button>
+                    <button class="btn-primary" type="submit" id="saveDetailsButton" data-i18n="ck_save_btn">Save &amp; Continue to Payment</button>
                     <div class="form-status" id="formStatus"></div>
 
                     <div class="paypal-box" id="paypalBox">
-                        <h3 data-i18n="ck_paypal_title">2. Complete payment</h3>
+                        <h3 data-i18n="ck_paypal_title">Complete payment</h3>
                         <p data-i18n="ck_paypal_desc">Your details are saved. Complete the $199 payment below — you'll be redirected to a personalized reading immediately after.</p>
                         <div id="paypal-container-HLSEQWZLQCNVC"></div>
 
@@ -643,6 +778,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="step-nav" id="stepNav">
+                    <button type="button" id="btnBack" disabled onclick="prevStep()">← Back</button>
+                    <button type="button" class="btn-next" id="btnNext" onclick="nextStep()">Next →</button>
+                </div>
                 </form>
             </section>
 
@@ -697,6 +838,55 @@
 
         let selectedPlan = "elements";
         let selectedCarrier = "bracelet";
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateProgress() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.getElementById("progressDot" + i);
+                const line = document.getElementById("progressLine" + i);
+                dot.classList.remove("active", "done");
+                if (i < currentStep) dot.classList.add("done");
+                if (i === currentStep) dot.classList.add("active");
+                if (line && i < currentStep) line.classList.add("done");
+                else if (line) line.classList.remove("done");
+            }
+        }
+
+        function goToStep(n) {
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById("step" + i).classList.toggle("active", i === n);
+            }
+            currentStep = n;
+            document.getElementById("btnBack").disabled = n === 1;
+            const btnNext = document.getElementById("btnNext");
+            if (n === totalSteps) {
+                btnNext.textContent = "Review & Pay →";
+                btnNext.classList.add("btn-next");
+            } else {
+                btnNext.textContent = "Next →";
+                btnNext.classList.add("btn-next");
+            }
+            updateProgress();
+            if (n === totalSteps) {
+                document.getElementById("paypalBox").scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+                document.getElementById("step" + n).scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                goToStep(currentStep + 1);
+            } else {
+                // Last step: trigger save & show payment
+                document.getElementById("saveDetailsButton").click();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) goToStep(currentStep - 1);
+        }
 
         const focusToPlan = {
             balance: "elements",
@@ -805,14 +995,19 @@
                     throw new Error("Unable to save details");
                 }
 
-                setStatus("Your details are saved. Continue below with PayPal to complete the $199 payment.", "success");
-                paypalBox.classList.add("visible");
-                paypalBox.scrollIntoView({ behavior: "smooth", block: "start" });
-                saveDetailsButton.textContent = "Details Saved";
+                setStatus("Details saved. Complete your payment below.", "success");
+                saveDetailsButton.textContent = "Details Saved ✓";
+                saveDetailsButton.style.opacity = "0.7";
+
+                gtag('event', 'add_payment_info', {
+                    currency: 'USD',
+                    value: 199,
+                    payment_type: 'paypal'
+                });
             } catch (error) {
                 setStatus("We could not save your details just now. Please try again in a moment.", "error");
                 saveDetailsButton.disabled = false;
-                saveDetailsButton.textContent = "1. Save Order Details";
+                saveDetailsButton.textContent = "Save & Continue to Payment";
             }
         }
 
@@ -821,6 +1016,18 @@
 
         applyIncomingState();
         syncSelection();
+
+        // GA4: begin_checkout
+        gtag('event', 'begin_checkout', {
+            currency: 'USD',
+            value: 199,
+            items: [{
+                item_id: selectedPlan + '_' + selectedCarrier,
+                item_name: plans[selectedPlan] + ' - ' + carriers[selectedCarrier],
+                price: 199,
+                quantity: 1
+            }]
+        });
 
         paypal.HostedButtons({
             hostedButtonId: "HLSEQWZLQCNVC",

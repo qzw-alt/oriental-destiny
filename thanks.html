@@ -251,6 +251,17 @@
             document.getElementById('paymentBadge').classList.add('show');
             document.getElementById('instantPreview').classList.add('show');
 
+            gtag('event', 'purchase', {
+                currency: 'USD',
+                value: 199,
+                transaction_id: params.get('tx') || params.get('paymentId') || params.get('token') || '',
+                items: [{
+                    item_name: 'Personalized Feng Shui Reading + Daoist Treasure',
+                    price: 199,
+                    quantity: 1
+                }]
+            });
+
             // Pre-fill the full reading URL with saved birth data, then redirect
             const state = window.ReadingState ? window.ReadingState.read() : {};
             const q = new URLSearchParams();

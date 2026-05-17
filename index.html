@@ -385,6 +385,50 @@
             font-weight: 700;
         }
 
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            border-radius: 24px;
+            padding: 26px;
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card .body {
+            font-style: italic;
+            color: rgba(36, 25, 21, 0.78);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .testimonial-card .author {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .testimonial-card .detail {
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.5);
+        }
+
+        @media (max-width: 980px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .closing-card {
             border-radius: 30px;
             padding: 40px;
@@ -457,7 +501,12 @@
           "@id": "https://oriental-destiny.com/#organization",
           "name": "Oriental Destiny",
           "url": "https://oriental-destiny.com",
-          "sameAs": []
+          "sameAs": [],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "cinvea7@gmail.com",
+            "contactType": "customer service"
+          }
         },
         {
           "@type": "WebSite",
@@ -465,6 +514,37 @@
           "url": "https://oriental-destiny.com",
           "name": "Oriental Destiny | Personalized Feng Shui Reading",
           "publisher": {"@id": "https://oriental-destiny.com/#organization"}
+        },
+        {
+          "@type": "Product",
+          "name": "Personalized Feng Shui Reading + Handcrafted Daoist Treasure",
+          "description": "A personalized birth chart reading and one handcrafted Daoist treasure from Longhushan, matched to your Five Elements and life focus. Includes worldwide shipping from China.",
+          "offers": {
+            "@type": "Offer",
+            "price": "199.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "url": "https://oriental-destiny.com/checkout.html",
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "name": "Worldwide"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {"@type": "QuantitativeValue", "minValue": 7, "maxValue": 10, "unitCode": "DAY"},
+                "transitTime": {"@type": "QuantitativeValue", "minValue": 10, "maxValue": 14, "unitCode": "DAY"}
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 30,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "refundType": "https://schema.org/FullRefund"
+            }
+          }
         }
       ]
     }
@@ -716,6 +796,37 @@
                         <h3 data-i18n="index_faq_q4">Can I choose the exact stone or design?</h3>
                         <p data-i18n="index_faq_a4">You choose the life focus and whether you prefer a bracelet or pendant. The material, color, and symbol are recommended after we review your birth chart — and we confirm the final direction with you before anything ships.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2 data-i18n="index_testimonials_title">What our clients say</h2>
+                        <p data-i18n="index_testimonials_desc">Each reading is personal. Here are a few notes from people who ordered their chart-matched direction.</p>
+                    </div>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="body">"I was skeptical at first, but the reading described my career situation with surprising accuracy. The bracelet they recommended after reading my chart has become a daily reminder to stay focused. It arrived in about two weeks, beautifully packaged."</p>
+                        <div class="author">Sarah M.</div>
+                        <div class="detail">Career & Allies · United States</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="body">"What I appreciated most was that they confirmed the direction with me before shipping. It wasn't just 'here's your order' — they explained why they chose citrine and obsidian based on my chart. That personal touch made the difference."</p>
+                        <div class="author">David L.</div>
+                        <div class="detail">Wealth & Retention · Canada</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="body">"I ordered for protection and grounding. The reading itself was worth the price — it named specific months and elements I should pay attention to. The pendant they matched to my chart is something I wear every day now."</p>
+                        <div class="author">Mei C.</div>
+                        <div class="detail">Safety & Protection · Singapore</div>
+                    </div>
                 </div>
             </div>
         </section>

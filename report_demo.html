@@ -707,8 +707,8 @@
     <script src="ai_bazi_layer.js"></script>
     <script>
         (async function enhanceDemoReport() {
-            if (typeof window.DEEPSEEK_API_KEY === "string" && window.DEEPSEEK_API_KEY) {
-                window.AIBaziLayer.init(window.DEEPSEEK_API_KEY);
+            if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
+                window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
             }
             if (!window.AIBaziLayer.isReady()) return;
 

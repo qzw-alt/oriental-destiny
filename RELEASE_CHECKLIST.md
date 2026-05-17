@@ -29,7 +29,7 @@
 ## 3. PayPal payment
 
 - Run one real payment test with the hosted PayPal button.
-- Confirm the payment amount is exactly `USD 99.00`.
+- Confirm the payment amount is exactly `USD 199.00`.
 - Confirm the PayPal product title and description look clean to the buyer.
 - Confirm payment works on both PayPal balance and card flow if available.
 

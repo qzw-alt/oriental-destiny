@@ -471,7 +471,7 @@
                 <h1 data-i18n="ir_hero_title">Begin with the part people feel first: where life has become heavy, delayed, scattered, or hard to settle.</h1>
                 <p data-i18n="ir_hero_desc">This opening is not meant to say everything. It is meant to show whether the chart is already speaking to the concern that brought you here.</p>
                 <ul class="helper-list">
-                    <li data-i18n="ir_hero_li_1">No signup or email required</li>
+                    <li data-i18n="ir_hero_li_1">3 quick fields — birth date, optional time, and your concern</li>
                     <li data-i18n="ir_hero_li_2">See your Day Master, Four Pillars, and elemental balance</li>
                     <li data-i18n="ir_hero_li_3">A first reading that connects the chart to your present concerns</li>
                 </ul>
@@ -501,21 +501,17 @@
                 <form id="readingForm">
                     <div class="field-grid">
                         <div class="field">
-                            <label for="fullName" data-i18n="ir_label_name">First name</label>
-                            <input id="fullName" name="full_name" type="text" placeholder="Alex" data-i18n-placeholder="ir_placeholder_name" required>
-                        </div>
-                        <div class="field">
                             <label for="birthDate" data-i18n="ir_label_birth_date">Birth date</label>
                             <input id="birthDate" name="birth_date" type="date" required>
+                        </div>
+                        <div class="field">
+                            <label for="birthTime" data-i18n="ir_label_birth_time">Birth time (optional)</label>
+                            <input id="birthTime" name="birth_time" type="time">
+                            <div class="field-help" data-i18n="ir_help_birth_time">More accurate with time. Leave blank if unknown — a safe estimate is used.</div>
                         </div>
                     </div>
 
                     <div class="field-grid">
-                        <div class="field">
-                            <label for="birthTime" data-i18n="ir_label_birth_time">Birth time <span style="color:#a92b20;">*</span></label>
-                            <input id="birthTime" name="birth_time" type="time" required>
-                            <div class="field-help" data-i18n="ir_help_birth_time">Required for the hour pillar. If unknown, enter 12:00 as an estimate.</div>
-                        </div>
                         <div class="field">
                             <label for="lifeFocus" data-i18n="ir_label_focus">Main area of focus</label>
                             <select id="lifeFocus" name="life_focus" required>
@@ -527,26 +523,10 @@
                                 <option value="balance" data-i18n="ir_option_balance">General balance</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="field-grid">
                         <div class="field">
-                            <label for="gender" data-i18n="ir_label_gender">Gender</label>
-                            <select id="gender" name="gender" required>
-                                <option value="" data-i18n="ir_option_gender_placeholder">Select</option>
-                                <option value="male" data-i18n="ir_option_male">Male</option>
-                                <option value="female" data-i18n="ir_option_female">Female</option>
-                            </select>
+                            <label for="notes" data-i18n="ir_label_notes">Current situation</label>
+                            <textarea id="notes" name="notes" rows="2" placeholder="Tell us what brought you here — career, money, relationships, or peace of mind." data-i18n-placeholder="ir_placeholder_notes"></textarea>
                         </div>
-                        <div class="field">
-                            <label for="birthLocation" data-i18n="ir_label_location">Birth city and country</label>
-                            <input id="birthLocation" name="birth_location" type="text" placeholder="Los Angeles, USA" data-i18n-placeholder="ir_placeholder_location" required>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label for="notes" data-i18n="ir_label_notes">Current situation</label>
-                        <textarea id="notes" name="notes" placeholder="Example: I feel stuck in career, I want better money stability, or I want calmer relationships." data-i18n-placeholder="ir_placeholder_notes"></textarea>
                     </div>
 
                     <button class="submit-btn" id="submitBtn" type="submit" data-i18n="ir_submit_btn">Show My Instant Reading</button>
@@ -710,12 +690,9 @@
             event.preventDefault();
             setLoading(true);
 
-            const name = document.getElementById("fullName").value.trim() || "Friend";
             const birthDate = document.getElementById("birthDate").value;
             const birthTime = document.getElementById("birthTime").value;
             const lifeFocus = document.getElementById("lifeFocus").value;
-            const gender = document.getElementById("gender").value;
-            const birthLocation = document.getElementById("birthLocation").value.trim();
             const notes = document.getElementById("notes").value.trim();
             const focusData = focusCopy[lifeFocus];
             if (!focusData) {
@@ -729,9 +706,7 @@
                 profile = window.BaziTranslator.translate(window.BaziEngine.calculateProfile({
                     birthDate,
                     birthTime,
-                    lifeFocus,
-                    gender,
-                    birthLocation
+                    lifeFocus
                 }));
             } catch (error) {
                 alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
@@ -746,9 +721,7 @@
                     aiReading = await window.AIBaziLayer.quickReading({
                         birthDate,
                         birthTime,
-                        focus: lifeFocus,
-                        gender,
-                        birthLocation
+                        focus: lifeFocus
                     });
                 } catch (err) {
                     console.warn("AI reading failed, using static fallback:", err.message);
@@ -757,19 +730,16 @@
 
             const carriedState = window.ReadingState.merge({
                 focus: lifeFocus,
-                full_name: name,
                 birth_date: birthDate,
                 birth_time: birthTime,
-                notes,
-                gender,
-                birth_location: birthLocation
+                notes
             });
             const query = window.ReadingState.toQuery(carriedState);
             const noteLine = notes
                 ? " The situation you described suggests that this theme is already active in daily life."
                 : "";
 
-            document.getElementById("resultTitle").textContent = `${name}, the chart has opened enough to show its first meaning.`;
+            document.getElementById("resultTitle").textContent = `The chart has opened enough to show its first meaning.`;
             document.getElementById("resultSummary").textContent = `Your Day Master appears as ${profile.dayMasterStem} ${profile.dayMasterElement}, and this often shows one who is ${profile.dayMasterProfile}. At this first opening, the chart reads as ${profile.strength.band.toLowerCase()} in day-master strength, while ${profile.favorableElements[0].toLowerCase()} and ${profile.favorableElements[1].toLowerCase()} appear more beneficial as support. ${profile.note}${noteLine}`;
             document.getElementById("zodiacText").innerHTML = `<strong>Year Pillar:</strong> ${profile.pillarLabels.year}<br><strong>Month Pillar:</strong> ${profile.pillarLabels.month}<br><strong>Day Pillar:</strong> ${profile.pillarLabels.day}<br><strong>Hour Pillar:</strong> ${profile.pillarLabels.hour}`;
             document.getElementById("elementText").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> stands as the Day Master in this opening. The chart is born in ${profile.season}, and the year of birth still carries the tone of the ${profile.zodiac}.`;
@@ -819,7 +789,7 @@
                 payload.set("source", "instant_reading_email_capture");
                 payload.set("life_focus", carriedState.focus || "");
                 payload.set("birth_date", carriedState.birth_date || "");
-                payload.set("notes", `Instant reading signup. Name: ${carriedState.full_name || "unknown"}. ${carriedState.notes || ""}`);
+                payload.set("notes", `Instant reading signup. ${carriedState.notes || ""}`);
 
                 try {
                     const res = await fetch("https://formspree.io/f/xwvgznkz", {

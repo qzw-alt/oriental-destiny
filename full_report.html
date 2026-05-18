@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your complete personalized BaZi reading — a 7-chapter guide based on your birth chart.">
+    <link rel="canonical" href="https://oriental-destiny.com/full_report.html">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="Your Complete BaZi Reading | Oriental Destiny">
+    <meta property="og:description" content="Your complete 7-chapter BaZi reading — personalized guidance based on your birth chart.">
+    <title>Your Complete Reading | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #fbf5ec;
+            --cinnabar: #a63a2c;
+            --jade: #2d6a4f;
+            --gold: #b78a42;
+            --line: rgba(36, 25, 21, 0.1);
+            --warm: #f6e7d6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background: linear-gradient(180deg, #f6e7d6 0%, var(--paper) 48%, #fffaf4 100%);
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .report-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .report-header {
+            text-align: center;
+            padding: 36px 24px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--gold);
+        }
+        .report-header .brand {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 16px;
+        }
+        .report-header h1 {
+            font-size: clamp(26px, 5vw, 38px);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .report-header .subtitle {
+            color: rgba(36, 25, 21, 0.6);
+            font-size: 14px;
+        }
+        .chapter {
+            margin-bottom: 36px;
+            padding: 28px 24px;
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(70, 41, 24, 0.05);
+        }
+        .chapter-num {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .chapter h2 {
+            font-size: 22px;
+            line-height: 1.3;
+            margin-bottom: 18px;
+            color: var(--ink);
+        }
+        .chapter h3 {
+            font-size: 17px;
+            margin: 20px 0 10px;
+            color: rgba(36, 25, 21, 0.85);
+        }
+        .chapter p {
+            margin-bottom: 14px;
+            color: rgba(36, 25, 21, 0.82);
+            font-size: 15px;
+        }
+        .chapter .takeaway {
+            margin-top: 16px;
+            padding: 12px 18px;
+            background: rgba(183, 138, 66, 0.08);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.9);
+        }
+        .master-note {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: rgba(242, 227, 208, 0.3);
+        }
+        .master-note .note-type {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .master-note p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .timing-card {
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            background: rgba(45, 106, 79, 0.05);
+            border: 1px solid rgba(45, 106, 79, 0.1);
+        }
+        .timing-card .period {
+            font-weight: 700;
+            color: var(--jade);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .timing-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+        .advice-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+        .advice-list li {
+            padding: 8px 0 8px 22px;
+            position: relative;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.8);
+        }
+        .advice-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+        .jewelry-section {
+            padding: 22px;
+            background: rgba(183, 138, 66, 0.05);
+            border: 1px solid rgba(183, 138, 66, 0.15);
+            border-radius: 16px;
+        }
+        .jewelry-section h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .appendix-section {
+            padding: 18px 22px;
+            background: rgba(36, 25, 21, 0.03);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.6);
+        }
+        .appendix-section h3 {
+            color: rgba(36, 25, 21, 0.5);
+            font-size: 13px;
+            margin: 0 0 10px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state h2 {
+            margin-bottom: 12px;
+        }
+        .empty-state p {
+            color: rgba(36, 25, 21, 0.6);
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 28px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            color: #fff8ef;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(36, 25, 21, 0.2);
+            color: var(--ink);
+        }
+        .btn:hover { opacity: 0.9; }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.5);
+        }
+        footer a { color: rgba(36, 25, 21, 0.7); margin: 0 6px; }
+        @media (max-width: 640px) {
+            .chapter { padding: 18px 14px; }
+            .report-header { padding: 24px 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="report-container">
+    <div class="report-header">
+        <div class="brand">Oriental Destiny</div>
+        <h1>Your Complete BaZi Reading</h1>
+        <p class="subtitle">A personal guide based on your birth chart</p>
+    </div>
+
+    <div id="reportContent"></div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+        <h2>No report found</h2>
+        <p>Your complete report hasn't been generated yet. Go to your Chart Snapshot to generate it, or check your email — the annotated report will arrive within 6 hours.</p>
+        <a class="btn" href="snapshot_report.html">Go to My Snapshot</a>
+    </div>
+
+    <footer>
+        <a href="policies.html#shipping">Shipping</a> ·
+        <a href="policies.html#refund">Refund</a> ·
+        <a href="policies.html#privacy">Privacy</a> ·
+        <a href="mailto:cinvea7@gmail.com">Contact</a>
+    </footer>
+    <p style="text-align:center;font-size:11px;color:rgba(36,25,21,0.4);margin-top:8px;">
+        This reading is for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice.
+    </p>
+    <span class="od-version" style="display:block;text-align:center;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
+</div>
+
+<script src="version.js"></script>
+<script>
+(function () {
+    var content = document.getElementById('reportContent');
+    var empty = document.getElementById('emptyState');
+
+    function loadReport() {
+        var reportData = null;
+        try {
+            var raw = localStorage.getItem('oriental_destiny_full_report');
+            if (raw) reportData = JSON.parse(raw);
+        } catch (e) {}
+
+        if (!reportData || !reportData.report) {
+            content.style.display = 'none';
+            empty.style.display = 'block';
+            return;
+        }
+
+        var r = reportData.report;
+        var html = '';
+
+        // Chapter 1: Opening Message
+        html += buildChapter('1', 'Opening Message', r.openingMessage);
+
+        // Chapter 2: Core Pattern
+        if (r.corePattern) {
+            var cp = r.corePattern;
+            var cpHTML = '';
+            if (cp.dayMasterNarrative) cpHTML += '<h3>Your Day Master</h3><p>' + cp.dayMasterNarrative + '</p>';
+            if (cp.elementStory) cpHTML += '<h3>Your Element Story</h3><p>' + cp.elementStory + '</p>';
+            if (cp.tenGodNarrative) cpHTML += '<h3>Your Relational Pattern</h3><p>' + cp.tenGodNarrative + '</p>';
+            html += buildChapter('2', 'Your Core Pattern', cpHTML);
+        }
+
+        // Chapter 3: Main Tension
+        html += buildChapter('3', 'The Main Life Tension', r.mainTension);
+
+        // Chapter 4: Focus Guidance
+        if (r.focusGuidance) {
+            var fg = r.focusGuidance;
+            var fgHTML = '';
+            if (fg.narrative) fgHTML += '<p>' + fg.narrative + '</p>';
+            if (fg.actionItems && fg.actionItems.length > 0) {
+                fgHTML += '<ul class="advice-list">' + fg.actionItems.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul>';
+            }
+            if (fg.caution) fgHTML += '<p style="color:var(--cinnabar);font-size:14px;"><strong>Note:</strong> ' + fg.caution + '</p>';
+            html += buildChapter('4', 'Guidance for Your Focus' + (fg.focusArea ? ': ' + fg.focusArea : ''), fgHTML);
+        }
+
+        // Chapter 5: Timing Windows
+        if (r.timingWindows) {
+            var twHTML = '';
+            if (r.timingWindows.narrative) twHTML += '<p>' + r.timingWindows.narrative + '</p>';
+            if (r.timingWindows.windows && r.timingWindows.windows.length > 0) {
+                r.timingWindows.windows.forEach(function (w) {
+                    twHTML += '<div class="timing-card"><div class="period">' + (w.period || '') +
+                        (w.elementActive ? ' &mdash; ' + w.elementActive + ' energy' : '') +
+                        '</div><p>' + (w.guidance || '') + '</p></div>';
+                });
+            }
+            html += buildChapter('5', 'Timing Windows', twHTML);
+        }
+
+        // Chapter 6: Master's Notes
+        if (r.masterNotes && r.masterNotes.length > 0) {
+            var mnHTML = r.masterNotes.map(function (n) {
+                return '<div class="master-note"><div class="note-type">' + (n.type || '') + '</div><p>' + (n.text || '') + '</p></div>';
+            }).join('');
+            html += buildChapter('6', "Master's Notes", mnHTML);
+        }
+
+        // Chapter 7: Jewelry Recommendation
+        if (r.jewelryRecommendation) {
+            var jr = r.jewelryRecommendation;
+            var jrHTML = '<div class="jewelry-section">';
+            if (jr.whyThisElement) jrHTML += '<h3>Why This Element</h3><p>' + jr.whyThisElement + '</p>';
+            if (jr.whyThisSymbol) jrHTML += '<h3>Why This Symbol</h3><p>' + jr.whyThisSymbol + '</p>';
+            if (jr.whyThisMaterial) jrHTML += '<h3>Why This Material</h3><p>' + jr.whyThisMaterial + '</p>';
+            if (jr.wearingGuidance) jrHTML += '<h3>Wearing Guidance</h3><p>' + jr.wearingGuidance + '</p>';
+            if (jr.whyNotOthers) jrHTML += '<p style="font-size:13px;color:rgba(36,25,21,0.5);margin-top:12px;">' + jr.whyNotOthers + '</p>';
+            jrHTML += '</div>';
+            html += buildChapter('7', 'Your Jewelry Recommendation', jrHTML);
+        }
+
+        // Technical Appendix
+        if (r.technicalAppendix) {
+            var ta = r.technicalAppendix;
+            var taHTML = '<div class="appendix-section">';
+            taHTML += '<h3>Technical Appendix</h3>';
+            if (ta.fourPillars) taHTML += '<p>' + ta.fourPillars + '</p>';
+            if (ta.elementBreakdown) taHTML += '<p>' + ta.elementBreakdown + '</p>';
+            if (ta.yongShenSummary) taHTML += '<p>' + ta.yongShenSummary + '</p>';
+            if (ta.luckPhaseNote) taHTML += '<p>' + ta.luckPhaseNote + '</p>';
+            taHTML += '</div>';
+            html += taHTML;
+        }
+
+        content.innerHTML = html;
+        content.style.display = 'block';
+        empty.style.display = 'none';
+    }
+
+    function buildChapter(num, title, body) {
+        return '<div class="chapter"><div class="chapter-num">Chapter ' + num + '</div><h2>' + title + '</h2>' + (body || '') + '</div>';
+    }
+
+    loadReport();
+})();
+</script>
+</body>
+</html>

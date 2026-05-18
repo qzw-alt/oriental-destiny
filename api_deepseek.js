@@ -250,6 +250,100 @@ Respond with JSON:
   }
 
   /**
+   * Outline 层：生成 7 章报告大纲
+   * @param {Object} chartData - 八字数据
+   * @param {string} focus - career|wealth|love|protection|balance
+   * @returns {Promise<Object>} outline with 7 sections
+   */
+  async generateOutline(chartData, focus) {
+    let systemPrompt = await this._loadPrompt("prompts/system_outline.txt");
+    if (!systemPrompt) {
+      systemPrompt = this._fallbackSystemOutline();
+    }
+    var userPrompt = 'Generate a structured 7-section report outline for the following BaZi chart.\n\n' +
+      'FOCUS: ' + (focus || 'balance') + '\n\n' +
+      'CHART DATA:\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'Respond with a valid JSON object containing a "sections" key with all 7 sections as specified.';
+
+    var response = await this.chat(
+      [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt }
+      ],
+      { temperature: 0.4, max_tokens: 2000 }
+    );
+    return this._extractJSON(response);
+  }
+
+  /**
+   * Narrative 层：按大纲撰写完整 7 章报告
+   * @param {Object} outline - 大纲 JSON
+   * @param {Object} chartData - 八字数据
+   * @param {string} focus - 用户关注领域
+   * @returns {Promise<Object>} 完整报告
+   */
+  async generateNarrative(outline, chartData, focus) {
+    let systemPrompt = await this._loadPrompt("prompts/system_narrative.txt");
+    if (!systemPrompt) {
+      systemPrompt = this._fallbackSystemNarrative();
+    }
+    var userPrompt = 'Write a complete 7-chapter BaZi report following the outline below.\n\n' +
+      'FOCUS: ' + (focus || 'balance') + '\n\n' +
+      'OUTLINE:\n' + JSON.stringify(outline, null, 2) + '\n\n' +
+      'CHART DATA (for reference — use specific names and scores):\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'Write the complete report as a valid JSON object. Every chapter must be fully written — no placeholders.';
+
+    var response = await this.chat(
+      [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt }
+      ],
+      { temperature: 0.8, max_tokens: 3000 }
+    );
+    return this._extractJSON(response);
+  }
+
+  /**
+   * Reviewer 层：质量检查
+   * @param {Object} fullReport - 完整报告 JSON
+   * @param {Object} chartData - 原始八字数据（用于核对）
+   * @returns {Promise<Object>} { overall, dimensions, failedSections, rewriteInstructions }
+   */
+  async reviewQuality(fullReport, chartData) {
+    let systemPrompt = await this._loadPrompt("prompts/system_reviewer.txt");
+    if (!systemPrompt) {
+      systemPrompt = this._fallbackSystemReviewer();
+    }
+    var userPrompt = 'Review the following BaZi report for quality.\n\n' +
+      'REPORT:\n' + JSON.stringify(fullReport, null, 2) + '\n\n' +
+      'ORIGINAL CHART DATA (for fact-checking):\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'Respond with a valid JSON object containing overall verdict, dimension scores, and rewrite instructions.';
+
+    var response = await this.chat(
+      [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt }
+      ],
+      { temperature: 0.3, max_tokens: 1500 }
+    );
+    return this._extractJSON(response);
+  }
+
+  // ─── Outline / Narrative / Reviewer fallbacks ──────
+
+  _fallbackSystemOutline() {
+    return 'You are a BaZi interpretation planner. Read computed chart data and produce a structured 7-section report outline. Each section must have theme, hook, evidence from chart data, and constraints for the writer. Output valid JSON only with a "sections" key containing: openingMessage, corePattern, mainTension, focusGuidance, timingWindows, masterNotes, jewelryRecommendation.';
+  }
+
+  _fallbackSystemNarrative() {
+    return 'You are a modern Feng Shui advisor writing a personalized 7-chapter BaZi report. Write like a mentor who truly sees the client. Translate every BaZi term to plain English. Each chapter must end with a bold plain-language takeaway. Never use vague generalizers. Output valid JSON only with all 7 chapters fully written.';
+  }
+
+  _fallbackSystemReviewer() {
+    return 'You are a quality reviewer for BaZi reports. Check specificity, plain language, actionability, groundedness in chart data, safety (no medical/legal/financial claims), and tone (mentor voice, not template). Output valid JSON: { overall: "PASS|CONDITIONAL_PASS|FAIL", dimensions: { specificity: {pass, note}, plainLanguage: {pass, note}, actionability: {pass, note}, groundedness: {pass, note}, safety: {pass, note}, tone: {pass, note} }, failedSections: [], rewriteInstructions: {}, summaryNote: "" }';
+  }
+
+  /**
    * 内联兜底：当 prompts/system_analyze.txt 加载失败时使用
    */
   _fallbackSystemAnalyze() {

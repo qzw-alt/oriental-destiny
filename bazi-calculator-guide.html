@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use our free BaZi calculator: enter your birth date, time, and location to generate your Four Pillars chart. See your Day Master, Five Elements balance, and Ten Gods — no signup, no email required.">
+    <link rel="canonical" href="https://oriental-destiny.com/bazi-calculator-guide.html">
+    <meta property="og:title" content="Free BaZi Calculator — Generate Your Four Pillars Chart Instantly">
+    <meta property="og:description" content="Enter your birth details and get your Four Pillars chart: Day Master, Five Elements, Ten Gods. Free instant results.">
+    <meta property="og:type" content="website">
+    <title>Free BaZi Calculator — Generate Your Four Pillars Chart Instantly | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Free BaZi Calculator — Generate Your Four Pillars Chart Instantly",
+      "description": "How to use our free BaZi calculator: enter your birth date, time, and location to generate your Four Pillars chart. See your Day Master, Five Elements balance, and Ten Gods — no signup, no email required.",
+      "author": { "@type": "Organization", "name": "Oriental Destiny" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Oriental Destiny",
+        "url": "https://oriental-destiny.com/"
+      },
+      "mainEntityOfPage": "https://oriental-destiny.com/bazi-calculator-guide.html"
+    }
+    </script>
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+        }
+        a { color: var(--cinnabar); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            min-height: 74px; display: flex; align-items: center;
+            justify-content: space-between; gap: 18px; flex-wrap: wrap;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 24px; font-weight: 700; }
+        .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36, 25, 21, 0.78); flex-wrap: wrap; justify-content: flex-end; }
+        .nav a { color: inherit; }
+        .nav a:hover { color: var(--cinnabar); text-decoration: none; }
+
+        article { max-width: 720px; margin: 0 auto; padding: 56px 0 80px; }
+        .article-header { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+        .article-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cinnabar); font-family: Georgia, serif; margin-bottom: 16px; }
+        h1 {
+            font-family: Georgia, serif; font-size: clamp(28px, 5vw, 40px);
+            font-weight: 700; line-height: 1.18; color: var(--ink);
+            margin-bottom: 20px;
+        }
+        .article-meta { font-size: 14px; color: rgba(36, 25, 21, 0.55); margin-top: 16px; }
+
+        .article-body { font-size: 17px; }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 {
+            font-family: Georgia, serif; font-size: 26px; font-weight: 700;
+            margin: 48px 0 20px; color: var(--ink); line-height: 1.3;
+        }
+        .article-body h3 {
+            font-family: Georgia, serif; font-size: 20px; font-weight: 600;
+            margin: 32px 0 16px; color: var(--ink);
+        }
+        .article-body ul, .article-body ol { margin: 0 0 24px 28px; }
+        .article-body li { margin-bottom: 10px; }
+        .article-body strong { color: var(--ink); font-weight: 600; }
+
+        .calculator-preview {
+            background: linear-gradient(135deg, rgba(183, 138, 66, 0.1), rgba(183, 138, 66, 0.04));
+            border: 1px solid rgba(183, 138, 66, 0.3);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .calculator-preview .title {
+            font-size: 18px; font-weight: 600; margin-bottom: 16px;
+            color: var(--ink);
+        }
+        .calc-fields {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px; margin-bottom: 16px;
+        }
+        .calc-field {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+        .calc-field label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(36,25,21,0.55); margin-bottom: 6px; }
+        .calc-field .value { font-size: 15px; font-weight: 600; color: var(--ink); }
+        .calc-btn {
+            display: block; width: 100%;
+            background: var(--cinnabar); color: white;
+            padding: 16px; border: none; border-radius: 8px;
+            font-family: Georgia, serif; font-size: 17px; font-weight: 600;
+            cursor: pointer; text-align: center;
+        }
+
+        .what-you-get {
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+        }
+        .what-you-get h3 { margin-top: 0; }
+        .what-you-get ul { margin-bottom: 0; }
+
+        .key-point {
+            background: linear-gradient(135deg, rgba(183, 138, 66, 0.12), rgba(183, 138, 66, 0.05));
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 32px 0;
+        }
+        .key-point p { margin-bottom: 0; }
+
+        .example-chart {
+            background: var(--ink); color: var(--paper);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .example-chart .chart-title { color: var(--gold); font-family: Georgia, serif; font-size: 16px; margin-bottom: 16px; text-align: center; }
+        .example-chart .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .example-chart .row:last-child { border-bottom: none; }
+        .example-chart .label { color: rgba(248,241,231,0.6); }
+        .example-chart .value { color: var(--gold); font-weight: bold; }
+
+        .step-list { counter-reset: steps; list-style: none; margin-left: 0; }
+        .step-list li { counter-increment: steps; padding-left: 44px; position: relative; margin-bottom: 20px; }
+        .step-list li::before {
+            content: counter(steps);
+            position: absolute; left: 0; top: 0;
+            width: 28px; height: 28px;
+            background: var(--cinnabar); color: white;
+            border-radius: 50%; font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 15px; }
+        .comparison-table th { background: var(--ink); color: var(--paper); padding: 12px 16px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+        .comparison-table tr:nth-child(even) td { background: rgba(183,138,66,0.06); }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--ink), #3a2a1a);
+            color: var(--paper);
+            border-radius: 12px;
+            padding: 36px 32px;
+            margin: 48px 0;
+            text-align: center;
+        }
+        .cta-box h2 { font-family: Georgia, serif; font-size: 26px; margin-bottom: 12px; color: var(--gold); }
+        .cta-box p { font-size: 16px; opacity: 0.85; margin-bottom: 24px; }
+        .cta-box a {
+            display: inline-block;
+            background: var(--gold); color: var(--ink);
+            padding: 14px 32px; border-radius: 8px;
+            font-weight: 600; font-size: 15px;
+            transition: background 0.2s;
+        }
+        .cta-box a:hover { background: #c99a4e; text-decoration: none; }
+
+        .faq-section { margin-top: 48px; }
+        .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
+        .faq-item h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+        .faq-item p { font-size: 16px; color: rgba(36,25,21,0.8); margin: 0; }
+
+        footer {
+            background: var(--ink); color: rgba(248, 241, 231, 0.7);
+            padding: 40px 0; margin-top: 80px;
+        }
+        .footer-inner { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start; }
+        .footer-brand { font-family: Georgia, serif; }
+        .footer-brand .name { font-size: 20px; color: var(--gold); font-weight: 700; }
+        .footer-brand .mark { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cinnabar); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 24px; }
+        .footer-links a { color: rgba(248,241,231,0.6); font-size: 14px; }
+        .footer-links a:hover { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="container">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Oriental Destiny</span>
+            </div>
+            <nav class="nav">
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="daoist-treasures.html">Daoist Treasures</a>
+                <a href="what-is-bazi-complete-guide.html">BaZi Guide</a>
+                <a href="mailto:cinvea7@gmail.com">Contact</a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<article>
+    <header class="article-header">
+        <div class="article-label">Free Calculator</div>
+        <h1>Free BaZi Calculator — Generate Your Four Pillars Chart Instantly</h1>
+        <p style="font-size:18px; color:rgba(36,25,21,0.7); line-height:1.6;">
+            Enter your birth date, birth time, and birth location. Our AI calculator maps your Four Pillars, reveals your Day Master and elemental balance, and generates a personalized reading in under 30 seconds.
+        </p>
+        <div class="article-meta">No signup required &middot; Free forever &middot; Instant results</div>
+    </header>
+
+    <div class="article-body">
+
+<p>Most people first encounter BaZi when they hear about someone who can take their birthday and birth time and describe their personality with uncomfortable accuracy. That process starts with a <strong>BaZi calculator</strong> — a tool that converts your birth details into your Four Pillars chart.</p>
+
+<p>This guide explains what the calculator does, what each part of your chart means, and how to use the results to understand yourself more clearly.</p>
+
+<h2>How Our BaZi Calculator Works</h2>
+
+<p>Our calculator takes three pieces of information — your birth date, birth time, and birth location — and uses them to construct your Four Pillars chart. The process involves several steps:</p>
+
+<ol class="step-list">
+    <li><strong>Convert to lunar time</strong>: BaZi uses the Chinese lunar calendar. Your birth date and time are converted accordingly, accounting for leap months and the specific lunar year structure.</li>
+    <li><strong>Apply Solar Time correction</strong>: The Earth does not follow perfect clock time. We adjust for your longitude within your time zone so that the Hour Pillar accurately reflects the celestial energy at your birth moment.</li>
+    <li><strong>Assign pillars and stems</strong>: The year, month, day, and hour are mapped to their respective Heavenly Stems and Earthly Branches, producing your eight characters.</li>
+    <li><strong>Calculate elemental balance</strong>: Each stem and branch carries an element. We tally yours to determine which elements are dominant, which are weak, and what this means for your chart as a whole.</li>
+    <li><strong>Generate your reading</strong>: AI-powered interpretation draws from the chart data to produce a personalized narrative about your personality, your current-year energy, and practical guidance.</li>
+</ol>
+
+<div class="calculator-preview">
+    <div class="title">What the Calculator Asks</div>
+    <div class="calc-fields">
+        <div class="calc-field">
+            <label>Birth Date</label>
+            <div class="value">Your full date of birth</div>
+        </div>
+        <div class="calc-field">
+            <label>Birth Time</label>
+            <div class="value">Exact hour you were born</div>
+        </div>
+        <div class="calc-field">
+            <label>Gender</label>
+            <div class="value">Required for luck cycle direction</div>
+        </div>
+        <div class="calc-field">
+            <label>Life Focus</label>
+            <div class="value">Career, Wealth, Love, or Balance</div>
+        </div>
+    </div>
+    <button class="calc-btn" onclick="window.location.href='instant_reading.html'">Try It Free — Get Your Reading →</button>
+</div>
+
+<h2>What Your BaZi Chart Tells You</h2>
+
+<p>When you run your details through the calculator, you receive several layers of information:</p>
+
+<div class="what-you-get">
+    <h3>Your Four Pillars</h3>
+    <p>Eight characters — two per pillar — that form the complete map of your birth energy. Each pillar contains a Heavenly Stem and an Earthly Branch. Here is what a sample result looks like:</p>
+
+    <div class="example-chart">
+        <div class="chart-title">Sample BaZi Chart</div>
+        <div class="row"><span class="label">Year Pillar</span><span class="value">Jia-Zi (Yang Wood + Rat)</span></div>
+        <div class="row"><span class="label">Month Pillar</span><span class="value">Yi-Mao (Yin Wood + Rabbit)</span></div>
+        <div class="row"><span class="label">Day Pillar</span><span class="value">Gui-Mao (Yin Water + Rabbit) ← Your Day Master</span></div>
+        <div class="row"><span class="label">Hour Pillar</span><span class="value">Xin-You (Yin Metal + Rooster)</span></div>
+    </div>
+
+    <h3>Your Day Master</h3>
+    <p>The Heavenly Stem in your Day Pillar represents your core self. In the example above, the Day Master is <strong>Gui</strong> (Yin Water) — a personality that tends to be emotionally perceptive, intuitive, and deeply private. Understanding your Day Master is the single most important step in reading your chart.</p>
+
+    <h3>Your Elemental Balance</h3>
+    <p>The Five Elements — Wood, Fire, Earth, Metal, Water — each appear in your chart with a particular strength. Some charts run heavy on one element; others are more balanced. The calculator scores each element and identifies which is your dominant energy and which is most depleted.</p>
+
+    <h3>Your Ten Gods</h3>
+    <p>The relationships between your elements and your Day Master are called the Ten Gods. They describe how the different parts of your chart support, challenge, or interact with your core self — Friend, Resource, Officer, Rob Wealth, and others.</p>
+</div>
+
+<h2>What a BaZi Calculator Cannot Tell You</h2>
+
+<p>Transparency matters. A free BaZi calculator gives you an accurate Four Pillars chart and a solid reading of your core energies. It cannot replace a full consultation with a master who considers:</p>
+
+<ul>
+    <li>Subtle interactions between hidden stems in each branch</li>
+    <li>Your complete luck cycle chart across all ten life periods</li>
+    <li>Specific timing indicators for precise decision-making</li>
+    <li>Compatibility readings between two charts</li>
+    <li>Flying Star Feng Shui considerations for your home or office</li>
+</ul>
+
+<p>Our AI-enhanced reading covers the first three items well — better than most free tools. But for the full depth of a professional BaZi consultation, you would need a trained analyst reading the complete chart with years of experience.</p>
+
+<h2>BaZi Calculator vs Other Tools</h2>
+
+<p>There are many BaZi calculators online. Most fall into one of two categories: basic chart generators that give you the pillars but no interpretation, or AI tools that give you a reading without showing you the underlying chart. Our approach combines both — you get the complete chart and a personalized reading that references it directly.</p>
+
+<table class="comparison-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Basic Chart Generator</th>
+            <th>Our BaZi Calculator</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Four Pillars chart</strong></td>
+            <td>✓</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td><strong>Solar Time correction</strong></td>
+            <td>Often missing</td>
+            <td>✓ Applied</td>
+        </tr>
+        <tr>
+            <td><strong>Elemental balance analysis</strong></td>
+            <td>Often missing</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td><strong>AI personalized reading</strong></td>
+            <td>✗</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td><strong>Free, no signup</strong></td>
+            <td>Varies</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td><strong>Product recommendation</strong></td>
+            <td>✗</td>
+            <td>✓ Daoist jewelry matched to your chart</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Why Birth Time Is Critical</h2>
+
+<p>If you are uncertain of your exact birth time, this matters more in BaZi than in any other astrological system. The Hour Pillar is not an estimate — it is a specific, real pillar that changes every two hours. A person born at 10:00 AM has a different Hour Pillar than someone born at 10:30 AM of the same day.</p>
+
+<div class="key-point">
+    <p>Hospital records, birth certificates, or family recollection are your best sources for birth time. If you truly do not know, enter your earliest known estimate and note in your reading request that time is approximate — some analysts can work around this, though accuracy will be reduced.</p>
+</div>
+
+<h2>How to Read Your Free Results</h2>
+
+<p>Once the calculator generates your chart, here is how to start reading it:</p>
+
+<h3>Step 1 — Find Your Day Master</h3>
+<p>Look at the Day Pillar (third row). The first character is your Day Master. Read its description to understand your core self: whether you are reserved or expressive, strategic or spontaneous, better suited to leadership or supporting roles.</p>
+
+<h3>Step 2 — Check Your Elemental Balance</h3>
+<p>See which element dominates your chart and which is weakest. Wood-dominant charts tend toward creativity and growth energy. Water-dominant charts are fluid and adaptable. Metal-dominant charts are precise and structured. Fire, Earth, and mixed charts each carry their own signatures.</p>
+
+<h3>Step 3 — Note the Current Year</h3>
+<p>The reading shows how the current year energy interacts with your chart. A year that supports your Day Master is typically a year of opportunity. A year that challenges your dominant elements requires more caution and internal focus.</p>
+
+<h3>Step 4 — Consider the Reading's Advice</h3>
+<p>Your free reading includes guidance specific to the focus you selected — career, wealth, love, or balance. These are not generic. They are drawn from your chart's specific elemental interactions and the current year's energy relative to your chart.</p>
+
+<h2>What to Do With Your BaZi Reading</h2>
+
+<p>A BaZi reading is not an answer — it is a map. What you do with it depends on what you are looking for:</p>
+
+<ul>
+    <li><strong>Career direction</strong>: BaZi clarifies whether you are better suited to self-employment or working within organizations, which industries your chart favors, and when to make major career moves.</li>
+    <li><strong>Relationship patterns</strong>: Understanding your chart helps explain why you are drawn to certain types of partners and where your relationship tendencies may need conscious attention.</li>
+    <li><strong>Timing decisions</strong>: Your luck cycles show when the energy is most favorable for major steps — launching a project, relocating, making a financial commitment.</li>
+    <li><strong>Health awareness</strong>: Elemental imbalances in your chart correspond to physical tendencies. A Water-weak chart may indicate a tendency toward kidney or bladder issues that deserve preventive attention.</li>
+    <li><strong>Personal growth</strong>: Most of all, BaZi gives you a language for your tendencies — why you feel pulled in certain directions, why some paths feel natural and others feel like fighting upstream.</li>
+</ul>
+
+<h2>Your Free Reading Is Just the Beginning</h2>
+
+<p>After you receive your instant reading, you have the option to order a <strong>full BaZi report</strong> — a deeper analysis that covers your luck cycles, the full Ten Gods interpretation, your hidden stems, and specific guidance for the year ahead. We then match you to a handcrafted Daoist treasure from Longhushan, chosen specifically to reinforce the elements your chart most needs.</p>
+
+<div class="cta-box">
+    <h2>Get Your Free BaZi Reading Now</h2>
+    <p>Enter your birth date, birth time, and life focus. Receive your Four Pillars chart and a personalized reading in 30 seconds — no signup, no email required.</p>
+    <a href="instant_reading.html">Open the Free BaZi Calculator →</a>
+</div>
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-section">
+
+    <div class="faq-item">
+        <h3>Is the BaZi calculator really free?</h3>
+        <p>Yes. The instant reading — your Four Pillars chart, Day Master, elemental balance, and AI-generated personalized guidance — is completely free. There is no signup, no email required, and no trial period. A full detailed BaZi report is available as a paid service if you want deeper analysis.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>What birth time format do I need?</h3>
+        <p>Enter the hour you were born in 24-hour format (for example, 14:30 for 2:30 PM). If you know it was between two specific hours, use the earliest confirmed hour — the Hour Pillar changes at approximately two-hour intervals starting from 11 PM.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Does Solar Time correction really matter?</h3>
+        <p>Yes, especially if you live in a large country with a single time zone. China uses a single national time zone even though it spans five geographical time zones. Someone born at "9 AM" in Chengdu experienced a very different celestial configuration than someone born at 9 AM in Beijing. Solar Time correction adjusts for this difference, making the Hour Pillar more accurate.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>What if I do not know my birth time?</h3>
+        <p>If you know the approximate hour (morning, afternoon, evening), that is better than nothing — the reading will note that your Hour Pillar is approximate. For the most accurate reading, try to confirm your exact birth time from hospital records or your birth certificate.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>How is this different from zodiac apps?</h3>
+        <p>Western zodiac uses your birth date to assign one of twelve sun signs. Our BaZi calculator uses your birth year, month, day, AND hour — giving eight characters instead of one. BaZi captures your elemental makeup, your Ten Gods relationships, and your personal luck cycles in ways that a zodiac sign cannot.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Can I get a reading for my partner or child?</h3>
+        <p>Yes. Each person has their own chart. Enter their birth date, birth time, and gender separately. Some people find it particularly useful to run a compatibility reading — comparing two charts to understand relationship dynamics, complementary elements, and areas of harmony or tension.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>What happens after I get my free reading?</h3>
+        <p>Your free reading gives you a solid personal map. If you want to go deeper — full luck cycle analysis, year-by-year guidance, and a Daoist treasure matched to your chart — you can order a complete BaZi report from our Plans page.</p>
+    </div>
+
+</div>
+
+    </div>
+</article>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="mark">Oriental Destiny</div>
+                <div class="name">Oriental Destiny</div>
+            </div>
+            <div class="footer-links">
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="five-elements-explained.html">Five Elements</a>
+                <a href="what-is-day-master.html">Day Master</a>
+                <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a>
+                <a href="what-is-bazi-complete-guide.html">BaZi Guide</a>
+                <a href="policies.html">Policies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -250,7 +250,7 @@
         dayMasterNarrative: 'Your Day Master — ' + (profile.dayMasterStem || '') + ' ' + (profile.dayMasterElement || '') +
           ' — shapes how you approach the world. ' + (profile.dayMasterProfile || '') + '. ' +
           'This is not just a label; it describes the fundamental energy you carry into every room, every relationship, every decision.',
-        elementStory: 'Your elemental distribution shows ' + (diag.status || 'a distinctive pattern') + '. ' +
+        elementStory: 'Your elemental distribution shows ' + (typeof diag.status === 'string' ? diag.status : (diag.strongest || '') + ' energy dominates while ' + (diag.weakest || '') + ' is less present') + '. ' +
           (diag.summary || '') + '. ' +
           'The elements tell a story about where your energy flows naturally and where it meets resistance.',
         tenGodNarrative: 'Your dominant ten god structure — ' + (ten.summary || '') + ' — reveals how you relate to authority, ' +

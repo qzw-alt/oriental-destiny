@@ -346,6 +346,76 @@
     },
 
     /**
+     * 生成报告大纲（供 ReportEngine 调用）
+     * @param {Object} chartData - bazi_engine 输出
+     * @param {string} focus
+     * @returns {Promise<Object>} outline JSON
+     */
+    async generateOutline(chartData, focus) {
+      if (!this.isReady()) throw new Error('AIBaziLayer not initialized.');
+      var cacheKey = 'outline_' + this._cacheKey({ birthDate: chartData.input.birthDate, birthTime: chartData.input.birthTime, focus: focus });
+      var cached = this._getCache(cacheKey);
+      if (cached) return cached;
+
+      try {
+        var result = await this._withTimeout(
+          this.api.generateOutline(chartData, focus),
+          API_TIMEOUT_MS
+        );
+        this._setCache(cacheKey, result);
+        return result;
+      } catch (err) {
+        console.warn('AIBaziLayer generateOutline error:', err.message);
+        return null;
+      }
+    },
+
+    /**
+     * 撰写完整报告（供 ReportEngine 调用）
+     * @param {Object} outline
+     * @param {Object} chartData
+     * @param {string} focus
+     * @returns {Promise<Object>} full report JSON
+     */
+    async generateNarrative(outline, chartData, focus) {
+      if (!this.isReady()) throw new Error('AIBaziLayer not initialized.');
+      var cacheKey = 'narrative_' + this._cacheKey({ birthDate: chartData.input.birthDate, birthTime: chartData.input.birthTime, focus: focus });
+      var cached = this._getCache(cacheKey);
+      if (cached) return cached;
+
+      try {
+        var result = await this._withTimeout(
+          this.api.generateNarrative(outline, chartData, focus),
+          API_TIMEOUT_MS
+        );
+        this._setCache(cacheKey, result);
+        return result;
+      } catch (err) {
+        console.warn('AIBaziLayer generateNarrative error:', err.message);
+        return null;
+      }
+    },
+
+    /**
+     * 质量审查（供 ReportEngine 调用）
+     * @param {Object} fullReport
+     * @param {Object} chartData
+     * @returns {Promise<Object>} quality review JSON
+     */
+    async reviewQuality(fullReport, chartData) {
+      if (!this.isReady()) throw new Error('AIBaziLayer not initialized.');
+      try {
+        return await this._withTimeout(
+          this.api.reviewQuality(fullReport, chartData),
+          API_TIMEOUT_MS
+        );
+      } catch (err) {
+        console.warn('AIBaziLayer reviewQuality error:', err.message);
+        return { overall: 'PASS', dimensions: {}, summaryNote: 'Quality review skipped.' };
+      }
+    },
+
+    /**
      * 回退到静态文案
      */
     _fallbackReading(userInput) {

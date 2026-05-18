@@ -236,21 +236,21 @@
         </div>
 
         <h1 data-i18n="th_title">Your order details have been received.</h1>
-        <p class="subtitle" data-i18n="th_subtitle">We have received your $199 order. Your <strong>basic data report is ready now</strong> — view it below. A master will review your chart and send the <strong>complete annotated report by email within 6 hours</strong>. The jewelry recommendation and shipping follow after.</p>
+        <p class="subtitle" data-i18n="th_subtitle">We have received your $199 order. Your <strong>Chart Snapshot is ready now</strong> — view it below. A master will review your chart and send the <strong>complete annotated report by email within 6 hours</strong>. The jewelry recommendation and shipping follow after.</p>
 
         <!-- Instant preview: shown when payment is confirmed -->
         <div class="instant-preview" id="instantPreview">
             <div style="font-weight: 600; color: var(--cinnabar); margin-bottom: 8px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;" data-i18n="th_instant_title">Available now — no waiting</div>
-            <h2 data-i18n="th_instant_heading">Your basic data report is ready now</h2>
-            <p data-i18n="th_instant_desc">View your computed Four Pillars, hidden stems, ten gods, elemental breakdown, and a brief system preliminary analysis — pre-filled with the details you submitted. The complete master-annotated report will arrive by email within 6 hours.</p>
+            <h2 data-i18n="th_instant_heading">Your Chart Snapshot is ready</h2>
+            <p data-i18n="th_instant_desc">View your core sentence, keywords, elemental breakdown, focus direction, and a system preliminary analysis — pre-filled with the details you submitted. The complete 7-chapter master-annotated report will arrive by email within 6 hours.</p>
             <div class="cta-row">
-                <a class="btn" href="basic_report.html" id="viewReadingBtn" data-i18n="th_instant_cta">View My Basic Data Report</a>
+                <a class="btn" href="snapshot_report.html" id="viewReadingBtn" data-i18n="th_instant_cta">View My Chart Snapshot</a>
                 <a class="btn btn-outline" href="report_demo.html" data-i18n="th_instant_sample">Read Sample Report</a>
             </div>
         </div>
 
         <div class="info">
-            <p data-i18n-html="th_basic_now"><strong>Now.</strong> Your basic data report is available immediately — view your computed chart right now.</p>
+            <p data-i18n-html="th_basic_now"><strong>Now.</strong> Your Chart Snapshot is available immediately — view your core reading and chart data right now.</p>
             <p data-i18n-html="th_basic_6hr"><strong>Within 6 hours.</strong> A master reviews your chart and sends the complete annotated report to your email (orders after 10 PM Eastern: by the following morning).</p>
             <p data-i18n-html="th_basic_day1_3"><strong>Day 1–3.</strong> Your reading is used to choose a suitable material, bracelet, pendant, or guardian symbol.</p>
             <p data-i18n-html="th_basic_day7_10"><strong>Day 7–10.</strong> We email the final jewelry recommendation and wait for your confirmation before any item is finalized. Once confirmed, your piece is shipped worldwide with tracking.</p>
@@ -316,7 +316,7 @@
 
             const qs = q.toString();
             if (qs) {
-                document.getElementById('viewReadingBtn').href = 'basic_report.html?' + qs;
+                document.getElementById('viewReadingBtn').href = 'snapshot_report.html?' + qs;
             }
         }
 

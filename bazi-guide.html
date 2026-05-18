@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BaZi Guide — articles on BaZi (Four Pillars of Destiny), Ten Gods, Luck Cycles, Day Master, Five Elements, and more. Your complete reference for understanding Chinese destiny analysis.">
+    <link rel="canonical" href="https://oriental-destiny.com/bazi-guide.html">
+    <title>BaZi Guide — Four Pillars of Destiny Articles | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915; --paper: #f8f1e7; --cinnabar: #a63a2c;
+            --gold: #b78a42; --pine: #315247; --line: rgba(36, 25, 21, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+        }
+        a { color: var(--cinnabar); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            min-height: 74px; display: flex; align-items: center;
+            justify-content: space-between; gap: 18px; flex-wrap: wrap;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 24px; font-weight: 700; }
+        .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36, 25, 21, 0.78); flex-wrap: wrap; justify-content: flex-end; }
+        .nav a { color: inherit; }
+        .nav a:hover { color: var(--cinnabar); text-decoration: none; }
+
+        .page-header {
+            padding: 72px 0 56px;
+            text-align: center;
+        }
+        .page-header .eyebrow {
+            font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--cinnabar); font-family: Georgia, serif; margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-family: Georgia, serif; font-size: clamp(30px, 6vw, 52px);
+            font-weight: 700; line-height: 1.15; color: var(--ink);
+            margin-bottom: 20px;
+        }
+        .page-header .subtitle {
+            font-size: 19px; color: rgba(36,25,21,0.7);
+            max-width: 600px; margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        .section { padding: 48px 0; border-top: 1px solid var(--line); }
+        .section:first-of-type { border-top: none; }
+
+        .section-head {
+            display: flex; align-items: baseline; gap: 16px;
+            margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .section-head h2 {
+            font-family: Georgia, serif; font-size: 28px; font-weight: 700;
+            color: var(--ink);
+        }
+        .section-head .count {
+            font-size: 13px; color: rgba(36,25,21,0.5);
+            letter-spacing: 0.06em;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .article-card {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 24px;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .article-card:hover {
+            box-shadow: 0 8px 28px rgba(70,41,24,0.1);
+            border-color: rgba(183,138,66,0.35);
+        }
+        .article-card .card-label {
+            font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--cinnabar); font-weight: 600;
+        }
+        .article-card .card-title {
+            font-family: Georgia, serif; font-size: 17px; font-weight: 700;
+            color: var(--ink); line-height: 1.35;
+        }
+        .article-card .card-desc {
+            font-size: 14px; color: rgba(36,25,21,0.7);
+            line-height: 1.6; flex: 1;
+        }
+        .article-card .card-link {
+            font-size: 14px; font-weight: 600;
+            color: var(--cinnabar); margin-top: 4px;
+        }
+        .article-card .card-link:hover { text-decoration: underline; }
+
+        .cta-strip {
+            background: linear-gradient(135deg, var(--ink), #3a2a1a);
+            border-radius: 14px;
+            padding: 40px 36px;
+            margin: 56px 0;
+            text-align: center;
+        }
+        .cta-strip h2 { font-family: Georgia, serif; font-size: 28px; color: var(--gold); margin-bottom: 12px; }
+        .cta-strip p { font-size: 16px; color: rgba(248,241,231,0.8); margin-bottom: 24px; }
+        .cta-strip a {
+            display: inline-block; background: var(--gold); color: var(--ink);
+            padding: 13px 30px; border-radius: 8px; font-weight: 600; font-size: 15px;
+        }
+        .cta-strip a:hover { background: #c99a4e; text-decoration: none; }
+
+        footer {
+            background: var(--ink); color: rgba(248, 241, 231, 0.7);
+            padding: 40px 0; margin-top: 40px;
+        }
+        .footer-inner { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start; }
+        .footer-brand { font-family: Georgia, serif; }
+        .footer-brand .name { font-size: 20px; color: var(--gold); font-weight: 700; }
+        .footer-brand .mark { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cinnabar); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 24px; }
+        .footer-links a { color: rgba(248,241,231,0.6); font-size: 14px; }
+        .footer-links a:hover { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="container">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Oriental Destiny</span>
+            </div>
+            <nav class="nav">
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="daoist-treasures.html">Daoist Treasures</a>
+                <a href="bazi-guide.html" style="color: var(--cinnabar); font-weight: 600;">BaZi Guide</a>
+                <a href="mailto:cinvea7@gmail.com">Contact</a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <header class="page-header">
+        <div class="eyebrow">Complete Reference</div>
+        <h1>The BaZi Guide</h1>
+        <p class="subtitle">Everything you need to understand BaZi (Four Pillars of Destiny) — from the basics to advanced analysis. Written to be accurate, readable, and useful.</p>
+    </header>
+
+    <!-- Fundamentals -->
+    <section class="section">
+        <div class="section-head">
+            <h2>BaZi Fundamentals</h2>
+            <span class="count">4 articles</span>
+        </div>
+        <div class="article-grid">
+            <article class="article-card">
+                <div class="card-label">Getting Started</div>
+                <div class="card-title">What is BaZi: Complete Guide to the Four Pillars of Destiny</div>
+                <div class="card-desc">The full introduction to BaZi — what it is, how the four pillars are calculated, what Heavenly Stems and Earthly Branches are, and how to read a BaZi chart for the first time.</div>
+                <a class="card-link" href="what-is-bazi-complete-guide.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Tools</div>
+                <div class="card-title">BaZi Calculator Guide</div>
+                <div class="card-desc">How to use the BaZi calculator — what each field means, how your chart is generated, and what your reading result actually tells you before you order the full analysis.</div>
+                <a class="card-link" href="bazi-calculator-guide.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Core Concept</div>
+                <div class="card-title">Day Master (日主, Rì Zhǔ) — Your Core Element</div>
+                <div class="card-desc">The Day Master is the axis of your entire BaZi chart. This guide explains what it is, how it shapes your personality, and why it is the starting point of every BaZi reading.</div>
+                <a class="card-link" href="what-is-day-master.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Comparison</div>
+                <div class="card-title">BaZi vs Western Zodiac — What's the Difference?</div>
+                <div class="card-desc">BaZi uses exact birth time and a completely different framework. Here is how BaZi readings differ from Western sun-sign astrology in accuracy, depth, and what they can tell you.</div>
+                <a class="card-link" href="bazi-reading-vs-zodiac.html">Read article →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Deep Dive -->
+    <section class="section">
+        <div class="section-head">
+            <h2>BaZi Deep Dive</h2>
+            <span class="count">3 articles</span>
+        </div>
+        <div class="article-grid">
+            <article class="article-card">
+                <div class="card-label">Advanced Analysis</div>
+                <div class="card-title">Ten Gods in BaZi (十神, Shí Shén)</div>
+                <div class="card-desc">Every element in your chart plays a role relative to your Day Master — Resource, Officer, Wealth, Friend. The Ten Gods are the framework that turns symbols into a story about your life.</div>
+                <a class="card-link" href="ten-gods-in-bazi.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Advanced Analysis</div>
+                <div class="card-title">Luck Cycles (Da Yun 大运) — Your 10-Year Destiny Weather</div>
+                <div class="card-desc">Your chart is fixed, but your life conditions change every 10 years through Luck Cycles. Favorable, challenging, and mixed cycles — and how to use them to time major decisions.</div>
+                <a class="card-link" href="luck-cycles-da-yun.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Relationships</div>
+                <div class="card-title">BaZi Compatibility Reading — Two-Pillar Analysis</div>
+                <div class="card-desc">How BaZi reads the relationship between two people using their Day Pillars and elemental compatibility. Not a rigid matching system — a framework for understanding dynamics.</div>
+                <a class="card-link" href="bazi-compatibility-reading.html">Read article →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Five Elements -->
+    <section class="section">
+        <div class="section-head">
+            <h2>Five Elements (Wu Xing, 五行)</h2>
+            <span class="count">6 articles</span>
+        </div>
+        <div class="article-grid">
+            <article class="article-card">
+                <div class="card-label">Overview</div>
+                <div class="card-title">Five Elements Explained — Wood, Fire, Earth, Metal, Water</div>
+                <div class="card-desc">The Five Elements (Wu Xing) are the building blocks of everything in BaZi. This guide covers their nature, their relationships, and how they shape your personality and life path.</div>
+                <a class="card-link" href="five-elements-explained.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Element · Wood</div>
+                <div class="card-title">Wood Element in BaZi — Growth, Flexibility, and Vision</div>
+                <div class="card-desc">Wood types are growth-oriented, idealistic, and仁慈. This guide covers Wood personalities, ideal careers, compatible elements, and how Wood types find balance.</div>
+                <a class="card-link" href="wood-element-in-bazi.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Element · Fire</div>
+                <div class="card-title">Fire Element in BaZi — Passion, Energy, and Charisma</div>
+                <div class="card-desc">Fire types are outgoing, enthusiastic, and driven by vision. This guide covers Fire personalities, career paths, relationship compatibility, and how Fire types maintain balance.</div>
+                <a class="card-link" href="fire-element-in-bazi.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Element · Earth</div>
+                <div class="card-title">Earth Element in BaZi — Stability, Nurturing, and Structure</div>
+                <div class="card-desc">Earth types are reliable, practical, and nurturing. This guide covers Earth personalities, ideal work environments, relationship patterns, and how Earth types find grounding.</div>
+                <a class="card-link" href="earth-element-in-bazi.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Element · Metal</div>
+                <div class="card-title">Metal Element in BaZi — Clarity, Strength, and Precision</div>
+                <div class="card-desc">Metal types are decisive, organized, and drawn to quality. This guide covers Metal personalities, ideal careers, relationship compatibility, and how Metal types maintain their edge.</div>
+                <a class="card-link" href="metal-element-in-bazi.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Element · Water</div>
+                <div class="card-title">Water Element in BaZi — Adaptability, Wisdom, and Flow</div>
+                <div class="card-desc">Water types are adaptable, intuitive, and persuasive. This guide covers Water personalities, career strengths, relationship dynamics, and how Water types navigate change.</div>
+                <a class="card-link" href="water-element-in-bazi.html">Read article →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Life Applications -->
+    <section class="section">
+        <div class="section-head">
+            <h2>Life Applications</h2>
+            <span class="count">2 articles</span>
+        </div>
+        <div class="article-grid">
+            <article class="article-card">
+                <div class="card-label">Personality & Career</div>
+                <div class="card-title">Birth Element Personality & Career Guide</div>
+                <div class="card-desc">Your birth element shapes your natural tendencies, ideal work environments, and career strengths. Find yours and see how to leverage it for career decisions and growth.</div>
+                <a class="card-link" href="birth-element-personality-career-guide.html">Read article →</a>
+            </article>
+            <article class="article-card">
+                <div class="card-label">Products</div>
+                <div class="card-title">Feng Shui Bracelet Meaning — Symbolism of Materials & Colors</div>
+                <div class="card-desc">What different bracelet materials mean in Feng Shui — jade, crystal, wood, metal, and cinnabar. How to choose the right one based on your birth chart and life focus.</div>
+                <a class="card-link" href="feng-shui-bracelet-meaning.html">Read article →</a>
+            </article>
+        </div>
+    </section>
+
+    <div class="cta-strip">
+        <h2>See Your Full BaZi Chart</h2>
+        <p>All articles are free to read. To see your complete personalized BaZi chart — Day Master, Ten Gods, elemental balance, and Luck Cycles — try the free instant reading.</p>
+        <a href="instant_reading.html">Get Your Free BaZi Reading →</a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="mark">Oriental Destiny</div>
+                <div class="name">Oriental Destiny</div>
+            </div>
+            <div class="footer-links">
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="daoist-treasures.html">Daoist Treasures</a>
+                <a href="bazi-guide.html">BaZi Guide</a>
+                <a href="policies.html">Policies</a>
+                <a href="mailto:cinvea7@gmail.com">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

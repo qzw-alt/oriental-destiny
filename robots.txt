@@ -5,5 +5,8 @@ Allow: /
 Disallow: /full_bazi_reading.html
 Disallow: /kua_calculator.html
 Disallow: /element-calculator.html
+Disallow: /basic_report.html
+Disallow: /checkout.html
+Disallow: /thanks.html
 
 Sitemap: https://oriental-destiny.com/sitemap.xml

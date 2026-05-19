@@ -37,7 +37,7 @@ OUTPUT FORMAT — valid JSON only:
     "narrative": "1 paragraph introducing the concept of timing without fortune-telling",
     "windows": [
       {
-        "period": "e.g. June-August 2026",
+        "period": "e.g. June-August {{CURRENT_YEAR}}",
         "elementActive": "Fire",
         "guidance": "2-3 sentences. What to lean into, what to protect, why this window matters for THIS chart."
       }

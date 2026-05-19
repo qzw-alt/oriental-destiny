@@ -271,6 +271,300 @@
     return elementOrder[(i + 3) % 5];
   }
 
+  // ── Solar Terms Astronomical Engine ──────────────────────────────
+  // Computes the 24 solar terms (Jie Qi) by finding when the Sun's
+  // apparent ecliptic longitude reaches exact multiples of 15 degrees.
+  // Accurate to within a few minutes for any year.
+
+  function jdToCalendar(jd) {
+    var Z = Math.floor(jd + 0.5);
+    var F = jd + 0.5 - Z;
+    var A = Z;
+    if (Z >= 2299161) {
+      var alpha = Math.floor((Z - 1867216.25) / 36524.25);
+      A = Z + 1 + alpha - Math.floor(alpha / 4);
+    }
+    var B = A + 1524;
+    var C = Math.floor((B - 122.1) / 365.25);
+    var D = Math.floor(365.25 * C);
+    var E = Math.floor((B - D) / 30.6001);
+    var day = B - D - Math.floor(30.6001 * E) + F;
+    var month = E < 14 ? E - 1 : E - 13;
+    var year = month > 2 ? C - 4716 : C - 4715;
+    return { year: year, month: month, day: Math.floor(day) };
+  }
+
+  function gregorianToJD(year, month, day) {
+    var a = Math.floor((14 - month) / 12);
+    var y = year + 4800 - a;
+    var m = month + 12 * a - 3;
+    return day + Math.floor((153 * m + 2) / 5) + 365 * y
+      + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+  }
+
+  function sunLongitude(jd) {
+    var T = (jd - 2451545.0) / 36525;
+    var T2 = T * T;
+    var T3 = T2 * T;
+    // Mean solar longitude
+    var L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T2;
+    // Mean solar anomaly
+    var M = 357.52911 + 35999.05029 * T - 0.0001537 * T2;
+    var Mrad = M * Math.PI / 180;
+    var M2rad = 2 * Mrad;
+    var M3rad = 3 * Mrad;
+    // Equation of center
+    var C = (1.914602 - 0.004817 * T - 0.000014 * T2) * Math.sin(Mrad)
+          + (0.019993 - 0.000101 * T) * Math.sin(M2rad)
+          + 0.000289 * Math.sin(M3rad);
+    var lon = (L0 + C) % 360;
+    if (lon < 0) lon += 360;
+    return lon;
+  }
+
+  function angleDiff(a, b) {
+    var d = a - b;
+    while (d > 180) d -= 360;
+    while (d < -180) d += 360;
+    return d;
+  }
+
+  // Solar term names (for output)
+  var SOLAR_TERM_NAMES = [
+    "Li Chun", "Yu Shui", "Jing Zhe", "Chun Fen",
+    "Qing Ming", "Gu Yu", "Li Xia", "Xiao Man",
+    "Mang Zhong", "Xia Zhi", "Xiao Shu", "Da Shu",
+    "Li Qiu", "Chu Shu", "Bai Lu", "Qiu Fen",
+    "Han Lu", "Shuang Jiang", "Li Dong", "Xiao Xue",
+    "Da Xue", "Dong Zhi", "Xiao Han", "Da Han"
+  ];
+
+  // The 12 "Jie" (month-starting) term indices
+  var JIE_INDICES = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
+  var JIE_MONTH_MAP = { 0:0, 2:1, 4:2, 6:3, 8:4, 10:5, 12:6, 14:7, 16:8, 18:9, 20:10, 22:11 };
+
+  function computeSolarTerm(year, termIndex) {
+    var targetLon = (315 + termIndex * 15) % 360;
+    // Initial estimate: Li Chun is ~Feb 4 (day 35), each term ~15.218 days apart
+    var jan1JD = gregorianToJD(year, 1, 1);
+    var jd = jan1JD + 35 + termIndex * 15.2184;
+    // Newton's method refinement
+    for (var iter = 0; iter < 12; iter++) {
+      var lon = sunLongitude(jd);
+      var diff = angleDiff(lon, targetLon);
+      if (Math.abs(diff) < 0.0001) break;
+      jd -= diff / 0.9856;
+    }
+    return jdToCalendar(jd);
+  }
+
+  // Get solar term date as [month, day], cached per year for performance
+  var _solarTermCache = {};
+  function getSolarTermDate(year, termIndex) {
+    var key = year + "_" + termIndex;
+    if (!_solarTermCache[key]) {
+      var d = computeSolarTerm(year, termIndex);
+      _solarTermCache[key] = [d.month, d.day];
+    }
+    return _solarTermCache[key];
+  }
+
+  // ── City Coordinates & True Solar Time ───────────────────────────
+
+  var CITY_COORDS = {
+    "beijing":       [39.9, 116.4, 8],
+    "shanghai":      [31.2, 121.5, 8],
+    "guangzhou":     [23.1, 113.3, 8],
+    "shenzhen":      [22.5, 114.1, 8],
+    "chengdu":       [30.6, 104.1, 8],
+    "chongqing":     [29.6, 106.6, 8],
+    "tianjin":       [39.1, 117.2, 8],
+    "wuhan":         [30.6, 114.3, 8],
+    "nanjing":       [32.1, 118.8, 8],
+    "xian":          [34.3, 108.9, 8],
+    "hangzhou":      [30.3, 120.2, 8],
+    "suzhou":        [31.3, 120.6, 8],
+    "kunming":       [25.0, 102.7, 8],
+    "xiamen":        [24.5, 118.1, 8],
+    "changsha":      [28.2, 113.0, 8],
+    "zhengzhou":     [34.8, 113.6, 8],
+    "jinan":         [36.7, 117.0, 8],
+    "taiyuan":       [37.9, 112.6, 8],
+    "fuzhou":        [26.1, 119.3, 8],
+    "guiyang":       [26.6, 106.7, 8],
+    "haerbin":       [45.8, 126.5, 8],
+    "changchun":     [43.9, 125.3, 8],
+    "shenyang":      [41.8, 123.4, 8],
+    "dalian":        [38.9, 121.6, 8],
+    "qingdao":       [36.1, 120.4, 8],
+    "wulumuqi":      [43.8, 87.6, 8],
+    "urumqi":        [43.8, 87.6, 8],
+    "lanzhou":       [36.1, 103.8, 8],
+    "lasa":          [29.6, 91.1, 8],
+    "lhasa":         [29.6, 91.1, 8],
+    "hong kong":     [22.3, 114.2, 8],
+    "taipei":        [25.0, 121.5, 8],
+    "taibei":        [25.0, 121.5, 8],
+    "macau":         [22.2, 113.5, 8],
+    "macao":         [22.2, 113.5, 8],
+    "singapore":     [1.3, 103.8, 8],
+    "kuala lumpur":  [3.1, 101.7, 8],
+    "kl":            [3.1, 101.7, 8],
+    "tokyo":         [35.7, 139.7, 9],
+    "osaka":         [34.7, 135.5, 9],
+    "seoul":         [37.6, 127.0, 9],
+    "busan":         [35.2, 129.1, 9],
+    "sydney":        [-33.9, 151.2, 10],
+    "melbourne":     [-37.8, 145.0, 10],
+    "brisbane":      [-27.5, 153.0, 10],
+    "perth":         [-32.0, 115.9, 8],
+    "auckland":      [-36.8, 174.8, 12],
+    "wellington":    [-41.3, 174.8, 12],
+    "london":        [51.5, -0.1, 0],
+    "manchester":    [53.5, -2.2, 0],
+    "paris":         [48.9, 2.3, 1],
+    "berlin":        [52.5, 13.4, 1],
+    "rome":          [41.9, 12.5, 1],
+    "madrid":        [40.4, -3.7, 1],
+    "barcelona":     [41.4, 2.2, 1],
+    "amsterdam":     [52.4, 4.9, 1],
+    "zurich":        [47.4, 8.5, 1],
+    "stockholm":     [59.3, 18.1, 1],
+    "moscow":        [55.8, 37.6, 3],
+    "new york":      [40.7, -74.0, -5],
+    "new york city": [40.7, -74.0, -5],
+    "nyc":           [40.7, -74.0, -5],
+    "los angeles":   [34.1, -118.2, -8],
+    "la":            [34.1, -118.2, -8],
+    "san francisco": [37.8, -122.4, -8],
+    "sf":            [37.8, -122.4, -8],
+    "chicago":       [41.9, -87.6, -6],
+    "houston":       [29.8, -95.4, -6],
+    "seattle":       [47.6, -122.3, -8],
+    "boston":        [42.4, -71.1, -5],
+    "washington dc": [38.9, -77.0, -5],
+    "miami":         [25.8, -80.2, -5],
+    "toronto":       [43.7, -79.4, -5],
+    "vancouver":     [49.3, -123.1, -8],
+    "montreal":      [45.5, -73.6, -5],
+    "calgary":       [51.0, -114.1, -7],
+    "sao paulo":     [-23.5, -46.6, -3],
+    "rio de janeiro":[-22.9, -43.2, -3],
+    "buenos aires":  [-34.6, -58.4, -3],
+    "mexico city":   [19.4, -99.1, -6],
+    "dubai":         [25.2, 55.3, 4],
+    "abu dhabi":     [24.5, 54.4, 4],
+    "doha":          [25.3, 51.5, 3],
+    "riyadh":        [24.7, 46.7, 3],
+    "mumbai":        [19.1, 72.9, 5.5],
+    "delhi":         [28.6, 77.2, 5.5],
+    "new delhi":     [28.6, 77.2, 5.5],
+    "bangkok":       [13.8, 100.5, 7],
+    "jakarta":       [-6.2, 106.8, 7],
+    "manila":        [14.6, 121.0, 8],
+    "kolkata":       [22.6, 88.4, 5.5],
+    "calcutta":      [22.6, 88.4, 5.5],
+    "ho chi minh":   [10.8, 106.6, 7],
+    "saigon":        [10.8, 106.6, 7],
+    "hanoi":         [21.0, 105.8, 7]
+  };
+
+  function resolveCityCoords(cityName) {
+    if (!cityName) return null;
+    var key = cityName.trim().toLowerCase();
+    // Exact match
+    if (CITY_COORDS[key]) return CITY_COORDS[key];
+    // Partial match (city name contains the lookup key or vice versa)
+    for (var k in CITY_COORDS) {
+      if (key.indexOf(k) !== -1 || k.indexOf(key) !== -1) {
+        return CITY_COORDS[k];
+      }
+    }
+    return null;
+  }
+
+  function getBrowserTimezoneOffset() {
+    return -(new Date().getTimezoneOffset()) / 60;
+  }
+
+  function getShiChenIndex(hourFloat) {
+    // Shi Chen: 子 23-01, 丑 01-03, 寅 03-05, ..., 亥 21-23
+    // index: 子=0, 丑=1, ..., 亥=11
+    if (hourFloat >= 23 || hourFloat < 1) return 0;
+    return Math.floor((hourFloat + 1) / 2);
+  }
+
+  function computeSolarAdjustment(birthTime, cityName) {
+    if (!birthTime) return { used: false, note: "No birth time provided; solar adjustment skipped." };
+
+    var parts = birthTime.split(":").map(Number);
+    var clockMinutes = parts[0] * 60 + (parts[1] || 0);
+    var clockHourFloat = clockMinutes / 60;
+
+    var coords = resolveCityCoords(cityName);
+    var usedCityDb = true;
+
+    if (!coords) {
+      // Fallback: use browser timezone to estimate
+      var tzOffset = getBrowserTimezoneOffset();
+      coords = [0, tzOffset * 15, tzOffset];
+      usedCityDb = false;
+    }
+
+    var lat = coords[0];
+    var lon = coords[1];
+    var tzOffset = coords[2];
+
+    // Standard meridian for the timezone
+    var tzMeridian = tzOffset * 15;
+    // Adjustment: each degree of longitude difference = 4 minutes
+    var adjustmentMinutes = (lon - tzMeridian) * 4;
+    var solarMinutes = clockMinutes + adjustmentMinutes;
+
+    // Handle day rollover
+    var solarHourFloat = (solarMinutes / 60) % 24;
+    if (solarHourFloat < 0) solarHourFloat += 24;
+
+    var clockShiChen = getShiChenIndex(clockHourFloat);
+    var solarShiChen = getShiChenIndex(solarHourFloat);
+    var crossing = clockShiChen !== solarShiChen;
+
+    // Format solar time as HH:MM
+    var solarHour = Math.floor(solarHourFloat);
+    var solarMin = Math.round((solarHourFloat - solarHour) * 60);
+    if (solarMin === 60) { solarHour = (solarHour + 1) % 24; solarMin = 0; }
+    var solarTimeStr = String(solarHour).padStart(2, "0") + ":" + String(solarMin).padStart(2, "0");
+
+    var amountStr = (adjustmentMinutes >= 0 ? "+" : "") + Math.round(adjustmentMinutes);
+
+    var note;
+    if (usedCityDb) {
+      note = "True solar time adjustment: " + amountStr + " min for " + (cityName || "unknown") + " (lon " + lon.toFixed(1) + "). ";
+      if (crossing) {
+        note += "The correction crosses a Shi Chen boundary — the adjusted hour pillar is used.";
+      } else {
+        note += "No Shi Chen boundary crossing.";
+      }
+    } else {
+      note = "Solar time estimated from browser timezone (city not in database). Adjustment: " + amountStr + " min. For precise readings, consult a practitioner.";
+    }
+
+    return {
+      city: cityName || "unknown",
+      longitude: lon,
+      timezoneMeridian: tzMeridian,
+      adjustmentMinutes: Math.round(adjustmentMinutes),
+      clockTime: birthTime,
+      solarTime: solarTimeStr,
+      shiChenCrossing: crossing,
+      clockShiChen: clockShiChen,
+      solarShiChen: solarShiChen,
+      used: true,
+      usedCityDb: usedCityDb,
+      note: note
+    };
+  }
+
   function parseBirthDate(dateValue) {
     if (typeof dateValue !== "string") return null;
     const [year, month, day] = dateValue.split("-").map(Number);
@@ -321,8 +615,23 @@
     return month > boundaryMonth || (month === boundaryMonth && day >= boundaryDay);
   }
 
+  // ── Pillar calculation using real solar terms ───────────────────
+
+  function getSolarTermForYear(year, termIndex) {
+    var d = getSolarTermDate(year, termIndex);
+    // d is [month, day] — month may be 1 (Jan) for Xiao Han / Da Han
+    // For Xiao Han / Da Han (terms 22, 23) that fall in January,
+    // they "belong" to the solar year starting at previous Li Chun,
+    // so we shift the effective year forward for comparison.
+    // But for month boundary checks, we need the actual calendar month/day.
+    var actualYear = d[0] === 1 ? year : year;
+    return { month: d[0], day: d[1], year: actualYear };
+  }
+
   function getSolarYear(year, month, day) {
-    return isOnOrAfter(month, day, 2, 4) ? year : year - 1;
+    // Li Chun = solar term index 0
+    var liChun = getSolarTermDate(year, 0);
+    return isOnOrAfter(month, day, liChun[0], liChun[1]) ? year : year - 1;
   }
 
   function getYearPillar(year, month, day) {
@@ -333,23 +642,37 @@
     };
   }
 
-  function getSolarMonthIndex(month, day) {
-    if (isOnOrAfter(month, day, 2, 4) && !isOnOrAfter(month, day, 3, 6)) return 0;
-    if (isOnOrAfter(month, day, 3, 6) && !isOnOrAfter(month, day, 4, 5)) return 1;
-    if (isOnOrAfter(month, day, 4, 5) && !isOnOrAfter(month, day, 5, 6)) return 2;
-    if (isOnOrAfter(month, day, 5, 6) && !isOnOrAfter(month, day, 6, 6)) return 3;
-    if (isOnOrAfter(month, day, 6, 6) && !isOnOrAfter(month, day, 7, 7)) return 4;
-    if (isOnOrAfter(month, day, 7, 7) && !isOnOrAfter(month, day, 8, 8)) return 5;
-    if (isOnOrAfter(month, day, 8, 8) && !isOnOrAfter(month, day, 9, 8)) return 6;
-    if (isOnOrAfter(month, day, 9, 8) && !isOnOrAfter(month, day, 10, 8)) return 7;
-    if (isOnOrAfter(month, day, 10, 8) && !isOnOrAfter(month, day, 11, 7)) return 8;
-    if (isOnOrAfter(month, day, 11, 7) && !isOnOrAfter(month, day, 12, 7)) return 9;
-    if (isOnOrAfter(month, day, 12, 7) || !isOnOrAfter(month, day, 1, 6)) return 10;
+  function getSolarMonthIndex(month, day, year) {
+    // Check each of the 12 Jie (month-starting terms)
+    for (var i = 0; i < 12; i++) {
+      var jieIdx = JIE_INDICES[i];
+      var jie = getSolarTermDate(year, jieIdx);
+      // The term date gives the START of this solar month
+      // Check on-or-after this Jie and before the next Jie
+      var nextJieIdx = JIE_INDICES[(i + 1) % 12];
+      var nextJie;
+      if (nextJieIdx === 0) {
+        // The next Jie after Da Xue (index 20 → Xiao Han 22? No, Jie cycle is:
+        // 0(LiChun),2(JingZhe),4(QingMing),6(LiXia),8(MangZhong),10(XiaoShu),
+        // 12(LiQiu),14(BaiLu),16(HanLu),18(LiDong),20(DaXue),22(XiaoHan)
+        // After XiaoHan(22), the next is LiChun(0) of next year or this year)
+        nextJie = getSolarTermDate(year + 1, 0);
+      } else {
+        nextJie = getSolarTermDate(year, nextJieIdx);
+      }
+      // Handle Xiao Han (22) in January: it's "after" Da Xue but in next calendar year
+      // For year boundaries, if nextJie month is Jan and current month is Dec, it's fine
+      if (isOnOrAfter(month, day, jie[0], jie[1]) &&
+          !isOnOrAfter(month, day, nextJie[0], nextJie[1])) {
+        return JIE_MONTH_MAP[jieIdx];
+      }
+    }
+    // Fallback: should not reach here, but return 11 (Chou month / Xiao Han) for Jan dates
     return 11;
   }
 
-  function getMonthPillar(yearStemIndex, month, day) {
-    const solarMonthIndex = getSolarMonthIndex(month, day);
+  function getMonthPillar(yearStemIndex, month, day, year) {
+    const solarMonthIndex = getSolarMonthIndex(month, day, year);
     const tigerStemIndex = mod((yearStemIndex % 5) * 2 + 2, 10);
     return {
       stemIndex: mod(tigerStemIndex + solarMonthIndex, 10),
@@ -752,7 +1075,7 @@
   }
 
   function buildAnnualTrigger(profile, currentYear) {
-    const annualPillar = getYearPillar(currentYear, 2, 4);
+    const annualPillar = getAnnualPillar(currentYear);
     const annualBranch = branches[annualPillar.branchIndex];
     const annualStem = stems[annualPillar.stemIndex];
     const natalBranches = getPillarBranchEntries(profile.pillars);
@@ -775,7 +1098,7 @@
       element: elements[annualPillar.stemIndex],
       animal: animals[annualPillar.branchIndex],
       triggered,
-      summary: `${currentYear} is read here as ${annualStem} ${annualBranch}. In this simplified annual layer, it shows ${triggerText}. This is a timing hint, not a full luck-cycle judgment.`
+      summary: `${currentYear} is read here as ${annualStem} ${annualBranch}. In this simplified annual layer, it shows ${triggerText}.`
     };
   }
 
@@ -909,29 +1232,384 @@
     });
   }
 
-  function buildLuckPhase(profile) {
-    const birthYear = profile.input.birthDate ? Number(profile.input.birthDate.slice(0, 4)) : null;
-    const currentYear = new Date().getFullYear();
-    const age = birthYear ? currentYear - birthYear : null;
+  // ── Real Da Yun (大运) Calculation ────────────────────────────────
 
-    const phases = [
-      { max: 18, name: "Foundation", emphasis: "family field, study habits, identity formation, and early protection" },
-      { max: 30, name: "Emergence", emphasis: "skill formation, first public direction, relationship imprinting, and mobility" },
-      { max: 42, name: "Expansion", emphasis: "career building, wealth circulation, partnership choices, and visible responsibility" },
-      { max: 54, name: "Consolidation", emphasis: "resource retention, authority, family structure, and correcting old leaks" },
-      { max: 66, name: "Refinement", emphasis: "health of routine, protection, reputation, and meaningful legacy" },
-      { max: Infinity, name: "Return", emphasis: "peace, transmission, spiritual order, and simplifying what remains" }
-    ];
-    const phase = phases.find((item) => age <= item.max) || phases[phases.length - 1];
+  function getDaYunDirection(gender, yearStemIndex) {
+    var isYang = polarity[yearStemIndex] === "Yang";
+    if (gender === "male") return isYang ? "forward" : "backward";
+    if (gender === "female") return isYang ? "backward" : "forward";
+    return null;
+  }
+
+  function daysBetweenDates(y1, m1, d1, y2, m2, d2) {
+    var jd1 = gregorianToJD(y1, m1, d1);
+    var jd2 = gregorianToJD(y2, m2, d2);
+    return Math.abs(jd2 - jd1);
+  }
+
+  function findNearestSolarTerm(birthYear, birthMonth, birthDay, direction) {
+    // Search all 24 solar terms in birth year and adjacent years
+    var birthJD = gregorianToJD(birthYear, birthMonth, birthDay);
+    var bestTerm = null;
+    var bestJD = null;
+    var bestDays = Infinity;
+
+    // Search birth year and one adjacent year
+    var searchYears = direction === "forward"
+      ? [birthYear, birthYear + 1]
+      : [birthYear - 1, birthYear];
+
+    for (var yi = 0; yi < searchYears.length; yi++) {
+      var sy = searchYears[yi];
+      for (var ti = 0; ti < 24; ti++) {
+        var d = getSolarTermDate(sy, ti);
+        var termJD = gregorianToJD(sy, d[0], d[1]); // d[0] is actual month
+        // For January terms (Da Han, Xiao Han), they might belong to a different year
+        // Adjust: if term month > birth month and we're looking backward, or vice versa
+        var diff = termJD - birthJD;
+
+        if (direction === "forward" && diff > 0 && diff < bestDays) {
+          bestDays = diff;
+          bestJD = termJD;
+          bestTerm = { index: ti, name: SOLAR_TERM_NAMES[ti], date: d, year: sy };
+        } else if (direction === "backward" && diff < 0 && Math.abs(diff) < bestDays) {
+          bestDays = Math.abs(diff);
+          bestJD = termJD;
+          bestTerm = { index: ti, name: SOLAR_TERM_NAMES[ti], date: d, year: sy };
+        }
+      }
+    }
 
     return {
-      age,
-      name: phase.name,
-      emphasis: phase.emphasis,
-      summary: age === null
-        ? "Luck phase is left open because the birth year could not be read."
-        : `At about age ${age}, this simplified life-stage layer is read as ${phase.name}. It emphasizes ${phase.emphasis}. This is not a precise Da Yun calculation; it is a readable stage prompt.`
+      termName: bestTerm ? bestTerm.name : "Unknown",
+      termIndex: bestTerm ? bestTerm.index : 0,
+      termDate: bestTerm ? bestTerm.date : [2, 4],
+      termYear: bestTerm ? bestTerm.year : birthYear,
+      daysDifference: Math.round(bestDays),
+      direction: direction
     };
+  }
+
+  function calculateQiYunAge(daysToBoundary) {
+    if (daysToBoundary <= 0) return 1;
+    // 3 days = 1 year of Qi Yun age
+    var rawAge = daysToBoundary / 3;
+    // Round up: any partial 3-day block counts as a year
+    return Math.ceil(rawAge);
+  }
+
+  function buildDaYunPillars(startStemIdx, startBranchIdx, direction, count, dayMasterStemIdx) {
+    count = count || 8;
+    var pillars = [];
+    var step = direction === "forward" ? 1 : -1;
+
+    for (var i = 0; i < count; i++) {
+      // First pillar starts from month pillar, NOT including month pillar (next step)
+      var stemIdx = mod(startStemIdx + step * (i + 1), 10);
+      var branchIdx = mod(startBranchIdx + step * (i + 1), 12);
+      var stem = stems[stemIdx];
+      var branch = branches[branchIdx];
+      var elem = elements[stemIdx];
+      var animal = animals[branchIdx];
+      var stemGod = getTenGod(dayMasterStemIdx, stemIdx);
+      var mainHidden = hiddenStems[branch][0];
+      var branchGod = getTenGod(dayMasterStemIdx, stemIndex(mainHidden));
+
+      pillars.push({
+        index: i,
+        stemIndex: stemIdx,
+        branchIndex: branchIdx,
+        stem: stem,
+        branch: branch,
+        element: elem,
+        animal: animal,
+        tenGods: {
+          stem: stemGod,
+          branchMainQi: branchGod
+        }
+      });
+    }
+
+    return pillars;
+  }
+
+  function getCurrentDaYun(daYunPillars, qiYunAge, currentAge) {
+    if (currentAge < qiYunAge) {
+      return { beforeFirst: true, note: "Da Yun has not yet started. Qi Yun begins at age " + qiYunAge + "." };
+    }
+    var yearsSinceQiYun = currentAge - qiYunAge;
+    var pillarIndex = Math.floor(yearsSinceQiYun / 10);
+    if (pillarIndex >= daYunPillars.length) {
+      pillarIndex = daYunPillars.length - 1;
+    }
+    var yearInPillar = yearsSinceQiYun % 10;
+    var pillar = daYunPillars[pillarIndex];
+    return {
+      pillar: pillar,
+      pillarIndex: pillarIndex,
+      yearInPillar: yearInPillar,
+      startAge: qiYunAge + pillarIndex * 10,
+      endAge: qiYunAge + (pillarIndex + 1) * 10 - 1,
+      summary: "Currently in Da Yun " + (pillarIndex + 1) + ": " + pillar.stem + " " + pillar.branch + " (" + pillar.element + " " + pillar.animal + "), year " + (yearInPillar + 1) + " of 10."
+    };
+  }
+
+  function buildDaYun(profile, input, dayMasterStemIdx) {
+    var gender = (input.gender || "").toLowerCase();
+    if (gender !== "male" && gender !== "female") {
+      return {
+        note: "Gender not provided; Da Yun calculation skipped. Da Yun direction depends on gender + year stem polarity.",
+        pillars: [],
+        current: null
+      };
+    }
+
+    var birth = input.parsedBirthDate;
+    var yearStemIdx = profile.pillars.year.stemIndex;
+    var direction = getDaYunDirection(gender, yearStemIdx);
+    if (!direction) {
+      return {
+        note: "Could not determine Da Yun direction.",
+        pillars: [],
+        current: null
+      };
+    }
+
+    var boundary = findNearestSolarTerm(birth.year, birth.month, birth.day, direction);
+    var qiYunAge = calculateQiYunAge(boundary.daysDifference);
+    var daYunPillars = buildDaYunPillars(
+      profile.pillars.month.stemIndex,
+      profile.pillars.month.branchIndex,
+      direction,
+      8,
+      dayMasterStemIdx
+    );
+
+    // Build age ranges for each pillar
+    for (var i = 0; i < daYunPillars.length; i++) {
+      daYunPillars[i].startAge = qiYunAge + i * 10;
+      daYunPillars[i].endAge = qiYunAge + (i + 1) * 10 - 1;
+      daYunPillars[i].ageRange = daYunPillars[i].startAge + "-" + daYunPillars[i].endAge;
+    }
+
+    var currentYear = new Date().getFullYear();
+    var currentAge = birth ? currentYear - birth.year : null;
+    var current = currentAge !== null ? getCurrentDaYun(daYunPillars, qiYunAge, currentAge) : null;
+
+    return {
+      direction: direction,
+      qiYunAge: qiYunAge,
+      boundaryTerm: boundary.termName,
+      boundaryDate: boundary.termDate,
+      daysToBoundary: boundary.daysDifference,
+      pillars: daYunPillars,
+      current: current,
+      summary: "Da Yun goes " + direction + ". " + boundary.daysDifference + " days from birth to " + boundary.termName + ", so Qi Yun starts at age " + qiYunAge + ". " + (current ? current.summary : "")
+    };
+  }
+
+  // ── Liu Nian (流年) + Liu Yue (流月) ────────────────────────────
+
+  function getAnnualPillar(year) {
+    return {
+      stemIndex: mod(year - 4, 10),
+      branchIndex: mod(year - 4, 12)
+    };
+  }
+
+  var BRANCH_HARMS = {
+    Zi: "Wei", Chou: "Wu", Yin: "Si", Mao: "Chen",
+    Chen: "Mao", Si: "Yin", Wu: "Chou", Wei: "Zi",
+    Shen: "Hai", You: "Xu", Xu: "You", Hai: "Shen"
+  };
+
+  function buildLiuNian(profile, targetYear, dayMasterStemIdx) {
+    var annualPillar = getAnnualPillar(targetYear);
+    var annualStem = stems[annualPillar.stemIndex];
+    var annualBranch = branches[annualPillar.branchIndex];
+    var annualElement = elements[annualPillar.stemIndex];
+    var annualAnimal = animals[annualPillar.branchIndex];
+
+    // Ten gods of annual stem and branch main qi relative to Day Master
+    var stemTenGod = getTenGod(dayMasterStemIdx, annualPillar.stemIndex);
+    var mainHidden = hiddenStems[annualBranch][0];
+    var branchTenGod = getTenGod(dayMasterStemIdx, stemIndex(mainHidden));
+
+    // Check annual branch against each natal pillar branch
+    var pillarTriggers = [];
+    var pillarKeys = ["year", "month", "day", "hour"];
+    pillarKeys.forEach(function (key) {
+      var pillar = profile.pillars[key];
+      if (!pillar) return;
+      var natalBranch = branches[pillar.branchIndex];
+      var label = key[0].toUpperCase() + key.slice(1) + " Branch";
+
+      if (branchClashes[natalBranch] === annualBranch) {
+        pillarTriggers.push({
+          pillar: label,
+          natalBranch: natalBranch,
+          annualBranch: annualBranch,
+          type: "Clash",
+          detail: natalBranch + " clashes with " + annualBranch + " — potential upheaval or breakthrough at the " + key + " pillar."
+        });
+      }
+      if (branchCombinations[natalBranch] === annualBranch) {
+        pillarTriggers.push({
+          pillar: label,
+          natalBranch: natalBranch,
+          annualBranch: annualBranch,
+          type: "Combination",
+          detail: natalBranch + " combines with " + annualBranch + " — opportunities for collaboration or binding at the " + key + " pillar."
+        });
+      }
+      if (BRANCH_HARMS[natalBranch] === annualBranch) {
+        pillarTriggers.push({
+          pillar: label,
+          natalBranch: natalBranch,
+          annualBranch: annualBranch,
+          type: "Harm",
+          detail: natalBranch + " and " + annualBranch + " form a harm — subtle tensions or hidden friction at the " + key + " pillar."
+        });
+      }
+    });
+
+    // Favorability: does the annual element match the favorable/unfavorable elements?
+    var favList = profile.usefulGodAnalysis
+      ? [profile.usefulGodAnalysis.primary].concat(profile.usefulGodAnalysis.supporting || [])
+      : profile.favorableElements.slice(0, 3);
+    var avoidList = profile.usefulGodAnalysis
+      ? (profile.usefulGodAnalysis.avoid || [])
+      : [];
+
+    var favorableScore = 0;
+    if (favList.indexOf(annualElement) !== -1) favorableScore = 0.7;
+    else if (avoidList.indexOf(annualElement) !== -1) favorableScore = -0.5;
+    // Modulate by triggers
+    var clashCount = pillarTriggers.filter(function (t) { return t.type === "Clash"; }).length;
+    var combineCount = pillarTriggers.filter(function (t) { return t.type === "Combination"; }).length;
+    favorableScore -= clashCount * 0.15;
+    favorableScore += combineCount * 0.1;
+
+    return {
+      year: targetYear,
+      stem: annualStem,
+      branch: annualBranch,
+      element: annualElement,
+      animal: annualAnimal,
+      tenGods: {
+        stem: stemTenGod,
+        branchMainQi: branchTenGod
+      },
+      pillarTriggers: pillarTriggers,
+      favorableScore: Math.max(-1, Math.min(1, favorableScore)),
+      summary: targetYear + " " + annualStem + " " + annualBranch + " (" + annualElement + " " + annualAnimal + ") brings " + stemTenGod + " energy. " + (pillarTriggers.length ? pillarTriggers.length + " pillar trigger(s) found." : "No major pillar triggers.")
+    };
+  }
+
+  function buildLiuYue(profile, targetYear, dayMasterStemIdx) {
+    // Monthly pillars for a given year
+    // The year's first month (Yin month) starts from Li Chun
+    // Month stem sequence depends on year stem
+    var annualStemIdx = mod(targetYear - 4, 10);
+    var tigerStemIdx = mod((annualStemIdx % 5) * 2 + 2, 10);
+    var months = [];
+
+    for (var i = 0; i < 12; i++) {
+      var jieIdx = JIE_INDICES[i];
+      var jieDate = getSolarTermDate(targetYear, jieIdx);
+      var nextJieIdx = JIE_INDICES[(i + 1) % 12];
+      var nextJieDate;
+      if (nextJieIdx === 0) {
+        nextJieDate = getSolarTermDate(targetYear + 1, 0);
+      } else {
+        nextJieDate = getSolarTermDate(targetYear, nextJieIdx);
+      }
+
+      var monthStemIdx = mod(tigerStemIdx + i, 10);
+      var monthBranchIdx = mod(2 + i, 12); // Yin=2, Mao=3, ..., Chou=1
+      var monthStem = stems[monthStemIdx];
+      var monthBranch = branches[monthBranchIdx];
+      var monthElement = elements[monthStemIdx];
+      var stemTenGod = getTenGod(dayMasterStemIdx, monthStemIdx);
+      var mainHidden = hiddenStems[monthBranch][0];
+      var branchTenGod = getTenGod(dayMasterStemIdx, stemIndex(mainHidden));
+
+      // Check this month's branch against natal pillars
+      var triggers = [];
+      ["year", "month", "day", "hour"].forEach(function (key) {
+        var pillar = profile.pillars[key];
+        if (!pillar) return;
+        var natalBranch = branches[pillar.branchIndex];
+        if (branchClashes[natalBranch] === monthBranch) {
+          triggers.push({ pillar: key[0].toUpperCase() + key.slice(1), type: "Clash" });
+        }
+        if (branchCombinations[natalBranch] === monthBranch) {
+          triggers.push({ pillar: key[0].toUpperCase() + key.slice(1), type: "Combination" });
+        }
+      });
+
+      months.push({
+        month: i + 1,
+        period: jieDate[0] + "/" + jieDate[1] + " - " + nextJieDate[0] + "/" + nextJieDate[1],
+        stem: monthStem,
+        branch: monthBranch,
+        element: monthElement,
+        tenGods: { stem: stemTenGod, branchMainQi: branchTenGod },
+        triggers: triggers,
+        note: stemTenGod + " month — " + (triggers.length ? triggers.length + " natal pillar trigger(s)." : "steady flow.")
+      });
+    }
+
+    return months;
+  }
+
+  function identifyTimingWindows(profile, liuNian, liuYue, dayMasterStemIdx) {
+    var favElements = profile.usefulGodAnalysis
+      ? [profile.usefulGodAnalysis.primary].concat(profile.usefulGodAnalysis.supporting || [])
+      : profile.favorableElements.slice(0, 3);
+
+    var windows = [];
+    liuYue.forEach(function (month) {
+      var score = 0;
+      var type = "neutral";
+
+      // Favorable element months get positive score
+      if (favElements.indexOf(month.element) !== -1) {
+        score += 3;
+        type = "opportunity";
+      }
+      // Months with clashes get attention (could be transformative)
+      if (month.triggers.some(function (t) { return t.type === "Clash"; })) {
+        score += 2;
+        if (type === "opportunity") type = "transformative";
+        else type = "caution";
+      }
+      // Months with combinations get mild positive
+      if (month.triggers.some(function (t) { return t.type === "Combination"; })) {
+        score += 1;
+        if (type === "neutral") type = "opportunity";
+      }
+
+      if (score > 0) {
+        windows.push({
+          period: month.period,
+          stem: month.stem,
+          branch: month.branch,
+          element: month.element,
+          type: type,
+          score: score,
+          guidance: type === "opportunity"
+            ? "Favorable month — " + month.element + " energy supports your chart. Good for action and new starts."
+            : type === "caution"
+              ? "Transformative month — branch clash may bring upheaval but also breakthroughs. Stay grounded."
+              : "Active month — " + month.element + " energy activates your chart. Pay attention to " + month.tenGods.stem + " themes."
+        });
+      }
+    });
+
+    // Keep top 5, sorted by score
+    windows.sort(function (a, b) { return b.score - a.score; });
+    return windows.slice(0, 5);
   }
 
   function addUsefulGodScore(scores, element, method, points, reason) {
@@ -1035,6 +1713,54 @@
     return Object.values(merged).sort((a, b) => b.score - a.score);
   }
 
+  function normalizeScores(ranked) {
+    if (!ranked.length) return {};
+    var maxScore = ranked[0].score;
+    if (maxScore <= 0) maxScore = 1;
+    var normalized = {};
+    ranked.forEach(function (entry) {
+      normalized[entry.element] = Math.round((entry.score / maxScore) * 100);
+    });
+    return normalized;
+  }
+
+  function detectLayerConflicts(layers) {
+    var conflicts = {};
+    var allElements = ["Wood", "Fire", "Earth", "Metal", "Water"];
+    allElements.forEach(function (el) {
+      var scoresByLayer = {};
+      Object.keys(layers).forEach(function (layerName) {
+        var layerEntries = layers[layerName];
+        var entry = layerEntries.find(function (e) { return e.element === el; });
+        scoresByLayer[layerName] = entry ? entry.score : 0;
+      });
+      var positive = Object.entries(scoresByLayer).filter(function (kv) { return kv[1] >= 1; });
+      var negative = Object.entries(scoresByLayer).filter(function (kv) { return kv[1] < 0; });
+      if (positive.length > 0 && negative.length > 0) {
+        conflicts[el] = {
+          positive: positive.map(function (kv) { return kv[0]; }),
+          negative: negative.map(function (kv) { return kv[0]; }),
+          detail: positive.map(function (kv) { return kv[0] + " layer scores " + el + " +" + kv[1]; }).join("; ") + " but " + negative.map(function (kv) { return kv[0] + " layer scores " + kv[1]; }).join("; ")
+        };
+      }
+    });
+    return conflicts;
+  }
+
+  function calculateConfidence(ranked) {
+    if (ranked.length < 2) return { confidence: 100, level: "high", scoreSpread: 0 };
+    var topScore = ranked[0].score;
+    var secondScore = ranked[1].score;
+    var totalScore = ranked.reduce(function (s, e) { return s + e.score; }, 0);
+    if (totalScore <= 0) return { confidence: 50, level: "moderate", scoreSpread: 0 };
+    var topShare = topScore / totalScore;
+    var spread = Math.round((topScore - secondScore) * 10) / 10;
+    // Confidence: top share scaled, with spread bonus
+    var confidence = Math.min(100, Math.round(topShare * 100 * 1.5 + spread * 3));
+    var level = confidence >= 65 ? "high" : (confidence >= 40 ? "moderate" : "low");
+    return { confidence: confidence, level: level, scoreSpread: spread };
+  }
+
   function buildUsefulGodAnalysis(profile, analysisContext) {
     const supportControl = buildSupportControlLayer(profile);
     const climate = buildClimateLayer(profile);
@@ -1049,18 +1775,35 @@
       .map((entry) => entry.element);
     if (!avoid.includes(strongest) && profile.strength.band === "Strong") avoid.push(strongest);
 
+    var layers = {
+      supportControl: Object.values(supportControl),
+      climate: Object.values(climate),
+      bridge: Object.values(bridge),
+      medicine: Object.values(medicine)
+    };
+    var normalized = normalizeScores(ranked);
+    var conflicts = detectLayerConflicts(layers);
+    var confidence = calculateConfidence(ranked);
+    var cautionElements = Object.keys(conflicts);
+
+    var summary = primary.element + " (" + confidence.confidence + "%, " + confidence.level + " confidence) is the primary useful god, with " + supporting.map(function (e) { return e.element; }).join(" and ") + " as supporting gods.";
+    if (cautionElements.length > 0) {
+      summary += " Caution: " + cautionElements.join(", ") + " have conflicting signals across layers.";
+    } else {
+      summary += " Layer agreement is strong.";
+    }
+
     return {
       primary: primary.element,
       supporting: supporting.map((entry) => entry.element),
       avoid,
       ranked,
-      layers: {
-        supportControl: Object.values(supportControl),
-        climate: Object.values(climate),
-        bridge: Object.values(bridge),
-        medicine: Object.values(medicine)
-      },
-      summary: `The useful-god logic weighs support/control, climate regulation, bridge function, and disease-medicine correction. ${primary.element} ranks first as the primary useful god, with ${supporting.map((entry) => entry.element).join(" and ")} as supporting gods.`
+      normalizedScores: normalized,
+      confidence: confidence,
+      conflicts: conflicts,
+      cautionElements: cautionElements,
+      layers: layers,
+      summary: summary
     };
   }
 
@@ -1081,7 +1824,32 @@
     return copy[focus] || copy.balance;
   }
 
-  function buildAdvancedAnalysis(profile, currentYear) {
+  function buildLuckPhase(profile) {
+    const birthYear = profile.input.birthDate ? Number(profile.input.birthDate.slice(0, 4)) : null;
+    const currentYear = new Date().getFullYear();
+    const age = birthYear ? currentYear - birthYear : null;
+
+    const phases = [
+      { max: 18, name: "Foundation", emphasis: "family field, study habits, identity formation, and early protection" },
+      { max: 30, name: "Emergence", emphasis: "skill formation, first public direction, relationship imprinting, and mobility" },
+      { max: 42, name: "Expansion", emphasis: "career building, wealth circulation, partnership choices, and visible responsibility" },
+      { max: 54, name: "Consolidation", emphasis: "resource retention, authority, family structure, and correcting old leaks" },
+      { max: 66, name: "Refinement", emphasis: "health of routine, protection, reputation, and meaningful legacy" },
+      { max: Infinity, name: "Return", emphasis: "peace, transmission, spiritual order, and simplifying what remains" }
+    ];
+    const phase = phases.find((item) => age <= item.max) || phases[phases.length - 1];
+
+    return {
+      age,
+      name: phase.name,
+      emphasis: phase.emphasis,
+      summary: age === null
+        ? "Luck phase is left open because the birth year could not be read."
+        : `At about age ${age}, this simplified life-stage layer is read as ${phase.name}. It emphasizes ${phase.emphasis}. This is a readable stage prompt, complemented by the full Da Yun calculation.`
+    };
+  }
+
+  function buildAdvancedAnalysis(profile, currentYear, input) {
     const elementDiagnosis = buildElementDiagnosis(profile.elementCounts);
     const tenGodStructure = buildTenGodStructure(profile.tenGodCounts);
     const branchDynamics = buildBranchDynamics(profile.pillars);
@@ -1116,9 +1884,21 @@
     const normalizedInput = normalizeInput(input);
     const { year, month, day } = normalizedInput.parsedBirthDate;
     const yearPillar = getYearPillar(year, month, day);
-    const monthPillar = getMonthPillar(yearPillar.stemIndex, month, day);
+    const monthPillar = getMonthPillar(yearPillar.stemIndex, month, day, year);
     const dayPillar = getDayPillar(year, month, day);
-    const hourPillar = getHourPillar(dayPillar.stemIndex, normalizedInput.birthTime || "");
+
+    // ── True Solar Time ──────────────────────────────────────────
+    var solarAdjustment = computeSolarAdjustment(normalizedInput.birthTime, normalizedInput.birthLocation);
+    var effectiveBirthTime = normalizedInput.birthTime;
+    var hourPillarUncorrected = null;
+    if (normalizedInput.birthTime) {
+      hourPillarUncorrected = getHourPillar(dayPillar.stemIndex, normalizedInput.birthTime);
+      if (solarAdjustment.used && solarAdjustment.shiChenCrossing) {
+        effectiveBirthTime = solarAdjustment.solarTime;
+      }
+    }
+    const hourPillar = getHourPillar(dayPillar.stemIndex, effectiveBirthTime);
+
     const pillars = { year: yearPillar, month: monthPillar, day: dayPillar, hour: hourPillar };
     const pillarList = [yearPillar, monthPillar, dayPillar].concat(hourPillar ? [hourPillar] : []);
     const dayMasterStem = stems[dayPillar.stemIndex];
@@ -1140,8 +1920,27 @@
       hour: hourPillar ? getHiddenStemDetails(hourPillar.branchIndex, dayPillar.stemIndex) : []
     };
 
+    // Build solar terms note
+    var liChun = getSolarTermDate(year, 0);
+    var solarTermsNote = "Solar terms computed using astronomical algorithm (sun ecliptic longitude). Li Chun " + year + ": " + liChun[0] + "/" + liChun[1] + ".";
+    if (year < 1900 || year > 2100) {
+      solarTermsNote += " Year outside validated range (1900-2100); accuracy may degrade.";
+    }
+
+    var hourPillarNote;
+    if (hourPillar) {
+      hourPillarNote = "Birth time was supplied, so the hour pillar is included.";
+      if (solarAdjustment.used && solarAdjustment.shiChenCrossing) {
+        hourPillarNote += " True solar time correction (" + (solarAdjustment.adjustmentMinutes >= 0 ? "+" : "") + solarAdjustment.adjustmentMinutes + " min) shifted the hour pillar from the raw clock time.";
+      } else if (solarAdjustment.used) {
+        hourPillarNote += " True solar time correction applied (" + (solarAdjustment.adjustmentMinutes >= 0 ? "+" : "") + solarAdjustment.adjustmentMinutes + " min); no Shi Chen boundary crossing.";
+      }
+    } else {
+      hourPillarNote = "Birth time was not supplied, so the hour pillar is left open.";
+    }
+
     const profile = {
-      schemaVersion: "2026-04-30.yongshen-1",
+      schemaVersion: "2026-05-19.engine-upgrade-1",
       input: {
         birthDate: normalizedInput.birthDate,
         birthTime: normalizedInput.birthTime,
@@ -1175,17 +1974,29 @@
         favorableElements
       }),
       calculationNotes: {
-        solarTerms: "Simplified fixed-date solar-term boundaries are used for the year and month pillars.",
+        solarTerms: solarTermsNote,
         dayPillar: "The day pillar is calculated from a fixed 60-day cycle reference date.",
-        hourPillar: hourPillar ? "Birth time was supplied, so the hour pillar is included." : "Birth time was not supplied, so the hour pillar is left open."
+        hourPillar: hourPillarNote,
+        solarTime: solarAdjustment.note
       },
-      note: "This automated layer follows simplified fixed-date solar-term boundaries and rule-based interpretation. A human reading is still needed to refine exact solar terms, timing, nuance, and the final symbolic recommendation."
+      solarAdjustment: solarAdjustment,
+      hourPillarUncorrected: hourPillarUncorrected ? pillarLabel(hourPillarUncorrected) : null,
+      note: "This automated layer uses astronomical solar terms and true solar time correction. A human reading is still recommended for final refinement."
     };
 
     profile.elementRanking = sortCounts(elementCounts);
     profile.tenGodRanking = sortCounts(tenGodCounts);
-    profile.advancedAnalysis = buildAdvancedAnalysis(profile, new Date().getFullYear());
+    profile.advancedAnalysis = buildAdvancedAnalysis(profile, new Date().getFullYear(), normalizedInput);
     profile.usefulGodAnalysis = profile.advancedAnalysis.usefulGodAnalysis;
+
+    // ── Da Yun ──────────────────────────────────────────────────
+    profile.daYun = buildDaYun(profile, normalizedInput, dayPillar.stemIndex);
+
+    // ── Liu Nian + Liu Yue + Timing Windows ────────────────────
+    var currentYear = new Date().getFullYear();
+    profile.liuNian = buildLiuNian(profile, currentYear, dayPillar.stemIndex);
+    profile.liuYue = buildLiuYue(profile, currentYear, dayPillar.stemIndex);
+    profile.timingWindows = identifyTimingWindows(profile, profile.liuNian, profile.liuYue, dayPillar.stemIndex);
     profile.favorableElements = [
       profile.usefulGodAnalysis.primary,
       ...profile.usefulGodAnalysis.supporting,

@@ -23,12 +23,12 @@ Take the provided CHART DATA and ENGINE ANALYSIS, and write a structured interpr
 - Explain how the birth season interacts with the Day Master's element.
 - Reference the exact season, month branch, and seasonal condition the engine computed.
 
-### 3. YEARLY FORECAST (2026 = Bing Wu, Fire Horse)
-- Explain how 2026's specific energy (Bing Fire, Wu Horse) touches THIS chart's actual structure.
+### 3. YEARLY FORECAST ({{CURRENT_YEAR}} = {{CURRENT_YEAR_STEM_BRANCH}})
+- Explain how {{CURRENT_YEAR}}'s specific energy ({{CURRENT_YEAR_STEM_BRANCH}}) touches THIS chart's actual structure.
 - Reference the exact annual trigger and branch dynamics from the engine.
 
 ### 4. TIMING WINDOWS
-- Name specific 2026 months and their elemental quality.
+- Name specific {{CURRENT_YEAR}} months and their elemental quality.
 - Connect each window to the chart's real favorable and unfavorable elements.
 
 ## RESPONSE STRUCTURE (JSON only)
@@ -44,16 +44,16 @@ Take the provided CHART DATA and ENGINE ANALYSIS, and write a structured interpr
     "balanceAssessment": "A 1-10 score with one sentence explaining why this chart sits at that number."
   },
   "yearlyForecast": {
-    "year": 2026,
-    "elementOfYear": "Fire",
-    "overallAssessment": "2-sentence summary of how Bing Wu Fire Horse energy interacts with this specific chart.",
+    "year": {{CURRENT_YEAR}},
+    "elementOfYear": "element of {{CURRENT_YEAR}}",
+    "overallAssessment": "2-sentence summary of how {{CURRENT_YEAR_STEM_BRANCH}} energy interacts with this specific chart.",
     "opportunities": ["Specific opportunity 1 tied to chart data", "Specific opportunity 2 tied to chart data"],
     "challenges": ["Specific challenge 1 tied to chart data", "Specific challenge 2 tied to chart data"]
   },
   "recommendedElements": ["Element1", "Element2"],
   "contraindicatedElements": ["Element1"],
   "timingWindows": [
-    { "period": "Jan-Mar 2026", "element": "ElementName", "note": "Specific note tied to this chart's structure" }
+    { "period": "Jan-Mar {{CURRENT_YEAR}}", "element": "ElementName", "note": "Specific note tied to this chart's structure" }
   ]
 }
 

@@ -68,7 +68,7 @@ class DeepSeekAPI {
   async analyzeChart(chartData) {
     let systemPrompt = await this._loadPrompt("prompts/system_analyze.txt");
     if (!systemPrompt) {
-      systemPrompt = this._fallbackSystemAnalyze();
+      systemPrompt = this._resolveTemplates(this._fallbackSystemAnalyze());
     }
     const userPrompt = this._buildAnalyzeUserPrompt(chartData);
 
@@ -96,7 +96,7 @@ class DeepSeekAPI {
   async generateReading(chartData, analysisResult, focus) {
     let systemPrompt = await this._loadPrompt("prompts/system_reading.txt");
     if (!systemPrompt) {
-      systemPrompt = this._fallbackSystemReading();
+      systemPrompt = this._resolveTemplates(this._fallbackSystemReading());
     }
     const userPrompt = this._buildReadingUserPrompt(chartData, analysisResult, focus);
 
@@ -120,10 +120,27 @@ class DeepSeekAPI {
     try {
       const res = await fetch(filename);
       if (!res.ok) return "";
-      return await res.text();
+      var text = await res.text();
+      return this._resolveTemplates(text);
     } catch {
       return "";
     }
+  }
+
+  _resolveTemplates(text) {
+    if (!text) return text;
+    var now = new Date();
+    var currentYear = now.getFullYear();
+    var stemIdx = ((currentYear - 4) % 10 + 10) % 10;
+    var branchIdx = ((currentYear - 4) % 12 + 12) % 12;
+    var stems = ["Jia", "Yi", "Bing", "Ding", "Wu", "Ji", "Geng", "Xin", "Ren", "Gui"];
+    var branches = ["Zi", "Chou", "Yin", "Mao", "Chen", "Si", "Wu", "Wei", "Shen", "You", "Xu", "Hai"];
+    var elements = ["Wood", "Wood", "Fire", "Fire", "Earth", "Earth", "Metal", "Metal", "Water", "Water"];
+    var animals = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
+    var yearStemBranch = stems[stemIdx] + " " + elements[stemIdx] + ", " + branches[branchIdx] + " " + animals[branchIdx];
+    return text
+      .replace(/\{\{CURRENT_YEAR_STEM_BRANCH\}\}/g, yearStemBranch)
+      .replace(/\{\{CURRENT_YEAR\}\}/g, String(currentYear));
   }
 
   _buildAnalyzeUserPrompt(chartData) {
@@ -361,15 +378,15 @@ CRITICAL RULES:
 NARRATIVE FRAMEWORK:
 1. ELEMENTAL FLOW ANALYSIS — Explain the generating cycle as it exists in THIS chart. Narrate what the engine found.
 2. SEASONAL CONTEXT — Explain how the birth season interacts with the Day Master's element. Reference exact season, month branch, and seasonal condition.
-3. YEARLY FORECAST (2026 = Bing Wu, Fire Horse) — Explain how 2026's energy touches THIS chart's structure.
-4. TIMING WINDOWS — Name specific 2026 months and connect each to the chart's real favorable/unfavorable elements.
+3. YEARLY FORECAST ({{CURRENT_YEAR}} = {{CURRENT_YEAR_STEM_BRANCH}}) — Explain how {{CURRENT_YEAR}}'s energy touches THIS chart's structure.
+4. TIMING WINDOWS — Name specific {{CURRENT_YEAR}} months and connect each to the chart's real favorable/unfavorable elements.
 
 RESPONSE STRUCTURE (JSON only):
 {
   "elementalFlow": [{ "from": "ElementName", "to": "ElementName", "strength": "strong|moderate|weak", "meaning": "interpretation" }],
   "flowSummary": "...",
   "strengthAnalysis": { "dominantReason": "...", "weaknessRisk": "...", "balanceAssessment": "..." },
-  "yearlyForecast": { "year": 2026, "elementOfYear": "Fire", "overallAssessment": "...", "opportunities": [...], "challenges": [...] },
+  "yearlyForecast": { "year": {{CURRENT_YEAR}}, "elementOfYear": "element of {{CURRENT_YEAR}}", "overallAssessment": "...", "opportunities": [...], "challenges": [...] },
   "recommendedElements": [...],
   "contraindicatedElements": [...],
   "timingWindows": [{ "period": "...", "element": "...", "note": "..." }]
@@ -395,13 +412,13 @@ CRITICAL STYLE RULES:
 EMOTION ARC:
 1. MIRRORING — Name the person's core nature. Reference Day Master, dominant element, leading ten god by exact name.
 2. ATTRIBUTION — Explain tension by tracing to chart structure. Reference exact scores, clashes, seasonal command.
-3. HOPE — Show how 2026 creates openings. Reference exact timing windows and favorable elements.
+3. HOPE — Show how {{CURRENT_YEAR}} creates openings. Reference exact timing windows and favorable elements.
 4. ACTION — Give 3-4 concrete, specific actions tied to elements or months.
 
 RESPONSE STRUCTURE (JSON only):
 {
   "personality": "2-3 paragraphs, flowing prose, no lists. Reference specific stem/branch/ten god names.",
-  "currentYearAnalysis": "2 paragraphs analyzing 2026. Reference exact months, seasons, chart elements.",
+  "currentYearAnalysis": "2 paragraphs analyzing {{CURRENT_YEAR}}. Reference exact months, seasons, chart elements.",
   "tailoredAdvice": ["Specific actionable item 1", "Item 2", "Item 3", "Item 4"],
   "masterClosing": "1 paragraph modern warm closing. Reference Day Master and primary favorable element. No archaic language.",
   "productRecommendation": { "focus": "...", "elements": [...], "material": "...", "reason": "2-3 sentences" }

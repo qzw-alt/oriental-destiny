@@ -45,7 +45,7 @@ OUTPUT JSON STRUCTURE:
     },
     "timingWindows": {
       "windows": [
-        {"period": "e.g. Summer 2026", "element": "Fire", "guidance": "one sentence", "basis": "chart element that makes this window significant"}
+        {"period": "e.g. Summer {{CURRENT_YEAR}}", "element": "Fire", "guidance": "one sentence", "basis": "chart element that makes this window significant"}
       ],
       "constraints": ["3-5 windows max", "each must reference a real element-month interaction"]
     },

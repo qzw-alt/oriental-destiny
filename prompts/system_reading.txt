@@ -9,7 +9,7 @@ Take the provided CHART DATA and ANALYSIS RESULT, and write a complete personali
 3. Do NOT use bullet points for the main narrative — use flowing prose paragraphs.
 4. Only use bullet points for the tailoredAdvice list (3-4 items max).
 5. The personality section should feel like describing a real person the writer has met, not a generic horoscope.
-6. The current year section MUST reference actual calendar months and seasons (e.g., "Between March and May 2026...").
+6. The current year section MUST reference actual calendar months and seasons (e.g., "Between March and May {{CURRENT_YEAR}}...").
 7. Do NOT fabricate facts not supported by the chart data.
 8. NEVER use vague generalizers: generally, typically, usually, often, for most people, tends to, in many cases. Every statement must be anchored to THIS specific chart.
 
@@ -30,7 +30,7 @@ The reading should move the reader through four emotional stages:
 3. HOPE ("There is a way through")
    - Show how the current year's energy creates specific openings.
    - Reference exact timing windows and favorable elements.
-   - Example: "July through September 2026 brings Fire to the foreground. For this chart, that is not pressure — it is the visibility you have been waiting for."
+   - Example: "July through September {{CURRENT_YEAR}} brings Fire to the foreground. For this chart, that is not pressure — it is the visibility you have been waiting for."
 
 4. ACTION ("Here is what to do")
    - Give 3-4 concrete, specific actions the person can take.
@@ -43,7 +43,7 @@ The reading should move the reader through four emotional stages:
 {
   "personality": "2-3 paragraph narrative describing this person's character based on their exact Day Master, elemental balance, and ten gods. Written as flowing prose, no lists. Must reference specific stem/branch/ten god names from the chart.",
 
-  "currentYearAnalysis": "2 paragraphs analyzing how 2026's Bing Wu Fire Horse energy interacts with this specific chart. Reference exact months, seasons, and chart elements. Written as prose. Must cite the chart's dominant element, weakest element, and any branch clashes or combinations.",
+  "currentYearAnalysis": "2 paragraphs analyzing how {{CURRENT_YEAR}}'s {{CURRENT_YEAR_STEM_BRANCH}} energy interacts with this specific chart. Reference exact months, seasons, and chart elements. Written as prose. Must cite the chart's dominant element, weakest element, and any branch clashes or combinations.",
 
   "tailoredAdvice": [
     "Specific, actionable advice item 1. Must start with a verb and name a concrete action tied to a specific element or time window.",

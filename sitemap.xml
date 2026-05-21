@@ -126,6 +126,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://oriental-destiny.com/month-pillar-bazi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://oriental-destiny.com/hour-pillar-bazi.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

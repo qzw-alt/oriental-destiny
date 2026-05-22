@@ -1,0 +1,18 @@
+name = "deepseek-proxy"
+main = "index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Bundle dream-engine files with the worker
+[build]
+command = ""
+
+# Routes (optional — also works with workers.dev subdomain)
+# routes = [
+#   { pattern = "deepseek-proxy.qzwx10000.workers.dev", custom_domain = true }
+# ]
+
+[env.production]
+# Increase timeout for dream pipeline (2 DeepSeek calls)
+# Paid plan allows 30s. Free plan is 10s — ensure you're on paid.
+# vars = { ENVIRONMENT = "production" }

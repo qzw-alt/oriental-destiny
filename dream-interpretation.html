@@ -401,6 +401,60 @@
         }
         .auth-guest:hover { border-color: var(--gold); color: var(--ink); }
 
+        /* Two-phase progress */
+        .progress-phases { display: flex; gap: 16px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+        .progress-phase {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: rgba(36,25,21,0.4);
+            transition: color 0.3s;
+        }
+        .progress-phase.active { color: var(--cinnabar); font-weight: 600; }
+        .progress-phase.done { color: var(--pine); }
+        .progress-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(36,25,21,0.2); transition: background 0.3s;
+        }
+        .progress-phase.active .progress-dot { background: var(--cinnabar); animation: pulse-dot 1s infinite; }
+        .progress-phase.done .progress-dot { background: var(--pine); }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* Structured report sections */
+        .report-section { margin-bottom: 28px; }
+        .report-section h3 {
+            font-size: 17px; color: var(--cinnabar); margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .report-section p { font-size: 15px; line-height: 1.82; color: rgba(36,25,21,0.78); }
+        .report-section .advice-item {
+            padding: 8px 0 8px 16px; border-left: 2px solid var(--gold);
+            margin-bottom: 8px; font-size: 15px; color: rgba(36,25,21,0.75);
+        }
+        .tier-badge {
+            display: inline-block; font-size: 11px; letter-spacing: 0.08em;
+            padding: 3px 10px; border-radius: 12px; font-weight: 600; margin-left: 8px;
+            vertical-align: middle;
+        }
+        .tier-badge.basic { background: rgba(36,25,21,0.08); color: rgba(36,25,21,0.55); }
+        .tier-badge.deep { background: rgba(183,138,66,0.15); color: var(--gold); }
+        .element-bar-wrap { display: flex; gap: 6px; margin: 12px 0; align-items: flex-end; }
+        .element-bar-col { flex: 1; text-align: center; }
+        .element-bar-fill { border-radius: 3px 3px 0 0; transition: height 0.6s ease; min-width: 100%; }
+        .element-bar-label { font-size: 10px; color: rgba(36,25,21,0.5); margin-top: 4px; letter-spacing: 0.04em; }
+
+        /* Jewelry recommendation card */
+        .jewelry-card {
+            background: linear-gradient(135deg, rgba(183,138,66,0.08), rgba(183,138,66,0.02));
+            border: 1px solid rgba(183,138,66,0.2); border-radius: 10px;
+            padding: 20px 24px; margin-top: 16px;
+        }
+        .jewelry-card h4 { font-size: 14px; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.04em; }
+        .jewelry-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .jewelry-tag {
+            background: rgba(183,138,66,0.1); color: var(--ink);
+            font-size: 12px; padding: 4px 12px; border-radius: 16px;
+            border: 1px solid rgba(183,138,66,0.2);
+        }
+
         /* Quota badge */
         .quota-badge {
             display: inline-flex; align-items: center; gap: 5px;
@@ -466,7 +520,17 @@
     <!-- Loading -->
     <div class="loading-wrap" id="loadingWrap">
         <div class="loading-spinner"></div>
-        <p class="loading-text">The ancient symbols are being read by <strong>AI</strong>...</p>
+        <p class="loading-text" id="loadingText">The ancient symbols are being read by <strong>AI</strong>...</p>
+        <div class="progress-phases" id="progressPhases">
+            <div class="progress-phase active">
+                <div class="progress-dot"></div>
+                <span>Decoding dream symbols...</span>
+            </div>
+            <div class="progress-phase">
+                <div class="progress-dot"></div>
+                <span>Weaving your interpretation...</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -589,6 +653,55 @@ dreamTextEl.addEventListener('input', () => {
     charCountEl.textContent = dreamTextEl.value.length;
 });
 
+// ── Tier Detection & Chart Loading ─────────────────────────────────────
+
+let currentTier = 'basic';
+let currentChartData = null;
+
+function determineTier() {
+    const chart = loadChartData();
+    if (chart) {
+        currentTier = 'deep';
+        currentChartData = chart;
+    } else {
+        currentTier = 'basic';
+        currentChartData = null;
+    }
+    return currentTier;
+}
+
+function loadChartData() {
+    try {
+        // Try full report storage first
+        const raw = localStorage.getItem('oriental_destiny_full_report');
+        if (!raw) return null;
+        const data = JSON.parse(raw);
+        const p = data.chartData || data.chart || data.profile;
+        if (!p || !p.dayMasterElement) return null;
+        return {
+            dayMasterStem: p.dayMasterStem || '',
+            dayMasterElement: p.dayMasterElement || '',
+            favorableElements: p.favorableElements || [],
+            usefulGodAnalysis: p.usefulGodAnalysis || null,
+            elementCounts: p.elementCounts || {},
+            strength: p.strength || null
+        };
+    } catch { return null; }
+}
+
+// ── Progress ───────────────────────────────────────────────────────────
+
+function setProgress(phase) {
+    const wrap = document.getElementById('progressPhases');
+    if (!wrap) return;
+    const phases = wrap.querySelectorAll('.progress-phase');
+    phases.forEach((el, i) => {
+        el.classList.remove('active', 'done');
+        if (i < phase) el.classList.add('done');
+        if (i === phase) el.classList.add('active');
+    });
+}
+
 // Reset
 function resetDream() {
     resultSection.classList.remove('active');
@@ -612,9 +725,14 @@ async function interpretDream() {
 
     hideError();
     setLoading(true);
+    setProgress(0); // Phase 1: Extracting symbols
+
+    // Determine tier and load chart data
+    determineTier();
 
     try {
-        const result = await callDreamAPI(dream);
+        const result = await callDreamPipeline(dream, currentTier, currentChartData);
+        setProgress(1); // Phase 2: Generating report
         showResult(dream, result);
     } catch (err) {
         console.error(err);
@@ -637,93 +755,160 @@ function setLoading(on) {
     if (on) hideError();
 }
 
-// DeepSeek Dream API
-async function callDreamAPI(dream) {
-    const systemPrompt = `You are a senior dream interpreter blending Eastern symbolism (Five Elements, BaZi, Taoist dream interpretation) with psychological depth. Your responses are vivid, poetic, and insightful. Structure your response as JSON with these fields:
-{
-  "element": "the primary Five Element (Wood|Fire|Earth|Metal|Water)",
-  "subElements": ["secondary elements if applicable"],
-  "symbolism": "what this dream symbol means in Eastern tradition",
-  "psychological": "psychological interpretation complementing the Eastern view",
-  "guidance": "a short practical guidance for the dreamer",
-  "luckyDirection": "the lucky direction related to this dream's element",
-  "fullInterpretation": "2-3 paragraph rich narrative interpretation combining Eastern and psychological perspectives"
-}`;
-
-    const response = await fetch(`${window.DEEPSEEK_PROXY_URL}/chat/completions`, {
+// Pipeline call to Worker
+async function callDreamPipeline(dream, tier, chartData) {
+    const response = await fetch(`${window.DEEPSEEK_PROXY_URL}/dream-interpret`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            model: 'deepseek-chat',
-            messages: [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: `Interpret this dream:\n\n"${dream}"` }
-            ],
-            temperature: 0.8,
-            max_tokens: 900
-        })
+        body: JSON.stringify({ dream, tier, chartData })
     });
 
     if (!response.ok) {
         const err = await response.text();
-        throw new Error(`API error ${response.status}: ${err}`);
+        throw new Error(`Pipeline error ${response.status}: ${err}`);
     }
 
     const data = await response.json();
-    const raw = data.choices[0].message.content.trim();
-
-    // Extract JSON from response
-    let jsonStr = raw;
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
-    if (jsonMatch) jsonStr = jsonMatch[0];
-
-    try {
-        return JSON.parse(jsonStr);
-    } catch {
-        // Fallback if JSON parse fails
-        return {
-            element: 'Water',
-            subElements: ['Wood'],
-            symbolism: raw.substring(0, 300),
-            psychological: 'Your subconscious is processing deep emotions.',
-            guidance: 'Pay attention to recurring themes in your dreams.',
-            luckyDirection: 'North',
-            fullInterpretation: raw
-        };
+    if (data.status !== 'ok') {
+        throw new Error(data.error || 'Unknown pipeline error');
     }
+    return data; // { status, tier, source, report, analysis }
 }
 
-// Show Result
+// Show Result — structured report rendering
 function showResult(dream, result) {
-    // Fill share card
-    document.getElementById('shareDream').textContent = dream;
-    const shareInt = result.fullInterpretation || (result.symbolism + ' ' + result.psychological);
-    document.getElementById('shareInterpretation').textContent = shareInt.substring(0, 200) + '...';
+    const report = result.report;
+    const analysis = result.analysis;
+    const tier = result.tier || 'basic';
+    const source = result.source || 'ai';
 
-    // Fill full interpretation
-    const subElTags = (result.subElements || []).map(e => `<span class="element-tag">${e}</span>`).join('');
-    const body = document.getElementById('interpretationBody');
-    body.innerHTML = `
-        <h2>☯ Dream Interpretation</h2>
-        <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
-            Primary Element: ${result.element}
-        </p>
-        ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
-        <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
-        <p><strong>Psychological View:</strong> ${result.psychological}</p>
-        <p><strong>Guidance:</strong> ${result.guidance}</p>
-        ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
-        <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
-        <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
-    `;
+    // Fill share card
+    document.getElementById('shareDream').textContent = dream.length > 150 ? dream.substring(0, 147) + '...' : dream;
+    document.getElementById('shareInterpretation').textContent = (report.summary || '').substring(0, 200);
+
+    // Build element bars for visualization
+    const scores = analysis.element_scores || {};
+    const elementColors = { Wood: '#4a7c59', Fire: '#c13b3b', Earth: '#b78a42', Metal: '#9ca3af', Water: '#3b6f9e' };
+    const elementNames = { Wood: '木', Fire: '火', Earth: '土', Metal: '金', Water: '水' };
+    const maxScore = Math.max(...Object.values(scores), 1);
+    let barsHTML = '<div class="element-bar-wrap">';
+    for (const [el, val] of Object.entries(scores)) {
+        const h = Math.max(4, Math.round((val / maxScore) * 80));
+        barsHTML += `<div class="element-bar-col">
+            <div class="element-bar-fill" style="height:${h}px;background:${elementColors[el] || '#999'};"></div>
+            <div class="element-bar-label">${elementNames[el] || el}<br>${val}%</div>
+        </div>`;
+    }
+    barsHTML += '</div>';
+
+    // Build tier badge
+    const tierBadge = tier === 'deep'
+        ? '<span class="tier-badge deep">Deep Reading · 命盘对照</span>'
+        : '<span class="tier-badge basic">Basic Reading</span>';
+
+    // Build report body
+    let bodyHTML = `
+        <h2>☯ ${report.title || 'Dream Interpretation'}${tierBadge}</h2>
+        ${source === 'fallback' ? '<p style="font-size:12px;color:rgba(36,25,21,0.4);margin-bottom:12px;">Generated from template — AI service temporarily unavailable</p>' : ''}
+
+        <div class="report-section">
+            <h3>📝 梦境概要</h3>
+            <p>${report.summary || ''}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>🔮 核心梦象</h3>
+            <p>${report.core_symbols || ''}</p>
+            ${barsHTML}
+        </div>
+
+        <div class="report-section">
+            <h3>☯ 五行解读</h3>
+            <p>${report.five_element_reading || ''}</p>
+        </div>`;
+
+    // Chart connection (deep only)
+    if (tier === 'deep' && report.chart_connection) {
+        bodyHTML += `
+        <div class="report-section">
+            <h3>📊 命盘对应</h3>
+            <p>${report.chart_connection}</p>
+        </div>`;
+    }
+
+    bodyHTML += `
+        <div class="report-section">
+            <h3>🌙 现实映照</h3>
+            <p>${report.real_life_reflection || ''}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>💡 调理建议</h3>`;
+
+    // Parse advice items (split by newline or bullet)
+    const adviceText = report.adjustment_advice || '';
+    const adviceItems = adviceText.split(/\n|·/).filter(s => s.trim().length > 3);
+    if (adviceItems.length > 0) {
+        for (const item of adviceItems) {
+            bodyHTML += `<div class="advice-item">${item.trim()}</div>`;
+        }
+    } else {
+        bodyHTML += `<p>${adviceText}</p>`;
+    }
+
+    bodyHTML += `</div>`;
+
+    // Jewelry recommendation (deep only)
+    if (tier === 'deep' && analysis.jewelry_context) {
+        const jc = analysis.jewelry_context;
+        bodyHTML += `
+        <div class="jewelry-card">
+            <h4>💎 饰品能量建议</h4>
+            <p style="font-size:14px;color:rgba(36,25,21,0.7);margin-bottom:10px;">
+                推荐元素：<strong>${(jc.recommended_elements || []).join('、') || '—'}</strong>
+            </p>
+            <div class="jewelry-tags">
+                ${(jc.colors || []).map(c => `<span class="jewelry-tag">🎨 ${c}</span>`).join('')}
+                ${(jc.materials || []).map(m => `<span class="jewelry-tag">💠 ${m}</span>`).join('')}
+            </div>
+        </div>`;
+    }
+
+    bodyHTML += `
+        <div class="report-section" style="margin-top:24px;">
+            <p style="font-style:italic;font-size:17px;color:var(--ink);line-height:1.9;padding:20px;background:rgba(183,138,66,0.06);border-radius:8px;border-left:3px solid var(--gold);">
+                ${report.closing || ''}
+            </p>
+        </div>`;
+
+    // If basic tier, show upgrade CTA in the body too
+    if (tier === 'basic') {
+        bodyHTML += `
+        <div class="cta-banner" style="margin-top:20px;">
+            <h3>Upgrade to Deep Reading</h3>
+            <p>See how your dreams connect to your personal BaZi chart — with specific jewelry, color, and direction guidance.</p>
+            <button class="cta-btn" onclick="location.href='checkout.html'">Get Your Full BaZi Report — $199</button>
+        </div>`;
+    }
+
+    document.getElementById('interpretationBody').innerHTML = bodyHTML;
 
     // Switch to result view
     inputSection.style.display = 'none';
     resultSection.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Prepare WeChat card copy
+    // Prepare WeChat card
     prepareWechatCard();
+
+    // Track with GA4
+    if (typeof gtag === 'function') {
+        gtag('event', 'dream_interpretation', {
+            event_category: 'engagement',
+            event_label: tier,
+            dream_source: source
+        });
+    }
 }
 
 // ─── Sharing ────────────────────────────────────────────────────────────────
@@ -1011,7 +1196,7 @@ async function incrementDreamUsed() {
     updateQuotaUI();
 }
 
-// ─── Modify interpretDream to check quota ────────────────────────────────────
+// ─── Auth-aware wrappers ────────────────────────────────────────────────────
 
 const _origInterpretDream = interpretDream;
 interpretDream = async function() {
@@ -1028,7 +1213,7 @@ interpretDream = async function() {
 // Patch showResult to count usage
 const _origShowResult = showResult;
 showResult = function(dream, result) {
-    incrementDreamUsed(); // count this interpretation
+    incrementDreamUsed();
     _origShowResult.apply(this, arguments);
 };
 

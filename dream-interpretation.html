@@ -572,6 +572,9 @@
 
 <!-- html2canvas for card image export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="config.real.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
 
 <script>
 // ─── Dream Interpretation Logic ──────────────────────────────────────────────
@@ -786,149 +789,70 @@ async function prepareWechatCard() {
     copy.appendChild(clone);
 }
 
-// ─── Firebase Auth ───────────────────────────────────────────────────────────
-
-// Load Firebase SDKs dynamically
-let firebaseReady = false;
-let firebaseInitialized = false;
-
-async function initFirebase() {
-    if (firebaseInitialized) return;
-    firebaseInitialized = true;
-
-    // Dynamically import Firebase libs
-    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-    const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
-    const { getFirestore, doc, getDoc, setDoc, increment, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
-
-    window._fbApp = initializeApp(window.FIREBASE_CONFIG);
-    window._fbAuth = getAuth(window._fbApp);
-    window._fbStore = getFirestore(window._fbApp);
-    window._fb = { getDoc, doc, setDoc, increment, updateDoc, serverTimestamp };
-    firebaseReady = true;
-
-    // Listen to auth state
-    window._fbAuth.addEventListener('onAuthStateChanged', (user) => {
-        onAuthStateChanged(user);
-    });
-}
-
-// Track user state
-let currentUser = null;
-let userPlan = 'free'; // 'free' | 'paid'
-let dreamCount = 0;
-let dreamUsed = 0;
-
-function onAuthStateChanged(user) {
-    currentUser = user;
-    updateAuthUI();
-    if (user) {
-        loadUserData();
-    } else {
-        // Load free user count from localStorage
-        dreamUsed = parseInt(localStorage.getItem('dreamUsed') || '0');
-        userPlan = 'free';
-        updateQuotaUI();
-    }
-}
-
-async function loadUserData() {
-    if (!currentUser || !firebaseReady) return;
-    try {
-        const { getDoc, doc } = window._fb;
-        const userRef = doc(window._fbStore, 'users', currentUser.uid);
-        const snap = await getDoc(userRef);
-        if (snap.exists()) {
-            const data = snap.data();
-            userPlan = data.plan || 'free';
-            dreamUsed = data.dreamUsed || 0;
-        } else {
-            userPlan = 'free';
-            dreamUsed = 0;
-        }
-    } catch (e) {
-        console.error('Error loading user data:', e);
-        userPlan = 'free';
-        dreamUsed = parseInt(localStorage.getItem('dreamUsed') || '0');
-    }
-    updateQuotaUI();
-}
-
-function getDreamLimit() {
-    return userPlan === 'paid' ? DREAM_PAID_LIMIT : DREAM_FREE_LIMIT;
-}
-
-function getRemainingDreams() {
-    return Math.max(0, getDreamLimit() - dreamUsed);
-}
-
-function updateQuotaUI() {
-    const badge = document.getElementById('quotaBadge');
-    if (!badge) return;
-    const remaining = getRemainingDreams();
-    if (currentUser) {
-        badge.textContent = `☯ ${remaining} dreams left`;
-        badge.style.display = remaining > 0 ? '' : 'none';
-    } else {
-        badge.textContent = `☯ ${remaining} free dream${remaining !== 1 ? 's' : ''}`;
-        badge.style.display = remaining > 0 ? '' : 'none';
-    }
-}
+// ─── Firebase Auth Integration (uses shared auth.js) ────────────────────────
 
 function updateAuthUI() {
-    const loggedOut = document.getElementById('authLoggedOut');
-    const loggedIn = document.getElementById('authLoggedIn');
-    if (!loggedOut || !loggedIn) return;
-    if (currentUser) {
-        loggedOut.style.display = 'none';
-        loggedIn.style.display = '';
-        document.getElementById('userEmail').textContent = currentUser.email || 'Member';
+    var loggedOut = document.getElementById('authLoggedOut');
+    var loggedIn = document.getElementById('authLoggedIn');
+    var userEmail = document.getElementById('userEmail');
+    var quotaBadge = document.getElementById('quotaBadge');
+
+    if (Auth.currentUser) {
+        if (loggedOut) loggedOut.style.display = 'none';
+        if (loggedIn) {
+            loggedIn.style.display = 'flex';
+            if (userEmail) userEmail.textContent = Auth.currentUser.email;
+        }
+        if (quotaBadge) {
+            var remaining = Auth.getRemainingDreams();
+            var limit = Auth.dreamLimit;
+            quotaBadge.textContent = '☯ ' + remaining + ' / ' + limit + ' dreams';
+            quotaBadge.style.display = 'inline-flex';
+        }
     } else {
-        loggedOut.style.display = '';
-        loggedIn.style.display = 'none';
+        if (loggedOut) loggedOut.style.display = '';
+        if (loggedIn) loggedIn.style.display = 'none';
+        if (quotaBadge) quotaBadge.style.display = 'none';
     }
-    updateQuotaUI();
 }
 
-// Check quota before interpreting
-function checkQuota() {
-    const remaining = getRemainingDreams();
-    if (remaining <= 0) {
-        showAuthModal('quota');
-        return false;
-    }
-    return true;
-}
-
-// Show auth modal: mode = 'login' | 'register' | 'quota'
+// Auth Modal
 function showAuthModal(mode) {
-    const modal = document.getElementById('authModal');
-    const toggleLink = document.getElementById('authToggleLink');
-    const authTitle = document.getElementById('authTitle');
-    const authSubtitle = document.getElementById('authSubtitle');
-    const submitBtn = document.getElementById('authSubmitBtn');
+    var modal = document.getElementById('authModal');
+    var title = document.getElementById('authTitle');
+    var subtitle = document.getElementById('authSubtitle');
+    var btn = document.getElementById('authSubmitBtn');
+    var toggle = document.getElementById('authToggleLink');
+    var guestBtn = modal.querySelector('.auth-guest');
+    var errEl = document.getElementById('authError');
+    var succEl = document.getElementById('authSuccess');
+    if (errEl) errEl.textContent = '';
+    if (succEl) succEl.textContent = '';
 
-    document.getElementById('authError').textContent = '';
-    document.getElementById('authSuccess').textContent = '';
-
-    if (mode === 'quota') {
-        authTitle.textContent = 'Unlock More Dreams';
-        authSubtitle.innerHTML = 'Create a free account to get <strong>1 free dream interpretation</strong>, or get <strong>36 dreams</strong> with your Full BaZi Report.';
-        toggleLink.textContent = "Don't have an account? Sign up free";
-        toggleLink.dataset.mode = 'register';
-        submitBtn.textContent = 'Continue';
-    } else if (mode === 'register') {
-        authTitle.textContent = 'Create Free Account';
-        authSubtitle.innerHTML = 'Sign up to save your interpretations and get <strong>1 free dream</strong>';
-        toggleLink.textContent = 'Already have an account? Sign in';
-        toggleLink.dataset.mode = 'login';
-        submitBtn.textContent = 'Sign Up Free';
-    } else {
-        authTitle.textContent = 'Welcome Back';
-        authSubtitle.innerHTML = 'Sign in to access your dream journal and saved readings';
-        toggleLink.textContent = "Don't have an account? Sign up free";
-        toggleLink.dataset.mode = 'register';
-        submitBtn.textContent = 'Sign In';
+    if (mode === 'register') {
+        title.textContent = 'Create Free Account';
+        subtitle.innerHTML = 'Sign up to save your interpretations and get <strong>1 free dream</strong>';
+        btn.textContent = 'Sign Up Free';
+        btn.dataset.mode = 'register';
+        toggle.textContent = 'Sign in instead';
+        toggle.dataset.mode = 'login';
+        if (guestBtn) guestBtn.style.display = '';
+    } else if (mode === 'login') {
+        title.textContent = 'Welcome Back';
+        subtitle.textContent = 'Sign in to continue your dream journey';
+        btn.textContent = 'Sign In';
+        btn.dataset.mode = 'login';
+        toggle.textContent = 'Create free account';
+        toggle.dataset.mode = 'register';
+        if (guestBtn) guestBtn.style.display = '';
+    } else if (mode === 'upgrade') {
+        title.textContent = 'Unlock More Dreams';
+        subtitle.innerHTML = 'Your free dream has been used. Unlock <strong>36 dream interpretations</strong> with your full BaZi reading.';
+        btn.textContent = 'Get Full Reading — $199';
+        btn.dataset.mode = 'upgrade';
+        toggle.textContent = '';
+        toggle.dataset.mode = '';
+        if (guestBtn) guestBtn.style.display = 'none';
     }
 
     modal.classList.add('active');
@@ -939,103 +863,97 @@ function closeAuthModal() {
 }
 
 function toggleAuthMode() {
-    const mode = document.getElementById('authToggleLink').dataset.mode;
-    showAuthModal(mode);
+    showAuthModal(document.getElementById('authToggleLink').dataset.mode);
 }
 
-// Perform login/register
 async function submitAuth(e) {
     e.preventDefault();
-    const email = document.getElementById('authEmail').value.trim();
-    const password = document.getElementById('authPassword').value;
-    const mode = document.getElementById('authSubmitBtn').textContent.includes('Up') ? 'register' : 'login';
-    const errorEl = document.getElementById('authError');
-    const successEl = document.getElementById('authSuccess');
+    var email = document.getElementById('authEmail').value.trim();
+    var password = document.getElementById('authPassword').value;
+    var btn = document.getElementById('authSubmitBtn');
+    var mode = btn.dataset.mode || 'login';
+    var errorEl = document.getElementById('authError');
+    var successEl = document.getElementById('authSuccess');
 
     errorEl.textContent = '';
     if (!email || !password) { errorEl.textContent = 'Please fill in all fields.'; return; }
     if (password.length < 6) { errorEl.textContent = 'Password must be at least 6 characters.'; return; }
 
-    const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
-    const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
-    const auth = getAuth(window._fbApp);
+    // Handle upgrade CTA
+    if (mode === 'upgrade') {
+        window.location.href = 'checkout.html?product=destiny_membership';
+        return;
+    }
+
+    await Auth.init();
 
     try {
         if (mode === 'register') {
-            const cred = await createUserWithEmailAndPassword(auth, email, password);
-            // Create user document in Firestore
-            const { doc, setDoc, serverTimestamp } = window._fb;
-            await setDoc(doc(window._fbStore, 'users', cred.user.uid), {
-                email, plan: 'free', dreamUsed: 0,
-                createdAt: serverTimestamp()
-            });
-            successEl.textContent = 'Account created! You now have 1 free dream.';
+            await Auth.register(email, password);
+            successEl.textContent = 'Account created! You have 1 free dream.';
         } else {
-            await signInWithEmailAndPassword(auth, email, password);
+            await Auth.login(email, password);
             successEl.textContent = 'Welcome back!';
         }
         setTimeout(closeAuthModal, 1200);
     } catch (err) {
-        const msgs = {
+        var msgs = {
             'auth/email-already-in-use': 'This email is already registered. Try signing in.',
             'auth/wrong-password': 'Incorrect password.',
             'auth/user-not-found': 'No account found with this email.',
             'auth/invalid-email': 'Invalid email address.',
             'auth/weak-password': 'Password must be at least 6 characters.',
             'auth/too-many-requests': 'Too many attempts. Please try again later.',
+            'auth/invalid-credential': 'Invalid email or password.'
         };
         errorEl.textContent = msgs[err.code] || 'Something went wrong. Please try again.';
     }
 }
 
 async function signOut() {
-    const { signOut } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
-    const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
-    await signOut(getAuth(window._fbApp));
+    await Auth.logout();
     closeAuthModal();
-}
-
-// Increment dream count
-async function incrementDreamUsed() {
-    dreamUsed++;
-    if (currentUser && firebaseReady) {
-        try {
-            const { doc, updateDoc, increment } = window._fb;
-            await updateDoc(doc(window._fbStore, 'users', currentUser.uid), {
-                dreamUsed: increment(1)
-            });
-        } catch (e) { console.error(e); }
-    } else {
-        localStorage.setItem('dreamUsed', dreamUsed);
-    }
-    updateQuotaUI();
 }
 
 // ─── Modify interpretDream to check quota ────────────────────────────────────
 
-const _origInterpretDream = interpretDream;
+var _origInterpretDream = interpretDream;
 interpretDream = async function() {
-    // Ensure Firebase is ready
-    if (!firebaseReady) {
-        await initFirebase();
+    await Auth.init();
+    if (Auth.getRemainingDreams() <= 0) {
+        showAuthModal(Auth.userPlan === 'paid' ? 'quota' : 'upgrade');
+        return;
     }
-    // Check quota
-    if (!checkQuota()) return;
-    // Proceed
     await _origInterpretDream.apply(this, arguments);
 };
 
-// Patch showResult to count usage
-const _origShowResult = showResult;
+// Patch showResult to count usage and save history
+var _origShowResult = showResult;
 showResult = function(dream, result) {
-    incrementDreamUsed(); // count this interpretation
+    Auth.incrementDreamUsed();
+    updateAuthUI();
+    // Save to dream history if logged in
+    Auth.saveDreamReading({
+        dream: dream,
+        element: result.element,
+        subElements: result.subElements,
+        symbolism: result.symbolism,
+        psychological: result.psychological,
+        guidance: result.guidance,
+        luckyDirection: result.luckyDirection,
+        fullInterpretation: result.fullInterpretation
+    });
     _origShowResult.apply(this, arguments);
 };
 
 // Init on page load
-document.addEventListener('DOMContentLoaded', async () => {
-    if (!firebaseReady) await initFirebase();
-    onAuthStateChanged(window._fbAuth?.currentUser || null);
+document.addEventListener('DOMContentLoaded', function() {
+    Auth.init().then(function() {
+        updateAuthUI();
+    });
+    Auth.onAuthChange(function() {
+        updateAuthUI();
+    });
 });
 </script>
 

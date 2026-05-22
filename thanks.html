@@ -275,7 +275,25 @@
         <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </main>
 
-    <script src="config.js"></script>
+    <!-- Dream membership upgrade section -->
+    <div class="card" id="dreamUpgradeCard" style="display:none;margin-top:24px;text-align:center;">
+        <div style="font-size:18px;font-weight:700;margin-bottom:8px;color:var(--gold);">☯ Destiny Membership</div>
+        <p style="margin-bottom:16px;color:rgba(36,25,21,0.7);">Your 36 dream interpretations are being activated...</p>
+        <div id="dreamUpgradeSuccess" style="display:none;padding:20px;background:rgba(49,82,71,0.08);border-radius:12px;border:1px solid rgba(49,82,71,0.2);margin-bottom:16px;">
+            <div style="font-size:36px;margin-bottom:8px;">✓</div>
+            <div style="font-weight:600;color:var(--pine);margin-bottom:4px;">Membership Activated!</div>
+            <div style="font-size:14px;color:rgba(36,25,21,0.6);">You now have 36 dream interpretations.</div>
+            <a href="dashboard.html" style="display:inline-block;margin-top:12px;color:var(--cinnabar);font-weight:600;text-decoration:underline;">Go to Your Dashboard →</a>
+        </div>
+        <div id="dreamUpgradeRegister" style="display:none;">
+            <p style="color:rgba(36,25,21,0.6);margin-bottom:12px;">Create an account with your payment email to activate your 36 dream interpretations.</p>
+            <a href="register.html?redirect=dashboard.html" style="display:inline-block;padding:12px 28px;background:var(--cinnabar);color:#fff;border-radius:8px;font-size:14px;font-weight:600;">Create Free Account</a>
+        </div>
+    </div>
+
+    <script src="config.real.js"></script>
+<script src="config.js"></script>
+    <script src="auth.js"></script>
     <script src="bazi_engine.js"></script>
     <script src="api_deepseek.js"></script>
     <script src="ai_bazi_layer.js"></script>
@@ -330,6 +348,60 @@
                 this.textContent = 'Confirmed — unlocking…';
                 unlockReading('manual-' + Date.now());
             });
+        }
+
+        // Dream membership upgrade detection
+        var state = window.ReadingState ? window.ReadingState.read() : {};
+        var isDreamMembership = params.get('product') === 'destiny_membership'
+            || (state && state.pendingProduct === 'destiny_membership');
+
+        if (isDreamMembership || paid) {
+            // Try to detect dream membership from ReadingState as well
+            if (!isDreamMembership && state && state.pendingProduct === 'destiny_membership') {
+                isDreamMembership = true;
+            }
+        }
+
+        if (isDreamMembership && paid) {
+            var card = document.getElementById('dreamUpgradeCard');
+            if (card) card.style.display = '';
+
+            // Initialize auth and attempt upgrade
+            if (window.Auth) {
+                Auth.init().then(function() {
+                    if (Auth.currentUser) {
+                        var txId = params.get('tx') || params.get('paymentId') || params.get('token') || '';
+                        Auth.upgradeToPaid(txId).then(function() {
+                            Auth.saveOrder({
+                                amount: 199,
+                                product: 'destiny_membership',
+                                paypalTxId: txId,
+                                status: 'completed'
+                            });
+                            document.getElementById('dreamUpgradeSuccess').style.display = '';
+                            // Clear pending flag
+                            if (window.ReadingState) {
+                                window.ReadingState.merge({ pendingProduct: null });
+                            }
+                        }).catch(function(e) {
+                            console.error('Membership upgrade failed:', e);
+                            document.getElementById('dreamUpgradeRegister').style.display = '';
+                        });
+                    } else {
+                        document.getElementById('dreamUpgradeRegister').style.display = '';
+                        // Save upgrade intent for after registration
+                        if (window.ReadingState) {
+                            window.ReadingState.merge({
+                                pendingUpgrade: true,
+                                pendingProduct: 'destiny_membership',
+                                upgradeTx: params.get('tx') || ''
+                            });
+                        }
+                    }
+                });
+            } else {
+                document.getElementById('dreamUpgradeRegister').style.display = '';
+            }
         }
     })();
     </script>

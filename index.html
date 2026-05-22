@@ -559,10 +559,13 @@
             </a>
             <nav class="nav">
                 <a href="instant_reading.html" data-i18n="nav_free_reading">Free Reading</a>
+                <a href="dream-interpretation.html">Dream Interpreter</a>
                 <a href="products.html" data-i18n="nav_plans">Plans</a>
                 <a href="daoist-treasures.html">Daoist Treasures</a>
                 <a href="report_demo.html" data-i18n="nav_sample_report">Sample Report</a>
                 <a href="checkout.html" data-i18n="nav_order">Order</a>
+                <a href="login.html" id="navSignIn" style="font-size:13px;color:rgba(36,25,21,0.7);">Sign In</a>
+                <a href="dashboard.html" id="navDashboard" style="display:none;font-size:13px;color:var(--cinnabar);font-weight:600;">Dashboard</a>
             </nav>
         </div>
     </header>
@@ -873,8 +876,29 @@
         </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
+    <script src="config.real.js"></script>
+<script src="config.js"></script>
+    <script src="auth.js"></script>
     <script src="i18n.js"></script>
     <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
+    <script>
+    // Auth-aware navigation
+    Auth.init().then(function() {
+        if (Auth.currentUser) {
+            document.getElementById('navSignIn').style.display = 'none';
+            document.getElementById('navDashboard').style.display = '';
+        }
+    });
+    Auth.onAuthChange(function(user) {
+        if (user) {
+            document.getElementById('navSignIn').style.display = 'none';
+            document.getElementById('navDashboard').style.display = '';
+        } else {
+            document.getElementById('navSignIn').style.display = '';
+            document.getElementById('navDashboard').style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>

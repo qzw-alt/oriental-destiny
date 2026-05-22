@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your personal destiny space — view BaZi report, dream interpretations, accessory matching, and membership status.">
+    <meta property="og:title" content="My Destiny Space | Oriental Destiny">
+    <meta property="og:description" content="Your personal dashboard for BaZi readings, dream interpretations, and accessory matching.">
+    <link rel="canonical" href="https://oriental-destiny.com/dashboard.html">
+    <title>My Destiny Space | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.12), transparent 40%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+            min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            max-width: 1120px; margin: 0 auto;
+            padding: 0 20px; min-height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 22px; font-weight: 700; }
+        .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36,25,21,0.78); flex-wrap: wrap; align-items: center; }
+        .nav a:hover { color: var(--cinnabar); }
+        .nav-cta {
+            background: var(--cinnabar); color: #fff !important;
+            padding: 8px 18px; border-radius: 4px;
+            font-size: 13px; letter-spacing: 0.04em;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: #8c2f23; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px 60px; }
+
+        /* Welcome Header */
+        .welcome {
+            background: #fff; border-radius: 14px; padding: 32px 36px;
+            box-shadow: var(--shadow); margin-bottom: 28px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .welcome-info h1 { font-size: 26px; margin-bottom: 4px; color: var(--ink); }
+        .welcome-info .plan-badge {
+            display: inline-block; font-size: 12px; letter-spacing: 0.08em;
+            padding: 4px 14px; border-radius: 20px; font-weight: 600;
+            margin-left: 8px; vertical-align: middle;
+        }
+        .plan-free { background: rgba(183,138,66,0.1); color: var(--gold); border: 1px solid rgba(183,138,66,0.3); }
+        .plan-paid { background: rgba(49,82,71,0.1); color: var(--pine); border: 1px solid rgba(49,82,71,0.3); }
+        .welcome-email { font-size: 14px; color: rgba(36,25,21,0.5); margin-top: 4px; }
+        .upgrade-btn {
+            display: inline-block;
+            background: var(--cinnabar); color: #fff;
+            padding: 12px 24px; border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+            transition: background 0.2s;
+        }
+        .upgrade-btn:hover { background: #8c2f23; }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px; margin-bottom: 28px;
+        }
+        .stat-card {
+            background: #fff; border-radius: 12px; padding: 24px;
+            box-shadow: var(--shadow); text-align: center;
+        }
+        .stat-value { font-size: 36px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+        .stat-label { font-size: 13px; color: rgba(36,25,21,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+        .stat-card.gold .stat-value { color: var(--gold); }
+        .stat-card.pine .stat-value { color: var(--pine); }
+        .stat-card.cinnabar .stat-value { color: var(--cinnabar); }
+
+        /* Tabs */
+        .tabs {
+            display: flex; gap: 4px; margin-bottom: 0;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 12px 24px; border: none; background: rgba(255,255,255,0.6);
+            font-family: Georgia, serif; font-size: 15px; cursor: pointer;
+            border-radius: 10px 10px 0 0; color: rgba(36,25,21,0.55);
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #fff; color: var(--ink); font-weight: 600;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+        }
+        .tab-btn:hover { color: var(--ink); }
+
+        /* Tab Content */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .tab-panel {
+            background: #fff; border-radius: 0 12px 12px 12px;
+            padding: 32px 36px; box-shadow: var(--shadow);
+            min-height: 300px;
+        }
+
+        /* Report Status */
+        .status-steps { position: relative; padding-left: 28px; }
+        .status-step {
+            position: relative; padding: 0 0 28px 24px;
+            border-left: 2px solid var(--line);
+        }
+        .status-step:last-child { border-left-color: transparent; padding-bottom: 0; }
+        .status-step::before {
+            content: ''; position: absolute; left: -7px; top: 2px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--line);
+        }
+        .status-step.done::before { background: var(--pine); }
+        .status-step.current::before { background: var(--gold); box-shadow: 0 0 0 4px rgba(183,138,66,0.2); }
+        .status-step h4 { font-size: 16px; margin-bottom: 4px; }
+        .status-step p { font-size: 14px; color: rgba(36,25,21,0.6); }
+        .status-step .step-tag {
+            display: inline-block; font-size: 11px; padding: 2px 10px;
+            border-radius: 12px; letter-spacing: 0.06em;
+        }
+        .tag-done { background: rgba(49,82,71,0.1); color: var(--pine); }
+        .tag-current { background: rgba(183,138,66,0.12); color: var(--gold); }
+        .tag-pending { background: rgba(36,25,21,0.05); color: rgba(36,25,21,0.4); }
+
+        /* Dream List */
+        .dream-item {
+            border: 1px solid var(--line); border-radius: 10px;
+            padding: 20px 24px; margin-bottom: 14px;
+            transition: box-shadow 0.2s;
+        }
+        .dream-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .dream-item .dream-date { font-size: 12px; color: rgba(36,25,21,0.4); margin-bottom: 6px; }
+        .dream-item .dream-text {
+            font-size: 15px; font-style: italic; color: rgba(36,25,21,0.8);
+            margin-bottom: 8px; line-height: 1.5;
+        }
+        .dream-item .dream-element {
+            display: inline-block; font-size: 11px;
+            background: rgba(183,138,66,0.08); color: var(--gold);
+            padding: 3px 10px; border-radius: 14px;
+            letter-spacing: 0.04em;
+        }
+        .dream-item .dream-guidance {
+            font-size: 13px; color: rgba(36,25,21,0.6);
+            margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
+        }
+
+        /* Accessory Card */
+        .acc-card {
+            background: linear-gradient(135deg, rgba(183,138,66,0.06), rgba(166,58,44,0.04));
+            border: 1px solid rgba(183,138,66,0.2); border-radius: 12px;
+            padding: 28px; margin-bottom: 16px;
+        }
+        .acc-card h4 { font-size: 17px; margin-bottom: 12px; color: var(--ink); }
+        .acc-detail {
+            display: grid; grid-template-columns: auto 1fr;
+            gap: 8px 16px; font-size: 14px;
+        }
+        .acc-detail dt { color: rgba(36,25,21,0.5); font-weight: 600; }
+        .acc-detail dd { color: rgba(36,25,21,0.8); }
+
+        /* Order List */
+        .order-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 20px; border: 1px solid var(--line);
+            border-radius: 10px; margin-bottom: 10px;
+            flex-wrap: wrap; gap: 8px;
+        }
+        .order-item .order-info { font-size: 14px; }
+        .order-item .order-date { font-size: 12px; color: rgba(36,25,21,0.4); }
+        .order-item .order-amount { font-weight: 700; color: var(--ink); }
+        .order-status {
+            font-size: 11px; padding: 3px 10px; border-radius: 12px;
+            letter-spacing: 0.04em;
+        }
+        .os-completed { background: rgba(49,82,71,0.1); color: var(--pine); }
+        .os-pending { background: rgba(183,138,66,0.1); color: var(--gold); }
+
+        /* Not logged in */
+        .login-prompt {
+            text-align: center; padding: 60px 20px;
+        }
+        .login-prompt h2 { font-size: 24px; margin-bottom: 12px; }
+        .login-prompt p { color: rgba(36,25,21,0.6); margin-bottom: 24px; }
+        .prompt-btn {
+            display: inline-block; padding: 14px 32px; border-radius: 8px;
+            font-size: 16px; font-family: Georgia, serif; font-weight: 600;
+            transition: background 0.2s; margin: 8px;
+        }
+        .prompt-btn.primary { background: var(--cinnabar); color: #fff; }
+        .prompt-btn.primary:hover { background: #8c2f23; }
+        .prompt-btn.secondary { background: #fff; color: var(--ink); border: 1.5px solid var(--line); }
+        .prompt-btn.secondary:hover { border-color: var(--gold); }
+
+        /* Empty state */
+        .empty-state { text-align: center; padding: 40px 20px; }
+        .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.4; }
+        .empty-state h4 { font-size: 18px; margin-bottom: 8px; color: rgba(36,25,21,0.7); }
+        .empty-state p { font-size: 14px; color: rgba(36,25,21,0.5); margin-bottom: 16px; }
+        .empty-state a { color: var(--cinnabar); text-decoration: underline; }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 32px 20px; text-align: center;
+            font-size: 13px; color: rgba(36,25,21,0.5);
+        }
+        footer a { color: var(--cinnabar); }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .welcome { padding: 24px; }
+            .tab-panel { padding: 24px 20px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .stat-value { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">☯ Oriental Destiny</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="dream-interpretation.html">Dream Interpreter</a>
+            <span id="navUser" style="font-size:13px;color:rgba(36,25,21,0.5);display:none;"></span>
+            <a href="#" id="navLogout" onclick="handleLogout();return false;" style="font-size:12px;color:var(--cinnabar);display:none;">Sign Out</a>
+            <a href="login.html" id="navLogin" style="font-size:13px;">Sign In</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container" id="loggedOutView">
+    <div class="login-prompt">
+        <h2>Your Personal Destiny Space</h2>
+        <p>Sign in to view your BaZi report, dream history, accessory matching, and membership status.</p>
+        <a href="login.html?redirect=dashboard.html" class="prompt-btn primary">Sign In</a>
+        <a href="register.html?redirect=dashboard.html" class="prompt-btn secondary">Create Free Account</a>
+    </div>
+</div>
+
+<div class="container" id="loggedInView" style="display:none;">
+    <!-- Welcome -->
+    <div class="welcome">
+        <div class="welcome-info">
+            <h1>
+                Welcome
+                <span class="plan-badge" id="planBadge"></span>
+            </h1>
+            <div class="welcome-email" id="welcomeEmail"></div>
+        </div>
+        <div id="upgradeCta"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+        <div class="stat-card gold">
+            <div class="stat-value" id="statDreams">0</div>
+            <div class="stat-label">Dreams Remaining</div>
+        </div>
+        <div class="stat-card pine">
+            <div class="stat-value" id="statReport">—</div>
+            <div class="stat-label">Report Status</div>
+        </div>
+        <div class="stat-card cinnabar">
+            <div class="stat-value" id="statHistory">0</div>
+            <div class="stat-label">Dreams Read</div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+        <button class="tab-btn" onclick="switchTab('report')">My Report</button>
+        <button class="tab-btn" onclick="switchTab('dreams')">Dream History</button>
+        <button class="tab-btn" onclick="switchTab('accessory')">Accessory</button>
+        <button class="tab-btn" onclick="switchTab('orders')">Orders</button>
+    </div>
+
+    <!-- Tab: Overview -->
+    <div class="tab-content active" id="tab-overview">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:16px;font-size:20px;">Account Overview</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+                <div style="padding:16px;background:rgba(183,138,66,0.04);border-radius:8px;border:1px solid var(--line);">
+                    <div style="font-size:12px;color:rgba(36,25,21,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Membership</div>
+                    <div style="font-size:16px;font-weight:600;" id="ovPlan"></div>
+                </div>
+                <div style="padding:16px;background:rgba(183,138,66,0.04);border-radius:8px;border:1px solid var(--line);">
+                    <div style="font-size:12px;color:rgba(36,25,21,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Dream Credits</div>
+                    <div style="font-size:16px;font-weight:600;" id="ovCredits"></div>
+                </div>
+                <div style="padding:16px;background:rgba(183,138,66,0.04);border-radius:8px;border:1px solid var(--line);">
+                    <div style="font-size:12px;color:rgba(36,25,21,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Quick Actions</div>
+                    <div>
+                        <a href="dream-interpretation.html" style="color:var(--cinnabar);text-decoration:underline;font-size:14px;">Interpret a Dream →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab: Report -->
+    <div class="tab-content" id="tab-report">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:20px;font-size:20px;">My BaZi Report</h3>
+            <div class="status-steps" id="reportSteps">
+                <div class="status-step pending">
+                    <span class="step-tag tag-pending">Pending</span>
+                    <h4>Payment Confirmed</h4>
+                    <p>Your $199 service has been purchased.</p>
+                </div>
+                <div class="status-step pending">
+                    <span class="step-tag tag-pending">Pending</span>
+                    <h4>Profile Submitted</h4>
+                    <p>Birth information and preferences received.</p>
+                </div>
+                <div class="status-step pending">
+                    <span class="step-tag tag-pending">Pending</span>
+                    <h4>BaZi Analysis</h4>
+                    <p>Our master is analyzing your Eight Characters.</p>
+                </div>
+                <div class="status-step pending">
+                    <span class="step-tag tag-pending">Pending</span>
+                    <h4>Report Ready</h4>
+                    <p>Your complete destiny report is available.</p>
+                </div>
+                <div class="status-step pending">
+                    <span class="step-tag tag-pending">Pending</span>
+                    <h4>Accessory Matched</h4>
+                    <p>Personalized accessory recommendation complete.</p>
+                </div>
+            </div>
+            <div id="reportFreeMsg" style="text-align:center;padding:40px;display:none;">
+                <p style="color:rgba(36,25,21,0.6);margin-bottom:16px;">Full BaZi report is included with the $199 Destiny Membership.</p>
+                <a href="checkout.html?product=destiny_membership" class="upgrade-btn">Get Your Full Reading — $199</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab: Dreams -->
+    <div class="tab-content" id="tab-dreams">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:20px;font-size:20px;">Dream History</h3>
+            <div id="dreamList"></div>
+            <div class="empty-state" id="dreamEmpty">
+                <div class="empty-icon">☯</div>
+                <h4>No dreams interpreted yet</h4>
+                <p>Your dream readings will appear here.</p>
+                <a href="dream-interpretation.html">Interpret your first dream →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab: Accessory -->
+    <div class="tab-content" id="tab-accessory">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:20px;font-size:20px;">Accessory Matching</h3>
+            <div id="accessoryContent">
+                <div class="empty-state" id="accEmpty">
+                    <div class="empty-icon">💎</div>
+                    <h4>Accessory matching is part of the $199 service</h4>
+                    <p>After purchase, your personalized bracelet or pendant will be matched to your Five Elements profile.</p>
+                    <a href="checkout.html?product=destiny_membership">Get Started →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab: Orders -->
+    <div class="tab-content" id="tab-orders">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:20px;font-size:20px;">Orders &amp; Entitlements</h3>
+            <div id="orderList"></div>
+            <div class="empty-state" id="orderEmpty">
+                <div class="empty-icon">📋</div>
+                <h4>No orders yet</h4>
+                <p>Your purchase history will appear here.</p>
+                <a href="checkout.html?product=destiny_membership">Purchase Destiny Membership →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+</footer>
+
+<script src="config.real.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="version.js"></script>
+<script>
+(function() {
+    // Check auth state on load
+    Auth.init().then(function() {
+        if (Auth.currentUser) {
+            showDashboard();
+        }
+    });
+    Auth.onAuthChange(function(user) {
+        if (user) {
+            showDashboard();
+        } else {
+            document.getElementById('loggedInView').style.display = 'none';
+            document.getElementById('loggedOutView').style.display = '';
+            document.getElementById('navUser').style.display = 'none';
+            document.getElementById('navLogout').style.display = 'none';
+            document.getElementById('navLogin').style.display = '';
+        }
+    });
+
+    function showDashboard() {
+        document.getElementById('loggedOutView').style.display = 'none';
+        document.getElementById('loggedInView').style.display = '';
+        document.getElementById('navUser').style.display = '';
+        document.getElementById('navUser').textContent = Auth.currentUser.email;
+        document.getElementById('navLogout').style.display = '';
+        document.getElementById('navLogin').style.display = 'none';
+        document.getElementById('welcomeEmail').textContent = Auth.currentUser.email;
+
+        // Plan badge
+        var badge = document.getElementById('planBadge');
+        if (Auth.userPlan === 'paid') {
+            badge.textContent = 'Paid Member';
+            badge.className = 'plan-badge plan-paid';
+        } else {
+            badge.textContent = 'Free';
+            badge.className = 'plan-badge plan-free';
+        }
+
+        // Upgrade CTA
+        var cta = document.getElementById('upgradeCta');
+        if (Auth.userPlan === 'free') {
+            cta.innerHTML = '<a href="checkout.html?product=destiny_membership" class="upgrade-btn">Upgrade to Full Membership — $199</a>';
+        } else {
+            cta.innerHTML = '';
+        }
+
+        // Stats
+        document.getElementById('statDreams').textContent = Auth.getRemainingDreams();
+        document.getElementById('statHistory').textContent = Auth.dreamUsed;
+
+        // Overview tab
+        document.getElementById('ovPlan').textContent = Auth.userPlan === 'paid' ? 'Paid Member' : 'Free Account';
+        document.getElementById('ovCredits').textContent = Auth.getRemainingDreams() + ' / ' + Auth.dreamLimit;
+
+        // Report tab
+        if (Auth.userPlan === 'free') {
+            document.getElementById('reportSteps').style.display = 'none';
+            document.getElementById('reportFreeMsg').style.display = '';
+        } else {
+            document.getElementById('reportSteps').style.display = '';
+            document.getElementById('reportFreeMsg').style.display = 'none';
+        }
+
+        // Load dream history
+        loadDreamHistory();
+
+        // Load orders
+        loadOrders();
+    }
+
+    function loadDreamHistory() {
+        Auth.getDreamHistory(50).then(function(dreams) {
+            var list = document.getElementById('dreamList');
+            var empty = document.getElementById('dreamEmpty');
+            if (!dreams || dreams.length === 0) {
+                list.innerHTML = '';
+                empty.style.display = '';
+                document.getElementById('statHistory').textContent = '0';
+                return;
+            }
+            empty.style.display = 'none';
+            document.getElementById('statHistory').textContent = dreams.length;
+            list.innerHTML = dreams.map(function(d) {
+                var date = d.createdAt ? new Date(d.createdAt.seconds * 1000).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : '';
+                return '<div class="dream-item">' +
+                    (date ? '<div class="dream-date">' + date + '</div>' : '') +
+                    '<div class="dream-text">"' + escapeHtml(d.dream || '') + '"</div>' +
+                    (d.element ? '<span class="dream-element">' + escapeHtml(d.element) + '</span>' : '') +
+                    (d.guidance ? '<div class="dream-guidance">' + escapeHtml(d.guidance) + '</div>' : '') +
+                '</div>';
+            }).join('');
+        });
+    }
+
+    function loadOrders() {
+        // Orders are loaded from Firestore in a production setup.
+        // For now, show empty state since this is MVP.
+        document.getElementById('orderEmpty').style.display = '';
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    // Tab switching
+    window.switchTab = function(name) {
+        document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        var tab = document.getElementById('tab-' + name);
+        if (tab) tab.classList.add('active');
+        event.target.classList.add('active');
+    };
+
+    window.handleLogout = function() {
+        Auth.logout();
+    };
+})();
+</script>
+
+</body>
+</html>

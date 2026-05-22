@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your dream interpretation history — review past dreams and their Five Elements meanings.">
+    <meta property="og:title" content="Dream History | Oriental Destiny">
+    <link rel="canonical" href="https://oriental-destiny.com/dream-history.html">
+    <title>Dream History | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top, rgba(183,138,66,0.12), transparent 40%),
+                        linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72; min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248,241,231,0.88);
+            border-bottom: 1px solid rgba(36,25,21,0.08);
+        }
+        .topbar-inner {
+            max-width: 1120px; margin: 0 auto; padding: 0 20px;
+            min-height: 68px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 22px; font-weight: 700; }
+        .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36,25,21,0.78); flex-wrap: wrap; align-items: center; }
+        .nav a:hover { color: var(--cinnabar); }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+
+        .page-title { font-size: 28px; margin-bottom: 24px; }
+
+        .dream-item {
+            background: #fff; border-radius: 12px; padding: 24px 28px;
+            margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid var(--line);
+        }
+        .dream-item .dream-date { font-size: 12px; color: rgba(36,25,21,0.4); margin-bottom: 8px; }
+        .dream-item .dream-text {
+            font-size: 16px; font-style: italic; color: rgba(36,25,21,0.85);
+            margin-bottom: 12px; line-height: 1.6;
+        }
+        .dream-item .dream-text::before { content: '"'; }
+        .dream-item .dream-text::after { content: '"'; }
+        .dream-item .dream-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .dream-item .dream-element {
+            display: inline-block; font-size: 11px;
+            background: rgba(183,138,66,0.08); color: var(--gold);
+            padding: 3px 10px; border-radius: 14px;
+            letter-spacing: 0.04em;
+        }
+        .dream-item .dream-sub {
+            display: inline-block; font-size: 11px;
+            background: rgba(166,58,44,0.06); color: var(--cinnabar);
+            padding: 3px 10px; border-radius: 14px;
+        }
+        .dream-item .dream-guidance {
+            font-size: 13px; color: rgba(36,25,21,0.6);
+            padding-top: 10px; border-top: 1px solid var(--line);
+        }
+        .dream-item .dream-full {
+            font-size: 14px; color: rgba(36,25,21,0.75);
+            margin-top: 10px; line-height: 1.7;
+        }
+
+        .empty-state { text-align: center; padding: 60px 20px; }
+        .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.4; }
+        .empty-state h3 { font-size: 20px; margin-bottom: 8px; color: rgba(36,25,21,0.7); }
+        .empty-state p { font-size: 14px; color: rgba(36,25,21,0.5); margin-bottom: 16px; }
+        .empty-state a { color: var(--cinnabar); text-decoration: underline; }
+
+        .login-prompt {
+            text-align: center; padding: 80px 20px;
+        }
+        .login-prompt h2 { font-size: 24px; margin-bottom: 12px; }
+        .login-prompt p { color: rgba(36,25,21,0.6); margin-bottom: 20px; }
+        .login-prompt a { color: var(--cinnabar); text-decoration: underline; font-size: 16px; }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 32px 20px; text-align: center;
+            font-size: 13px; color: rgba(36,25,21,0.5);
+        }
+        footer a { color: var(--cinnabar); }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .dream-item { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">☯ Oriental Destiny</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="dream-interpretation.html">Dream Interpreter</a>
+            <a href="dashboard.html">Dashboard</a>
+            <span id="navUser" style="font-size:13px;color:rgba(36,25,21,0.5);display:none;"></span>
+            <a href="#" id="navLogout" onclick="handleLogout();return false;" style="font-size:12px;color:var(--cinnabar);display:none;">Sign Out</a>
+            <a href="login.html" id="navLogin" style="font-size:13px;">Sign In</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container" id="loggedOutView">
+    <div class="login-prompt">
+        <h2>Your Dream History</h2>
+        <p>Sign in to review your past dream interpretations.</p>
+        <a href="login.html?redirect=dream-history.html">Sign In</a> ·
+        <a href="register.html?redirect=dream-history.html">Create Free Account</a>
+    </div>
+</div>
+
+<div class="container" id="loggedInView" style="display:none;">
+    <h1 class="page-title">☯ Dream History</h1>
+    <div id="dreamList"></div>
+    <div class="empty-state" id="dreamEmpty">
+        <div class="empty-icon">☯</div>
+        <h3>No dreams yet</h3>
+        <p>Your interpreted dreams will appear here.</p>
+        <a href="dream-interpretation.html">Interpret your first dream →</a>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+</footer>
+
+<script src="config.real.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="version.js"></script>
+<script>
+(function() {
+    Auth.init().then(function() {
+        if (Auth.currentUser) showHistory();
+    });
+    Auth.onAuthChange(function(user) {
+        if (user) { showHistory(); }
+        else {
+            document.getElementById('loggedInView').style.display = 'none';
+            document.getElementById('loggedOutView').style.display = '';
+            document.getElementById('navUser').style.display = 'none';
+            document.getElementById('navLogout').style.display = 'none';
+            document.getElementById('navLogin').style.display = '';
+        }
+    });
+
+    function showHistory() {
+        document.getElementById('loggedOutView').style.display = 'none';
+        document.getElementById('loggedInView').style.display = '';
+        document.getElementById('navUser').style.display = '';
+        document.getElementById('navUser').textContent = Auth.currentUser.email;
+        document.getElementById('navLogout').style.display = '';
+        document.getElementById('navLogin').style.display = 'none';
+        loadDreams();
+    }
+
+    function loadDreams() {
+        Auth.getDreamHistory(100).then(function(dreams) {
+            var list = document.getElementById('dreamList');
+            var empty = document.getElementById('dreamEmpty');
+            if (!dreams || dreams.length === 0) {
+                list.innerHTML = '';
+                empty.style.display = '';
+                return;
+            }
+            empty.style.display = 'none';
+            list.innerHTML = dreams.map(function(d) {
+                var date = d.createdAt ? new Date(d.createdAt.seconds * 1000).toLocaleDateString('en-US', {
+                    year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'
+                }) : '';
+                var subs = (d.subElements || []).map(function(e) {
+                    return '<span class="dream-sub">' + escapeHtml(e) + '</span>';
+                }).join('');
+                return '<div class="dream-item">' +
+                    (date ? '<div class="dream-date">' + date + '</div>' : '') +
+                    '<div class="dream-text">' + escapeHtml(d.dream || '') + '</div>' +
+                    '<div class="dream-meta">' +
+                        (d.element ? '<span class="dream-element">' + escapeHtml(d.element) + '</span>' : '') +
+                        subs +
+                    '</div>' +
+                    (d.guidance ? '<div class="dream-guidance">💡 ' + escapeHtml(d.guidance) + '</div>' : '') +
+                    (d.fullInterpretation ? '<div class="dream-full">' + escapeHtml(d.fullInterpretation) + '</div>' : '') +
+                '</div>';
+            }).join('');
+        });
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    window.handleLogout = function() {
+        Auth.logout();
+    };
+})();
+</script>
+
+</body>
+</html>

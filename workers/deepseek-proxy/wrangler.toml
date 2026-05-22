@@ -1,6 +1,0 @@
-name = "deepseek-proxy"
-main = "src/index.js"
-compatibility_date = "2025-01-01"
-
-# No custom domain route — uses workers.dev subdomain
-# After deploy, update config.js with the workers.dev URL

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your free Oriental Destiny account and unlock 1 free AI dream interpretation based on Five Elements and BaZi principles.">
+    <meta property="og:title" content="Create Free Account | Oriental Destiny">
+    <meta property="og:description" content="Register for free and get 1 AI dream interpretation based on ancient Eastern wisdom.">
+    <link rel="canonical" href="https://oriental-destiny.com/register.html">
+    <title>Create Free Account | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 40%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.72;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        /* Topbar */
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            max-width: 1120px; margin: 0 auto;
+            padding: 0 20px; min-height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 22px; font-weight: 700; }
+        .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36,25,21,0.78); flex-wrap: wrap; align-items: center; }
+        .nav a:hover { color: var(--cinnabar); }
+
+        /* Main */
+        .main {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 40px 20px;
+        }
+        .register-card {
+            background: #fff; border-radius: 16px; padding: 48px 44px;
+            max-width: 440px; width: 100%; text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .register-brand {
+            font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 12px;
+        }
+        .register-title { font-size: 28px; margin-bottom: 8px; color: var(--ink); font-weight: 700; }
+        .register-subtitle { font-size: 15px; color: rgba(36,25,21,0.65); margin-bottom: 28px; line-height: 1.5; }
+
+        /* Benefits */
+        .benefits {
+            background: rgba(183,138,66,0.06); border: 1px solid rgba(183,138,66,0.15);
+            border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+            text-align: left; font-size: 14px;
+        }
+        .benefits h4 { font-size: 13px; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; }
+        .benefits li { margin-bottom: 6px; color: rgba(36,25,21,0.75); list-style: none; }
+        .benefits li::before { content: '☯ '; color: var(--gold); font-size: 12px; }
+
+        /* Form */
+        .field { margin-bottom: 14px; }
+        .field input {
+            width: 100%; padding: 13px 16px;
+            border: 1.5px solid var(--line); border-radius: 8px;
+            font-family: Georgia, serif; font-size: 15px;
+            color: var(--ink); background: var(--paper);
+            outline: none; box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .field input:focus { border-color: var(--gold); }
+        .error { color: var(--cinnabar); font-size: 13px; min-height: 18px; margin-bottom: 8px; text-align: left; }
+        .success { color: #2e7d32; font-size: 13px; min-height: 18px; margin-bottom: 8px; text-align: left; }
+        .submit-btn {
+            width: 100%; padding: 14px;
+            background: var(--cinnabar); color: #fff;
+            border: none; border-radius: 8px;
+            font-size: 16px; font-family: Georgia, serif; font-weight: 600;
+            cursor: pointer; transition: background 0.2s; margin-bottom: 16px;
+        }
+        .submit-btn:hover { background: #8c2f23; }
+        .submit-btn:disabled { background: #c4a882; cursor: not-allowed; }
+        .toggle { font-size: 13px; color: rgba(36,25,21,0.6); }
+        .toggle a { color: var(--cinnabar); text-decoration: underline; cursor: pointer; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 32px 20px; text-align: center;
+            font-size: 13px; color: rgba(36,25,21,0.5);
+        }
+        footer a { color: var(--cinnabar); }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 500px) {
+            .register-card { padding: 32px 24px; }
+            .register-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">☯ Oriental Destiny</span>
+        </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="dream-interpretation.html">Dream Interpreter</a>
+            <a href="login.html">Sign In</a>
+        </nav>
+    </div>
+</header>
+
+<div class="main">
+    <div class="register-card">
+        <div class="register-brand">☯ Oriental Destiny</div>
+        <h1 class="register-title">Create Free Account</h1>
+        <p class="register-subtitle">Join to save your interpretations and get <strong>1 free dream reading</strong></p>
+
+        <div class="benefits">
+            <h4>Your Free Account Includes</h4>
+            <ul>
+                <li>1 free AI dream interpretation</li>
+                <li>Save and review your dream history</li>
+                <li>Access to your personal dashboard</li>
+                <li>Upgrade to full membership anytime</li>
+            </ul>
+        </div>
+
+        <form id="regForm" onsubmit="handleRegister(event)">
+            <div class="field">
+                <input type="email" id="regEmail" placeholder="Email address" autocomplete="email" required>
+            </div>
+            <div class="field">
+                <input type="password" id="regPassword" placeholder="Password (min. 6 characters)" autocomplete="new-password" required minlength="6">
+            </div>
+            <div class="error" id="regError"></div>
+            <div class="success" id="regSuccess"></div>
+            <button type="submit" class="submit-btn" id="regBtn">Sign Up Free</button>
+        </form>
+
+        <p class="toggle">Already have an account? <a href="login.html">Sign in</a></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+</footer>
+
+<script src="config.real.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="version.js"></script>
+<script>
+(function() {
+    var form = document.getElementById('regForm');
+    var btn = document.getElementById('regBtn');
+    var err = document.getElementById('regError');
+    var succ = document.getElementById('regSuccess');
+
+    window.handleRegister = function(e) {
+        e.preventDefault();
+        var email = document.getElementById('regEmail').value.trim();
+        var password = document.getElementById('regPassword').value;
+
+        err.textContent = '';
+        succ.textContent = '';
+
+        if (!email || !password) { err.textContent = 'Please fill in all fields.'; return; }
+        if (password.length < 6) { err.textContent = 'Password must be at least 6 characters.'; return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
+
+        Auth.init().then(function() {
+            return Auth.register(email, password);
+        }).then(function() {
+            succ.textContent = 'Account created! Redirecting...';
+            // Redirect to referrer or dashboard
+            var params = new URLSearchParams(window.location.search);
+            var redirect = params.get('redirect') || 'dashboard.html';
+            setTimeout(function() { window.location.href = redirect; }, 1000);
+        }).catch(function(error) {
+            var msgs = {
+                'auth/email-already-in-use': 'This email is already registered. <a href="login.html">Sign in</a> instead.',
+                'auth/invalid-email': 'Invalid email address.',
+                'auth/weak-password': 'Password must be at least 6 characters.',
+                'auth/too-many-requests': 'Too many attempts. Please try again later.'
+            };
+            err.innerHTML = msgs[error.code] || 'Something went wrong. Please try again.';
+            btn.disabled = false;
+            btn.textContent = 'Sign Up Free';
+        });
+    };
+
+    // Init Firebase on page load
+    Auth.init();
+})();
+</script>
+
+</body>
+</html>

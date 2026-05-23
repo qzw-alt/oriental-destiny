@@ -1,4 +1,4 @@
-window.OD_VERSION = "1.9.0";
+window.OD_VERSION = "1.10.0";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".od-version").forEach((el) => {

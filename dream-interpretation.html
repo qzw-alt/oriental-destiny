@@ -401,6 +401,49 @@
         }
         .auth-guest:hover { border-color: var(--gold); color: var(--ink); }
 
+        /* Gated content for guest users */
+        .blurred-section {
+            filter: blur(6px);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.4;
+            margin-bottom: 0;
+        }
+        .blurred-section + .blurred-section {
+            margin-top: -8px;
+        }
+        .register-teaser {
+            text-align: center;
+            padding: 28px 20px;
+            background: linear-gradient(180deg, rgba(248,241,231,0) 0%, rgba(248,241,231,0.95) 30%, #f8f1e7 100%);
+            border: 1px solid rgba(183,138,66,0.25);
+            border-radius: 12px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+        .register-teaser p {
+            font-size: 14px;
+            color: rgba(36,25,21,0.7);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .register-teaser .register-cta-btn {
+            padding: 12px 32px;
+            background: var(--cinnabar);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .register-teaser .register-cta-btn:hover {
+            background: #8c2f23;
+        }
+
         /* Quota badge */
         .quota-badge {
             display: inline-flex; align-items: center; gap: 5px;
@@ -505,7 +548,7 @@
         <button class="auth-close" onclick="closeAuthModal()">×</button>
         <div class="auth-brand">☯ Oriental Destiny</div>
         <h2 class="auth-title" id="authTitle">Create Free Account</h2>
-        <p class="auth-subtitle" id="authSubtitle">Sign up to save your interpretations and get <strong>1 free dream</strong></p>
+        <p class="auth-subtitle" id="authSubtitle">Create your free account and unlock <strong>3 full dream interpretations</strong> with Five Elements analysis</p>
         <form id="authForm" onsubmit="submitAuth(event)">
             <div class="auth-field">
                 <input type="email" id="authEmail" placeholder="Email address" autocomplete="email" required>
@@ -519,7 +562,7 @@
         </form>
         <p class="auth-toggle">Don't have an account? <a href="#" id="authToggleLink" onclick="toggleAuthMode();return false;">Sign up free</a></p>
         <div class="auth-divider">or</div>
-        <button class="auth-guest" onclick="closeAuthModal()">Continue as guest (1 free dream)</button>
+        <button class="auth-guest" onclick="closeAuthModal()">Continue as guest (limited preview)</button>
     </div>
 </div>
 
@@ -698,6 +741,8 @@ async function callDreamAPI(dream) {
 
 // Show Result
 function showResult(dream, result) {
+    const isGuest = !Auth.currentUser;
+
     // Fill share card
     document.getElementById('shareDream').textContent = dream;
     const shareInt = result.fullInterpretation || (result.symbolism + ' ' + result.psychological);
@@ -706,19 +751,46 @@ function showResult(dream, result) {
     // Fill full interpretation
     const subElTags = (result.subElements || []).map(e => `<span class="element-tag">${e}</span>`).join('');
     const body = document.getElementById('interpretationBody');
-    body.innerHTML = `
-        <h2>☯ Dream Interpretation</h2>
-        <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
-            Primary Element: ${result.element}
-        </p>
-        ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
-        <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
-        <p><strong>Psychological View:</strong> ${result.psychological}</p>
-        <p><strong>Guidance:</strong> ${result.guidance}</p>
-        ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
-        <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
-        <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
-    `;
+
+    if (isGuest) {
+        const shortSummary = (result.fullInterpretation || '').substring(0, 120);
+        body.innerHTML = `
+            <h2>☯ Dream Interpretation</h2>
+            <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
+                Primary Element: ${result.element}
+            </p>
+            ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
+            <div style="font-size:15px;line-height:1.9;margin-bottom:16px;">
+                ${shortSummary}${result.fullInterpretation && result.fullInterpretation.length > 120 ? '...' : ''}
+            </div>
+            <div class="blurred-section">
+                <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
+                <p><strong>Psychological View:</strong> ${result.psychological}</p>
+                <p><strong>Guidance:</strong> ${result.guidance}</p>
+                ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
+                <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
+                <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
+            </div>
+            <div class="register-teaser">
+                <p>Register free to unlock your <strong>full Five Elements analysis</strong>, psychological insights, and personal guidance.</p>
+                <button class="register-cta-btn" onclick="showAuthModal('register')">Create Free Account</button>
+            </div>
+        `;
+    } else {
+        body.innerHTML = `
+            <h2>☯ Dream Interpretation</h2>
+            <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
+                Primary Element: ${result.element}
+            </p>
+            ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
+            <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
+            <p><strong>Psychological View:</strong> ${result.psychological}</p>
+            <p><strong>Guidance:</strong> ${result.guidance}</p>
+            ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
+            <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
+            <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
+        `;
+    }
 
     // Switch to result view
     inputSection.style.display = 'none';
@@ -831,7 +903,7 @@ function showAuthModal(mode) {
 
     if (mode === 'register') {
         title.textContent = 'Create Free Account';
-        subtitle.innerHTML = 'Sign up to save your interpretations and get <strong>1 free dream</strong>';
+        subtitle.innerHTML = 'Create your free account and unlock <strong>3 full dream interpretations</strong> with Five Elements analysis, psychological insights, and dream history';
         btn.textContent = 'Sign Up Free';
         btn.dataset.mode = 'register';
         toggle.textContent = 'Sign in instead';
@@ -890,7 +962,7 @@ async function submitAuth(e) {
     try {
         if (mode === 'register') {
             await Auth.register(email, password);
-            successEl.textContent = 'Account created! You have 1 free dream.';
+            successEl.textContent = 'Account created! You have 3 free dreams.';
         } else {
             await Auth.login(email, password);
             successEl.textContent = 'Welcome back!';

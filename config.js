@@ -13,5 +13,5 @@ window.FIREBASE_CONFIG = window.FIREBASE_CONFIG || {
   appId: "YOUR_APP_ID"
 };
 
-const DREAM_FREE_LIMIT = 1;    // free users get 1 dream interpretation
+const DREAM_FREE_LIMIT = 3;    // free users get 3 dream interpretations
 const DREAM_PAID_LIMIT = 36;   // paid members get 36 interpretations

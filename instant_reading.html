@@ -580,21 +580,29 @@
             </div>
         </section>
 
-        <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 60px;">
-            <div class="eyebrow" style="color:#d8b26a;" data-i18n="ir_upgrade_eyebrow">Continue if it resonates</div>
-            <h2 data-i18n="ir_upgrade_title">Confirm the direction and receive the matched piece.</h2>
-            <span class="price-tag" data-i18n="ir_upgrade_price">$199</span>
-            <p data-i18n="ir_upgrade_desc">The free preview above already shows your Four Pillars, Day Master, and elemental structure. The $199 service confirms the exact direction from that chart and prepares a personalized bracelet or pendant matched to it.</p>
+        <!-- $29 Instant Report CTA (primary upgrade) -->
+        <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 28px;">
+            <div class="eyebrow" style="color:#d8b26a;">Your preview shows the surface</div>
+            <h2>Unlock your full instant BaZi report.</h2>
+            <span class="price-tag">$29</span>
+            <p>The full instant report explains your chart structure, useful elements, colors, materials, and the kind of treasure that fits your current focus — all generated from your birth chart in seconds.</p>
             <ul class="upgrade-list">
-                <li data-i18n="ir_upgrade_li_1"><strong>What you already have (free):</strong> Day Master, Four Pillars, elemental balance, and life-focus guidance</li>
-                <li data-i18n="ir_upgrade_li_2"><strong>What $199 adds:</strong> Human confirmation of the chart's recommended direction</li>
-                <li data-i18n="ir_upgrade_li_3"><strong>What ships to you:</strong> A bracelet or pendant chosen from the material, color, and symbol family that supports your specific chart</li>
-                <li data-i18n="ir_upgrade_li_4"><strong>Timeline:</strong> Basic data report immediately. Complete annotated report by email within 6 hours. Jewelry direction confirmed and ships after your approval.</li>
+                <li><strong>Complete chart foundation:</strong> Four Pillars with hidden stems, Day Master profile, and Five Element structure</li>
+                <li><strong>Element balance diagnosis:</strong> Which elements are strong, weak, missing — and what supports you</li>
+                <li><strong>Life focus deep reading:</strong> Dedicated analysis of your chosen focus area</li>
+                <li><strong>Treasure type recommendation:</strong> The category of Daoist treasure (bracelet, pendant, ring, amulet) that matches your chart</li>
+                <li><strong>Instant digital delivery:</strong> Generated immediately — view online, revisit anytime from your dashboard</li>
             </ul>
             <div class="upgrade-actions">
-                <a class="btn btn-primary" href="checkout.html" id="upgradeLink" data-i18n="ir_upgrade_cta">Order My Matched Piece — $199</a>
-                <a class="btn" href="report_demo.html" id="sampleReportLink" data-i18n="ir_upgrade_sample">Read Case Report</a>
+                <a class="btn btn-primary" href="instant_report.html" id="upgradeLink">Unlock Full Report — $29</a>
+                <a class="btn" href="checkout.html" id="directCheckoutLink">I want the matched treasure — $199</a>
             </div>
+            <p style="text-align:center;margin-top:14px;font-size:13px;color:rgba(36,25,21,0.45);">$29 report fee credited toward $199 service · 7-day window · Email us after ordering</p>
+        </section>
+
+        <!-- Credit note -->
+        <section id="creditNote" style="display:none; text-align:center; margin-bottom: 60px; padding: 18px 24px; background: rgba(183,138,66,0.06); border: 1px solid rgba(183,138,66,0.15); border-radius: 10px;">
+            <p style="font-size:14px;color:rgba(36,25,21,0.7);margin:0;">Your $29 report fee can be credited toward the $199 matched treasure service. <strong>Buy the report first — if the direction feels right, upgrade anytime within 7 days.</strong></p>
         </section>
 
         <!-- Email capture: shown after results, before footer -->
@@ -760,12 +768,18 @@
 
             document.getElementById("supportText").textContent = `${profile.jewelry.copy} ${profile.favorableElementReasoning}`;
             document.getElementById("teaserText").textContent = `${focusData.teaser} A fuller reading opens the rest of the chart: hidden stems, ten gods by pillar, twelve stages, branch dynamics, annual triggers, element balance, support logic, and the final recommended direction before confirmation. Method note: ${profile.calculationNotes.solarTerms}`;
-            document.getElementById("upgradeLink").href = `checkout.html?${query}`;
-            document.getElementById("sampleReportLink").href = `report_demo.html?focus=${encodeURIComponent(lifeFocus)}`;
+            document.getElementById("upgradeLink").href = `instant_report.html?${query}`;
+            document.getElementById("directCheckoutLink").href = `checkout.html?${query}`;
 
             document.getElementById("resultsPanel").style.display = "grid";
             document.getElementById("upgradeSection").style.display = "block";
+            document.getElementById("creditNote").style.display = "block";
             document.getElementById("emailCapture").style.display = "block";
+
+            // Track free preview completion
+            gtag('event', 'free_preview_complete', {
+                focus: lifeFocus
+            });
             document.getElementById("emailCapture").scrollIntoView({ behavior: "smooth", block: "start" });
             setLoading(false);
         });

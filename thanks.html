@@ -305,6 +305,50 @@
     (function() {
         const params = new URLSearchParams(window.location.search);
         const paid = params.has('tx') || params.has('paymentId') || params.has('token');
+        const txId = params.get('tx') || params.get('paymentId') || params.get('token') || '';
+        const isInstantReport = params.get('product') === 'instant_report';
+
+        // ── $29 Instant Report Payment ──────────────────────────────────────
+        if (isInstantReport && paid) {
+            // Redirect to report viewer
+            gtag('event', 'purchase', {
+                currency: 'USD',
+                value: 29,
+                transaction_id: txId,
+                items: [{
+                    item_name: 'Instant BaZi Clarity Report',
+                    price: 29,
+                    quantity: 1
+                }]
+            });
+
+            // Try to save purchase record
+            if (window.Auth) {
+                Auth.init().then(function() {
+                    if (Auth.currentUser) {
+                        Auth.purchaseInstantReport(txId).then(function() {
+                            window.location.href = 'report_viewer.html';
+                        });
+                    } else {
+                        // Store intent in ReadingState, redirect to register
+                        if (window.ReadingState) {
+                            window.ReadingState.merge({
+                                pendingProduct: 'instant_report',
+                                purchaseTx: txId
+                            });
+                        }
+                        window.location.href = 'register.html?redirect=report_viewer.html';
+                    }
+                }).catch(function() {
+                    window.location.href = 'report_viewer.html';
+                });
+            } else {
+                window.location.href = 'report_viewer.html';
+            }
+            return;
+        }
+
+        // ── $199 Matched Service Payment ────────────────────────────────────
 
         function unlockReading(transactionId) {
             document.getElementById('paymentBadge').classList.add('show');
@@ -339,7 +383,7 @@
         }
 
         if (paid) {
-            unlockReading(params.get('tx') || params.get('paymentId') || params.get('token'));
+            unlockReading(txId);
         } else {
             // Show manual confirmation fallback
             document.getElementById('manualConfirm').classList.add('show');
@@ -356,7 +400,6 @@
             || (state && state.pendingProduct === 'destiny_membership');
 
         if (isDreamMembership || paid) {
-            // Try to detect dream membership from ReadingState as well
             if (!isDreamMembership && state && state.pendingProduct === 'destiny_membership') {
                 isDreamMembership = true;
             }
@@ -366,11 +409,9 @@
             var card = document.getElementById('dreamUpgradeCard');
             if (card) card.style.display = '';
 
-            // Initialize auth and attempt upgrade
             if (window.Auth) {
                 Auth.init().then(function() {
                     if (Auth.currentUser) {
-                        var txId = params.get('tx') || params.get('paymentId') || params.get('token') || '';
                         Auth.upgradeToPaid(txId).then(function() {
                             Auth.saveOrder({
                                 amount: 199,
@@ -379,7 +420,6 @@
                                 status: 'completed'
                             });
                             document.getElementById('dreamUpgradeSuccess').style.display = '';
-                            // Clear pending flag
                             if (window.ReadingState) {
                                 window.ReadingState.merge({ pendingProduct: null });
                             }
@@ -389,12 +429,11 @@
                         });
                     } else {
                         document.getElementById('dreamUpgradeRegister').style.display = '';
-                        // Save upgrade intent for after registration
                         if (window.ReadingState) {
                             window.ReadingState.merge({
                                 pendingUpgrade: true,
                                 pendingProduct: 'destiny_membership',
-                                upgradeTx: params.get('tx') || ''
+                                upgradeTx: txId
                             });
                         }
                     }

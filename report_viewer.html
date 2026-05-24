@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Your personal instant BaZi clarity report — complete chart foundation, Day Master profile, Five Elements balance, and treasure direction.">
+    <title>Your BaZi Clarity Report | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #f8f1e7;
+            --cinnabar: #a63a2c;
+            --gold: #b78a42;
+            --pine: #315247;
+            --line: rgba(36, 25, 21, 0.1);
+            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(900px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Top Bar */
+        .topbar {
+            position: sticky; top: 0; z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+            margin-bottom: 32px;
+        }
+        .topbar-inner {
+            min-height: 64px;
+            display: flex; align-items: center; justify-content: space-between; gap: 14px;
+            padding: 0 20px; max-width: 940px; margin: 0 auto;
+        }
+        .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 20px; font-weight: 700; }
+
+        /* Loading */
+        .loading-state {
+            text-align: center; padding: 80px 20px;
+        }
+        .loading-state .spinner {
+            display: inline-block;
+            width: 40px; height: 40px;
+            border: 3px solid rgba(166, 58, 44, 0.15);
+            border-top-color: var(--cinnabar);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Error */
+        .error-state {
+            text-align: center; padding: 60px 20px;
+        }
+        .error-state h2 { margin-bottom: 12px; color: var(--cinnabar); }
+        .error-state p { color: rgba(36, 25, 21, 0.6); margin-bottom: 20px; }
+
+        /* Report Header */
+        .report-header {
+            text-align: center; margin-bottom: 36px;
+            padding: 36px 28px;
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+        .report-header .eyebrow {
+            font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 8px;
+        }
+        .report-header h1 {
+            font-size: 28px; margin-bottom: 8px; line-height: 1.35;
+        }
+        .report-header .chart-label {
+            font-size: 15px; color: rgba(36, 25, 21, 0.55);
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 28px rgba(70, 41, 24, 0.06);
+        }
+        .section-card h2 {
+            font-size: 20px; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-card h2 .section-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px; border-radius: 50%;
+            background: var(--cinnabar); color: #fff;
+            font-size: 13px; font-weight: 700; flex-shrink: 0;
+        }
+        .section-card p {
+            color: rgba(36, 25, 21, 0.75);
+            margin-bottom: 10px;
+        }
+        .section-card p:last-child { margin-bottom: 0; }
+
+        /* Pillars table */
+        .pillars-table {
+            width: 100%; border-collapse: collapse; margin: 12px 0;
+            font-size: 14px;
+        }
+        .pillars-table th {
+            text-align: left; padding: 8px 12px;
+            font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(36, 25, 21, 0.45); border-bottom: 2px solid rgba(36, 25, 21, 0.1);
+        }
+        .pillars-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(36, 25, 21, 0.05);
+            font-weight: 600;
+        }
+
+        /* Element bars */
+        .element-bars { margin: 12px 0; }
+        .element-bar-row {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+        }
+        .element-bar-label {
+            width: 60px; font-size: 13px; font-weight: 600; text-align: right;
+            flex-shrink: 0;
+        }
+        .element-bar-track {
+            flex: 1; height: 8px; background: rgba(36, 25, 21, 0.06);
+            border-radius: 4px; overflow: hidden;
+        }
+        .element-bar-fill {
+            height: 100%; border-radius: 4px; transition: width 0.6s ease;
+        }
+        .element-bar-val {
+            width: 44px; font-size: 12px; color: rgba(36, 25, 21, 0.5); flex-shrink: 0;
+        }
+        .fill-wood { background: #5b8c5a; }
+        .fill-fire { background: var(--cinnabar); }
+        .fill-earth { background: #b78a42; }
+        .fill-metal { background: #8a9bae; }
+        .fill-water { background: #4a7b9c; }
+
+        /* Support grid */
+        .support-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px; margin-top: 12px;
+        }
+        .support-item {
+            background: rgba(183, 138, 66, 0.05);
+            border: 1px solid rgba(183, 138, 66, 0.12);
+            border-radius: 10px; padding: 16px; text-align: center;
+        }
+        .support-item .label {
+            font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(36, 25, 21, 0.4); margin-bottom: 4px;
+        }
+        .support-item .value {
+            font-size: 15px; font-weight: 600; color: var(--ink);
+        }
+
+        /* Treasure type */
+        .treasure-types {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px; margin-top: 12px;
+        }
+        .treasure-card {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 10px; padding: 18px; text-align: center;
+        }
+        .treasure-card .icon {
+            font-size: 32px; margin-bottom: 8px;
+        }
+        .treasure-card .name {
+            font-size: 14px; font-weight: 600; margin-bottom: 4px;
+        }
+        .treasure-card .fit {
+            font-size: 12px; color: rgba(36, 25, 21, 0.5);
+        }
+
+        /* Upgrade CTA */
+        .upgrade-cta {
+            text-align: center; margin: 40px 0 60px;
+            padding: 36px 28px;
+            background: rgba(166, 58, 44, 0.04);
+            border: 2px solid rgba(166, 58, 44, 0.2);
+            border-radius: 18px;
+        }
+        .upgrade-cta h2 {
+            font-size: 22px; margin-bottom: 8px;
+        }
+        .upgrade-cta p {
+            color: rgba(36, 25, 21, 0.65); margin-bottom: 18px;
+            max-width: 520px; margin-left: auto; margin-right: auto;
+        }
+        .upgrade-cta .btn {
+            display: inline-block; padding: 14px 32px; border-radius: 4px;
+            font-size: 15px; font-weight: 600; letter-spacing: 0.04em;
+            background: linear-gradient(135deg, var(--cinnabar), #8b251a);
+            color: #fff; transition: background 0.2s;
+        }
+        .upgrade-cta .btn:hover { background: linear-gradient(135deg, #8c2f23, #6e1d14); }
+        .upgrade-cta .credit-note {
+            font-size: 13px; color: var(--gold); margin-top: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 24px 20px;
+            font-size: 12px; color: rgba(36, 25, 21, 0.5);
+            border-top: 1px solid rgba(36, 25, 21, 0.06);
+        }
+        footer a { color: var(--cinnabar); }
+
+        /* Focus tags */
+        .focus-tag {
+            display: inline-block; padding: 3px 12px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+            background: rgba(183, 138, 66, 0.12); color: var(--gold);
+            margin-right: 6px; margin-bottom: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .section-card { padding: 20px; }
+            .report-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div>
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">☯</span>
+            </div>
+            <div style="font-size:13px;color:rgba(36,25,21,0.5);">
+                <a href="dashboard.html" style="color:var(--cinnabar);">Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- Loading -->
+        <div class="loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <p style="color:rgba(36,25,21,0.55);">Opening your chart…</p>
+        </div>
+
+        <!-- Error -->
+        <div class="error-state" id="errorState" style="display:none;">
+            <h2>Report Not Found</h2>
+            <p id="errorMsg">We couldn't generate your report. Please try again from the free preview.</p>
+            <a href="instant_reading.html" class="btn" style="display:inline-block;padding:12px 28px;border-radius:4px;background:var(--cinnabar);color:#fff;font-weight:600;">Start Free Preview</a>
+        </div>
+
+        <!-- Report Content -->
+        <div id="reportContent" style="display:none;">
+
+            <!-- Header -->
+            <div class="report-header">
+                <div class="eyebrow">Instant BaZi Clarity Report</div>
+                <h1 id="reportTitle">Your Chart Reading</h1>
+                <div class="chart-label" id="reportMeta"></div>
+            </div>
+
+            <!-- 1. Chart Foundation -->
+            <div class="section-card" id="sec1">
+                <h2><span class="section-num">1</span> Your Chart Foundation</h2>
+                <div id="chartFoundationContent"></div>
+            </div>
+
+            <!-- 2. Day Master -->
+            <div class="section-card" id="sec2">
+                <h2><span class="section-num">2</span> Your Day Master</h2>
+                <div id="dayMasterContent"></div>
+            </div>
+
+            <!-- 3. Five Elements Balance -->
+            <div class="section-card" id="sec3">
+                <h2><span class="section-num">3</span> Five Elements Balance</h2>
+                <div id="elementsContent"></div>
+            </div>
+
+            <!-- 4. Current Life Focus -->
+            <div class="section-card" id="sec4">
+                <h2><span class="section-num">4</span> Current Life Focus</h2>
+                <div id="focusContent"></div>
+            </div>
+
+            <!-- 5. Useful Support -->
+            <div class="section-card" id="sec5">
+                <h2><span class="section-num">5</span> Useful Support</h2>
+                <div id="supportContent"></div>
+            </div>
+
+            <!-- 6. Recommended Treasure Type -->
+            <div class="section-card" id="sec6">
+                <h2><span class="section-num">6</span> Recommended Treasure Type</h2>
+                <div id="treasureContent"></div>
+            </div>
+
+            <!-- 7. Upgrade Path -->
+            <div class="section-card" id="sec7" style="border-left: 3px solid var(--gold);">
+                <h2><span class="section-num">7</span> Your Upgrade Path</h2>
+                <div id="upgradeContent"></div>
+            </div>
+
+            <!-- Upgrade CTA -->
+            <div class="upgrade-cta">
+                <h2>Ready for the Matched Treasure?</h2>
+                <p>The $199 service takes your chart direction and matches you with a specific handcrafted Daoist treasure — confirmed before shipping, with worldwide delivery.</p>
+                <a href="checkout.html" class="btn" id="upgradeBtn">Order Matched Treasure — $199</a>
+                <p class="credit-note">Your $29 report fee can be credited toward the $199 service. Email us after ordering.</p>
+            </div>
+
+        </div><!-- /reportContent -->
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Oriental Destiny &middot; <a href="index.html">Home</a> &middot; <a href="policies.html">Privacy</a> &middot; <span class="od-version"></span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.real.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="bazi_engine.js"></script>
+    <script src="api_deepseek.js"></script>
+    <script src="ai_bazi_layer.js"></script>
+    <script src="reading_state.js"></script>
+    <script src="i18n.js"></script>
+    <script src="bazi_translator.js"></script>
+    <script src="product_matcher.js"></script>
+    <script src="product_enrich.js"></script>
+    <script src="version.js"></script>
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var reportId = params.get('reportId');
+
+        // Element colors for bars
+        var elementColors = {
+            'Wood': 'fill-wood',
+            'Fire': 'fill-fire',
+            'Earth': 'fill-earth',
+            'Metal': 'fill-metal',
+            'Water': 'fill-water'
+        };
+
+        // Focus display names
+        var focusNames = {
+            'career': 'Career & Allies',
+            'wealth': 'Wealth & Retention',
+            'love': 'Love & Harmony',
+            'protection': 'Safety & Protection',
+            'balance': 'Elemental Balance'
+        };
+
+        // Treasure type recommendations by favorable element
+        var treasureTypes = {
+            'Wood': { icon: '🪷', name: 'Bracelet', desc: 'Wood-energy bracelet with green or brown tones', fit: 'Supports growth and flexibility' },
+            'Fire': { icon: '💎', name: 'Pendant', desc: 'Fire-energy pendant with red or warm-toned accents', fit: 'Amplifies visibility and passion' },
+            'Earth': { icon: '🪨', name: 'Ring', desc: 'Earth-energy ring with yellow or brown stones', fit: 'Grounds and stabilizes energy' },
+            'Metal': { icon: '🪙', name: 'Coin or Bell', desc: 'Metal-energy coin, bell, or white-toned piece', fit: 'Sharpens clarity and decisiveness' },
+            'Water': { icon: '📿', name: 'Amulet Box', desc: 'Water-energy amulet with dark or blue tones', fit: 'Deepens intuition and wisdom' }
+        };
+
+        function showError(msg) {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = '';
+            if (msg) document.getElementById('errorMsg').textContent = msg;
+        }
+
+        function showReport() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('reportContent').style.display = '';
+        }
+
+        function renderReport(profile, aiReading) {
+            var isAI = aiReading && aiReading.reading && !aiReading.fallback;
+            var r = isAI ? aiReading.reading : null;
+
+            // Header
+            document.getElementById('reportTitle').textContent =
+                'The chart of ' + profile.dayMasterStem + ' ' + profile.dayMasterElement;
+            document.getElementById('reportMeta').textContent =
+                'Day Master: ' + profile.dayMasterStem + ' ' + profile.dayMasterElement +
+                '  ·  Zodiac: ' + profile.zodiac +
+                '  ·  Born in ' + profile.season;
+
+            // 1. Chart Foundation
+            var foundationHTML = '<table class="pillars-table"><thead><tr><th>Pillar</th><th>Stem-Branch</th><th>Element</th><th>Hidden Stems</th></tr></thead><tbody>';
+            var pillarKeys = ['year', 'month', 'day', 'hour'];
+            var pillarNames = ['Year', 'Month', 'Day', 'Hour'];
+            for (var i = 0; i < pillarKeys.length; i++) {
+                var key = pillarKeys[i];
+                var label = profile.pillarLabels[key] || '';
+                foundationHTML += '<tr><td>' + pillarNames[i] + ' Pillar</td><td>' + label + '</td><td>' + (profile.dayMasterElement || '') + '</td><td>' + (profile.hiddenStems && profile.hiddenStems[key] ? profile.hiddenStems[key].map(function(h){return h.stem+' ('+h.element[0]+')';}).join(', ') : '—') + '</td></tr>';
+            }
+            foundationHTML += '</tbody></table>';
+            foundationHTML += '<p>The Four Pillars form the structural foundation of your chart. The <strong>Day Pillar</strong> is your core self (Day Master). <strong>Hidden Stems</strong> reveal additional influences beneath each pillar. Your chart was born in <strong>' + profile.season + '</strong>, which shapes the seasonal strength of each element.</p>';
+            document.getElementById('chartFoundationContent').innerHTML = foundationHTML;
+
+            // 2. Day Master
+            var strengthLabel = profile.strength ? profile.strength.band : '';
+            var dmHTML = '<p>Your Day Master is <strong>' + profile.dayMasterStem + ' ' + profile.dayMasterElement + '</strong>, standing at the center of your chart as your core identity. The Day Master represents your essential nature — how you approach the world, process decisions, and express your fundamental energy.</p>';
+            dmHTML += '<p><strong>Strength:</strong> ' + (strengthLabel || 'Balanced') + ' — ' + (profile.dayMasterProfile || '') + '</p>';
+            if (isAI && r.personality) {
+                dmHTML += '<p>' + r.personality + '</p>';
+            } else {
+                dmHTML += '<p>' + (profile.dayMasterProfile || '') + ' This Day Master carries the qualities of the ' + profile.dayMasterElement + ' element, shaped further by the season of ' + profile.season + ' and the surrounding pillars.</p>';
+            }
+            document.getElementById('dayMasterContent').innerHTML = dmHTML;
+
+            // 3. Five Elements Balance
+            var counts = profile.elementCounts || {};
+            var maxCount = 0;
+            ['Wood','Fire','Earth','Metal','Water'].forEach(function(el) {
+                var v = counts[el] || 0;
+                if (v > maxCount) maxCount = v;
+            });
+            if (maxCount === 0) maxCount = 1;
+            var eleHTML = '<div class="element-bars">';
+            ['Wood','Fire','Earth','Metal','Water'].forEach(function(el) {
+                var v = counts[el] || 0;
+                var pct = Math.round((v / maxCount) * 100);
+                var cls = elementColors[el] || 'fill-earth';
+                eleHTML += '<div class="element-bar-row"><span class="element-bar-label">' + el + '</span><div class="element-bar-track"><div class="element-bar-fill ' + cls + '" style="width:' + pct + '%"></div></div><span class="element-bar-val">' + v.toFixed(1) + '</span></div>';
+            });
+            eleHTML += '</div>';
+            if (profile.advancedAnalysis && profile.advancedAnalysis.elementDiagnosis) {
+                var diag = profile.advancedAnalysis.elementDiagnosis;
+                eleHTML += '<p>' + (diag.strongestElement ? '<strong>Strongest:</strong> ' + diag.strongestElement + '  ·  ' : '') + (diag.weakestElement ? '<strong>Weakest:</strong> ' + diag.weakestElement + '  ·  ' : '') + '<strong>Spread:</strong> ' + (diag.spread || '') + '</p>';
+            }
+            eleHTML += '<p>Your chart shows which elements are naturally abundant and which need support. The favorable elements — <strong>' + (profile.favorableElements ? profile.favorableElements.join(', ') : '') + '</strong> — are the ones that bring your chart closer to balance.</p>';
+            document.getElementById('elementsContent').innerHTML = eleHTML;
+
+            // 4. Life Focus
+            var focus = profile.focus || (window.ReadingState ? window.ReadingState.read().focus : '') || 'balance';
+            var focusHTML = '<p><span class="focus-tag">' + (focusNames[focus] || focus) + '</span></p>';
+            if (isAI && r.currentYearAnalysis) {
+                focusHTML += '<p>' + r.currentYearAnalysis + '</p>';
+            } else if (isAI && r.tailoredAdvice && r.tailoredAdvice.length) {
+                focusHTML += '<p>' + r.tailoredAdvice.join(' ') + '</p>';
+            } else {
+                focusHTML += '<p>' + (profile.focusReading || '') + '</p>';
+                focusHTML += '<p>' + (profile.deepFocusReading || '') + '</p>';
+            }
+            if (profile.advancedAnalysis && profile.advancedAnalysis.seasonalCommand) {
+                focusHTML += '<p><strong>Seasonal condition:</strong> ' + profile.advancedAnalysis.seasonalCommand.dayMasterCondition + '</p>';
+            }
+            document.getElementById('focusContent').innerHTML = focusHTML;
+
+            // 5. Useful Support
+            var favEls = profile.favorableElements || ['Water', 'Wood'];
+            var supHTML = '<div class="support-grid">';
+            supHTML += '<div class="support-item"><div class="label">Favorable Elements</div><div class="value">' + favEls.join(', ') + '</div></div>';
+            supHTML += '<div class="support-item"><div class="label">Direction</div><div class="value">' + (profile.jewelry ? profile.jewelry.copy : 'East / Southeast') + '</div></div>';
+            supHTML += '</div>';
+            supHTML += '<p>' + (profile.favorableElementReasoning || 'Supporting these elements helps bring your chart toward balance.') + '</p>';
+            supHTML += '<p style="font-size:13px;color:rgba(36,25,21,0.5);">These are general directions from your chart. The $199 matched service confirms the exact material, color, and symbol before any item is prepared.</p>';
+            document.getElementById('supportContent').innerHTML = supHTML;
+
+            // 6. Recommended Treasure Type
+            var primaryEl = favEls[0] || 'Earth';
+            var treasure = treasureTypes[primaryEl] || treasureTypes['Earth'];
+            var secondaryEl = favEls[1] || 'Metal';
+            var treasure2 = treasureTypes[secondaryEl] || treasureTypes['Metal'];
+            var treasHTML = '<div class="treasure-types">';
+            treasHTML += '<div class="treasure-card" style="border:2px solid rgba(183,138,66,0.3);"><div class="icon">' + treasure.icon + '</div><div class="name">' + treasure.name + '</div><div class="fit">' + treasure.fit + '</div><div style="font-size:11px;color:var(--gold);margin-top:6px;">★ Primary match</div></div>';
+            treasHTML += '<div class="treasure-card"><div class="icon">' + treasure2.icon + '</div><div class="name">' + treasure2.name + '</div><div class="fit">' + treasure2.fit + '</div></div>';
+            treasHTML += '</div>';
+            treasHTML += '<p>Based on your chart\'s favorable element (<strong>' + primaryEl + '</strong>), a <strong>' + treasure.name.toLowerCase() + '</strong> is the recommended carrier type. The $199 service refines this into a specific handcrafted piece with the right material, symbol, and energy for your exact chart.</p>';
+            document.getElementById('treasureContent').innerHTML = treasHTML;
+
+            // 7. Upgrade Path
+            var upHTML = '<p>This $29 report gives you the full structural reading of your chart — enough to understand your elemental direction and the kind of treasure that fits. The $199 matched service completes the journey:</p>';
+            upHTML += '<ul style="padding-left:20px;color:rgba(36,25,21,0.7);">';
+            upHTML += '<li style="margin-bottom:6px;">Human confirmation of your chart\'s recommended direction</li>';
+            upHTML += '<li style="margin-bottom:6px;">Specific product matched from our Longhushan collection</li>';
+            upHTML += '<li style="margin-bottom:6px;">Material, color, and symbol confirmed to your chart</li>';
+            upHTML += '<li style="margin-bottom:6px;">Confirmation email before shipping</li>';
+            upHTML += '<li style="margin-bottom:6px;">Worldwide delivery with tracking</li>';
+            upHTML += '</ul>';
+            document.getElementById('upgradeContent').innerHTML = upHTML;
+
+            // Upgrade button preserves birth data
+            var state = window.ReadingState ? window.ReadingState.read() : {};
+            var q = window.ReadingState ? window.ReadingState.toQuery(state) : '';
+            document.getElementById('upgradeBtn').href = 'checkout.html?' + q;
+
+            // Track upgrade clicks
+            document.getElementById('upgradeBtn').addEventListener('click', function() {
+                gtag('event', 'upgrade_click', {
+                    currency: 'USD',
+                    value: 199
+                });
+            });
+
+            showReport();
+        }
+
+        // Main init
+        function init() {
+            if (reportId) {
+                // Load from Firestore
+                Auth.init().then(function() {
+                    if (!Auth.currentUser) {
+                        showError('Please log in to view your saved report.');
+                        return;
+                    }
+                    return Auth.getInstantReport(reportId).then(function(data) {
+                        if (!data || !data.reportContent) {
+                            showError('Report not found. It may have been removed.');
+                            return;
+                        }
+                        // Reconstruct and render from saved data
+                        showReport();
+                        document.getElementById('reportTitle').textContent = 'Your Chart Reading';
+                        document.getElementById('reportMeta').textContent =
+                            'Birth: ' + (data.birthDate || '') + '  ·  Focus: ' + (focusNames[data.lifeFocus] || data.lifeFocus || '');
+                        document.getElementById('chartFoundationContent').innerHTML =
+                            '<p><strong>Day Master:</strong> ' + (data.dayMaster || '') + ' ' + (data.dayMasterElement || '') + '</p>' +
+                            '<p><strong>Birth Date:</strong> ' + (data.birthDate || '') + (data.birthTime ? ' at ' + data.birthTime : '') + '</p>' +
+                            '<p><strong>Life Focus:</strong> ' + (focusNames[data.lifeFocus] || data.lifeFocus || '') + '</p>';
+                        // Show saved content if available
+                        if (data.reportContent) {
+                            try {
+                                var content = typeof data.reportContent === 'string' ? JSON.parse(data.reportContent) : data.reportContent;
+                                document.getElementById('chartFoundationContent').innerHTML = content.foundation || document.getElementById('chartFoundationContent').innerHTML;
+                                document.getElementById('dayMasterContent').innerHTML = content.dayMaster || '';
+                                document.getElementById('elementsContent').innerHTML = content.elements || '';
+                                document.getElementById('focusContent').innerHTML = content.focus || '';
+                                document.getElementById('supportContent').innerHTML = content.support || '';
+                                document.getElementById('treasureContent').innerHTML = content.treasure || '';
+                                document.getElementById('upgradeContent').innerHTML = content.upgrade || '';
+                            } catch(e) { /* use defaults */ }
+                        }
+                    });
+                }).catch(function() {
+                    showError('Failed to load report. Please try again.');
+                });
+                return;
+            }
+
+            // New report: read birth data from ReadingState
+            var state = window.ReadingState ? window.ReadingState.read() : {};
+            if (!state.birth_date) {
+                showError('No birth data found. Please start from the free preview to generate your report.');
+                return;
+            }
+
+            // Init AI layer
+            if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
+                window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
+            }
+
+            // Calculate profile
+            var rawProfile;
+            try {
+                rawProfile = window.BaziEngine.calculateProfile({
+                    birthDate: state.birth_date,
+                    birthTime: state.birth_time || '',
+                    lifeFocus: state.focus || 'balance',
+                    gender: state.gender || '',
+                    birthLocation: state.birth_location || ''
+                });
+            } catch(e) {
+                showError('Could not calculate chart: ' + e.message);
+                return;
+            }
+
+            var profile = window.BaziTranslator ? window.BaziTranslator.translate(rawProfile) : rawProfile;
+
+            // Try AI enhancement
+            var aiPromise = Promise.resolve(null);
+            if (window.AIBaziLayer && window.AIBaziLayer.isReady()) {
+                aiPromise = window.AIBaziLayer.quickReading({
+                    birthDate: state.birth_date,
+                    birthTime: state.birth_time || '',
+                    focus: state.focus || 'balance'
+                }).catch(function() { return null; });
+            }
+
+            aiPromise.then(function(aiReading) {
+                renderReport(profile, aiReading);
+
+                // Save to Firestore if logged in
+                Auth.init().then(function() {
+                    if (Auth.currentUser) {
+                        // Collect report content for saving
+                        var reportContent = {
+                            foundation: document.getElementById('chartFoundationContent').innerHTML,
+                            dayMaster: document.getElementById('dayMasterContent').innerHTML,
+                            elements: document.getElementById('elementsContent').innerHTML,
+                            focus: document.getElementById('focusContent').innerHTML,
+                            support: document.getElementById('supportContent').innerHTML,
+                            treasure: document.getElementById('treasureContent').innerHTML,
+                            upgrade: document.getElementById('upgradeContent').innerHTML
+                        };
+                        Auth.saveInstantReport({
+                            birthDate: state.birth_date || '',
+                            birthTime: state.birth_time || '',
+                            lifeFocus: state.focus || '',
+                            dayMaster: profile.dayMasterStem || '',
+                            dayMasterElement: profile.dayMasterElement || '',
+                            reportContent: JSON.stringify(reportContent)
+                        });
+                    }
+                });
+            });
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

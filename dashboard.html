@@ -309,7 +309,7 @@
         <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
         <button class="tab-btn" onclick="switchTab('report')">My Report</button>
         <button class="tab-btn" onclick="switchTab('dreams')">Dream History</button>
-        <button class="tab-btn" onclick="switchTab('accessory')">Accessory</button>
+        <button class="tab-btn" onclick="switchTab('reports')">BaZi Reports</button>
         <button class="tab-btn" onclick="switchTab('orders')">Orders</button>
     </div>
 
@@ -399,6 +399,20 @@
                     <p>After purchase, your personalized bracelet or pendant will be matched to your Five Elements profile.</p>
                     <a href="checkout.html?product=destiny_membership">Get Started →</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab: BaZi Reports -->
+    <div class="tab-content" id="tab-reports">
+        <div class="tab-panel">
+            <h3 style="margin-bottom:20px;font-size:20px;">My BaZi Instant Reports</h3>
+            <div id="instantReportList"></div>
+            <div class="empty-state" id="reportEmpty">
+                <div class="empty-icon">📜</div>
+                <h4>No reports purchased yet</h4>
+                <p>Your purchased BaZi instant reports ($29) will appear here. Each report can be viewed anytime.</p>
+                <a href="instant_reading.html">Start a free preview →</a>
             </div>
         </div>
     </div>
@@ -493,6 +507,9 @@
         // Load dream history
         loadDreamHistory();
 
+        // Load instant reports
+        loadReports();
+
         // Load orders
         loadOrders();
     }
@@ -516,6 +533,36 @@
                     '<div class="dream-text">"' + escapeHtml(d.dream || '') + '"</div>' +
                     (d.element ? '<span class="dream-element">' + escapeHtml(d.element) + '</span>' : '') +
                     (d.guidance ? '<div class="dream-guidance">' + escapeHtml(d.guidance) + '</div>' : '') +
+                '</div>';
+            }).join('');
+        });
+    }
+
+    function loadReports() {
+        Auth.getUserReports().then(function(reports) {
+            var list = document.getElementById('instantReportList');
+            var empty = document.getElementById('reportEmpty');
+            if (!reports || reports.length === 0) {
+                list.innerHTML = '';
+                empty.style.display = '';
+                return;
+            }
+            empty.style.display = 'none';
+            var focusNames = {
+                'career': 'Career & Allies',
+                'wealth': 'Wealth & Retention',
+                'love': 'Love & Harmony',
+                'protection': 'Safety & Protection',
+                'balance': 'Elemental Balance'
+            };
+            list.innerHTML = reports.map(function(r) {
+                var date = r.createdAt ? new Date(r.createdAt.seconds * 1000).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : '';
+                return '<div style="padding:16px;background:rgba(255,253,248,0.9);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">' +
+                    '<div>' +
+                        '<div style="font-weight:600;margin-bottom:2px;">' + escapeHtml(r.dayMaster || '') + ' ' + escapeHtml(r.dayMasterElement || '') + '</div>' +
+                        '<div style="font-size:13px;color:rgba(36,25,21,0.5);">' + (date || '') + ' · ' + (focusNames[r.lifeFocus] || r.lifeFocus || '') + '</div>' +
+                    '</div>' +
+                    '<a href="report_viewer.html?reportId=' + encodeURIComponent(r.id) + '" style="display:inline-block;padding:8px 18px;background:var(--cinnabar);color:#fff;border-radius:6px;font-size:13px;font-weight:600;">View Report</a>' +
                 '</div>';
             }).join('');
         });

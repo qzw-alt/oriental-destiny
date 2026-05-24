@@ -319,6 +319,81 @@
         status: orderData.status || 'completed',
         createdAt: h.serverTimestamp()
       });
+    },
+
+    // ── Instant Report ──────────────────────────────────────────────────────
+
+    purchaseInstantReport: function(txId) {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve(null);
+      var h = Auth._helpers;
+      return h.addDoc(h.collection(Auth._db, 'orders'), {
+        userId: Auth.currentUser.uid,
+        email: Auth.currentUser.email,
+        amount: 29,
+        product: 'instant_report',
+        paypalTxId: txId || '',
+        status: 'completed',
+        createdAt: h.serverTimestamp()
+      });
+    },
+
+    saveInstantReport: function(reportData) {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve(null);
+      var h = Auth._helpers;
+      return h.addDoc(h.collection(Auth._db, 'instant_reports'), {
+        userId: Auth.currentUser.uid,
+        email: Auth.currentUser.email,
+        birthDate: reportData.birthDate || '',
+        birthTime: reportData.birthTime || '',
+        lifeFocus: reportData.lifeFocus || '',
+        dayMaster: reportData.dayMaster || '',
+        dayMasterElement: reportData.dayMasterElement || '',
+        reportContent: reportData.reportContent || null,
+        createdAt: h.serverTimestamp()
+      });
+    },
+
+    getUserReports: function() {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve([]);
+      var h = Auth._helpers;
+      var q = h.query(
+        h.collection(Auth._db, 'instant_reports'),
+        h.where('userId', '==', Auth.currentUser.uid),
+        h.limit(50)
+      );
+      return h.getDocs(q).then(function(snap) {
+        var results = [];
+        snap.forEach(function(doc) {
+          var d = doc.data();
+          d.id = doc.id;
+          results.push(d);
+        });
+        results.sort(function(a, b) {
+          var ta = a.createdAt ? a.createdAt.seconds || 0 : 0;
+          var tb = b.createdAt ? b.createdAt.seconds || 0 : 0;
+          return tb - ta;
+        });
+        return results;
+      }).catch(function(e) {
+        console.error('Auth: failed to load instant reports', e);
+        return [];
+      });
+    },
+
+    getInstantReport: function(reportId) {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve(null);
+      var h = Auth._helpers;
+      return h.getDoc(h.doc(Auth._db, 'instant_reports', reportId)).then(function(snap) {
+        if (snap.exists()) {
+          var d = snap.data();
+          d.id = snap.id;
+          return d;
+        }
+        return null;
+      }).catch(function(e) {
+        console.error('Auth: failed to load report', e);
+        return null;
+      });
     }
   };
 

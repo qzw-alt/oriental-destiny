@@ -460,25 +460,25 @@
 <header class="topbar">
     <div class="topbar-inner">
         <a href="index.html" class="brand">
-            <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">☯ Oriental Destiny</span>
+            <span class="brand-mark" data-i18n="dream_brand_mark">Oriental Destiny</span>
+            <span class="brand-name" data-i18n="dream_brand_name">☯ Oriental Destiny</span>
         </a>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="five-elements-explained.html">Five Elements</a>
-            <a href="kua_calculator.html">Kua Number</a>
-            <a href="instant_reading.html">Free Reading</a>
-            <a href="dream-interpretation.html" style="color:var(--cinnabar);font-weight:600;">Dream Interpreter</a>
+            <a href="index.html" data-i18n="dream_nav_home">Home</a>
+            <a href="five-elements-explained.html" data-i18n="dream_nav_elements">Five Elements</a>
+            <a href="kua_calculator.html" data-i18n="dream_nav_kua">Kua Number</a>
+            <a href="instant_reading.html" data-i18n="dream_nav_reading">Free Reading</a>
+            <a href="dream-interpretation.html" style="color:var(--cinnabar);font-weight:600;" data-i18n="dream_nav_dream">Dream Interpreter</a>
             <span class="quota-badge" id="quotaBadge" style="display:none;"></span>
             <!-- Logged out state -->
             <div id="authLoggedOut">
-                <a href="#" onclick="showAuthModal('login');return false;" style="font-size:13px;color:rgba(36,25,21,0.7);">Sign In</a>
-                <a href="checkout.html" class="nav-cta">Get Full Report</a>
+                <a href="#" onclick="showAuthModal('login');return false;" style="font-size:13px;color:rgba(36,25,21,0.7);" data-i18n="dream_nav_signin">Sign In</a>
+                <a href="checkout.html" class="nav-cta" data-i18n="dream_nav_cta">Get Full Report</a>
             </div>
             <!-- Logged in state -->
             <div id="authLoggedIn" style="display:none;align-items:center;gap:10px;">
                 <span id="userEmail" style="font-size:13px;color:rgba(36,25,21,0.7);"></span>
-                <a href="#" onclick="signOut();return false;" style="font-size:12px;color:var(--cinnabar);">Sign Out</a>
+                <a href="#" onclick="signOut();return false;" style="font-size:12px;color:var(--cinnabar);" data-i18n="dream_nav_signout">Sign Out</a>
             </div>
         </nav>
     </div>
@@ -486,20 +486,21 @@
 
 <!-- Input Section -->
 <section class="hero" id="inputSection">
-    <div class="hero-badge">☯ Ancient Wisdom · Modern AI</div>
-    <h1>What Does Your <span>Dream</span> Mean?</h1>
-    <p class="hero-sub">Describe your dream and receive an AI-powered interpretation based on Five Elements principles and Eastern dream symbolism.</p>
+    <div class="hero-badge" data-i18n="dream_hero_badge">☯ Ancient Wisdom · Modern AI</div>
+    <h1 data-i18n-html="dream_hero_title">What Does Your <span>Dream</span> Mean?</h1>
+    <p class="hero-sub" data-i18n="dream_hero_sub">Describe your dream and receive an AI-powered interpretation based on Five Elements principles and Eastern dream symbolism.</p>
 
     <div class="input-card">
-        <label class="input-label" for="dreamText">Describe your dream</label>
+        <label class="input-label" for="dreamText" data-i18n="dream_input_label">Describe your dream</label>
         <textarea
             id="dreamText"
             class="dream-input"
+            data-i18n-placeholder="dream_input_placeholder"
             placeholder="e.g. I dreamed of a large golden dragon flying over water, and then I found a hidden temple in the mountains..."
             maxlength="1000"></textarea>
         <div class="input-hint"><span id="charCount">0</span> / 1000</div>
 
-        <button class="submit-btn" id="interpretBtn" onclick="interpretDream()">
+        <button class="submit-btn" id="interpretBtn" onclick="interpretDream()" data-i18n="dream_submit_btn">
             ✨ Reveal the Meaning
         </button>
 
@@ -509,7 +510,7 @@
     <!-- Loading -->
     <div class="loading-wrap" id="loadingWrap">
         <div class="loading-spinner"></div>
-        <p class="loading-text">The ancient symbols are being read by <strong>AI</strong>...</p>
+        <p class="loading-text" data-i18n-html="dream_loading">The ancient symbols are being read by <strong>AI</strong>...</p>
     </div>
 </section>
 
@@ -518,7 +519,7 @@
     <!-- Shareable Card -->
     <div class="share-card" id="shareCard">
         <div class="share-card-inner">
-            <div class="share-card-tag">☯ Dream Interpretation</div>
+            <div class="share-card-tag" data-i18n="dream_share_tag">☯ Dream Interpretation</div>
             <p class="share-card-dream" id="shareDream"></p>
             <div class="share-card-interpretation" id="shareInterpretation"></div>
             <div class="share-card-brand">
@@ -526,7 +527,7 @@
                     <circle cx="12" cy="12" r="10"/>
                     <path d="M12 6v6l4 2"/>
                 </svg>
-                Oriental Destiny · AI Dream Analysis
+                <span data-i18n="dream_share_brand">Oriental Destiny · AI Dream Analysis</span>
             </div>
             <div class="share-card-url">oriental-destiny.com</div>
         </div>
@@ -537,24 +538,24 @@
 
 <!-- CTA -->
 <div class="cta-banner">
-    <h3>Go Deeper with Your Full BaZi Reading</h3>
-    <p>Unlock your complete destiny map — personality, career, love, wealth & lucky directions. 36 dream interpretations included with your report.</p>
-    <button class="cta-btn" onclick="location.href='checkout.html'">Get Your Full Reading — $199</button>
+    <h3 data-i18n="dream_cta_title">Go Deeper with Your Full BaZi Reading</h3>
+    <p data-i18n="dream_cta_desc">Unlock your complete destiny map — personality, career, love, wealth & lucky directions. 36 dream interpretations included with your report.</p>
+    <button class="cta-btn" onclick="location.href='checkout.html'" data-i18n="dream_cta_btn">Get Your Full Reading — $199</button>
 </div>
 
 <!-- Auth Modal -->
 <div class="auth-overlay" id="authModal" onclick="if(event.target===this)closeAuthModal()">
     <div class="auth-card">
         <button class="auth-close" onclick="closeAuthModal()">×</button>
-        <div class="auth-brand">☯ Oriental Destiny</div>
+        <div class="auth-brand" data-i18n="dream_auth_brand">☯ Oriental Destiny</div>
         <h2 class="auth-title" id="authTitle">Create Free Account</h2>
         <p class="auth-subtitle" id="authSubtitle">Create your free account and unlock <strong>3 full dream interpretations</strong> with Five Elements analysis</p>
         <form id="authForm" onsubmit="submitAuth(event)">
             <div class="auth-field">
-                <input type="email" id="authEmail" placeholder="Email address" autocomplete="email" required>
+                <input type="email" id="authEmail" data-i18n-placeholder="dream_auth_email_placeholder" placeholder="Email address" autocomplete="email" required>
             </div>
             <div class="auth-field">
-                <input type="password" id="authPassword" placeholder="Password (min. 6 characters)" autocomplete="current-password" required>
+                <input type="password" id="authPassword" data-i18n-placeholder="dream_auth_password_placeholder" placeholder="Password (min. 6 characters)" autocomplete="current-password" required>
             </div>
             <div class="auth-error" id="authError"></div>
             <div class="auth-success" id="authSuccess"></div>
@@ -570,24 +571,24 @@
     <div class="share-actions">
         <button class="share-btn wechat" onclick="showWechatGuide()">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5.5 4.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 2C6.477 2 2 6.026 2 11c0 2.824 1.373 5.343 3.535 7.042l-.622 2.792A.5.5 0 0 0 5.5 21.5h13a.5.5 0 0 0 .587-.658l-.622-2.792C20.627 16.343 22 13.824 22 11c0-4.974-4.477-9-10-9z"/></svg>
-            WeChat
+            <span data-i18n="dream_share_wechat">WeChat</span>
         </button>
         <button class="share-btn twitter" onclick="shareTwitter()">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            X / Twitter
+            <span data-i18n="dream_share_twitter">X / Twitter</span>
         </button>
         <button class="share-btn facebook" onclick="shareFacebook()">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
+            <span data-i18n="dream_share_facebook">Facebook</span>
         </button>
         <button class="share-btn copy" onclick="copyShareText()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Copy Text
+            <span data-i18n="dream_share_copy">Copy Text</span>
         </button>
     </div>
 
     <div class="try-another">
-        <button class="try-another-btn" onclick="resetDream()">🔄 Interpret Another Dream</button>
+        <button class="try-another-btn" onclick="resetDream()" data-i18n="dream_try_another">🔄 Interpret Another Dream</button>
     </div>
 </section>
 
@@ -595,14 +596,14 @@
 <div class="wechat-overlay" id="wechatOverlay" onclick="if(event.target===this)closeWechatGuide()">
     <div class="wechat-card">
         <button class="close-btn" onclick="closeWechatGuide()">×</button>
-        <h3>Share to WeChat</h3>
-        <p>Long press or screenshot the card below to save and share:</p>
+        <h3 data-i18n="dream_wechat_title">Share to WeChat</h3>
+        <p data-i18n="dream_wechat_desc">Long press or screenshot the card below to save and share:</p>
         <div id="wechatCardCopy"></div>
         <div class="wechat-steps">
             <ol>
-                <li>Take a screenshot of the card above</li>
-                <li>Open WeChat → Chat</li>
-                <li>Paste the screenshot to share</li>
+                <li data-i18n="dream_wechat_step1">Take a screenshot of the card above</li>
+                <li data-i18n="dream_wechat_step2">Open WeChat → Chat</li>
+                <li data-i18n="dream_wechat_step3">Paste the screenshot to share</li>
             </ol>
         </div>
     </div>
@@ -610,11 +611,12 @@
 
 <!-- Footer -->
 <footer>
-    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a></p>
+    <p><span data-i18n="dream_footer_copyright">© 2026 Oriental Destiny</span> · <a href="index.html" data-i18n="dream_footer_home">Home</a> · <a href="policies.html" data-i18n="dream_footer_privacy">Privacy</a></p>
 </footer>
 
 <!-- html2canvas for card image export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="i18n.js"></script>
 <script src="config.real.js"></script>
 <script src="config.js"></script>
 <script src="auth.js"></script>
@@ -622,6 +624,7 @@
 <script>
 // ─── Dream Interpretation Logic ──────────────────────────────────────────────
 
+var _t = function(k, f) { return (window.I18n && window.I18n.t(k, f)) || f; };
 const dreamTextEl = document.getElementById('dreamText');
 const charCountEl = document.getElementById('charCount');
 const interpretBtn = document.getElementById('interpretBtn');
@@ -648,11 +651,11 @@ function resetDream() {
 async function interpretDream() {
     const dream = dreamTextEl.value.trim();
     if (!dream) {
-        showError('Please describe your dream first.');
+        showError(_t('dream_err_empty', 'Please describe your dream first.'));
         return;
     }
     if (dream.length < 10) {
-        showError('Please describe a bit more of your dream (at least 10 characters).');
+        showError(_t('dream_err_short', 'Please describe a bit more of your dream (at least 10 characters).'));
         return;
     }
 
@@ -664,7 +667,7 @@ async function interpretDream() {
         showResult(dream, result);
     } catch (err) {
         console.error(err);
-        showError('Interpretation failed. Please try again.');
+        showError(_t('dream_err_failed', 'Interpretation failed. Please try again.'));
     } finally {
         setLoading(false);
     }
@@ -755,38 +758,38 @@ function showResult(dream, result) {
     if (isGuest) {
         const shortSummary = (result.fullInterpretation || '').substring(0, 120);
         body.innerHTML = `
-            <h2>☯ Dream Interpretation</h2>
+            <h2>☯ ${_t('dream_result_title', 'Dream Interpretation')}</h2>
             <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
-                Primary Element: ${result.element}
+                ${_t('dream_result_element', 'Primary Element')}: ${result.element}
             </p>
             ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
             <div style="font-size:15px;line-height:1.9;margin-bottom:16px;">
                 ${shortSummary}${result.fullInterpretation && result.fullInterpretation.length > 120 ? '...' : ''}
             </div>
             <div class="blurred-section">
-                <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
-                <p><strong>Psychological View:</strong> ${result.psychological}</p>
-                <p><strong>Guidance:</strong> ${result.guidance}</p>
-                ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
+                <p><strong>${_t('dream_result_symbolism', 'Eastern Symbolism')}:</strong> ${result.symbolism}</p>
+                <p><strong>${_t('dream_result_psychology', 'Psychological View')}:</strong> ${result.psychological}</p>
+                <p><strong>${_t('dream_result_guidance', 'Guidance')}:</strong> ${result.guidance}</p>
+                ${result.luckyDirection ? `<p><strong>${_t('dream_result_direction', 'Lucky Direction')}:</strong> ☯ ${result.luckyDirection}</p>` : ''}
                 <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
                 <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
             </div>
             <div class="register-teaser">
-                <p>Register free to unlock your <strong>full Five Elements analysis</strong>, psychological insights, and personal guidance.</p>
-                <button class="register-cta-btn" onclick="showAuthModal('register')">Create Free Account</button>
+                <p>${_t('dream_register_teaser', 'Register free to unlock your <strong>full Five Elements analysis</strong>, psychological insights, and personal guidance.')}</p>
+                <button class="register-cta-btn" onclick="showAuthModal('register')">${_t('dream_register_cta', 'Create Free Account')}</button>
             </div>
         `;
     } else {
         body.innerHTML = `
-            <h2>☯ Dream Interpretation</h2>
+            <h2>☯ ${_t('dream_result_title', 'Dream Interpretation')}</h2>
             <p class="element-tag" style="font-size:13px;background:rgba(183,138,66,0.1);color:var(--gold);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:600;letter-spacing:0.04em;">
-                Primary Element: ${result.element}
+                ${_t('dream_result_element', 'Primary Element')}: ${result.element}
             </p>
             ${subElTags ? `<div style="margin-bottom:16px;">${subElTags}</div>` : ''}
-            <p><strong>Eastern Symbolism:</strong> ${result.symbolism}</p>
-            <p><strong>Psychological View:</strong> ${result.psychological}</p>
-            <p><strong>Guidance:</strong> ${result.guidance}</p>
-            ${result.luckyDirection ? `<p><strong>Lucky Direction:</strong> ☯ ${result.luckyDirection}</p>` : ''}
+            <p><strong>${_t('dream_result_symbolism', 'Eastern Symbolism')}:</strong> ${result.symbolism}</p>
+            <p><strong>${_t('dream_result_psychology', 'Psychological View')}:</strong> ${result.psychological}</p>
+            <p><strong>${_t('dream_result_guidance', 'Guidance')}:</strong> ${result.guidance}</p>
+            ${result.luckyDirection ? `<p><strong>${_t('dream_result_direction', 'Lucky Direction')}:</strong> ☯ ${result.luckyDirection}</p>` : ''}
             <hr style="border:none;border-top:1px solid var(--line);margin:24px 0;">
             <p style="font-size:15px;line-height:1.9;">${result.fullInterpretation}</p>
         `;
@@ -806,13 +809,9 @@ function showResult(dream, result) {
 function getShareText() {
     const dream = document.getElementById('shareDream').textContent;
     const intText = document.getElementById('shareInterpretation').textContent;
-    return `☯ My dream interpretation by Oriental Destiny:
-
-"${dream}"
-
-${intText}
-
-🔮 Get your free dream analysis: https://oriental-destiny.com/dream-interpretation.html`;
+    const prefix = _t('dream_share_prefix', '☯ My dream interpretation by Oriental Destiny:');
+    const suffix = _t('dream_share_suffix', '🔮 Get your free dream analysis: https://oriental-destiny.com/dream-interpretation.html');
+    return prefix + '\n\n"' + dream + '"\n\n' + intText + '\n\n' + suffix;
 }
 
 function shareTwitter() {
@@ -830,14 +829,14 @@ function copyShareText() {
     navigator.clipboard.writeText(text).then(() => {
         const btn = document.querySelector('.share-btn.copy');
         const orig = btn.textContent;
-        btn.textContent = '✓ Copied!';
+        btn.textContent = _t('dream_copied', '✓ Copied!');
         btn.style.background = '#07c160';
         setTimeout(() => {
             btn.textContent = orig;
             btn.style.background = '';
         }, 2000);
     }).catch(() => {
-        prompt('Copy this text:', text);
+        prompt(_t('dream_copy_prompt', 'Copy this text:'), text);
     });
 }
 
@@ -878,7 +877,7 @@ function updateAuthUI() {
         if (quotaBadge) {
             var remaining = Auth.getRemainingDreams();
             var limit = Auth.dreamLimit;
-            quotaBadge.textContent = '☯ ' + remaining + ' / ' + limit + ' dreams';
+            quotaBadge.textContent = _t('dream_quota_badge', '☯ ') + remaining + ' / ' + limit + ' ' + _t('dream_quota_dreams', 'dreams');
             quotaBadge.style.display = 'inline-flex';
         }
     } else {
@@ -902,25 +901,25 @@ function showAuthModal(mode) {
     if (succEl) succEl.textContent = '';
 
     if (mode === 'register') {
-        title.textContent = 'Create Free Account';
-        subtitle.innerHTML = 'Create your free account and unlock <strong>3 full dream interpretations</strong> with Five Elements analysis, psychological insights, and dream history';
-        btn.textContent = 'Sign Up Free';
+        title.textContent = _t('dream_auth_register_title', 'Create Free Account');
+        subtitle.innerHTML = _t('dream_auth_register_subtitle', 'Create your free account and unlock <strong>3 full dream interpretations</strong> with Five Elements analysis, psychological insights, and dream history');
+        btn.textContent = _t('dream_auth_register_btn', 'Sign Up Free');
         btn.dataset.mode = 'register';
-        toggle.textContent = 'Sign in instead';
+        toggle.textContent = _t('dream_auth_toggle_login', 'Sign in instead');
         toggle.dataset.mode = 'login';
         if (guestBtn) guestBtn.style.display = '';
     } else if (mode === 'login') {
-        title.textContent = 'Welcome Back';
-        subtitle.textContent = 'Sign in to continue your dream journey';
-        btn.textContent = 'Sign In';
+        title.textContent = _t('dream_auth_login_title', 'Welcome Back');
+        subtitle.textContent = _t('dream_auth_login_subtitle', 'Sign in to continue your dream journey');
+        btn.textContent = _t('dream_auth_login_btn', 'Sign In');
         btn.dataset.mode = 'login';
-        toggle.textContent = 'Create free account';
+        toggle.textContent = _t('dream_auth_toggle_register', 'Create free account');
         toggle.dataset.mode = 'register';
         if (guestBtn) guestBtn.style.display = '';
     } else if (mode === 'upgrade') {
-        title.textContent = 'Unlock More Dreams';
-        subtitle.innerHTML = 'Your free dream has been used. Unlock <strong>36 dream interpretations</strong> with your full BaZi reading.';
-        btn.textContent = 'Get Full Reading — $199';
+        title.textContent = _t('dream_auth_upgrade_title', 'Unlock More Dreams');
+        subtitle.innerHTML = _t('dream_auth_upgrade_subtitle', 'Your free dream has been used. Unlock <strong>36 dream interpretations</strong> with your full BaZi reading.');
+        btn.textContent = _t('dream_auth_upgrade_btn', 'Get Full Reading — $199');
         btn.dataset.mode = 'upgrade';
         toggle.textContent = '';
         toggle.dataset.mode = '';
@@ -948,8 +947,8 @@ async function submitAuth(e) {
     var successEl = document.getElementById('authSuccess');
 
     errorEl.textContent = '';
-    if (!email || !password) { errorEl.textContent = 'Please fill in all fields.'; return; }
-    if (password.length < 6) { errorEl.textContent = 'Password must be at least 6 characters.'; return; }
+    if (!email || !password) { errorEl.textContent = _t('dream_auth_err_fill_all', 'Please fill in all fields.'); return; }
+    if (password.length < 6) { errorEl.textContent = _t('dream_auth_err_password_short', 'Password must be at least 6 characters.'); return; }
 
     // Handle upgrade CTA
     if (mode === 'upgrade') {
@@ -962,23 +961,23 @@ async function submitAuth(e) {
     try {
         if (mode === 'register') {
             await Auth.register(email, password);
-            successEl.textContent = 'Account created! You have 3 free dreams.';
+            successEl.textContent = _t('dream_auth_reg_success', 'Account created! You have 3 free dreams.');
         } else {
             await Auth.login(email, password);
-            successEl.textContent = 'Welcome back!';
+            successEl.textContent = _t('dream_auth_login_success', 'Welcome back!');
         }
         setTimeout(closeAuthModal, 1200);
     } catch (err) {
         var msgs = {
-            'auth/email-already-in-use': 'This email is already registered. Try signing in.',
-            'auth/wrong-password': 'Incorrect password.',
-            'auth/user-not-found': 'No account found with this email.',
-            'auth/invalid-email': 'Invalid email address.',
-            'auth/weak-password': 'Password must be at least 6 characters.',
-            'auth/too-many-requests': 'Too many attempts. Please try again later.',
-            'auth/invalid-credential': 'Invalid email or password.'
+            'auth/email-already-in-use': _t('dream_auth_err_email_used', 'This email is already registered. Try signing in.'),
+            'auth/wrong-password': _t('dream_auth_err_wrong_password', 'Incorrect password.'),
+            'auth/user-not-found': _t('dream_auth_err_no_user', 'No account found with this email.'),
+            'auth/invalid-email': _t('dream_auth_err_invalid_email', 'Invalid email address.'),
+            'auth/weak-password': _t('dream_auth_err_weak_password', 'Password must be at least 6 characters.'),
+            'auth/too-many-requests': _t('dream_auth_err_too_many', 'Too many attempts. Please try again later.'),
+            'auth/invalid-credential': _t('dream_auth_err_invalid', 'Invalid email or password.')
         };
-        errorEl.textContent = msgs[err.code] || 'Something went wrong. Please try again.';
+        errorEl.textContent = msgs[err.code] || _t('dream_auth_err_generic', 'Something went wrong. Please try again.');
     }
 }
 

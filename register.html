@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Create your free Oriental Destiny account and unlock 3 free AI dream interpretations based on Five Elements and BaZi principles.">
     <meta property="og:title" content="Create Free Account | Oriental Destiny">
-    <meta property="og:description" content="Register for free and get 1 AI dream interpretation based on ancient Eastern wisdom.">
+    <meta property="og:description" content="Register for free and get 3 AI dream interpretations based on ancient Eastern wisdom.">
     <link rel="canonical" href="https://oriental-destiny.com/register.html">
     <title>Create Free Account | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -39,7 +39,6 @@
         }
         a { color: inherit; text-decoration: none; }
 
-        /* Topbar */
         .topbar {
             position: sticky; top: 0; z-index: 10;
             backdrop-filter: blur(14px);
@@ -57,7 +56,6 @@
         .nav { display: flex; gap: 18px; font-size: 14px; color: rgba(36,25,21,0.78); flex-wrap: wrap; align-items: center; }
         .nav a:hover { color: var(--cinnabar); }
 
-        /* Main */
         .main {
             flex: 1; display: flex; align-items: center; justify-content: center;
             padding: 40px 20px;
@@ -74,7 +72,6 @@
         .register-title { font-size: 28px; margin-bottom: 8px; color: var(--ink); font-weight: 700; }
         .register-subtitle { font-size: 15px; color: rgba(36,25,21,0.65); margin-bottom: 28px; line-height: 1.5; }
 
-        /* Benefits */
         .benefits {
             background: rgba(183,138,66,0.06); border: 1px solid rgba(183,138,66,0.15);
             border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
@@ -84,7 +81,6 @@
         .benefits li { margin-bottom: 6px; color: rgba(36,25,21,0.75); list-style: none; }
         .benefits li::before { content: '☯ '; color: var(--gold); font-size: 12px; }
 
-        /* Form */
         .field { margin-bottom: 14px; }
         .field input {
             width: 100%; padding: 13px 16px;
@@ -109,7 +105,6 @@
         .toggle { font-size: 13px; color: rgba(36,25,21,0.6); }
         .toggle a { color: var(--cinnabar); text-decoration: underline; cursor: pointer; }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--line);
             padding: 32px 20px; text-align: center;
@@ -129,53 +124,54 @@
 <header class="topbar">
     <div class="topbar-inner">
         <a href="index.html" class="brand">
-            <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">☯ Oriental Destiny</span>
+            <span class="brand-mark" data-i18n="reg_brand_mark">Oriental Destiny</span>
+            <span class="brand-name" data-i18n="reg_brand_name">☯ Oriental Destiny</span>
         </a>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="dream-interpretation.html">Dream Interpreter</a>
-            <a href="login.html">Sign In</a>
+            <a href="index.html" data-i18n="reg_nav_home">Home</a>
+            <a href="dream-interpretation.html" data-i18n="reg_nav_dream">Dream Interpreter</a>
+            <a href="login.html" data-i18n="reg_nav_login">Sign In</a>
         </nav>
     </div>
 </header>
 
 <div class="main">
     <div class="register-card">
-        <div class="register-brand">☯ Oriental Destiny</div>
-        <h1 class="register-title">Create Free Account</h1>
-        <p class="register-subtitle">Join to save your interpretations and get <strong>3 free dream readings</strong></p>
+        <div class="register-brand" data-i18n="reg_card_brand">☯ Oriental Destiny</div>
+        <h1 class="register-title" data-i18n="reg_title">Create Free Account</h1>
+        <p class="register-subtitle" data-i18n="reg_subtitle">Join to save your interpretations and get <strong>3 free dream readings</strong></p>
 
         <div class="benefits">
-            <h4>Your Free Account Includes</h4>
+            <h4 data-i18n="reg_benefits_title">Your Free Account Includes</h4>
             <ul>
-                <li>3 free AI dream interpretations</li>
-                <li>Save and review your dream history</li>
-                <li>Access to your personal dashboard</li>
-                <li>Upgrade to full membership anytime</li>
+                <li data-i18n="reg_benefit_1">3 free AI dream interpretations</li>
+                <li data-i18n="reg_benefit_2">Save and review your dream history</li>
+                <li data-i18n="reg_benefit_3">Access to your personal dashboard</li>
+                <li data-i18n="reg_benefit_4">Upgrade to full membership anytime</li>
             </ul>
         </div>
 
         <form id="regForm" onsubmit="handleRegister(event)">
             <div class="field">
-                <input type="email" id="regEmail" placeholder="Email address" autocomplete="email" required>
+                <input type="email" id="regEmail" data-i18n-placeholder="reg_placeholder_email" placeholder="Email address" autocomplete="email" required>
             </div>
             <div class="field">
-                <input type="password" id="regPassword" placeholder="Password (min. 6 characters)" autocomplete="new-password" required minlength="6">
+                <input type="password" id="regPassword" data-i18n-placeholder="reg_placeholder_password" placeholder="Password (min. 6 characters)" autocomplete="new-password" required minlength="6">
             </div>
             <div class="error" id="regError"></div>
             <div class="success" id="regSuccess"></div>
-            <button type="submit" class="submit-btn" id="regBtn">Sign Up Free</button>
+            <button type="submit" class="submit-btn" id="regBtn" data-i18n="reg_btn">Sign Up Free</button>
         </form>
 
-        <p class="toggle">Already have an account? <a href="login.html">Sign in</a></p>
+        <p class="toggle"><span data-i18n="reg_has_account">Already have an account?</span> <a href="login.html" data-i18n="reg_signin">Sign in</a></p>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+    <p><span data-i18n="reg_footer_copyright">© 2026 Oriental Destiny</span> · <a href="index.html" data-i18n="reg_footer_home">Home</a> · <a href="policies.html" data-i18n="reg_footer_privacy">Privacy</a> · <span class="od-version"></span></p>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="config.real.js"></script>
 <script src="config.js"></script>
 <script src="auth.js"></script>
@@ -187,6 +183,8 @@
     var err = document.getElementById('regError');
     var succ = document.getElementById('regSuccess');
 
+    function t(key, fallback) { return (window.I18n && window.I18n.t(key, fallback)) || fallback; }
+
     window.handleRegister = function(e) {
         e.preventDefault();
         var email = document.getElementById('regEmail').value.trim();
@@ -195,34 +193,32 @@
         err.textContent = '';
         succ.textContent = '';
 
-        if (!email || !password) { err.textContent = 'Please fill in all fields.'; return; }
-        if (password.length < 6) { err.textContent = 'Password must be at least 6 characters.'; return; }
+        if (!email || !password) { err.textContent = t('reg_err_fill_all', 'Please fill in all fields.'); return; }
+        if (password.length < 6) { err.textContent = t('reg_err_password_short', 'Password must be at least 6 characters.'); return; }
 
         btn.disabled = true;
-        btn.textContent = 'Creating account...';
+        btn.textContent = t('reg_creating', 'Creating account...');
 
         Auth.init().then(function() {
             return Auth.register(email, password);
         }).then(function() {
-            succ.textContent = 'Account created! Redirecting...';
-            // Redirect to referrer or dashboard
+            succ.textContent = t('reg_created', 'Account created! Redirecting...');
             var params = new URLSearchParams(window.location.search);
             var redirect = params.get('redirect') || 'dashboard.html';
             setTimeout(function() { window.location.href = redirect; }, 1000);
         }).catch(function(error) {
             var msgs = {
-                'auth/email-already-in-use': 'This email is already registered. <a href="login.html">Sign in</a> instead.',
-                'auth/invalid-email': 'Invalid email address.',
-                'auth/weak-password': 'Password must be at least 6 characters.',
-                'auth/too-many-requests': 'Too many attempts. Please try again later.'
+                'auth/email-already-in-use': t('reg_err_email_used', 'This email is already registered. Sign in instead.'),
+                'auth/invalid-email': t('reg_err_invalid_email', 'Invalid email address.'),
+                'auth/weak-password': t('reg_err_weak_password', 'Password must be at least 6 characters.'),
+                'auth/too-many-requests': t('reg_err_too_many', 'Too many attempts. Please try again later.')
             };
-            err.innerHTML = msgs[error.code] || 'Something went wrong. Please try again.';
+            err.textContent = msgs[error.code] || t('reg_err_generic', 'Something went wrong. Please try again.');
             btn.disabled = false;
-            btn.textContent = 'Sign Up Free';
+            btn.textContent = t('reg_btn', 'Sign Up Free');
         });
     };
 
-    // Init Firebase on page load
     Auth.init();
 })();
 </script>

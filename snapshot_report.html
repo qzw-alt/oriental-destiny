@@ -362,26 +362,26 @@
     <a class="brand" href="index.html" data-i18n="th_brand">Oriental Destiny</a>
 
     <div class="snapshot-card">
-        <div class="section-label">Your Chart Snapshot</div>
-        <h1>Your Preliminary Reading</h1>
-        <p style="color:rgba(36,25,21,0.6);margin-bottom:20px;font-size:14px;">
+        <div class="section-label" data-i18n="sr_section_label">Your Chart Snapshot</div>
+        <h1 data-i18n="sr_title">Your Preliminary Reading</h1>
+        <p style="color:rgba(36,25,21,0.6);margin-bottom:20px;font-size:14px;" data-i18n-html="sr_subtitle">
             Thank you for your order. Your chart has been computed and your preliminary reading is below.
             <strong>The complete annotated report will arrive by email within 6 hours.</strong>
         </p>
 
         <!-- AI overview (loaded async) -->
         <div class="ai-overview" id="aiOverviewSection">
-            <span class="ai-badge">System Preliminary Analysis</span>
+            <span class="ai-badge" data-i18n="sr_ai_badge">System Preliminary Analysis</span>
             <div id="aiOverviewContent">
-                <span class="loading-spinner"></span> Computing your chart overview...
+                <span class="loading-spinner"></span> <span data-i18n="sr_loading">Computing your chart overview...</span>
             </div>
-            <div class="fallback-notice" id="fallbackNotice" style="display:none;">
+            <div class="fallback-notice" id="fallbackNotice" style="display:none;" data-i18n="sr_fallback_notice">
                 This is a system-generated preliminary overview. A master will review and annotate your complete report.
             </div>
         </div>
 
         <!-- Section 1: Core Sentence -->
-        <div class="core-sentence" id="coreSentence">
+        <div class="core-sentence" id="coreSentence" data-i18n="sr_loading_chart">
             Loading your chart data...
         </div>
 
@@ -391,7 +391,7 @@
         <!-- Section 3: Chart Data (collapsible) -->
         <div class="chart-data-summary">
             <details>
-                <summary>Technical Chart Data</summary>
+                <summary data-i18n="sr_chart_data">Technical Chart Data</summary>
                 <div class="chart-grid" id="pillarGrid"></div>
                 <div class="element-bars" id="elementBars"></div>
             </details>
@@ -399,14 +399,14 @@
 
         <!-- Section 4: Direction -->
         <div class="direction-box" id="directionBox">
-            <h3>Your Current Focus Direction</h3>
+            <h3 data-i18n="sr_direction_title">Your Current Focus Direction</h3>
             <p id="directionText"></p>
         </div>
 
         <!-- Section 5: Next Steps -->
         <div class="next-info" id="nextInfo">
-            <p><strong>What happens next:</strong> Your complete annotated report with master notes, timing windows, and personalized jewelry recommendation is being prepared. You will receive it by email within 6 hours (orders after 10 PM Eastern: by next morning).</p>
-            <p style="margin-top:8px;">Questions? Reply to <a href="mailto:434338480@qq.com" style="color:var(--cinnabar);">434338480@qq.com</a> with your order email.</p>
+            <p data-i18n-html="sr_next_info"><strong>What happens next:</strong> Your complete annotated report with master notes, timing windows, and personalized jewelry recommendation is being prepared. You will receive it by email within 6 hours (orders after 10 PM Eastern: by next morning).</p>
+            <p style="margin-top:8px;" data-i18n-html="sr_next_contact">Questions? Reply to <a href="mailto:434338480@qq.com" style="color:var(--cinnabar);">434338480@qq.com</a> with your order email.</p>
         </div>
 
         <!-- Full report generation progress -->
@@ -414,45 +414,45 @@
             <div class="progress-steps">
                 <div class="progress-step">
                     <div class="progress-dot" id="dot1">1</div>
-                    <div class="progress-label">Analyzing</div>
+                    <div class="progress-label" data-i18n="sr_progress_analyzing">Analyzing</div>
                 </div>
                 <div class="progress-step">
                     <div class="progress-dot" id="dot2">2</div>
-                    <div class="progress-label">Planning</div>
+                    <div class="progress-label" data-i18n="sr_progress_planning">Planning</div>
                 </div>
                 <div class="progress-step">
                     <div class="progress-dot" id="dot3">3</div>
-                    <div class="progress-label">Writing</div>
+                    <div class="progress-label" data-i18n="sr_progress_writing">Writing</div>
                 </div>
                 <div class="progress-step">
                     <div class="progress-dot" id="dot4">4</div>
-                    <div class="progress-label">Reviewing</div>
+                    <div class="progress-label" data-i18n="sr_progress_reviewing">Reviewing</div>
                 </div>
             </div>
             <div class="progress-detail" id="progressDetail"></div>
         </div>
 
         <div class="warning-banner" id="warningBanner">
-            Please do not close or refresh this page while your complete report is being generated.
+            <span data-i18n="sr_warning">Please do not close or refresh this page while your complete report is being generated.</span>
         </div>
 
         <div class="btn-row">
-            <button class="btn" id="generateFullBtn">Generate My Complete Report Now</button>
-            <a class="btn btn-outline" href="report_demo.html">View Sample Report</a>
+            <button class="btn" id="generateFullBtn" data-i18n="sr_generate_btn">Generate My Complete Report Now</button>
+            <a class="btn btn-outline" href="report_demo.html" data-i18n="sr_sample_btn">View Sample Report</a>
         </div>
 
         <div id="fullReportLink" style="display:none;text-align:center;margin-top:16px;">
-            <a class="btn" href="full_report.html">View My Complete Report</a>
+            <a class="btn" href="full_report.html" data-i18n="sr_view_report">View My Complete Report</a>
         </div>
     </div>
 
     <footer>
-        <a href="policies.html#shipping">Shipping</a> ·
-        <a href="policies.html#refund">Refund</a> ·
-        <a href="policies.html#privacy">Privacy</a> ·
-        <a href="mailto:434338480@qq.com">Contact</a>
+        <a href="policies.html#shipping" data-i18n="footer_shipping">Shipping</a> ·
+        <a href="policies.html#refund" data-i18n="footer_refund">Refund</a> ·
+        <a href="policies.html#privacy" data-i18n="footer_privacy">Privacy</a> ·
+        <a href="mailto:434338480@qq.com" data-i18n="footer_contact">Contact</a>
     </footer>
-    <p style="text-align:center;font-size:11px;color:rgba(36,25,21,0.4);margin-top:8px;">
+    <p style="text-align:center;font-size:11px;color:rgba(36,25,21,0.4);margin-top:8px;" data-i18n="sr_disclaimer">
         Products and readings are for self-reflection and symbolic guidance only.
     </p>
     <span class="od-version" style="display:block;text-align:center;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
@@ -469,6 +469,7 @@
 <script src="version.js"></script>
 <script>
 (function () {
+    var _t = function(k, f) { return (window.I18n && window.I18n.t(k, f)) || f; };
     var generating = false;
 
     // Init AI layer
@@ -481,7 +482,7 @@
         window.addEventListener('beforeunload', function (e) {
             if (generating) {
                 e.preventDefault();
-                e.returnValue = 'Your report is still being generated. Are you sure you want to leave?';
+                e.returnValue = _t('sr_unload_warning', 'Your report is still being generated. Are you sure you want to leave?');
                 return e.returnValue;
             }
         });
@@ -513,7 +514,7 @@
     // Render section 1: Core sentence
     function renderCoreSentence() {
         var el = document.getElementById('coreSentence');
-        if (!profile) { el.textContent = 'Your chart has been received and is being processed.'; return; }
+        if (!profile) { el.textContent = _t('sr_chart_received', 'Your chart has been received and is being processed.'); return; }
         var dm = profile.dayMasterElement || '';
         var season = profile.season || '';
         var yong = (profile.usefulGodAnalysis || {});
@@ -589,13 +590,13 @@
         if (!profile) return;
         var focus = state.focus || 'balance';
         var fav = profile.favorableElements || [];
-        var focusLabels = { career: 'Career & Allies', wealth: 'Wealth & Retention', love: 'Love & Harmony', protection: 'Safety & Protection', balance: 'Personal Balance' };
+        var focusLabels = { career: _t('sr_focus_career', 'Career & Allies'), wealth: _t('sr_focus_wealth', 'Wealth & Retention'), love: _t('sr_focus_love', 'Love & Harmony'), protection: _t('sr_focus_protection', 'Safety & Protection'), balance: _t('sr_focus_balance', 'Personal Balance') };
         var focusGuidance = {
-            career: 'Channel your energy into structured professional growth. Your chart suggests that clear boundaries and methodical action will bring more sustainable results than bold leaps.',
-            wealth: 'Focus on retention over acquisition. Your chart indicates that protecting and growing what you already have is more aligned with your current energy than pursuing new streams.',
-            love: 'Deepen existing connections rather than seeking new ones. Your chart shows that quality of presence matters more than quantity of interaction in your relationships.',
-            protection: 'Strengthen your energetic boundaries. Your chart suggests heightened sensitivity to external influences — grounding practices will serve you well.',
-            balance: 'Your chart calls for integration across all areas. Small, consistent adjustments in daily routine will have a larger impact than dramatic changes.'
+            career: _t('sr_guidance_career', 'Channel your energy into structured professional growth. Your chart suggests that clear boundaries and methodical action will bring more sustainable results than bold leaps.'),
+            wealth: _t('sr_guidance_wealth', 'Focus on retention over acquisition. Your chart indicates that protecting and growing what you already have is more aligned with your current energy than pursuing new streams.'),
+            love: _t('sr_guidance_love', 'Deepen existing connections rather than seeking new ones. Your chart shows that quality of presence matters more than quantity of interaction in your relationships.'),
+            protection: _t('sr_guidance_protection', 'Strengthen your energetic boundaries. Your chart suggests heightened sensitivity to external influences — grounding practices will serve you well.'),
+            balance: _t('sr_guidance_balance', 'Your chart calls for integration across all areas. Small, consistent adjustments in daily routine will have a larger impact than dramatic changes.')
         };
 
         document.getElementById('directionBox').querySelector('h3').textContent = focusLabels[focus] || 'Your Focus';
@@ -611,7 +612,7 @@
     // Async AI overview
     function loadAIOverview() {
         if (!profile) {
-            document.getElementById('aiOverviewContent').innerHTML = '<p>Your chart is being computed. Overview will appear shortly.</p>';
+            document.getElementById('aiOverviewContent').innerHTML = '<p>' + _t('sr_ai_computing', 'Your chart is being computed. Overview will appear shortly.') + '</p>';
             return;
         }
 
@@ -655,18 +656,18 @@
     document.getElementById('generateFullBtn').addEventListener('click', function () {
         if (generating) return;
         if (!profile) {
-            alert('Chart data is still loading. Please wait a moment and try again.');
+            alert(_t('sr_alert_loading', 'Chart data is still loading. Please wait a moment and try again.'));
             return;
         }
         if (!window.AIBaziLayer || !window.AIBaziLayer.isReady()) {
-            alert('AI service is not available right now. Please try again later or contact 434338480@qq.com.');
+            alert(_t('sr_alert_ai_unavailable', 'AI service is not available right now. Please try again later or contact 434338480@qq.com.'));
             return;
         }
 
         generating = true;
         var btn = document.getElementById('generateFullBtn');
         btn.disabled = true;
-        btn.innerHTML = '<span class="loading-spinner"></span> Generating...';
+        btn.innerHTML = '<span class="loading-spinner"></span> ' + _t('sr_generating', 'Generating...');
         document.getElementById('warningBanner').classList.add('show');
         document.getElementById('progressContainer').classList.add('active');
 
@@ -693,17 +694,17 @@
             }
         }).then(function (result) {
             generating = false;
-            btn.innerHTML = 'Report Generated!';
+            btn.innerHTML = _t('sr_report_generated', 'Report Generated!');
             document.getElementById('warningBanner').classList.remove('show');
-            document.getElementById('progressDetail').textContent = 'Your complete report is ready!';
+            document.getElementById('progressDetail').textContent = _t('sr_report_ready', 'Your complete report is ready!');
             dots.forEach(function (d) { d.classList.add('done'); d.textContent = '✓'; });
             document.getElementById('fullReportLink').style.display = 'block';
         }).catch(function (err) {
             generating = false;
-            btn.innerHTML = 'Try Again';
+            btn.innerHTML = _t('sr_try_again', 'Try Again');
             btn.disabled = false;
             document.getElementById('warningBanner').classList.remove('show');
-            document.getElementById('progressDetail').textContent = 'Generation paused. You can try again or your report will arrive by email.';
+            document.getElementById('progressDetail').textContent = _t('sr_generation_paused', 'Generation paused. You can try again or your report will arrive by email.');
             console.error('Report generation failed:', err);
         });
     });

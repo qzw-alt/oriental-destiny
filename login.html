@@ -117,44 +117,45 @@
 <header class="topbar">
     <div class="topbar-inner">
         <a href="index.html" class="brand">
-            <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">☯ Oriental Destiny</span>
+            <span class="brand-mark" data-i18n="login_brand_mark">Oriental Destiny</span>
+            <span class="brand-name" data-i18n="login_brand_name">☯ Oriental Destiny</span>
         </a>
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="dream-interpretation.html">Dream Interpreter</a>
-            <a href="register.html">Sign Up</a>
+            <a href="index.html" data-i18n="login_nav_home">Home</a>
+            <a href="dream-interpretation.html" data-i18n="login_nav_dream">Dream Interpreter</a>
+            <a href="register.html" data-i18n="login_nav_signup">Sign Up</a>
         </nav>
     </div>
 </header>
 
 <div class="main">
     <div class="login-card">
-        <div class="login-brand">☯ Oriental Destiny</div>
-        <h1 class="login-title">Welcome Back</h1>
-        <p class="login-subtitle">Sign in to access your dream history and dashboard</p>
+        <div class="login-brand" data-i18n="login_card_brand">☯ Oriental Destiny</div>
+        <h1 class="login-title" data-i18n="login_title">Welcome Back</h1>
+        <p class="login-subtitle" data-i18n="login_subtitle">Sign in to access your dream history and dashboard</p>
 
         <form id="loginForm" onsubmit="handleLogin(event)">
             <div class="field">
-                <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email" required>
+                <input type="email" id="loginEmail" data-i18n-placeholder="login_placeholder_email" placeholder="Email address" autocomplete="email" required>
             </div>
             <div class="field">
-                <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
+                <input type="password" id="loginPassword" data-i18n-placeholder="login_placeholder_password" placeholder="Password" autocomplete="current-password" required>
             </div>
             <div class="error" id="loginError"></div>
             <div class="success" id="loginSuccess"></div>
-            <button type="submit" class="submit-btn" id="loginBtn">Sign In</button>
+            <button type="submit" class="submit-btn" id="loginBtn" data-i18n="login_btn">Sign In</button>
         </form>
 
-        <p class="toggle">Don't have an account? <a href="register.html">Create free account</a></p>
-        <p class="forgot">If you forgot your password, please contact support.</p>
+        <p class="toggle"><span data-i18n="login_no_account">Don't have an account?</span> <a href="register.html" data-i18n="login_create_account">Create free account</a></p>
+        <p class="forgot" data-i18n="login_forgot">If you forgot your password, please contact support.</p>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+    <p><span data-i18n="login_footer_copyright">© 2026 Oriental Destiny</span> · <a href="index.html" data-i18n="login_footer_home">Home</a> · <a href="policies.html" data-i18n="login_footer_privacy">Privacy</a> · <span class="od-version"></span></p>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="config.real.js"></script>
 <script src="config.js"></script>
 <script src="auth.js"></script>
@@ -166,6 +167,8 @@
     var err = document.getElementById('loginError');
     var succ = document.getElementById('loginSuccess');
 
+    function t(key, fallback) { return (window.I18n && window.I18n.t(key, fallback)) || fallback; }
+
     window.handleLogin = function(e) {
         e.preventDefault();
         var email = document.getElementById('loginEmail').value.trim();
@@ -174,29 +177,29 @@
         err.textContent = '';
         succ.textContent = '';
 
-        if (!email || !password) { err.textContent = 'Please fill in all fields.'; return; }
+        if (!email || !password) { err.textContent = t('login_err_fill_all', 'Please fill in all fields.'); return; }
 
         btn.disabled = true;
-        btn.textContent = 'Signing in...';
+        btn.textContent = t('login_signing_in', 'Signing in...');
 
         Auth.init().then(function() {
             return Auth.login(email, password);
         }).then(function() {
-            succ.textContent = 'Signed in! Redirecting...';
+            succ.textContent = t('login_signed_in', 'Signed in! Redirecting...');
             var params = new URLSearchParams(window.location.search);
             var redirect = params.get('redirect') || 'dashboard.html';
             setTimeout(function() { window.location.href = redirect; }, 800);
         }).catch(function(error) {
             var msgs = {
-                'auth/wrong-password': 'Incorrect password.',
-                'auth/user-not-found': 'No account found. <a href="register.html">Create one</a>.',
-                'auth/invalid-email': 'Invalid email address.',
-                'auth/too-many-requests': 'Too many attempts. Please try again later.',
-                'auth/invalid-credential': 'Invalid email or password.'
+                'auth/wrong-password': t('login_err_wrong_password', 'Incorrect password.'),
+                'auth/user-not-found': t('login_err_no_user', 'No account found. Create one.'),
+                'auth/invalid-email': t('login_err_invalid_email', 'Invalid email address.'),
+                'auth/too-many-requests': t('login_err_too_many', 'Too many attempts. Please try again later.'),
+                'auth/invalid-credential': t('login_err_invalid', 'Invalid email or password.')
             };
-            err.innerHTML = msgs[error.code] || 'Sign in failed. Please try again.';
+            err.textContent = msgs[error.code] || t('login_err_generic', 'Sign in failed. Please try again.');
             btn.disabled = false;
-            btn.textContent = 'Sign In';
+            btn.textContent = t('login_btn', 'Sign In');
         });
     };
 

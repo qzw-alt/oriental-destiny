@@ -1,0 +1,961 @@
+{
+  "rat": {
+    "name": "Rat",
+    "chineseName": "鼠 (Shu)",
+    "branch": "Zi",
+    "element": "Water",
+    "polarity": "Yang",
+    "order": 1,
+    "years": [1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020, 2032],
+    "elementVariants": [
+      {"element": "Wood", "years": [1924, 1984], "description": "Creative, growth-oriented, community-minded, and more collaborative than typical Rats"},
+      {"element": "Fire", "years": [1936, 1996], "description": "Energetic, bold, charismatic, and more openly ambitious than other Rats"},
+      {"element": "Earth", "years": [1948, 2008], "description": "Stable, practical, reliable, and more grounded than the typical restless Rat"},
+      {"element": "Metal", "years": [1960, 2020], "description": "Determined, disciplined, focused, and more structured in their approach than other Rats"},
+      {"element": "Water", "years": [1972, 2032], "description": "Intuitive, wise, diplomatic, and the most classically Rat of all the element variants"}
+    ],
+    "personality": {
+      "overview": "The Rat is the first sign of the Chinese zodiac — and in many ways, the most resourceful. Rats are quick-witted, adaptable, and possessed of a survival instinct that serves them well in every arena of life. They notice what others miss, connect dots that others overlook, and have an almost preternatural ability to land on their feet no matter the circumstance.",
+      "traits": [
+        {"icon": "🧠", "name": "Intelligent", "desc": "Quick-witted and analytical problem-solvers with sharp minds"},
+        {"icon": "🔄", "name": "Adaptable", "desc": "Thrive in changing environments and pivot easily when needed"},
+        {"icon": "✨", "name": "Charming", "desc": "Natural social magnetism that draws people in effortlessly"},
+        {"icon": "🎯", "name": "Ambitious", "desc": "Strong drive for success, recognition, and security"},
+        {"icon": "💰", "name": "Thrifty", "desc": "Careful with resources and skilled at saving for the future"},
+        {"icon": "🔍", "name": "Curious", "desc": "Always learning, exploring, and discovering new territory"}
+      ],
+      "strengths": [
+        "Quick thinking and decisive under pressure",
+        "Natural leadership through intelligence rather than force",
+        "Excellent at spotting opportunities others miss",
+        "Loyal and fiercely protective of their close circle",
+        "Remarkable ability to accumulate and manage resources"
+      ],
+      "weaknesses": [
+        "Can be overly cautious or timid in matters of the heart",
+        "Tendency to overthink decisions and miss the moment",
+        "May come across as calculating or self-interested",
+        "Prone to anxiety about security and the future",
+        "Can be stubborn about their own judgments once made"
+      ]
+    },
+    "career": [
+      {"field": "Business & Entrepreneurship", "why": "Sharp instincts for opportunity, timing, and resource management"},
+      {"field": "Research & Academia", "why": "Natural curiosity and analytical ability drive deep inquiry"},
+      {"field": "Writing & Media", "why": "Articulate and persuasive communicators with keen observation"},
+      {"field": "Law & Politics", "why": "Strategic thinking and negotiation skills give them an edge"},
+      {"field": "Technology & Engineering", "why": "Quick to master complex systems and spot patterns others miss"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Ox", "rating": "Excellent", "reason": "The Rat's quickness finds grounding in the Ox's steady, patient nature. Complementary strengths create a powerful team."},
+        {"animal": "Dragon", "rating": "Excellent", "reason": "Both ambitious and visionary, the Rat and Dragon amplify each other's drive. A power couple in any context."},
+        {"animal": "Monkey", "rating": "Excellent", "reason": "Two quick minds in perfect sync. The Rat and Monkey share a wavelength — playful, clever, and deeply compatible."}
+      ],
+      "good": [
+        {"animal": "Rat", "rating": "Good", "reason": "Two Rats understand each other intuitively but may compete for the same resources."},
+        {"animal": "Snake", "rating": "Good", "reason": "Mutual admiration of intelligence creates a sophisticated, if sometimes cool, bond."}
+      ],
+      "challenging": [
+        {"animal": "Horse", "rating": "Challenging", "reason": "The Horse's need for freedom clashes with the Rat's need for security. Fundamental rhythm differences."},
+        {"animal": "Goat", "rating": "Challenging", "reason": "The Goat's emotional needs can overwhelm the Rat's practical nature, and vice versa."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Blue", "Gold", "Green"],
+      "numbers": [2, 3],
+      "directions": ["North", "Southeast"],
+      "flowers": ["Lily", "African Violet"]
+    },
+    "fortune2026": {
+      "overall": "A year of strategic positioning and new alliances. The Fire Horse energy activates your social sector, bringing networking opportunities and fresh connections that can reshape your path. Stay open to introductions — someone you meet this year could change your trajectory.",
+      "career": "Promising developments in Q2 and Q4. A mentor figure or unexpected leadership opportunity may emerge in summer. The key is to balance the Horse's impulse for speed with the Rat's natural strategic patience — don't rush, but don't hesitate when the door opens.",
+      "love": "Single Rats may meet someone through work, study, or professional networks — particularly in April, July, and October. Committed Rats should plan a shared long-term goal this year; working toward something together strengthens the bond.",
+      "wealth": "Steady with potential for a windfall in autumn. Avoid speculative investments in spring when the Fire energy peaks and clouds judgment. The most reliable gains come through your existing skills and networks — double down on what you already do well.",
+      "health": "Watch stress levels in February and September when the seasonal transitions amplify Fire's intensity. Regular water intake supports your native Water element against the year's dominant Fire. Swimming, walking near water, and cooling foods help maintain equilibrium.",
+      "keyMonths": [4, 7, 9, 11]
+    },
+    "elementDynamic": "The Rat's native element is Water, which nourishes Wood and is controlled by Earth. In a Fire Horse year (2026), Water and Fire are in natural tension — the Rat's cool intelligence must navigate the year's passionate heat. This is not a year to fight the current, but to channel it strategically.",
+    "daoistTreasure": "Black obsidian, lapis lazuli, or deep blue stones resonate with the Rat's Water nature. A properly matched pendant or bracelet from Longhushan temple workshops supports clarity, protection, and the preservation of your native energy."
+  },
+
+  "ox": {
+    "name": "Ox",
+    "chineseName": "牛 (Niu)",
+    "branch": "Chou",
+    "element": "Earth",
+    "polarity": "Yin",
+    "order": 2,
+    "years": [1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021, 2033],
+    "elementVariants": [
+      {"element": "Wood", "years": [1925, 1985], "description": "More flexible and growth-minded than typical Oxen, with a strong sense of purpose"},
+      {"element": "Fire", "years": [1937, 1997], "description": "More passionate and expressive, with fire driving their legendary persistence"},
+      {"element": "Earth", "years": [1949, 2009], "description": "The most grounded and stable of all Ox variants — deeply reliable and patient"},
+      {"element": "Metal", "years": [1961, 2021], "description": "Exceptionally determined and disciplined, with a sharp mind beneath the calm surface"},
+      {"element": "Water", "years": [1973, 2033], "description": "More intuitive and adaptable than typical Oxen, with hidden depths"}
+    ],
+    "personality": {
+      "overview": "The Ox is the steadfast anchor of the Chinese zodiac. Patient, methodical, and possessed of a quiet strength that others underestimate at their peril, Ox-year people are the ones who show up day after day and build things that last. They don't seek the spotlight, but they earn respect through sheer consistency and integrity.",
+      "traits": [
+        {"icon": "🏔", "name": "Steadfast", "desc": "Unshakeable in their commitments and reliable to the core"},
+        {"icon": "💪", "name": "Determined", "desc": "Once they set a course, they follow through to the end"},
+        {"icon": "🤝", "name": "Loyal", "desc": "Fiercely devoted to family, friends, and causes they believe in"},
+        {"icon": "⏳", "name": "Patient", "desc": "Willing to wait and work for results rather than seeking shortcuts"},
+        {"icon": "🛡", "name": "Honest", "desc": "Straightforward and trustworthy — their word is their bond"},
+        {"icon": "🔨", "name": "Hardworking", "desc": "Legendary work ethic; they derive satisfaction from effort well spent"}
+      ],
+      "strengths": [
+        "Extraordinary persistence — they outwork and outlast",
+        "Calm, steady presence that others lean on in crisis",
+        "High integrity; they do what they say they'll do",
+        "Methodical thinking that catches details others miss",
+        "Natural leadership through example rather than charisma"
+      ],
+      "weaknesses": [
+        "Can be stubborn to the point of rigidity",
+        "Slow to adapt when circumstances demand quick pivots",
+        "May bottle up emotions until they eventually erupt",
+        "Communication can be too blunt, unintentionally hurting others",
+        "Tendency to overwork and neglect their own needs"
+      ]
+    },
+    "career": [
+      {"field": "Engineering & Architecture", "why": "Methodical, precise, and patient — Oxen excel at building things that last"},
+      {"field": "Agriculture & Environmental Work", "why": "Earth-element affinity and patience for long growing cycles"},
+      {"field": "Finance & Accounting", "why": "Trustworthy, detail-oriented, and conservative with resources"},
+      {"field": "Medicine & Healthcare", "why": "Steady hands and a genuine desire to help others endure"},
+      {"field": "Education & Academia", "why": "Patient explainers who take satisfaction in others' slow, steady growth"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Rat", "rating": "Excellent", "reason": "The Rat's quick mind and the Ox's steady strength make a complete team. This is the classic complementary pairing."},
+        {"animal": "Snake", "rating": "Excellent", "reason": "The Snake's wisdom and the Ox's reliability create a bond of deep mutual trust and respect."},
+        {"animal": "Rooster", "rating": "Excellent", "reason": "Both value order, diligence, and doing things properly. A harmonious, well-organized partnership."}
+      ],
+      "good": [
+        {"animal": "Rabbit", "rating": "Good", "reason": "The Rabbit's gentleness softens the Ox's intensity; the Ox provides the stability the Rabbit craves."},
+        {"animal": "Monkey", "rating": "Good", "reason": "An unlikely but dynamic pairing — the Monkey brings excitement, the Ox brings grounding."}
+      ],
+      "challenging": [
+        {"animal": "Goat", "rating": "Challenging", "reason": "Clash of fundamental natures — the Ox's practicality vs. the Goat's emotional world."},
+        {"animal": "Horse", "rating": "Challenging", "reason": "The Horse's restless freedom clashes with the Ox's need for steady routine."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Yellow", "Green", "White"],
+      "numbers": [1, 4],
+      "directions": ["North", "South"],
+      "flowers": ["Tulip", "Peach Blossom"]
+    },
+    "fortune2026": {
+      "overall": "2026 rewards the Ox's natural patience with tangible results. The Fire Horse year brings movement and opportunity, but on the Ox's terms — steady progress rather than sudden leaps. Projects you've been quietly building may finally gain visible traction.",
+      "career": "A year of recognition for past effort. Those in leadership will notice your consistency. Mid-year brings a potential promotion or role expansion. The Fire energy may push you toward more visible work — embrace it even if the spotlight feels unfamiliar.",
+      "love": "Committed Oxen find their relationships deepening through shared practical projects — renovating, planning, building together. Single Oxen may meet someone through work or through friends in March or August. Don't overthink it; let connection develop naturally.",
+      "wealth": "Steady accumulation continues. The Horse year may bring an unexpected opportunity for supplementary income — a side project or consulting role. Avoid the Horse's speculative impulses; your strength is in slow, reliable growth, not quick wins.",
+      "health": "The Fire Horse year can be physically demanding for Earth-element Oxen. Pay attention to joint health and digestive balance. Regular, moderate exercise — walking, swimming, tai chi — serves you better than intense bursts. Rest is productive.",
+      "keyMonths": [3, 6, 8, 12]
+    },
+    "elementDynamic": "The Ox's Earth element is nourished by the Horse year's Fire (Fire produces Earth). This means 2026 is a year where the Ox's natural energy is supported — effort put in now yields amplified returns. However, too much Fire can dry Earth, so balance and rest remain essential.",
+    "daoistTreasure": "Yellow jade, citrine, or earth-toned stones ground and strengthen the Ox's native Earth energy. A sturdy bracelet or pendant in warm, golden materials supports stability, prosperity, and the quiet confidence that is the Ox's birthright."
+  },
+
+  "tiger": {
+    "name": "Tiger",
+    "chineseName": "虎 (Hu)",
+    "branch": "Yin",
+    "element": "Wood",
+    "polarity": "Yang",
+    "order": 3,
+    "years": [1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022, 2034],
+    "elementVariants": [
+      {"element": "Wood", "years": [1974, 2034], "description": "The most classically Tiger — expansive, visionary, and deeply connected to growth and leadership"},
+      {"element": "Fire", "years": [1926, 1986], "description": "Intensely passionate and charismatic, with an almost magnetic presence"},
+      {"element": "Earth", "years": [1938, 1998], "description": "More grounded and practical than typical Tigers, with strong follow-through"},
+      {"element": "Metal", "years": [1950, 2010], "description": "Sharper, more disciplined, and more focused — the warrior Tiger"},
+      {"element": "Water", "years": [1962, 2022], "description": "More intuitive and emotionally perceptive, with hidden strategic depths"}
+    ],
+    "personality": {
+      "overview": "The Tiger is the rebel king of the Chinese zodiac — bold, magnetic, and impossible to ignore. Tigers walk into a room and the room changes. They are natural leaders not because they seek power, but because they radiate a conviction that makes others want to follow. Courage is their defining quality, but it's courage with heart — Tigers fight for causes, for people, for what they believe is right.",
+      "traits": [
+        {"icon": "👑", "name": "Courageous", "desc": "Fearless in the face of challenges; natural risk-takers"},
+        {"icon": "🔥", "name": "Charismatic", "desc": "Magnetic presence that draws people in and inspires loyalty"},
+        {"icon": "🎯", "name": "Ambitious", "desc": "Driven to achieve, lead, and make a visible impact"},
+        {"icon": "💖", "name": "Generous", "desc": "Big-hearted and giving with time, resources, and affection"},
+        {"icon": "⚡", "name": "Impulsive", "desc": "Acts on instinct — sometimes brilliantly, sometimes rashly"},
+        {"icon": "🛡", "name": "Protective", "desc": "Fierce defender of loved ones and principles"}
+      ],
+      "strengths": [
+        "Natural authority — people want to follow a Tiger's lead",
+        "Fearless in the face of obstacles that stop others cold",
+        "Deep sense of justice and willingness to fight for it",
+        "Infectious enthusiasm that energizes teams and projects",
+        "Remarkable resilience — Tigers bounce back from setbacks quickly"
+      ],
+      "weaknesses": [
+        "Impulsiveness that can lead to unnecessary risks",
+        "Authority issues — Tigers chafe under control and can be rebellious",
+        "Emotional volatility — moods can shift dramatically and quickly",
+        "Difficulty with details and follow-through on mundane tasks",
+        "Can dominate conversations and spaces without realizing it"
+      ]
+    },
+    "career": [
+      {"field": "Leadership & Management", "why": "Natural authority and the ability to inspire action in others"},
+      {"field": "Entrepreneurship", "why": "Bold risk-taking and the drive to build something from nothing"},
+      {"field": "Military & Law Enforcement", "why": "Courage, discipline, and a strong sense of justice"},
+      {"field": "Arts & Entertainment", "why": "Magnetic presence and a natural talent for holding attention"},
+      {"field": "Social Justice & Advocacy", "why": "Deep conviction and willingness to fight for causes"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Horse", "rating": "Excellent", "reason": "Both value freedom, adventure, and living life on their own terms. A passionate, dynamic match."},
+        {"animal": "Dog", "rating": "Excellent", "reason": "The Dog's loyalty grounds the Tiger's restlessness; the Tiger gives the Dog courage to explore."},
+        {"animal": "Pig", "rating": "Excellent", "reason": "The Pig's warmth and acceptance soothe the Tiger's intensity. Genuine, lasting harmony."}
+      ],
+      "good": [
+        {"animal": "Dragon", "rating": "Good", "reason": "Two powerful signs — when aligned, unstoppable. When not, explosive. Dynamic and exciting."},
+        {"animal": "Rabbit", "rating": "Good", "reason": "The Rabbit's gentleness complements the Tiger's intensity. A calm harbor for the Tiger's storms."}
+      ],
+      "challenging": [
+        {"animal": "Monkey", "rating": "Challenging", "reason": "The Monkey's trickster energy clashes with the Tiger's directness. Misunderstandings abound."},
+        {"animal": "Snake", "rating": "Challenging", "reason": "The Snake's indirect approach frustrates the straightforward Tiger. Fundamental communication gap."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Green", "Blue", "Orange"],
+      "numbers": [1, 3, 4],
+      "directions": ["East", "North"],
+      "flowers": ["Cineraria", "Anthurium"]
+    },
+    "fortune2026": {
+      "overall": "2026 is a year of acceleration for the Tiger. The Fire Horse's energy amplifies your natural boldness — this is not a year to play small. But the Horse's speed combined with the Tiger's impulsiveness means you need to channel your fire deliberately rather than scattering it.",
+      "career": "A major opportunity or turning point arrives in the first half of the year. Say yes to visible roles. The Fire energy supports you in the spotlight. Watch for a competitive situation in autumn — your natural courage gives you the edge, but strategy matters more than force.",
+      "love": "Passion runs high in 2026. Single Tigers may find a transformative connection — possibly with someone from a different background or culture. Committed Tigers should channel the year's fire into shared adventure rather than letting restlessness create unnecessary conflict.",
+      "wealth": "Strong potential for financial growth, particularly through entrepreneurial ventures or performance-based work. The Horse year favors bold moves, but the Tiger's tendency to leap before looking is amplified — do your due diligence, especially in spring.",
+      "health": "The Fire-on-Wood dynamic of 2026 (Horse Fire + Tiger Wood) means your energy may burn hot and fast. Prioritize cooling practices — swimming, green vegetables, and adequate sleep. Watch for burnout signals in May and October.",
+      "keyMonths": [2, 5, 8, 10]
+    },
+    "elementDynamic": "The Tiger's Wood element feeds the Horse year's Fire — a productive, generative relationship. Wood gives fuel to Fire, meaning the Tiger's natural energy is in high demand in 2026. This is a year of output, visibility, and impact. But Wood that feeds too much fire gets consumed — protect your reserves.",
+    "daoistTreasure": "Green jade, malachite, or emerald-hued stones resonate with the Tiger's Wood nature. A bold pendant or statement piece that reflects your natural confidence while providing the grounding that prevents burnout."
+  },
+
+  "rabbit": {
+    "name": "Rabbit",
+    "chineseName": "兔 (Tu)",
+    "branch": "Mao",
+    "element": "Wood",
+    "polarity": "Yin",
+    "order": 4,
+    "years": [1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023, 2035],
+    "elementVariants": [
+      {"element": "Wood", "years": [1975, 2035], "description": "The most classically Rabbit — gentle, artistic, and deeply connected to beauty and harmony"},
+      {"element": "Fire", "years": [1927, 1987], "description": "More outgoing and passionate than typical Rabbits, with a warm, magnetic quality"},
+      {"element": "Earth", "years": [1939, 1999], "description": "Extraordinarily grounded and reliable, with the Rabbit's grace plus Earth's stability"},
+      {"element": "Metal", "years": [1951, 2011], "description": "Sharper and more determined than typical Rabbits, with a surprising inner steel"},
+      {"element": "Water", "years": [1963, 2023], "description": "Deeply intuitive and emotionally perceptive, with almost psychic sensitivity"}
+    ],
+    "personality": {
+      "overview": "The Rabbit is the diplomat of the Chinese zodiac — elegant, gentle, and possessed of a quiet grace that makes others feel instantly at ease. Rabbits navigate the world through emotional intelligence rather than force, reading rooms and hearts with remarkable precision. They are the peacemakers, the artists, the ones who make life more beautiful just by being in it.",
+      "traits": [
+        {"icon": "🕊", "name": "Gentle", "desc": "Kind-hearted and considerate in all their dealings"},
+        {"icon": "🎨", "name": "Artistic", "desc": "Natural eye for beauty and a love of refined things"},
+        {"icon": "🧿", "name": "Intuitive", "desc": "Reads people and situations with remarkable accuracy"},
+        {"icon": "🤝", "name": "Diplomatic", "desc": "Skilled at navigating conflict and finding common ground"},
+        {"icon": "💎", "name": "Refined", "desc": "Appreciation for quality, elegance, and the finer things"},
+        {"icon": "🦊", "name": "Cautious", "desc": "Careful and calculated — rarely makes a move without thinking it through"}
+      ],
+      "strengths": [
+        "Exceptional emotional intelligence and empathy",
+        "Natural talent for creating harmony in groups",
+        "Good taste and an eye for quality that others trust",
+        "Patient and careful — rarely makes preventable mistakes",
+        "Loyal and devoted partner once trust is established"
+      ],
+      "weaknesses": [
+        "Can be overly cautious, missing opportunities through hesitation",
+        "Conflict avoidance that lets problems fester rather than resolving them",
+        "Tendency toward superficiality — preferring pleasant surfaces to difficult depths",
+        "Can be moody and withdrawn when feeling unsafe or unappreciated",
+        "May prioritize comfort over growth"
+      ]
+    },
+    "career": [
+      {"field": "Design & Aesthetics", "why": "Natural eye for beauty — interior design, fashion, graphic arts"},
+      {"field": "Diplomacy & Mediation", "why": "Instinctive peacemaker who finds common ground others miss"},
+      {"field": "Counseling & Therapy", "why": "Deep empathy and the ability to make others feel truly heard"},
+      {"field": "Hospitality & Events", "why": "Grace under pressure and a gift for making spaces feel welcoming"},
+      {"field": "Writing & Literature", "why": "Sensitive observers with a refined sense of language and narrative"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Goat", "rating": "Excellent", "reason": "Two gentle souls who understand each other's need for beauty, peace, and emotional safety."},
+        {"animal": "Pig", "rating": "Excellent", "reason": "The Pig's warmth and generosity perfectly complement the Rabbit's grace and refinement."},
+        {"animal": "Dog", "rating": "Excellent", "reason": "The Dog's loyalty gives the Rabbit security; the Rabbit's gentleness soothes the Dog's anxieties."}
+      ],
+      "good": [
+        {"animal": "Rabbit", "rating": "Good", "reason": "Two Rabbits create a beautiful, harmonious home — but may avoid necessary conflicts."},
+        {"animal": "Tiger", "rating": "Good", "reason": "The Tiger's boldness and the Rabbit's grace make an elegant, if occasionally tense, pair."}
+      ],
+      "challenging": [
+        {"animal": "Rooster", "rating": "Challenging", "reason": "The Rooster's criticism wounds the sensitive Rabbit; the Rabbit's indirectness frustrates the Rooster."},
+        {"animal": "Rat", "rating": "Challenging", "reason": "The Rat's pragmatism can feel cold to the Rabbit, whose emotional needs may seem excessive to the Rat."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Pink", "Purple", "Blue"],
+      "numbers": [3, 4, 6],
+      "directions": ["East", "Southeast"],
+      "flowers": ["Jasmine", "Snapdragon"]
+    },
+    "fortune2026": {
+      "overall": "2026 asks the Rabbit to step forward more boldly than usual. The Fire Horse year's energy is more forceful than the Rabbit's natural comfort zone, but it brings opportunities that require courage. Growth this year comes through saying yes to things that slightly scare you.",
+      "career": "Collaboration is the key. The Horse year brings partnership opportunities — a co-founder, a creative collaborator, or a mentor who opens doors. Don't retreat into solo work; the magic in 2026 is in the connections you make. Late spring and early autumn are particularly active.",
+      "love": "A promising year for Rabbit relationships. Single Rabbits may find a connection through creative or cultural events. Committed Rabbits benefit from the Fire energy — it warms the relationship, encourages more open communication, and may spark a renewed sense of romance.",
+      "wealth": "Moderate but steady. The Rabbit's natural caution serves well in a Fire Horse year when others may overreach. Focus on preserving and gradually growing what you have. A creative side project could become a meaningful income stream by year's end.",
+      "health": "The Horse year can feel energetically demanding for the gentle Rabbit. Prioritize rest and don't let the year's pace push you past your limits. Gentle movement — yoga, walking, swimming — maintains vitality without depleting reserves. Watch emotional health in June.",
+      "keyMonths": [3, 5, 9, 11]
+    },
+    "elementDynamic": "The Rabbit's Yin Wood is nourished by the Horse's Fire — a supportive relationship. But Yin Wood is more delicate than Yang Wood, and excessive Fire can scorch rather than warm. The Rabbit in 2026 must learn to stand near the fire without being consumed by it.",
+    "daoistTreasure": "Rose quartz, amethyst, or lavender jade support the Rabbit's gentle nature. A delicate pendant or bracelet in soft, feminine tones enhances the Rabbit's natural grace while providing emotional protection."
+  },
+
+  "dragon": {
+    "name": "Dragon",
+    "chineseName": "龙 (Long)",
+    "branch": "Chen",
+    "element": "Earth",
+    "polarity": "Yang",
+    "order": 5,
+    "years": [1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, 2036],
+    "elementVariants": [
+      {"element": "Wood", "years": [1964, 2024], "description": "Creative and expansive, with the Dragon's power channeled into growth and vision"},
+      {"element": "Fire", "years": [1976, 2036], "description": "The most charismatic and intense of Dragons — a natural leader who commands attention"},
+      {"element": "Earth", "years": [1928, 1988], "description": "The most grounded Dragon variant, with power tempered by patience and stability"},
+      {"element": "Metal", "years": [1940, 2000], "description": "Sharp, decisive, and formidable — the warrior Dragon with an iron will"},
+      {"element": "Water", "years": [1952, 2012], "description": "More intuitive and adaptable, with the Dragon's power expressed through wisdom rather than force"}
+    ],
+    "personality": {
+      "overview": "The Dragon is the most powerful and celebrated sign in the Chinese zodiac — the only mythical creature among the twelve. Dragons carry an aura of destiny. They are magnetic, confident, and possessed of a natural authority that others feel immediately. Wherever a Dragon goes, they are noticed. Whatever a Dragon does, they do it with intensity, passion, and an almost supernatural belief in their own purpose.",
+      "traits": [
+        {"icon": "👑", "name": "Commanding", "desc": "Natural authority — people instinctively look to Dragons for leadership"},
+        {"icon": "🔥", "name": "Passionate", "desc": "Brings full intensity to everything they care about"},
+        {"icon": "🎯", "name": "Ambitious", "desc": "Driven by a sense of destiny and the need to make a mark"},
+        {"icon": "✨", "name": "Charismatic", "desc": "Magnetic energy that draws followers, admirers, and opportunities"},
+        {"icon": "💪", "name": "Confident", "desc": "Unshakeable belief in their own capability and purpose"},
+        {"icon": "🌟", "name": "Visionary", "desc": "Sees possibilities others can't imagine and inspires others toward them"}
+      ],
+      "strengths": [
+        "Extraordinary leadership presence and personal magnetism",
+        "Fearless in pursuit of what they believe in",
+        "Generous — Dragons share their success and lift others with them",
+        "Natural innovator who challenges stale conventions",
+        "Resilient — Dragons bounce back from failure with their confidence intact"
+      ],
+      "weaknesses": [
+        "Can be arrogant or dismissive of those they consider lesser",
+        "Temper that can flare dramatically when challenged",
+        "Tendency to dominate spaces and conversations",
+        "May struggle with the patient, unglamorous work of maintenance",
+        "High expectations of others that can feel exhausting"
+      ]
+    },
+    "career": [
+      {"field": "CEO & Founder Roles", "why": "Born to lead — Dragons thrive at the top of any organization"},
+      {"field": "Entertainment & Media", "why": "Magnetic presence and a natural ability to hold the public's attention"},
+      {"field": "Politics & Public Service", "why": "Vision, charisma, and a genuine desire to make a large-scale impact"},
+      {"field": "Innovation & Technology", "why": "Bold thinking and willingness to challenge established paradigms"},
+      {"field": "Arts & Creative Direction", "why": "Powerful aesthetic sense and the drive to create something original"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Rat", "rating": "Excellent", "reason": "The Rat's intelligence and the Dragon's power make a formidable team. Mutual respect and ambition."},
+        {"animal": "Monkey", "rating": "Excellent", "reason": "Two powerful, clever signs that amplify each other's strengths. Dynamic, exciting, and mutually inspiring."},
+        {"animal": "Rooster", "rating": "Excellent", "reason": "The Rooster's precision and the Dragon's vision — each supplies what the other lacks."}
+      ],
+      "good": [
+        {"animal": "Tiger", "rating": "Good", "reason": "Two apex personalities — thrilling when aligned, explosive when not. Never boring."},
+        {"animal": "Snake", "rating": "Good", "reason": "The Snake's wisdom tempers the Dragon's force. A sophisticated, powerful pairing."}
+      ],
+      "challenging": [
+        {"animal": "Dog", "rating": "Challenging", "reason": "The Dog's caution and the Dragon's boldness are in fundamental tension. Trust is hard-won."},
+        {"animal": "Rabbit", "rating": "Challenging", "reason": "The gentle Rabbit can feel overwhelmed by the Dragon's intensity, and the Dragon may see the Rabbit as weak."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Gold", "Silver", "Purple"],
+      "numbers": [1, 6, 7],
+      "directions": ["East", "North"],
+      "flowers": ["Bleeding Heart", "Dragon Root"]
+    },
+    "fortune2026": {
+      "overall": "2026 is a year of consolidation for the Dragon. After the dynamic Dragon year of 2024, the Fire Horse year asks you to harvest what you planted rather than starting new ventures. This is a year to build depth, strengthen foundations, and let your existing projects gain momentum.",
+      "career": "The Horse year brings recognition for work already done. A title change, public acknowledgment, or expanded responsibility is likely. Resist the urge to change direction — the power in 2026 is in deepening rather than broadening. Mentor others; your experience is valuable currency now.",
+      "love": "Dragons in relationships find 2026 to be a year of renewed passion — the Fire Horse's heat rekindles what routine may have cooled. Single Dragons attract attention easily this year, but discernment matters. Not everyone drawn to your fire is worthy of it.",
+      "wealth": "Strong year for financial growth, particularly through existing channels rather than new ventures. The Dragon's natural confidence combined with the Horse's momentum creates favorable conditions for investment and asset growth. Avoid lending money in autumn.",
+      "health": "The Dragon's powerful constitution is generally resilient, but the Fire Horse year can overheat an already fiery system. Watch for inflammatory conditions, blood pressure, and stress-related symptoms. Cooling foods, adequate hydration, and time near water are protective.",
+      "keyMonths": [1, 4, 8, 12]
+    },
+    "elementDynamic": "The Dragon's Earth element is produced by the Horse year's Fire — a nourishing relationship. Fire creates Earth, meaning the Dragon's core energy is being fed by the year. This makes 2026 a year of natural strengthening and accumulation rather than struggle.",
+    "daoistTreasure": "Gold-toned jewelry, citrine, or imperial topaz resonate with the Dragon's regal nature. A bold, statement piece worthy of the Dragon's presence — ideally from Longhushan, the Dragon-Tiger mountain sacred to Daoist tradition."
+  },
+
+  "snake": {
+    "name": "Snake",
+    "chineseName": "蛇 (She)",
+    "branch": "Si",
+    "element": "Fire",
+    "polarity": "Yin",
+    "order": 6,
+    "years": [1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, 2025, 2037],
+    "elementVariants": [
+      {"element": "Wood", "years": [1965, 2025], "description": "More growth-oriented and outwardly expressive than typical Snakes"},
+      {"element": "Fire", "years": [1977, 2037], "description": "The most intense and passionate Snake — deeply charismatic and perceptive"},
+      {"element": "Earth", "years": [1929, 1989], "description": "The most grounded and practical Snake, with wisdom expressed through tangible results"},
+      {"element": "Metal", "years": [1941, 2001], "description": "Sharper, more decisive, and more ambitious — the Snake with a blade's edge"},
+      {"element": "Water", "years": [1953, 2013], "description": "The most intuitive and deeply wise Snake — almost psychic in their perceptions"}
+    ],
+    "personality": {
+      "overview": "The Snake is the philosopher of the Chinese zodiac — deep, intuitive, and possessed of a wisdom that others sense before they can articulate it. Snakes move through the world with quiet elegance, observing more than they reveal, understanding more than they say. They are the strategists, the thinkers, the ones whose counsel you seek when surface-level answers won't do.",
+      "traits": [
+        {"icon": "🧘", "name": "Wise", "desc": "Deep, intuitive understanding of people and situations"},
+        {"icon": "🎯", "name": "Strategic", "desc": "Thinks several moves ahead; patient and calculating"},
+        {"icon": "✨", "name": "Elegant", "desc": "Natural grace and a refined, sophisticated presence"},
+        {"icon": "🔮", "name": "Intuitive", "desc": "Almost psychic ability to read people and sense what's unspoken"},
+        {"icon": "💎", "name": "Discerning", "desc": "High standards and a refined sense of value and quality"},
+        {"icon": "🤫", "name": "Private", "desc": "Guards their inner world carefully; reveals themselves slowly"}
+      ],
+      "strengths": [
+        "Exceptional depth of insight and strategic thinking",
+        "Calm under pressure — Snakes think clearly when others panic",
+        "Strong intuition that serves as a reliable inner compass",
+        "Sophisticated taste and an appreciation for the finer things",
+        "Fiercely loyal once someone has earned their trust"
+      ],
+      "weaknesses": [
+        "Can be secretive to the point of creating distance in relationships",
+        "Possessiveness and jealousy when they feel their bond is threatened",
+        "Tendency to overthink and become trapped in analysis paralysis",
+        "May hold grudges longer than is healthy",
+        "Can come across as cold or calculating to those who don't know them"
+      ]
+    },
+    "career": [
+      {"field": "Strategy & Consulting", "why": "Natural ability to see patterns and think several moves ahead"},
+      {"field": "Psychology & Research", "why": "Deep intuitive understanding of human nature and motivation"},
+      {"field": "Finance & Investment", "why": "Patient, calculating, and skilled at reading market psychology"},
+      {"field": "Academia & Philosophy", "why": "Love of deep thinking and uncovering hidden truths"},
+      {"field": "Art & Design", "why": "Sophisticated aesthetic sense and appreciation for refinement"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Rooster", "rating": "Excellent", "reason": "The Rooster's precision and the Snake's wisdom form a couple of exceptional competence and mutual admiration."},
+        {"animal": "Ox", "rating": "Excellent", "reason": "The Ox's steady reliability gives the Snake security; the Snake's wisdom guides the Ox's efforts. Deep trust."},
+        {"animal": "Monkey", "rating": "Good", "reason": "Two of the zodiac's cleverest signs — an intellectually lively and mutually stimulating match."}
+      ],
+      "good": [
+        {"animal": "Dragon", "rating": "Good", "reason": "The Dragon's power and the Snake's wisdom — a sophisticated and formidable pairing."},
+        {"animal": "Snake", "rating": "Good", "reason": "Two Snakes understand each other's depth but may struggle with double the intensity of emotion."}
+      ],
+      "challenging": [
+        {"animal": "Tiger", "rating": "Challenging", "reason": "The Tiger's directness clashes with the Snake's indirectness. Fundamental communication and trust issues."},
+        {"animal": "Pig", "rating": "Challenging", "reason": "Opposite signs with opposing values — the Pig's openness vs. the Snake's guardedness."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Red", "Green", "Black"],
+      "numbers": [2, 8, 9],
+      "directions": ["Southeast", "South"],
+      "flowers": ["Orchid", "Cactus"]
+    },
+    "fortune2026": {
+      "overall": "2026 is a year of strategic advancement for the Snake. The Fire Horse amplifies your native Fire element — you'll feel more energized, more visible, and more motivated to act. The key is to use this energy strategically rather than scattering it. Focus on one or two high-leverage moves.",
+      "career": "A year of quiet but significant advancement. Behind-the-scenes work pays off visibly. Someone influential notices your competence — be ready to articulate your value when the moment comes, likely in late spring. A lateral move may prove more strategic than a vertical one.",
+      "love": "The Fire Horse year brings warmth to Snake relationships that may have grown cool. Single Snakes attract partners drawn to their depth and mystery. Let someone in — the year's energy supports vulnerability more than your natural caution suggests. Key months: May, August, December.",
+      "wealth": "The Snake's financial instincts are sharp in 2026. Research-intensive investments favor you. Real estate or long-term assets appreciate well. Avoid the Horse's gambling impulse — your edge is in patient, well-researched moves, not speculation.",
+      "health": "The Fire-on-Fire dynamic of 2026 can overheat the Snake's system. Monitor heart health, blood pressure, and stress levels. The Snake's tendency to internalize stress is amplified — make conscious efforts to release tension through movement, creative expression, or water-based activities.",
+      "keyMonths": [3, 5, 8, 11]
+    },
+    "elementDynamic": "The Snake is a Fire sign entering a Fire year — energy amplifies energy. This is a year of heightened intuition, sharper perception, and more personal power. But double Fire can burn too hot; the Snake must balance intensity with periods of deliberate cooling and rest.",
+    "daoistTreasure": "Red carnelian, garnet, or deep green jade resonate with the Snake's Fire nature while providing the grounding that prevents burnout. A refined, understated piece that reflects the Snake's sophistication."
+  },
+
+  "horse": {
+    "name": "Horse",
+    "chineseName": "马 (Ma)",
+    "branch": "Wu",
+    "element": "Fire",
+    "polarity": "Yang",
+    "order": 7,
+    "years": [1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026, 2038],
+    "elementVariants": [
+      {"element": "Wood", "years": [1954, 2014], "description": "More growth-oriented and principled than typical Horses, with strong ideals"},
+      {"element": "Fire", "years": [1966, 2026], "description": "The most classically Horse — passionate, free-spirited, and almost impossible to contain"},
+      {"element": "Earth", "years": [1978, 2038], "description": "More grounded and reliable than typical Horses, with follow-through to match their energy"},
+      {"element": "Metal", "years": [1930, 1990], "description": "Sharper, more determined, and more disciplined — the Horse with a mission"},
+      {"element": "Water", "years": [1942, 2002], "description": "More emotionally perceptive and adaptable than typical Horses"}
+    ],
+    "personality": {
+      "overview": "The Horse is the free spirit of the Chinese zodiac — energetic, passionate, and driven by an almost physical need for movement, freedom, and self-expression. Horses can't be caged. They bring warmth, enthusiasm, and an infectious energy to every room they enter. They are the adventurers, the explorers, the ones who remind the rest of us that life is meant to be lived, not just managed.",
+      "traits": [
+        {"icon": "🏃", "name": "Energetic", "desc": "Boundless vitality and an almost physical need for movement"},
+        {"icon": "🔥", "name": "Passionate", "desc": "Brings full intensity to work, love, and play"},
+        {"icon": "🗽", "name": "Independent", "desc": "Fierce need for freedom and self-determination"},
+        {"icon": "😄", "name": " cheerful", "desc": "Infectious optimism and a natural ability to lift spirits"},
+        {"icon": "💬", "name": "Expressive", "desc": "Communicates openly, directly, and with warmth"},
+        {"icon": "⚡", "name": "Impulsive", "desc": "Acts on instinct — for better and sometimes for worse"}
+      ],
+      "strengths": [
+        "Infectious energy and enthusiasm that motivates everyone around them",
+        "Remarkable resilience — Horses bounce back from setbacks quickly",
+        "Natural social connector who brings people together",
+        "Courage to take risks and pursue unconventional paths",
+        "Honest and direct — you always know where you stand with a Horse"
+      ],
+      "weaknesses": [
+        "Impulsiveness that can lead to rushed decisions and regrets",
+        "Difficulty committing — the Horse's need for freedom wars with the demands of stability",
+        "Can be emotionally volatile, with moods that shift as quickly as a gallop",
+        "Tendency to leave projects unfinished when the initial excitement fades",
+        "May trample others' feelings in their rush toward what's next"
+      ]
+    },
+    "career": [
+      {"field": "Sales & Business Development", "why": "Natural charisma and energy that drives deals and opens doors"},
+      {"field": "Travel & Hospitality", "why": "Love of movement, new places, and connecting with diverse people"},
+      {"field": "Sports & Athletics", "why": "Physical energy and competitive drive find natural expression"},
+      {"field": "Media & Communications", "why": "Expressive, direct, and naturally skilled at holding attention"},
+      {"field": "Event Planning & Production", "why": "Thrives on the energy of making things happen in real time"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Tiger", "rating": "Excellent", "reason": "Both value freedom, passion, and living at full intensity. A thrilling, dynamic pair."},
+        {"animal": "Goat", "rating": "Excellent", "reason": "The Goat's gentleness soothes the Horse's intensity; the Horse brings excitement to the Goat's life."},
+        {"animal": "Dog", "rating": "Excellent", "reason": "The Dog's loyalty gives the Horse a home to return to; the Horse brings adventure to the Dog's world."}
+      ],
+      "good": [
+        {"animal": "Dragon", "rating": "Good", "reason": "Two powerful, charismatic signs — magnetic when aligned, volatile when not."},
+        {"animal": "Snake", "rating": "Good", "reason": "The Snake's depth intrigues the Horse; the Horse's warmth draws the Snake out."}
+      ],
+      "challenging": [
+        {"animal": "Rat", "rating": "Challenging", "reason": "Fundamental clash — the Horse's freedom vs. the Rat's need for security and control."},
+        {"animal": "Ox", "rating": "Challenging", "reason": "The Ox's slow, steady pace frustrates the Horse; the Horse's restlessness exhausts the Ox."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Red", "Purple", "Green"],
+      "numbers": [2, 3, 7],
+      "directions": ["South", "East"],
+      "flowers": ["Rose", "Sunflower"]
+    },
+    "fortune2026": {
+      "overall": "2026 is YOUR year, Horse. As the ruling sign, you are in the spotlight — this is a year of personal power, visibility, and accelerated forward motion. The universe is essentially handing you the reins. But with great energy comes great responsibility: channel your fire, don't let it scatter.",
+      "career": "A landmark year professionally. The Horse in a Horse year is magnetic — opportunities come to you rather than you chasing them. A promotion, new role, or entrepreneurial breakthrough is likely by summer. The risk is overconfidence; take the opportunities, but don't overcommit.",
+      "love": "Passion runs at maximum intensity. Single Horses attract partners easily but be discerning — your natural charisma is amplified, and not everyone who approaches has good intentions. Committed Horses should be mindful that independence and partnership need conscious balance in a year that favors the self.",
+      "wealth": "Strong financial energy, particularly from performance-based work and entrepreneurial ventures. The Horse year favors bold, well-calculated moves. But Horse-on-Horse energy can mean spending as fast as you earn — conscious budgeting preserves the gains.",
+      "health": "With double Fire energy (Horse sign + Horse year), overheating is the primary health risk. Prioritize cooling practices: swimming, evening walks, meditation, and hydration. Watch for burnout signals — your energy feels limitless but it is not. Schedule rest as seriously as you schedule work.",
+      "keyMonths": [1, 5, 7, 12]
+    },
+    "elementDynamic": "The Horse is Fire, and 2026 is a Fire Horse year — double Fire. This creates exceptional energy and magnetism but also heightened risk of burnout, impatience, and emotional volatility. The Horse's task in 2026 is to channel this amplified fire toward meaningful goals rather than letting it burn in all directions.",
+    "daoistTreasure": "Red jasper, fire agate, or carnelian amplify the Horse's natural Fire in a controlled way. For balance, consider obsidian or hematite to ground excess energy. A bold bracelet or pendant worn during key months channels the year's power constructively."
+  },
+
+  "goat": {
+    "name": "Goat",
+    "chineseName": "羊 (Yang)",
+    "branch": "Wei",
+    "element": "Earth",
+    "polarity": "Yin",
+    "order": 8,
+    "years": [1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027, 2039],
+    "elementVariants": [
+      {"element": "Wood", "years": [1955, 2015], "description": "More growth-oriented and principled than typical Goats, with strong creative direction"},
+      {"element": "Fire", "years": [1967, 2027], "description": "Warmer, more expressive, and more openly passionate than other Goats"},
+      {"element": "Earth", "years": [1979, 2039], "description": "The most grounded, stable, and nurturing of all Goat variants"},
+      {"element": "Metal", "years": [1931, 1991], "description": "More determined and structured than typical Goats, with hidden reserves of strength"},
+      {"element": "Water", "years": [1943, 2003], "description": "Deeply intuitive and emotionally perceptive — the most sensitive Goat variant"}
+    ],
+    "personality": {
+      "overview": "The Goat is the artist of the Chinese zodiac — gentle, creative, and possessed of a tender heart that feels the world deeply. Goats make life more beautiful. They are the ones who notice the quality of light at golden hour, who remember your favorite flower, who create spaces that feel like havens. Their sensitivity is their superpower — it makes them exceptional creators, caregivers, and companions.",
+      "traits": [
+        {"icon": "🎨", "name": "Creative", "desc": "Natural artistic sensibility and a love of beauty in all forms"},
+        {"icon": "💝", "name": "Gentle", "desc": "Kind-hearted and tender in their treatment of others"},
+        {"icon": "🤗", "name": "Nurturing", "desc": "Instinctive caregiver who makes others feel safe and cherished"},
+        {"icon": "😌", "name": "Peaceful", "desc": "Seeks harmony and avoids unnecessary conflict"},
+        {"icon": "🎭", "name": "Sensitive", "desc": "Deeply attuned to emotional atmospheres and others' feelings"},
+        {"icon": "💭", "name": "Imaginative", "desc": "Rich inner world and a gift for seeing what could be"}
+      ],
+      "strengths": [
+        "Exceptional creative and aesthetic sensibility",
+        "Deep empathy — others feel truly seen and understood by Goats",
+        "Natural talent for creating warm, beautiful environments",
+        "Gentle persistence — Goats may bend but they rarely break",
+        "Loyal and devoted in relationships once they feel secure"
+      ],
+      "weaknesses": [
+        "Can be overly dependent on others' approval and reassurance",
+        "Tendency toward pessimism and worry when feeling insecure",
+        "Conflict avoidance that lets problems accumulate unaddressed",
+        "May struggle with practical, hard-edged decisions",
+        "Can be moody and withdrawn, especially when creativity is blocked"
+      ]
+    },
+    "career": [
+      {"field": "Arts & Design", "why": "Natural creative vision and an eye for beauty — painting, design, music, fashion"},
+      {"field": "Healthcare & Healing", "why": "Nurturing instinct and genuine care for others' wellbeing"},
+      {"field": "Education & Childcare", "why": "Gentle patience and the ability to create safe learning environments"},
+      {"field": "Landscape & Interior Design", "why": "Earth element affinity for creating harmonious physical spaces"},
+      {"field": "Writing & Poetry", "why": "Rich inner world and sensitivity to language and emotion"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Rabbit", "rating": "Excellent", "reason": "Two gentle, artistic souls who create a beautiful, peaceful life together. Deep mutual understanding."},
+        {"animal": "Horse", "rating": "Excellent", "reason": "The Horse brings excitement and energy; the Goat brings warmth and beauty. Perfect complement."},
+        {"animal": "Pig", "rating": "Excellent", "reason": "The Pig's generosity and the Goat's gentleness create a home full of warmth and comfort."}
+      ],
+      "good": [
+        {"animal": "Monkey", "rating": "Good", "reason": "The Monkey's cleverness entertains the Goat; the Goat's warmth softens the Monkey's sharp edges."},
+        {"animal": "Dragon", "rating": "Good", "reason": "The Dragon's power protects the sensitive Goat, who in turn provides the emotional depth the Dragon lacks."}
+      ],
+      "challenging": [
+        {"animal": "Ox", "rating": "Challenging", "reason": "Clash of fundamental natures — the Ox's practicality vs. the Goat's emotional needs. Mutual frustration."},
+        {"animal": "Rat", "rating": "Challenging", "reason": "The Rat's calculation feels cold to the sensitive Goat; the Goat's emotionality feels excessive to the Rat."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Purple", "Green", "Red"],
+      "numbers": [2, 7, 9],
+      "directions": ["South", "East"],
+      "flowers": ["Carnation", "Iris"]
+    },
+    "fortune2026": {
+      "overall": "2026 brings creative breakthroughs and emotional deepening for the Goat. The Fire Horse year's energy warms your native Earth, fueling creative output and bringing visibility to your talents. This is a year to share your gifts more publicly — the world is ready to receive them.",
+      "career": "Your creative work gains traction. A project you've been quietly developing may find its audience. Collaboration is favored over solo work — the Horse year brings partners who complement your skills. Mid-year is particularly active for career moves or artistic launches.",
+      "love": "A warm year for Goat relationships. The Fire Horse's passion rekindles romance. Single Goats may find love through creative, spiritual, or cultural communities. Committed Goats feel the relationship deepen — shared creative or home projects strengthen the bond.",
+      "wealth": "Steady rather than spectacular. The Goat's natural caution is an asset in a year when others may overreach. Income through creative or caregiving work is favored. A home-related investment or improvement brings long-term value.",
+      "health": "The Fire Horse year can feel energetically demanding for the gentle Goat. Guard your emotional energy — avoid draining people and situations. Gentle, consistent exercise (walking, yoga, swimming) maintains vitality. Watch mood and anxiety levels in March and October.",
+      "keyMonths": [4, 6, 9, 11]
+    },
+    "elementDynamic": "The Goat's Earth is nourished by the Horse year's Fire (Fire produces Earth). This is a productive, supportive relationship — the Goat's natural creative energy is being fed by the year. Effort put in now yields amplified creative returns. But too much Fire can dry Earth, so emotional self-care remains essential.",
+    "daoistTreasure": "Amethyst, rose quartz, or lavender jade resonate with the Goat's gentle, creative nature. A soft, artistic piece that reflects your aesthetic sensibility — perhaps a delicate pendant in lavender or rose tones."
+  },
+
+  "monkey": {
+    "name": "Monkey",
+    "chineseName": "猴 (Hou)",
+    "branch": "Shen",
+    "element": "Metal",
+    "polarity": "Yang",
+    "order": 9,
+    "years": [1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028, 2040],
+    "elementVariants": [
+      {"element": "Wood", "years": [1944, 2004], "description": "More principled and growth-oriented than typical Monkeys, with strong ideals"},
+      {"element": "Fire", "years": [1956, 2016], "description": "The most charismatic and entertaining Monkey — a natural performer"},
+      {"element": "Earth", "years": [1968, 2028], "description": "More grounded and reliable than typical Monkeys, with follow-through to match their cleverness"},
+      {"element": "Metal", "years": [1980, 2040], "description": "The sharpest and most strategic Monkey — intellectual, precise, and formidable"},
+      {"element": "Water", "years": [1932, 1992], "description": "More intuitive and adaptable — the Monkey whose cleverness is expressed through emotional intelligence"}
+    ],
+    "personality": {
+      "overview": "The Monkey is the genius trickster of the Chinese zodiac — brilliant, witty, and possessed of a mental agility that leaves others catching up. Monkeys are the problem-solvers, the innovators, the ones who find the angle that no one else saw. They move through the world with a playful intelligence that is both charming and formidable. Underestimate a Monkey at your peril.",
+      "traits": [
+        {"icon": "🧠", "name": "Brilliant", "desc": "Exceptional intellectual agility and creative problem-solving"},
+        {"icon": "😄", "name": "Witty", "desc": "Quick humor and a playful intelligence that entertains and disarms"},
+        {"icon": "🎯", "name": "Strategic", "desc": "Always thinking several moves ahead; master of the long game"},
+        {"icon": "🔄", "name": "Versatile", "desc": "Adapts to any situation and learns new skills with remarkable speed"},
+        {"icon": "🎭", "name": "Charismatic", "desc": "Natural charm and the ability to win people over effortlessly"},
+        {"icon": "🔍", "name": "Curious", "desc": "Insatiable appetite for knowledge, novelty, and challenge"}
+      ],
+      "strengths": [
+        "Exceptional intelligence — learns faster than almost anyone else in the room",
+        "Creative problem-solving that finds solutions others miss entirely",
+        "Social genius — can connect with anyone and navigate any social situation",
+        "Remarkable resilience and adaptability in the face of change",
+        "Natural innovator who sees better ways to do everything"
+      ],
+      "weaknesses": [
+        "Can be manipulative — intelligence without integrity becomes cunning",
+        "Easily bored — may abandon projects, jobs, or relationships when novelty fades",
+        "Overconfidence that leads to underestimating risks or opponents",
+        "May treat life as a game, hurting those who take things more seriously",
+        "Restlessness that prevents deep mastery in any single area"
+      ]
+    },
+    "career": [
+      {"field": "Technology & Innovation", "why": "Natural aptitude for complex systems and creative problem-solving"},
+      {"field": "Entertainment & Comedy", "why": "Quick wit and magnetic charisma that draws audiences"},
+      {"field": "Finance & Trading", "why": "Strategic thinking and pattern recognition applied to markets"},
+      {"field": "Science & Research", "why": "Insatiable curiosity and the ability to see connections others miss"},
+      {"field": "Marketing & Advertising", "why": "Deep understanding of human psychology and social dynamics"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Rat", "rating": "Excellent", "reason": "Two of the zodiac's cleverest minds in perfect sync. Mutual admiration and intellectual stimulation."},
+        {"animal": "Dragon", "rating": "Excellent", "reason": "The Dragon's power and the Monkey's intelligence create an unstoppable team."},
+        {"animal": "Snake", "rating": "Good", "reason": "Two strategic minds that respect each other's intelligence — a sophisticated, stimulating match."}
+      ],
+      "good": [
+        {"animal": "Rooster", "rating": "Good", "reason": "The Rooster's precision and the Monkey's creativity — each supplies what the other lacks."},
+        {"animal": "Dog", "rating": "Good", "reason": "An unlikely but workable pair — the Dog's loyalty grounds the Monkey's restlessness."}
+      ],
+      "challenging": [
+        {"animal": "Tiger", "rating": "Challenging", "reason": "The Tiger's directness clashes with the Monkey's indirect approach. Trust is hard to establish."},
+        {"animal": "Pig", "rating": "Challenging", "reason": "The Pig's sincerity and the Monkey's trickster nature are fundamentally at odds."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["White", "Gold", "Blue"],
+      "numbers": [4, 5, 9],
+      "directions": ["West", "North"],
+      "flowers": ["Chrysanthemum", "Snapdragon"]
+    },
+    "fortune2026": {
+      "overall": "2026 is a year of clever positioning for the Monkey. The Fire Horse year brings dynamic energy that rewards your natural adaptability. This is a year to network strategically, plant seeds for future ventures, and let your wit and intelligence shine in visible forums.",
+      "career": "The Horse year opens unexpected doors through your social network. Someone you impressed years ago may reappear with an opportunity. Say yes to speaking engagements, panels, and visible platforms — your ideas need a stage. Avoid office politics in summer; stay above the fray.",
+      "love": "The Monkey's charm is amplified in the Fire Horse year. Single Monkeys attract partners easily but beware of overpromising — your enthusiasm can create expectations you may not want to fulfill. Committed Monkeys should prioritize quality time over quantity; depth over novelty.",
+      "wealth": "Financial creativity is favored. The Monkey's natural talent for finding angles combines well with the Horse's momentum. Multiple income streams are more reliable than betting on one big win. A tech or media investment may pay off. Avoid gambling or speculation in spring.",
+      "health": "The Monkey's mental energy is exceptionally high in 2026, but physical energy needs attention. The Fire Horse year can deplete Metal-element Monkeys — prioritize rest, hydration, and lung/immune health. Regular moderate exercise is more sustainable than intense bursts.",
+      "keyMonths": [2, 5, 9, 12]
+    },
+    "elementDynamic": "The Monkey's Metal is controlled by the Horse year's Fire — Fire melts Metal. This means 2026 may present challenges that test the Monkey's resilience. But Metal refined by Fire becomes sharper — the challenges of this year are forging you into a more effective version of yourself.",
+    "daoistTreasure": "White jade, silver, or clear quartz resonate with the Monkey's Metal nature. A precision-crafted piece — perhaps in silver tones with clean lines — that reflects the Monkey's intelligence and refinement."
+  },
+
+  "rooster": {
+    "name": "Rooster",
+    "chineseName": "鸡 (Ji)",
+    "branch": "You",
+    "element": "Metal",
+    "polarity": "Yin",
+    "order": 10,
+    "years": [1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029, 2041],
+    "elementVariants": [
+      {"element": "Wood", "years": [1945, 2005], "description": "More flexible and growth-oriented than typical Roosters, with strong ideals"},
+      {"element": "Fire", "years": [1957, 2017], "description": "More expressive and passionate, with the Rooster's precision fueled by Fire's warmth"},
+      {"element": "Earth", "years": [1969, 2029], "description": "The most grounded and practical Rooster — reliable, stable, and methodical"},
+      {"element": "Metal", "years": [1981, 2041], "description": "The most classically Rooster — sharp, precise, and exceptionally competent"},
+      {"element": "Water", "years": [1933, 1993], "description": "More intuitive and emotionally perceptive than typical Roosters"}
+    ],
+    "personality": {
+      "overview": "The Rooster is the perfectionist of the Chinese zodiac — precise, observant, and possessed of standards that others may find demanding but that produce exceptional results. Roosters notice everything. They are the ones who catch the error everyone else missed, who organize the chaos into order, who bring competence and clarity to every situation they enter.",
+      "traits": [
+        {"icon": "🎯", "name": "Precise", "desc": "Exceptional attention to detail and high standards"},
+        {"icon": "👁", "name": "Observant", "desc": "Notices what others miss; reads people and situations accurately"},
+        {"icon": "💪", "name": "Confident", "desc": "Self-assured and comfortable in their own capabilities"},
+        {"icon": "⏰", "name": "Punctual", "desc": "Values time, order, and reliability — and expects the same from others"},
+        {"icon": "💬", "name": "Direct", "desc": "Honest and straightforward — sometimes to a fault"},
+        {"icon": "✨", "name": "Stylish", "desc": "Natural flair for presentation and personal style"}
+      ],
+      "strengths": [
+        "Exceptional competence — Roosters do things properly or not at all",
+        "Sharp observational skills that catch problems before they escalate",
+        "Reliable and responsible — if a Rooster says they'll do it, it gets done",
+        "Natural talent for organizing chaos into functional systems",
+        "Honest and direct — you always know where you stand"
+      ],
+      "weaknesses": [
+        "Can be overly critical, wounding others with their directness",
+        "Perfectionism that delays completion and creates unnecessary stress",
+        "Tendency to be rigid — 'my way or the highway' thinking",
+        "May come across as arrogant or dismissive of others' approaches",
+        "Struggles to admit when they're wrong"
+      ]
+    },
+    "career": [
+      {"field": "Quality Control & Analysis", "why": "Natural eye for detail and commitment to getting things right"},
+      {"field": "Law & Compliance", "why": "Precise thinking and a strong sense of order and proper procedure"},
+      {"field": "Editing & Publishing", "why": "Sharp eye for errors and high standards for quality"},
+      {"field": "Project Management", "why": "Organizational genius and the ability to keep complex systems on track"},
+      {"field": "Design & Architecture", "why": "Precision combined with aesthetic sensibility"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Ox", "rating": "Excellent", "reason": "Both value diligence, order, and doing things properly. Mutual respect and shared values."},
+        {"animal": "Snake", "rating": "Excellent", "reason": "The Snake's wisdom and the Rooster's precision create a couple of exceptional competence and depth."},
+        {"animal": "Dragon", "rating": "Excellent", "reason": "The Dragon's vision and the Rooster's precision — a power couple that executes at the highest level."}
+      ],
+      "good": [
+        {"animal": "Monkey", "rating": "Good", "reason": "The Monkey's creativity and the Rooster's precision — complementary skills that cover each other's gaps."},
+        {"animal": "Pig", "rating": "Good", "reason": "The Pig's warmth softens the Rooster's sharp edges; the Rooster brings order to the Pig's life."}
+      ],
+      "challenging": [
+        {"animal": "Rabbit", "rating": "Challenging", "reason": "The Rabbit's sensitivity is wounded by the Rooster's directness. Fundamental communication styles clash."},
+        {"animal": "Rooster", "rating": "Challenging", "reason": "Two perfectionists under one roof — the criticism doubles and the grace diminishes."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Gold", "Brown", "Yellow"],
+      "numbers": [5, 7, 8],
+      "directions": ["West", "Southwest"],
+      "flowers": ["Gladiola", "Cockscomb"]
+    },
+    "fortune2026": {
+      "overall": "2026 brings the Rooster opportunities to refine and elevate. The Fire Horse year's energy may feel chaotic to your orderly nature, but within that chaos are opportunities to apply your gifts of precision and organization where they're most needed. Be the calm center in the storm.",
+      "career": "Your attention to detail gets noticed in 2026. A quality-control, auditing, or systems-improvement role may open. The Horse year creates messes that need cleaning — and you're the best cleaner in the zodiac. A promotion or expanded responsibility is likely by autumn.",
+      "love": "The Fire energy warms Rooster relationships that routine may have cooled. Single Roosters attract partners who appreciate competence and clarity. Soften your delivery — your honesty is a gift, but it lands better wrapped in kindness. Committed Roosters: plan something adventurous together.",
+      "wealth": "Steady accumulation through disciplined saving and smart, researched investments. The Rooster's natural financial prudence is an asset in the impulsive Fire Horse year. Real estate or long-term assets are favored over quick trades. Avoid lending to friends in spring.",
+      "health": "The Fire Horse year can be physically taxing for Metal-element Roosters (Fire melts Metal). Prioritize lung and respiratory health. Regular, moderate exercise — walking, swimming, tai chi — maintains vitality. Watch stress accumulation from your own perfectionism.",
+      "keyMonths": [3, 7, 10, 12]
+    },
+    "elementDynamic": "The Rooster's Metal is melted by the Horse year's Fire. This creates productive tension — Metal refined by Fire becomes sharper and more valuable. The challenges of 2026 are not obstacles but forge-fires, making you more effective, more resilient, and more clear about what truly matters.",
+    "daoistTreasure": "White jade, silver, or moonstone resonate with the Rooster's Metal nature. A clean, precisely crafted piece — perhaps a geometric pendant or a finely detailed bracelet — that reflects the Rooster's commitment to quality and refinement."
+  },
+
+  "dog": {
+    "name": "Dog",
+    "chineseName": "狗 (Gou)",
+    "branch": "Xu",
+    "element": "Earth",
+    "polarity": "Yang",
+    "order": 11,
+    "years": [1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030, 2042],
+    "elementVariants": [
+      {"element": "Wood", "years": [1934, 1994], "description": "More idealistic and growth-oriented than typical Dogs, with a strong sense of purpose"},
+      {"element": "Fire", "years": [1946, 2006], "description": "Warmer and more openly expressive — the Dog whose loyalty is matched by passion"},
+      {"element": "Earth", "years": [1958, 2018], "description": "The most grounded and stable Dog — deeply reliable and protective"},
+      {"element": "Metal", "years": [1970, 2030], "description": "Sharper and more disciplined — the Dog with a warrior's edge"},
+      {"element": "Water", "years": [1982, 2042], "description": "More intuitive and emotionally perceptive than typical Dogs"}
+    ],
+    "personality": {
+      "overview": "The Dog is the guardian of the Chinese zodiac — loyal, protective, and possessed of a moral compass that never wavers. Dogs are the ones you want in your corner when things get hard. They show up. They tell the truth. They fight for what's right even when it costs them. Their loyalty is legendary, their integrity is absolute, and their love — once earned — is unconditional.",
+      "traits": [
+        {"icon": "🤝", "name": "Loyal", "desc": "Fiercely devoted to people, causes, and principles"},
+        {"icon": "🛡", "name": "Protective", "desc": "Natural guardian who defends the vulnerable and the beloved"},
+        {"icon": "⚖", "name": "Just", "desc": "Strong moral compass and intolerance for unfairness"},
+        {"icon": "💖", "name": "Kind", "desc": "Deep well of compassion beneath a sometimes serious exterior"},
+        {"icon": "🔍", "name": "Vigilant", "desc": "Always alert to potential problems and threats"},
+        {"icon": "😔", "name": "Anxious", "desc": "Tendency to worry — about loved ones, the future, the state of the world"}
+      ],
+      "strengths": [
+        "Unshakeable loyalty — a Dog will stand by you when everyone else has left",
+        "Strong moral compass that guides decisions with integrity",
+        "Natural protector who creates safety for those around them",
+        "Honest and direct — manipulation is not in their nature",
+        "Deep capacity for genuine, enduring love"
+      ],
+      "weaknesses": [
+        "Chronic anxiety and tendency to catastrophize",
+        "Can be overly critical and judgmental of those who don't meet their standards",
+        "Stubbornness — once a Dog has taken a moral position, they're hard to move",
+        "Tendency to neglect their own needs while caring for others",
+        "May push people away with their intensity before trust is established"
+      ]
+    },
+    "career": [
+      {"field": "Law & Justice", "why": "Strong moral compass and intolerance for unfairness"},
+      {"field": "Social Work & Advocacy", "why": "Deep compassion and the drive to protect the vulnerable"},
+      {"field": "Healthcare & Emergency Services", "why": "Calm under pressure and genuinely motivated to help others"},
+      {"field": "Education & Mentoring", "why": "Patient, protective, and invested in others' growth"},
+      {"field": "Security & Investigation", "why": "Natural vigilance and attention to what's wrong in a situation"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Tiger", "rating": "Excellent", "reason": "The Tiger's courage and the Dog's loyalty create a powerful, principled partnership."},
+        {"animal": "Rabbit", "rating": "Excellent", "reason": "The Rabbit's gentleness soothes the Dog's anxiety; the Dog's loyalty gives the Rabbit security."},
+        {"animal": "Horse", "rating": "Excellent", "reason": "The Horse brings adventure and joy; the Dog provides a loyal, steady home to return to."}
+      ],
+      "good": [
+        {"animal": "Monkey", "rating": "Good", "reason": "The Monkey's cleverness intrigues the Dog; the Dog's sincerity grounds the Monkey."},
+        {"animal": "Pig", "rating": "Good", "reason": "Both value sincerity, warmth, and genuine connection. A comfortable, harmonious bond."}
+      ],
+      "challenging": [
+        {"animal": "Dragon", "rating": "Challenging", "reason": "Clash of fundamental energies — the Dragon's boldness reads as arrogance to the Dog; the Dog's caution reads as timidity to the Dragon."},
+        {"animal": "Ox", "rating": "Challenging", "reason": "The Ox's stubbornness and the Dog's strong opinions collide. Both are too rigid to yield."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Green", "Red", "Purple"],
+      "numbers": [3, 4, 9],
+      "directions": ["East", "South"],
+      "flowers": ["Rose", "Orchid"]
+    },
+    "fortune2026": {
+      "overall": "2026 brings the Dog opportunities to step into a more visible role. The Fire Horse year's energy pulls you out of the background — your loyalty, competence, and integrity are noticed by people who can open doors. Trust that you've earned the recognition coming your way.",
+      "career": "A year of professional acknowledgment. Work you did quietly in previous years is now recognized. A leadership or mentoring role may open in spring or early autumn. The Horse year rewards action — speak up about your ideas rather than waiting to be asked.",
+      "love": "The Fire Horse's warmth deepens Dog relationships. Single Dogs may meet someone through work, volunteering, or shared causes. Your sincerity is magnetic this year. Committed Dogs find that expressing appreciation openly — rather than assuming your partner knows — transforms the relationship.",
+      "wealth": "Moderate but reliable growth. The Dog's natural caution serves well in a year of impulsive energy. Focus on preserving and gradually growing assets. A work-related bonus, raise, or side income is likely. Avoid co-signing or lending in summer.",
+      "health": "The Fire Horse year can amplify the Dog's natural anxiety. Prioritize mental health: meditation, time in nature, and limiting news consumption help. The Earth element Dog benefits from grounding practices — gardening, hiking, or simply walking barefoot on grass.",
+      "keyMonths": [2, 5, 8, 11]
+    },
+    "elementDynamic": "The Dog's Earth is produced by the Horse year's Fire — a nourishing, supportive relationship. Fire creates Earth, meaning the Dog's core energy is being fed by the year. This makes 2026 a year of natural strengthening, recognition, and accumulated rewards rather than struggle.",
+    "daoistTreasure": "Green jade, red jasper, or hematite support the Dog's protective nature. A sturdy, meaningful piece — perhaps a guardian-themed pendant — that reflects the Dog's role as protector and loyal companion."
+  },
+
+  "pig": {
+    "name": "Pig",
+    "chineseName": "猪 (Zhu)",
+    "branch": "Hai",
+    "element": "Water",
+    "polarity": "Yin",
+    "order": 12,
+    "years": [1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031, 2043],
+    "elementVariants": [
+      {"element": "Wood", "years": [1935, 1995], "description": "More principled and growth-oriented than typical Pigs, with strong ideals and creative direction"},
+      {"element": "Fire", "years": [1947, 2007], "description": "Warmer and more expressive — the Pig whose natural generosity is amplified by Fire's passion"},
+      {"element": "Earth", "years": [1959, 2019], "description": "The most grounded and reliable Pig — stable, practical, and deeply nurturing"},
+      {"element": "Metal", "years": [1971, 2031], "description": "More determined and structured than typical Pigs, with hidden reserves of will"},
+      {"element": "Water", "years": [1983, 2043], "description": "The most classically Pig — intuitive, generous, and emotionally deep"}
+    ],
+    "personality": {
+      "overview": "The Pig is the gentle heart of the Chinese zodiac — warm, generous, and possessed of a sincerity that is increasingly rare in the world. Pigs don't play games. They give freely, love deeply, and create spaces of genuine comfort and welcome wherever they go. The Pig is the sign most likely to share their last meal with a stranger, to forgive when others would hold a grudge, and to find genuine joy in the happiness of others.",
+      "traits": [
+        {"icon": "💝", "name": "Generous", "desc": "Gives freely of time, resources, and affection without keeping score"},
+        {"icon": "🤗", "name": "Warm", "desc": "Makes others feel genuinely welcome and at ease"},
+        {"icon": "🕊", "name": "Peaceful", "desc": "Avoids conflict and seeks harmony in all relationships"},
+        {"icon": "🎯", "name": "Sincere", "desc": "Honest and straightforward — what you see is what you get"},
+        {"icon": "💪", "name": "Resilient", "desc": "Gentle but not weak — Pigs endure hardship with quiet strength"},
+        {"icon": "🎨", "name": "Cultured", "desc": "Appreciation for the finer things — art, food, music, beauty"}
+      ],
+      "strengths": [
+        "Extraordinary generosity and genuine warmth",
+        "Authentic — Pigs are exactly who they appear to be",
+        "Remarkable capacity for forgiveness and letting go of grudges",
+        "Creates environments of comfort, safety, and welcome",
+        "Quiet resilience — the Pig endures what would break fiercer signs"
+      ],
+      "weaknesses": [
+        "Can be naive — their sincerity makes them vulnerable to manipulation",
+        "Tendency toward overindulgence in food, drink, or comfort",
+        "May avoid necessary confrontations to preserve peace",
+        "Can be taken advantage of by those who mistake kindness for weakness",
+        "Procrastination on difficult decisions, hoping problems resolve themselves"
+      ]
+    },
+    "career": [
+      {"field": "Healthcare & Nursing", "why": "Genuine compassion and the deep satisfaction of caring for others"},
+      {"field": "Hospitality & Culinary Arts", "why": "Natural gift for creating warmth, comfort, and memorable experiences"},
+      {"field": "Education & Childcare", "why": "Patient, kind, and genuinely invested in others' development"},
+      {"field": "Nonprofit & Charity", "why": "Generous spirit and the drive to make the world kinder"},
+      {"field": "Arts & Culture", "why": "Deep appreciation for beauty and the finer expressions of human creativity"}
+    ],
+    "compatibility": {
+      "best": [
+        {"animal": "Tiger", "rating": "Excellent", "reason": "The Tiger's courage and the Pig's warmth create a balanced, deeply loving partnership."},
+        {"animal": "Rabbit", "rating": "Excellent", "reason": "Two gentle souls who create a home of genuine peace, beauty, and mutual care."},
+        {"animal": "Goat", "rating": "Excellent", "reason": "The Goat's creativity and the Pig's generosity — a home filled with art, warmth, and good food."}
+      ],
+      "good": [
+        {"animal": "Dog", "rating": "Good", "reason": "Both value sincerity and genuine connection. A warm, comfortable, and deeply loyal bond."},
+        {"animal": "Rooster", "rating": "Good", "reason": "The Rooster's precision and the Pig's warmth — each provides what the other needs, if communication is careful."}
+      ],
+      "challenging": [
+        {"animal": "Snake", "rating": "Challenging", "reason": "The Snake's indirectness and the Pig's sincerity are in fundamental tension. Clashing zodiac signs."},
+        {"animal": "Monkey", "rating": "Challenging", "reason": "The Monkey's trickster nature can wound the sincere Pig. Trust, once broken, is hard to rebuild."}
+      ]
+    },
+    "luckyItems": {
+      "colors": ["Yellow", "Gray", "Brown"],
+      "numbers": [2, 5, 8],
+      "directions": ["North", "Southeast"],
+      "flowers": ["Hydrangea", "Daisy"]
+    },
+    "fortune2026": {
+      "overall": "2026 is a year of quiet abundance for the Pig. The Fire Horse year brings warmth and opportunity, but on your terms — through relationships, through generosity repaid, through the slow, steady accumulation of good things. This is a year to receive as graciously as you give.",
+      "career": "Collaboration is favored over competition. Partnerships formed this year — especially in spring or late autumn — have staying power. The Horse year rewards visibility, so don't hide your contributions. A lateral move into a more people-focused role may prove more satisfying than a promotion.",
+      "love": "A deeply romantic year for Pigs. The Fire Horse's passion combines with your natural warmth to create conditions for genuine connection. Single Pigs may meet someone through friends, family, or community. Committed Pigs find the relationship deepening through shared pleasures — travel, food, art, home.",
+      "wealth": "Steady and reliable. The Pig's natural relationship with abundance means money flows in as it's needed. A gift, inheritance, or unexpected windfall is possible. The Horse year favors generosity — what you give returns multiplied, but give wisely, not indiscriminately.",
+      "health": "The Fire Horse year can be energetically warm for Water-element Pigs (Fire evaporates Water). Stay hydrated — literally and metaphorically. Prioritize rest, water-based activities, and emotional boundaries. The Pig's tendency toward comfort eating may be amplified; gentle awareness helps.",
+      "keyMonths": [1, 4, 7, 10]
+    },
+    "elementDynamic": "The Pig's Water is evaporated by the Horse year's Fire — a controlling relationship. Water and Fire are in natural tension, and the Pig may feel drained more easily in 2026. Counterbalance with deliberate hydration, rest, and time near actual water. This tension is not harmful — it's clarifying, revealing what matters and what can be released.",
+    "daoistTreasure": "Black obsidian, aquamarine, or deep blue stones resonate with the Pig's Water nature. A warm, generous piece — perhaps a bracelet in blue tones with gold accents — that reflects the Pig's combination of depth and warmth."
+  }
+}

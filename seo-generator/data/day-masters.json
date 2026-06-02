@@ -1,0 +1,491 @@
+{
+  "jia": {
+    "stem": "甲",
+    "pinyin": "Jia",
+    "element": "Wood",
+    "polarity": "Yang",
+    "englishName": "Jia Wood",
+    "image": "A great tree, standing tall and visible from a distance — the pioneer, the architect, the one who grows toward the heavens and provides shelter for many",
+    "personality": {
+      "overview": "Jia Wood Day Masters are the architects and pioneers of the BaZi world. Like a great tree that grows toward the heavens, Jia carries the energy of upward growth, vision, and visible achievement. These are people who build things that last — organizations, families, ideas, and structures that provide shelter for others long after they're gone.",
+      "coreTraits": ["Visionary", "Direct", "Protective", "Ambitious", "Idealistic"],
+      "strengths": [
+        "Natural leadership through clarity of vision rather than force",
+        "Strong sense of justice and fairness — Jia stands up for what's right",
+        "Persistent and resilient — like a tree, grows through obstacles rather than avoiding them",
+        "Generous with time, resources, and protection for those they care about",
+        "Exceptional long-range planning — sees the forest, not just the trees"
+      ],
+      "weaknesses": [
+        "Can be rigid or stubborn when their vision is questioned",
+        "Tendency to take on too much alone — the tree that tries to hold up the sky",
+        "May overlook details in pursuit of the big picture",
+        "Prone to frustration when growth feels slow or blocked",
+        "Can come across as self-righteous when their ideals are challenged"
+      ]
+    },
+    "career": [
+      {"field": "Leadership & Executive Roles", "why": "Natural ability to hold a vision and rally others toward it"},
+      {"field": "Architecture & Urban Planning", "why": "The tree's structural energy maps naturally to building and designing"},
+      {"field": "Education & Mentoring", "why": "Jia Wood naturally nurtures growth in others — the teacher who shapes generations"},
+      {"field": "Environmental & Conservation Work", "why": "Wood's connection to nature and sustainability; protecting what grows"},
+      {"field": "Strategy & Policy", "why": "Big-picture thinking and pattern recognition over long time horizons"}
+    ],
+    "relationships": {
+      "idealPartner": "Geng Metal (Yang Metal) — the axe that shapes the tree, providing the pruning that helps Jia grow stronger",
+      "compatibleDayMasters": ["Bing Fire", "Ding Fire", "Wu Earth"],
+      "challengingDayMasters": ["Xin Metal", "Geng Metal"],
+      "description": "Jia Wood partners are protective, loyal, and dependable. They show love through action and presence rather than words — building a life, providing stability, and standing firm when storms come. Their ideal partner appreciates their steady presence and shares their vision for the future."
+    },
+    "seasonalNotes": {
+      "spring": "Jia Wood born in spring is at peak strength — ambitious, growing fast, needs Metal to prune and shape the growth",
+      "summer": "Jia Wood in summer needs Water to stay nourished — may feel drained or overheated without cooling support",
+      "autumn": "Jia Wood in autumn faces Metal's cutting energy — needs Water to protect roots and Fire to warm against the cold",
+      "winter": "Jia Wood in winter stores energy underground — needs Fire to warm and activate growth, Water to sustain roots"
+    },
+    "famousArchetypes": "Abraham Lincoln, Nelson Mandela — leaders who grew slow and deep, whose influence extended far beyond their immediate presence",
+    "elementDynamics": "Jia Wood produces Fire (creativity, expression), controls Earth (stability, structure), is produced by Water (wisdom, intuition), and is controlled by Metal (discipline, precision). Balance comes through welcoming Metal's pruning without losing Wood's expansive vision.",
+    "daoistJewelry": "Green jade, malachite, or emerald-hued stones. Water-element stones (black obsidian, lapis lazuli) provide nourishing support. A substantial pendant or bracelet that reflects Jia's natural presence."
+  },
+
+  "yi": {
+    "stem": "乙",
+    "pinyin": "Yi",
+    "element": "Wood",
+    "polarity": "Yin",
+    "englishName": "Yi Wood",
+    "image": "A graceful vine or flowering plant — flexible, adaptive, and quietly persistent, finding a way to grow and bloom even in challenging conditions",
+    "personality": {
+      "overview": "Yi Wood Day Masters are the diplomats and artists of the Wood family. Unlike Jia's towering tree, Yi is the vine that bends without breaking, finding its way around obstacles with grace and persistence. These are people of subtlety, charm, and quiet determination — they achieve their goals not through force but through flexibility, relationship, and perfect timing.",
+      "coreTraits": ["Adaptable", "Charming", "Persistent", "Artistic", "Diplomatic"],
+      "strengths": [
+        "Remarkable flexibility — bends without breaking, adapts to circumstances",
+        "Natural charm and social grace that opens doors and wins allies",
+        "Quiet persistence — the vine that slowly but surely covers the wall",
+        "Strong aesthetic sense and creative vision",
+        "Skilled at reading situations and timing their moves perfectly"
+      ],
+      "weaknesses": [
+        "Can be indirect to the point of frustrating more straightforward types",
+        "Tendency to adapt so much that they lose their own shape and identity",
+        "May avoid necessary confrontation, letting problems grow unchecked",
+        "Can be perceived as manipulative when their flexibility reads as inconsistency",
+        "Prone to overthinking and hesitation at decision points"
+      ]
+    },
+    "career": [
+      {"field": "Diplomacy & Mediation", "why": "Natural talent for finding common ground and navigating complex social terrain"},
+      {"field": "Arts & Design", "why": "Strong aesthetic vision and the patience to refine work to excellence"},
+      {"field": "Counseling & Psychology", "why": "Deep understanding of human nature and the ability to adapt approach to person"},
+      {"field": "Writing & Journalism", "why": "Subtle observation and the ability to present ideas in accessible, elegant forms"},
+      {"field": "Fashion & Aesthetics", "why": "Natural eye for beauty, proportion, and the art of presentation"}
+    ],
+    "relationships": {
+      "idealPartner": "Xin Metal (Yin Metal) — the jeweler's tool that delicately shapes the vine, providing refinement without breaking Yi's spirit",
+      "compatibleDayMasters": ["Bing Fire", "Wu Earth", "Ji Earth"],
+      "challengingDayMasters": ["Geng Metal", "Xin Metal"],
+      "description": "Yi Wood partners are graceful, attentive, and deeply considerate. They show love through small gestures, thoughtful timing, and an almost intuitive sense of what their partner needs. Their ideal partner appreciates subtlety, doesn't demand constant directness, and understands that Yi's flexibility is strength, not weakness."
+    },
+    "seasonalNotes": {
+      "spring": "Yi Wood in spring blooms abundantly — creative, social, and magnetic, but needs direction to channel the profusion",
+      "summer": "Yi Wood in summer may wilt without Water's nourishment — protect energy, stay hydrated, avoid overextension",
+      "autumn": "Yi Wood in autumn faces Metal's cutting — this is the season of refinement, editing, and letting go of what no longer serves",
+      "winter": "Yi Wood in winter rests underground — a season for planning, inner work, and preparing spring's growth"
+    },
+    "famousArchetypes": "Audrey Hepburn, Jane Goodall — grace combined with quiet, persistent determination that changed their fields",
+    "elementDynamics": "Yi Wood produces Fire (creativity), controls Earth (structure), is produced by Water (intuition), and is controlled by Metal (discipline). Yi's special gift is turning Metal's cutting into refinement rather than destruction — the vine that grows more beautifully for being pruned.",
+    "daoistJewelry": "Rose quartz, green aventurine, or jade in softer, more delicate settings. Flowing, organic designs that echo the vine's natural curves. A graceful pendant or thin bracelet that reflects Yi's elegance."
+  },
+
+  "bing": {
+    "stem": "丙",
+    "pinyin": "Bing",
+    "element": "Fire",
+    "polarity": "Yang",
+    "englishName": "Bing Fire",
+    "image": "The burning sun — radiant, expansive, and impossible to ignore, warming everything it touches and illuminating what was hidden",
+    "personality": {
+      "overview": "Bing Fire Day Masters are the suns of the BaZi world — radiant, generous, and naturally positioned at the center of their social solar system. They walk into a room and the temperature rises. Bing Fire people are direct, warm, and incapable of being small or hidden. Their gift is illumination — they make things visible, they warm what is cold, and they inspire others through sheer presence.",
+      "coreTraits": ["Radiant", "Direct", "Generous", "Passionate", "Expansive"],
+      "strengths": [
+        "Natural warmth and ability to make others feel seen and valued",
+        "Direct and honest — Bing Fire doesn't hide or dissemble",
+        "Generous spirit that shares warmth, resources, and attention freely",
+        "Inspiring presence that motivates others to be their best selves",
+        "Remarkable resilience — the sun rises again no matter what"
+      ],
+      "weaknesses": [
+        "Can be overbearing — the sun that scorches rather than warms",
+        "Impatience with anything slow, subtle, or indirect",
+        "Tendency to make everything about themselves without realizing it",
+        "May burn out from giving too much light and heat to others",
+        "Can struggle with vulnerability — the sun is used to being the source, not the receiver"
+      ]
+    },
+    "career": [
+      {"field": "Leadership & Politics", "why": "Natural authority and the ability to inspire large groups toward a vision"},
+      {"field": "Entertainment & Media", "why": "Magnetic presence and the natural ability to hold public attention"},
+      {"field": "Sales & Business Development", "why": "Warmth and directness that build trust and close deals"},
+      {"field": "Coaching & Motivation", "why": "Gift for seeing others' potential and inspiring them to reach it"},
+      {"field": "Hospitality & Events", "why": "Creates warmth and energy that makes every gathering memorable"}
+    ],
+    "relationships": {
+      "idealPartner": "Gui Water (Yin Water) — the gentle rain that cools the sun without extinguishing it, creating the conditions for growth",
+      "compatibleDayMasters": ["Jia Wood", "Yi Wood", "Wu Earth"],
+      "challengingDayMasters": ["Ren Water", "Gui Water"],
+      "description": "Bing Fire partners are passionate, demonstrative, and generous in love. They show affection openly and expect the same in return. Their ideal partner can receive their intensity without being overwhelmed, and offers the cooling, reflective presence that balances Bing's heat."
+    },
+    "seasonalNotes": {
+      "spring": "Bing Fire in spring is warming and welcome — the sun that awakens the world. Creative, initiating, full of new energy",
+      "summer": "Bing Fire in summer is at peak intensity — powerful but at risk of overheating. Needs Water to cool and Earth to ground",
+      "autumn": "Bing Fire in autumn provides essential warmth as the world cools — a sustaining, protective presence",
+      "winter": "Bing Fire in winter is precious but challenged — the sun that must work harder to be felt. Needs Wood fuel and protection from Water's cold"
+    },
+    "famousArchetypes": "Martin Luther King Jr., Oprah Winfrey — radiant leaders who illuminated injustice and inspired millions through sheer presence",
+    "elementDynamics": "Bing Fire produces Earth (stability), controls Metal (precision), is produced by Wood (growth), and is controlled by Water (wisdom). Bing's special challenge is accepting Water's cooling without feeling extinguished — learning that balance is not diminishment.",
+    "daoistJewelry": "Red carnelian, fire agate, or sunstone. For balance, obsidian or aquamarine to cool excess heat. A bold, visible piece worthy of Bing's radiant presence — perhaps a statement ring or substantial pendant."
+  },
+
+  "ding": {
+    "stem": "丁",
+    "pinyin": "Ding",
+    "element": "Fire",
+    "polarity": "Yin",
+    "englishName": "Ding Fire",
+    "image": "A hearth flame or candle — contained, warm, and deeply focused, providing steady light and warmth to those who draw near",
+    "personality": {
+      "overview": "Ding Fire Day Masters are the hearth fires of the BaZi world — warm, contained, and burning with a quiet intensity that is easy to underestimate. Unlike Bing's blazing sun, Ding is the flame that illuminates a single room rather than the whole sky. These are people of depth, refinement, and inner fire — they may not command attention when they enter a room, but those who draw close find warmth, wisdom, and a light that never goes out.",
+      "coreTraits": ["Refined", "Intense", "Perceptive", "Creative", "Loyal"],
+      "strengths": [
+        "Deep, quiet intensity that fuels sustained creative and intellectual work",
+        "Exceptional perception — Ding Fire notices what others overlook",
+        "Loyal and devoted — once you're in Ding's circle, you're there for life",
+        "Natural refinement and aesthetic sensibility",
+        "Remarkable focus — the candle that burns steadily on one point"
+      ],
+      "weaknesses": [
+        "Can be emotionally intense in ways that overwhelm more casual connections",
+        "Tendency to suppress feelings until they eventually erupt",
+        "May be overlooked or underestimated in environments that reward loudness",
+        "Prone to jealousy and possessiveness in close relationships",
+        "Can burn themselves out through sustained internal intensity"
+      ]
+    },
+    "career": [
+      {"field": "Research & Analysis", "why": "Sustained focus and the ability to see deeply into complex subjects"},
+      {"field": "Art & Creative Direction", "why": "Refined aesthetic sense and the patience to perfect creative work"},
+      {"field": "Psychology & Therapy", "why": "Deep perception and the ability to hold space for others' intensity"},
+      {"field": "Writing & Editing", "why": "Careful attention to nuance and the craft of precise expression"},
+      {"field": "Design & Craftsmanship", "why": "Natural eye for detail and the pursuit of refinement"}
+    ],
+    "relationships": {
+      "idealPartner": "Ren Water (Yang Water) — the river that cools Ding's intensity while carrying the flame's reflection, creating depth and movement",
+      "compatibleDayMasters": ["Jia Wood", "Yi Wood", "Ji Earth"],
+      "challengingDayMasters": ["Gui Water", "Ren Water"],
+      "description": "Ding Fire partners are devoted, perceptive, and emotionally deep. They love with quiet intensity — not always demonstrative, but absolutely committed. Their ideal partner can handle emotional depth, appreciates subtlety, and understands that Ding's quiet exterior conceals a fire that burns very hot indeed."
+    },
+    "seasonalNotes": {
+      "spring": "Ding Fire in spring is gentle and creative — a candle in the growing season, providing warmth for new beginnings",
+      "summer": "Ding Fire in summer risks being overshadowed — needs to protect its flame and not compare itself to brighter blazes",
+      "autumn": "Ding Fire in autumn is precious — the hearth as the world cools. A season of comfort, depth, and meaningful connection",
+      "winter": "Ding Fire in winter is essential but vulnerable — the candle that must be sheltered from cold winds. Needs Wood fuel and protection"
+    },
+    "famousArchetypes": "Frida Kahlo, Virginia Woolf — artists of extraordinary depth whose contained fire produced work of lasting intensity",
+    "elementDynamics": "Ding Fire produces Earth (stability), controls Metal (precision), is produced by Wood (growth), and is controlled by Water (wisdom). Ding's special gift is transmutation — turning the raw fuel of experience into refined light and warmth that serves others.",
+    "daoistJewelry": "Garnet, ruby (small), or warm amber. Delicate but meaningful pieces — a thin chain with a small but powerful stone. Ding's jewelry should be refined and personal rather than bold and declarative."
+  },
+
+  "wu": {
+    "stem": "戊",
+    "pinyin": "Wu",
+    "element": "Earth",
+    "polarity": "Yang",
+    "englishName": "Wu Earth",
+    "image": "A great mountain — massive, stable, and unmovable, providing foundation and reference point for everything around it",
+    "personality": {
+      "overview": "Wu Earth Day Masters are the mountains of the BaZi world — solid, reliable, and possessed of a gravity that holds things together. These are people you can count on. They don't shift with the wind or change with the seasons. Wu Earth provides the foundation upon which others build, the stability that allows growth, and the quiet strength that weathers every storm.",
+      "coreTraits": ["Stable", "Reliable", "Patient", "Protective", "Practical"],
+      "strengths": [
+        "Unshakeable reliability — when Wu Earth commits, it gets done",
+        "Natural grounding presence that calms and stabilizes those around them",
+        "Patient and methodical — understands that lasting things take time",
+        "Strong practical intelligence and common sense",
+        "Protective of those in their care — the mountain that shelters the valley"
+      ],
+      "weaknesses": [
+        "Can be slow to change, even when change is clearly needed",
+        "Stubbornness — the mountain does not move, even when movement is wise",
+        "May be perceived as boring or predictable by more dynamic types",
+        "Tendency to take on others' burdens until they're carrying too much",
+        "Can be overly conservative, missing opportunities through excessive caution"
+      ]
+    },
+    "career": [
+      {"field": "Engineering & Construction", "why": "Natural affinity for building structures that last and understanding how things stand"},
+      {"field": "Finance & Asset Management", "why": "Patient, reliable, and skilled at preserving and gradually growing value"},
+      {"field": "Agriculture & Land Management", "why": "Earth's connection to land, growth cycles, and steady cultivation"},
+      {"field": "Operations & Logistics", "why": "Methodical thinking and the ability to keep complex systems running smoothly"},
+      {"field": "Government & Administration", "why": "Stability, reliability, and the patience for long institutional timelines"}
+    ],
+    "relationships": {
+      "idealPartner": "Yi Wood (Yin Wood) — the vine that grows on the mountain, softening Wu's severity while being supported by Wu's strength",
+      "compatibleDayMasters": ["Bing Fire", "Ding Fire", "Geng Metal"],
+      "challengingDayMasters": ["Jia Wood", "Yi Wood"],
+      "description": "Wu Earth partners are steady, protective, and dependable to the core. They show love through reliability — being there, doing what they said they'd do, building a stable life. Their ideal partner appreciates security, doesn't need constant excitement, and understands that Wu's quiet presence is itself a profound act of love."
+    },
+    "seasonalNotes": {
+      "spring": "Wu Earth in spring is awakened by Wood's growth — a season of new projects and expanding responsibilities",
+      "summer": "Wu Earth in summer is warmed by Fire — productive, visible, and in demand as a foundation for others' work",
+      "autumn": "Wu Earth in autumn is harvested — reaping the rewards of patient effort. A season of consolidation",
+      "winter": "Wu Earth in winter rests frozen — a season for planning, preserving, and waiting for the thaw"
+    },
+    "famousArchetypes": "Warren Buffett, Angela Merkel — figures of extraordinary stability whose patient, methodical approach built lasting influence",
+    "elementDynamics": "Wu Earth produces Metal (value, precision), controls Water (emotion, flow), is produced by Fire (warmth, visibility), and is controlled by Wood (growth, expansion). Wu's challenge is accepting Wood's growth pressure without feeling eroded — learning that even mountains benefit from the life that grows upon them.",
+    "daoistJewelry": "Yellow jade, citrine, or tiger's eye. Substantial, well-crafted pieces that reflect Wu's solidity. A sturdy bracelet or a grounding pendant in warm, earth tones."
+  },
+
+  "ji": {
+    "stem": "己",
+    "pinyin": "Ji",
+    "element": "Earth",
+    "polarity": "Yin",
+    "englishName": "Ji Earth",
+    "image": "Rich garden soil — fertile, nurturing, and quietly life-giving, providing the medium in which all things grow and flourish",
+    "personality": {
+      "overview": "Ji Earth Day Masters are the nurturers of the BaZi world — fertile, supportive, and possessed of a quiet fertility that helps everything around them grow. Unlike Wu Earth's mountain, Ji is the garden soil that receives seeds and returns abundance. These are people of service, care, and quiet cultivation. They make things better not through force or brilliance, but through steady, loving attention to what needs to grow.",
+      "coreTraits": ["Nurturing", "Supportive", "Practical", "Kind", "Resourceful"],
+      "strengths": [
+        "Natural nurturer — helps people, projects, and ideas grow and flourish",
+        "Quietly resourceful — finds ways to make things work with what's available",
+        "Deep capacity for care and service to others",
+        "Practical intelligence applied to everyday problems",
+        "Creates environments of genuine warmth, safety, and growth"
+      ],
+      "weaknesses": [
+        "Can be overly self-sacrificing, giving their nutrients to others until depleted",
+        "Tendency to worry — the soil that frets about every seed",
+        "May be taken for granted by those who benefit from their support",
+        "Can struggle to set boundaries, absorbing others' problems as their own",
+        "May undervalue their own needs and ambitions in service of others"
+      ]
+    },
+    "career": [
+      {"field": "Healthcare & Nursing", "why": "Natural nurturing instinct and genuine satisfaction in caring for others"},
+      {"field": "Education & Teaching", "why": "Patient cultivation of growth in others — the gardener of minds"},
+      {"field": "Human Resources & People Operations", "why": "Skilled at supporting people and creating environments where they thrive"},
+      {"field": "Social Work & Community Service", "why": "Deep care for the vulnerable and the drive to make practical improvements"},
+      {"field": "Culinary Arts & Nutrition", "why": "Earth's connection to food, nourishment, and the sustenance of life"}
+    ],
+    "relationships": {
+      "idealPartner": "Jia Wood (Yang Wood) — the great tree rooted in Ji's soil, drawing nourishment while providing shelter and structure",
+      "compatibleDayMasters": ["Bing Fire", "Ding Fire", "Xin Metal"],
+      "challengingDayMasters": ["Yi Wood", "Jia Wood"],
+      "description": "Ji Earth partners are nurturing, attentive, and quietly devoted. They show love through care — remembering what you need, creating a comfortable home, supporting your growth. Their ideal partner appreciates their quiet contribution, doesn't take their support for granted, and offers the structure and protection that allows Ji to flourish."
+    },
+    "seasonalNotes": {
+      "spring": "Ji Earth in spring is most fertile — seeds sprout, projects launch, and nurturing energy flows abundantly",
+      "summer": "Ji Earth in summer needs Water to stay productive — the soil that must be watered to keep giving",
+      "autumn": "Ji Earth in autumn harvests what was planted — a season of gathering, gratitude, and consolidation",
+      "winter": "Ji Earth in winter rests and regenerates — essential fallow time that prepares for spring's abundance"
+    },
+    "famousArchetypes": "Florence Nightingale, Mr. Rogers — nurturers whose quiet, steady care transformed the lives of countless people",
+    "elementDynamics": "Ji Earth produces Metal (value), controls Water (emotion), is produced by Fire (warmth), and is controlled by Wood (growth). Ji's special gift is alchemy — turning the raw material of experience into fertile ground from which new life grows.",
+    "daoistJewelry": "Rose quartz, green aventurine, or warm amber. Pieces that feel personal and nurturing — a bracelet with soft, rounded stones or a pendant that rests close to the heart. Ji's jewelry should feel like a comfort, not a statement."
+  },
+
+  "geng": {
+    "stem": "庚",
+    "pinyin": "Geng",
+    "element": "Metal",
+    "polarity": "Yang",
+    "englishName": "Geng Metal",
+    "image": "A great axe or sword — sharp, decisive, and built for cutting through confusion, clearing obstacles, and forging new paths",
+    "personality": {
+      "overview": "Geng Metal Day Masters are the warriors and surgeons of the BaZi world — sharp, decisive, and possessed of a cutting edge that clears away what no longer serves. These are people of action, discipline, and unmistakable presence. Geng Metal doesn't negotiate with obstacles; it cuts through them. They are the ones you want leading when tough decisions need to be made and clarity is more valuable than comfort.",
+      "coreTraits": ["Decisive", "Disciplined", "Direct", "Resilient", "Principled"],
+      "strengths": [
+        "Exceptional decisiveness — Geng Metal assesses and acts while others are still deliberating",
+        "Iron discipline and the ability to stay the course through difficulty",
+        "Direct and honest — says what needs to be said without sugarcoating",
+        "Natural authority that others respect even when they don't always like it",
+        "Remarkable resilience — the blade that holds its edge under pressure"
+      ],
+      "weaknesses": [
+        "Can be harsh — the axe that cuts what needed cutting but also wounds what was tender",
+        "Rigidity — Metal doesn't bend; it breaks or it holds, with little flexibility in between",
+        "May intimidate others, creating distance even when connection is desired",
+        "Tendency to value toughness over tenderness, missing the strength in softness",
+        "Can be judgmental of those who lack their discipline or clarity"
+      ]
+    },
+    "career": [
+      {"field": "Military & Law Enforcement", "why": "Decisive action, discipline, and the clarity to act under extreme pressure"},
+      {"field": "Surgery & Medicine", "why": "Precision, decisiveness, and the ability to cut with purpose and heal through action"},
+      {"field": "Executive Leadership", "why": "Natural authority and the ability to make hard decisions that others avoid"},
+      {"field": "Engineering & Manufacturing", "why": "Metal's affinity for precision, structure, and creating things of lasting value"},
+      {"field": "Law & Arbitration", "why": "Clarity of thought and the ability to cut through complexity to the essential point"}
+    ],
+    "relationships": {
+      "idealPartner": "Jia Wood (Yang Wood) — the great tree that the axe shapes, creating a dynamic of mutual transformation rather than destruction",
+      "compatibleDayMasters": ["Wu Earth", "Ji Earth", "Ren Water"],
+      "challengingDayMasters": ["Bing Fire", "Ding Fire"],
+      "description": "Geng Metal partners are protective, decisive, and utterly reliable in a crisis. They show love through action — solving problems, providing structure, cutting through whatever threatens the relationship. Their ideal partner is strong enough not to be intimidated by Geng's sharpness, and wise enough to see the protective intent behind the blade."
+    },
+    "seasonalNotes": {
+      "spring": "Geng Metal in spring is needed for pruning — the axe that shapes Wood's profuse growth into useful form",
+      "summer": "Geng Metal in summer is tested by Fire — the blade in the forge, being shaped by heat. A season of transformation",
+      "autumn": "Geng Metal in autumn is at peak power — sharp, clear, and in its natural season of cutting and harvesting",
+      "winter": "Geng Metal in winter is cold and hard — needs Fire to warm and Water to keep from becoming brittle"
+    },
+    "famousArchetypes": "Margaret Thatcher, Steve Jobs — decisive leaders who cut through complexity and changed their domains through sheer force of will",
+    "elementDynamics": "Geng Metal produces Water (wisdom, flow), controls Wood (growth), is produced by Earth (stability), and is controlled by Fire (warmth, transformation). Geng's challenge is accepting Fire's heat — the forge that melts Metal is also what makes it into something finer.",
+    "daoistJewelry": "White gold, silver, or hematite. Clean, geometric designs with sharp lines that reflect Geng's precision. A bold ring or a sleek bracelet — nothing fussy or overly decorative."
+  },
+
+  "xin": {
+    "stem": "辛",
+    "pinyin": "Xin",
+    "element": "Metal",
+    "polarity": "Yin",
+    "englishName": "Xin Metal",
+    "image": "A jeweler's tool or a fine needle — precise, elegant, and capable of the most delicate refinement, creating beauty through exacting attention to detail",
+    "personality": {
+      "overview": "Xin Metal Day Masters are the artisans and connoisseurs of the BaZi world — refined, precise, and possessed of standards so high that others may find them demanding. Unlike Geng's axe, Xin is the jeweler's file that perfects rather than cleaves. These are people of taste, discernment, and quiet excellence. They notice what's wrong when everyone else thinks it's fine, and they have the skill to make it right.",
+      "coreTraits": ["Refined", "Precise", "Discerning", "Elegant", "Principled"],
+      "strengths": [
+        "Exceptional standards and the skill to meet them",
+        "Keen eye for quality, beauty, and what could be improved",
+        "Quiet elegance — Xin doesn't need to announce itself to be felt",
+        "Principled and consistent — lives by a clear code",
+        "Natural talent for refining raw material into something of value"
+      ],
+      "weaknesses": [
+        "Can be overly critical — the file that never stops filing",
+        "Perfectionism that delays completion and creates unnecessary stress",
+        "May be perceived as cold or judgmental by warmer, more expressive types",
+        "Tendency toward elitism — standards can become barriers",
+        "Struggles with ambiguity and situations where there is no 'right' answer"
+      ]
+    },
+    "career": [
+      {"field": "Jewelry & Luxury Goods", "why": "Natural eye for quality, detail, and refinement — the jeweler's jeweler"},
+      {"field": "Editing & Publishing", "why": "Precision and the drive to perfect language and presentation"},
+      {"field": "Quality Assurance & Compliance", "why": "Nothing escapes Xin's attention — the guardian of standards"},
+      {"field": "Academia & Research", "why": "Patient, exacting scholarship and the pursuit of precision in knowledge"},
+      {"field": "Finance & Accounting", "why": "Precision, principle, and the satisfaction of making numbers balance perfectly"}
+    ],
+    "relationships": {
+      "idealPartner": "Yi Wood (Yin Wood) — the graceful vine that the jeweler's tool shapes into something beautiful, creating through refinement rather than force",
+      "compatibleDayMasters": ["Ji Earth", "Wu Earth", "Gui Water"],
+      "challengingDayMasters": ["Ding Fire", "Bing Fire"],
+      "description": "Xin Metal partners are devoted, principled, and quietly romantic in their own precise way. They show love through attention — noticing what you need, remembering what you said, making things right. Their ideal partner appreciates refinement, doesn't mistake precision for coldness, and understands that Xin's criticism comes from caring enough to want things to be their best."
+    },
+    "seasonalNotes": {
+      "spring": "Xin Metal in spring refines Wood's growth — the jeweler shaping spring's abundance into lasting form",
+      "summer": "Xin Metal in summer is tested by Fire — refined in the heat. Intensity can be productive or destructive",
+      "autumn": "Xin Metal in autumn is at peak sharpness — the season of exacting standards and flawless execution",
+      "winter": "Xin Metal in winter is cold and precise — needs warmth and connection to keep from becoming brittle"
+    },
+    "famousArchetypes": "Coco Chanel, Anna Wintour — figures of legendary taste and exacting standards who refined their entire industries",
+    "elementDynamics": "Xin Metal produces Water (wisdom), controls Wood (growth), is produced by Earth (stability), and is controlled by Fire (warmth). Xin's special gift is making things finer — turning the merely good into the genuinely excellent through patient, precise attention.",
+    "daoistJewelry": "White jade, moonstone, or platinum-toned pieces. Delicate, precise designs — a fine chain, an intricately detailed pendant, or a ring with a perfectly cut stone. Xin's jewelry should be understated but flawless."
+  },
+
+  "ren": {
+    "stem": "壬",
+    "pinyin": "Ren",
+    "element": "Water",
+    "polarity": "Yang",
+    "englishName": "Ren Water",
+    "image": "A great river or ocean — vast, moving, and impossible to contain, carrying immense power and depth beneath a surface that can be calm or turbulent",
+    "personality": {
+      "overview": "Ren Water Day Masters are the strategists and visionaries of the Water family — deep, fluid, and possessed of an intelligence that flows around obstacles rather than confronting them. Like a great river, Ren Water finds its way to the sea no matter what stands in its path. These are people of big ideas, broad perspectives, and a natural understanding that the shortest distance between two points is not always a straight line.",
+      "coreTraits": ["Strategic", "Fluid", "Intelligent", "Independent", "Deep"],
+      "strengths": [
+        "Exceptional strategic intelligence — sees the whole terrain, not just the path",
+        "Adaptable and fluid — flows around obstacles rather than fighting them",
+        "Independent thinker — follows their own current rather than the crowd",
+        "Deep well of wisdom and intuition that others sense and seek out",
+        "Natural ability to connect disparate ideas into coherent vision"
+      ],
+      "weaknesses": [
+        "Can be elusive — hard to pin down, hard to read, hard to hold accountable",
+        "Tendency to flow around problems rather than addressing them directly",
+        "May overwhelm others with the force of their personality and ideas",
+        "Restlessness — the river that never stops moving, even when stillness is needed",
+        "Can be emotionally overwhelming when the dam breaks and everything floods out"
+      ]
+    },
+    "career": [
+      {"field": "Strategy & Consulting", "why": "Natural ability to see the whole board and plan several moves ahead"},
+      {"field": "Science & Exploration", "why": "Deep curiosity and the drive to understand vast, complex systems"},
+      {"field": "Philosophy & Writing", "why": "Big ideas and the ability to articulate them in ways that move people"},
+      {"field": "International Business & Trade", "why": "Global perspective and the ability to navigate complex, fluid environments"},
+      {"field": "Technology & Innovation", "why": "Vision to see where things are flowing and position accordingly"}
+    ],
+    "relationships": {
+      "idealPartner": "Ding Fire (Yin Fire) — the candle flame reflected on the river's surface, creating depth, beauty, and the play of light on water",
+      "compatibleDayMasters": ["Jia Wood", "Yi Wood", "Geng Metal"],
+      "challengingDayMasters": ["Wu Earth", "Ji Earth"],
+      "description": "Ren Water partners are deep, intriguing, and never fully knowable — which is part of their allure. They show love through presence, through the flow of conversation and ideas, through sharing their vast inner world. Their ideal partner is secure enough to let the river flow without needing to dam it, and warm enough to create the play of light on water that makes Ren's depth visible."
+    },
+    "seasonalNotes": {
+      "spring": "Ren Water in spring nourishes Wood's growth — the river feeding the forest. Generative, expansive, full of creative flow",
+      "summer": "Ren Water in summer is essential but challenged — the river that must resist evaporation. Protect your reserves",
+      "autumn": "Ren Water in autumn is clarified by Metal — the season of sharp thinking, clear boundaries, and intellectual precision",
+      "winter": "Ren Water in winter is at peak power — deep, cold, and immensely strong. The season of storage, strategy, and hidden power"
+    },
+    "famousArchetypes": "Albert Einstein, Bruce Lee — visionaries who flowed around conventional thinking and changed their fields through fluid, adaptive intelligence",
+    "elementDynamics": "Ren Water produces Wood (growth), controls Fire (passion), is produced by Metal (precision), and is controlled by Earth (stability). Ren's challenge is accepting Earth's banks — the containment that gives a river its direction and power rather than letting it spread into a shallow flood.",
+    "daoistJewelry": "Black obsidian, lapis lazuli, or deep blue sapphire. Pieces with flow — a wave-patterned bracelet or a pendant that suggests movement. Ren's jewelry should feel deep and significant, like the river itself."
+  },
+
+  "gui": {
+    "stem": "癸",
+    "pinyin": "Gui",
+    "element": "Water",
+    "polarity": "Yin",
+    "englishName": "Gui Water",
+    "image": "Gentle rain, morning dew, or a quiet lake — soft, penetrating, and quietly transformative, nourishing everything it touches without force or fanfare",
+    "personality": {
+      "overview": "Gui Water Day Masters are the intuitives and empaths of the BaZi world — sensitive, perceptive, and possessed of a quiet wisdom that penetrates to the heart of things. Unlike Ren's great river, Gui is the gentle rain that nourishes, the mist that reveals hidden shapes, the still lake that reflects truth. These are people of remarkable emotional intelligence, creative imagination, and a gentleness that is far stronger than it appears.",
+      "coreTraits": ["Intuitive", "Sensitive", "Creative", "Gentle", "Perceptive"],
+      "strengths": [
+        "Exceptional intuition — Gui Water knows things without knowing how they know",
+        "Deep empathy and the ability to feel what others are feeling",
+        "Creative imagination that sees possibilities beyond the literal and obvious",
+        "Gentle persistence — the rain that wears down mountains over time",
+        "Reflective wisdom — the still lake that shows others their own truth"
+      ],
+      "weaknesses": [
+        "Can be overly sensitive, taking on others' emotions as their own",
+        "Tendency toward melancholy and getting lost in emotional depths",
+        "May be perceived as weak or vague by more forceful, direct types",
+        "Struggles with boundaries — water seeps into everything",
+        "Can be passive when active engagement is what's needed"
+      ]
+    },
+    "career": [
+      {"field": "Psychology & Therapy", "why": "Deep empathy and the ability to understand others from the inside out"},
+      {"field": "Writing & Poetry", "why": "Sensitive perception and the gift for expressing the inexpressible"},
+      {"field": "Music & Art", "why": "Creative imagination fed by deep emotional currents"},
+      {"field": "Healing & Holistic Medicine", "why": "Intuitive understanding of what's out of balance and what would restore it"},
+      {"field": "Research & Investigation", "why": "The ability to penetrate beneath surfaces to hidden truths"}
+    ],
+    "relationships": {
+      "idealPartner": "Bing Fire (Yang Fire) — the sun that draws Gui's mist upward, creating the cycle of evaporation and return that keeps water moving",
+      "compatibleDayMasters": ["Yi Wood", "Jia Wood", "Xin Metal"],
+      "challengingDayMasters": ["Ji Earth", "Wu Earth"],
+      "description": "Gui Water partners are deeply attuned, emotionally present, and quietly devoted. They show love through understanding — knowing what you need before you say it, feeling what you feel, creating emotional safety through their own vulnerability. Their ideal partner can hold Gui's depth without being overwhelmed by it, and offers the warmth that keeps Gui's water from growing cold and still."
+    },
+    "seasonalNotes": {
+      "spring": "Gui Water in spring is gentle rain on new growth — nurturing, creative, and perfectly timed for new beginnings",
+      "summer": "Gui Water in summer is precious relief — the cool mist in the heat. Protect your reserves; don't let yourself be evaporated",
+      "autumn": "Gui Water in autumn is clarified by Metal — the season of emotional clarity, refined perception, and letting go",
+      "winter": "Gui Water in winter is quiet and deep — still water running deep beneath the ice. A season of inner work and hidden growth"
+    },
+    "famousArchetypes": "Emily Dickinson, Carl Jung — figures of extraordinary inner depth whose quiet perception revealed truths that louder voices missed",
+    "elementDynamics": "Gui Water produces Wood (growth), controls Fire (passion), is produced by Metal (precision), and is controlled by Earth (stability). Gui's special gift is penetration without force — the water that enters every crevice not by breaking walls but by finding the openings that already exist.",
+    "daoistJewelry": "Moonstone, aquamarine, or pearl. Delicate pieces that feel personal and intimate — a thin silver chain with a small, luminous stone or a bracelet of tiny, water-polished beads. Gui's jewelry should whisper, not shout."
+  }
+}

@@ -17,4 +17,15 @@ Disallow: /report_demo.html
 # 计算器页面允许索引 (高质量内容)
 # kua_calculator.html, element-calculator.html 应该被索引
 
+# === 2026-07-06 增量补丁 ===
+# 鼓励主流搜索引擎 + AI 爬虫索引高质量原创内容
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://oriental-destiny.com/sitemap.xml

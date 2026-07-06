@@ -1,2 +1,12 @@
 .claude/
 .wrangler/
+# 敏感配置文件 — 包含真实 API Key，永远不提交
+config.real.js
+# IDE
+.vscode/
+.idea/
+# OS
+.DS_Store
+Thumbs.db
+# SEO 生成器开发目录 — 不部署
+seo-generator/output/

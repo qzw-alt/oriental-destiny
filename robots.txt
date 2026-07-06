@@ -1,12 +1,20 @@
 User-agent: *
 Allow: /
 
-# Tools — not for Google indexing
-Disallow: /full_bazi_reading.html
-Disallow: /kua_calculator.html
-Disallow: /element-calculator.html
-Disallow: /basic_report.html
+# 排除敏感页面 (checkout / 登录 / 私人)
 Disallow: /checkout.html
 Disallow: /thanks.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /dashboard.html
+Disallow: /basic_report.html
+Disallow: /full_report.html
+Disallow: /full_bazi_reading.html
+Disallow: /instant_report.html
+Disallow: /snapshot_report.html
+Disallow: /report_demo.html
+
+# 计算器页面允许索引 (高质量内容)
+# kua_calculator.html, element-calculator.html 应该被索引
 
 Sitemap: https://oriental-destiny.com/sitemap.xml

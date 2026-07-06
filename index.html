@@ -1009,28 +1009,29 @@
         </div>
             <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
-    <script src="config.real.js"></script>
-    <script src="config.js"></script>
-    <script src="auth.js"></script>
-    <script src="i18n.js"></script>
-    <script src="bazi_translator.js"></script>
-    <script src="version.js"></script>
+    <script defer src="config.real.js"></script>
+    <script defer src="config.js"></script>
+    <script defer src="auth.js"></script>
+    <script defer src="i18n.js"></script>
+    <script defer src="bazi_translator.js"></script>
+    <script defer src="version.js"></script>
     <script>
-    // Auth-aware navigation
-    Auth.init().then(function() {
-        if (Auth.currentUser) {
-            document.getElementById('navSignIn').style.display = 'none';
-            document.getElementById('navDashboard').style.display = '';
-        }
-    });
-    Auth.onAuthChange(function(user) {
-        if (user) {
-            document.getElementById('navSignIn').style.display = 'none';
-            document.getElementById('navDashboard').style.display = '';
-        } else {
-            document.getElementById('navSignIn').style.display = '';
-            document.getElementById('navDashboard').style.display = 'none';
-        }
+    <script>
+    // Auth-aware nav — defers until DOM ready, safe if Auth missing
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof Auth === 'undefined') return;
+        Auth.init().then(function() {
+            var el = document.getElementById('navSignIn');
+            if (el) el.style.display = Auth.currentUser ? 'none' : '';
+            el = document.getElementById('navDashboard');
+            if (el) el.style.display = Auth.currentUser ? '' : 'none';
+        });
+        Auth.onAuthChange(function(user) {
+            var el = document.getElementById('navSignIn');
+            if (el) el.style.display = user ? 'none' : '';
+            el = document.getElementById('navDashboard');
+            if (el) el.style.display = user ? '' : 'none';
+        });
     });
     </script>
 </body>

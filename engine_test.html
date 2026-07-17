@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Engine Test</title></head>
+<body>
+<h1>BaZi Engine v2 + Dream Engine v2 Test</h1>
+<div id="bazi"></div>
+<div id="dream"></div>
+
+<script src="bazi_engine_v2.js"></script>
+<script src="dream_engine.js"></script>
+<script>
+// ── Test 1: BaZi Engine v2 ──────────────────────
+const profile = BaziEngineV2.calculateProfile({
+  birthDate: '1990-05-15',
+  birthTime: '14:30',
+  birthLocation: 'Beijing',
+  gender: 'male',
+  lifeFocus: 'career'
+});
+
+const baziEl = document.getElementById('bazi');
+baziEl.innerHTML = `
+<h2>✅ BaziEngineV2 — ${profile.dayMaster} ${profile.dayMasterElement} Day Master</h2>
+<table border="1" cellpadding="6" style="border-collapse:collapse">
+<tr><th>Layer</th><th>Result</th></tr>
+<tr><td>四柱</td><td>
+  Year: ${profile.pillars.year.stem}${profile.pillars.year.branch} (${profile.pillars.year.naYin}) |
+  Month: ${profile.pillars.month.stem}${profile.pillars.month.branch} (${profile.season}) |
+  Day: ${profile.pillars.day.stem}${profile.pillars.day.branch} |
+  Hour: ${profile.pillars.hour?.stem || 'N/A'}${profile.pillars.hour?.branch || ''}
+</td></tr>
+<tr><td>旺衰</td><td>${profile.strength.band} (score: ${profile.strength.totalScore.toFixed(1)}) — ${profile.strength.monthly.rank}</td></tr>
+<tr><td>格局</td><td>${profile.geJu.patternName} | Purity: ${profile.geJu.purity} | Transparent: ${profile.geJu.transparent}</td></tr>
+<tr><td>用神喜忌</td><td>用神: ${profile.yongShen.yongShen} | 喜: ${profile.yongShen.xiShen.join(', ')} | 忌: ${profile.yongShen.jiShen.join(', ')}</td></tr>
+<tr><td>神煞</td><td>${profile.shenSha.all.map(s => s.name.split(' ')[0]).join(' • ')}</td></tr>
+<tr><td>大运 (起运)</td><td>Qi Yun: age ${profile.daYun.qiYunAge} | Direction: ${profile.daYun.direction}</td></tr>
+<tr><td>流年 ${profile.currentYear.year}</td><td>${profile.currentYear.liuNian?.stem}${profile.currentYear.liuNian?.branch} — ${profile.currentYear.liuNian?.label}</td></tr>
+<tr><td>事业</td><td>${profile.career.careerArchetype.substring(0, 120)}...</td></tr>
+<tr><td>财运</td><td>${profile.wealth.wealthArchetype.substring(0, 120)}...</td></tr>
+<tr><td>婚姻</td><td>${profile.marriage.marriageArchetype.substring(0, 120)}...</td></tr>
+<tr><td>健康</td><td>Weakest: ${profile.health.weakest.element} → ${profile.health.weakest.organ}</td></tr>
+</table>
+<h3>Key Turning Points (next 10 years)</h3>
+<ul>
+${profile.currentYear.turningPoints.map(tp =>
+  `<li><strong>${tp.year}</strong>: ${tp.label} — ${tp.reason.substring(0, 80)}</li>`
+).join('')}
+</ul>
+`;
+
+// ── Test 2: Dream Engine v2 ──────────────────────
+const dreamText = "I dreamed I was climbing a tall mountain, and at the top I found a crystal-clear lake with golden fish swimming. A strong wind began blowing and I felt both fear and exhilaration.";
+const dreamResult = DreamEngine.interpret(dreamText, {
+  dreamTime: '03:30',
+  baziProfile: profile  // cross-reference with BaZi
+});
+
+const dreamEl = document.getElementById('dream');
+dreamEl.innerHTML = `
+<h2>✅ DreamEngine v2</h2>
+<p><em>"${dreamText}"</em></p>
+<table border="1" cellpadding="6" style="border-collapse:collapse">
+<tr><th>Aspect</th><th>Result</th></tr>
+<tr><td>Primary Element</td><td>${dreamResult.elementAnalysis?.primary?.element?.toUpperCase() || 'Unknown'}</td></tr>
+<tr><td>Secondary</td><td>${dreamResult.elementAnalysis?.secondary?.map(s => s.element).join(', ') || 'None'}</td></tr>
+<tr><td>Is Compound</td><td>${dreamResult.elementAnalysis?.isCompound}</td></tr>
+<tr><td>Shi Chen</td><td>${dreamResult.shiChenAnalysis?.shiChen || 'N/A'} — ${dreamResult.shiChenAnalysis?.organ || 'N/A'} (${dreamResult.shiChenAnalysis?.element || ''})</td></tr>
+<tr><td>BaZi Cross-Ref</td><td>${dreamResult.baziCrossRef ? dreamResult.baziCrossRef.dreamElement + ' ↔ Day Master ' + dreamResult.baziCrossRef.dayMasterElement + ' (' + (dreamResult.baziCrossRef.isAuspicious === true ? 'Auspicious' : dreamResult.baziCrossRef.isAuspicious === false ? 'Caution' : 'Neutral') + ')' : 'No BaZi data'}</td></tr>
+<tr><td>Matched Symbols</td><td>${dreamResult.symbolMatch.elements.map(e => `${e.element}: ${e.keywords.slice(0,4).join(', ')}`).join('<br>')}</td></tr>
+<tr><td>Categories</td><td>${dreamResult.interpretation.categoryInterpretations.map(c => c.category).join(', ')}</td></tr>
+<tr><td>Lucky Direction</td><td>${dreamResult.interpretation.luckyDirection || 'N/A'}</td></tr>
+</table>
+<h3>Interpretation</h3>
+<p>${dreamResult.interpretation.elementInterpretation.substring(0, 400)}...</p>
+<h3>Guidance</h3>
+<p>${dreamResult.interpretation.elementGuidance}</p>
+`;
+</script>
+</body>
+</html>

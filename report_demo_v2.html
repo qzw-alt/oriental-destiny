@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BaZi Report v2 — Demo</title>
+<style>
+  :root {
+    --ink: #241915; --paper: #f8f1e7; --cinnabar: #a63a2c; --gold: #b78a42;
+    --line: rgba(36,25,21,0.1); --shadow: 0 18px 48px rgba(70,41,24,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    background: radial-gradient(circle at top, rgba(183,138,66,0.14), transparent 34%),
+                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
+    line-height: 1.72; min-height: 100vh;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 32px; margin: 30px 0 10px; text-align: center; }
+  h1 span { color: var(--cinnabar); }
+  .subtitle { text-align: center; color: rgba(36,25,21,0.6); margin-bottom: 30px; }
+
+  .form-card {
+    background: #fff; border-radius: 12px; padding: 32px;
+    box-shadow: var(--shadow); margin-bottom: 30px;
+  }
+  .form-row { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .form-row input, .form-row select {
+    flex: 1; min-width: 140px; padding: 12px 16px;
+    border: 1.5px solid var(--line); border-radius: 8px;
+    font-family: Georgia, serif; font-size: 15px;
+    color: var(--ink); background: var(--paper); outline: none;
+  }
+  .form-row input:focus, .form-row select:focus { border-color: var(--gold); }
+  .form-row label { font-size: 12px; color: rgba(36,25,21,0.5); display: block; margin-bottom: 4px; }
+
+  .btn {
+    width: 100%; padding: 16px; border: none; border-radius: 8px;
+    background: var(--cinnabar); color: #fff; font-size: 16px;
+    font-family: Georgia, serif; font-weight: 600; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: #8c2f23; }
+  .btn:disabled { background: #c4a882; cursor: not-allowed; }
+
+  .status { text-align: center; padding: 20px; color: rgba(36,25,21,0.6); font-size: 14px; }
+  .status.error { color: var(--cinnabar); }
+  .status.success { color: #2e7d32; }
+
+  .report-card {
+    background: #fff; border-radius: 12px; padding: 40px;
+    box-shadow: var(--shadow); margin-bottom: 24px;
+  }
+  .report-card h2 { font-size: 22px; color: var(--cinnabar); margin-bottom: 16px; }
+  .report-card h3 { font-size: 18px; margin: 20px 0 10px; color: var(--gold); }
+  .report-card p { font-size: 15px; margin-bottom: 14px; line-height: 1.85; color: rgba(36,25,21,0.82); }
+  .report-card .tag {
+    display: inline-block; font-size: 11px; padding: 4px 12px; border-radius: 12px;
+    font-weight: 600; letter-spacing: 0.04em; margin: 2px;
+  }
+  .tag.element { background: rgba(183,138,66,0.1); color: var(--gold); }
+  .tag.warning { background: rgba(166,58,44,0.1); color: var(--cinnabar); }
+  .tag.positive { background: rgba(49,82,71,0.1); color: var(--pine); }
+  ul { margin-left: 20px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 20px; border: 1px solid var(--line); border-radius: 6px;
+    cursor: pointer; font-size: 13px; font-weight: 600; background: var(--paper);
+    transition: all 0.2s;
+  }
+  .tab:hover { border-color: var(--gold); }
+  .tab.active { background: var(--cinnabar); color: #fff; border-color: var(--cinnabar); }
+
+  .metrics {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric {
+    background: var(--paper); border-radius: 8px; padding: 16px; text-align: center;
+  }
+  .metric .value { font-size: 28px; font-weight: 700; color: var(--cinnabar); }
+  .metric .label { font-size: 12px; color: rgba(36,25,21,0.5); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>BaZi <span>Report v2</span> — Live Demo</h1>
+  <p class="subtitle">BaziEngineV2 (Seven-Layer Classical Zi Ping) + ReportEngineV2 (DeepSeek Narrative Generation)</p>
+
+  <div class="form-card" id="inputForm">
+    <div class="form-row">
+      <div><label>Birth Date</label><input type="date" id="birthDate" value="1990-05-15"></div>
+      <div><label>Birth Time</label><input type="time" id="birthTime" value="14:30"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Birth City</label><input type="text" id="birthLocation" value="Beijing" placeholder="e.g. Beijing, Shanghai"></div>
+      <div><label>Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+      <div><label>Focus</label><select id="focus">
+        <option value="balance">Balance</option>
+        <option value="career">Career</option>
+        <option value="wealth">Wealth</option>
+        <option value="love">Love</option>
+        <option value="protection">Protection</option>
+      </select></div>
+    </div>
+    <button class="btn" id="generateBtn" onclick="generateReport()">⚡ Calculate Chart + Generate AI Report</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div id="output"></div>
+</div>
+
+<script src="bazi_engine_v2.js"></script>
+<script src="report_engine_v2.js"></script>
+
+<script>
+const API_KEY = "sk-354f5dc8aace46c2a8c29c0d1771297f";
+
+async function generateReport() {
+  const btn = document.getElementById('generateBtn');
+  const status = document.getElementById('status');
+  const output = document.getElementById('output');
+
+  btn.disabled = true;
+  status.className = 'status';
+  status.textContent = '⚙️ Calculating BaZi chart (Seven-Layer Classical Engine)...';
+  output.innerHTML = '';
+
+  try {
+    // ── Step 1: Calculate chart ────────────────────────
+    const profile = BaziEngineV2.calculateProfile({
+      birthDate: document.getElementById('birthDate').value,
+      birthTime: document.getElementById('birthTime').value,
+      birthLocation: document.getElementById('birthLocation').value,
+      gender: document.getElementById('gender').value,
+      lifeFocus: document.getElementById('focus').value
+    });
+
+    status.textContent = '📊 Chart computed! ' +
+      profile.dayMaster + ' ' + profile.dayMasterElement + ' | ' +
+      profile.geJu.patternName + ' | Yong Shen: ' + profile.yongShen.yongShen +
+      '. Generating report...';
+
+    // ── Step 2: Generate report (single API call) ─────
+    const engine = new ReportEngineV2({ apiKey: API_KEY });
+    const focus = document.getElementById('focus').value;
+    const result = await engine.generateReport(profile, focus);
+
+    if (result.fallback) {
+      status.className = 'status';
+      status.textContent = '⚠️ DeepSeek unavailable — showing engine-generated report.';
+    } else {
+      status.className = 'status success';
+      status.textContent = '✅ Report ready.';
+    }
+
+    // ── Step 3: Render ─────────────────────────────────
+    output.innerHTML = buildChartSnapshotHTML(profile) +
+      buildFullReportHTML(result.report, profile, result.fallback);
+
+  } catch(e) {
+    status.className = 'status error';
+    status.textContent = '❌ Error: ' + e.message;
+    console.error(e);
+
+    // Show fallback even on error
+    try {
+      const profile = BaziEngineV2.calculateProfile({
+        birthDate: document.getElementById('birthDate').value,
+        birthTime: document.getElementById('birthTime').value,
+        birthLocation: document.getElementById('birthLocation').value,
+        gender: document.getElementById('gender').value,
+        lifeFocus: document.getElementById('focus').value
+      });
+      const fallbackReport = buildFallbackReport(profile, document.getElementById('focus').value);
+      output.innerHTML = buildChartSnapshotHTML(profile) +
+        '<div class="report-card" style="border-left:3px solid var(--cinnabar);"><p style="font-size:13px;color:var(--cinnabar);">⚠️ API unavailable. Showing data-driven report below.</p></div>' +
+        buildFullReportHTML(fallbackReport, profile, true);
+    } catch(e2) {
+      output.innerHTML = '<div class="report-card"><p>Could not generate report. Please try again.</p></div>';
+    }
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function buildChartSnapshotHTML(profile) {
+  return `
+<div class="report-card">
+  <h2>📐 Chart Snapshot — ${profile.dayMaster} ${profile.dayMasterElement} Day Master</h2>
+  <div class="metrics">
+    <div class="metric"><div class="value">${profile.pillars.year.stem}${profile.pillars.year.branch}</div><div class="label">Year Pillar · ${profile.pillars.year.naYin}</div></div>
+    <div class="metric"><div class="value">${profile.pillars.month.stem}${profile.pillars.month.branch}</div><div class="label">Month Pillar · ${profile.season}</div></div>
+    <div class="metric"><div class="value">${profile.pillars.day.stem}${profile.pillars.day.branch}</div><div class="label">Day Pillar · Day Master</div></div>
+    <div class="metric"><div class="value">${profile.pillars.hour?.stem || '?'}${profile.pillars.hour?.branch || '?'}</div><div class="label">Hour Pillar</div></div>
+  </div>
+  <p>
+    <span class="tag element">格局: ${profile.geJu.patternName}</span>
+    <span class="tag element">用神: ${profile.yongShen.yongShen}</span>
+    <span class="tag element">喜神: ${(profile.yongShen.xiShen||[]).join(', ')}</span>
+    <span class="tag warning">忌神: ${(profile.yongShen.jiShen||[]).join(', ')}</span>
+    <span class="tag positive">${profile.strength.band} (${profile.strength.totalScore.toFixed(1)})</span>
+  </p>
+  <p style="font-size:13px;color:rgba(36,25,21,0.5);">
+    神煞: ${profile.shenSha.all.map(s => s.name.split(' (')[0]).join(' · ')} ·
+    大运起运: ${profile.daYun.qiYunAge}岁 ·
+    流年${profile.currentYear.year}: ${profile.currentYear.liuNian?.stem}${profile.currentYear.liuNian?.branch} ${profile.currentYear.liuNian?.label || ''}
+  </p>
+</div>`;
+}
+
+function buildFullReportHTML(report, profile, isFallback) {
+  // report is now { opening, thePattern, whatHelps, whatToDo, closing } or fallback structure
+  const sections = [];
+
+  // Always show chart snapshot
+  sections.push(`<div class="report-card" style="opacity:0.85;">
+    <h2>📐 Your Chart Data</h2>
+    <div class="metrics">
+      <div class="metric"><div class="value">${profile.pillars.year.stem}${profile.pillars.year.branch}</div><div class="label">Year · ${profile.pillars.year.naYin}</div></div>
+      <div class="metric"><div class="value">${profile.pillars.month.stem}${profile.pillars.month.branch}</div><div class="label">Month · ${profile.season}</div></div>
+      <div class="metric"><div class="value">${profile.pillars.day.stem}${profile.pillars.day.branch}</div><div class="label">Day · Day Master</div></div>
+      <div class="metric"><div class="value">${profile.pillars.hour?.stem || '?'}${profile.pillars.hour?.branch || '?'}</div><div class="label">Hour</div></div>
+    </div>
+    <p style="font-size:13px;">
+      <span class="tag element">${profile.geJu.patternName}</span>
+      <span class="tag element">用神: ${profile.yongShen.yongShen}</span>
+      <span class="tag element">喜: ${(profile.yongShen.xiShen||[]).join(',')}</span>
+      <span class="tag warning">忌: ${(profile.yongShen.jiShen||[]).join(',')}</span>
+      <span class="tag positive">${profile.strength.band}</span>
+    </p>
+    <p style="font-size:11px;color:rgba(36,25,21,0.4);margin-top:8px;">
+      ${profile.shenSha.all.map(s => s.name.split(' (')[0]).join(' · ')} · QiYun: age ${profile.daYun.qiYunAge}
+    </p>
+  </div>`);
+
+  if (isFallback) {
+    sections.push(`<div class="report-card" style="border-left:3px solid var(--gold);"><p style="font-size:13px;color:var(--gold);">✨ Report generated from classical engine data. (AI enhancement unavailable — using verified structural analysis.)</p></div>`);
+  }
+
+  // Opening
+  if (report.opening) {
+    sections.push(`<div class="report-card"><h2>🔮 Who You Are</h2>${report.opening.split('\n\n').map(p => '<p>' + p + '</p>').join('')}</div>`);
+  }
+
+  // The Pattern
+  if (report.thePattern) {
+    sections.push(`<div class="report-card"><h2>🌿 Your Pattern</h2>${report.thePattern.split('\n\n').map(p => '<p>' + p + '</p>').join('')}</div>`);
+  }
+
+  // What Helps
+  if (report.whatHelps) {
+    sections.push(`<div class="report-card" style="border-left:4px solid var(--pine);"><h2>✨ What Supports You</h2>${report.whatHelps.split('\n\n').map(p => '<p>' + p + '</p>').join('')}</div>`);
+  }
+
+  // What To Do
+  if (report.whatToDo?.length) {
+    sections.push(`<div class="report-card"><h2>🎯 Small Things That Help</h2><ul>${report.whatToDo.map(a => '<li>' + a + '</li>').join('')}</ul></div>`);
+  }
+
+  // Closing
+  if (report.closing) {
+    sections.push(`<div class="report-card" style="text-align:center;font-style:italic;"><p>${report.closing}</p></div>`);
+  }
+
+  return sections.join('');
+}
+</script>
+</body>
+</html>

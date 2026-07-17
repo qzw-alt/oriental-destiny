@@ -252,19 +252,38 @@
     // ─── 私有方法 ───────────────────────────────────
 
     /**
-     * 运行 bazi_engine.js 进行排盘
+     * 运行八字排盘引擎
+     * 优先使用 bazi_engine_v2.js（七层古典子平引擎），回退到 bazi_engine.js
      */
     _runBaziEngine(userInput) {
-      if (typeof window.BaziEngine === "undefined") {
-        throw new Error("bazi_engine.js not loaded");
+      // Try v2 engine first
+      if (typeof window.BaziEngineV2 !== "undefined") {
+        try {
+          const v2Profile = window.BaziEngineV2.calculateProfile({
+            birthDate: userInput.birthDate,
+            birthTime: userInput.birthTime || "",
+            lifeFocus: userInput.focus || "balance",
+            gender: userInput.gender || "",
+            birthLocation: userInput.birthLocation || ""
+          });
+          // Store for session cross-reference (dream engine uses this)
+          try { sessionStorage.setItem('baziProfileV2', JSON.stringify(v2Profile)); } catch(e) {}
+          return v2Profile;
+        } catch (v2Err) {
+          console.warn("BaziEngineV2 failed, falling back to v1:", v2Err.message);
+        }
       }
-      return window.BaziEngine.calculateProfile({
-        birthDate: userInput.birthDate,
-        birthTime: userInput.birthTime || "",
-        lifeFocus: userInput.focus || "balance",
-        gender: userInput.gender || "",
-        birthLocation: userInput.birthLocation || ""
-      });
+      // Fallback to v1 engine
+      if (typeof window.BaziEngine !== "undefined") {
+        return window.BaziEngine.calculateProfile({
+          birthDate: userInput.birthDate,
+          birthTime: userInput.birthTime || "",
+          lifeFocus: userInput.focus || "balance",
+          gender: userInput.gender || "",
+          birthLocation: userInput.birthLocation || ""
+        });
+      }
+      throw new Error("No BaZi engine loaded. Include bazi_engine_v2.js or bazi_engine.js.");
     },
 
     /**

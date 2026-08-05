@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
@@ -13,639 +13,586 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <meta name="description" content="Your personal instant BaZi clarity report — complete chart foundation, Day Master profile, Five Elements balance, and treasure direction.">
-    <title>Your BaZi Clarity Report | Oriental Destiny</title>
+    <meta name="description" content="你的个人八字命书——完整排盘、日主解读、五行平衡、天命方向。">
+    <title>你的八字命书 | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ink: #241915;
-            --paper: #f8f1e7;
-            --cinnabar: #a63a2c;
-            --gold: #b78a42;
-            --pine: #315247;
-            --line: rgba(36, 25, 21, 0.1);
-            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
-        }
+/* ══════════════════════════════════════════════════════════
+   水墨风 · Ink Wash Destiny Scroll
+   命书查看器
+   ══════════════════════════════════════════════════════════ */
+:root {
+  --ink: #1a1410;
+  --ink-light: rgba(26,20,16,0.65);
+  --ink-faint: rgba(26,20,16,0.35);
+  --cinnabar: #b5342a;
+  --cinnabar-deep: #8b1a14;
+  --gold: #c9a24e;
+  --gold-light: rgba(201,162,78,0.2);
+  --gold-faint: rgba(201,162,78,0.08);
+  --cream: #f5f0e8;
+  --cream-dark: #ebe3d7;
+  --paper: #faf7f1;
+  --white: #fffdf8;
+  --shadow-sm: 0 4px 20px rgba(26,20,16,0.06);
+  --shadow: 0 12px 40px rgba(26,20,16,0.10);
+  --shadow-lg: 0 24px 64px rgba(26,20,16,0.14);
+  --radius: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif SC', Georgia, 'STSong', serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #f7f2e9 0%, var(--cream) 28%, var(--paper) 62%, #f5efe6 100%);
+  line-height: 1.82;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-        body {
-            font-family: Georgia, "Times New Roman", serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 34%),
-                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
-            line-height: 1.75;
-        }
+.container { max-width: 780px; margin: 0 auto; padding: 0 22px; }
+a { color: inherit; text-decoration: none; }
 
-        a { color: inherit; text-decoration: none; }
+/* ── Scroll progress ── */
+.scroll-track {
+  position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 9999;
+  background: transparent; pointer-events: none;
+}
+.scroll-track .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cinnabar), var(--gold), var(--cinnabar));
+  width: 0%; transition: width 0.15s linear;
+}
 
-        .container {
-            width: min(900px, calc(100% - 40px));
-            margin: 0 auto;
-        }
+/* ── Top bar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(248,241,231,0.88);
+  border-bottom: 1px solid rgba(26,20,16,0.08);
+  padding: 14px 0;
+}
+.topbar-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+}
+.brand { display: flex; flex-direction: column; gap: 1px; }
+.brand-mark { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+.brand-name { font-size: 18px; font-weight: 700; }
 
-        /* Top Bar */
-        .topbar {
-            position: sticky; top: 0; z-index: 10;
-            backdrop-filter: blur(14px);
-            background: rgba(248, 241, 231, 0.88);
-            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
-            margin-bottom: 32px;
-        }
-        .topbar-inner {
-            min-height: 64px;
-            display: flex; align-items: center; justify-content: space-between; gap: 14px;
-            padding: 0 20px; max-width: 940px; margin: 0 auto;
-        }
-        .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
-        .brand-name { font-size: 20px; font-weight: 700; }
+/* ── Chapter system ── */
+.chapter {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 36px 0 16px;
+  opacity: 0; transform: translateY(36px);
+  animation: chapterEnter 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards;
+}
+.chapter:nth-child(1){animation-delay:0s}
+.chapter:nth-child(2){animation-delay:0.12s}
+.chapter:nth-child(3){animation-delay:0.24s}
+.chapter:nth-child(4){animation-delay:0.36s}
+.chapter:nth-child(5){animation-delay:0.48s}
+.chapter:nth-child(6){animation-delay:0.6s}
+.chapter:nth-child(7){animation-delay:0.72s}
 
-        /* Loading */
-        .loading-state {
-            text-align: center; padding: 80px 20px;
-        }
-        .loading-state .spinner {
-            display: inline-block;
-            width: 40px; height: 40px;
-            border: 3px solid rgba(166, 58, 44, 0.15);
-            border-top-color: var(--cinnabar);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 16px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes chapterEnter {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chapter-marker {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.chapter-marker .vol {
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--cinnabar); font-weight: 700;
+  writing-mode: vertical-rl;
+  background: rgba(181,52,42,0.06);
+  padding: 8px 5px; border-radius: 2px;
+}
+.chapter-marker .title-cn {
+  font-size: 24px; font-weight: 900; color: var(--ink);
+  letter-spacing: 0.04em;
+}
 
-        /* Error */
-        .error-state {
-            text-align: center; padding: 60px 20px;
-        }
-        .error-state h2 { margin-bottom: 12px; color: var(--cinnabar); }
-        .error-state p { color: rgba(36, 25, 21, 0.6); margin-bottom: 20px; }
+/* ── Content cards ── */
+.content-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 30px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(26,20,16,0.06);
+}
+.content-card p {
+  color: var(--ink-light); margin-bottom: 12px;
+  font-size: 15px; line-height: 1.9;
+}
+.content-card p:last-child { margin-bottom: 0; }
 
-        /* Report Header */
-        .report-header {
-            text-align: center; margin-bottom: 36px;
-            padding: 36px 28px;
-            background: rgba(255, 253, 248, 0.92);
-            border: 1px solid rgba(36, 25, 21, 0.08);
-            border-radius: 18px;
-            box-shadow: var(--shadow);
-        }
-        .report-header .eyebrow {
-            font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: 8px;
-        }
-        .report-header h1 {
-            font-size: 28px; margin-bottom: 8px; line-height: 1.35;
-        }
-        .report-header .chart-label {
-            font-size: 15px; color: rgba(36, 25, 21, 0.55);
-        }
+/* ── Hero cover ── */
+.hero-cover {
+  text-align: center;
+  padding: 56px 0 46px;
+  margin-bottom: 10px;
+}
+.seal-anim {
+  display: inline-block;
+  animation: sealStamp 1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes sealStamp {
+  0%   { transform: scale(2.8) rotate(-25deg); opacity: 0; }
+  60%  { transform: scale(0.92) rotate(3deg); opacity: 1; }
+  80%  { transform: scale(1.06) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.seal-inner {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 68px; height: 68px;
+  border: 2.5px solid var(--cinnabar);
+  border-radius: 4px;
+  color: var(--cinnabar);
+  font-size: 13px; font-weight: 900;
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+}
+.hero-title {
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 20px 0 8px;
+  letter-spacing: 0.03em;
+}
+.hero-title .em { color: var(--cinnabar); }
+.hero-sub {
+  font-size: 14px; color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.hero-divider {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 10px;
+}
 
-        /* Section Cards */
-        .section-card {
-            background: rgba(255, 253, 248, 0.92);
-            border: 1px solid rgba(36, 25, 21, 0.08);
-            border-radius: 14px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 28px rgba(70, 41, 24, 0.06);
-        }
-        .section-card h2 {
-            font-size: 20px; margin-bottom: 14px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .section-card h2 .section-num {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 30px; height: 30px; border-radius: 50%;
-            background: var(--cinnabar); color: #fff;
-            font-size: 13px; font-weight: 700; flex-shrink: 0;
-        }
-        .section-card p {
-            color: rgba(36, 25, 21, 0.75);
-            margin-bottom: 10px;
-        }
-        .section-card p:last-child { margin-bottom: 0; }
+/* ── Bazi table ── */
+.bazi-table {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin: 16px 0;
+}
+.bazi-col {
+  text-align: center;
+  padding: 16px 8px 12px;
+  background: linear-gradient(180deg, rgba(201,162,78,0.04) 0%, transparent 100%);
+  border-radius: var(--radius);
+  transition: transform 0.25s;
+}
+.bazi-col.day-master {
+  background: linear-gradient(180deg, rgba(201,162,78,0.12) 0%, rgba(201,162,78,0.02) 100%);
+  border: 1.5px solid var(--gold-light);
+}
+.bazi-col:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+.bazi-stem { display: block; font-size: 26px; font-weight: 900; color: var(--ink); }
+.bazi-branch { display: block; font-size: 20px; font-weight: 700; color: var(--ink-light); margin-top: 2px; }
+.bazi-label { display: block; font-size: 9px; color: var(--ink-faint); margin-top: 6px; letter-spacing: 0.06em; }
+.bazi-nayin { display: block; font-size: 8px; color: var(--gold); margin-top: 2px; }
+.bazi-dm {
+  display: inline-block; margin-top: 3px;
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--cinnabar); color: #fff;
+  font-size: 9px; font-weight: 700;
+}
 
-        /* Pillars table */
-        .pillars-table {
-            width: 100%; border-collapse: collapse; margin: 12px 0;
-            font-size: 14px;
-        }
-        .pillars-table th {
-            text-align: left; padding: 8px 12px;
-            font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-            color: rgba(36, 25, 21, 0.45); border-bottom: 2px solid rgba(36, 25, 21, 0.1);
-        }
-        .pillars-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid rgba(36, 25, 21, 0.05);
-            font-weight: 600;
-        }
+/* ── Element bars ── */
+.el-bar-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+}
+.el-bar-label {
+  font-size: 11px; width: 80px; text-align: right;
+  color: var(--ink-light); font-family: 'Noto Sans SC', sans-serif;
+}
+.el-bar-track {
+  flex: 1; height: 8px; background: rgba(26,20,16,0.06);
+  border-radius: 4px; overflow: hidden;
+}
+.el-bar-fill {
+  height: 100%; border-radius: 4px; transition: width 0.8s ease;
+}
+.el-bar-val {
+  width: 44px; font-size: 11px; color: var(--ink-faint); flex-shrink: 0;
+}
 
-        /* Element bars */
-        .element-bars { margin: 12px 0; }
-        .element-bar-row {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
-        }
-        .element-bar-label {
-            width: 60px; font-size: 13px; font-weight: 600; text-align: right;
-            flex-shrink: 0;
-        }
-        .element-bar-track {
-            flex: 1; height: 8px; background: rgba(36, 25, 21, 0.06);
-            border-radius: 4px; overflow: hidden;
-        }
-        .element-bar-fill {
-            height: 100%; border-radius: 4px; transition: width 0.6s ease;
-        }
-        .element-bar-val {
-            width: 44px; font-size: 12px; color: rgba(36, 25, 21, 0.5); flex-shrink: 0;
-        }
-        .fill-wood { background: #5b8c5a; }
-        .fill-fire { background: var(--cinnabar); }
-        .fill-earth { background: #b78a42; }
-        .fill-metal { background: #8a9bae; }
-        .fill-water { background: #4a7b9c; }
+/* ── Chips ── */
+.chip-row {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px;
+}
+.chip {
+  display: inline-block; font-size: 10.5px; padding: 5px 13px;
+  border-radius: 14px; font-weight: 600; letter-spacing: 0.04em;
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+.chip.gold { background: var(--gold-faint); color: #8a6d2f; }
+.chip.red  { background: rgba(181,52,42,0.07); color: var(--cinnabar); }
+.chip.green{ background: rgba(49,82,71,0.07); color: #315247; }
 
-        /* Support grid */
-        .support-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 14px; margin-top: 12px;
-        }
-        .support-item {
-            background: rgba(183, 138, 66, 0.05);
-            border: 1px solid rgba(183, 138, 66, 0.12);
-            border-radius: 10px; padding: 16px; text-align: center;
-        }
-        .support-item .label {
-            font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-            color: rgba(36, 25, 21, 0.4); margin-bottom: 4px;
-        }
-        .support-item .value {
-            font-size: 15px; font-weight: 600; color: var(--ink);
-        }
+/* ── Upgrade CTA ── */
+.upgrade-cta {
+  text-align: center; margin: 40px 0 56px;
+  padding: 40px 28px;
+  background: linear-gradient(135deg, rgba(26,20,16,0.94), rgba(71,42,28,0.94)), var(--ink);
+  border-radius: 12px;
+  color: #fffdf8;
+  box-shadow: var(--shadow-lg);
+}
+.upgrade-cta h2 { font-size: 24px; font-weight: 900; margin-bottom: 8px; color: #fff; }
+.upgrade-cta p { color: rgba(255,253,248,0.78); font-size: 14px; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.upgrade-cta .cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff; padding: 14px 32px; border-radius: var(--radius);
+  font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
+  transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(181,52,42,0.3);
+}
+.upgrade-cta .cta-btn:hover { transform: translateY(-2px); }
+.upgrade-cta .credit-note { font-size: 12px; color: var(--gold); margin-top: 14px; }
 
-        /* Treasure type */
-        .treasure-types {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 14px; margin-top: 12px;
-        }
-        .treasure-card {
-            background: rgba(255, 253, 248, 0.9);
-            border: 1px solid rgba(36, 25, 21, 0.08);
-            border-radius: 10px; padding: 18px; text-align: center;
-        }
-        .treasure-card .icon {
-            font-size: 32px; margin-bottom: 8px;
-        }
-        .treasure-card .name {
-            font-size: 14px; font-weight: 600; margin-bottom: 4px;
-        }
-        .treasure-card .fit {
-            font-size: 12px; color: rgba(36, 25, 21, 0.5);
-        }
+/* ── Treasure cards ── */
+.treasure-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+}
+.treasure-card {
+  background: var(--white);
+  border: 1px solid rgba(26,20,16,0.06);
+  border-radius: var(--radius);
+  padding: 22px 18px; text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.treasure-card.primary { border: 2px solid var(--gold-light); }
+.treasure-card .icon { font-size: 32px; margin-bottom: 8px; }
+.treasure-card .name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.treasure-card .fit { font-size: 12px; color: var(--ink-faint); }
 
-        /* Upgrade CTA */
-        .upgrade-cta {
-            text-align: center; margin: 40px 0 60px;
-            padding: 36px 28px;
-            background: rgba(166, 58, 44, 0.04);
-            border: 2px solid rgba(166, 58, 44, 0.2);
-            border-radius: 18px;
-        }
-        .upgrade-cta h2 {
-            font-size: 22px; margin-bottom: 8px;
-        }
-        .upgrade-cta p {
-            color: rgba(36, 25, 21, 0.65); margin-bottom: 18px;
-            max-width: 520px; margin-left: auto; margin-right: auto;
-        }
-        .upgrade-cta .btn {
-            display: inline-block; padding: 14px 32px; border-radius: 4px;
-            font-size: 15px; font-weight: 600; letter-spacing: 0.04em;
-            background: linear-gradient(135deg, var(--cinnabar), #8b251a);
-            color: #fff; transition: background 0.2s;
-        }
-        .upgrade-cta .btn:hover { background: linear-gradient(135deg, #8c2f23, #6e1d14); }
-        .upgrade-cta .credit-note {
-            font-size: 13px; color: var(--gold); margin-top: 14px;
-        }
+/* ── Loading & Error ── */
+.loading-state {
+  text-align: center; padding: 80px 20px;
+}
+.loading-spinner {
+  display: inline-block; width: 40px; height: 40px;
+  border: 3px solid rgba(181,52,42,0.15);
+  border-top-color: var(--cinnabar);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state {
+  text-align: center; padding: 60px 20px;
+}
+.error-state h2 { margin-bottom: 12px; color: var(--cinnabar); }
 
-        /* Footer */
-        footer {
-            text-align: center; padding: 24px 20px;
-            font-size: 12px; color: rgba(36, 25, 21, 0.5);
-            border-top: 1px solid rgba(36, 25, 21, 0.06);
-        }
-        footer a { color: var(--cinnabar); }
+.btn-link {
+  display: inline-block; padding: 12px 28px; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff; font-size: 14px; font-weight: 600; transition: all 0.2s;
+}
+.btn-link:hover { transform: translateY(-1px); }
 
-        /* Focus tags */
-        .focus-tag {
-            display: inline-block; padding: 3px 12px; border-radius: 20px;
-            font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
-            background: rgba(183, 138, 66, 0.12); color: var(--gold);
-            margin-right: 6px; margin-bottom: 6px;
-        }
+footer { text-align: center; padding: 24px 20px; font-size: 12px; color: var(--ink-faint); border-top: 1px solid rgba(26,20,16,0.06); }
+footer a { color: var(--cinnabar); }
 
-        @media (max-width: 600px) {
-            .section-card { padding: 20px; }
-            .report-header h1 { font-size: 22px; }
-        }
-    </style>
+@media (max-width: 600px) {
+  .bazi-table { grid-template-columns: repeat(2, 1fr); }
+  .content-card { padding: 22px 18px; }
+  .treasure-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="topbar-inner">
-            <div>
-                <span class="brand-mark">Oriental Destiny</span>
-                <span class="brand-name">☯</span>
-            </div>
-            <div style="font-size:13px;color:rgba(36,25,21,0.5);">
-                <a href="dashboard.html" style="color:var(--cinnabar);">Dashboard</a>
-            </div>
+<!-- Scroll progress -->
+<div class="scroll-track"><div class="fill" id="scrollFill"></div></div>
+
+<!-- Top Bar -->
+<div class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">Oriental Destiny</span>
+            <span class="brand-name">天命书</span>
+        </a>
+        <div style="font-size:12px;color:var(--ink-faint);">
+            <a href="dashboard.html" style="color:var(--cinnabar);">控制台</a>
         </div>
     </div>
+</div>
 
-    <main class="container">
+<main class="container">
 
-        <!-- Loading -->
-        <div class="loading-state" id="loadingState">
-            <div class="spinner"></div>
-            <p style="color:rgba(36,25,21,0.55);">Opening your chart…</p>
+    <!-- Loading -->
+    <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p style="color:var(--ink-light);">正在打开你的命书…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="error-state" id="errorState" style="display:none;">
+        <h2>命书未找到</h2>
+        <p id="errorMsg" style="color:var(--ink-light);margin-bottom:20px;">无法生成你的报告。请从免费诊断重新开始。</p>
+        <a href="instant_reading.html" class="btn-link">开始免费诊断</a>
+    </div>
+
+    <!-- Report Content -->
+    <div id="reportContent" style="display:none;">
+
+        <!-- Cover -->
+        <div class="hero-cover" id="coverContent"></div>
+
+        <!-- 卷一 · 命主画像 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷一</span>
+                <span class="title-cn">命主画像</span>
+            </div>
+            <div class="content-card" id="sec1"></div>
         </div>
 
-        <!-- Error -->
-        <div class="error-state" id="errorState" style="display:none;">
-            <h2>Report Not Found</h2>
-            <p id="errorMsg">We couldn't generate your report. Please try again from the free preview.</p>
-            <a href="instant_reading.html" class="btn" style="display:inline-block;padding:12px 28px;border-radius:4px;background:var(--cinnabar);color:#fff;font-weight:600;">Start Free Preview</a>
+        <!-- 卷二 · 格局解密 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷二</span>
+                <span class="title-cn">格局解密</span>
+            </div>
+            <div class="content-card" id="sec2"></div>
         </div>
 
-        <!-- Report Content -->
-        <div id="reportContent" style="display:none;">
-
-            <!-- Header -->
-            <div class="report-header">
-                <div class="eyebrow">Instant BaZi Clarity Report</div>
-                <h1 id="reportTitle">Your Chart Reading</h1>
-                <div class="chart-label" id="reportMeta"></div>
+        <!-- 卷三 · 天命指南针 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷三</span>
+                <span class="title-cn">天命指南针</span>
             </div>
+            <div class="content-card" id="sec3"></div>
+        </div>
 
-            <!-- 1. Chart Foundation -->
-            <div class="section-card" id="sec1">
-                <h2><span class="section-num">1</span> Your Chart Foundation</h2>
-                <div id="chartFoundationContent"></div>
+        <!-- 卷四 · 师父的锦囊 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷四</span>
+                <span class="title-cn">师父的锦囊</span>
             </div>
+            <div class="content-card" id="sec4"></div>
+        </div>
 
-            <!-- 2. Day Master -->
-            <div class="section-card" id="sec2">
-                <h2><span class="section-num">2</span> Your Day Master</h2>
-                <div id="dayMasterContent"></div>
+        <!-- 卷五 · 五行玄机 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷五</span>
+                <span class="title-cn">五行玄机</span>
             </div>
+            <div class="content-card" id="sec5"></div>
+        </div>
 
-            <!-- 3. Five Elements Balance -->
-            <div class="section-card" id="sec3">
-                <h2><span class="section-num">3</span> Five Elements Balance</h2>
-                <div id="elementsContent"></div>
-            </div>
+        <!-- Upgrade CTA -->
+        <div class="upgrade-cta">
+            <h2>准备好了吗？让灵石认主。</h2>
+            <p>命书给了你方向。灵石给你标记。龙虎山道长亲选，与你命盘匹配的物理灵石——全球发货。</p>
+            <a class="cta-btn" id="upgradeBtn" href="checkout.html">🔮 解锁灵石匹配 · $199</a>
+            <p class="credit-note">$29命书费用全额抵扣 · 7天内有效 · 发货前人工确认</p>
+        </div>
 
-            <!-- 4. Current Life Focus -->
-            <div class="section-card" id="sec4">
-                <h2><span class="section-num">4</span> Current Life Focus</h2>
-                <div id="focusContent"></div>
-            </div>
+    </div><!-- /reportContent -->
 
-            <!-- 5. Useful Support -->
-            <div class="section-card" id="sec5">
-                <h2><span class="section-num">5</span> Useful Support</h2>
-                <div id="supportContent"></div>
-            </div>
+</main>
 
-            <!-- 6. Recommended Treasure Type -->
-            <div class="section-card" id="sec6">
-                <h2><span class="section-num">6</span> Recommended Treasure Type</h2>
-                <div id="treasureContent"></div>
-            </div>
+<footer>
+    <p>&copy; 2026 Oriental Destiny · <a href="index.html">首页</a> · <a href="policies.html">隐私政策</a> · <span class="od-version"></span></p>
+</footer>
 
-            <!-- 7. Upgrade Path -->
-            <div class="section-card" id="sec7" style="border-left: 3px solid var(--gold);">
-                <h2><span class="section-num">7</span> Your Upgrade Path</h2>
-                <div id="upgradeContent"></div>
-            </div>
+<!-- Scripts -->
+<script src="config.real.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="bazi_engine_v2.js"></script>
+<script src="report_engine_v2.js"></script>
+<script src="reading_state.js"></script>
+<script src="version.js"></script>
 
-            <!-- Upgrade CTA -->
-            <div class="upgrade-cta">
-                <h2>Ready for the Matched Treasure?</h2>
-                <p>The $199 service takes your chart direction and matches you with a specific handcrafted Daoist treasure — confirmed before shipping, with worldwide delivery.</p>
-                <a href="checkout.html" class="btn" id="upgradeBtn">Order Matched Treasure — $199</a>
-                <p class="credit-note">Your $29 report fee can be credited toward the $199 service. Email us after ordering.</p>
-            </div>
+<script>
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var reportId = params.get('reportId');
 
-        </div><!-- /reportContent -->
+    function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function paras(text) {
+      if (!text) return '';
+      return String(text).split(/\n\n/).filter(Boolean)
+        .map(function(pp){return '<p>'+esc(pp).replace(/\n/g,'<br>')+'</p>';}).join('\n');
+    }
 
-    </main>
+    var elColors = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
+    var elChinese = {Wood:'木',Fire:'火',Earth:'土',Metal:'金',Water:'水'};
+    var elNames = ['Wood','Fire','Earth','Metal','Water'];
 
-    <footer>
-        <p>&copy; 2026 Oriental Destiny &middot; <a href="index.html">Home</a> &middot; <a href="policies.html">Privacy</a> &middot; <span class="od-version"></span></p>
-    </footer>
+    function showError(msg) {
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('errorState').style.display = '';
+        if (msg) document.getElementById('errorMsg').textContent = msg;
+    }
 
-    <!-- Scripts -->
-    <script src="config.real.js"></script>
-    <script src="config.js"></script>
-    <script src="auth.js"></script>
-    <script src="bazi_engine.min.js"></script>
-    <script src="api_deepseek.js"></script>
-    <script src="ai_bazi_layer.js"></script>
-    <script src="reading_state.js"></script>
-    <script src="i18n.js"></script>
-    <script src="bazi_translator.js"></script>
-    <script src="product_matcher.js"></script>
-    <script src="product_enrich.js"></script>
-    <script src="version.js"></script>
-    <script>
-    (function() {
-        var params = new URLSearchParams(window.location.search);
-        var reportId = params.get('reportId');
+    function showReport() {
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('reportContent').style.display = '';
+    }
 
-        // Element colors for bars
-        var elementColors = {
-            'Wood': 'fill-wood',
-            'Fire': 'fill-fire',
-            'Earth': 'fill-earth',
-            'Metal': 'fill-metal',
-            'Water': 'fill-water'
-        };
+    // Scroll progress
+    window.addEventListener('scroll', function() {
+        var h = document.documentElement;
+        var pct = h.scrollHeight - h.clientHeight > 0
+            ? Math.round((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100)
+            : 0;
+        document.getElementById('scrollFill').style.width = pct + '%';
+    });
 
-        // Focus display names
-        var focusNames = {
-            'career': 'Career & Allies',
-            'wealth': 'Wealth & Retention',
-            'love': 'Love & Harmony',
-            'protection': 'Safety & Protection',
-            'balance': 'Elemental Balance'
-        };
+    // Init engine
+    var engine = new ReportEngineV2({
+        proxyBaseURL: (typeof window.DEEPSEEK_PROXY_URL === 'string' && window.DEEPSEEK_PROXY_URL)
+            ? window.DEEPSEEK_PROXY_URL : null
+    });
 
-        // Treasure type recommendations by favorable element
-        var treasureTypes = {
-            'Wood': { icon: '🪷', name: 'Bracelet', desc: 'Wood-energy bracelet with green or brown tones', fit: 'Supports growth and flexibility' },
-            'Fire': { icon: '💎', name: 'Pendant', desc: 'Fire-energy pendant with red or warm-toned accents', fit: 'Amplifies visibility and passion' },
-            'Earth': { icon: '🪨', name: 'Ring', desc: 'Earth-energy ring with yellow or brown stones', fit: 'Grounds and stabilizes energy' },
-            'Metal': { icon: '🪙', name: 'Coin or Bell', desc: 'Metal-energy coin, bell, or white-toned piece', fit: 'Sharpens clarity and decisiveness' },
-            'Water': { icon: '📿', name: 'Amulet Box', desc: 'Water-energy amulet with dark or blue tones', fit: 'Deepens intuition and wisdom' }
-        };
-
-        function showError(msg) {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('errorState').style.display = '';
-            if (msg) document.getElementById('errorMsg').textContent = msg;
+    function init() {
+        // If reportId, load from Firestore
+        if (reportId) {
+            Auth.init().then(function() {
+                if (!Auth.currentUser) {
+                    showError('请登录查看已保存的命书。');
+                    return;
+                }
+                return Auth.getInstantReport(reportId).then(function(data) {
+                    if (!data || !data.reportContent) {
+                        showError('命书未找到。可能已被删除。');
+                        return;
+                    }
+                    renderFromSaved(data);
+                });
+            }).catch(function() {
+                showError('加载失败，请重试。');
+            });
+            return;
         }
 
-        function showReport() {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('reportContent').style.display = '';
+        // New report from ReadingState
+        var state = {};
+        try { if (window.ReadingState) state = window.ReadingState.read(); } catch(e) {}
+
+        if (!state.birth_date) {
+            showError('未找到出生信息。请从免费诊断开始。');
+            return;
         }
 
-        function renderReport(profile, aiReading) {
-            var isAI = aiReading && aiReading.reading && !aiReading.fallback;
-            var r = isAI ? aiReading.reading : null;
+        generateReport(state);
+    }
 
-            // Header
-            document.getElementById('reportTitle').textContent =
-                'The chart of ' + profile.dayMasterStem + ' ' + profile.dayMasterElement;
-            document.getElementById('reportMeta').textContent =
-                'Day Master: ' + profile.dayMasterStem + ' ' + profile.dayMasterElement +
-                '  ·  Zodiac: ' + profile.zodiac +
-                '  ·  Born in ' + profile.season;
-
-            // 1. Chart Foundation
-            var foundationHTML = '<table class="pillars-table"><thead><tr><th>Pillar</th><th>Stem-Branch</th><th>Element</th><th>Hidden Stems</th></tr></thead><tbody>';
-            var pillarKeys = ['year', 'month', 'day', 'hour'];
-            var pillarNames = ['Year', 'Month', 'Day', 'Hour'];
-            for (var i = 0; i < pillarKeys.length; i++) {
-                var key = pillarKeys[i];
-                var label = profile.pillarLabels[key] || '';
-                foundationHTML += '<tr><td>' + pillarNames[i] + ' Pillar</td><td>' + label + '</td><td>' + (profile.dayMasterElement || '') + '</td><td>' + (profile.hiddenStems && profile.hiddenStems[key] ? profile.hiddenStems[key].map(function(h){return h.stem+' ('+h.element[0]+')';}).join(', ') : '—') + '</td></tr>';
-            }
-            foundationHTML += '</tbody></table>';
-            foundationHTML += '<p>The Four Pillars form the structural foundation of your chart. The <strong>Day Pillar</strong> is your core self (Day Master). <strong>Hidden Stems</strong> reveal additional influences beneath each pillar. Your chart was born in <strong>' + profile.season + '</strong>, which shapes the seasonal strength of each element.</p>';
-            document.getElementById('chartFoundationContent').innerHTML = foundationHTML;
-
-            // 2. Day Master
-            var strengthLabel = profile.strength ? profile.strength.band : '';
-            var dmHTML = '<p>Your Day Master is <strong>' + profile.dayMasterStem + ' ' + profile.dayMasterElement + '</strong>, standing at the center of your chart as your core identity. The Day Master represents your essential nature — how you approach the world, process decisions, and express your fundamental energy.</p>';
-            dmHTML += '<p><strong>Strength:</strong> ' + (strengthLabel || 'Balanced') + ' — ' + (profile.dayMasterProfile || '') + '</p>';
-            if (isAI && r.personality) {
-                dmHTML += '<p>' + r.personality + '</p>';
-            } else {
-                dmHTML += '<p>' + (profile.dayMasterProfile || '') + ' This Day Master carries the qualities of the ' + profile.dayMasterElement + ' element, shaped further by the season of ' + profile.season + ' and the surrounding pillars.</p>';
-            }
-            document.getElementById('dayMasterContent').innerHTML = dmHTML;
-
-            // 3. Five Elements Balance
-            var counts = profile.elementCounts || {};
-            var maxCount = 0;
-            ['Wood','Fire','Earth','Metal','Water'].forEach(function(el) {
-                var v = counts[el] || 0;
-                if (v > maxCount) maxCount = v;
+    function generateReport(state) {
+        var profile;
+        try {
+            profile = window.BaziEngineV2.calculateProfile({
+                birthDate: state.birth_date,
+                birthTime: state.birth_time || undefined,
+                lifeFocus: state.focus || 'balance',
+                gender: state.gender || undefined
             });
-            if (maxCount === 0) maxCount = 1;
-            var eleHTML = '<div class="element-bars">';
-            ['Wood','Fire','Earth','Metal','Water'].forEach(function(el) {
-                var v = counts[el] || 0;
-                var pct = Math.round((v / maxCount) * 100);
-                var cls = elementColors[el] || 'fill-earth';
-                eleHTML += '<div class="element-bar-row"><span class="element-bar-label">' + el + '</span><div class="element-bar-track"><div class="element-bar-fill ' + cls + '" style="width:' + pct + '%"></div></div><span class="element-bar-val">' + v.toFixed(1) + '</span></div>';
+        } catch(e) {
+            showError('排盘失败: ' + e.message);
+            return;
+        }
+
+        engine.generateBasicReport(profile, state.focus || 'balance').then(function(basic) {
+            var r = basic.report;
+            var sn = basic.chartSnapshot || window.buildChartSnapshot(profile);
+
+            // Cover
+            var dm = profile.dayMaster, dmEl = profile.dayMasterElement;
+            document.getElementById('coverContent').innerHTML =
+                '<div class="seal-anim"><div class="seal-inner">'+esc(dm)+esc(dmEl)+'</div></div>' +
+                '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · 命主</h1>' +
+                '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
+                '<div class="hero-divider"></div>' +
+                '<p style="font-size:12px;color:var(--ink-faint);">格局: '+esc(sn.pattern)+' · 用神: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</p>';
+
+            // 卷一
+            document.getElementById('sec1').innerHTML = paras(r.opening || '');
+
+            // 卷二
+            document.getElementById('sec2').innerHTML = paras(r.yourPattern || '');
+
+            // 卷三
+            document.getElementById('sec3').innerHTML = paras(r.whatGuidesYou || '');
+
+            // 卷四 - Practical steps
+            var stepsHTML = '';
+            if (r.practicalSteps && r.practicalSteps.length) {
+                stepsHTML = '<ul style="list-style:none;display:grid;gap:12px;">';
+                r.practicalSteps.forEach(function(s, i) {
+                    stepsHTML += '<li style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--gold-faint);border-radius:var(--radius);border-left:3px solid var(--gold);">' +
+                        '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--cinnabar);color:#fff;font-size:12px;font-weight:700;flex-shrink:0;">'+(i+1)+'</span>' +
+                        '<span style="font-size:14px;color:var(--ink-light);">'+esc(s)+'</span></li>';
+                });
+                stepsHTML += '</ul>';
+            }
+            document.getElementById('sec4').innerHTML = stepsHTML;
+
+            // 卷五 - Element bars + chart data
+            var elCounts = profile.elementCounts || {};
+            var maxCount = Math.max(1, elNames.map(function(e){return elCounts[e]||0;}).reduce(function(a,b){return Math.max(a,b);},0));
+            var barsHTML = '<div style="padding:10px 0;">';
+            elNames.forEach(function(e) {
+                var pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
+                barsHTML += '<div class="el-bar-row">' +
+                    '<span class="el-bar-label">'+elChinese[e]+' '+e+'</span>' +
+                    '<span class="el-bar-track"><span class="el-bar-fill" style="width:'+pct+'%;background:'+elColors[e]+'"></span></span>' +
+                    '<span class="el-bar-val">'+(elCounts[e]||0).toFixed(1)+'</span></div>';
             });
-            eleHTML += '</div>';
-            if (profile.advancedAnalysis && profile.advancedAnalysis.elementDiagnosis) {
-                var diag = profile.advancedAnalysis.elementDiagnosis;
-                eleHTML += '<p>' + (diag.strongestElement ? '<strong>Strongest:</strong> ' + diag.strongestElement + '  ·  ' : '') + (diag.weakestElement ? '<strong>Weakest:</strong> ' + diag.weakestElement + '  ·  ' : '') + '<strong>Spread:</strong> ' + (diag.spread || '') + '</p>';
-            }
-            eleHTML += '<p>Your chart shows which elements are naturally abundant and which need support. The favorable elements — <strong>' + (profile.favorableElements ? profile.favorableElements.join(', ') : '') + '</strong> — are the ones that bring your chart closer to balance.</p>';
-            document.getElementById('elementsContent').innerHTML = eleHTML;
+            barsHTML += '</div>';
+            barsHTML += '<p style="font-size:13px;color:var(--ink-faint);margin-top:10px;text-align:center;">' +
+                '用神: '+esc(sn.yongShen)+' · 喜神: '+esc(sn.xiShen)+' · 忌神: '+esc(sn.jiShen)+' · 起运: '+esc(sn.qiYun)+' · 当前大运: '+esc(sn.currentDaYun)+'</p>';
 
-            // 4. Life Focus
-            var focus = profile.focus || (window.ReadingState ? window.ReadingState.read().focus : '') || 'balance';
-            var focusHTML = '<p><span class="focus-tag">' + (focusNames[focus] || focus) + '</span></p>';
-            if (isAI && r.currentYearAnalysis) {
-                focusHTML += '<p>' + r.currentYearAnalysis + '</p>';
-            } else if (isAI && r.tailoredAdvice && r.tailoredAdvice.length) {
-                focusHTML += '<p>' + r.tailoredAdvice.join(' ') + '</p>';
-            } else {
-                focusHTML += '<p>' + (profile.focusReading || '') + '</p>';
-                focusHTML += '<p>' + (profile.deepFocusReading || '') + '</p>';
-            }
-            if (profile.advancedAnalysis && profile.advancedAnalysis.seasonalCommand) {
-                focusHTML += '<p><strong>Seasonal condition:</strong> ' + profile.advancedAnalysis.seasonalCommand.dayMasterCondition + '</p>';
-            }
-            document.getElementById('focusContent').innerHTML = focusHTML;
+            document.getElementById('sec5').innerHTML = barsHTML;
 
-            // 5. Useful Support
-            var favEls = profile.favorableElements || ['Water', 'Wood'];
-            var supHTML = '<div class="support-grid">';
-            supHTML += '<div class="support-item"><div class="label">Favorable Elements</div><div class="value">' + favEls.join(', ') + '</div></div>';
-            supHTML += '<div class="support-item"><div class="label">Direction</div><div class="value">' + (profile.jewelry ? profile.jewelry.copy : 'East / Southeast') + '</div></div>';
-            supHTML += '</div>';
-            supHTML += '<p>' + (profile.favorableElementReasoning || 'Supporting these elements helps bring your chart toward balance.') + '</p>';
-            supHTML += '<p style="font-size:13px;color:rgba(36,25,21,0.5);">These are general directions from your chart. The $199 matched service confirms the exact material, color, and symbol before any item is prepared.</p>';
-            document.getElementById('supportContent').innerHTML = supHTML;
-
-            // 6. Recommended Treasure Type
-            var primaryEl = favEls[0] || 'Earth';
-            var treasure = treasureTypes[primaryEl] || treasureTypes['Earth'];
-            var secondaryEl = favEls[1] || 'Metal';
-            var treasure2 = treasureTypes[secondaryEl] || treasureTypes['Metal'];
-            var treasHTML = '<div class="treasure-types">';
-            treasHTML += '<div class="treasure-card" style="border:2px solid rgba(183,138,66,0.3);"><div class="icon">' + treasure.icon + '</div><div class="name">' + treasure.name + '</div><div class="fit">' + treasure.fit + '</div><div style="font-size:11px;color:var(--gold);margin-top:6px;">★ Primary match</div></div>';
-            treasHTML += '<div class="treasure-card"><div class="icon">' + treasure2.icon + '</div><div class="name">' + treasure2.name + '</div><div class="fit">' + treasure2.fit + '</div></div>';
-            treasHTML += '</div>';
-            treasHTML += '<p>Based on your chart\'s favorable element (<strong>' + primaryEl + '</strong>), a <strong>' + treasure.name.toLowerCase() + '</strong> is the recommended carrier type. The $199 service refines this into a specific handcrafted piece with the right material, symbol, and energy for your exact chart.</p>';
-            document.getElementById('treasureContent').innerHTML = treasHTML;
-
-            // 7. Upgrade Path
-            var upHTML = '<p>This $29 report gives you the full structural reading of your chart — enough to understand your elemental direction and the kind of treasure that fits. The $199 matched service completes the journey:</p>';
-            upHTML += '<ul style="padding-left:20px;color:rgba(36,25,21,0.7);">';
-            upHTML += '<li style="margin-bottom:6px;">Human confirmation of your chart\'s recommended direction</li>';
-            upHTML += '<li style="margin-bottom:6px;">Specific product matched from our Longhushan collection</li>';
-            upHTML += '<li style="margin-bottom:6px;">Material, color, and symbol confirmed to your chart</li>';
-            upHTML += '<li style="margin-bottom:6px;">Confirmation email before shipping</li>';
-            upHTML += '<li style="margin-bottom:6px;">Worldwide delivery with tracking</li>';
-            upHTML += '</ul>';
-            document.getElementById('upgradeContent').innerHTML = upHTML;
-
-            // Upgrade button preserves birth data
-            var state = window.ReadingState ? window.ReadingState.read() : {};
+            // Update upgrade link
             var q = window.ReadingState ? window.ReadingState.toQuery(state) : '';
             document.getElementById('upgradeBtn').href = 'checkout.html?' + q;
 
-            // Track upgrade clicks
-            document.getElementById('upgradeBtn').addEventListener('click', function() {
-                gtag('event', 'upgrade_click', {
-                    currency: 'USD',
-                    value: 199
-                });
-            });
-
             showReport();
-        }
+        }).catch(function(e) {
+            showError('生成失败: ' + (e.message || ''));
+        });
+    }
 
-        // Main init
-        function init() {
-            if (reportId) {
-                // Load from Firestore
-                Auth.init().then(function() {
-                    if (!Auth.currentUser) {
-                        showError('Please log in to view your saved report.');
-                        return;
-                    }
-                    return Auth.getInstantReport(reportId).then(function(data) {
-                        if (!data || !data.reportContent) {
-                            showError('Report not found. It may have been removed.');
-                            return;
-                        }
-                        // Reconstruct and render from saved data
-                        showReport();
-                        document.getElementById('reportTitle').textContent = 'Your Chart Reading';
-                        document.getElementById('reportMeta').textContent =
-                            'Birth: ' + (data.birthDate || '') + '  ·  Focus: ' + (focusNames[data.lifeFocus] || data.lifeFocus || '');
-                        document.getElementById('chartFoundationContent').innerHTML =
-                            '<p><strong>Day Master:</strong> ' + (data.dayMaster || '') + ' ' + (data.dayMasterElement || '') + '</p>' +
-                            '<p><strong>Birth Date:</strong> ' + (data.birthDate || '') + (data.birthTime ? ' at ' + data.birthTime : '') + '</p>' +
-                            '<p><strong>Life Focus:</strong> ' + (focusNames[data.lifeFocus] || data.lifeFocus || '') + '</p>';
-                        // Show saved content if available
-                        if (data.reportContent) {
-                            try {
-                                var content = typeof data.reportContent === 'string' ? JSON.parse(data.reportContent) : data.reportContent;
-                                document.getElementById('chartFoundationContent').innerHTML = content.foundation || document.getElementById('chartFoundationContent').innerHTML;
-                                document.getElementById('dayMasterContent').innerHTML = content.dayMaster || '';
-                                document.getElementById('elementsContent').innerHTML = content.elements || '';
-                                document.getElementById('focusContent').innerHTML = content.focus || '';
-                                document.getElementById('supportContent').innerHTML = content.support || '';
-                                document.getElementById('treasureContent').innerHTML = content.treasure || '';
-                                document.getElementById('upgradeContent').innerHTML = content.upgrade || '';
-                            } catch(e) { /* use defaults */ }
-                        }
-                    });
-                }).catch(function() {
-                    showError('Failed to load report. Please try again.');
-                });
-                return;
-            }
+    function renderFromSaved(data) {
+        showReport();
+        document.getElementById('coverContent').innerHTML =
+            '<h1 class="hero-title">你的<span class="em">命书</span></h1>' +
+            '<p class="hero-sub">'+esc(data.birthDate||'')+(data.birthTime?' · '+esc(data.birthTime):'')+' · '+esc(data.lifeFocus||'')+'</p>';
 
-            // New report: read birth data from ReadingState
-            var state = window.ReadingState ? window.ReadingState.read() : {};
-            if (!state.birth_date) {
-                showError('No birth data found. Please start from the free preview to generate your report.');
-                return;
-            }
-
-            // Init AI layer
-            if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
-                window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
-            }
-
-            // Calculate profile
-            var rawProfile;
+        if (data.reportContent) {
             try {
-                rawProfile = window.BaziEngine.calculateProfile({
-                    birthDate: state.birth_date,
-                    birthTime: state.birth_time || '',
-                    lifeFocus: state.focus || 'balance',
-                    gender: state.gender || '',
-                    birthLocation: state.birth_location || ''
-                });
-            } catch(e) {
-                showError('Could not calculate chart: ' + e.message);
-                return;
-            }
-
-            var profile = window.BaziTranslator ? window.BaziTranslator.translate(rawProfile) : rawProfile;
-
-            // Try AI enhancement
-            var aiPromise = Promise.resolve(null);
-            if (window.AIBaziLayer && window.AIBaziLayer.isReady()) {
-                aiPromise = window.AIBaziLayer.quickReading({
-                    birthDate: state.birth_date,
-                    birthTime: state.birth_time || '',
-                    focus: state.focus || 'balance'
-                }).catch(function() { return null; });
-            }
-
-            aiPromise.then(function(aiReading) {
-                renderReport(profile, aiReading);
-
-                // Save to Firestore if logged in
-                Auth.init().then(function() {
-                    if (Auth.currentUser) {
-                        // Collect report content for saving
-                        var reportContent = {
-                            foundation: document.getElementById('chartFoundationContent').innerHTML,
-                            dayMaster: document.getElementById('dayMasterContent').innerHTML,
-                            elements: document.getElementById('elementsContent').innerHTML,
-                            focus: document.getElementById('focusContent').innerHTML,
-                            support: document.getElementById('supportContent').innerHTML,
-                            treasure: document.getElementById('treasureContent').innerHTML,
-                            upgrade: document.getElementById('upgradeContent').innerHTML
-                        };
-                        Auth.saveInstantReport({
-                            birthDate: state.birth_date || '',
-                            birthTime: state.birth_time || '',
-                            lifeFocus: state.focus || '',
-                            dayMaster: profile.dayMasterStem || '',
-                            dayMasterElement: profile.dayMasterElement || '',
-                            reportContent: JSON.stringify(reportContent)
-                        });
-                    }
-                });
-            });
+                var content = typeof data.reportContent === 'string' ? JSON.parse(data.reportContent) : data.reportContent;
+                document.getElementById('sec1').innerHTML = content.dayMaster || '';
+                document.getElementById('sec2').innerHTML = content.elements || '';
+                document.getElementById('sec3').innerHTML = content.focus || '';
+                document.getElementById('sec4').innerHTML = content.support || '';
+                document.getElementById('sec5').innerHTML = content.treasure || '';
+            } catch(e) {}
         }
+    }
 
-        init();
-    })();
-    </script>
+    init();
+})();
+</script>
 </body>
 </html>

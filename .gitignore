@@ -1,5 +1,7 @@
 .claude/
 .wrangler/
+# Cloudflare Worker local secrets (contains API keys for local dev)
+.dev.vars
 # 敏感配置文件 — 包含真实 API Key，永远不提交
 config.real.js
 # IDE

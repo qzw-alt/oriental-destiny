@@ -190,6 +190,61 @@ ${brief.stars}
   }
 
   // ═══════════════════════════════════════════════════════════════
+  // TIER 0: DIAGNOSIS-ONLY REPORT (Free Tier) — "只诊断，不开方"
+  // ═══════════════════════════════════════════════════════════════
+
+  function buildDiagnosisSystemPrompt(brief, focus) {
+    const focusTopics = {
+      career: "事业、方向感、以及你一直在找的'对的路'",
+      wealth: "钱财、资源、以及你跟'丰盛'的关系——为什么有时候觉得钱来钱去留不住",
+      love: "感情、亲密关系、以及你真正需要的是什么样的伴侣",
+      protection: "边界感、内心安定、以及你什么时候最需要给自己画一道线",
+      balance: "你整个人生的'顺位'和'堵点'"
+    };
+
+    return `你是一位直击灵魂的命理诊断师。你只做诊断，不开方——你像一位老中医把脉：告诉你哪里堵了、为什么堵、你的体质是什么。但你绝不说"你应该吃什么药"——那是下一步的事情。
+
+你的风格是B站上那种弹幕刷屏'太准了''这不就是我吗'的命理博主。你读《滴天髓》《穷通宝鉴》《渊海子平》读了二十年，但你的话像深夜朋友喝茶聊天，不是说教。
+
+═══ 五大铁律 ═══
+
+一、开场即穿透。
+第一段必须用反问句。"你有没有发现..." "从小到大，你是不是一直..." "为什么你明明很努力，却总觉得..." 让对方第一句就心头一颤。
+
+二、说问题——不说解法。
+你可以说出对方的性格矛盾、天生的拧巴、命盘里最尖锐的冲突。你可以说出他的'堵点'在哪里。但你不可以说'你应该往东走'、'你应该穿红色'、'你应该做XX行业'——这些是完整报告的内容。
+
+三、命名他的格局——并告诉他这意味着什么痛苦。
+"你的命盘格局是XX——你知道这意味着什么吗？这意味着你这一生最大的课题就是..." 让他恍然大悟：原来我这辈子的挣扎不是我的错，是我的格局在作用。
+
+四、说出用神是什么——但马上停住。
+你可以说出他的用神是哪个元素。"你的指南针是木——这就是你这辈子最该靠近的能量。" 然后立刻停住。不要说怎么靠近、什么颜色、什么方向——把好奇心留给他。让他心里冒出一个问题："那我该怎么靠近木？"
+
+五、结尾是钩子——不是安慰。
+最后一段不要安慰。最后一段要像一个朋友把茶杯放下，看着你说："我能告诉你的就是这些了。解法在完整报告里。你想知道的话——我们接着聊。"
+
+═══ THIS PERSON'S ELEMENTAL BLUEPRINT ═══
+
+${brief.identity}
+
+${brief.pattern}
+${brief.strength}
+${brief.yongShen}
+${brief.elements}
+${brief.tenGods}
+${brief.stars}
+
+═══ OUTPUT ═══ Write a diagnostic reading focused on ${focusTopics[focus] || focusTopics.balance}. Valid JSON only:
+
+{
+  "opening": "2段。第一句必须是反问句——直击痛点。让对方觉得'这个人懂我'。提到他们的日主元素，用自然的比喻（树、山、水、火、土、金）来描写他们的天性。不要给建议，不要给方向——只描述'你是谁'和'你为什么会有这样的感受'。",
+  "yourPattern": "2段。第一段：用比喻解释他们的格局——他们的性格里有什么矛盾？有什么是他们一辈子在挣扎却不知道为什么的？引用一部古籍里的一句话作为印证。第二段：说出命盘里最强的元素和最弱的元素，以及这意味着什么性格层面的冲突。让读者恍然大悟：'原来我这辈子一直这样，不是我的错。'",
+  "whatGuidesYou": "2段。第一段：说出用神是什么元素——赋予它人格和温度。告诉对方：'你这一生最该靠近的能量是XX——你有没有发现，当你靠近XX的时候，你会觉得特别顺？' 第二段：戛然而止。说'为什么是这个、怎么靠近它、你的忌神是什么——这些都在完整报告里。我现在只能告诉你方向，不能告诉你路。'",
+  "closingWords": "2-3句话。像一个朋友把茶杯放下，看着你的眼睛说出来的话。必须提到他们的日主。必须有悬念——让他想知道更多。像这样：'我能告诉你的就到这里了。你接下来会怎么做——那是你的事。但如果你想知道更多——你知道在哪找我。' 不要说祝福的话。要留钩子。"
+}`;
+  }
+
+  // ═══════════════════════════════════════════════════════════════
   // TIER 2: DELUXE REPORT — Master Annotations + Jewelry Guide
   // ═══════════════════════════════════════════════════════════════
 
@@ -341,6 +396,42 @@ Focus area: ${focus}
       }
     }
 
+    // ─── TIER 0: Diagnosis-Only (free tier) ──────────────────
+    async generateDiagnosisReport(profile, focus) {
+      focus = focus || "balance";
+      const brief = buildCompactBrief(profile);
+
+      try {
+        const systemPrompt = buildDiagnosisSystemPrompt(brief, focus);
+        const raw = await this._call([
+          { role: "system", content: systemPrompt },
+          { role: "user", content: `Write a diagnosis-only reading for this person. Focus: ${focus}. Output valid JSON. NO advice, NO directions, NO color/season recommendations.` }
+        ], 2000, 0.7);
+
+        const report = this._parse(raw);
+        if (!report || report.error) throw new Error("Diagnosis parse failed");
+
+        return {
+          report,
+          chartSnapshot: buildChartSnapshot(profile),
+          profile,
+          tier: "diagnosis",
+          fallback: false,
+          generatedAt: new Date().toISOString()
+        };
+      } catch (e) {
+        console.warn("Diagnosis API failed, using fallback:", e.message);
+        return {
+          report: buildFallbackDiagnosis(profile, focus),
+          chartSnapshot: buildChartSnapshot(profile),
+          profile,
+          tier: "diagnosis",
+          fallback: true,
+          error: e.message
+        };
+      }
+    }
+
     // ─── TIER 2: Deluxe Report (basic + master + jewelry) ─────
     async generateDeluxeReport(basicResult, profile, focus) {
       focus = focus || "balance";
@@ -432,6 +523,26 @@ Focus area: ${focus}
   // ═══════════════════════════════════════════════════════════════
   // FALLBACKS — work offline with engine data
   // ═══════════════════════════════════════════════════════════════
+
+  function buildFallbackDiagnosis(profile, focus) {
+    const dm = profile.dayMaster;
+    const dmEl = profile.dayMasterElement;
+    const yongShenEl = profile.yongShen.yongShen;
+    const strongestEl = Object.entries(profile.elementCounts).sort((a, b) => b[1] - a[1])[0][0];
+    const weakestEl = Object.entries(profile.elementCounts).sort((a, b) => b[1] - a[1])[profile.elementCounts ? 4 : 0]?.[0] || "";
+
+    return {
+      opening: `${DAY_MASTER_VOICE[dm] || ""}
+
+你有没有发现——你出生在${profile.pillars.month.branch}月、${profile.season}，你骨子里带着一种跟别人不一样的节奏？你的四柱是${profile.pillars.year.stem}${profile.pillars.year.branch} ${profile.pillars.month.stem}${profile.pillars.month.branch} ${profile.pillars.day.stem}${profile.pillars.day.branch} ${profile.pillars.hour ? profile.pillars.hour.stem + profile.pillars.hour.branch : "?"}——这是你出生那一天的"能量签名"。我看了你的命盘，有些东西想先让你知道。不是算命，是对照——你看看，我说的是不是你。`,
+
+      yourPattern: `你的命盘格局是：${profile.geJu.patternName}。在子平法里，格局就像一个人一生的"主旋律"——它不决定你具体做什么，但它决定你"为什么总是有某种感觉"。${strongestEl}的能量在你命盘里最强——这是你天生的"顺手工具"，你做跟${strongestEl}相关的事情会觉得特别顺。而${weakestEl}，是你需要特别留意的——不是说它坏了，而是说它的能量在你这里是脆弱的、容易被忽略的。${profile.pillars.month.branch}月是你的提纲——《渊海子平》里说"提纲挈领"，月令决定了你这辈子的"气候"。${profile.strength.roots.note}。${profile.strength.heavenly.note}。这些不是你的'错'——它们是你来到这个世界的时候，宇宙给你的那一组初始设定。`,
+
+      whatGuidesYou: `古典算法识别出${yongShenEl}是你的用神——用通俗的话说，这是你这辈子"最顺"的那个方向。不是迷信——是共振。你有没有发现，当你做跟${yongShenEl}元素相关的事情时、或者跟${yongShenEl}属性的人相处时——你莫名会觉得"对"、觉得舒服？这就是你的"天命方向"。古籍《子平真诠》里有句话：${profile.yongShen.principle}——说的就是这个道理。至于这个方向具体怎么走、什么时候走、你需要注意避开什么——这些在完整命书里有详细的分析。诊断告诉你问题在哪，解法告诉你路怎么走。`,
+
+      closingWords: `好了。我能告诉你的就是这些了。${dm}${dmEl}——你的日主，是你这一辈子最核心的那个"你"。不管走到哪里、遇到谁、做什么事——你都是${dm}${dmEl}。这份诊断只是一个开始。你知道你是谁、你知道你的格局、你知道你的方向在哪。但路怎么走——那是下一步的事了。想知道的话，你知道在哪找我。`
+    };
+  }
 
   function buildFallbackBasic(profile, focus) {
     const dm = profile.dayMaster;
@@ -537,6 +648,7 @@ Focus area: ${focus}
   window.buildCompactBrief = buildCompactBrief;
   window.buildChartSnapshot = buildChartSnapshot;
   window.buildFallbackBasic = buildFallbackBasic;
+  window.buildFallbackDiagnosis = buildFallbackDiagnosis;
   window.buildFallbackAnnotations = buildFallbackAnnotations;
   window.buildFallbackJewelry = buildFallbackJewelry;
   window.DAY_MASTER_VOICE = DAY_MASTER_VOICE;

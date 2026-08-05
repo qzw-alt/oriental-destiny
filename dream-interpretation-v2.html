@@ -1,274 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free AI dream interpretation with Five Elements analysis, Duke of Zhou dream dictionary, and Zi Wu Liu Zhu meridian clock. Discover what your dreams reveal through ancient Eastern wisdom.">
-  <meta property="og:title" content="Five Elements Dream Interpretation | Oriental Destiny">
-  <meta property="og:description" content="Discover what your dreams reveal through Five Elements analysis, Duke of Zhou dream dictionary, and Zi Wu Liu Zhu meridian clock.">
+  <meta name="description" content="免费AI梦境解析——五行元素分析、周公解梦、子午流注经络时钟。你的梦在说什么？用东方智慧解读。">
+  <meta property="og:title" content="梦境解析 · 五行探梦 | Oriental Destiny">
+  <meta property="og:description" content="你的梦是什么元素？免费五行梦境分析——周公解梦 + 子午流注经络时钟 + AI深度解读。">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://oriental-destiny.com/dream-interpretation-v2.html">
-  <title>Five Elements Dream Interpretation | Oriental Destiny</title>
+  <title>梦境解析 · 五行探梦 | Oriental Destiny</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #241915;
-      --paper: #f8f1e7;
-      --cinnabar: #a63a2c;
-      --gold: #b78a42;
-      --pine: #315247;
-      --water: #1a3a5c;
-      --wood: #2d5a27;
-      --fire: #8b2500;
-      --earth: #8b7500;
-      --metal: #6b6b6b;
-      --line: rgba(36, 25, 21, 0.1);
-      --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background: radial-gradient(circle at top, rgba(183, 138, 66, 0.16), transparent 34%),
-                  linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
-      line-height: 1.72;
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
+/* ══════════════════════════════════════════════════════════
+   水墨风 · Ink Wash Dream Analysis
+   梦境解析 — 五行探梦
+   ══════════════════════════════════════════════════════════ */
+:root {
+  --ink: #1a1410;
+  --ink-light: rgba(26,20,16,0.65);
+  --ink-faint: rgba(26,20,16,0.35);
+  --cinnabar: #b5342a;
+  --cinnabar-deep: #8b1a14;
+  --gold: #c9a24e;
+  --gold-light: rgba(201,162,78,0.2);
+  --gold-faint: rgba(201,162,78,0.08);
+  --cream: #f5f0e8;
+  --paper: #faf7f1;
+  --white: #fffdf8;
+  --shadow-sm: 0 4px 20px rgba(26,20,16,0.06);
+  --shadow: 0 12px 40px rgba(26,20,16,0.10);
+  --shadow-lg: 0 24px 64px rgba(26,20,16,0.14);
+  --radius: 8px;
 
-    .topbar {
-      position: sticky; top: 0; z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(248, 241, 231, 0.88);
-      border-bottom: 1px solid rgba(36, 25, 21, 0.08);
-    }
-    .topbar-inner {
-      max-width: 1120px; margin: 0 auto; padding: 0 20px;
-      min-height: 74px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .brand { display: flex; flex-direction: column; gap: 2px; }
-    .brand-mark { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
-    .brand-name { font-size: 22px; font-weight: 700; }
-    .nav { display: flex; gap: 20px; font-size: 14px; color: rgba(36,25,21,0.78); flex-wrap: wrap; align-items: center; }
-    .nav a:hover { color: var(--cinnabar); }
-    .nav-cta {
-      background: var(--cinnabar); color: #fff !important;
-      padding: 8px 18px; border-radius: 4px;
-      font-size: 13px; letter-spacing: 0.04em;
-    }
-    .nav-cta:hover { background: #8c2f23; }
+  /* Element colors */
+  --water: #1a3a5c;
+  --wood: #2d5a27;
+  --fire: #8b2500;
+  --earth: #8b7500;
+  --metal: #6b6b6b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    .hero { max-width: 800px; margin: 0 auto; padding: 80px 20px 60px; text-align: center; }
-    .hero-badge {
-      display: inline-block; background: rgba(183, 138, 66, 0.12); color: var(--gold);
-      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
-    }
-    .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
-    .hero h1 span { color: var(--cinnabar); }
-    .hero-sub { font-size: 18px; color: rgba(36,25,21,0.7); max-width: 560px; margin: 0 auto 40px; }
+body {
+  font-family: 'Noto Serif SC', Georgia, serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #f7f2e9 0%, var(--cream) 28%, var(--paper) 62%, #f5efe6 100%);
+  line-height: 1.82;
+  min-height: 100vh;
+}
 
-    .input-card {
-      background: #fff; border-radius: 12px; padding: 40px;
-      box-shadow: var(--shadow); max-width: 640px; margin: 0 auto 40px; text-align: left;
-    }
-    .input-label {
-      font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(36,25,21,0.6); margin-bottom: 12px; display: block;
-    }
-    .dream-input {
-      width: 100%; min-height: 140px; border: 1.5px solid var(--line);
-      border-radius: 8px; padding: 16px; font-family: Georgia, serif;
-      font-size: 16px; color: var(--ink); background: var(--paper);
-      resize: vertical; outline: none; transition: border-color 0.2s;
-    }
-    .dream-input:focus { border-color: var(--gold); }
-    .dream-input::placeholder { color: rgba(36,25,21,0.35); }
-    .input-hint { font-size: 12px; color: rgba(36,25,21,0.45); margin-top: 8px; text-align: right; }
+a { color: inherit; text-decoration: none; }
 
-    .input-row { display: flex; gap: 12px; margin-top: 12px; }
-    .input-row .time-input {
-      flex: 1; border: 1.5px solid var(--line); border-radius: 8px;
-      padding: 12px 16px; font-family: Georgia, serif; font-size: 15px;
-      color: var(--ink); background: var(--paper); outline: none;
-      transition: border-color 0.2s;
-    }
-    .input-row .time-input:focus { border-color: var(--gold); }
+/* ── Top bar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(248,241,231,0.88);
+  border-bottom: 1px solid rgba(26,20,16,0.08);
+}
+.topbar-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 20px;
+  min-height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; flex-direction: column; gap: 1px; }
+.brand-mark { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+.brand-name { font-size: 20px; font-weight: 700; }
+.nav { display: flex; gap: 16px; font-size: 13px; color: var(--ink-light); flex-wrap: wrap; align-items: center; }
+.nav a:hover { color: var(--cinnabar); }
+.nav-cta {
+  background: var(--cinnabar); color: #fff !important;
+  padding: 7px 16px; border-radius: var(--radius);
+  font-size: 12px; letter-spacing: 0.04em; font-weight: 600;
+}
+.nav-cta:hover { background: var(--cinnabar-deep); color: #fff !important; }
 
-    .submit-btn {
-      width: 100%; margin-top: 20px; background: var(--cinnabar); color: #fff;
-      border: none; border-radius: 8px; padding: 16px 32px; font-size: 16px;
-      font-family: Georgia, serif; font-weight: 600; cursor: pointer;
-      transition: background 0.2s, transform 0.1s; letter-spacing: 0.02em;
-    }
-    .submit-btn:hover { background: #8c2f23; }
-    .submit-btn:active { transform: scale(0.99); }
-    .submit-btn:disabled { background: #c4a882; cursor: not-allowed; }
+/* ── Hero ── */
+.hero {
+  max-width: 720px; margin: 0 auto; padding: 64px 20px 48px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; background: var(--gold-faint); color: var(--gold);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+  border: 1px solid var(--gold-light);
+}
+.hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+.hero h1 span { color: var(--cinnabar); }
+.hero-sub { font-size: 16px; color: var(--ink-light); max-width: 520px; margin: 0 auto 36px; }
 
-    .loading-wrap { display: none; text-align: center; padding: 40px 0; }
-    .loading-wrap.active { display: block; }
-    .loading-spinner {
-      width: 48px; height: 48px; border: 3px solid var(--line);
-      border-top-color: var(--cinnabar); border-radius: 50%;
-      animation: spin 0.8s linear infinite; margin: 0 auto 16px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-text { color: rgba(36,25,21,0.6); font-size: 15px; }
+/* ── Input card ── */
+.input-card {
+  background: var(--white); border-radius: 12px; padding: 36px 32px;
+  box-shadow: var(--shadow); max-width: 640px; margin: 0 auto 40px;
+  border: 1px solid rgba(26,20,16,0.06);
+}
+.input-label {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--ink-light); margin-bottom: 10px; display: block;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.dream-input {
+  width: 100%; min-height: 140px; border: 1.5px solid rgba(26,20,16,0.12);
+  border-radius: var(--radius); padding: 16px;
+  font: inherit; font-size: 16px; color: var(--ink); background: var(--paper);
+  resize: vertical; outline: none; transition: border-color 0.2s;
+}
+.dream-input:focus { border-color: var(--gold); }
+.dream-input::placeholder { color: var(--ink-faint); }
+.input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 8px; text-align: right; }
 
-    .result-section { display: none; padding: 0 20px 80px; max-width: 800px; margin: 0 auto; }
-    .result-section.active { display: block; }
+.input-row { display: flex; gap: 12px; margin-top: 12px; }
+.input-row .time-input {
+  flex: 1; border: 1.5px solid rgba(26,20,16,0.12);
+  border-radius: var(--radius); padding: 12px 16px;
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--paper);
+  outline: none; transition: border-color 0.2s;
+}
+.input-row .time-input:focus { border-color: var(--gold); }
 
-    /* Element Badge */
-    .element-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: 24px; font-size: 14px;
-      font-weight: 600; letter-spacing: 0.04em; margin-bottom: 24px;
-    }
-    .element-badge.water { background: rgba(26,58,92,0.1); color: var(--water); border: 1px solid rgba(26,58,92,0.2); }
-    .element-badge.wood { background: rgba(45,90,39,0.1); color: var(--wood); border: 1px solid rgba(45,90,39,0.2); }
-    .element-badge.fire { background: rgba(139,37,0,0.1); color: var(--fire); border: 1px solid rgba(139,37,0,0.2); }
-    .element-badge.earth { background: rgba(139,117,0,0.1); color: var(--earth); border: 1px solid rgba(139,117,0,0.2); }
-    .element-badge.metal { background: rgba(107,107,107,0.1); color: var(--metal); border: 1px solid rgba(107,107,107,0.2); }
+.submit-btn {
+  width: 100%; margin-top: 20px;
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff; border: none; border-radius: var(--radius);
+  padding: 15px 32px; font: inherit; font-size: 16px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(181,52,42,0.2);
+}
+.submit-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 32px rgba(181,52,42,0.3); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-    /* Share Card */
-    .share-card {
-      background: linear-gradient(135deg, #1a1008 0%, #2d1f14 50%, #1a1008 100%);
-      border-radius: 16px; padding: 40px; color: #f8f1e7; text-align: center;
-      position: relative; overflow: hidden; margin-bottom: 32px;
-    }
-    .share-card::before {
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(183,138,66,0.3), transparent 70%);
-      pointer-events: none;
-    }
-    .share-card::after {
-      content: ''; position: absolute; bottom: -80px; left: -40px;
-      width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(166,58,44,0.25), transparent 70%);
-      pointer-events: none;
-    }
-    .share-card-inner { position: relative; z-index: 1; }
-    .share-card-tag {
-      display: inline-block; background: rgba(183,138,66,0.2); color: var(--gold);
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
-      border: 1px solid rgba(183,138,66,0.3);
-    }
-    .share-card-dream {
-      font-size: 20px; font-style: italic; line-height: 1.5; margin-bottom: 28px;
-      color: rgba(248,241,231,0.9); max-width: 500px; margin-left: auto; margin-right: auto;
-    }
-    .share-card-dream::before { content: '"'; }
-    .share-card-dream::after { content: '"'; }
-    .share-card-element {
-      display: inline-block; padding: 8px 20px; border-radius: 20px;
-      font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 20px;
-    }
-    .share-card-element.water { background: rgba(26,58,92,0.3); color: #7eb8da; }
-    .share-card-element.wood { background: rgba(45,90,39,0.3); color: #7ec97e; }
-    .share-card-element.fire { background: rgba(220,60,20,0.3); color: #f09070; }
-    .share-card-element.earth { background: rgba(180,150,30,0.3); color: #e0c860; }
-    .share-card-element.metal { background: rgba(160,160,160,0.3); color: #d0d0d0; }
-    .share-card-brand {
-      font-size: 13px; letter-spacing: 0.12em; color: var(--gold);
-      text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .share-card-url { font-size: 11px; color: rgba(248,241,231,0.35); margin-top: 6px; letter-spacing: 0.06em; }
+.loading-wrap { display: none; text-align: center; padding: 40px 0; }
+.loading-wrap.active { display: block; }
+.loading-spinner {
+  width: 44px; height: 44px; border: 3px solid rgba(181,52,42,0.15);
+  border-top-color: var(--cinnabar); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { color: var(--ink-light); font-size: 14px; }
 
-    /* Analysis Cards */
-    .analysis-card {
-      background: #fff; border-radius: 12px; padding: 32px;
-      box-shadow: var(--shadow); margin-bottom: 20px;
-    }
-    .analysis-card h2 { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-    .analysis-card p { margin-bottom: 14px; font-size: 15px; color: rgba(36,25,21,0.82); line-height: 1.8; }
-    .analysis-card .card-icon { font-size: 24px; }
+.error-msg { display: none; background: rgba(181,52,42,0.06); border: 1px solid rgba(181,52,42,0.15); border-radius: var(--radius); padding: 14px; color: var(--cinnabar); text-align: center; margin-top: 14px; font-size: 13px; }
+.error-msg.active { display: block; }
 
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+/* ── Result section ── */
+.result-section { display: none; padding: 0 20px 80px; max-width: 780px; margin: 0 auto; }
+.result-section.active { display: block; }
 
-    .element-detail-card {
-      padding: 20px; border-radius: 10px; border-left: 4px solid;
-    }
-    .element-detail-card.water { background: rgba(26,58,92,0.04); border-color: var(--water); }
-    .element-detail-card.wood { background: rgba(45,90,39,0.04); border-color: var(--wood); }
-    .element-detail-card.fire { background: rgba(139,37,0,0.04); border-color: var(--fire); }
-    .element-detail-card.earth { background: rgba(139,117,0,0.04); border-color: var(--earth); }
-    .element-detail-card.metal { background: rgba(107,107,107,0.04); border-color: var(--metal); }
-    .element-detail-card h4 { font-size: 15px; margin-bottom: 8px; }
-    .element-detail-card p { font-size: 13px; color: rgba(36,25,21,0.7); line-height: 1.6; margin-bottom: 6px; }
-    .mini-tag {
-      display: inline-block; font-size: 11px; padding: 3px 10px;
-      border-radius: 12px; margin: 2px 4px 2px 0;
-      font-weight: 600; letter-spacing: 0.03em;
-    }
-    .mini-tag.water { background: rgba(26,58,92,0.1); color: var(--water); }
-    .mini-tag.wood { background: rgba(45,90,39,0.1); color: var(--wood); }
-    .mini-tag.fire { background: rgba(139,37,0,0.1); color: var(--fire); }
-    .mini-tag.earth { background: rgba(139,117,0,0.1); color: var(--earth); }
-    .mini-tag.metal { background: rgba(107,107,107,0.1); color: var(--metal); }
+/* ── Share Card ── */
+.share-card {
+  background: linear-gradient(135deg, #1a1008 0%, #2d1f14 50%, #1a1008 100%);
+  border-radius: 16px; padding: 40px; color: var(--cream); text-align: center;
+  position: relative; overflow: hidden; margin-bottom: 28px;
+}
+.share-card::before {
+  content: ''; position: absolute; top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(201,162,78,0.3), transparent 70%);
+  pointer-events: none;
+}
+.share-card::after {
+  content: ''; position: absolute; bottom: -60px; left: -30px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(181,52,42,0.2), transparent 70%);
+  pointer-events: none;
+}
+.share-card-inner { position: relative; z-index: 1; }
+.share-card-tag {
+  display: inline-block; background: rgba(201,162,78,0.2); color: var(--gold);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
+  border: 1px solid rgba(201,162,78,0.3);
+}
+.share-card-dream {
+  font-size: 20px; font-style: italic; line-height: 1.5; margin-bottom: 24px;
+  color: rgba(248,241,231,0.9); max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.share-card-dream::before { content: '"'; }
+.share-card-dream::after { content: '"'; }
+.share-card-element {
+  display: inline-block; padding: 8px 20px; border-radius: 20px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 18px;
+}
+.share-card-element.water { background: rgba(26,58,92,0.3); color: #7eb8da; }
+.share-card-element.wood { background: rgba(45,90,39,0.3); color: #7ec97e; }
+.share-card-element.fire { background: rgba(220,60,20,0.3); color: #f09070; }
+.share-card-element.earth { background: rgba(180,150,30,0.3); color: #e0c860; }
+.share-card-element.metal { background: rgba(160,160,160,0.3); color: #d0d0d0; }
+.share-card-brand {
+  font-size: 12px; letter-spacing: 0.1em; color: var(--gold);
+  text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.share-card-url { font-size: 10px; color: rgba(248,241,231,0.3); margin-top: 6px; letter-spacing: 0.06em; }
 
-    .auspicious-tag {
-      display: inline-block; padding: 4px 12px; border-radius: 12px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
-    }
-    .auspicious-tag.good { background: rgba(46,125,50,0.1); color: #2e7d32; }
-    .auspicious-tag.caution { background: rgba(198,40,40,0.1); color: #c62828; }
-    .auspicious-tag.neutral { background: rgba(183,138,66,0.1); color: var(--gold); }
+/* ── Analysis Cards ── */
+.analysis-card {
+  background: var(--white); border-radius: 12px; padding: 32px 28px;
+  box-shadow: var(--shadow-sm); margin-bottom: 18px;
+  border: 1px solid rgba(26,20,16,0.06);
+}
+.analysis-card h2 { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; font-weight: 900; }
+.analysis-card p { margin-bottom: 14px; font-size: 15px; color: var(--ink-light); line-height: 1.9; }
+.analysis-card .card-icon { font-size: 24px; }
 
-    .share-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; }
-    .share-btn {
-      display: flex; align-items: center; gap: 8px; padding: 12px 20px;
-      border-radius: 8px; font-size: 14px; font-family: Georgia, serif;
-      cursor: pointer; border: none; transition: transform 0.15s, box-shadow 0.15s; font-weight: 600;
-    }
-    .share-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
-    .share-btn:active { transform: scale(0.97); }
-    .share-btn.wechat { background: #07c160; color: #fff; }
-    .share-btn.twitter { background: #000; color: #fff; }
-    .share-btn.copy { background: var(--ink); color: var(--paper); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
 
-    .try-another { text-align: center; }
-    .try-another-btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
-      border-radius: 8px; background: var(--paper); color: var(--ink);
-      border: 1.5px solid var(--line); font-size: 15px;
-      font-family: Georgia, serif; cursor: pointer; transition: all 0.2s;
-    }
-    .try-another-btn:hover { border-color: var(--gold); color: var(--cinnabar); }
+.element-detail-card {
+  padding: 18px; border-radius: var(--radius); border-left: 4px solid;
+}
+.element-detail-card.water { background: rgba(26,58,92,0.04); border-color: var(--water); }
+.element-detail-card.wood { background: rgba(45,90,39,0.04); border-color: var(--wood); }
+.element-detail-card.fire { background: rgba(139,37,0,0.04); border-color: var(--fire); }
+.element-detail-card.earth { background: rgba(139,117,0,0.04); border-color: var(--earth); }
+.element-detail-card.metal { background: rgba(107,107,107,0.04); border-color: var(--metal); }
+.element-detail-card h4 { font-size: 14px; margin-bottom: 8px; }
+.element-detail-card p { font-size: 13px; color: var(--ink-light); line-height: 1.7; margin-bottom: 6px; }
 
-    .cta-banner {
-      background: linear-gradient(135deg, var(--cinnabar), #8c2f23);
-      border-radius: 12px; padding: 40px; color: #fff; text-align: center; margin-top: 28px;
-    }
-    .cta-banner h3 { font-size: 24px; margin-bottom: 12px; }
-    .cta-banner p { opacity: 0.85; font-size: 16px; margin-bottom: 24px; }
-    .cta-btn {
-      display: inline-block; background: var(--gold); color: var(--ink);
-      padding: 14px 32px; border-radius: 8px; font-size: 16px;
-      font-weight: 700; cursor: pointer; border: none; font-family: Georgia, serif;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .cta-btn:hover { background: #c99a52; transform: scale(1.02); }
+.mini-tag {
+  display: inline-block; font-size: 10px; padding: 3px 10px;
+  border-radius: 12px; margin: 2px 4px 2px 0;
+  font-weight: 600; letter-spacing: 0.03em;
+}
+.mini-tag.water { background: rgba(26,58,92,0.1); color: var(--water); }
+.mini-tag.wood { background: rgba(45,90,39,0.1); color: var(--wood); }
+.mini-tag.fire { background: rgba(139,37,0,0.1); color: var(--fire); }
+.mini-tag.earth { background: rgba(139,117,0,0.1); color: var(--earth); }
+.mini-tag.metal { background: rgba(107,107,107,0.1); color: var(--metal); }
 
-    .error-msg { display: none; background: #fdf2f2; border: 1px solid #f5c6c6; border-radius: 8px; padding: 16px; color: var(--cinnabar); text-align: center; margin-top: 16px; }
-    .error-msg.active { display: block; }
+.auspicious-tag {
+  display: inline-block; padding: 4px 12px; border-radius: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.auspicious-tag.good { background: rgba(46,125,50,0.1); color: #2e7d32; }
+.auspicious-tag.caution { background: rgba(198,40,40,0.1); color: #c62828; }
+.auspicious-tag.neutral { background: rgba(201,162,78,0.1); color: var(--gold); }
 
-    footer {
-      border-top: 1px solid var(--line); padding: 40px 20px;
-      text-align: center; font-size: 13px; color: rgba(36,25,21,0.5);
-    }
-    footer a { color: var(--cinnabar); }
-    footer a:hover { text-decoration: underline; }
+/* ── CTA Banner (tier unlock) ── */
+.cta-banner {
+  background: linear-gradient(135deg, rgba(26,20,16,0.94), rgba(71,42,28,0.94)), var(--ink);
+  border-radius: 12px; padding: 36px 32px; color: #fffdf8; text-align: center;
+  margin-top: 28px;
+  box-shadow: var(--shadow-lg);
+}
+.cta-banner h3 { font-size: 22px; font-weight: 900; margin-bottom: 10px; color: #fff; }
+.cta-banner p { opacity: 0.82; font-size: 15px; margin-bottom: 22px; }
+.cta-btn {
+  display: inline-block; background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff; padding: 14px 32px; border-radius: var(--radius);
+  font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
+  transition: all 0.2s; cursor: pointer;
+  box-shadow: 0 6px 24px rgba(181,52,42,0.3);
+}
+.cta-btn:hover { transform: translateY(-2px); }
+.cta-btn.gold { background: linear-gradient(135deg, #c9a24e, #a07830); margin-left: 12px; }
+.cta-banner .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    @media (max-width: 600px) {
-      .input-card, .analysis-card { padding: 24px; }
-      .share-card { padding: 28px 20px; }
-      .share-card-dream { font-size: 17px; }
-      .share-btn { padding: 10px 14px; font-size: 13px; }
-    }
-  </style>
+/* Share actions */
+.share-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 16px 0 20px; }
+.share-btn {
+  display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+  border-radius: var(--radius); font-size: 13px; font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer; border: none; transition: transform 0.15s; font-weight: 600;
+}
+.share-btn:hover { transform: translateY(-2px); }
+.share-btn.wechat { background: #07c160; color: #fff; }
+.share-btn.twitter { background: #000; color: #fff; }
+.share-btn.copy { background: var(--ink); color: var(--paper); }
+
+.try-another { text-align: center; margin-bottom: 40px; }
+.try-another-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px;
+  border-radius: var(--radius); background: var(--paper); color: var(--ink);
+  border: 1.5px solid rgba(26,20,16,0.12); font-size: 14px;
+  font: inherit; cursor: pointer; transition: all 0.2s;
+}
+.try-another-btn:hover { border-color: var(--gold); color: var(--cinnabar); }
+
+footer {
+  border-top: 1px solid rgba(26,20,16,0.06); padding: 32px 20px;
+  text-align: center; font-size: 12px; color: var(--ink-faint);
+}
+footer a { color: var(--cinnabar); }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .input-card, .analysis-card { padding: 24px 20px; }
+  .share-card { padding: 28px 20px; }
+  .share-card-dream { font-size: 17px; }
+  .cta-banner .cta-row { flex-direction: column; align-items: center; }
+  .cta-btn.gold { margin-left: 0; margin-top: 8px; }
+}
+</style>
 </head>
 <body>
 
@@ -276,40 +305,40 @@
   <div class="topbar-inner">
     <a href="index.html" class="brand">
       <span class="brand-mark">Oriental Destiny</span>
-      <span class="brand-name">☯ Oriental Destiny</span>
+      <span class="brand-name">梦境解析</span>
     </a>
     <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="five-elements-explained.html">Five Elements</a>
-      <a href="instant_reading.html">Free Reading</a>
-      <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);font-weight:600;">Dream Interpreter</a>
-      <a href="checkout.html" class="nav-cta">Get Full Report</a>
+      <a href="index.html">首页</a>
+      <a href="five-elements-explained.html">五行</a>
+      <a href="instant_reading.html">免费诊断</a>
+      <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);font-weight:600;">梦境解析</a>
+      <a href="checkout.html" class="nav-cta">完整命书</a>
     </nav>
   </div>
 </header>
 
 <section class="hero" id="inputSection">
-  <div class="hero-badge">☯ Five Elements · Duke of Zhou · Meridian Clock</div>
-  <h1>What Does Your <span>Dream</span> Reveal?</h1>
-  <p class="hero-sub">Describe your dream for a Five Elements analysis based on the Duke of Zhou dream dictionary, psychological insight, and Zi Wu Liu Zhu meridian clock. Optional: enter your dream time for organ-level analysis.</p>
+  <div class="hero-badge">☯ 五行 · 周公解梦 · 子午流注</div>
+  <h1>你的梦<span>在说什么</span>？</h1>
+  <p class="hero-sub">描述你的梦境——用五行元素解析、周公解梦词典、子午流注经络时钟，看看你的潜意识在用哪种能量跟你对话。</p>
 
   <div class="input-card">
-    <label class="input-label" for="dreamText">Describe your dream</label>
-    <textarea id="dreamText" class="dream-input" placeholder="e.g. I dreamed of a golden dragon flying over water, then I found myself climbing a tall mountain toward a hidden temple..." maxlength="1200"></textarea>
+    <label class="input-label" for="dreamText">描述你的梦</label>
+    <textarea id="dreamText" class="dream-input" placeholder="比如：我梦见一条金色的龙在飞过水面，然后我发现自己爬上了一座高山，山顶有一座隐藏的寺庙…" maxlength="1200"></textarea>
     <div class="input-hint"><span id="charCount">0</span> / 1200</div>
 
     <div class="input-row">
-      <input type="time" id="dreamTime" class="time-input" placeholder="Dream time (optional)">
-      <span style="font-size:12px;color:rgba(36,25,21,0.45);align-self:center;">Time you had the dream (for meridian analysis)</span>
+      <input type="time" id="dreamTime" class="time-input" placeholder="做梦时间（可选）">
+      <span style="font-size:11px;color:var(--ink-faint);align-self:center;">做梦的时间（用于经络分析）</span>
     </div>
 
-    <button class="submit-btn" id="interpretBtn" onclick="interpretDream()">✨ Reveal the Meaning</button>
+    <button class="submit-btn" id="interpretBtn" onclick="interpretDream()">✨ 解析我的梦</button>
     <div class="error-msg" id="errorMsg"></div>
   </div>
 
   <div class="loading-wrap" id="loadingWrap">
     <div class="loading-spinner"></div>
-    <p class="loading-text">Analyzing dream symbols through <strong>Five Elements</strong> and <strong>Duke of Zhou</strong> canon...</p>
+    <p class="loading-text">正在用<strong>五行元素</strong>和<strong>周公解梦</strong>分析你的梦境…</p>
   </div>
 </section>
 
@@ -317,60 +346,64 @@
   <!-- Share Card -->
   <div class="share-card" id="shareCard">
     <div class="share-card-inner">
-      <div class="share-card-tag">☯ Five Elements Dream Analysis</div>
+      <div class="share-card-tag">☯ 五行梦境解析</div>
       <p class="share-card-dream" id="shareDream"></p>
       <div class="share-card-element" id="shareElement"></div>
       <div class="share-card-brand">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Oriental Destiny · Dream Analysis
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Oriental Destiny · 梦境解析
       </div>
       <div class="share-card-url">oriental-destiny.com</div>
     </div>
   </div>
 
-  <!-- Analysis: Element & Symbolism -->
+  <!-- Element Analysis -->
   <div class="analysis-card" id="elementCard"></div>
 
-  <!-- Two Column: Categories + Meridian Clock -->
+  <!-- Two Column: Categories + Meridian -->
   <div class="two-col" id="detailCols"></div>
 
-  <!-- BaZi Cross Reference (if available) -->
+  <!-- BaZi Cross Reference or CTA to get BaZi reading -->
   <div class="analysis-card" id="baziCard" style="display:none;"></div>
 
   <!-- Guidance -->
   <div class="analysis-card" id="guidanceCard"></div>
 
-  <!-- CTA -->
-  <div class="cta-banner">
-    <h3>Your Dreams + Your Destiny = Deep Insight</h3>
-    <p>Combine your dream symbolism with your full BaZi chart for personalized dream interpretation. Understand what YOUR specific elements are telling you.</p>
-    <button class="cta-btn" onclick="location.href='checkout.html'">Get Your Full BaZi Reading — $199</button>
+  <!-- ═══ TIERED CTA ═══ -->
+  <!-- Free tier cutoff: element analysis ends here -->
+  <div class="cta-banner" id="tierCta">
+    <h3>想知道这个梦和你的八字有什么关联吗？</h3>
+    <p>以上是五行元素层面的分析——你的梦是什么元素、在什么经络时段、周公解梦怎么说。<br>但你的梦和你的<strong>个人命盘</strong>之间，还有一层更深的联系——那是你独有的。</p>
+    <div class="cta-row">
+      <button class="cta-btn" onclick="location.href='instant_reading.html'">🔮 免费八字诊断 → 解锁梦境对照</button>
+      <button class="cta-btn gold" onclick="location.href='checkout.html'">💎 完整灵石匹配 · $199</button>
+    </div>
   </div>
 
   <!-- Share Actions -->
   <div class="share-actions">
     <button class="share-btn wechat" onclick="shareWechat()">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z..."/></svg>
-      WeChat
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="12" cy="12" r="10"/></svg>
+      微信分享
     </button>
     <button class="share-btn twitter" onclick="shareTwitter()">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622z"/></svg>
       X / Twitter
     </button>
     <button class="share-btn copy" onclick="copyShareText()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      Copy Text
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      复制文字
     </button>
   </div>
 
   <div class="try-another">
-    <button class="try-another-btn" onclick="resetDream()">🔄 Interpret Another Dream</button>
+    <button class="try-another-btn" onclick="resetDream()">🔄 解析另一个梦</button>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version">v2.0.0</span></p>
-  <p style="margin-top:8px;">Dream analysis based on 周公解梦 (Duke of Zhou Dream Dictionary), Five Elements theory, and 子午流注 (Zi Wu Liu Zhu) meridian clock.</p>
+  <p>© 2026 Oriental Destiny · <a href="index.html">首页</a> · <a href="policies.html">隐私政策</a> · <span class="od-version">v2.1.0</span></p>
+  <p style="margin-top:8px;">基于 周公解梦 (Duke of Zhou Dream Dictionary)、五行理论、子午流注经络时钟</p>
 </footer>
 
 <script src="dream_engine.js"></script>
@@ -379,7 +412,7 @@
 <script src="config.js"></script>
 
 <script>
-// ─── Dream Interpretation v2 — Integrates DreamEngine + DeepSeek ────────────────
+// ─── Dream Interpretation v2.1 — Ink-Wash + Tiered Output ──────
 
 const dreamTextEl = document.getElementById('dreamText');
 const charCountEl = document.getElementById('charCount');
@@ -390,7 +423,7 @@ const loadingWrap = document.getElementById('loadingWrap');
 const resultSection = document.getElementById('resultSection');
 const errorMsg = document.getElementById('errorMsg');
 
-dreamTextEl.addEventListener('input', () => charCountEl.textContent = dreamTextEl.value.length);
+dreamTextEl.addEventListener('input', function() { charCountEl.textContent = dreamTextEl.value.length; });
 
 function resetDream() {
   resultSection.classList.remove('active');
@@ -411,16 +444,15 @@ function setLoading(on) {
 
 async function interpretDream() {
   const dream = dreamTextEl.value.trim();
-  if (!dream) { showError('Please describe your dream first.'); return; }
-  if (dream.length < 10) { showError('Please describe a bit more (at least 10 characters).'); return; }
+  if (!dream) { showError('请先描述你的梦。'); return; }
+  if (dream.length < 10) { showError('请多写一点——至少10个字。梦境越详细，解析越准。'); return; }
 
   hideError();
   setLoading(true);
 
   try {
-    // ── Step 1: Local Dream Engine Analysis ────────────────────
+    // Load BaZi profile if available (from sessionStorage)
     let baziProfile = null;
-    // Try to get BaZi profile if user has been to the reading page (stored in sessionStorage)
     try {
       const stored = sessionStorage.getItem('baziProfileV2');
       if (stored) baziProfile = JSON.parse(stored);
@@ -431,20 +463,19 @@ async function interpretDream() {
       baziProfile
     });
 
-    // ── Step 2: Enhance with DeepSeek API (optional) ──────────
+    // Try AI enhancement
     let aiEnhanced = null;
     try {
       aiEnhanced = await enhanceWithAI(dream, localResult);
     } catch(e) {
-      console.warn('AI enhancement unavailable, using local analysis:', e.message);
+      console.warn('AI enhancement unavailable:', e.message);
     }
 
-    // ── Step 3: Render Result ──────────────────────────────────
-    showResult(dream, localResult, aiEnhanced);
+    showResult(dream, localResult, aiEnhanced, baziProfile);
 
   } catch (err) {
     console.error(err);
-    showError('Interpretation failed. Please try again.');
+    showError('解析失败。请重试。');
   } finally {
     setLoading(false);
   }
@@ -453,38 +484,32 @@ async function interpretDream() {
 async function enhanceWithAI(dream, localResult) {
   if (typeof window.DEEPSEEK_PROXY_URL === 'undefined') return null;
 
-  const primaryEl = localResult.elementAnalysis?.primary?.element || 'Unknown';
+  const primaryEl = localResult.elementAnalysis?.primary?.element || 'unique';
   const elementContext = localResult.interpretation?.elementInterpretation?.substring(0, 300) || '';
   const shiChenInfo = localResult.shiChenAnalysis
-    ? `Dream time period: ${localResult.shiChenAnalysis.shiChen}, organ: ${localResult.shiChenAnalysis.organ}`
-    : 'No dream time provided';
+    ? '做梦时辰: ' + localResult.shiChenAnalysis.shiChen + ', 对应经络: ' + localResult.shiChenAnalysis.organ
+    : '未提供做梦时间';
 
-  const systemPrompt = `You enhance a Five Elements dream analysis. The dream engine has already identified:
-- Primary Element: ${primaryEl}
-- Element Context: ${elementContext}
-- Meridian Clock: ${shiChenInfo}
+  const systemPrompt = '你为五行梦境解析提供诗歌般的叙事增强。引擎已经识别：' +
+    '\n- 主元素: ' + primaryEl +
+    '\n- 元素上下文: ' + elementContext +
+    '\n- 经络时钟: ' + shiChenInfo +
+    '\n\n请写2-3段富有诗意的叙事——融合周公解梦的象征、五行能量含义、心理洞察、实用指导。用中文写。生动、具体、避免套话。' +
+    '\n\n返回JSON:' +
+    '\n{"enhancedNarrative": "2-3段诗意叙事...",' +
+    '\n "personalGuidance": "1段与梦者元素相关的实用指导",' +
+    '\n "elementAffirmation": "1句话——这个梦告诉梦者关于ta自己的什么"}';
 
-Write a 2-3 paragraph poetic narrative interpretation that weaves together the classical Duke of Zhou symbolism, the Five Elements meaning, psychological insight, and practical guidance. Write in English. Be vivid, specific, and avoid generic phrases.
-
-Return JSON:
-{
-  "enhancedNarrative": "2-3 paragraph poetic narrative...",
-  "personalGuidance": "1 paragraph practical guidance tied to the dreamer's element",
-  "luckyDirection": "direction name",
-  "elementAffirmation": "1 sentence affirming what this dream reveals about the dreamer"
-}`;
-
-  const response = await fetch(`${window.DEEPSEEK_PROXY_URL}/chat/completions`, {
+  const response = await fetch(window.DEEPSEEK_PROXY_URL + '/chat/completions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: 'deepseek-chat',
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: `Dream: "${dream}"\nPrimary element: ${primaryEl}` }
+        { role: 'user', content: '梦境: "' + dream + '"\n主元素: ' + primaryEl }
       ],
-      temperature: 0.7,
-      max_tokens: 800
+      temperature: 0.7, max_tokens: 800
     })
   });
 
@@ -497,145 +522,144 @@ Return JSON:
 
 function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-function showResult(dream, localResult, aiEnhanced) {
+function showResult(dream, localResult, aiEnhanced, baziProfile) {
   const elResult = localResult;
   const primaryEl = elResult.elementAnalysis?.primary?.element || 'unique';
 
-  // ── Share Card ──────────────────────────────────────────────
+  // Share Card
   document.getElementById('shareDream').textContent = dream.length > 200 ? dream.substring(0, 197) + '...' : dream;
   const elBadge = document.getElementById('shareElement');
-  elBadge.textContent = '☯ ' + capitalize(primaryEl) + ' Element Dream';
+  elBadge.textContent = '☯ ' + capitalize(primaryEl) + ' 元素之梦';
   elBadge.className = 'share-card-element ' + primaryEl;
 
-  // ── Element Analysis Card ──────────────────────────────────
-  let elementalHTML = `<h2><span class="card-icon">${getElementEmoji(primaryEl)}</span> Five Elements Analysis: ${capitalize(primaryEl)} Dominant</h2>`;
+  // Element Analysis Card
+  let elementalHTML = '<h2><span class="card-icon">' + getElementEmoji(primaryEl) + '</span> 五行分析: ' + capitalize(primaryEl) + ' 主导</h2>';
 
   if (elResult.elementAnalysis?.isCompound) {
-    elementalHTML += `<p><span class="auspicious-tag neutral">Multi-Element Dream</span> This dream spans multiple elements, suggesting a complex emotional landscape addressing several life domains simultaneously.</p>`;
+    elementalHTML += '<p><span class="auspicious-tag neutral">多元素梦境</span> 这个梦跨越多种元素能量，暗示你的潜意识正在同时处理多个生命领域的问题。这是一个复杂的梦——需要从多角度理解。</p>';
   }
 
   if (elResult.interpretation?.elementInterpretation) {
-    elementalHTML += `<p>${elResult.interpretation.elementInterpretation}</p>`;
+    elementalHTML += '<p>' + elResult.interpretation.elementInterpretation + '</p>';
   }
 
   // Matched keywords
   if (elResult.symbolMatch?.elements?.length > 0) {
-    elementalHTML += `<div style="margin-top:16px;"><strong>Symbols detected:</strong><br>`;
-    elResult.symbolMatch.elements.forEach(e => {
-      elementalHTML += e.keywords.slice(0, 6).map(k => `<span class="mini-tag ${e.element}">${k}</span>`).join(' ') + ' ';
+    elementalHTML += '<div style="margin-top:16px;"><strong>识别的梦象：</strong><br>';
+    elResult.symbolMatch.elements.forEach(function(e) {
+      elementalHTML += e.keywords.slice(0, 6).map(function(k) { return '<span class="mini-tag ' + e.element + '">' + k + '</span>'; }).join(' ') + ' ';
     });
-    elementalHTML += `</div>`;
+    elementalHTML += '</div>';
   }
 
   // AI enhanced narrative
   if (aiEnhanced?.enhancedNarrative) {
-    elementalHTML += `<hr style="border:none;border-top:1px solid var(--line);margin:20px 0;">
-      <p style="font-style:italic;line-height:1.9;">${aiEnhanced.enhancedNarrative}</p>`;
+    elementalHTML += '<hr style="border:none;border-top:1px solid rgba(26,20,16,0.08);margin:20px 0;">' +
+      '<p style="font-style:italic;line-height:1.9;">' + aiEnhanced.enhancedNarrative + '</p>';
   }
 
   document.getElementById('elementCard').innerHTML = elementalHTML;
 
-  // ── Two Columns: Categories + Meridian ─────────────────────
+  // Two Columns
   let colsHTML = '';
 
-  // Column 1: Theme Categories
-  colsHTML += `<div class="analysis-card"><h2><span class="card-icon">🏷️</span> Dream Themes</h2>`;
+  // Col 1: Theme Categories
+  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🏷️</span> 梦境主题</h2>';
   if (elResult.interpretation?.categoryInterpretations?.length > 0) {
-    elResult.interpretation.categoryInterpretations.forEach(c => {
-      colsHTML += `<div class="element-detail-card ${c.element || primaryEl}" style="margin-bottom:12px;">
-        <h4>${c.category}</h4>
-        <p>${c.meaning}</p>
-        <p style="font-size:12px;color:var(--cinnabar);"><em>${c.guidance}</em></p>
-      </div>`;
+    elResult.interpretation.categoryInterpretations.forEach(function(c) {
+      colsHTML += '<div class="element-detail-card ' + (c.element || primaryEl) + '" style="margin-bottom:12px;">' +
+        '<h4>' + c.category + '</h4>' +
+        '<p>' + c.meaning + '</p>' +
+        '<p style="font-size:12px;color:var(--cinnabar);"><em>' + c.guidance + '</em></p></div>';
     });
   } else {
-    colsHTML += `<p>This dream's imagery is uniquely personal. While it doesn't match common dream archetypes, the dominant ${capitalize(primaryEl)} element provides the interpretive framework.</p>`;
+    colsHTML += '<p>这个梦的意象独一无二。虽然不匹配常见梦象分类，但' + capitalize(primaryEl) + '元素的能量框架提供了理解的方向。</p>';
   }
-  colsHTML += `</div>`;
+  colsHTML += '</div>';
 
-  // Column 2: Meridian Clock
-  colsHTML += `<div class="analysis-card"><h2><span class="card-icon">🕐</span> Meridian Clock (子午流注)</h2>`;
+  // Col 2: Meridian Clock
+  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🕐</span> 子午流注 · 经络时钟</h2>';
   if (elResult.shiChenAnalysis) {
     const sc = elResult.shiChenAnalysis;
-    colsHTML += `<div class="element-detail-card ${sc.element.toLowerCase() || primaryEl}">
-      <h4>${sc.shiChen} — ${sc.organ}</h4>
-      <p>${sc.meaning}</p>
-      <p style="font-size:12px;color:var(--cinnabar);"><em>Guidance: ${sc.guidance}</em></p>
-    </div>`;
+    colsHTML += '<div class="element-detail-card ' + (sc.element ? sc.element.toLowerCase() : primaryEl) + '">' +
+      '<h4>' + sc.shiChen + ' — ' + sc.organ + '</h4>' +
+      '<p>' + sc.meaning + '</p>' +
+      '<p style="font-size:12px;color:var(--cinnabar);"><em>指导: ' + sc.guidance + '</em></p></div>';
   } else {
-    colsHTML += `<p style="color:rgba(36,25,21,0.5);">Enter your dream time above for organ-level analysis based on the Zi Wu Liu Zhu meridian clock — each two-hour period corresponds to a specific organ system.</p>
-    <p style="font-size:13px;">Example: Liver dreams (丑时 1-3am) are the most vivid and emotionally charged. Kidney dreams (酉时 5-7pm) access the deepest psychological layers.</p>`;
+    colsHTML += '<p style="color:var(--ink-faint);">输入做梦时间，获得子午流注经络层面的分析——每两小时对应一个脏腑系统。</p>' +
+      '<p style="font-size:12px;">例如：肝经之梦（丑时 1-3am）最为生动、情绪饱满。肾经之梦（酉时 5-7pm）触及最深层的心理层面。</p>';
   }
-  colsHTML += `</div>`;
+  colsHTML += '</div>';
 
   document.getElementById('detailCols').innerHTML = colsHTML;
 
-  // ── BaZi Cross Reference ───────────────────────────────────
+  // BaZi Cross Reference
   const baziCard = document.getElementById('baziCard');
   if (elResult.baziCrossRef) {
     const xref = elResult.baziCrossRef;
     const tagClass = xref.isAuspicious === true ? 'good' : (xref.isAuspicious === false ? 'caution' : 'neutral');
-    const tagText = xref.isAuspicious === true ? 'Auspicious ✨' : (xref.isAuspicious === false ? 'Cautionary ⚠' : 'Personal');
+    const tagText = xref.isAuspicious === true ? '吉兆 ✨' : (xref.isAuspicious === false ? '留意 ⚠' : '个人');
     baziCard.style.display = '';
-    baziCard.innerHTML = `
-      <h2><span class="card-icon">🎯</span> Your BaZi Compatibility</h2>
-      <p><span class="auspicious-tag ${tagClass}">${tagText}</span> <strong>Day Master:</strong> ${xref.dayMasterElement} | <strong>Dream Element:</strong> ${xref.dreamElement}</p>
-      <p>${xref.assessment}</p>
-      <p style="font-size:13px;color:rgba(36,25,21,0.6);">Your Yong Shen is <strong>${xref.yongShen}</strong>. Dreams carrying Yong Shen energy are considered auspicious in classical dream interpretation.</p>
-    `;
+    baziCard.innerHTML =
+      '<h2><span class="card-icon">🎯</span> 你的八字梦境对照</h2>' +
+      '<p><span class="auspicious-tag ' + tagClass + '">' + tagText + '</span> <strong>日主:</strong> ' + xref.dayMasterElement + ' | <strong>梦境元素:</strong> ' + xref.dreamElement + '</p>' +
+      '<p>' + xref.assessment + '</p>' +
+      '<p style="font-size:12px;color:var(--ink-faint);">你的用神是 <strong>' + xref.yongShen + '</strong>。梦中出现用神能量，在古典解梦中视为吉兆。</p>';
+  } else if (baziProfile) {
+    baziCard.style.display = '';
+    baziCard.innerHTML =
+      '<h2><span class="card-icon">🎯</span> 你的八字梦境对照</h2>' +
+      '<p>你的日主是 <strong>' + baziProfile.dayMaster + ' ' + baziProfile.dayMasterElement + '</strong>，用神是 <strong>' + baziProfile.yongShen + '</strong>。当你的梦境元素与你用神相合时，梦境在古典解梦中被视为吉兆。</p>';
   } else {
     baziCard.style.display = '';
-    baziCard.innerHTML = `
-      <h2><span class="card-icon">🎯</span> Personalize with Your BaZi</h2>
-      <p>Get your full BaZi reading to unlock <strong>personalized dream interpretation</strong>. Know whether your dream elements are your Yong Shen (supportive) or Ji Shen (cautionary) — this transforms generic dream analysis into personal guidance.</p>
-      <button class="cta-btn" onclick="location.href='instant_reading.html'" style="margin-top:8px;">Get Your Free BaZi Reading →</button>
-    `;
+    baziCard.innerHTML =
+      '<h2><span class="card-icon">🎯</span> 你的八字 · 梦境对照</h2>' +
+      '<p>想知道你的日主元素和这个梦的能量是<strong>相生</strong>还是<strong>相克</strong>？做一次免费八字诊断，我们就能把梦境分析从"通用"变成"专属"——告诉你这个梦对你的命盘来说意味着什么。</p>' +
+      '<button class="cta-btn" onclick="location.href=\'instant_reading.html\'" style="margin-top:8px;font-size:13px;padding:10px 24px;">免费八字诊断 →</button>';
   }
 
-  // ── Guidance Card ──────────────────────────────────────────
-  const guidanceHTML = `
-    <h2><span class="card-icon">🌿</span> Practical Guidance</h2>
-    <p>${elResult.interpretation?.elementGuidance || 'Pay attention to the emotional quality of this dream. Recurring symbols are your unconscious mind sending repeated messages. Record your dreams upon waking for the clearest recall.'}</p>
-    ${elResult.interpretation?.luckyDirection ? `<p><strong>Lucky Direction:</strong> ${elResult.interpretation.luckyDirection} — align your workspace or daily activities accordingly.</p>` : ''}
-    ${aiEnhanced?.personalGuidance ? `<p style="font-style:italic;">${aiEnhanced.personalGuidance}</p>` : ''}
-  `;
+  // Guidance Card
+  const guidanceHTML =
+    '<h2><span class="card-icon">🌿</span> 实用指导</h2>' +
+    '<p>' + (elResult.interpretation?.elementGuidance || '注意这个梦带来的情绪。重复出现的梦象是你潜意识持续发送的信息。醒来后立刻记录，记忆最清晰。') + '</p>' +
+    (elResult.interpretation?.luckyDirection ? '<p><strong>吉方:</strong> ' + elResult.interpretation.luckyDirection + ' — 调整工作或日常活动方向。</p>' : '') +
+    (aiEnhanced?.personalGuidance ? '<p style="font-style:italic;">' + aiEnhanced.personalGuidance + '</p>' : '');
   document.getElementById('guidanceCard').innerHTML = guidanceHTML;
 
-  // ── Switch to result view ──────────────────────────────────
+  // Switch to result view
   inputSection.style.display = 'none';
   resultSection.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function getElementEmoji(el) {
-  const map = { water: '💧', wood: '🌳', fire: '🔥', earth: '🏔️', metal: '⚔️', compound: '☯️' };
+  const map = { water: '💧', wood: '🌳', fire: '🔥', earth: '🏔️', metal: '⚔️', compound: '☯️', unique: '☯️' };
   return map[el] || '☯️';
 }
 
 // ─── Sharing ──────────────────────────────────────────────────
 function getShareText() {
   const dream = document.getElementById('shareDream').textContent;
-  return '☯ My Five Elements dream analysis:\n\n"' + dream + '"\n\n🔮 Get your free dream analysis: https://oriental-destiny.com/dream-interpretation-v2.html';
+  return '☯ 我的五行梦境解析:\n\n"' + dream + '"\n\n🔮 免费获取你的梦境分析: https://oriental-destiny.com/dream-interpretation-v2.html';
 }
 
 function shareTwitter() {
-  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}`, '_blank', 'width=550,height=420');
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(getShareText()), '_blank', 'width=550,height=420');
 }
 
 function shareWechat() {
-  // Simplified: copy to clipboard with WeChat instruction
   copyShareText();
-  alert('📱 Text copied! Open WeChat and paste to share.\n\nFor best results, take a screenshot of the share card above and share the image.');
+  alert('📱 文字已复制！打开微信粘贴分享。\n\n建议：截屏上面的分享卡片，分享图片效果更好。');
 }
 
 function copyShareText() {
-  navigator.clipboard.writeText(getShareText()).then(() => {
+  navigator.clipboard.writeText(getShareText()).then(function() {
     const btn = document.querySelector('.share-btn.copy');
     const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Copied!';
+    btn.innerHTML = '✓ 已复制！';
     btn.style.background = '#07c160';
-    setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 2000);
-  }).catch(() => prompt('Copy this text:', getShareText()));
+    setTimeout(function() { btn.innerHTML = orig; btn.style.background = ''; }, 2000);
+  }).catch(function() { prompt('复制这段文字:', getShareText()); });
 }
 </script>
 </body>

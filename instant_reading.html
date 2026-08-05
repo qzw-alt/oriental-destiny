@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
-        <!-- Google Analytics 4 -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,816 +12,758 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Receive an initial BaZi reading based on your birth details. See your Day Master, elemental balance, and the first direction your chart is pointing toward.">
+    <meta name="description" content="免费八字排盘诊断——看清你的命盘格局、五行失衡、天命方向。只诊断，不开方。解法在完整命书里。">
     <link rel="canonical" href="https://oriental-destiny.com/instant_reading.html">
-    <meta property="og:title" content="Free Instant Reading | Oriental Destiny">
-    <meta property="og:description" content="Enter your birth details and receive a free mini Five Elements reading instantly. No signup, no email required.">
+    <meta property="og:title" content="天命初解 · 免费八字排盘诊断 | Oriental Destiny">
+    <meta property="og:description" content="你的日主是谁？格局是什么？堵在哪里？免费排盘告诉你。不需注册，不需邮箱。">
     <meta property="og:type" content="website">
-    <title>Free BaZi Reading | Oriental Destiny</title>
+    <title>天命初解 · 免费排盘诊断 | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ink: #241915;
-            --paper: #f8f1e7;
-            --cinnabar: #a63a2c;
-            --gold: #b78a42;
-            --line: rgba(36, 25, 21, 0.1);
-            --shadow: 0 18px 48px rgba(70, 41, 24, 0.12);
-        }
+/* ══════════════════════════════════════════════════════════
+   水墨风 · Ink Wash Destiny Scroll
+   天命初解 — 免费排盘诊断
+   ══════════════════════════════════════════════════════════ */
+:root {
+  --ink: #1a1410;
+  --ink-light: rgba(26,20,16,0.65);
+  --ink-faint: rgba(26,20,16,0.35);
+  --cinnabar: #b5342a;
+  --cinnabar-deep: #8b1a14;
+  --gold: #c9a24e;
+  --gold-light: rgba(201,162,78,0.2);
+  --gold-faint: rgba(201,162,78,0.08);
+  --cream: #f5f0e8;
+  --cream-dark: #ebe3d7;
+  --paper: #faf7f1;
+  --white: #fffdf8;
+  --shadow-sm: 0 4px 20px rgba(26,20,16,0.06);
+  --shadow: 0 12px 40px rgba(26,20,16,0.10);
+  --shadow-lg: 0 24px 64px rgba(26,20,16,0.14);
+  --radius: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif SC', Georgia, 'STSong', 'SimSun', 'PingFang SC', serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(26,20,16,0.015) 0%, transparent 70%),
+    linear-gradient(180deg, #f7f2e9 0%, var(--cream) 28%, var(--paper) 62%, #f5efe6 100%);
+  line-height: 1.82;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-        body {
-            font-family: Georgia, "Times New Roman", serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at top, rgba(183, 138, 66, 0.14), transparent 34%),
-                linear-gradient(180deg, #f5e7d6 0%, var(--paper) 42%, #fbf7f1 100%);
-            line-height: 1.7;
-        }
+.container { max-width: 780px; margin: 0 auto; padding: 0 22px; }
 
-        a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; }
 
-        .container {
-            width: min(1120px, calc(100% - 40px));
-            margin: 0 auto;
-        }
+/* ── Top bar ── */
+.topbar {
+  padding: 24px 0 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.brand {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.brand-mark {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cinnabar);
+}
+.brand-name {
+  font-size: 22px; font-weight: 700; letter-spacing: 0.03em;
+}
+.nav {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.nav a {
+  font-size: 13px; font-weight: 500;
+  padding: 7px 14px; border-radius: 20px;
+  color: var(--ink-light);
+  border: 1px solid rgba(26,20,16,0.08);
+  transition: all 0.2s;
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+.nav a:hover { color: var(--cinnabar); border-color: var(--cinnabar); }
 
-        .topbar {
-            padding: 28px 0 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
+/* ── Hero cover ── */
+.hero-cover {
+  text-align: center;
+  padding: 56px 0 46px;
+  margin-bottom: 10px;
+}
+.seal-anim {
+  display: inline-block;
+  animation: sealStamp 1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes sealStamp {
+  0%   { transform: scale(2.8) rotate(-25deg); opacity: 0; }
+  60%  { transform: scale(0.92) rotate(3deg); opacity: 1; }
+  80%  { transform: scale(1.06) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.seal-inner {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px;
+  border: 2.5px solid var(--cinnabar);
+  border-radius: 4px;
+  color: var(--cinnabar);
+  font-size: 12px; font-weight: 900;
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+}
+.hero-title {
+  font-size: clamp(30px, 6vw, 46px);
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 22px 0 10px;
+  letter-spacing: 0.03em;
+}
+.hero-title .em {
+  color: var(--cinnabar);
+  position: relative;
+}
+.hero-title .em::after {
+  content: '';
+  position: absolute; bottom: 2px; left: 0; right: 0;
+  height: 6px;
+  background: rgba(201,162,78,0.35);
+  border-radius: 3px;
+  z-index: -1;
+}
+.hero-sub {
+  font-size: 15px; color: var(--ink-light);
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+.hero-divider {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 8px;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 7px 22px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(181,52,42,0.25);
+}
 
-        .brand-mark {
-            display: block;
-            color: var(--cinnabar);
-            font-size: 13px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
+/* ── Form card ── */
+.form-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(26,20,16,0.06);
+  margin-bottom: 28px;
+}
+.form-card .form-title {
+  font-size: 22px; font-weight: 700; margin-bottom: 6px;
+  text-align: center; letter-spacing: 0.03em;
+}
+.form-card .form-note {
+  font-size: 13px; color: var(--ink-faint);
+  text-align: center; margin-bottom: 28px;
+}
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px;
+}
+.form-grid .full { grid-column: 1 / -1; }
+.field { display: grid; gap: 7px; }
+.field label {
+  font-size: 13px; color: var(--ink-light);
+  font-weight: 500; letter-spacing: 0.03em;
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+.field input, .field select, .field textarea {
+  width: 100%; border: 1.5px solid rgba(26,20,16,0.12);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit; font-size: 15px;
+  transition: border-color 0.2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--gold);
+}
+.field textarea { min-height: 90px; resize: vertical; }
+.field-help {
+  font-size: 11px; color: var(--ink-faint);
+}
 
-        .brand-name {
-            font-size: 28px;
-            font-weight: 700;
-        }
+.submit-btn {
+  width: 100%; margin-top: 8px;
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff; border: none;
+  border-radius: var(--radius);
+  padding: 16px 32px;
+  font: inherit; font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(181,52,42,0.2);
+}
+.submit-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 32px rgba(181,52,42,0.3); }
+.submit-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
-        .nav {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+.loading-tip {
+  display: none; text-align: center; padding: 14px;
+  border-radius: var(--radius);
+  background: var(--gold-faint);
+  color: var(--gold);
+  font-size: 13px; margin-top: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.loading-tip.visible { display: block; }
 
-        .nav a,
-        .btn,
-        .submit-btn {
-            min-height: 46px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 18px;
-            border-radius: 999px;
-            border: 1px solid var(--line);
-            background: rgba(255, 253, 249, 0.88);
-            font-size: 14px;
-            font-weight: 700;
-        }
+/* ── Chapter system ── */
+.chapter {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 36px 0 16px;
+  opacity: 0; transform: translateY(36px);
+  animation: chapterEnter 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards;
+}
+.chapter:nth-child(1){animation-delay:0s}
+.chapter:nth-child(2){animation-delay:0.15s}
+.chapter:nth-child(3){animation-delay:0.3s}
+.chapter:nth-child(4){animation-delay:0.45s}
+.chapter:nth-child(5){animation-delay:0.6s}
+.chapter:nth-child(6){animation-delay:0.75s}
 
-        .btn-primary,
-        .submit-btn {
-            color: #fff8ef;
-            border: none;
-            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
-            box-shadow: 0 14px 28px rgba(166, 58, 44, 0.22);
-        }
+@keyframes chapterEnter {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chapter-marker {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.chapter-marker .vol {
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--cinnabar); font-weight: 700;
+  writing-mode: vertical-rl;
+  background: rgba(181,52,42,0.06);
+  padding: 8px 5px; border-radius: 2px;
+}
+.chapter-marker .title-cn {
+  font-size: 24px; font-weight: 900; color: var(--ink);
+  letter-spacing: 0.04em;
+}
 
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-            gap: 24px;
-            padding-bottom: 34px;
-        }
+/* ── Content cards ── */
+.content-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 30px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(26,20,16,0.06);
+}
+.content-card p {
+  color: var(--ink-light); margin-bottom: 12px;
+  font-size: 15px; line-height: 1.9;
+}
+.content-card p:last-child { margin-bottom: 0; }
 
-        .hero-card,
-        .form-card,
-        .result-card,
-        .teaser-card,
-        .upgrade-card {
-            background: rgba(255, 253, 248, 0.92);
-            border: 1px solid rgba(36, 25, 21, 0.08);
-            box-shadow: var(--shadow);
-        }
+/* ── Bazi table ── */
+.bazi-table {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin: 18px 0 16px;
+}
+.bazi-col {
+  text-align: center;
+  padding: 16px 8px 12px;
+  background: linear-gradient(180deg, rgba(201,162,78,0.04) 0%, transparent 100%);
+  border-radius: var(--radius);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.bazi-col.day-master {
+  background: linear-gradient(180deg, rgba(201,162,78,0.12) 0%, rgba(201,162,78,0.02) 100%);
+  border: 1.5px solid var(--gold-light);
+}
+.bazi-stem {
+  display: block; font-size: 26px; font-weight: 900;
+  color: var(--ink); letter-spacing: 0.04em;
+}
+.bazi-branch {
+  display: block; font-size: 20px; font-weight: 700;
+  color: var(--ink-light); margin-top: 2px;
+}
+.bazi-label {
+  display: block; font-size: 9px; color: var(--ink-faint);
+  margin-top: 6px; letter-spacing: 0.06em;
+}
+.bazi-dm {
+  display: inline-block; margin-top: 3px;
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--cinnabar); color: #fff;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+}
 
-        .hero-card,
-        .form-card,
-        .upgrade-card {
-            border-radius: 28px;
-            padding: 34px;
-        }
+/* ── Element bars ── */
+.el-bars { margin-top: 14px; padding: 0 4px; }
+.el-bar-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 6px;
+}
+.el-bar-label {
+  font-size: 11px; width: 80px; text-align: right;
+  color: var(--ink-light); letter-spacing: 0.04em;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.el-bar-track {
+  flex: 1; height: 8px;
+  background: rgba(26,20,16,0.06);
+  border-radius: 4px; overflow: hidden;
+}
+.el-bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 0.8s ease;
+}
+.el-bar-val {
+  width: 44px; font-size: 11px; color: var(--ink-faint);
+  flex-shrink: 0;
+}
 
-        .result-card,
-        .teaser-card {
-            border-radius: 24px;
-            padding: 24px;
-        }
+/* ── Chips ── */
+.chip-row {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin-top: 4px;
+}
+.chip {
+  display: inline-block; font-size: 10.5px; padding: 5px 13px;
+  border-radius: 14px; font-weight: 600; letter-spacing: 0.04em;
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+.chip.gold { background: var(--gold-faint); color: #8a6d2f; }
+.chip.red  { background: rgba(181,52,42,0.07); color: var(--cinnabar); }
+.chip.green{ background: rgba(49,82,71,0.07); color: #315247; }
 
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 18px;
-        }
+/* ── CTA card (bottom of diagnosis) ── */
+.cta-card {
+  background: linear-gradient(135deg, rgba(26,20,16,0.94), rgba(71,42,28,0.94)), var(--ink);
+  border-radius: 12px; padding: 40px 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  color: #fffdf8;
+  margin-top: 28px;
+}
+.cta-card h2 {
+  font-size: 26px; font-weight: 900; margin-bottom: 10px;
+  letter-spacing: 0.03em; color: #fff;
+}
+.cta-card p {
+  color: rgba(255,253,248,0.78);
+  font-size: 15px; margin-bottom: 24px;
+  line-height: 1.8;
+}
+.cta-card .price-tag {
+  font-size: 38px; font-weight: 900; color: var(--gold);
+  margin-bottom: 10px;
+}
+.cta-card .cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+  color: #fff;
+  padding: 15px 36px; border-radius: var(--radius);
+  font-size: 16px; font-weight: 700; letter-spacing: 0.04em;
+  transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(181,52,42,0.3);
+}
+.cta-card .cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(181,52,42,0.4);
+}
+.cta-card .credit-note {
+  font-size: 12px; color: var(--gold);
+  margin-top: 16px; letter-spacing: 0.03em;
+}
 
-        .eyebrow::before {
-            content: "";
-            width: 34px;
-            height: 1px;
-            background: currentColor;
-        }
+/* ── Footer ── */
+footer {
+  padding: 0 0 40px;
+}
+.footer-note {
+  border-top: 1px solid rgba(26,20,16,0.08);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+  color: var(--ink-faint);
+  font-size: 12px;
+  text-align: center;
+}
+footer a {
+  color: var(--cinnabar);
+  font-size: 12px;
+}
+footer a:hover { text-decoration: underline; }
 
-        h1 {
-            font-size: clamp(36px, 5vw, 58px);
-            line-height: 1.06;
-            margin-bottom: 16px;
-        }
-
-        h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            line-height: 1.12;
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .hero-card p,
-        .helper-list li,
-        .form-note,
-        .field-help,
-        .result-card p,
-        .teaser-card p,
-        .upgrade-card p {
-            color: rgba(36, 25, 21, 0.76);
-        }
-
-        .helper-list {
-            list-style: none;
-            display: grid;
-            gap: 12px;
-            margin-top: 22px;
-        }
-
-        .helper-list li {
-            padding: 14px 16px;
-            border-radius: 18px;
-            background: rgba(239, 225, 207, 0.48);
-        }
-
-        .form-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 360px;
-            gap: 22px;
-            padding-bottom: 60px;
-        }
-
-        .form-intro {
-            margin-bottom: 22px;
-        }
-
-        form {
-            display: grid;
-            gap: 18px;
-        }
-
-        .field-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .field {
-            display: grid;
-            gap: 8px;
-        }
-
-        label {
-            font-size: 13px;
-            letter-spacing: 0.04em;
-            color: rgba(36, 25, 21, 0.74);
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            border: 1.5px solid rgba(36, 25, 21, 0.12);
-            border-radius: 16px;
-            padding: 14px 15px;
-            background: rgba(255, 253, 249, 0.95);
-            color: var(--ink);
-            font: inherit;
-        }
-
-        textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .field-help,
-        .form-note {
-            font-size: 13px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            font: inherit;
-            cursor: pointer;
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.65;
-            cursor: wait;
-        }
-
-        .loading-tip {
-            display: none;
-            text-align: center;
-            padding: 14px;
-            border-radius: 16px;
-            background: rgba(183, 138, 66, 0.10);
-            color: var(--gold);
-            font-size: 14px;
-        }
-
-        .loading-tip.visible {
-            display: block;
-        }
-
-        .results {
-            display: none;
-            gap: 18px;
-        }
-
-        .result-chip {
-            display: inline-flex;
-            width: fit-content;
-            min-height: 30px;
-            align-items: center;
-            padding: 0 12px;
-            border-radius: 999px;
-            background: rgba(183, 138, 66, 0.14);
-            color: var(--gold);
-            font-size: 12px;
-            margin-bottom: 12px;
-        }
-
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .result-card strong,
-        .teaser-card strong {
-            color: var(--cinnabar);
-        }
-
-        .email-capture {
-            background: rgba(255, 253, 248, 0.92);
-            border: 1px solid rgba(36, 25, 21, 0.08);
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: var(--shadow);
-            margin-bottom: 60px;
-        }
-
-        .email-capture h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            color: var(--ink);
-        }
-
-        .email-capture p {
-            color: rgba(36, 25, 21, 0.72);
-            font-size: 15px;
-            margin-bottom: 18px;
-        }
-
-        .email-form-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .email-form-row input[type="email"] {
-            flex: 1;
-            min-width: 200px;
-            border: 1.5px solid rgba(36, 25, 21, 0.14);
-            border-radius: 999px;
-            padding: 13px 18px;
-            background: rgba(255, 253, 249, 0.95);
-            color: var(--ink);
-            font: inherit;
-            font-size: 15px;
-        }
-
-        .email-form-row input[type="email"]::placeholder {
-            color: rgba(36, 25, 21, 0.42);
-        }
-
-        .email-success {
-            display: none;
-            padding: 14px 18px;
-            border-radius: 16px;
-            background: rgba(49, 82, 71, 0.1);
-            color: var(--pine);
-            font-size: 14px;
-        }
-
-        .email-success.visible {
-            display: block;
-        }
-
-        .upgrade-card {
-            background:
-                linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
-                #261a16;
-            color: #fff8ef;
-        }
-
-        .upgrade-card p,
-        .upgrade-card li {
-            color: rgba(255, 248, 239, 0.82);
-        }
-
-        .upgrade-list {
-            list-style: none;
-            display: grid;
-            gap: 10px;
-            margin: 18px 0 24px;
-        }
-
-        .upgrade-list li {
-            padding-left: 14px;
-            position: relative;
-        }
-
-        .upgrade-list li::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--gold);
-            position: absolute;
-            left: 0;
-            top: 12px;
-        }
-
-        .upgrade-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .price-tag {
-            display: inline-block;
-            margin-top: 6px;
-            margin-bottom: 10px;
-            font-size: 28px;
-            color: var(--gold);
-        }
-
-        footer {
-            padding: 0 0 40px;
-        }
-
-        .footer-note {
-            border-top: 1px solid rgba(36, 25, 21, 0.08);
-            padding-top: 24px;
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-            color: rgba(36, 25, 21, 0.58);
-            font-size: 13px;
-        }
-
-        @media (max-width: 980px) {
-            .hero,
-            .form-layout,
-            .field-grid,
-            .result-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 720px) {
-            .topbar,
-            .footer-note {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .hero-card,
-            .form-card,
-            .upgrade-card {
-                padding: 24px;
-            }
-
-            .nav,
-            .upgrade-actions {
-                width: 100%;
-            }
-
-            .nav a,
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .bazi-table { grid-template-columns: repeat(2, 1fr); }
+  .hero-cover { padding: 36px 0 30px; }
+  .content-card { padding: 22px 18px; }
+  .cta-card { padding: 28px 20px; }
+}
+</style>
 </head>
 <body>
-    <header class="container topbar">
-        <a href="index.html">
-            <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">Initial Reading</span>
-        </a>
-        <nav class="nav">
-            <a href="index.html" data-i18n="nav_home">Home</a>
-            <a href="products.html" data-i18n="nav_plans">Plans</a>
-            <a href="report_demo.html" data-i18n="nav_sample_report">Sample Report</a>
-            <a href="checkout.html" data-i18n="nav_order">Order</a>
-        </nav>
-    </header>
 
-    <main class="container">
-        <section class="hero">
-            <div class="hero-card">
-                <div class="eyebrow" data-i18n="ir_hero_eyebrow">Initial chart opening</div>
-                <h1 data-i18n="ir_hero_title">Begin with the part people feel first: where life has become heavy, delayed, scattered, or hard to settle.</h1>
-                <p data-i18n="ir_hero_desc">This opening is not meant to say everything. It is meant to show whether the chart is already speaking to the concern that brought you here.</p>
-                <ul class="helper-list">
-                    <li data-i18n="ir_hero_li_1">3 quick fields — birth date, optional time, and your concern</li>
-                    <li data-i18n="ir_hero_li_2">See your Day Master, Four Pillars, and elemental balance</li>
-                    <li data-i18n="ir_hero_li_3">A first reading that connects the chart to your present concerns</li>
-                </ul>
-            </div>
+<header class="container topbar">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">Oriental Destiny</span>
+        <span class="brand-name">天命初解</span>
+    </a>
+    <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="products.html">服务方案</a>
+        <a href="instant_report.html">$29 命书</a>
+        <a href="checkout.html">$199 灵石</a>
+    </nav>
+</header>
 
-            <aside class="upgrade-card">
-                <h2 data-i18n="ir_what_title">What people usually want to know first</h2>
-                <p data-i18n="ir_what_desc">Most people do not come because they want theory. They come because one part of life has begun to feel harder than it should.</p>
-                <ul class="upgrade-list">
-                    <li data-i18n="ir_what_li_1">Why effort is not landing in career, money, love, or peace of mind</li>
-                    <li data-i18n="ir_what_li_2">Why the same pattern seems to return in different forms</li>
-                    <li data-i18n="ir_what_li_3">What kind of support suits this stage of life</li>
-                    <li data-i18n="ir_what_li_4">Whether a bracelet or pendant makes better symbolic sense</li>
-                </ul>
-                <a class="btn btn-primary" href="report_demo.html" data-i18n="ir_what_cta">Read a Complete Case Report</a>
-            </aside>
-        </section>
+<main class="container">
 
-        <section class="form-layout">
-            <div class="form-card">
-                <div class="form-intro">
-                    <div class="eyebrow" data-i18n="ir_form_eyebrow">Initial consultation</div>
-                    <h2 data-i18n="ir_form_title">Open the chart</h2>
-                    <p class="form-note" data-i18n="ir_form_note">Enter your birth details below. The reading runs instantly and shows your chart's first direction based on your chosen life focus.</p>
+    <!-- ═══ Input Form ═══ -->
+    <section id="inputSection">
+        <div class="hero-cover">
+            <div class="seal-anim"><div class="seal-inner">天命初解</div></div>
+            <h1 class="hero-title">你的命盘里<span class="em">藏了什么</span>？</h1>
+            <p class="hero-sub">免费排盘 · 看清格局 · 找到堵点 · 不收费</p>
+            <div class="hero-divider"></div>
+            <div class="hero-badge">免费 · 无需注册 · 不限次数</div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-title">排盘诊断</div>
+            <p class="form-note">输入出生信息，看看你的命盘在说什么。只诊断、不开方——解法在完整命书里。</p>
+
+            <form id="readingForm">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="birthDate">出生日期 *</label>
+                        <input id="birthDate" type="date" required>
+                    </div>
+                    <div class="field">
+                        <label for="birthTime">出生时间</label>
+                        <input id="birthTime" type="time">
+                        <span class="field-help">不知道也没关系，系统会按子时推算</span>
+                    </div>
+                    <div class="field">
+                        <label for="lifeFocus">我想了解</label>
+                        <select id="lifeFocus" required>
+                            <option value="">选择你最关心的方面</option>
+                            <option value="career">事业与方向</option>
+                            <option value="wealth">财富与资源</option>
+                            <option value="love">爱情与关系</option>
+                            <option value="protection">守护与安宁</option>
+                            <option value="balance">整体平衡</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="gender">性别</label>
+                        <select id="gender">
+                            <option value="">不限</option>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
+                        </select>
+                    </div>
+                    <div class="field full">
+                        <label for="notes">你最近遇到了什么？（可选）</label>
+                        <textarea id="notes" placeholder="简单说说你最近的困惑，诊断会更贴切——比如：事业卡住了、钱留不住、感情不顺、心里不踏实…"></textarea>
+                    </div>
                 </div>
 
-                <form id="readingForm">
-                    <div class="field-grid">
-                        <div class="field">
-                            <label for="birthDate" data-i18n="ir_label_birth_date">Birth date</label>
-                            <input id="birthDate" name="birth_date" type="date" required>
-                        </div>
-                        <div class="field">
-                            <label for="birthTime" data-i18n="ir_label_birth_time">Birth time (optional)</label>
-                            <input id="birthTime" name="birth_time" type="time">
-                            <div class="field-help" data-i18n="ir_help_birth_time">More accurate with time. Leave blank if unknown — a safe estimate is used.</div>
-                        </div>
-                    </div>
-
-                    <div class="field-grid">
-                        <div class="field">
-                            <label for="lifeFocus" data-i18n="ir_label_focus">Main area of focus</label>
-                            <select id="lifeFocus" name="life_focus" required>
-                                <option value="" data-i18n="ir_option_focus_placeholder">Select one</option>
-                                <option value="career" data-i18n="ir_option_career">Career and opportunity</option>
-                                <option value="wealth" data-i18n="ir_option_wealth">Wealth and money flow</option>
-                                <option value="love" data-i18n="ir_option_love">Love and relationships</option>
-                                <option value="protection" data-i18n="ir_option_protection">Protection and peace</option>
-                                <option value="balance" data-i18n="ir_option_balance">General balance</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="notes" data-i18n="ir_label_notes">Current situation</label>
-                            <textarea id="notes" name="notes" rows="2" placeholder="Tell us what brought you here — career, money, relationships, or peace of mind." data-i18n-placeholder="ir_placeholder_notes"></textarea>
-                        </div>
-                    </div>
-
-                    <button class="submit-btn" id="submitBtn" type="submit" data-i18n="ir_submit_btn">Show My Instant Reading</button>
-                    <div class="loading-tip" id="loadingTip" data-i18n="ir_loading_tip">Analyzing your birth chart... this takes about 5 seconds.</div>
-                </form>
-            </div>
-
-            <div class="results" id="resultsPanel">
-                <article class="result-card">
-                    <div class="result-chip" title="命盘核心身份与本质" data-i18n="ir_result_root">Root of the chart</div>
-                    <h3 id="resultTitle">Your symbolic profile</h3>
-                    <p id="resultSummary"></p>
-                </article>
-
-                <div class="result-grid">
-                    <article class="result-card">
-                        <div class="result-chip" title="构成命盘结构的年、月、日、时柱" data-i18n="ir_result_pillars">Four Pillars</div>
-                        <p id="zodiacText"></p>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-chip" title="日柱天干——代表核心自我的中心元素" data-i18n="ir_result_day_master">Day Master</div>
-                        <p id="elementText"></p>
-                    </article>
-
-                    <article class="result-card">
-                    <div class="result-chip" title="您选择的生活重点与命盘当前能量如何互动" data-i18n="ir_result_matter">Matter before you</div>
-                        <p id="focusText"></p>
-                    </article>
-
-                    <article class="result-card">
-                    <div class="result-chip" title="最能平衡和支持您具体命盘的五行" data-i18n="ir_result_support">Suitable support</div>
-                        <p id="supportText"></p>
-                    </article>
-                </div>
-
-                <article class="teaser-card">
-                    <div class="result-chip" title="命盘对您情况的实用总结" data-i18n="ir_result_counsel">Reader's Counsel</div>
-                    <p id="counselText"></p>
-                </article>
-
-                <article class="teaser-card">
-                    <div class="result-chip" title="您当前人生阶段与命盘时机的关联" data-i18n="ir_result_why_now">Why this matters now</div>
-                    <p id="lifeStageText"></p>
-                </article>
-
-                <article class="teaser-card">
-                    <div class="result-chip" title="完整个性化服务将包含哪些额外深度" data-i18n="ir_result_teaser">What a fuller reading would clarify</div>
-                    <p id="teaserText"></p>
-                </article>
-            </div>
-        </section>
-
-        <!-- $29 Instant Report CTA (primary upgrade) -->
-        <section class="upgrade-card" id="upgradeSection" style="display:none; margin-bottom: 28px;">
-            <div class="eyebrow" style="color:#d8b26a;">Your preview shows the surface</div>
-            <h2>Unlock your full instant BaZi report.</h2>
-            <span class="price-tag">$29</span>
-            <p>The full instant report explains your chart structure, useful elements, colors, materials, and the kind of treasure that fits your current focus — all generated from your birth chart in seconds.</p>
-            <ul class="upgrade-list">
-                <li><strong>Complete chart foundation:</strong> Four Pillars with hidden stems, Day Master profile, and Five Element structure</li>
-                <li><strong>Element balance diagnosis:</strong> Which elements are strong, weak, missing — and what supports you</li>
-                <li><strong>Life focus deep reading:</strong> Dedicated analysis of your chosen focus area</li>
-                <li><strong>Treasure type recommendation:</strong> The category of Daoist treasure (bracelet, pendant, ring, amulet) that matches your chart</li>
-                <li><strong>Instant digital delivery:</strong> Generated immediately — view online, revisit anytime from your dashboard</li>
-            </ul>
-            <div class="upgrade-actions">
-                <a class="btn btn-primary" href="instant_report.html" id="upgradeLink">Unlock Full Report — $29</a>
-                <a class="btn" href="checkout.html" id="directCheckoutLink">I want the matched treasure — $199</a>
-            </div>
-            <p style="text-align:center;margin-top:14px;font-size:13px;color:rgba(36,25,21,0.45);">$29 report fee credited toward $199 service · 7-day window · Email us after ordering</p>
-        </section>
-
-        <!-- Credit note -->
-        <section id="creditNote" style="display:none; text-align:center; margin-bottom: 60px; padding: 18px 24px; background: rgba(183,138,66,0.06); border: 1px solid rgba(183,138,66,0.15); border-radius: 10px;">
-            <p style="font-size:14px;color:rgba(36,25,21,0.7);margin:0;">Your $29 report fee can be credited toward the $199 matched treasure service. <strong>Buy the report first — if the direction feels right, upgrade anytime within 7 days.</strong></p>
-        </section>
-
-        <!-- Email capture: shown after results, before footer -->
-        <section class="email-capture" id="emailCapture" style="display:none;">
-            <h3>Get a fuller view when you're ready</h3>
-            <p>Leave your email and we'll send the key takeaways from this reading — plus occasional updates on what your chart suggests next. No spam, no selling your data.</p>
-            <form class="email-form-row" id="emailCaptureForm" novalidate>
-                <input type="email" id="captureEmail" placeholder="your@email.com" required>
-                <button type="submit" class="btn btn-primary" id="captureSubmit">Send me the reading</button>
+                <button class="submit-btn" id="submitBtn" type="submit">🔍 免费排盘诊断</button>
+                <div class="loading-tip" id="loadingTip">正在打开你的命盘…AI正在分析你的八字…大约需要5-8秒钟</div>
             </form>
-            <div class="email-success" id="captureSuccess">
-                Received. We'll be in touch when there's more to share from your chart.
+        </div>
+    </section>
+
+    <!-- ═══ Results (hidden initially) ═══ -->
+    <section id="resultsSection" style="display:none;">
+
+        <!-- 封面 · 日主揭晓 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">封面</span>
+                <span class="title-cn">你的天命身份</span>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.08); padding: 30px 0 8px; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;" data-i18n="footer_learn_more">Learn more</div>
-            <a href="what-is-day-master.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_what_is_day_master">What is Day Master</a> ·
-            <a href="five-elements-explained.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_five_elements">Five Elements</a> ·
-            <a href="bazi-reading-vs-zodiac.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_bazi_vs_zodiac">BaZi vs Zodiac</a> ·
-            <a href="feng-shui-bracelet-meaning.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_bracelet_meaning">Bracelet Meaning</a> ·
-            <a href="full_bazi_reading.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_full_bazi_layer">Full BaZi Layer</a> ·
-            <a href="kua_calculator.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_kua_calculator">Kua Calculator</a>
+            <div class="content-card" id="coverCard"></div>
         </div>
-        <div class="container" style="padding: 14px 0 6px; font-size: 12px; color: rgba(36, 25, 21, 0.55); text-align: center;">
-            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
-            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
-            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
-            <a href="mailto:434338480@qq.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
+
+        <!-- 命盘 · 四柱八卦 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">命盘</span>
+                <span class="title-cn">你的八字排盘</span>
+            </div>
+            <div class="content-card" id="chartCard"></div>
         </div>
-        <div class="container footer-note" data-i18n="footer_disclaimer">
-            &copy; 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching. For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.
+
+        <!-- 卷一 · 命主画像 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷一</span>
+                <span class="title-cn">命主画像</span>
+            </div>
+            <div class="content-card" id="portraitCard"></div>
         </div>
-            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
-    </footer>
 
-    <script src="config.js"></script>
-    <script src="bazi_engine.min.js"></script>
-    <script src="api_deepseek.js"></script>
-    <script src="ai_bazi_layer.js"></script>
-    <script src="reading_state.js"></script>
-    <script src="i18n.js"></script>
-    <script src="bazi_translator.js"></script>
-    <script src="version.js"></script>
-    <script>
-        const focusCopy = {
-            career: {
-                summary: "Career progress usually improves when the chart is supported toward clearer visibility, steadier execution, and better timing with other people.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
-            },
-            wealth: {
-                summary: "Wealth support usually depends on how well the chart can hold, direct, and stabilize energy rather than only generate more activity.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
-            },
-            love: {
-                summary: "Relationship support usually depends on emotional pacing, trust, expression, and what kind of warmth or steadiness the chart responds to best.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
-            },
-            protection: {
-                summary: "Protection support usually depends on reducing drain, strengthening boundaries, and choosing symbols that feel calming rather than merely dramatic.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
-            },
-            balance: {
-                summary: "General balance usually depends on identifying which element is overactive, which is weak, and where the chart most needs support first.",
-                teaser: "The detailed version would expand this into your full Five Elements reading, hidden stems, and the exact recommended direction for your chosen life area."
-            }
-        };
+        <!-- 卷二 · 格局解密 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷二</span>
+                <span class="title-cn">格局解密</span>
+            </div>
+            <div class="content-card" id="patternCard"></div>
+        </div>
 
-        // Initialize AI layer via Cloudflare Worker proxy (API key stays server-side)
-        if (typeof window.DEEPSEEK_PROXY_URL === "string" && window.DEEPSEEK_PROXY_URL) {
-            window.AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
-        }
+        <!-- 卷三 · 天命所向 -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">卷三</span>
+                <span class="title-cn">天命所向</span>
+            </div>
+            <div class="content-card" id="directionCard"></div>
+        </div>
 
-        const submitBtn = document.getElementById("submitBtn");
-        const loadingTip = document.getElementById("loadingTip");
-        const defaultBtnText = submitBtn.textContent;
+        <!-- 封底 · CTA Hook -->
+        <div class="chapter">
+            <div class="chapter-marker">
+                <span class="vol">封底</span>
+                <span class="title-cn">以上是诊断</span>
+            </div>
+            <div class="content-card" id="closingCard"></div>
+        </div>
 
-        function setLoading(isLoading) {
-            if (isLoading) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = (typeof window.I18n !== "undefined" ? window.I18n.t("ir_loading_btn", "Generating your reading… Please wait") : "Generating your reading… Please wait");
-                loadingTip.classList.add("visible");
-            } else {
-                submitBtn.disabled = false;
-                submitBtn.textContent = defaultBtnText;
-                loadingTip.classList.remove("visible");
-            }
-        }
+        <!-- CTA Card -->
+        <div class="cta-card" id="ctaCard">
+            <h2>解锁完整命书</h2>
+            <p>诊断告诉你问题在哪。<br>命书告诉你路怎么走——颜色、方向、季节、灵石。<br>六卷完整分析，AI即刻生成。</p>
+            <div class="price-tag">$29</div>
+            <a class="cta-btn" id="upgradeLink" href="instant_report.html">🔮 解锁完整命书</a>
+            <p class="credit-note">$29可抵扣$199灵石匹配服务 · 7天内有效</p>
+        </div>
 
-        document.getElementById("readingForm").addEventListener("submit", async (event) => {
-            event.preventDefault();
-            setLoading(true);
+        <!-- Also upgrade to $199 -->
+        <div style="text-align:center;margin:20px 0 50px;">
+            <a href="checkout.html" id="directCheckoutLink" style="font-size:13px;color:var(--gold);border-bottom:1px dashed var(--gold-light);padding-bottom:2px;font-family:'Noto Sans SC',sans-serif;">
+                直接解锁全套灵石匹配 · $199（含完整命书 + 实物发货）
+            </a>
+        </div>
+    </section>
 
-            const birthDate = document.getElementById("birthDate").value;
-            const birthTime = document.getElementById("birthTime").value;
-            const lifeFocus = document.getElementById("lifeFocus").value;
-            const notes = document.getElementById("notes").value.trim();
-            const focusData = focusCopy[lifeFocus];
-            if (!focusData) {
-                alert("Please choose the life area you want the reading to focus on.");
-                setLoading(false);
-                return;
-            }
+</main>
 
-            let profile;
-            try {
-                profile = window.BaziTranslator.translate(window.BaziEngine.calculateProfile({
-                    birthDate,
-                    birthTime,
-                    lifeFocus
-                }));
-            } catch (error) {
-                alert(error.message || "The chart could not be opened. Please check your birth details and try again.");
-                setLoading(false);
-                return;
-            }
+<footer>
+    <div class="container" style="border-top:1px solid rgba(26,20,16,0.08);padding:30px 0 10px;text-align:center;">
+        <div style="font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:0.04em;font-size:11px;text-transform:uppercase;">了解更多</div>
+        <a href="what-is-day-master.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">什么是日主</a> ·
+        <a href="five-elements-explained.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">五行详解</a> ·
+        <a href="bazi-reading-vs-zodiac.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">八字 vs 星座</a> ·
+        <a href="feng-shui-bracelet-meaning.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">风水手串</a> ·
+        <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">梦境解析</a>
+    </div>
+    <div class="container footer-note">
+        &copy; 2026 Oriental Destiny · 八字排盘诊断仅供参考 · 不作为医疗、法律、财务建议
+    </div>
+    <span class="od-version" style="display:block;margin-top:8px;text-align:center;opacity:0.5;font-size:10px;letter-spacing:0.04em;"></span>
+</footer>
 
-            // AI narrative enhancement (falls back to static copy on failure)
-            let aiReading = null;
-            if (window.AIBaziLayer.isReady()) {
-                try {
-                    aiReading = await window.AIBaziLayer.quickReading({
-                        birthDate,
-                        birthTime,
-                        focus: lifeFocus
-                    });
-                } catch (err) {
-                    console.warn("AI reading failed, using static fallback:", err.message);
-                }
-            }
+<script src="config.js"></script>
+<script src="bazi_engine_v2.js"></script>
+<script src="report_engine_v2.js"></script>
+<script src="reading_state.js"></script>
+<script src="version.js"></script>
 
-            const carriedState = window.ReadingState.merge({
-                focus: lifeFocus,
-                birth_date: birthDate,
-                birth_time: birthTime,
-                notes
-            });
-            const query = window.ReadingState.toQuery(carriedState);
-            const noteLine = notes
-                ? " The situation you described suggests that this theme is already active in daily life."
-                : "";
+<script>
+// ─── Element bar colors ───────────────────────────────────────
+const elColors = { Wood:'#4a7c59', Fire:'#b5342a', Earth:'#c9a24e', Metal:'#8a8a8a', Water:'#2c3e6b' };
+const elChinese = { Wood:'木', Fire:'火', Earth:'土', Metal:'金', Water:'水' };
+const elNames = ['Wood','Fire','Earth','Metal','Water'];
 
-            document.getElementById("resultTitle").textContent = `The chart has opened enough to show its first meaning.`;
-            document.getElementById("resultSummary").textContent = `Your Day Master appears as ${profile.dayMasterStem} ${profile.dayMasterElement}, and this often shows one who is ${profile.dayMasterProfile}. At this first opening, the chart reads as ${profile.strength.band.toLowerCase()} in day-master strength, while ${profile.favorableElements[0].toLowerCase()} and ${profile.favorableElements[1].toLowerCase()} appear more beneficial as support. ${profile.note}${noteLine}`;
-            document.getElementById("zodiacText").innerHTML = `<strong>Year Pillar:</strong> ${profile.pillarLabels.year}<br><strong>Month Pillar:</strong> ${profile.pillarLabels.month}<br><strong>Day Pillar:</strong> ${profile.pillarLabels.day}<br><strong>Hour Pillar:</strong> ${profile.pillarLabels.hour}`;
-            document.getElementById("elementText").innerHTML = `<strong>${profile.dayMasterStem} ${profile.dayMasterElement}</strong> stands as the Day Master in this opening. The chart is born in ${profile.season}, and the year of birth still carries the tone of the ${profile.zodiac}.`;
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-            // Use AI narrative when available, otherwise fallback to engine static copy
-            if (aiReading && aiReading.reading && !aiReading.fallback) {
-                const r = aiReading.reading;
-                document.getElementById("focusText").textContent = r.currentYearAnalysis || `${focusData.summary} ${profile.focusReading} ${profile.deepFocusReading} ${profile.advancedAnalysis.seasonalCommand.dayMasterCondition} is the seasonal condition, and ${profile.advancedAnalysis.luckPhase.name.toLowerCase()} is the simplified life-stage layer.`;
-                document.getElementById("counselText").textContent = r.personality || profile.readerCounsel;
-                document.getElementById("lifeStageText").textContent = (r.tailoredAdvice && r.tailoredAdvice.length)
-                    ? r.tailoredAdvice.join(" ")
-                    : `${profile.lifePhaseReading} ${profile.focusStrategy.ageEmphasis}`;
-            } else {
-                document.getElementById("focusText").textContent = `${focusData.summary} ${profile.focusReading} ${profile.deepFocusReading} ${profile.advancedAnalysis.seasonalCommand.dayMasterCondition} is the seasonal condition, and ${profile.advancedAnalysis.luckPhase.name.toLowerCase()} is the simplified life-stage layer.`;
-                document.getElementById("counselText").textContent = profile.readerCounsel;
-                document.getElementById("lifeStageText").textContent = `${profile.lifePhaseReading} ${profile.focusStrategy.ageEmphasis}`;
-            }
+function paras(text) {
+  if (!text) return '';
+  return String(text).split(/\n\n/).filter(Boolean)
+    .map(pp => '<p>'+esc(pp).replace(/\n/g,'<br>')+'</p>').join('\n');
+}
 
-            document.getElementById("supportText").textContent = `${profile.jewelry.copy} ${profile.favorableElementReasoning}`;
-            document.getElementById("teaserText").textContent = `${focusData.teaser} A fuller reading opens the rest of the chart: hidden stems, ten gods by pillar, twelve stages, branch dynamics, annual triggers, element balance, support logic, and the final recommended direction before confirmation. Method note: ${profile.calculationNotes.solarTerms}`;
-            document.getElementById("upgradeLink").href = `instant_report.html?${query}`;
-            document.getElementById("directCheckoutLink").href = `checkout.html?${query}`;
+// ─── Init engine ──────────────────────────────────────────────
+const engine = new ReportEngineV2({
+  proxyBaseURL: (typeof window.DEEPSEEK_PROXY_URL === 'string' && window.DEEPSEEK_PROXY_URL)
+    ? window.DEEPSEEK_PROXY_URL : null
+});
 
-            document.getElementById("resultsPanel").style.display = "grid";
-            document.getElementById("upgradeSection").style.display = "block";
-            document.getElementById("creditNote").style.display = "block";
-            document.getElementById("emailCapture").style.display = "block";
+const submitBtn = document.getElementById('submitBtn');
+const loadingTip = document.getElementById('loadingTip');
+const defaultBtnText = submitBtn.textContent;
 
-            // Track free preview completion
-            gtag('event', 'free_preview_complete', {
-                focus: lifeFocus
-            });
-            document.getElementById("emailCapture").scrollIntoView({ behavior: "smooth", block: "start" });
-            setLoading(false);
-        });
-            document.getElementById("emailCaptureForm").addEventListener("submit", async (event) => {
-                event.preventDefault();
-                const emailInput = document.getElementById("captureEmail");
-                const email = emailInput.value.trim();
-                if (!email || !email.includes("@")) {
-                    emailInput.style.borderColor = "var(--cinnabar)";
-                    return;
-                }
-                emailInput.style.borderColor = "";
+function setLoading(isLoading) {
+  if (isLoading) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = '正在分析你的命盘…请稍候…';
+    loadingTip.classList.add('visible');
+  } else {
+    submitBtn.disabled = false;
+    submitBtn.textContent = defaultBtnText;
+    loadingTip.classList.remove('visible');
+  }
+}
 
-                const btn = document.getElementById("captureSubmit");
-                btn.disabled = true;
-                btn.textContent = "Sending…";
+// ─── Form submit ──────────────────────────────────────────────
+document.getElementById('readingForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-                const carriedState = window.ReadingState.read();
-                const payload = new FormData();
-                payload.set("email", email);
-                payload.set("source", "instant_reading_email_capture");
-                payload.set("life_focus", carriedState.focus || "");
-                payload.set("birth_date", carriedState.birth_date || "");
-                payload.set("notes", `Instant reading signup. ${carriedState.notes || ""}`);
+  const birthDate = document.getElementById('birthDate').value;
+  const birthTime = document.getElementById('birthTime').value;
+  const lifeFocus = document.getElementById('lifeFocus').value;
+  const notes = document.getElementById('notes').value.trim();
+  const gender = document.getElementById('gender').value;
 
-                try {
-                    const res = await fetch("https://formspree.io/f/xwvgznkz", {
-                        method: "POST",
-                        body: payload,
-                        headers: { Accept: "application/json" }
-                    });
-                    if (res.ok) {
-                        document.getElementById("emailCaptureForm").style.display = "none";
-                        document.getElementById("captureSuccess").classList.add("visible");
-                    } else {
-                        throw new Error("server error");
-                    }
-                } catch {
-                    btn.disabled = false;
-                    btn.textContent = "Send me the reading";
-                }
-            });
-    </script>
+  if (!birthDate || !lifeFocus) {
+    alert('请至少填写出生日期和你想了解的方面。');
+    return;
+  }
+
+  setLoading(true);
+
+  let profile;
+  try {
+    profile = window.BaziEngineV2.calculateProfile({
+      birthDate, birthTime: birthTime || undefined,
+      gender: gender || undefined, lifeFocus
+    });
+  } catch (error) {
+    alert('排盘失败，请检查出生信息：' + (error.message || ''));
+    setLoading(false);
+    return;
+  }
+
+  // ── Generate diagnosis report ────────────────────────────
+  let result;
+  try {
+    result = await engine.generateDiagnosisReport(profile, lifeFocus);
+    console.log('Diagnosis:', result.fallback ? 'FALLBACK' : 'AI OK');
+  } catch (err) {
+    console.warn('Diagnosis generation error:', err);
+    result = { report: window.buildFallbackDiagnosis(profile, lifeFocus), chartSnapshot: window.buildChartSnapshot(profile), profile, fallback: true };
+  }
+
+  // ── Build chart snapshot ─────────────────────────────────
+  const sn = result.chartSnapshot || window.buildChartSnapshot(profile);
+
+  // ── Save state for carry-through to report pages ─────────
+  const carriedState = {
+    focus: lifeFocus, birth_date: birthDate,
+    birth_time: birthTime, notes, gender
+  };
+  if (window.ReadingState) {
+    window.ReadingState.merge(carriedState);
+  }
+  const query = window.ReadingState
+    ? window.ReadingState.toQuery(window.ReadingState.read())
+    : '';
+
+  // ── Render results ───────────────────────────────────────
+
+  // Cover: Day Master reveal
+  const dm = profile.dayMaster;
+  const dmEl = profile.dayMasterElement;
+  const sealHTML = '<div class="seal-anim" style="margin-bottom:20px;"><div class="seal-inner">' + dm + dmEl + '</div></div>';
+  document.getElementById('coverCard').innerHTML =
+    sealHTML +
+    '<h2 style="text-align:center;font-size:28px;font-weight:900;margin-bottom:16px;">' +
+    esc(dm) + '<span style="color:var(--cinnabar);">' + esc(dmEl) + '</span> · 日主</h2>' +
+    paras(result.report.opening);
+
+  // Bazi chart table
+  const yrParts = (sn.fourPillars.year || '').split(' · ');
+  const moParts = (sn.fourPillars.month || '').split(' · ');
+  const dyParts = (sn.fourPillars.day || '').split(' · ');
+  const hrParts = (sn.fourPillars.hour || '').split(' · ');
+  const yStem = (yrParts[0]||'').slice(0,-2), yBranch = (yrParts[0]||'').slice(-2);
+  const mStem = (moParts[0]||'').slice(0,-2), mBranch = (moParts[0]||'').slice(-2);
+  const dStem = (dyParts[0]||'').slice(0,-2), dBranch = (dyParts[0]||'').slice(-2);
+  const hStem = (hrParts[0]||'').slice(0,-2), hBranch = (hrParts[0]||'').slice(-2);
+  const yrNaYin = yrParts[1]||'', moNaYin = moParts[1]||'', dyNaYin = dyParts[1]||'', hrNaYin = hrParts[1]||'';
+  const pillarsHTML =
+    '<div class="bazi-table">' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(yStem)+'</span><span class="bazi-branch">'+esc(yBranch)+'</span><span class="bazi-label">年柱 Year</span></div>' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(mStem)+'</span><span class="bazi-branch">'+esc(mBranch)+'</span><span class="bazi-label">月柱 Month</span></div>' +
+    '<div class="bazi-col day-master"><span class="bazi-stem">'+esc(dStem)+'</span><span class="bazi-branch">'+esc(dBranch)+'</span><span class="bazi-label">日柱 Day</span><span class="bazi-dm">日主</span></div>' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(hStem)+'</span><span class="bazi-branch">'+esc(hBranch)+'</span><span class="bazi-label">时柱 Hour</span></div>' +
+    '</div>';
+
+  // Element bars
+  const elCounts = profile.elementCounts || {};
+  const maxCount = Math.max(1, ...elNames.map(e => elCounts[e]||0));
+  const elBarsHTML = elNames.map(e => {
+    const pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
+    return '<div class="el-bar-row">' +
+      '<span class="el-bar-label">'+elChinese[e]+' '+e+'</span>' +
+      '<span class="el-bar-track"><span class="el-bar-fill" style="width:'+pct+'%;background:'+elColors[e]+'"></span></span>' +
+      '<span class="el-bar-val">'+(elCounts[e]||0).toFixed(1)+'</span>' +
+      '</div>';
+  }).join('\n');
+
+  // Chips
+  const tagsHTML =
+    '<span class="chip gold">'+esc(sn.pattern)+'</span>' +
+    '<span class="chip gold">用神: '+esc(sn.yongShen)+'</span>' +
+    '<span class="chip green">'+esc(sn.strength)+'</span>';
+
+  document.getElementById('chartCard').innerHTML =
+    pillarsHTML +
+    '<div class="chip-row">'+tagsHTML+'</div>' +
+    '<div class="el-bars">'+elBarsHTML+'</div>';
+
+  // Volume 1: Portrait
+  document.getElementById('portraitCard').innerHTML = paras(result.report.yourPattern || '');
+
+  // Volume 2: Pattern
+  document.getElementById('patternCard').innerHTML = paras(result.report.whatGuidesYou || '');
+
+  // Volume 3: Direction (Yong Shen revealed, no advice)
+  const yongShenName = sn.yongShen || '';
+  document.getElementById('directionCard').innerHTML =
+    '<p style="font-size:17px;text-align:center;margin-bottom:14px;color:var(--cinnabar);font-weight:700;">你的天命方向是：<strong style="font-size:22px;">'+esc(yongShenName)+'</strong></p>' +
+    '<p style="text-align:center;">你的命盘告诉我——' + esc(yongShenName) + '是你的用神。这就是你这辈子<strong>最该靠近的能量</strong>。</p>' +
+    '<p style="text-align:center;color:var(--ink-faint);">至于<strong>怎么靠近'+esc(yongShenName)+'</strong>——什么颜色、什么方向、什么季节、什么灵石——这些都在完整命书里。</p>';
+
+  // Closing
+  document.getElementById('closingCard').innerHTML = paras(result.report.closingWords || '');
+
+  // Update CTA links with query params
+  document.getElementById('upgradeLink').href = 'instant_report.html?' + query;
+  document.getElementById('directCheckoutLink').href = 'checkout.html?' + query;
+
+  // Show results, hide form
+  document.getElementById('inputSection').style.display = 'none';
+  document.getElementById('resultsSection').style.display = '';
+
+  // Track free reading completion
+  gtag('event', 'free_diagnosis_complete', { focus: lifeFocus });
+
+  // Scroll to results
+  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  setLoading(false);
+});
+</script>
 </body>
 </html>

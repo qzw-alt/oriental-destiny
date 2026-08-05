@@ -1,10 +1,7 @@
 // DeepSeek API proxy URL — the Cloudflare Worker handles auth server-side.
 // Deploy the worker first: cd workers/deepseek-proxy && wrangler deploy
+// API key is kept server-side in the Worker — never exposed to clients.
 window.DEEPSEEK_PROXY_URL = "https://deepseek-proxy.qzwx10000.workers.dev";
-
-// DeepSeek API Key — loaded from config.real.js (gitignored).
-// Falls back to proxy mode if not set.
-window.DEEPSEEK_API_KEY = window.DEEPSEEK_API_KEY || null;
 
 // Firebase configuration — load config.real.js BEFORE this file to override.
 // If config.real.js is not loaded, these placeholder values will safely fail.

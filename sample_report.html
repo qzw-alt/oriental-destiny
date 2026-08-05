@@ -1,131 +1,9 @@
-const https = require('https');
-const fs = require('fs');
-const vm = require('vm');
-
-global.window = {};
-vm.runInThisContext(fs.readFileSync('bazi_engine_v2.js', 'utf8'));
-vm.runInThisContext(fs.readFileSync('report_engine_v2.js', 'utf8'));
-
-const profile = window.BaziEngineV2.calculateProfile({
-  birthDate: '1992-08-22', birthTime: '09:15',
-  birthLocation: 'Shanghai', gender: 'female', lifeFocus: 'career'
-});
-
-const brief = window.buildCompactBrief(profile);
-const engine = new window.ReportEngineV2({ proxyBaseURL: 'https://deepseek-proxy.qzwx10000.workers.dev' });
-
-async function generate() {
-  console.log('⏳ Generating BASIC report...');
-  const basic = await engine.generateBasicReport(profile, 'career');
-  console.log('   Basic:', basic.fallback ? 'FALLBACK' : 'OK', '| opening:', (basic.report?.opening||'').length, 'chars');
-
-  console.log('⏳ Generating DELUXE (master annotations + jewelry)...');
-  const deluxe = await engine.generateDeluxeReport(basic, profile, 'career');
-  console.log('   Deluxe:', deluxe.fallback ? 'FALLBACK' : 'OK',
-    '| annotations:', (deluxe.masterAnnotations||[]).length,
-    '| jewelry:', deluxe.jewelryGuide ? 'YES' : 'NO');
-
-  // Build HTML
-  const html = buildDualHTML(basic.report, deluxe, brief, profile);
-  fs.writeFileSync('sample_report.html', html);
-  console.log('✅ sample_report.html written (' + (html.length/1024).toFixed(0) + ' KB)');
-}
-
-function buildDualHTML(basic, deluxe, brief, profile) {
-  const sn = window.buildChartSnapshot(profile);
-  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const paras = text => {
-    if (!text) return '';
-    return String(text).split(/\n\n/).filter(Boolean)
-      .map(pp => '<p>'+esc(pp).replace(/\n/g,'<br>')+'</p>').join('\n');
-  };
-  const items = arr => (arr||[]).map((a,i) => `
-    <li class="pocket-item" style="animation-delay:${i*0.15}s">
-      <span class="pocket-num">${i+1}</span>
-      <span>${esc(a)}</span>
-    </li>`).join('\n');
-
-  // ── Pillars as traditional 八字 table ──
-  const yr = sn.fourPillars.year.split(' · ');
-  const mo = sn.fourPillars.month.split(' · ');
-  const dy = sn.fourPillars.day.split(' · ');
-  const hr = sn.fourPillars.hour.split(' · ');
-  const pillarsHTML = `
-    <div class="bazi-table">
-      <div class="bazi-col"><span class="bazi-stem">${yr[0].slice(0,-2)}</span><span class="bazi-branch">${yr[0].slice(-2)}</span><span class="bazi-label">Year</span><span class="bazi-nayin">${yr[1]||''}</span></div>
-      <div class="bazi-col"><span class="bazi-stem">${mo[0].slice(0,-2)}</span><span class="bazi-branch">${mo[0].slice(-2)}</span><span class="bazi-label">Month</span><span class="bazi-nayin">${mo[1]||''}</span></div>
-      <div class="bazi-col day-master"><span class="bazi-stem">${dy[0].slice(0,-2)}</span><span class="bazi-branch">${dy[0].slice(-2)}</span><span class="bazi-label">Day</span><span class="bazi-dm">Day Master</span></div>
-      <div class="bazi-col"><span class="bazi-stem">${hr[0].slice(0,-2)}</span><span class="bazi-branch">${hr[0].slice(-2)}</span><span class="bazi-label">Hour</span><span class="bazi-nayin">${hr[1]||''}</span></div>
-    </div>`;
-
-  // ── Master annotations as "天机" scrolls ──
-  const annotationsHTML = (deluxe.masterAnnotations||[]).map((a, i) => `
-    <div class="tianji-scroll" style="animation-delay:${i*0.25}s">
-      <div class="tianji-header">
-        <span class="tianji-seal">Secrets</span>
-        <span class="tianji-num">Scroll ${['I','II','III','IV','V'][i]||(i+1)}</span>
-      </div>
-      <h3>${esc(a.title)}</h3>
-      <div class="tianji-body">${esc(a.insight)}</div>
-    </div>
-  `).join('\n');
-
-  // ── Jewelry as "灵石" cards ──
-  const jg = deluxe.jewelryGuide;
-  const jewelryHTML = jg ? `
-    <div class="crystal-reveal">
-      <div class="crystal-grid">
-        <div class="crystal-card primary">
-          <div class="crystal-badge">Primary Crystal</div>
-          <div class="crystal-stone">${esc(jg.primaryCrystal?.name || '')}</div>
-          <span class="crystal-element el">${esc(jg.primaryCrystal?.element || '')} Element</span>
-          <p class="crystal-why">${esc(jg.primaryCrystal?.whyForThisChart || '')}</p>
-          <p class="crystal-wear">${esc(jg.primaryCrystal?.wearingGuidance || '')}</p>
-        </div>
-        <div class="crystal-card secondary">
-          <div class="crystal-badge sec">Guardian Jade</div>
-          <div class="crystal-stone">${esc(jg.secondaryCrystal?.name || '')}</div>
-          <span class="crystal-element el">${esc(jg.secondaryCrystal?.element || '')} Element</span>
-          <p class="crystal-why">${esc(jg.secondaryCrystal?.whyForThisChart || '')}</p>
-          <p class="crystal-wear">${esc(jg.secondaryCrystal?.wearingGuidance || '')}</p>
-        </div>
-      </div>
-      <div class="crystal-master-note">
-        <p class="master-words">${esc(jg.masterNote || '')}</p>
-        <p class="crystal-avoid">⚠ ${esc(jg.whatToAvoid || '')}</p>
-      </div>
-    </div>
-  ` : '';
-
-  // ── Element distribution bars ──
-  const elCounts = profile.elementCounts || {};
-  const elNames = ['Wood','Fire','Earth','Metal','Water'];
-  const elChinese = {Wood:'木',Fire:'火',Earth:'土',Metal:'金',Water:'水'};
-  const elColors = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
-  const maxCount = Math.max(1, ...elNames.map(e => elCounts[e]||0));
-  const elBarsHTML = elNames.map(e => {
-    const pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
-    return `<div class="el-bar-row">
-      <span class="el-bar-label">${elChinese[e]} ${e}</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:${pct}%;background:${elColors[e]}"></span></span>
-      <span class="el-bar-val">${(elCounts[e]||0).toFixed(1)}</span>
-    </div>`;
-  }).join('\n');
-
-  // ── Key tags ──
-  const tagsHTML = `
-    <span class="chip gold">${sn.pattern}</span>
-    <span class="chip gold">Yong Shen: ${sn.yongShen}</span>
-    <span class="chip gold">Xi Shen: ${sn.xiShen}</span>
-    <span class="chip red">Ji Shen: ${sn.jiShen}</span>
-    <span class="chip green">${sn.strength}</span>`;
-
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destiny Scroll · ${profile.dayMaster}${profile.dayMasterElement} Day Master — Oriental Destiny</title>
+<title>Destiny Scroll · WuEarth Day Master — Oriental Destiny</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
@@ -669,10 +547,10 @@ footer .foot-seal {
     <div class="seal-inner">Destiny</div>
   </div>
   <h1 class="hero-title">
-    ${esc(profile.dayMaster)}<span class="em">${esc(profile.dayMasterElement)}</span> Day Master
+    Wu<span class="em">Earth</span> Day Master
   </h1>
   <p class="hero-sub">
-    ${esc(profile.pillars.month.branch)} · ${esc(profile.season)} · ${esc(sn.pattern)}
+    Shen · Autumn · 偏财格 (Indirect Wealth Pattern)
   </p>
   <div class="hero-divider"></div>
   <div class="hero-badge">✦ Destiny Scroll · BaZi Chart Reading</div>
@@ -684,12 +562,47 @@ footer .foot-seal {
 <section class="chapter">
   <div class="content-card chart-card">
     <div class="chart-title">Chart Overview</div>
-    ${pillarsHTML}
-    <div class="chip-row">${tagsHTML}</div>
-    <div class="shensha-line">
-      Shen Sha: ${esc(sn.shenSha)} · Qi Yun: ${esc(sn.qiYun)} · Da Yun: ${esc(sn.currentDaYun)}
+    
+    <div class="bazi-table">
+      <div class="bazi-col"><span class="bazi-stem">RenSh</span><span class="bazi-branch">en</span><span class="bazi-label">Year</span><span class="bazi-nayin">Sword Metal</span></div>
+      <div class="bazi-col"><span class="bazi-stem">WuSh</span><span class="bazi-branch">en</span><span class="bazi-label">Month</span><span class="bazi-nayin">Great Station Earth</span></div>
+      <div class="bazi-col day-master"><span class="bazi-stem">WuCh</span><span class="bazi-branch">en</span><span class="bazi-label">Day</span><span class="bazi-dm">Day Master</span></div>
+      <div class="bazi-col"><span class="bazi-stem">Ding</span><span class="bazi-branch">Si</span><span class="bazi-label">Hour</span><span class="bazi-nayin">Sand Earth</span></div>
     </div>
-    <div class="el-bars">${elBarsHTML}</div>
+    <div class="chip-row">
+    <span class="chip gold">偏财格 (Indirect Wealth Pattern)</span>
+    <span class="chip gold">Yong Shen: Wood</span>
+    <span class="chip gold">Xi Shen: Wood, Fire, Metal</span>
+    <span class="chip red">Ji Shen: —</span>
+    <span class="chip green">Strong (5.6)</span></div>
+    <div class="shensha-line">
+      Shen Sha: Yue De Gui Ren (月德贵人), Wen Chang (文昌贵人), Wen Chang (文昌贵人), Hua Gai (华盖 / Canopy Star) · Qi Yun: 5 years old · Da Yun: YiSi
+    </div>
+    <div class="el-bars"><div class="el-bar-row">
+      <span class="el-bar-label">木 Wood</span>
+      <span class="el-bar-track"><span class="el-bar-fill" style="width:5%;background:#4a7c59"></span></span>
+      <span class="el-bar-val">0.4</span>
+    </div>
+<div class="el-bar-row">
+      <span class="el-bar-label">火 Fire</span>
+      <span class="el-bar-track"><span class="el-bar-fill" style="width:57%;background:#b5342a"></span></span>
+      <span class="el-bar-val">4.3</span>
+    </div>
+<div class="el-bar-row">
+      <span class="el-bar-label">土 Earth</span>
+      <span class="el-bar-track"><span class="el-bar-fill" style="width:100%;background:#c9a24e"></span></span>
+      <span class="el-bar-val">7.5</span>
+    </div>
+<div class="el-bar-row">
+      <span class="el-bar-label">金 Metal</span>
+      <span class="el-bar-track"><span class="el-bar-fill" style="width:67%;background:#8a8a8a"></span></span>
+      <span class="el-bar-val">5.0</span>
+    </div>
+<div class="el-bar-row">
+      <span class="el-bar-label">水 Water</span>
+      <span class="el-bar-track"><span class="el-bar-fill" style="width:43%;background:#2c3e6b"></span></span>
+      <span class="el-bar-val">3.2</span>
+    </div></div>
   </div>
 </section>
 
@@ -703,7 +616,8 @@ footer .foot-seal {
     <span class="title-en">Who You Are</span>
   </div>
   <div class="content-card">
-    ${paras(basic.opening || basic.report?.opening)}
+    <p>戊土如山——你是山。巍峨、厚重、不怒自威。从小到大，你是不是一直在做那个'扛事的人'？家人靠你，朋友找你，同事倚重你。你嘴上不说，但心里有时候也会累——'为什么总是我？'。古人说'戊土固重，既中且正'——你的力量不是柔韧的，而是不动的。你不需要跑得最快，因为山永远不会被风吹走。你需要的，是学会在承担的同时，也给自己留一个山谷。</p>
+<p>你出生在Shen月——那是Autumn。古籍里有一套完整的办法来看一个人在什么节气里带着什么能量来——你的四柱是RenShen WuShen WuChen DingSi——这是一个人的"出生能量编码"。这份报告由七层古典算法直接生成——算法是古籍的忠实翻译，但少了老师父的温度。等AI恢复后，你会收到一份更有"人味"的读解。</p>
   </div>
 </section>
 
@@ -717,7 +631,7 @@ footer .foot-seal {
     <span class="title-en">Your Pattern</span>
   </div>
   <div class="content-card">
-    ${paras(basic.yourPattern || basic.report?.yourPattern || basic.report?.thePattern)}
+    <p>你的命盘格局是：偏财格 (Indirect Wealth Pattern)。在子平法里，格局就像命盘的主旋律——它决定了你一生的"基本面"。Earth在你身上是最强的一种能量，它是你天生的"顺手工具"；而Wood需要你有意识地去关注和补足。Shen月是你的提纲——它决定了Autumn的能量是你命盘的底色。你的日主属于Strong（得分5.6）——这不是说你好不好，而是说你的能量的'密度'和'流通程度'。Day Master has weak earthly roots (根气不足)。Heavenly stems provide support (1 companions, 1 resources)。</p>
   </div>
 </section>
 
@@ -731,7 +645,7 @@ footer .foot-seal {
     <span class="title-en">Your Compass</span>
   </div>
   <div class="content-card guides">
-    ${paras(basic.whatGuidesYou || basic.report?.whatGuidesYou || basic.report?.whatHelps)}
+    <p>古典算法识别出Wood是你的用神——也就是八字系统里最支持你、让你'顺'的那个元素。这不是迷信，是共振。当Wood的能量出现在你的环境（颜色、方向、季节、材质）里的时候，你做决策更清晰、情绪更稳定、机会更容易被你注意到。古籍《子平真诠》描述这个原则：顺用：官护财、食生财 → 财有护有源则富。你的喜神是Wood, Fire, Metal——它们是辅助你用神的"队友"。需要留意的是忌神：暂未明确识别——不是说这些元素是坏的，而是说当它们的能量太强时，你会下意识做出不太对的选择。《穷通宝鉴》补充道：Autumn Earth cold; Fire warms, Water needed if too dry</p>
   </div>
 </section>
 
@@ -746,7 +660,26 @@ footer .foot-seal {
   </div>
   <div class="content-card">
     <ul class="pocket-list">
-      ${items(basic.practicalSteps || basic.report?.practicalSteps || basic.report?.whatToDo)}
+      
+    <li class="pocket-item" style="animation-delay:0s">
+      <span class="pocket-num">1</span>
+      <span>接近青色、嫩绿色——不是随便什么绿，是春天刚发芽的那种——穿衣、办公桌、日常随手触碰的东西，都可以往这个方向选。颜色不是在改变命运，是在提醒你的潜意识：'我在往对的方向走。'</span>
+    </li>
+
+    <li class="pocket-item" style="animation-delay:0.15s">
+      <span class="pocket-num">2</span>
+      <span>做重要决定时，面向东方（偏东南）。这不是练气功，是让你在物理空间上对齐自己的'顺位方向'。</span>
+    </li>
+
+    <li class="pocket-item" style="animation-delay:0.3s">
+      <span class="pocket-num">3</span>
+      <span>春天（2-4月）——万物生发之时是你天然的'顺期'。重大决定、重要启动，尽量放在这个时间段。你会发现事情推进得更自然。</span>
+    </li>
+
+    <li class="pocket-item" style="animation-delay:0.44999999999999996s">
+      <span class="pocket-num">4</span>
+      <span>留意你的Liver (肝)——在五行里属Wood，是你最薄弱的环节。不需要大补特补，就是每天多给它一点点关注，积少成多。</span>
+    </li>
     </ul>
   </div>
 </section>
@@ -754,20 +687,49 @@ footer .foot-seal {
 <!-- ═══════════════════════════════════════════════════════
      VOL 5 · Master Annotations
      ═══════════════════════════════════════════════════════ -->
-${annotationsHTML ? `
+
 <section class="chapter">
   <div class="chapter-marker">
     <span class="vol">Vol.5</span>
     <span class="title-cn">Master Annotations</span>
     <span class="title-en">Master Annotations</span>
   </div>
-  ${annotationsHTML}
-</section>` : ''}
+  
+    <div class="tianji-scroll" style="animation-delay:0s">
+      <div class="tianji-header">
+        <span class="tianji-seal">Secrets</span>
+        <span class="tianji-num">Scroll I</span>
+      </div>
+      <h3>月令提纲里的秘密</h3>
+      <div class="tianji-body">在《渊海子平》里，月柱被称为"提纲"——提纲挈领，是整张命盘的总开关。你的月柱是Shen，里面藏着Geng、Ren、Wu。一般人看月令只看表面的气象，但我注意到Geng作为Eating God——这意味着你人生的核心主题，其实不像表面上看起来那么简单。当Wood与这个藏干发生共振时（每年有几个月是如此），你的直觉会格外敏锐——那几天做的决定，往往是对你最有利的。这是老师父才知道的小事。</div>
+    </div>
+  
+
+    <div class="tianji-scroll" style="animation-delay:0.25s">
+      <div class="tianji-header">
+        <span class="tianji-seal">Secrets</span>
+        <span class="tianji-num">Scroll II</span>
+      </div>
+      <h3>你的日柱藏干——命盘的核心密码</h3>
+      <div class="tianji-body">《滴天髓》有一句话："欲识三元万法宗，先观帝载与神功。"意思是你想看懂一个人的命，先看他的日柱。你的WuEarth日主坐于Chen之上，里面藏着Wu、Yi、Gui。Wu作为Friend——这层关系是很多年轻命师会忽略的。日柱藏干是一个人"心底的秘密"——你嘴上不说，但你最在乎的、最怕的、最想要的，都在这里了。理解了这个，你就理解了这辈子最核心的矛盾和动力。</div>
+    </div>
+  
+
+    <div class="tianji-scroll" style="animation-delay:0.5s">
+      <div class="tianji-header">
+        <span class="tianji-seal">Secrets</span>
+        <span class="tianji-num">Scroll III</span>
+      </div>
+      <h3>季节的脉——你为什么会周期性不一样</h3>
+      <div class="tianji-body">《穷通宝鉴》是专门讲"调候"的古籍——就是看你的命盘在不同季节里是怎么"呼吸"的。你的日主WuEarth，出生在Autumn，Xiu (Resting — 休)。每一年的季节转换（特别是立春、立夏、立秋、立冬前后两周），你的能量系统都在做一次微调。这就是为什么你有时候会突然觉得"不对劲"或者"特别顺"——不是你的问题，是天气在跟你的命盘对话。懂得这个节奏之后，你就可以跟自己和解：那不是情绪波动，那是命理的季节更替。</div>
+    </div>
+  
+</section>
 
 <!-- ═══════════════════════════════════════════════════════
      VOL 6 · Crystal Guide
      ═══════════════════════════════════════════════════════ -->
-${jewelryHTML ? `
+
 <section class="chapter">
   <div class="chapter-marker">
     <span class="vol">Vol.6</span>
@@ -775,16 +737,39 @@ ${jewelryHTML ? `
     <span class="title-en">Crystal Guide</span>
   </div>
   <div class="content-card">
-    ${jewelryHTML}
+    
+    <div class="crystal-reveal">
+      <div class="crystal-grid">
+        <div class="crystal-card primary">
+          <div class="crystal-badge">Primary Crystal</div>
+          <div class="crystal-stone">绿松石 或 翠玉</div>
+          <span class="crystal-element el">Wood Element</span>
+          <p class="crystal-why">绿松石 或 翠玉承载着Wood的能量——这正是你的用神所在，是你命盘中最需要被"唤醒"的频率。在你的命盘里，Wood是你往正确方向走的路标。这块石头不是装饰——是你的用神在你手腕上的一个印记。每次看到它，你的潜意识就知道："我在对的方向上。"</p>
+          <p class="crystal-wear">戴在左手（接收能量）。在Wood当令的季节效果最佳。每天早上出门前，先握一握这块石头，让它的温度变成一个仪式：你告诉自己，今天往你的方向走。</p>
+        </div>
+        <div class="crystal-card secondary">
+          <div class="crystal-badge sec">Guardian Jade</div>
+          <div class="crystal-stone">天河石</div>
+          <span class="crystal-element el">Wood Element</span>
+          <p class="crystal-why">天河石是绿松石 或 翠玉的护法——它的能量比主石柔和，适合日常佩戴。如果说主石是你的"指北针"，护法石就是你的"定心丸"。两者搭配，一个给你方向，一个给你安宁。</p>
+          <p class="crystal-wear">日常佩戴。可单独戴，也可与主石同戴——一左一右，互不干扰。</p>
+        </div>
+      </div>
+      <div class="crystal-master-note">
+        <p class="master-words">我们这一派有一句话：灵石认主，不是你挑选了石头，是你的命盘帮我选了它。石头不能改变你的命，但它能在你迷茫时提醒你：'你是有方向的。'你每一次摸到它，都是一次自我确认。久而久之，那个方向会变成你的肌肉记忆——不需要石头你也能找到。这就是灵石的真正意义：它是一面镜子，照出你本来就有的力量。</p>
+        <p class="crystal-avoid">⚠ 避开承载大量暂未明确识别元素能量的矿石——那会让你的忌神能量加倍，往不该去的地方走得更快。</p>
+      </div>
+    </div>
+  
   </div>
-</section>` : ''}
+</section>
 
 <!-- ═══════════════════════════════════════════════════════
      CLOSING
      ═══════════════════════════════════════════════════════ -->
 <section class="chapter">
   <div class="content-card closing-card">
-    ${paras(basic.closingWords || basic.report?.closingWords || basic.report?.closing)}
+    <p>WuEarth——你的日主是你之所以为你的根本。这份报告的每一句话，归根到底，都在说同一个东西：你有一个人生的'顺位'，Wood就是那个方向。这些不是规则、不是教条——是一个邀请。邀请你去观察：什么是你本来就有的力量，什么是你可以稍微多靠近一点的方向。</p>
   </div>
 </section>
 
@@ -816,7 +801,4 @@ ${jewelryHTML ? `
 })();
 </script>
 </body>
-</html>`;
-}
-
-generate().catch(e => { console.error(e); process.exit(1); });
+</html>

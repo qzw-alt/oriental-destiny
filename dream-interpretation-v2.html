@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="免费AI梦境解析——五行元素分析、周公解梦、子午流注经络时钟。你的梦在说什么？用东方智慧解读。">
-  <meta property="og:title" content="梦境解析 · 五行探梦 | Oriental Destiny">
-  <meta property="og:description" content="你的梦是什么元素？免费五行梦境分析——周公解梦 + 子午流注经络时钟 + AI深度解读。">
+  <meta name="description" content="Free AI dream interpreter — Five Element analysis, Duke of Zhou dream dictionary, meridian clock body rhythm. What is your dream telling you? Decode it with Eastern wisdom.">
+  <meta property="og:title" content="Dream Interpreter · Five Element Dream Analysis | Oriental Destiny">
+  <meta property="og:description" content="What element is your dream? Free Five Element dream analysis — Duke of Zhou dream dictionary + meridian clock + AI deep interpretation.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://oriental-destiny.com/dream-interpretation-v2.html">
-  <title>梦境解析 · 五行探梦 | Oriental Destiny</title>
+  <title>Dream Interpreter · Five Element Analysis | Oriental Destiny</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   <style>
 /* ══════════════════════════════════════════════════════════
    水墨风 · Ink Wash Dream Analysis
-   梦境解析 — 五行探梦
+   梦境解析 — Five Element Dream Explorer
    ══════════════════════════════════════════════════════════ */
 :root {
   --ink: #1a1410;
@@ -73,12 +73,6 @@ a { color: inherit; text-decoration: none; }
 .brand-name { font-size: 20px; font-weight: 700; }
 .nav { display: flex; gap: 16px; font-size: 13px; color: var(--ink-light); flex-wrap: wrap; align-items: center; }
 .nav a:hover { color: var(--cinnabar); }
-.nav-cta {
-  background: var(--cinnabar); color: #fff !important;
-  padding: 7px 16px; border-radius: var(--radius);
-  font-size: 12px; letter-spacing: 0.04em; font-weight: 600;
-}
-.nav-cta:hover { background: var(--cinnabar-deep); color: #fff !important; }
 
 /* ── Hero ── */
 .hero {
@@ -305,40 +299,41 @@ footer a:hover { text-decoration: underline; }
   <div class="topbar-inner">
     <a href="index.html" class="brand">
       <span class="brand-mark">Oriental Destiny</span>
-      <span class="brand-name">梦境解析</span>
+      <span class="brand-name">Dream Interpreter</span>
     </a>
     <nav class="nav">
-      <a href="index.html">首页</a>
-      <a href="five-elements-explained.html">五行</a>
-      <a href="instant_reading.html">免费诊断</a>
-      <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);font-weight:600;">梦境解析</a>
-      <a href="checkout.html" class="nav-cta">完整命书</a>
+      <a href="index.html">Home</a>
+      <a href="instant_reading.html">Free Reading</a>
+      <a href="instant_report.html">$29 Report</a>
+      <a href="checkout.html">$199 Treasure</a>
+      <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);font-weight:600;">Dream Interpreter</a>
+      <a href="knowledge.html">Knowledge</a>
     </nav>
   </div>
 </header>
 
 <section class="hero" id="inputSection">
-  <div class="hero-badge">☯ 五行 · 周公解梦 · 子午流注</div>
-  <h1>你的梦<span>在说什么</span>？</h1>
-  <p class="hero-sub">描述你的梦境——用五行元素解析、周公解梦词典、子午流注经络时钟，看看你的潜意识在用哪种能量跟你对话。</p>
+  <div class="hero-badge">☯ Five Elements · Duke of Zhou · Meridian Clock</div>
+  <h1>What is your dream <span>telling you</span>?</h1>
+  <p class="hero-sub">Describe your dream — we'll analyze it through the Five Elements, Duke of Zhou dream dictionary, and the meridian clock to see what energy your subconscious is speaking in.</p>
 
   <div class="input-card">
-    <label class="input-label" for="dreamText">描述你的梦</label>
-    <textarea id="dreamText" class="dream-input" placeholder="比如：我梦见一条金色的龙在飞过水面，然后我发现自己爬上了一座高山，山顶有一座隐藏的寺庙…" maxlength="1200"></textarea>
+    <label class="input-label" for="dreamText">Describe your dream</label>
+    <textarea id="dreamText" class="dream-input" placeholder="For example: I dreamt of a golden dragon flying over water, then I found myself climbing a high mountain where a hidden temple sat at the peak…" maxlength="1200"></textarea>
     <div class="input-hint"><span id="charCount">0</span> / 1200</div>
 
     <div class="input-row">
-      <input type="time" id="dreamTime" class="time-input" placeholder="做梦时间（可选）">
-      <span style="font-size:11px;color:var(--ink-faint);align-self:center;">做梦的时间（用于经络分析）</span>
+      <input type="time" id="dreamTime" class="time-input" placeholder="Dream time (optional)">
+      <span style="font-size:11px;color:var(--ink-faint);align-self:center;">Time of the dream (for meridian analysis)</span>
     </div>
 
-    <button class="submit-btn" id="interpretBtn" onclick="interpretDream()">✨ 解析我的梦</button>
+    <button class="submit-btn" id="interpretBtn" onclick="interpretDream()">✨ Interpret My Dream</button>
     <div class="error-msg" id="errorMsg"></div>
   </div>
 
   <div class="loading-wrap" id="loadingWrap">
     <div class="loading-spinner"></div>
-    <p class="loading-text">正在用<strong>五行元素</strong>和<strong>周公解梦</strong>分析你的梦境…</p>
+    <p class="loading-text">Analyzing your dream through the <strong>Five Elements</strong> and <strong>Duke of Zhou dream dictionary</strong>…</p>
   </div>
 </section>
 
@@ -346,12 +341,12 @@ footer a:hover { text-decoration: underline; }
   <!-- Share Card -->
   <div class="share-card" id="shareCard">
     <div class="share-card-inner">
-      <div class="share-card-tag">☯ 五行梦境解析</div>
+      <div class="share-card-tag">☯ Five Element Dream Analysis</div>
       <p class="share-card-dream" id="shareDream"></p>
       <div class="share-card-element" id="shareElement"></div>
       <div class="share-card-brand">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Oriental Destiny · 梦境解析
+        Oriental Destiny · Dream Interpreter
       </div>
       <div class="share-card-url">oriental-destiny.com</div>
     </div>
@@ -372,11 +367,11 @@ footer a:hover { text-decoration: underline; }
   <!-- ═══ TIERED CTA ═══ -->
   <!-- Free tier cutoff: element analysis ends here -->
   <div class="cta-banner" id="tierCta">
-    <h3>想知道这个梦和你的八字有什么关联吗？</h3>
-    <p>以上是五行元素层面的分析——你的梦是什么元素、在什么经络时段、周公解梦怎么说。<br>但你的梦和你的<strong>个人命盘</strong>之间，还有一层更深的联系——那是你独有的。</p>
+    <h3>Want to know how this dream connects to your birth chart?</h3>
+    <p>The analysis above covers the Five Element level — what element your dream carries, what meridian hour it falls in, what the Duke of Zhou says.<br>But there's a deeper layer between your dream and your <strong>personal chart</strong> — one that's uniquely yours.</p>
     <div class="cta-row">
-      <button class="cta-btn" onclick="location.href='instant_reading.html'">🔮 免费八字诊断 → 解锁梦境对照</button>
-      <button class="cta-btn gold" onclick="location.href='checkout.html'">💎 完整灵石匹配 · $199</button>
+      <button class="cta-btn" onclick="location.href='instant_reading.html'">🔮 Free BaZi Diagnosis → Unlock Dream Cross-Reference</button>
+      <button class="cta-btn gold" onclick="location.href='checkout.html'">💎 Complete Treasure Match · $199</button>
     </div>
   </div>
 
@@ -384,7 +379,7 @@ footer a:hover { text-decoration: underline; }
   <div class="share-actions">
     <button class="share-btn wechat" onclick="shareWechat()">
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="12" cy="12" r="10"/></svg>
-      微信分享
+      Share on WeChat
     </button>
     <button class="share-btn twitter" onclick="shareTwitter()">
       <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622z"/></svg>
@@ -392,18 +387,18 @@ footer a:hover { text-decoration: underline; }
     </button>
     <button class="share-btn copy" onclick="copyShareText()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      复制文字
+      Copy Text
     </button>
   </div>
 
   <div class="try-another">
-    <button class="try-another-btn" onclick="resetDream()">🔄 解析另一个梦</button>
+    <button class="try-another-btn" onclick="resetDream()">🔄 Interpret Another Dream</button>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Oriental Destiny · <a href="index.html">首页</a> · <a href="policies.html">隐私政策</a> · <span class="od-version">v2.1.0</span></p>
-  <p style="margin-top:8px;">基于 周公解梦 (Duke of Zhou Dream Dictionary)、五行理论、子午流注经络时钟</p>
+  <p>&copy; 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
+  <p style="margin-top:8px;">Based on the Duke of Zhou Dream Dictionary, Five Element theory, and the Meridian Clock (Zi Wu Liu Zhu)</p>
 </footer>
 
 <script src="dream_engine.js"></script>
@@ -444,8 +439,8 @@ function setLoading(on) {
 
 async function interpretDream() {
   const dream = dreamTextEl.value.trim();
-  if (!dream) { showError('请先描述你的梦。'); return; }
-  if (dream.length < 10) { showError('请多写一点——至少10个字。梦境越详细，解析越准。'); return; }
+  if (!dream) { showError('Please describe your dream first.'); return; }
+  if (dream.length < 10) { showError('Please write a bit more — at least 10 characters. The more detail, the better the interpretation.'); return; }
 
   hideError();
   setLoading(true);
@@ -475,7 +470,7 @@ async function interpretDream() {
 
   } catch (err) {
     console.error(err);
-    showError('解析失败。请重试。');
+    showError('Interpretation failed. Please try again.');
   } finally {
     setLoading(false);
   }
@@ -487,18 +482,18 @@ async function enhanceWithAI(dream, localResult) {
   const primaryEl = localResult.elementAnalysis?.primary?.element || 'unique';
   const elementContext = localResult.interpretation?.elementInterpretation?.substring(0, 300) || '';
   const shiChenInfo = localResult.shiChenAnalysis
-    ? '做梦时辰: ' + localResult.shiChenAnalysis.shiChen + ', 对应经络: ' + localResult.shiChenAnalysis.organ
-    : '未提供做梦时间';
+    ? 'Dream Shi Chen: ' + localResult.shiChenAnalysis.shiChen + ', corresponding meridian: ' + localResult.shiChenAnalysis.organ
+    : 'Dream time not provided';
 
-  const systemPrompt = '你为五行梦境解析提供诗歌般的叙事增强。引擎已经识别：' +
-    '\n- 主元素: ' + primaryEl +
-    '\n- 元素上下文: ' + elementContext +
-    '\n- 经络时钟: ' + shiChenInfo +
-    '\n\n请写2-3段富有诗意的叙事——融合周公解梦的象征、五行能量含义、心理洞察、实用指导。用中文写。生动、具体、避免套话。' +
-    '\n\n返回JSON:' +
-    '\n{"enhancedNarrative": "2-3段诗意叙事...",' +
-    '\n "personalGuidance": "1段与梦者元素相关的实用指导",' +
-    '\n "elementAffirmation": "1句话——这个梦告诉梦者关于ta自己的什么"}';
+  const systemPrompt = 'You provide poetic narrative enhancement for Five Element dream interpretations. The engine has identified:' +
+    '\n- Primary element: ' + primaryEl +
+    '\n- Element context: ' + elementContext +
+    '\n- Meridian clock: ' + shiChenInfo +
+    '\n\nWrite 2-3 paragraphs of poetic narrative — weaving Duke of Zhou symbolism, Five Element energy meanings, psychological insight, and practical guidance. Write in English. Vivid, specific, avoid clichés.' +
+    '\n\nReturn JSON:' +
+    '\n{"enhancedNarrative": "2-3 paragraphs of poetic narrative...",' +
+    '\n "personalGuidance": "1 paragraph of practical guidance relevant to the dreamer\'s element",' +
+    '\n "elementAffirmation": "1 sentence — what this dream tells the dreamer about themselves"}';
 
   const response = await fetch(window.DEEPSEEK_PROXY_URL + '/chat/completions', {
     method: 'POST',
@@ -507,7 +502,7 @@ async function enhanceWithAI(dream, localResult) {
       model: 'deepseek-chat',
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: '梦境: "' + dream + '"\n主元素: ' + primaryEl }
+        { role: 'user', content: 'Dream: "' + dream + '"\nPrimary element: ' + primaryEl }
       ],
       temperature: 0.7, max_tokens: 800
     })
@@ -529,14 +524,14 @@ function showResult(dream, localResult, aiEnhanced, baziProfile) {
   // Share Card
   document.getElementById('shareDream').textContent = dream.length > 200 ? dream.substring(0, 197) + '...' : dream;
   const elBadge = document.getElementById('shareElement');
-  elBadge.textContent = '☯ ' + capitalize(primaryEl) + ' 元素之梦';
+  elBadge.textContent = '☯ ' + capitalize(primaryEl) + ' Element Dream';
   elBadge.className = 'share-card-element ' + primaryEl;
 
   // Element Analysis Card
-  let elementalHTML = '<h2><span class="card-icon">' + getElementEmoji(primaryEl) + '</span> 五行分析: ' + capitalize(primaryEl) + ' 主导</h2>';
+  let elementalHTML = '<h2><span class="card-icon">' + getElementEmoji(primaryEl) + '</span> Five Element Analysis: ' + capitalize(primaryEl) + ' Dominant</h2>';
 
   if (elResult.elementAnalysis?.isCompound) {
-    elementalHTML += '<p><span class="auspicious-tag neutral">多元素梦境</span> 这个梦跨越多种元素能量，暗示你的潜意识正在同时处理多个生命领域的问题。这是一个复杂的梦——需要从多角度理解。</p>';
+    elementalHTML += '<p><span class="auspicious-tag neutral">Multi-Element Dream</span> This dream spans multiple elemental energies, suggesting your subconscious is processing several life areas at once. A complex dream — it calls for understanding from multiple angles.</p>';
   }
 
   if (elResult.interpretation?.elementInterpretation) {
@@ -545,7 +540,7 @@ function showResult(dream, localResult, aiEnhanced, baziProfile) {
 
   // Matched keywords
   if (elResult.symbolMatch?.elements?.length > 0) {
-    elementalHTML += '<div style="margin-top:16px;"><strong>识别的梦象：</strong><br>';
+    elementalHTML += '<div style="margin-top:16px;"><strong>Dream symbols identified:</strong><br>';
     elResult.symbolMatch.elements.forEach(function(e) {
       elementalHTML += e.keywords.slice(0, 6).map(function(k) { return '<span class="mini-tag ' + e.element + '">' + k + '</span>'; }).join(' ') + ' ';
     });
@@ -564,7 +559,7 @@ function showResult(dream, localResult, aiEnhanced, baziProfile) {
   let colsHTML = '';
 
   // Col 1: Theme Categories
-  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🏷️</span> 梦境主题</h2>';
+  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🏷️</span> Dream Themes</h2>';
   if (elResult.interpretation?.categoryInterpretations?.length > 0) {
     elResult.interpretation.categoryInterpretations.forEach(function(c) {
       colsHTML += '<div class="element-detail-card ' + (c.element || primaryEl) + '" style="margin-bottom:12px;">' +
@@ -573,21 +568,21 @@ function showResult(dream, localResult, aiEnhanced, baziProfile) {
         '<p style="font-size:12px;color:var(--cinnabar);"><em>' + c.guidance + '</em></p></div>';
     });
   } else {
-    colsHTML += '<p>这个梦的意象独一无二。虽然不匹配常见梦象分类，但' + capitalize(primaryEl) + '元素的能量框架提供了理解的方向。</p>';
+    colsHTML += '<p>The imagery in this dream is one of a kind. While it doesn\'t match common dream categories, the ' + capitalize(primaryEl) + ' energy framework offers a way to understand it.</p>';
   }
   colsHTML += '</div>';
 
   // Col 2: Meridian Clock
-  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🕐</span> 子午流注 · 经络时钟</h2>';
+  colsHTML += '<div class="analysis-card"><h2><span class="card-icon">🕐</span> Meridian Clock · Zi Wu Liu Zhu</h2>';
   if (elResult.shiChenAnalysis) {
     const sc = elResult.shiChenAnalysis;
     colsHTML += '<div class="element-detail-card ' + (sc.element ? sc.element.toLowerCase() : primaryEl) + '">' +
       '<h4>' + sc.shiChen + ' — ' + sc.organ + '</h4>' +
       '<p>' + sc.meaning + '</p>' +
-      '<p style="font-size:12px;color:var(--cinnabar);"><em>指导: ' + sc.guidance + '</em></p></div>';
+      '<p style="font-size:12px;color:var(--cinnabar);"><em>Guidance: ' + sc.guidance + '</em></p></div>';
   } else {
-    colsHTML += '<p style="color:var(--ink-faint);">输入做梦时间，获得子午流注经络层面的分析——每两小时对应一个脏腑系统。</p>' +
-      '<p style="font-size:12px;">例如：肝经之梦（丑时 1-3am）最为生动、情绪饱满。肾经之梦（酉时 5-7pm）触及最深层的心理层面。</p>';
+    colsHTML += '<p style="color:var(--ink-faint);">Enter your dream time for meridian-level analysis — each two-hour block corresponds to an organ system.</p>' +
+      '<p style="font-size:12px;">For example: Liver meridian dreams (Chou hour, 1–3am) are the most vivid and emotionally charged. Kidney meridian dreams (You hour, 5–7pm) touch the deepest psychological layers.</p>';
   }
   colsHTML += '</div>';
 
@@ -598,31 +593,31 @@ function showResult(dream, localResult, aiEnhanced, baziProfile) {
   if (elResult.baziCrossRef) {
     const xref = elResult.baziCrossRef;
     const tagClass = xref.isAuspicious === true ? 'good' : (xref.isAuspicious === false ? 'caution' : 'neutral');
-    const tagText = xref.isAuspicious === true ? '吉兆 ✨' : (xref.isAuspicious === false ? '留意 ⚠' : '个人');
+    const tagText = xref.isAuspicious === true ? 'Auspicious ✨' : (xref.isAuspicious === false ? 'Pay Attention ⚠' : 'Personal');
     baziCard.style.display = '';
     baziCard.innerHTML =
-      '<h2><span class="card-icon">🎯</span> 你的八字梦境对照</h2>' +
-      '<p><span class="auspicious-tag ' + tagClass + '">' + tagText + '</span> <strong>日主:</strong> ' + xref.dayMasterElement + ' | <strong>梦境元素:</strong> ' + xref.dreamElement + '</p>' +
+      '<h2><span class="card-icon">🎯</span> Your BaZi Dream Cross-Reference</h2>' +
+      '<p><span class="auspicious-tag ' + tagClass + '">' + tagText + '</span> <strong>Day Master:</strong> ' + xref.dayMasterElement + ' | <strong>Dream Element:</strong> ' + xref.dreamElement + '</p>' +
       '<p>' + xref.assessment + '</p>' +
-      '<p style="font-size:12px;color:var(--ink-faint);">你的用神是 <strong>' + xref.yongShen + '</strong>。梦中出现用神能量，在古典解梦中视为吉兆。</p>';
+      '<p style="font-size:12px;color:var(--ink-faint);">Your Yong Shen is <strong>' + xref.yongShen + '</strong>. When your dream element aligns with your Yong Shen, it is considered an auspicious sign in classical dream interpretation.</p>';
   } else if (baziProfile) {
     baziCard.style.display = '';
     baziCard.innerHTML =
-      '<h2><span class="card-icon">🎯</span> 你的八字梦境对照</h2>' +
-      '<p>你的日主是 <strong>' + baziProfile.dayMaster + ' ' + baziProfile.dayMasterElement + '</strong>，用神是 <strong>' + baziProfile.yongShen + '</strong>。当你的梦境元素与你用神相合时，梦境在古典解梦中被视为吉兆。</p>';
+      '<h2><span class="card-icon">🎯</span> Your BaZi Dream Cross-Reference</h2>' +
+      '<p>Your Day Master is <strong>' + baziProfile.dayMaster + ' ' + baziProfile.dayMasterElement + '</strong>, with Yong Shen <strong>' + baziProfile.yongShen + '</strong>. When your dream elements align with your Yong Shen, the dream is considered auspicious in classical interpretation.</p>';
   } else {
     baziCard.style.display = '';
     baziCard.innerHTML =
-      '<h2><span class="card-icon">🎯</span> 你的八字 · 梦境对照</h2>' +
-      '<p>想知道你的日主元素和这个梦的能量是<strong>相生</strong>还是<strong>相克</strong>？做一次免费八字诊断，我们就能把梦境分析从"通用"变成"专属"——告诉你这个梦对你的命盘来说意味着什么。</p>' +
-      '<button class="cta-btn" onclick="location.href=\'instant_reading.html\'" style="margin-top:8px;font-size:13px;padding:10px 24px;">免费八字诊断 →</button>';
+      '<h2><span class="card-icon">🎯</span> Your BaZi · Dream Cross-Reference</h2>' +
+      '<p>Want to know if your Day Master element and this dream\'s energy are <strong>in harmony</strong> or <strong>in conflict</strong>? Get a free BaZi diagnosis — we\'ll take this dream analysis from "generic" to "personal," telling you what this dream means for <em>your</em> chart specifically.</p>' +
+      '<button class="cta-btn" onclick="location.href=\'instant_reading.html\'" style="margin-top:8px;font-size:13px;padding:10px 24px;">Free BaZi Diagnosis →</button>';
   }
 
   // Guidance Card
   const guidanceHTML =
-    '<h2><span class="card-icon">🌿</span> 实用指导</h2>' +
-    '<p>' + (elResult.interpretation?.elementGuidance || '注意这个梦带来的情绪。重复出现的梦象是你潜意识持续发送的信息。醒来后立刻记录，记忆最清晰。') + '</p>' +
-    (elResult.interpretation?.luckyDirection ? '<p><strong>吉方:</strong> ' + elResult.interpretation.luckyDirection + ' — 调整工作或日常活动方向。</p>' : '') +
+    '<h2><span class="card-icon">🌿</span> Practical Guidance</h2>' +
+    '<p>' + (elResult.interpretation?.elementGuidance || 'Pay attention to the emotions this dream brings up. Recurring dream imagery is your subconscious sending a persistent message. Write it down immediately upon waking — memory is sharpest then.') + '</p>' +
+    (elResult.interpretation?.luckyDirection ? '<p><strong>Auspicious Direction:</strong> ' + elResult.interpretation.luckyDirection + ' — orient your work or daily activities accordingly.</p>' : '') +
     (aiEnhanced?.personalGuidance ? '<p style="font-style:italic;">' + aiEnhanced.personalGuidance + '</p>' : '');
   document.getElementById('guidanceCard').innerHTML = guidanceHTML;
 
@@ -640,7 +635,7 @@ function getElementEmoji(el) {
 // ─── Sharing ──────────────────────────────────────────────────
 function getShareText() {
   const dream = document.getElementById('shareDream').textContent;
-  return '☯ 我的五行梦境解析:\n\n"' + dream + '"\n\n🔮 免费获取你的梦境分析: https://oriental-destiny.com/dream-interpretation-v2.html';
+  return '☯ My Five Element Dream Analysis:\n\n"' + dream + '"\n\n🔮 Get your free dream interpretation: https://oriental-destiny.com/dream-interpretation-v2.html';
 }
 
 function shareTwitter() {
@@ -649,17 +644,17 @@ function shareTwitter() {
 
 function shareWechat() {
   copyShareText();
-  alert('📱 文字已复制！打开微信粘贴分享。\n\n建议：截屏上面的分享卡片，分享图片效果更好。');
+  alert('📱 Text copied! Open WeChat to paste and share.\n\nTip: Screenshot the share card above for a better visual share.');
 }
 
 function copyShareText() {
   navigator.clipboard.writeText(getShareText()).then(function() {
     const btn = document.querySelector('.share-btn.copy');
     const orig = btn.innerHTML;
-    btn.innerHTML = '✓ 已复制！';
+    btn.innerHTML = '✓ Copied!';
     btn.style.background = '#07c160';
     setTimeout(function() { btn.innerHTML = orig; btn.style.background = ''; }, 2000);
-  }).catch(function() { prompt('复制这段文字:', getShareText()); });
+  }).catch(function() { prompt('Copy this text:', getShareText()); });
 }
 </script>
 </body>

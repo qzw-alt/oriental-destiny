@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <meta name="description" content="你的个人八字命书——完整排盘、日主解读、五行平衡、天命方向。">
-    <title>你的八字命书 | Oriental Destiny</title>
+    <meta name="description" content="Your personal BaZi reading — complete chart, Day Master analysis, Five Element balance, and destiny direction.">
+    <title>Your BaZi Reading | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
     <style>
 /* ══════════════════════════════════════════════════════════
    水墨风 · Ink Wash Destiny Scroll
-   命书查看器
+   Report Viewer
    ══════════════════════════════════════════════════════════ */
 :root {
   --ink: #1a1410;
@@ -85,6 +85,8 @@ a { color: inherit; text-decoration: none; }
 .brand { display: flex; flex-direction: column; gap: 1px; }
 .brand-mark { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
 .brand-name { font-size: 18px; font-weight: 700; }
+.topbar .nav { display: flex; gap: 10px; font-size: 13px; color: var(--ink-light); flex-wrap: wrap; }
+.topbar .nav a:hover { color: var(--cinnabar); }
 
 /* ── Chapter system ── */
 .chapter {
@@ -323,11 +325,16 @@ footer a { color: var(--cinnabar); }
     <div class="topbar-inner">
         <a href="index.html" class="brand">
             <span class="brand-mark">Oriental Destiny</span>
-            <span class="brand-name">天命书</span>
+            <span class="brand-name">Your BaZi Reading</span>
         </a>
-        <div style="font-size:12px;color:var(--ink-faint);">
-            <a href="dashboard.html" style="color:var(--cinnabar);">控制台</a>
-        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="instant_reading.html">Free Reading</a>
+            <a href="instant_report.html">$29 Report</a>
+            <a href="checkout.html">$199 Treasure</a>
+            <a href="dream-interpretation-v2.html">Dream Interpreter</a>
+            <a href="knowledge.html">Knowledge</a>
+        </nav>
     </div>
 </div>
 
@@ -336,14 +343,14 @@ footer a { color: var(--cinnabar); }
     <!-- Loading -->
     <div class="loading-state" id="loadingState">
         <div class="loading-spinner"></div>
-        <p style="color:var(--ink-light);">正在打开你的命书…</p>
+        <p style="color:var(--ink-light);">Opening your BaZi reading…</p>
     </div>
 
     <!-- Error -->
     <div class="error-state" id="errorState" style="display:none;">
-        <h2>命书未找到</h2>
-        <p id="errorMsg" style="color:var(--ink-light);margin-bottom:20px;">无法生成你的报告。请从免费诊断重新开始。</p>
-        <a href="instant_reading.html" class="btn-link">开始免费诊断</a>
+        <h2>Report Not Found</h2>
+        <p id="errorMsg" style="color:var(--ink-light);margin-bottom:20px;">Unable to generate your report. Please start from the free diagnosis page.</p>
+        <a href="instant_reading.html" class="btn-link">Start Free Diagnosis</a>
     </div>
 
     <!-- Report Content -->
@@ -352,57 +359,57 @@ footer a { color: var(--cinnabar); }
         <!-- Cover -->
         <div class="hero-cover" id="coverContent"></div>
 
-        <!-- 卷一 · 命主画像 -->
+        <!-- Vol. 1 · Who You Are -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷一</span>
-                <span class="title-cn">命主画像</span>
+                <span class="vol">Vol.1</span>
+                <span class="title-cn">Who You Are</span>
             </div>
             <div class="content-card" id="sec1"></div>
         </div>
 
-        <!-- 卷二 · 格局解密 -->
+        <!-- Vol. 2 · Your Pattern -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷二</span>
-                <span class="title-cn">格局解密</span>
+                <span class="vol">Vol.2</span>
+                <span class="title-cn">Your Pattern</span>
             </div>
             <div class="content-card" id="sec2"></div>
         </div>
 
-        <!-- 卷三 · 天命指南针 -->
+        <!-- Vol. 3 · Your Compass -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷三</span>
-                <span class="title-cn">天命指南针</span>
+                <span class="vol">Vol.3</span>
+                <span class="title-cn">Your Compass</span>
             </div>
             <div class="content-card" id="sec3"></div>
         </div>
 
-        <!-- 卷四 · 师父的锦囊 -->
+        <!-- Vol. 4 · In Practice -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷四</span>
-                <span class="title-cn">师父的锦囊</span>
+                <span class="vol">Vol.4</span>
+                <span class="title-cn">In Practice</span>
             </div>
             <div class="content-card" id="sec4"></div>
         </div>
 
-        <!-- 卷五 · 五行玄机 -->
+        <!-- Vol. 5 · Elemental Blueprint -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷五</span>
-                <span class="title-cn">五行玄机</span>
+                <span class="vol">Vol.5</span>
+                <span class="title-cn">Elemental Blueprint</span>
             </div>
             <div class="content-card" id="sec5"></div>
         </div>
 
         <!-- Upgrade CTA -->
         <div class="upgrade-cta">
-            <h2>准备好了吗？让灵石认主。</h2>
-            <p>命书给了你方向。灵石给你标记。龙虎山道长亲选，与你命盘匹配的物理灵石——全球发货。</p>
-            <a class="cta-btn" id="upgradeBtn" href="checkout.html">🔮 解锁灵石匹配 · $199</a>
-            <p class="credit-note">$29命书费用全额抵扣 · 7天内有效 · 发货前人工确认</p>
+            <h2>Ready? Let the treasure find its master.</h2>
+            <p>The report gave you direction. The treasure marks the path. Hand-selected by a Daoist master — a physical crystal matched to your chart, shipped worldwide.</p>
+            <a class="cta-btn" id="upgradeBtn" href="checkout.html">🔮 Unlock Treasure Match · $199</a>
+            <p class="credit-note">$29 report fully credited · Valid 7 days · Manual confirmation before shipping</p>
         </div>
 
     </div><!-- /reportContent -->
@@ -410,7 +417,7 @@ footer a { color: var(--cinnabar); }
 </main>
 
 <footer>
-    <p>&copy; 2026 Oriental Destiny · <a href="index.html">首页</a> · <a href="policies.html">隐私政策</a> · <span class="od-version"></span></p>
+    <p>&copy; 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="policies.html">Privacy</a> · <span class="od-version"></span></p>
 </footer>
 
 <!-- Scripts -->
@@ -469,18 +476,18 @@ footer a { color: var(--cinnabar); }
         if (reportId) {
             Auth.init().then(function() {
                 if (!Auth.currentUser) {
-                    showError('请登录查看已保存的命书。');
+                    showError('Please sign in to view your saved report.');
                     return;
                 }
                 return Auth.getInstantReport(reportId).then(function(data) {
                     if (!data || !data.reportContent) {
-                        showError('命书未找到。可能已被删除。');
+                        showError('Report not found. It may have been deleted.');
                         return;
                     }
                     renderFromSaved(data);
                 });
             }).catch(function() {
-                showError('加载失败，请重试。');
+                showError('Failed to load. Please try again.');
             });
             return;
         }
@@ -490,7 +497,7 @@ footer a { color: var(--cinnabar); }
         try { if (window.ReadingState) state = window.ReadingState.read(); } catch(e) {}
 
         if (!state.birth_date) {
-            showError('未找到出生信息。请从免费诊断开始。');
+            showError('No birth information found. Please start from the free diagnosis page.');
             return;
         }
 
@@ -507,7 +514,7 @@ footer a { color: var(--cinnabar); }
                 gender: state.gender || undefined
             });
         } catch(e) {
-            showError('排盘失败: ' + e.message);
+            showError('Chart calculation failed: ' + e.message);
             return;
         }
 
@@ -519,21 +526,21 @@ footer a { color: var(--cinnabar); }
             var dm = profile.dayMaster, dmEl = profile.dayMasterElement;
             document.getElementById('coverContent').innerHTML =
                 '<div class="seal-anim"><div class="seal-inner">'+esc(dm)+esc(dmEl)+'</div></div>' +
-                '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · 命主</h1>' +
+                '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · Day Master</h1>' +
                 '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
                 '<div class="hero-divider"></div>' +
-                '<p style="font-size:12px;color:var(--ink-faint);">格局: '+esc(sn.pattern)+' · 用神: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</p>';
+                '<p style="font-size:12px;color:var(--ink-faint);">Pattern: '+esc(sn.pattern)+' · Yong Shen: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</p>';
 
-            // 卷一
+            // Vol. 1
             document.getElementById('sec1').innerHTML = paras(r.opening || '');
 
-            // 卷二
+            // Vol. 2
             document.getElementById('sec2').innerHTML = paras(r.yourPattern || '');
 
-            // 卷三
+            // Vol. 3
             document.getElementById('sec3').innerHTML = paras(r.whatGuidesYou || '');
 
-            // 卷四 - Practical steps
+            // Vol. 4 - Practical steps
             var stepsHTML = '';
             if (r.practicalSteps && r.practicalSteps.length) {
                 stepsHTML = '<ul style="list-style:none;display:grid;gap:12px;">';
@@ -546,7 +553,7 @@ footer a { color: var(--cinnabar); }
             }
             document.getElementById('sec4').innerHTML = stepsHTML;
 
-            // 卷五 - Element bars + chart data
+            // Vol. 5 - Element bars + chart data
             var elCounts = profile.elementCounts || {};
             var maxCount = Math.max(1, elNames.map(function(e){return elCounts[e]||0;}).reduce(function(a,b){return Math.max(a,b);},0));
             var barsHTML = '<div style="padding:10px 0;">';
@@ -559,7 +566,7 @@ footer a { color: var(--cinnabar); }
             });
             barsHTML += '</div>';
             barsHTML += '<p style="font-size:13px;color:var(--ink-faint);margin-top:10px;text-align:center;">' +
-                '用神: '+esc(sn.yongShen)+' · 喜神: '+esc(sn.xiShen)+' · 忌神: '+esc(sn.jiShen)+' · 起运: '+esc(sn.qiYun)+' · 当前大运: '+esc(sn.currentDaYun)+'</p>';
+                'Yong Shen: '+esc(sn.yongShen)+' · Xi Shen: '+esc(sn.xiShen)+' · Ji Shen: '+esc(sn.jiShen)+' · Qi Yun: '+esc(sn.qiYun)+' · Current Da Yun: '+esc(sn.currentDaYun)+'</p>';
 
             document.getElementById('sec5').innerHTML = barsHTML;
 
@@ -569,14 +576,14 @@ footer a { color: var(--cinnabar); }
 
             showReport();
         }).catch(function(e) {
-            showError('生成失败: ' + (e.message || ''));
+            showError('Generation failed: ' + (e.message || ''));
         });
     }
 
     function renderFromSaved(data) {
         showReport();
         document.getElementById('coverContent').innerHTML =
-            '<h1 class="hero-title">你的<span class="em">命书</span></h1>' +
+            '<h1 class="hero-title">Your <span class="em">BaZi Reading</span></h1>' +
             '<p class="hero-sub">'+esc(data.birthDate||'')+(data.birthTime?' · '+esc(data.birthTime):'')+' · '+esc(data.lifeFocus||'')+'</p>';
 
         if (data.reportContent) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
@@ -12,12 +12,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="免费八字排盘诊断——看清你的命盘格局、五行失衡、天命方向。只诊断，不开方。解法在完整命书里。">
+    <meta name="description" content="Free BaZi chart diagnosis — see your Day Master, element imbalances, and life direction. Diagnosis only, no prescriptions. The remedy is in the full report.">
     <link rel="canonical" href="https://oriental-destiny.com/instant_reading.html">
-    <meta property="og:title" content="天命初解 · 免费八字排盘诊断 | Oriental Destiny">
-    <meta property="og:description" content="你的日主是谁？格局是什么？堵在哪里？免费排盘告诉你。不需注册，不需邮箱。">
+    <meta property="og:title" content="Free BaZi Diagnosis · Read Your Birth Chart | Oriental Destiny">
+    <meta property="og:description" content="What is your Day Master? What pattern shapes your life? Where are the blockages? Free chart reading tells you. No registration, no email required.">
     <meta property="og:type" content="website">
-    <title>天命初解 · 免费排盘诊断 | Oriental Destiny</title>
+    <title>Free BaZi Diagnosis · Read Your Birth Chart | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
     <style>
 /* ══════════════════════════════════════════════════════════
    水墨风 · Ink Wash Destiny Scroll
-   天命初解 — 免费排盘诊断
+   天命初解 — Free BaZi Diagnosis
    ══════════════════════════════════════════════════════════ */
 :root {
   --ink: #1a1410;
@@ -424,13 +424,15 @@ footer a:hover { text-decoration: underline; }
 <header class="container topbar">
     <a href="index.html" class="brand">
         <span class="brand-mark">Oriental Destiny</span>
-        <span class="brand-name">天命初解</span>
+        <span class="brand-name">Free BaZi Diagnosis</span>
     </a>
     <nav class="nav">
-        <a href="index.html">首页</a>
-        <a href="products.html">服务方案</a>
-        <a href="instant_report.html">$29 命书</a>
-        <a href="checkout.html">$199 灵石</a>
+        <a href="index.html">Home</a>
+        <a href="instant_reading.html">Free Reading</a>
+        <a href="instant_report.html">$29 Report</a>
+        <a href="checkout.html">$199 Treasure</a>
+        <a href="dream-interpretation-v2.html">Dream Interpreter</a>
+        <a href="knowledge.html">Knowledge</a>
     </nav>
 </header>
 
@@ -440,54 +442,54 @@ footer a:hover { text-decoration: underline; }
     <section id="inputSection">
         <div class="hero-cover">
             <div class="seal-anim"><div class="seal-inner">天命初解</div></div>
-            <h1 class="hero-title">你的命盘里<span class="em">藏了什么</span>？</h1>
-            <p class="hero-sub">免费排盘 · 看清格局 · 找到堵点 · 不收费</p>
+            <h1 class="hero-title">What's <span class="em">hidden</span> in your birth chart?</h1>
+            <p class="hero-sub">Free chart reading · See your pattern · Find the blockages · No charge</p>
             <div class="hero-divider"></div>
-            <div class="hero-badge">免费 · 无需注册 · 不限次数</div>
+            <div class="hero-badge">Free · No Registration · Unlimited Uses</div>
         </div>
 
         <div class="form-card">
-            <div class="form-title">排盘诊断</div>
-            <p class="form-note">输入出生信息，看看你的命盘在说什么。只诊断、不开方——解法在完整命书里。</p>
+            <div class="form-title">Your Chart Diagnosis</div>
+            <p class="form-note">Enter your birth details and see what your chart reveals. Diagnosis only — the remedy is in the full report.</p>
 
             <form id="readingForm">
                 <div class="form-grid">
                     <div class="field">
-                        <label for="birthDate">出生日期 *</label>
+                        <label for="birthDate">Birth Date *</label>
                         <input id="birthDate" type="date" required>
                     </div>
                     <div class="field">
-                        <label for="birthTime">出生时间</label>
+                        <label for="birthTime">Birth Time</label>
                         <input id="birthTime" type="time">
-                        <span class="field-help">不知道也没关系，系统会按子时推算</span>
+                        <span class="field-help">Don't worry if unknown — the system defaults to Zi hour (midnight)</span>
                     </div>
                     <div class="field">
-                        <label for="lifeFocus">我想了解</label>
+                        <label for="lifeFocus">I want to understand</label>
                         <select id="lifeFocus" required>
-                            <option value="">选择你最关心的方面</option>
-                            <option value="career">事业与方向</option>
-                            <option value="wealth">财富与资源</option>
-                            <option value="love">爱情与关系</option>
-                            <option value="protection">守护与安宁</option>
-                            <option value="balance">整体平衡</option>
+                            <option value="">Choose what matters most to you</option>
+                            <option value="career">Career &amp; Direction</option>
+                            <option value="wealth">Wealth &amp; Resources</option>
+                            <option value="love">Love &amp; Relationships</option>
+                            <option value="protection">Protection &amp; Peace</option>
+                            <option value="balance">Overall Balance</option>
                         </select>
                     </div>
                     <div class="field">
-                        <label for="gender">性别</label>
+                        <label for="gender">Gender</label>
                         <select id="gender">
-                            <option value="">不限</option>
-                            <option value="male">男</option>
-                            <option value="female">女</option>
+                            <option value="">Any</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </div>
                     <div class="field full">
-                        <label for="notes">你最近遇到了什么？（可选）</label>
-                        <textarea id="notes" placeholder="简单说说你最近的困惑，诊断会更贴切——比如：事业卡住了、钱留不住、感情不顺、心里不踏实…"></textarea>
+                        <label for="notes">What's been on your mind? (optional)</label>
+                        <textarea id="notes" placeholder="Share what's been troubling you — the reading will feel more personal. For example: career feels stuck, money keeps slipping away, relationships aren't working, a sense of unease…"></textarea>
                     </div>
                 </div>
 
-                <button class="submit-btn" id="submitBtn" type="submit">🔍 免费排盘诊断</button>
-                <div class="loading-tip" id="loadingTip">正在打开你的命盘…AI正在分析你的八字…大约需要5-8秒钟</div>
+                <button class="submit-btn" id="submitBtn" type="submit">🔍 Read My Chart (Free)</button>
+                <div class="loading-tip" id="loadingTip">Opening your chart… AI is analyzing your BaZi… This takes about 5–8 seconds</div>
             </form>
         </div>
     </section>
@@ -495,73 +497,73 @@ footer a:hover { text-decoration: underline; }
     <!-- ═══ Results (hidden initially) ═══ -->
     <section id="resultsSection" style="display:none;">
 
-        <!-- 封面 · 日主揭晓 -->
+        <!-- Cover · Day Master Reveal -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">封面</span>
-                <span class="title-cn">你的天命身份</span>
+                <span class="vol">Cover</span>
+                <span class="title-cn">Your Destiny Identity</span>
             </div>
             <div class="content-card" id="coverCard"></div>
         </div>
 
-        <!-- 命盘 · 四柱八卦 -->
+        <!-- Chart · Four Pillars -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">命盘</span>
-                <span class="title-cn">你的八字排盘</span>
+                <span class="vol">Chart</span>
+                <span class="title-cn">Your BaZi Chart</span>
             </div>
             <div class="content-card" id="chartCard"></div>
         </div>
 
-        <!-- 卷一 · 命主画像 -->
+        <!-- Vol. 1 · Portrait -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷一</span>
-                <span class="title-cn">命主画像</span>
+                <span class="vol">Vol.1</span>
+                <span class="title-cn">Who You Are</span>
             </div>
             <div class="content-card" id="portraitCard"></div>
         </div>
 
-        <!-- 卷二 · 格局解密 -->
+        <!-- Vol. 2 · Pattern -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷二</span>
-                <span class="title-cn">格局解密</span>
+                <span class="vol">Vol.2</span>
+                <span class="title-cn">Your Pattern</span>
             </div>
             <div class="content-card" id="patternCard"></div>
         </div>
 
-        <!-- 卷三 · 天命所向 -->
+        <!-- Vol. 3 · Direction -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">卷三</span>
-                <span class="title-cn">天命所向</span>
+                <span class="vol">Vol.3</span>
+                <span class="title-cn">Your Direction</span>
             </div>
             <div class="content-card" id="directionCard"></div>
         </div>
 
-        <!-- 封底 · CTA Hook -->
+        <!-- Colophon -->
         <div class="chapter">
             <div class="chapter-marker">
-                <span class="vol">封底</span>
-                <span class="title-cn">以上是诊断</span>
+                <span class="vol">End</span>
+                <span class="title-cn">Diagnosis Complete</span>
             </div>
             <div class="content-card" id="closingCard"></div>
         </div>
 
         <!-- CTA Card -->
         <div class="cta-card" id="ctaCard">
-            <h2>解锁完整命书</h2>
-            <p>诊断告诉你问题在哪。<br>命书告诉你路怎么走——颜色、方向、季节、灵石。<br>六卷完整分析，AI即刻生成。</p>
+            <h2>Unlock Your Full Report</h2>
+            <p>Diagnosis tells you where the problem is.<br>The full report tells you the path forward — colors, directions, seasons, crystals.<br>Six chapters of complete analysis, AI-generated instantly.</p>
             <div class="price-tag">$29</div>
-            <a class="cta-btn" id="upgradeLink" href="instant_report.html">🔮 解锁完整命书</a>
-            <p class="credit-note">$29可抵扣$199灵石匹配服务 · 7天内有效</p>
+            <a class="cta-btn" id="upgradeLink" href="instant_report.html">🔮 Unlock Full Report</a>
+            <p class="credit-note">$29 credit toward $199 Treasure Match · Valid for 7 days</p>
         </div>
 
         <!-- Also upgrade to $199 -->
         <div style="text-align:center;margin:20px 0 50px;">
             <a href="checkout.html" id="directCheckoutLink" style="font-size:13px;color:var(--gold);border-bottom:1px dashed var(--gold-light);padding-bottom:2px;font-family:'Noto Sans SC',sans-serif;">
-                直接解锁全套灵石匹配 · $199（含完整命书 + 实物发货）
+                Skip to Full Treasure Match · $199 (includes complete report + physical shipping)
             </a>
         </div>
     </section>
@@ -570,15 +572,15 @@ footer a:hover { text-decoration: underline; }
 
 <footer>
     <div class="container" style="border-top:1px solid rgba(26,20,16,0.08);padding:30px 0 10px;text-align:center;">
-        <div style="font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:0.04em;font-size:11px;text-transform:uppercase;">了解更多</div>
-        <a href="what-is-day-master.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">什么是日主</a> ·
-        <a href="five-elements-explained.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">五行详解</a> ·
-        <a href="bazi-reading-vs-zodiac.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">八字 vs 星座</a> ·
-        <a href="feng-shui-bracelet-meaning.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">风水手串</a> ·
-        <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">梦境解析</a>
+        <div style="font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:0.04em;font-size:11px;text-transform:uppercase;">Learn More</div>
+        <a href="what-is-day-master.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">What is a Day Master</a> ·
+        <a href="five-elements-explained.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">Five Elements</a> ·
+        <a href="bazi-reading-vs-zodiac.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">BaZi vs Zodiac</a> ·
+        <a href="feng-shui-bracelet-meaning.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">Feng Shui Bracelets</a> ·
+        <a href="dream-interpretation-v2.html" style="color:var(--cinnabar);margin:0 8px;font-size:12px;">Dream Interpreter</a>
     </div>
     <div class="container footer-note">
-        &copy; 2026 Oriental Destiny · 八字排盘诊断仅供参考 · 不作为医疗、法律、财务建议
+        &copy; 2026 Oriental Destiny · BaZi chart diagnosis is for reference only · Not medical, legal, or financial advice
     </div>
     <span class="od-version" style="display:block;margin-top:8px;text-align:center;opacity:0.5;font-size:10px;letter-spacing:0.04em;"></span>
 </footer>
@@ -616,7 +618,7 @@ const defaultBtnText = submitBtn.textContent;
 function setLoading(isLoading) {
   if (isLoading) {
     submitBtn.disabled = true;
-    submitBtn.textContent = '正在分析你的命盘…请稍候…';
+    submitBtn.textContent = 'Analyzing your chart… Please wait…';
     loadingTip.classList.add('visible');
   } else {
     submitBtn.disabled = false;
@@ -636,7 +638,7 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   const gender = document.getElementById('gender').value;
 
   if (!birthDate || !lifeFocus) {
-    alert('请至少填写出生日期和你想了解的方面。');
+    alert('Please fill in at least your birth date and what you want to understand.');
     return;
   }
 
@@ -649,7 +651,7 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
       gender: gender || undefined, lifeFocus
     });
   } catch (error) {
-    alert('排盘失败，请检查出生信息：' + (error.message || ''));
+    alert('Chart calculation failed. Please check your birth info: ' + (error.message || ''));
     setLoading(false);
     return;
   }
@@ -688,7 +690,7 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   document.getElementById('coverCard').innerHTML =
     sealHTML +
     '<h2 style="text-align:center;font-size:28px;font-weight:900;margin-bottom:16px;">' +
-    esc(dm) + '<span style="color:var(--cinnabar);">' + esc(dmEl) + '</span> · 日主</h2>' +
+    esc(dm) + '<span style="color:var(--cinnabar);">' + esc(dmEl) + '</span> · Day Master</h2>' +
     paras(result.report.opening);
 
   // Bazi chart table
@@ -703,10 +705,10 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   const yrNaYin = yrParts[1]||'', moNaYin = moParts[1]||'', dyNaYin = dyParts[1]||'', hrNaYin = hrParts[1]||'';
   const pillarsHTML =
     '<div class="bazi-table">' +
-    '<div class="bazi-col"><span class="bazi-stem">'+esc(yStem)+'</span><span class="bazi-branch">'+esc(yBranch)+'</span><span class="bazi-label">年柱 Year</span></div>' +
-    '<div class="bazi-col"><span class="bazi-stem">'+esc(mStem)+'</span><span class="bazi-branch">'+esc(mBranch)+'</span><span class="bazi-label">月柱 Month</span></div>' +
-    '<div class="bazi-col day-master"><span class="bazi-stem">'+esc(dStem)+'</span><span class="bazi-branch">'+esc(dBranch)+'</span><span class="bazi-label">日柱 Day</span><span class="bazi-dm">日主</span></div>' +
-    '<div class="bazi-col"><span class="bazi-stem">'+esc(hStem)+'</span><span class="bazi-branch">'+esc(hBranch)+'</span><span class="bazi-label">时柱 Hour</span></div>' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(yStem)+'</span><span class="bazi-branch">'+esc(yBranch)+'</span><span class="bazi-label">Year</span></div>' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(mStem)+'</span><span class="bazi-branch">'+esc(mBranch)+'</span><span class="bazi-label">Month</span></div>' +
+    '<div class="bazi-col day-master"><span class="bazi-stem">'+esc(dStem)+'</span><span class="bazi-branch">'+esc(dBranch)+'</span><span class="bazi-label">Day</span><span class="bazi-dm">Day Master</span></div>' +
+    '<div class="bazi-col"><span class="bazi-stem">'+esc(hStem)+'</span><span class="bazi-branch">'+esc(hBranch)+'</span><span class="bazi-label">Hour</span></div>' +
     '</div>';
 
   // Element bars
@@ -724,7 +726,7 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   // Chips
   const tagsHTML =
     '<span class="chip gold">'+esc(sn.pattern)+'</span>' +
-    '<span class="chip gold">用神: '+esc(sn.yongShen)+'</span>' +
+    '<span class="chip gold">Yong Shen: '+esc(sn.yongShen)+'</span>' +
     '<span class="chip green">'+esc(sn.strength)+'</span>';
 
   document.getElementById('chartCard').innerHTML =
@@ -741,9 +743,9 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   // Volume 3: Direction (Yong Shen revealed, no advice)
   const yongShenName = sn.yongShen || '';
   document.getElementById('directionCard').innerHTML =
-    '<p style="font-size:17px;text-align:center;margin-bottom:14px;color:var(--cinnabar);font-weight:700;">你的天命方向是：<strong style="font-size:22px;">'+esc(yongShenName)+'</strong></p>' +
-    '<p style="text-align:center;">你的命盘告诉我——' + esc(yongShenName) + '是你的用神。这就是你这辈子<strong>最该靠近的能量</strong>。</p>' +
-    '<p style="text-align:center;color:var(--ink-faint);">至于<strong>怎么靠近'+esc(yongShenName)+'</strong>——什么颜色、什么方向、什么季节、什么灵石——这些都在完整命书里。</p>';
+    '<p style="font-size:17px;text-align:center;margin-bottom:14px;color:var(--cinnabar);font-weight:700;">Your direction is: <strong style="font-size:22px;">'+esc(yongShenName)+'</strong></p>' +
+    '<p style="text-align:center;">Your chart tells me — ' + esc(yongShenName) + ' is your Yong Shen. This is the energy you <strong>need to lean into most</strong> in this life.</p>' +
+    '<p style="text-align:center;color:var(--ink-faint);">As for <strong>how</strong> to connect with '+esc(yongShenName)+' — which colors, directions, seasons, and crystals — that is in the full report.</p>';
 
   // Closing
   document.getElementById('closingCard').innerHTML = paras(result.report.closingWords || '');

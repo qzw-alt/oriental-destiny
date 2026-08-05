@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google Analytics 4 -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -50,6 +50,7 @@
             margin: 0 auto;
         }
 
+        /* ── Header ── */
         .topbar {
             position: sticky;
             top: 0;
@@ -58,7 +59,6 @@
             background: rgba(248, 241, 231, 0.88);
             border-bottom: 1px solid rgba(36, 25, 21, 0.08);
         }
-
         .topbar-inner {
             min-height: 74px;
             display: flex;
@@ -66,25 +66,21 @@
             justify-content: space-between;
             gap: 18px;
         }
-
         .brand {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
-
         .brand-mark {
             font-size: 13px;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--cinnabar);
         }
-
         .brand-name {
             font-size: 24px;
             font-weight: 700;
         }
-
         .nav {
             display: flex;
             gap: 18px;
@@ -94,35 +90,21 @@
             justify-content: flex-end;
         }
 
-        .hero {
-            padding: 74px 0 56px;
-        }
-
+        /* ── Hero ── */
+        .hero { padding: 74px 0 56px; }
         .hero-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
             gap: 30px;
             align-items: stretch;
         }
-
-        .hero-copy,
-        .hero-panel,
-        .story-card,
-        .plan-card,
-        .carrier-card,
-        .step,
-        .faq-item,
-        .closing-card {
+        .hero-copy {
+            padding: 44px;
+            border-radius: 28px;
             background: rgba(255, 253, 248, 0.9);
             border: 1px solid rgba(36, 25, 21, 0.08);
             box-shadow: var(--shadow);
         }
-
-        .hero-copy {
-            padding: 44px;
-            border-radius: 28px;
-        }
-
         .eyebrow {
             display: inline-flex;
             align-items: center;
@@ -133,41 +115,14 @@
             color: var(--gold);
             margin-bottom: 18px;
         }
-
-        .eyebrow::before {
-            content: "";
-            width: 34px;
-            height: 1px;
-            background: currentColor;
-        }
-
+        .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
         h1 {
             font-size: clamp(36px, 6vw, 64px);
             line-height: 1.05;
             margin-bottom: 18px;
         }
-
-        .hero-copy p,
-        .section-head p,
-        .story-card p,
-        .plan-card p,
-        .carrier-card p,
-        .step p,
-        .faq-item p {
-            color: rgba(36, 25, 21, 0.76);
-        }
-
-        .hero-copy p {
-            font-size: 17px;
-            max-width: 650px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-top: 28px;
-        }
+        .hero-copy p { color: rgba(36, 25, 21, 0.76); font-size: 17px; max-width: 650px; }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
 
         .btn {
             display: inline-flex;
@@ -180,15 +135,12 @@
             font-weight: 700;
             transition: transform 0.2s ease;
         }
-
         .btn:hover { transform: translateY(-2px); }
-
         .btn-primary {
             color: #fff8ef;
             background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
             box-shadow: 0 14px 28px rgba(166, 58, 44, 0.24);
         }
-
         .btn-secondary {
             color: var(--ink);
             background: rgba(255, 253, 248, 0.9);
@@ -201,23 +153,13 @@
             gap: 14px;
             margin-top: 32px;
         }
-
         .meta-item {
             padding: 16px 18px;
             background: rgba(239, 225, 207, 0.45);
             border-radius: 18px;
         }
-
-        .meta-item strong {
-            display: block;
-            font-size: 22px;
-            color: var(--cinnabar);
-        }
-
-        .meta-item span {
-            font-size: 13px;
-            color: rgba(36, 25, 21, 0.72);
-        }
+        .meta-item strong { display: block; font-size: 22px; color: var(--cinnabar); }
+        .meta-item span { font-size: 13px; color: rgba(36, 25, 21, 0.72); }
 
         .hero-panel {
             border-radius: 28px;
@@ -228,7 +170,6 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
         .panel-badge {
             display: inline-block;
             align-self: flex-start;
@@ -240,140 +181,118 @@
             text-transform: uppercase;
             margin-bottom: 20px;
         }
-
-        .hero-panel h2 {
-            font-size: 30px;
-            line-height: 1.18;
-            margin-bottom: 14px;
-        }
-
-        .hero-panel p,
-        .hero-panel li {
-            color: rgba(253, 248, 239, 0.82);
-        }
-
-        .panel-list {
-            list-style: none;
-            display: grid;
-            gap: 14px;
-            margin: 24px 0;
-        }
-
+        .hero-panel h2 { font-size: 26px; line-height: 1.18; margin-bottom: 14px; }
+        .hero-panel p { color: rgba(253, 248, 239, 0.82); }
+        .panel-list { list-style: none; display: grid; gap: 10px; margin: 20px 0; }
         .panel-list li {
-            padding: 12px 14px;
-            border-radius: 18px;
+            padding: 10px 12px;
+            border-radius: 14px;
             background: rgba(255, 255, 255, 0.06);
+            font-size: 14px;
         }
 
+        /* ── Sections ── */
         section { padding: 30px 0 70px; }
-
         .section-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 20px;
-            margin-bottom: 26px;
-            flex-wrap: wrap;
+            text-align: center;
+            margin-bottom: 36px;
         }
-
         .section-head h2 {
-            font-size: clamp(30px, 4vw, 44px);
+            font-size: clamp(28px, 4vw, 40px);
             line-height: 1.16;
-            margin-bottom: 8px;
-        }
-
-        .section-head p {
-            max-width: 680px;
-        }
-
-        .story-card {
-            border-radius: 28px;
-            padding: 34px;
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-            gap: 26px;
-        }
-
-        .story-card ul,
-        .carrier-card ul,
-        .plan-card ul {
-            list-style: none;
-            display: grid;
-            gap: 9px;
-            margin-top: 18px;
-            color: rgba(36, 25, 21, 0.74);
-        }
-
-        .story-card li,
-        .carrier-card li,
-        .plan-card li {
-            padding-left: 14px;
-            position: relative;
-        }
-
-        .story-card li::before,
-        .carrier-card li::before,
-        .plan-card li::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--cinnabar);
-            position: absolute;
-            left: 0;
-            top: 12px;
-        }
-
-        .carrier-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
-        }
-
-        .carrier-card,
-        .plan-card,
-        .step,
-        .faq-item {
-            border-radius: 24px;
-            padding: 26px;
-        }
-
-        .carrier-card h3,
-        .plan-card h3,
-        .step h3,
-        .faq-item h3 {
-            font-size: 24px;
             margin-bottom: 10px;
         }
+        .section-head p {
+            max-width: 640px;
+            margin: 0 auto;
+            color: rgba(36, 25, 21, 0.7);
+        }
 
-        .plan-grid {
+        /* ── Three-Tier Funnel Cards ── */
+        .funnel-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
         }
-
-        .plan-tag {
-            display: inline-flex;
-            width: fit-content;
-            min-height: 28px;
-            align-items: center;
-            padding: 0 11px;
-            border-radius: 999px;
-            background: rgba(183, 138, 66, 0.13);
-            color: var(--gold);
-            font-size: 12px;
-            margin-bottom: 14px;
+        .funnel-card {
+            border-radius: 24px;
+            padding: 28px 24px;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .steps-grid,
-        .faq-grid {
+        .funnel-card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(26, 20, 16, 0.14); }
+        .funnel-card.featured {
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        .funnel-card.featured::before {
+            content: "最受欢迎";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.06em;
+        }
+        .funnel-tier {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .funnel-price {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--ink);
+        }
+        .funnel-price small { font-size: 16px; font-weight: 400; color: rgba(36,25,21,0.5); }
+        .funnel-card h3 { font-size: 20px; margin: 4px 0; }
+        .funnel-card p { color: rgba(36, 25, 21, 0.7); font-size: 14px; flex: 1; }
+        .funnel-list {
+            list-style: none;
+            text-align: left;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.65);
             display: grid;
+            gap: 6px;
+        }
+        .funnel-list li { padding-left: 16px; position: relative; }
+        .funnel-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--pine);
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .funnel-list li.no::before { content: "—"; color: rgba(36,25,21,0.25); }
+
+        /* ── Steps ── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 20px;
         }
-
-        .steps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
+        .step {
+            border-radius: 24px;
+            padding: 26px;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
         .step-no {
             width: 42px;
             height: 42px;
@@ -386,13 +305,15 @@
             background: linear-gradient(135deg, var(--gold), var(--cinnabar));
             font-weight: 700;
         }
+        .step h3 { font-size: 20px; margin-bottom: 8px; }
+        .step p { color: rgba(36, 25, 21, 0.7); font-size: 14px; }
 
+        /* ── Testimonials ── */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
         }
-
         .testimonial-card {
             background: rgba(255, 253, 248, 0.9);
             border: 1px solid rgba(36, 25, 21, 0.08);
@@ -400,96 +321,47 @@
             border-radius: 24px;
             padding: 26px;
         }
+        .testimonial-card .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; }
+        .testimonial-card .body { font-style: italic; color: rgba(36, 25, 21, 0.78); margin-bottom: 14px; line-height: 1.6; }
+        .testimonial-card .author { font-weight: 700; font-size: 14px; }
+        .testimonial-card .detail { font-size: 12px; color: rgba(36, 25, 21, 0.5); }
 
-        .testimonial-card .stars {
-            color: var(--gold);
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .testimonial-card .body {
-            font-style: italic;
-            color: rgba(36, 25, 21, 0.78);
-            margin-bottom: 14px;
-            line-height: 1.6;
-        }
-
-        .testimonial-card .author {
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .testimonial-card .detail {
-            font-size: 12px;
-            color: rgba(36, 25, 21, 0.5);
-        }
-
-        @media (max-width: 980px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* ── Closing ── */
         .closing-card {
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            background:
-                linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)),
-                #261a16;
+            background: linear-gradient(180deg, rgba(36, 25, 21, 0.92), rgba(71, 42, 28, 0.92)), #261a16;
             color: #fff8ef;
         }
+        .closing-card h2 { font-size: clamp(28px, 4.4vw, 42px); margin-bottom: 14px; }
+        .closing-card p { max-width: 640px; margin: 0 auto 24px; color: rgba(255, 248, 239, 0.82); }
 
-        .closing-card h2 {
-            font-size: clamp(30px, 4.4vw, 46px);
-            margin-bottom: 14px;
-        }
-
-        .closing-card p {
-            max-width: 720px;
-            margin: 0 auto 24px;
-            color: rgba(255, 248, 239, 0.82);
-        }
-
+        /* ── Footer ── */
         footer { padding: 0 0 42px; }
-
-        .footer-card {
+        .footer-bar {
             border-top: 1px solid rgba(36, 25, 21, 0.08);
-            padding-top: 28px;
+            padding-top: 24px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 20px;
-            color: rgba(36, 25, 21, 0.6);
+            color: rgba(36, 25, 21, 0.55);
             font-size: 13px;
             flex-wrap: wrap;
         }
+        .footer-bar a { color: rgba(36, 25, 21, 0.65); margin: 0 6px; }
+        .footer-bar a:hover { color: var(--cinnabar); }
 
+        /* ── Responsive ── */
         @media (max-width: 980px) {
-            .hero-grid,
-            .story-card,
-            .carrier-grid,
-            .plan-grid,
-            .steps-grid,
-            .faq-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-grid, .funnel-grid, .steps-grid, .testimonial-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 720px) {
-            .topbar-inner,
-            .section-head,
-            .footer-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
+            .topbar-inner, .footer-bar { flex-direction: column; align-items: flex-start; }
             .nav { gap: 12px; }
             .hero { padding-top: 36px; }
-            .hero-copy,
-            .hero-panel,
-            .story-card,
-            .closing-card { padding: 26px; }
+            .hero-copy, .hero-panel, .closing-card { padding: 26px; }
             .hero-meta { grid-template-columns: 1fr; }
             .btn { width: 100%; }
         }
@@ -503,27 +375,19 @@
           "@id": "https://oriental-destiny.com/#organization",
           "name": "Oriental Destiny",
           "url": "https://oriental-destiny.com",
-          "sameAs": [],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "434338480@qq.com",
-            "contactType": "customer service"
-          }
+          "contactPoint": { "@type": "ContactPoint", "email": "434338480@qq.com", "contactType": "customer service" }
         },
         {
           "@type": "WebSite",
           "@id": "https://oriental-destiny.com/#website",
           "url": "https://oriental-destiny.com",
           "name": "Oriental Destiny | Personalized Feng Shui Reading & BaZi Analysis",
-          "publisher": {"@id": "https://oriental-destiny.com/#organization"}
+          "publisher": {"@id": "https://oriental-destiny.com/#organization"},
           "potentialAction": {
             "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://oriental-destiny.com/?s={search_term_string}"
-            },
+            "target": {"@type": "EntryPoint", "urlTemplate": "https://oriental-destiny.com/?s={search_term_string}"},
             "query-input": "required name=search_term_string"
-          },
+          }
         },
         {
           "@type": "Product",
@@ -537,10 +401,7 @@
             "url": "https://oriental-destiny.com/checkout.html",
             "shippingDetails": {
               "@type": "OfferShippingDetails",
-              "shippingDestination": {
-                "@type": "DefinedRegion",
-                "name": "Worldwide"
-              },
+              "shippingDestination": { "@type": "DefinedRegion", "name": "Worldwide" },
               "deliveryTime": {
                 "@type": "ShippingDeliveryTime",
                 "handlingTime": {"@type": "QuantitativeValue", "minValue": 7, "maxValue": 10, "unitCode": "DAY"},
@@ -564,14 +425,15 @@
     <header class="topbar">
         <div class="container topbar-inner">
             <a class="brand" href="index.html">
-                <span class="brand-mark" data-i18n="index_brand_mark">Oriental Destiny</span>
-                <span class="brand-name" data-i18n="index_brand_name">Feng Shui Jewelry Matching</span>
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui Jewelry Matching</span>
             </a>
             <nav class="nav">
                 <a href="dream-interpretation.html">Dream Interpreter</a>
-                <a href="instant_reading.html" data-i18n="nav_free_reading">Free Reading</a>
-                <a href="products.html" data-i18n="nav_plans">Plans</a>
-                <a href="checkout.html" data-i18n="nav_order">Order</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="checkout.html">Order</a>
+                <a href="knowledge.html">Knowledge</a>
                 <a href="login.html" id="navSignIn" style="font-size:13px;color:rgba(36,25,21,0.7);">Sign In</a>
                 <a href="dashboard.html" id="navDashboard" style="display:none;font-size:13px;color:var(--cinnabar);font-weight:600;">Dashboard</a>
             </nav>
@@ -579,513 +441,186 @@
     </header>
 
     <main>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- HERO — Primary conversion surface               -->
+        <!-- ═══════════════════════════════════════════ -->
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <div class="eyebrow" data-i18n="index_hero_eyebrow">Personalized Feng Shui reading + confirmed direction</div>
-                    <h1 data-i18n="index_hero_title">Your birth chart says your luck needs a channel. We read it and confirm the direction for you.</h1>
-                    <p data-i18n="index_hero_desc">Most services give generic advice. Ours reads your specific chart — then confirms the exact direction before anything ships. One order, one focused reading, matched to your Five Elements and life area.</p>
+                    <div class="eyebrow">Personalized Feng Shui reading + confirmed direction</div>
+                    <h1>Your birth chart says your luck needs a channel. We read it and confirm the direction for you.</h1>
+                    <p>Most services give generic advice. Ours reads your specific chart — then confirms the exact direction before anything ships. One order, one focused reading, matched to your Five Elements and life area.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="instant_reading.html" data-i18n="index_cta_free">Start Free Preview</a>
-                        <a class="btn btn-secondary" href="products.html" data-i18n="index_cta_plans">View Matched Treasures</a>
-                        <a class="btn btn-secondary" href="report_demo.html" data-i18n="index_cta_sample">See Sample Report</a>
+                        <a class="btn btn-primary" href="instant_reading.html">Start Free Preview</a>
+                        <a class="btn btn-secondary" href="products.html">View Plans</a>
                     </div>
                     <div class="hero-meta">
                         <div class="meta-item">
-                            <strong data-i18n="index_meta_price">$199</strong>
-                            <span data-i18n="index_meta_price_desc">One order: chart analysis + confirmed jewelry direction, shipped worldwide</span>
+                            <strong>$199</strong>
+                            <span>One order: chart analysis + confirmed jewelry direction, shipped worldwide</span>
                         </div>
                         <div class="meta-item">
-                            <strong data-i18n="index_meta_plans">6 Plans</strong>
-                            <span data-i18n="index_meta_plans_desc">Career, wealth, love, protection, zodiac, and elemental balance — you pick the focus</span>
+                            <strong>6 Plans</strong>
+                            <span>Career, wealth, love, protection, zodiac, and elemental balance</span>
                         </div>
                         <div class="meta-item">
-                            <strong data-i18n="index_meta_days">Same Day</strong>
-                            <span data-i18n="index_meta_days_desc">Basic report immediately after payment. Complete annotated report by email within 6 hours. Piece ships after your approval.</span>
+                            <strong>Same Day</strong>
+                            <span>Basic report immediately. Complete annotated report by email within 6 hours.</span>
                         </div>
                     </div>
                 </div>
 
                 <aside class="hero-panel">
                     <div>
-                        <span class="panel-badge" data-i18n="index_panel_badge">How this is different from a generic reading app</span>
-                        <h2 data-i18n="index_panel_title">You don't pick a product. You pick a life area — and we read your chart to find the direction that fits.</h2>
-                        <p data-i18n="index_panel_desc">The direction comes from your birth chart — not from a generic zodiac description. What makes the $199 worth it is a personalized reading plus one handcrafted Daoist treasure from Longhushan, matched to your specific Five Elements and life focus.</p>
+                        <span class="panel-badge">How we're different</span>
+                        <h2>You don't pick a product. You pick a life area — we read your chart to find the direction.</h2>
+                        <p>The direction comes from your birth chart — not from a generic zodiac description. One handcrafted Daoist treasure from Longhushan, matched to your specific Five Elements.</p>
                         <ul class="panel-list">
-                            <li data-i18n="index_panel_li_1">Choose a life focus: career, wealth, love, protection, or elements</li>
-                            <li data-i18n="index_panel_li_2">Submit your birth date, time, and location</li>
-                            <li data-i18n="index_panel_li_3">Receive a personalized reading with a confirmed direction</li>
-                            <li data-i18n="index_panel_li_4">Direction shipped as a symbolic item, confirmed with you before it ships</li>
+                            <li>Choose a life focus: career, wealth, love, protection, or elements</li>
+                            <li>Submit your birth date, time, and location</li>
+                            <li>Receive a personalized reading with a confirmed direction</li>
+                            <li>Direction shipped as a symbolic item, confirmed before shipping</li>
                         </ul>
                     </div>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="instant_reading.html" data-i18n="index_panel_cta_1">Start Free Preview</a>
-                        <a class="btn btn-secondary" href="products.html" data-i18n="index_panel_cta_2">View Matched Treasures</a>
+                        <a class="btn btn-primary" href="instant_reading.html">Start Free Preview</a>
+                        <a class="btn btn-secondary" href="checkout.html">Order Matched Treasure</a>
                     </div>
                 </aside>
             </div>
         </section>
 
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- THREE-TIER FUNNEL — Pick your depth          -->
+        <!-- ═══════════════════════════════════════════ -->
         <section>
-            <div class="container story-card">
-                        <div>
-                            <div class="section-head">
-                                <div>
-                                    <h2 data-i18n="index_story1_title">See a free preview first</h2>
-                                    <p data-i18n="index_story1_desc">No commitment needed. Enter your birth details and get a mini Five Elements reading instantly — shows you how the matching works before you order the full service.</p>
-                                </div>
-                            </div>
-                            <ul>
-                                <li data-i18n="index_story1_li_1">Instant symbolic result on the spot — no form to fill out beyond birth details</li>
-                                <li data-i18n="index_story1_li_2">Shows your Day Master, dominant elements, and your current energetic state</li>
-                                <li data-i18n="index_story1_li_3">Used by cold traffic who want to feel something before spending $199</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 style="font-size: 26px; margin-bottom: 12px;" data-i18n="index_story1_cta_title">Worth doing before ordering</h3>
-                            <p style="color: rgba(36, 25, 21, 0.76); margin-bottom: 18px;" data-i18n="index_story1_cta_desc">The preview gives you a real taste of the reading experience — a mini version of what the full $199 service delivers. It is free, takes about a minute, and helps you decide if the full reading is the right fit before you order.</p>
-                            <a class="btn btn-primary" href="instant_reading.html" data-i18n="index_story1_cta_btn">Try the Free Preview</a>
-                            <p style="margin-top: 14px; font-size: 13px; color: rgba(36, 25, 21, 0.6);"><span data-i18n="index_story1_hint">Want to see exactly what the preview reveals first?</span> <a href="instant-reading-preview.html" style="color: var(--cinnabar); text-decoration: underline;" data-i18n="index_story1_hint_link">See a sample mini reading →</a></p>
-                        </div>
+            <div class="container">
+                <div class="section-head">
+                    <h2>Three ways to go deeper</h2>
+                    <p>Start with a free diagnosis. Upgrade when you're ready. Every step builds on the last.</p>
+                </div>
+                <div class="funnel-grid">
+                    <!-- Free -->
+                    <article class="funnel-card">
+                        <span class="funnel-tier">Step 1 — Free</span>
+                        <div class="funnel-price">$0</div>
+                        <h3>天命初解</h3>
+                        <p>Instant diagnosis. Your Day Master, Four Pillars, element balance, and pattern identification. No advice — just the truth about your chart.</p>
+                        <ul class="funnel-list">
+                            <li>Day Master reveal</li>
+                            <li>Four Pillars table</li>
+                            <li>Element distribution</li>
+                            <li>Pattern & Yong Shen name</li>
+                            <li class="no">Colors, directions, seasons</li>
+                            <li class="no">Crystal or jewelry advice</li>
+                        </ul>
+                        <a class="btn btn-secondary" href="instant_reading.html" style="margin-top:auto;">Start Free →</a>
+                    </article>
+
+                    <!-- $29 (featured) -->
+                    <article class="funnel-card featured">
+                        <span class="funnel-tier">Step 2 — Digital</span>
+                        <div class="funnel-price">$29<small></small></div>
+                        <h3>天命全书</h3>
+                        <p>Full 6-chapter digital report. Everything from the free tier plus actionable advice — colors, directions, seasons, practical steps.</p>
+                        <ul class="funnel-list">
+                            <li>Everything in free tier</li>
+                            <li>Complete 6-chapter report</li>
+                            <li>Color & direction guidance</li>
+                            <li>Practical action steps</li>
+                            <li>Element balance deep-dive</li>
+                            <li>Treasure type recommendation</li>
+                        </ul>
+                        <a class="btn btn-primary" href="instant_report.html" style="margin-top:auto;">Get Full Report →</a>
+                    </article>
+
+                    <!-- $199 -->
+                    <article class="funnel-card">
+                        <span class="funnel-tier">Step 3 — Physical</span>
+                        <div class="funnel-price">$199<small></small></div>
+                        <h3>灵石认主</h3>
+                        <p>Everything plus a handcrafted Daoist treasure matched to your chart. Human confirmation, worldwide shipping with tracking.</p>
+                        <ul class="funnel-list">
+                            <li>Everything in $29 report</li>
+                            <li>Master-annotated reading</li>
+                            <li>Specific jewelry matching</li>
+                            <li>Human confirmation email</li>
+                            <li>Worldwide shipping + tracking</li>
+                            <li>$29 credit available</li>
+                        </ul>
+                        <a class="btn btn-secondary" href="checkout.html" style="margin-top:auto;">Order Now →</a>
+                    </article>
+                </div>
             </div>
         </section>
 
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- HOW IT WORKS                                 -->
+        <!-- ═══════════════════════════════════════════ -->
         <section>
-            <div class="container story-card">
-                        <div>
-                            <div class="section-head">
-                                <div>
-                                    <h2 data-i18n="index_story2_title">What you actually receive</h2>
-                                    <p data-i18n="index_story2_desc">Every order is one focused service: a birth chart reading that confirms the exact direction for your situation, then shipping a symbolic item to you.</p>
-                                </div>
-                            </div>
-                            <ul>
-                                <li data-i18n="index_story2_li_1">A personalized Five Elements and zodiac reading for your chosen life focus</li>
-                                <li data-i18n="index_story2_li_2">The confirmed direction: material, color, and symbolic meaning</li>
-                                <li data-i18n="index_story2_li_3">Final direction confirmed with you before the symbolic item ships</li>
-                                <li data-i18n="index_story2_li_4">Tracking number and follow-up included</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 style="font-size: 26px; margin-bottom: 12px;" data-i18n="index_story2_why_title">Why it costs $199</h3>
-                            <p style="color: rgba(36, 25, 21, 0.76); margin-bottom: 18px;" data-i18n="index_story2_why_desc">The $199 covers the personalized Feng Shui reading, the chart matching work, and one handcrafted Daoist treasure from the Longhushan collection. The piece is selected after we read your chart — confirmed with you before shipping from China.</p>
-                        </div>
-            </div>
-        </section>
-
-        <section id="carriers">
             <div class="container">
                 <div class="section-head">
-                    <div>
-                        <h2 data-i18n="index_carriers_title">How the reading works — and why a symbolic item</h2>
-                        <p data-i18n="index_carriers_desc">The reading comes first. After reviewing your birth chart, we confirm the exact material, color, and symbolic direction for your situation. That direction is then shipped as a physical item — chosen to carry the reading's intent.</p>
-                    </div>
+                    <h2>How it works</h2>
                 </div>
-
-                <div class="carrier-grid">
-                    <article class="carrier-card">
-                        <h3 data-i18n="index_bracelet_title">Worn daily — bracelet</h3>
-                        <p data-i18n="index_bracelet_desc">The bracelet carries the confirmed direction continuously. Best for career, wealth, love, and elemental balance.</p>
-                        <ul>
-                            <li data-i18n="index_bracelet_li_1">Material matched after your birth chart reading</li>
-                            <li data-i18n="index_bracelet_li_2">Crystal, jade, wood, cinnabar, or metal</li>
-                        </ul>
-                    </article>
-
-                    <article class="carrier-card">
-                        <h3 data-i18n="index_pendant_title">Close to the heart — pendant</h3>
-                        <p data-i18n="index_pendant_desc">The pendant holds the confirmed direction close to your center. Best for protection, zodiac guardian, and emotional grounding.</p>
-                        <ul>
-                            <li data-i18n="index_pendant_li_1">Symbol and cord style confirmed after your reading</li>
-                            <li data-i18n="index_pendant_li_2">Jade, obsidian, silver, or guardian symbols</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="plans">
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <h2 data-i18n="index_plans_title">Choose your focus</h2>
-                        <p data-i18n="index_plans_desc">Pick the life area you want support with — career, wealth, love, protection, zodiac, or elemental balance. All six plans use the same $199 price and the same process: reading, matching, confirmation, shipping.</p>
-                    </div>
-                    <a class="btn btn-primary" href="checkout.html" data-i18n="index_plans_cta">Choose My Plan</a>
-                </div>
-
-                <div class="plan-grid">
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_elements">Five Elements</span>
-                        <h3 data-i18n="index_plan_elements">Elemental Balance</h3>
-                        <p data-i18n="index_plan_elements_desc">For Wood, Fire, Earth, Metal, or Water support based on your chart.</p>
-                    </article>
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_zodiac">Zodiac</span>
-                        <h3 data-i18n="index_plan_zodiac">Zodiac Guardian</h3>
-                        <p data-i18n="index_plan_zodiac_desc">For Chinese zodiac, guardian Buddha, and symbolic protection matching.</p>
-                    </article>
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_career">Career</span>
-                        <h3 data-i18n="index_plan_career">Career & Allies</h3>
-                        <p data-i18n="index_plan_career_desc">For promotion, business growth, exams, authority, and helpful people.</p>
-                    </article>
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_wealth">Wealth</span>
-                        <h3 data-i18n="index_plan_wealth">Wealth & Retention</h3>
-                        <p data-i18n="index_plan_wealth_desc">For income stability, business flow, windfalls, and reducing leakage.</p>
-                    </article>
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_love">Love</span>
-                        <h3 data-i18n="index_plan_love">Love & Harmony</h3>
-                        <p data-i18n="index_plan_love_desc">For romance, social charm, emotional repair, and relationship harmony.</p>
-                    </article>
-                    <article class="plan-card">
-                        <span class="plan-tag" data-i18n="index_tag_protection">Protection</span>
-                        <h3 data-i18n="index_plan_protection">Safety & Protection</h3>
-                        <p data-i18n="index_plan_protection_desc">For peace, grounding, negative influence, and family stability.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="how-it-works">
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <h2 data-i18n="index_steps_title">How it works</h2>
-                    </div>
-                </div>
-
                 <div class="steps-grid">
                     <article class="step">
                         <div class="step-no">1</div>
-                        <h3 data-i18n="index_step_1_title">Choose your life focus</h3>
-                        <p data-i18n="index_step_1_desc">Pick the area you want support with — career, wealth, love, protection, or elemental balance.</p>
+                        <h3>Choose your life focus</h3>
+                        <p>Pick the area you want support with — career, wealth, love, protection, or elemental balance.</p>
                     </article>
                     <article class="step">
                         <div class="step-no">2</div>
-                        <h3 data-i18n="index_step_2_title">Choose a form — bracelet or pendant</h3>
-                        <p data-i18n="index_step_2_desc">The physical form is your choice. The material, color, and exact style come from your chart.</p>
+                        <h3>Choose a form</h3>
+                        <p>Bracelet or pendant. The material, color, and exact style come from your chart.</p>
                     </article>
                     <article class="step">
                         <div class="step-no">3</div>
-                        <h3 data-i18n="index_step_3_title">Submit your birth details &amp; pay</h3>
-                        <p data-i18n="index_step_3_desc">Birth date, time, and location. Your basic data report is available the moment payment completes.</p>
+                        <h3>Submit & pay</h3>
+                        <p>Birth date, time, and location. Your basic data report is available immediately after payment.</p>
                     </article>
                     <article class="step">
                         <div class="step-no">4</div>
-                        <h3 data-i18n="index_step_4_title">Get your reports, then we ship</h3>
-                        <p data-i18n="index_step_4_desc">Complete master-annotated report by email within 6 hours. We then match your jewelry, confirm with you, and ship worldwide.</p>
+                        <h3>Get reports, then we ship</h3>
+                        <p>Complete master-annotated report by email within 6 hours. We match your jewelry, confirm, and ship worldwide.</p>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TESTIMONIALS                                 -->
+        <!-- ═══════════════════════════════════════════ -->
         <section>
             <div class="container">
                 <div class="section-head">
-                    <div>
-                        <h2>Common questions</h2>
-                    </div>
-                </div>
-
-                <div class="faq-grid">
-                    <article class="faq-item">
-                        <h3 data-i18n="index_faq_q1">What if I don't know my birth time?</h3>
-                        <p data-i18n="index_faq_a1">Leave it blank. We use a day-based reading instead — still accurate enough to recommend the right direction. We'll note the limitation in your recommendation.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3 data-i18n="index_faq_q2">How do I know the reading is accurate?</h3>
-                        <p data-i18n="index_faq_a2">BaZi and Feng Shui have been used for over 1,000 years to map energy patterns. The instant preview shows you your Day Master and elemental balance — you can judge for yourself whether it resonates before ordering the full service.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3 data-i18n="index_faq_q3">What does the $199 pay for?</h3>
-                        <p data-i18n="index_faq_a3">The birth chart reading and the personalized matching to your situation. You pick the life focus and whether you prefer a bracelet or pendant. We decide the material and style after reading your chart. That matching work is the service.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3 data-i18n="index_faq_q4">Can I choose the exact stone or design?</h3>
-                        <p data-i18n="index_faq_a4">You choose the life focus and whether you prefer a bracelet or pendant. The material, color, and symbol are recommended after we review your birth chart — and we confirm the final direction with you before anything ships.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="container story-card" style="background: linear-gradient(135deg, rgba(49,82,71,0.06) 0%, rgba(183,138,66,0.08) 100%);">
-                <div>
-                    <div class="eyebrow" style="color: var(--pine);">New — Free Tool</div>
-                    <h2 style="font-size: clamp(28px, 4vw, 40px); line-height: 1.16; margin-bottom: 14px;">AI Dream Interpreter</h2>
-                    <p style="font-size: 17px; color: rgba(36,25,21,0.76); margin-bottom: 18px;">Describe your dream and get an instant interpretation rooted in Five Elements philosophy. Our AI reads the symbols in your dream through the lens of Eastern wisdom — uncovering hidden messages about your emotional state, life direction, and elemental balance.</p>
-                    <ul>
-                        <li>Instant AI dream interpretation — full Five Elements analysis with free account</li>
-                        <li>Five Elements analysis: understand which element your dream is calling attention to</li>
-                        <li>Save your dream history and track patterns over time (free account)</li>
-                        <li>Share your dream reading as a beautiful card</li>
-                    </ul>
-                </div>
-                <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-                    <p style="font-size: 15px; color: rgba(36,25,21,0.7); margin-bottom: 16px;">Curious what your dream means?</p>
-                    <a class="btn btn-primary" href="dream-interpretation.html">Try Dream Interpreter →</a>
-                    <p style="margin-top: 14px; font-size: 13px; color: rgba(36, 25, 21, 0.5);">Free preview · Full access with account</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <h2 data-i18n="index_testimonials_title">What our clients say</h2>
-                        <p data-i18n="index_testimonials_desc">Each reading is personal. Here are a few notes from people who ordered their chart-matched direction.</p>
-                    </div>
+                    <h2>What our clients say</h2>
                 </div>
                 <div class="testimonial-grid">
                     <div class="testimonial-card">
                         <div class="stars">★★★★★</div>
-                        <p class="body">"I was skeptical at first, but the reading described my career situation with surprising accuracy. The bracelet they recommended after reading my chart has become a daily reminder to stay focused. It arrived in about two weeks, beautifully packaged."</p>
+                        <p class="body">"I was skeptical at first, but the reading described my career situation with surprising accuracy. The bracelet they recommended after reading my chart has become a daily reminder to stay focused."</p>
                         <div class="author">Sarah M.</div>
                         <div class="detail">Career & Allies · United States</div>
                     </div>
                     <div class="testimonial-card">
                         <div class="stars">★★★★★</div>
-                        <p class="body">"What I appreciated most was that they confirmed the direction with me before shipping. It wasn't just 'here's your order' — they explained why they chose citrine and obsidian based on my chart. That personal touch made the difference."</p>
+                        <p class="body">"They confirmed the direction with me before shipping — explained why they chose citrine and obsidian based on my chart. That personal touch made the difference."</p>
                         <div class="author">David L.</div>
                         <div class="detail">Wealth & Retention · Canada</div>
                     </div>
                     <div class="testimonial-card">
                         <div class="stars">★★★★★</div>
-                        <p class="body">"I ordered for protection and grounding. The reading itself was worth the price — it named specific months and elements I should pay attention to. The pendant they matched to my chart is something I wear every day now."</p>
+                        <p class="body">"The reading itself was worth the price — it named specific months and elements I should pay attention to. The pendant they matched to my chart is something I wear every day now."</p>
                         <div class="author">Mei C.</div>
                         <div class="detail">Safety & Protection · Singapore</div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- BaZi & Feng Shui Knowledge Library — SEO de-orphaning       -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section style="background: linear-gradient(180deg, rgba(248,241,231,0.4), rgba(255,253,248,0.5)); border-top: 1px solid rgba(36,25,21,0.06);">
-            <div class="container" style="padding-top: 58px; padding-bottom: 48px;">
-                <div class="section-head">
-                    <div>
-                        <h2>BaZi &amp; Feng Shui Knowledge Library</h2>
-                        <p>Deep-dive reads written for English readers. Every pillar links to the rest — start anywhere.</p>
-                    </div>
-                </div>
-                <!-- BaZi Foundations -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">BaZi Foundations</h3>
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;">
-                    <a href="what-is-bazi-complete-guide.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">What is BaZi?</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">The complete 4-Pillar framework</span></a>
-                    <a href="how-to-read-bazi-chart.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">How to Read a BaZi Chart</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">Step-by-step for beginners</span></a>
-                    <a href="bazi-calculator-guide.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">BaZi Calculator Guide</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">How to use &amp; interpret results</span></a>
-                    <a href="ten-gods-in-bazi.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">Ten Gods in BaZi</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">10 character roles in your chart</span></a>
-                    <a href="bazi-compatibility-reading.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">BaZi Compatibility</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">How two charts interact</span></a>
-                    <a href="luck-cycles-da-yun.html" style="display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 6px 24px rgba(70,41,24,0.08)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:var(--ink);">Luck Cycles (Da Yun)</strong><br><span style="font-size:12px;color:rgba(36,25,21,0.55);">10-year luck pillars</span></a>
-                </div>
 
-                <!-- Quick reference -->
-                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px;">
-                    <a href="five-elements-explained.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Five Elements Explained</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wood, Fire, Earth, Metal, Water</span></a>
-                    <a href="birth-element-personality-career-guide.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Birth Element &amp; Career</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Personality &amp; career guide</span></a>
-                </div>
-
-                <!-- The Four Pillars -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">The Four Pillars</h3>
-                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">
-                    <a href="year-pillar-bazi.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Year Pillar</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Social &amp; ancestors</span></a>
-                    <a href="month-pillar-bazi.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Month Pillar</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Career &amp; parents</span></a>
-                    <a href="day-pillar-bazi.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Day Pillar</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Self &amp; spouse</span></a>
-                    <a href="hour-pillar-bazi.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Hour Pillar</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Children &amp; late life</span></a>
-                </div>
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;">
-                    <a href="li-chun-bazi-beginning-of-spring.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Li Chun &amp; Solar Year</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Why the solar term matters</span></a>
-                    <a href="month-pillar-vs-year-pillar.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">Month vs Year Pillar</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Which shapes you more</span></a>
-                    <a href="what-is-day-master.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;color:var(--ink);">What is Day Master?</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Your core self in BaZi</span></a>
-                </div>
-
-                <!-- Five Elements -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">Five Elements</h3>
-                <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;">
-                    <a href="wood-element-in-bazi.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f1f8e8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='#7a9e4b'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:#3d5a1e;">Wood</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Growth &amp; ethics</span></a>
-                    <a href="fire-element-in-bazi.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fef0ec 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:#a63a2c;">Fire</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Passion &amp; warmth</span></a>
-                    <a href="earth-element-in-bazi.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fbf3e3 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:#8b6914;">Earth</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Stability &amp; trust</span></a>
-                    <a href="metal-element-in-bazi.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f8f8f8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='#7f8c8d'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:#4a5568;">Metal</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Refinement &amp; justice</span></a>
-                    <a href="water-element-in-bazi.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #eef4fa 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='#3b6b9e'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;color:#2c5282;">Water</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wisdom &amp; flow</span></a>
-                </div>
-
-                <!-- Day Master Profiles -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">Day Master Profiles (10 Heavenly Stems)</h3>
-                <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;">
-                    <a href="jia-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f1f8e8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Jia (Yang Wood)</strong></a>
-                    <a href="yi-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f1f8e8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Yi (Yin Wood)</strong></a>
-                    <a href="bing-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fef0ec 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Bing (Yang Fire)</strong></a>
-                    <a href="ding-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fef0ec 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Ding (Yin Fire)</strong></a>
-                    <a href="wu-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fbf3e3 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Wu (Yang Earth)</strong></a>
-                    <a href="ji-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #fbf3e3 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Ji (Yin Earth)</strong></a>
-                    <a href="geng-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f8f8f8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Geng (Yang Metal)</strong></a>
-                    <a href="xin-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #f8f8f8 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Xin (Yin Metal)</strong></a>
-                    <a href="ren-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #eef4fa 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Ren (Yang Water)</strong></a>
-                    <a href="gui-day-master.html" style="display:block;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg, #eef4fa 0%, #fdfaf4 100%);text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Gui (Yin Water)</strong></a>
-                </div>
-
-                <!-- 12 Chinese Zodiac -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">12 Chinese Zodiac Signs</h3>
-                <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;">
-                    <a href="rat-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Rat</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Water</span></a>
-                    <a href="ox-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Ox</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Earth</span></a>
-                    <a href="tiger-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Tiger</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wood</span></a>
-                    <a href="rabbit-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Rabbit</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wood</span></a>
-                    <a href="dragon-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Dragon</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Earth</span></a>
-                    <a href="snake-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Snake</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Fire</span></a>
-                    <a href="horse-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Horse</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Fire</span></a>
-                    <a href="goat-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Goat</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Earth</span></a>
-                    <a href="monkey-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Monkey</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Metal</span></a>
-                    <a href="rooster-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Rooster</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Metal</span></a>
-                    <a href="dog-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Dog</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Earth</span></a>
-                    <a href="pig-zodiac-sign.html" style="display:block;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;text-align:center;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--gold)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:14px;">Pig</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Water</span></a>
-                </div>
-
-                <!-- Feng Shui Objects & Guides -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cinnabar); margin: 32px 0 14px; font-weight: 600;">Feng Shui Objects &amp; Guides</h3>
-                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;">
-                    <a href="feng-shui-pagoda-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Wen Chang Pagoda</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Study &amp; career focus</span></a>
-                    <a href="pixiu-feng-shui-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Pixiu Wealth Beast</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wealth attraction</span></a>
-                    <a href="money-frog-feng-shui.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Money Frog</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Wealth retention</span></a>
-                    <a href="dragon-turtle-feng-shui-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Dragon Turtle</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Career &amp; protection</span></a>
-                    <a href="bagua-mirror-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Bagua Mirror</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Sha Qi deflection</span></a>
-                    <a href="amethyst-feng-shui-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Amethyst Crystal</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Calm &amp; meditation</span></a>
-                    <a href="feng-shui-crystal-ball-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Crystal Ball</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Energy amplification</span></a>
-                    <a href="feng-shui-salt-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Feng Shui Salt</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Purification ritual</span></a>
-                    <a href="laughing-buddha-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Laughing Buddha</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Happiness &amp; harmony</span></a>
-                    <a href="lucky-bamboo-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Lucky Bamboo</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Growth &amp; resilience</span></a>
-                    <a href="feng-shui-bracelet-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Feng Shui Bracelet</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Daily energy alignment</span></a>
-                    <a href="feng-shui-mantra-bracelet-meaning.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Mantra Bracelet</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Sacred sound protection</span></a>
-                </div>
-
-                <!-- NEW: Feng Shui Guides (2026-07-06) -->
-                <h3 style="font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pine); margin: 32px 0 14px; font-weight: 600;">Feng Shui Placement Guides</h3>
-                <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;">
-                    <a href="feng-shui-mirror-placement.html" style="display:block;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--pine)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Mirror Placement</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Where to hang, what to avoid</span></a>
-                    <a href="feng-shui-bedroom-layout.html" style="display:block;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--pine)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Bedroom Layout</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Element-based sleep design</span></a>
-                    <a href="feng-shui-wealth-corner.html" style="display:block;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--pine)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Wealth Corner</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Find &amp; activate money area</span></a>
-                    <a href="feng-shui-front-door-color.html" style="display:block;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--pine)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Front Door Color</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Direction-based colors</span></a>
-                    <a href="feng-shui-desk-placement.html" style="display:block;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%);transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--pine)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Desk Placement</strong><br><span style="font-size:11px;color:rgba(36,25,21,0.5);">Command position for career</span></a>
-                </div>
-
-                <!-- Bottom row -->
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;">
-                    <a href="do-feng-shui-bracelets-really-work.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Do Feng Shui Bracelets Work?</strong></a>
-                    <a href="five-elements-explained-mega.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">Five Elements Mega Guide</strong></a>
-                    <a href="bazi-reading-vs-zodiac.html" style="display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fdfaf4;transition: all 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.boxShadow='0 4px 16px rgba(70,41,24,0.06)';this.style.borderColor='var(--cinnabar)'" onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(36,25,21,0.1)'">
-                        <strong style="font-size:13px;">BaZi vs Western Zodiac</strong></a>
-                </div>
-
-                <p style="text-align:center;margin-top:36px;font-size:13px;color:rgba(36,25,21,0.45);">All articles written for English-speaking readers. Each page links to related pages. Follow the thread.</p>
-            </div>
-        </section>
-
-        <!-- $29 vs $199 comparison -->
-        <section>
-            <div class="container">
-                <div class="section-head">
-                    <div>
-                        <h2>Start with a report. Upgrade to a treasure.</h2>
-                        <p>Two ways to go deeper. The instant report gives you the full chart reading. The matched service adds a handcrafted Daoist treasure confirmed to your chart.</p>
-                    </div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto 40px;">
-                    <article class="plan-card" style="border-top:3px solid var(--gold);text-align:center;">
-                        <span class="plan-tag" style="background:rgba(183,138,66,0.1);color:var(--gold);">Digital Report</span>
-                        <h3>$29 Instant Report</h3>
-                        <p style="font-size:14px;color:rgba(36,25,21,0.7);">Complete chart reading — Four Pillars, Day Master, element balance, life focus, support direction, and treasure type recommendation.</p>
-                        <ul style="list-style:none;font-size:13px;color:rgba(36,25,21,0.6);text-align:left;padding:0;margin:16px 0;">
-                            <li style="padding:4px 0;">Instant digital delivery</li>
-                            <li style="padding:4px 0;">Auto-generated from your chart</li>
-                            <li style="padding:4px 0;">Gives direction & element guidance</li>
-                            <li style="padding:4px 0;">Recommends treasure type</li>
-                            <li style="padding:4px 0;color:rgba(36,25,21,0.35);">No physical item shipped</li>
-                        </ul>
-                        <a href="instant_reading.html" class="btn btn-secondary" style="display:inline-block;padding:10px 24px;font-size:13px;">Start Free Preview →</a>
-                    </article>
-                    <article class="plan-card" style="border-top:3px solid var(--cinnabar);text-align:center;">
-                        <span class="plan-tag" style="background:rgba(166,58,44,0.08);color:var(--cinnabar);">Report + Treasure</span>
-                        <h3>$199 Matched Service</h3>
-                        <p style="font-size:14px;color:rgba(36,25,21,0.7);">Digital reading + physical treasure matched to your chart. Human confirmation, product selection, and worldwide shipping with tracking.</p>
-                        <ul style="list-style:none;font-size:13px;color:rgba(36,25,21,0.6);text-align:left;padding:0;margin:16px 0;">
-                            <li style="padding:4px 0;">Human matching confirmation</li>
-                            <li style="padding:4px 0;">Specific product recommendation</li>
-                            <li style="padding:4px 0;">Confirmation before shipping</li>
-                            <li style="padding:4px 0;">Worldwide delivery with tracking</li>
-                            <li style="padding:4px 0;">$29 report credit available</li>
-                        </ul>
-                        <a href="checkout.html" class="btn btn-primary" style="display:inline-block;padding:10px 24px;font-size:13px;">Order Matched Treasure →</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- CLOSING CTA                                  -->
+        <!-- ═══════════════════════════════════════════ -->
         <section>
             <div class="container">
                 <div class="closing-card">
@@ -1101,80 +636,19 @@
     </main>
 
     <footer>
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.08); padding: 30px 0 8px; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;" data-i18n="footer_bazi_knowledge">BaZi Knowledge</div>
-            <a href="birth-element-personality-career-guide.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_birth_element">Birth Element Guide</a> ·
-            <a href="what-is-day-master.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_what_is_day_master">What is Day Master</a> ·
-            <a href="five-elements-explained.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_five_elements">Five Elements</a> ·
-            <a href="bazi-reading-vs-zodiac.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_bazi_vs_zodiac">BaZi vs Zodiac</a>
+        <div class="container footer-bar">
+            <div>
+                © 2026 Oriental Destiny ·
+                <a href="knowledge.html">Knowledge Library</a> ·
+                <a href="policies.html#shipping">Shipping</a> ·
+                <a href="policies.html#refund">Refund</a> ·
+                <a href="policies.html#privacy">Privacy</a> ·
+                <a href="mailto:434338480@qq.com">Contact</a>
+            </div>
+            <span style="opacity:0.45;font-size:11px;">v2.1.0</span>
         </div>
-
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.06); padding: 18px 0 0; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;">Day Master Series</div>
-            <a href="jia-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Jia Wood Day Master">Jia</a> ·
-            <a href="yi-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Yi Wood">Yi</a> ·
-            <a href="bing-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Bing Fire">Bing</a> ·
-            <a href="ding-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Ding Fire">Ding</a> ·
-            <a href="wu-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Wu Earth">Wu</a> ·
-            <a href="ji-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Ji Earth">Ji</a> ·
-            <a href="geng-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Geng Metal">Geng</a> ·
-            <a href="xin-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Xin Metal">Xin</a> ·
-            <a href="ren-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Ren Water">Ren</a> ·
-            <a href="gui-day-master.html" style="color: var(--cinnabar); margin: 0 6px;" title="Gui Water">Gui</a>
-        </div>
-
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.06); padding: 14px 0 0; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;">Chinese Zodiac</div>
-            <a href="rat-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Rat</a> ·
-            <a href="ox-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Ox</a> ·
-            <a href="tiger-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Tiger</a> ·
-            <a href="rabbit-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Rabbit</a> ·
-            <a href="dragon-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Dragon</a> ·
-            <a href="snake-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Snake</a> ·
-            <a href="horse-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Horse</a> ·
-            <a href="goat-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Goat</a> ·
-            <a href="monkey-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Monkey</a> ·
-            <a href="rooster-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Rooster</a> ·
-            <a href="dog-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Dog</a> ·
-            <a href="pig-zodiac-sign.html" style="color: var(--cinnabar); margin: 0 6px;">Pig</a>
-        </div>
-
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.06); padding: 14px 0 0; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;">Feng Shui Objects</div>
-            <a href="feng-shui-pagoda-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Pagoda</a> ·
-            <a href="pixiu-feng-shui-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Pixiu</a> ·
-            <a href="money-frog-feng-shui.html" style="color: var(--cinnabar); margin: 0 8px;">Money Frog</a> ·
-            <a href="dragon-turtle-feng-shui-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Dragon Turtle</a> ·
-            <a href="amethyst-feng-shui-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Amethyst</a> ·
-            <a href="laughing-buddha-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Laughing Buddha</a> ·
-            <a href="lucky-bamboo-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Lucky Bamboo</a> ·
-            <a href="bagua-mirror-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Bagua Mirror</a> ·
-            <a href="feng-shui-crystal-ball-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Crystal Ball</a> ·
-            <a href="feng-shui-salt-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Feng Shui Salt</a> ·
-            <a href="feng-shui-bracelet-meaning.html" style="color: var(--cinnabar); margin: 0 8px;">Bracelet</a>
-        </div>
-
-        <div class="container" style="border-top: 1px solid rgba(36, 25, 21, 0.06); padding: 18px 0 0; font-size: 13px; color: rgba(36, 25, 21, 0.7); text-align: center;">
-            <div style="font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; font-size: 12px; text-transform: uppercase;" data-i18n="footer_tools">Tools & Reading</div>
-            <a href="bazi-guide.html" style="color: var(--cinnabar); margin: 0 8px; font-weight: 600;">BaZi Guide</a> ·
-            <a href="element-calculator.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_element_calc">Birth Element Calculator</a> ·
-            <a href="kua_calculator.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_kua_calculator">Kua Calculator</a> ·
-            <a href="full_bazi_reading.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="footer_full_bazi_layer">Full BaZi Layer</a> ·
-            <a href="daoist-treasures.html" style="color: var(--cinnabar); margin: 0 8px;">Daoist Treasures</a> ·
-            <a href="report_demo.html" style="color: var(--cinnabar); margin: 0 8px;" data-i18n="nav_sample_report">Sample Report</a>
-        </div>
-        <div class="container" style="padding: 14px 0 6px; font-size: 12px; color: rgba(36, 25, 21, 0.55); text-align: center;">
-            <a href="policies.html#shipping" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_shipping">Shipping</a> ·
-            <a href="policies.html#refund" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_refund">Refund</a> ·
-            <a href="policies.html#privacy" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_privacy">Privacy</a> ·
-            <a href="mailto:434338480@qq.com" style="color: rgba(36, 25, 21, 0.7); margin: 0 6px;" data-i18n="footer_contact">Contact</a>
-        </div>
-        <div class="container footer-card">
-            <div data-i18n="footer_copyright">© 2026 Oriental Destiny. Personalized Feng Shui readings with birth chart matching and confirmed symbolic directions.</div>
-            <div data-i18n="footer_disclaimer">For self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice. Results reflect traditional cultural frameworks, not guaranteed outcomes.</div>
-        </div>
-            <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </footer>
+
     <script defer src="config.real.js"></script>
     <script defer src="config.js"></script>
     <script defer src="auth.js"></script>
@@ -1182,8 +656,6 @@
     <script defer src="bazi_translator.js"></script>
     <script defer src="version.js"></script>
     <script>
-    <script>
-    // Auth-aware nav — defers until DOM ready, safe if Auth missing
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof Auth === 'undefined') return;
         Auth.init().then(function() {

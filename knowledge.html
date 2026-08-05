@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete BaZi and Feng Shui knowledge library — Day Master profiles, Five Elements, Four Pillars, Chinese Zodiac, Feng Shui objects and placement guides. Everything in one place.">
+    <link rel="canonical" href="https://oriental-destiny.com/knowledge.html">
+    <meta property="og:title" content="BaZi & Feng Shui Knowledge Library | Oriental Destiny">
+    <meta property="og:description" content="Complete BaZi and Feng Shui knowledge library — Day Master profiles, Five Elements, Four Pillars, Chinese Zodiac, Feng Shui objects and placement guides.">
+    <meta property="og:type" content="website">
+    <title>BaZi & Feng Shui Knowledge Library | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap');
+        :root {
+            --ink: #1a1410;
+            --paper: #faf7f1;
+            --cinnabar: #b5342a;
+            --gold: #c9a24e;
+            --pine: #315247;
+            --line: rgba(26, 20, 16, 0.1);
+            --shadow: 0 12px 40px rgba(26, 20, 16, 0.10);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Serif SC', Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, #f7f2e9 0%, var(--paper) 50%, #f5efe6 100%);
+            line-height: 1.82;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* ── Header ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.88);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .brand-mark {
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+        }
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.78);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+        .page-header h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.12;
+            margin-bottom: 14px;
+        }
+        .page-header p {
+            color: rgba(36, 25, 21, 0.7);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* ── Section titles ── */
+        .kb-section { padding: 0 0 48px; }
+        .kb-section h2 {
+            font-size: 17px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+        .kb-section h2.wood { color: #3d5a1e; }
+        .kb-section h2.fire { color: #a63a2c; }
+        .kb-section h2.earth { color: #8b6914; }
+        .kb-section h2.metal { color: #4a5568; }
+        .kb-section h2.water { color: #2c5282; }
+        .kb-section h2.pine { color: var(--pine); }
+        .kb-section h2.cinnabar { color: var(--cinnabar); }
+        .kb-section h2.gold { color: var(--gold); }
+
+        /* ── Link cards ── */
+        .link-grid {
+            display: grid;
+            gap: 10px;
+        }
+        .link-grid.col2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .link-grid.col3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .link-grid.col4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .link-grid.col5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        .link-grid.col6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+        .link-card {
+            display: block;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%);
+            transition: all 0.2s ease;
+        }
+        .link-card:hover {
+            box-shadow: 0 6px 24px rgba(70, 41, 24, 0.08);
+            border-color: var(--gold);
+        }
+        .link-card strong {
+            font-size: 14px;
+            color: var(--ink);
+            display: block;
+        }
+        .link-card span {
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.55);
+        }
+        .link-card.center { text-align: center; padding: 12px 10px; }
+
+        /* Element-specific card tints */
+        .link-card.wood { background: linear-gradient(180deg, #f1f8e8 0%, #fdfaf4 100%); }
+        .link-card.wood:hover { border-color: #7a9e4b; }
+        .link-card.fire { background: linear-gradient(180deg, #fef0ec 0%, #fdfaf4 100%); }
+        .link-card.fire:hover { border-color: var(--cinnabar); }
+        .link-card.earth { background: linear-gradient(180deg, #fbf3e3 0%, #fdfaf4 100%); }
+        .link-card.earth:hover { border-color: var(--gold); }
+        .link-card.metal { background: linear-gradient(180deg, #f8f8f8 0%, #fdfaf4 100%); }
+        .link-card.metal:hover { border-color: #7f8c8d; }
+        .link-card.water { background: linear-gradient(180deg, #eef4fa 0%, #fdfaf4 100%); }
+        .link-card.water:hover { border-color: #3b6b9e; }
+        .link-card.fengshui { background: linear-gradient(135deg, #fff8ef 0%, #fdf6eb 100%); }
+        .link-card.fengshui:hover { border-color: var(--cinnabar); }
+        .link-card.green { background: linear-gradient(135deg, #f8fef8 0%, #fdfaf4 100%); }
+        .link-card.green:hover { border-color: var(--pine); }
+
+        /* ── FAQ ── */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .faq-item {
+            border-radius: 24px;
+            padding: 26px;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+        }
+        .faq-item h3 { font-size: 20px; margin-bottom: 10px; }
+        .faq-item p { color: rgba(36, 25, 21, 0.7); }
+
+        /* ── Footer ── */
+        footer { padding: 0 0 42px; }
+        .footer-bar {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            color: rgba(36, 25, 21, 0.55);
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+        .footer-bar a { color: rgba(36, 25, 21, 0.65); margin: 0 6px; }
+        .footer-bar a:hover { color: var(--cinnabar); }
+
+        .footer-section {
+            border-top: 1px solid rgba(36, 25, 21, 0.06);
+            padding: 18px 0 0;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.7);
+            text-align: center;
+        }
+        .footer-section h4 {
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 10px;
+            letter-spacing: 0.04em;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .footer-section a { color: var(--cinnabar); margin: 0 8px; }
+        .footer-section a:hover { opacity: 0.75; }
+
+        @media (max-width: 980px) {
+            .link-grid.col5, .link-grid.col4, .link-grid.col3, .link-grid.col6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 720px) {
+            .topbar-inner, .footer-bar { flex-direction: column; align-items: flex-start; }
+            .nav { gap: 12px; }
+            .link-grid.col2, .link-grid.col3, .link-grid.col4, .link-grid.col5, .link-grid.col6 { grid-template-columns: 1fr; }
+            .page-header { padding: 40px 0 30px; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "BaZi & Feng Shui Knowledge Library",
+      "description": "Complete BaZi and Feng Shui knowledge library — Day Master profiles, Five Elements, Four Pillars, Chinese Zodiac, Feng Shui objects and placement guides.",
+      "url": "https://oriental-destiny.com/knowledge.html",
+      "isPartOf": {"@id": "https://oriental-destiny.com/#website"}
+    }
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Knowledge Library</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="products.html">Plans</a>
+                <a href="checkout.html">Order</a>
+                <a href="dream-interpretation.html">Dreams</a>
+                <a href="login.html" id="navSignIn" style="font-size:13px;color:rgba(36,25,21,0.7);">Sign In</a>
+                <a href="dashboard.html" id="navDashboard" style="display:none;font-size:13px;color:var(--cinnabar);font-weight:600;">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>BaZi & Feng Shui Knowledge Library</h1>
+            <p>Deep-dive reads written for English readers. Every pillar links to the rest — start anywhere, follow the thread.</p>
+        </div>
+
+        <!-- BaZi Foundations -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="pine">BaZi Foundations</h2>
+                <div class="link-grid col3">
+                    <a href="what-is-bazi-complete-guide.html" class="link-card">
+                        <strong>What is BaZi?</strong><span>The complete 4-Pillar framework</span></a>
+                    <a href="how-to-read-bazi-chart.html" class="link-card">
+                        <strong>How to Read a BaZi Chart</strong><span>Step-by-step for beginners</span></a>
+                    <a href="bazi-calculator-guide.html" class="link-card">
+                        <strong>BaZi Calculator Guide</strong><span>How to use & interpret results</span></a>
+                    <a href="ten-gods-in-bazi.html" class="link-card">
+                        <strong>Ten Gods in BaZi</strong><span>10 character roles in your chart</span></a>
+                    <a href="bazi-compatibility-reading.html" class="link-card">
+                        <strong>BaZi Compatibility</strong><span>How two charts interact</span></a>
+                    <a href="luck-cycles-da-yun.html" class="link-card">
+                        <strong>Luck Cycles (Da Yun)</strong><span>10-year luck pillars</span></a>
+                </div>
+                <div class="link-grid col2" style="margin-top:10px;">
+                    <a href="five-elements-explained.html" class="link-card">
+                        <strong>Five Elements Explained</strong><span>Wood, Fire, Earth, Metal, Water</span></a>
+                    <a href="birth-element-personality-career-guide.html" class="link-card">
+                        <strong>Birth Element & Career</strong><span>Personality & career guide</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Four Pillars -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="gold">The Four Pillars</h2>
+                <div class="link-grid col4">
+                    <a href="year-pillar-bazi.html" class="link-card center">
+                        <strong>Year Pillar</strong><span>Social & ancestors</span></a>
+                    <a href="month-pillar-bazi.html" class="link-card center">
+                        <strong>Month Pillar</strong><span>Career & parents</span></a>
+                    <a href="day-pillar-bazi.html" class="link-card center">
+                        <strong>Day Pillar</strong><span>Self & spouse</span></a>
+                    <a href="hour-pillar-bazi.html" class="link-card center">
+                        <strong>Hour Pillar</strong><span>Children & late life</span></a>
+                </div>
+                <div class="link-grid col3" style="margin-top:10px;">
+                    <a href="li-chun-bazi-beginning-of-spring.html" class="link-card center">
+                        <strong>Li Chun & Solar Year</strong><span>Why the solar term matters</span></a>
+                    <a href="month-pillar-vs-year-pillar.html" class="link-card center">
+                        <strong>Month vs Year Pillar</strong><span>Which shapes you more</span></a>
+                    <a href="what-is-day-master.html" class="link-card center">
+                        <strong>What is Day Master?</strong><span>Your core self in BaZi</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Five Elements -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="gold">Five Elements</h2>
+                <div class="link-grid col5">
+                    <a href="wood-element-in-bazi.html" class="link-card wood center">
+                        <strong>Wood</strong><span>Growth & ethics</span></a>
+                    <a href="fire-element-in-bazi.html" class="link-card fire center">
+                        <strong>Fire</strong><span>Passion & warmth</span></a>
+                    <a href="earth-element-in-bazi.html" class="link-card earth center">
+                        <strong>Earth</strong><span>Stability & trust</span></a>
+                    <a href="metal-element-in-bazi.html" class="link-card metal center">
+                        <strong>Metal</strong><span>Refinement & justice</span></a>
+                    <a href="water-element-in-bazi.html" class="link-card water center">
+                        <strong>Water</strong><span>Wisdom & flow</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day Master Profiles -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="gold">Day Master Profiles — 10 Heavenly Stems</h2>
+                <div class="link-grid col5">
+                    <a href="jia-day-master.html" class="link-card wood center"><strong>Jia</strong><span>Yang Wood</span></a>
+                    <a href="yi-day-master.html" class="link-card wood center"><strong>Yi</strong><span>Yin Wood</span></a>
+                    <a href="bing-day-master.html" class="link-card fire center"><strong>Bing</strong><span>Yang Fire</span></a>
+                    <a href="ding-day-master.html" class="link-card fire center"><strong>Ding</strong><span>Yin Fire</span></a>
+                    <a href="wu-day-master.html" class="link-card earth center"><strong>Wu</strong><span>Yang Earth</span></a>
+                    <a href="ji-day-master.html" class="link-card earth center"><strong>Ji</strong><span>Yin Earth</span></a>
+                    <a href="geng-day-master.html" class="link-card metal center"><strong>Geng</strong><span>Yang Metal</span></a>
+                    <a href="xin-day-master.html" class="link-card metal center"><strong>Xin</strong><span>Yin Metal</span></a>
+                    <a href="ren-day-master.html" class="link-card water center"><strong>Ren</strong><span>Yang Water</span></a>
+                    <a href="gui-day-master.html" class="link-card water center"><strong>Gui</strong><span>Yin Water</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12 Chinese Zodiac -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="pine">12 Chinese Zodiac Signs</h2>
+                <div class="link-grid col6">
+                    <a href="rat-zodiac-sign.html" class="link-card center"><strong>Rat</strong><span>Water</span></a>
+                    <a href="ox-zodiac-sign.html" class="link-card center"><strong>Ox</strong><span>Earth</span></a>
+                    <a href="tiger-zodiac-sign.html" class="link-card center"><strong>Tiger</strong><span>Wood</span></a>
+                    <a href="rabbit-zodiac-sign.html" class="link-card center"><strong>Rabbit</strong><span>Wood</span></a>
+                    <a href="dragon-zodiac-sign.html" class="link-card center"><strong>Dragon</strong><span>Earth</span></a>
+                    <a href="snake-zodiac-sign.html" class="link-card center"><strong>Snake</strong><span>Fire</span></a>
+                    <a href="horse-zodiac-sign.html" class="link-card center"><strong>Horse</strong><span>Fire</span></a>
+                    <a href="goat-zodiac-sign.html" class="link-card center"><strong>Goat</strong><span>Earth</span></a>
+                    <a href="monkey-zodiac-sign.html" class="link-card center"><strong>Monkey</strong><span>Metal</span></a>
+                    <a href="rooster-zodiac-sign.html" class="link-card center"><strong>Rooster</strong><span>Metal</span></a>
+                    <a href="dog-zodiac-sign.html" class="link-card center"><strong>Dog</strong><span>Earth</span></a>
+                    <a href="pig-zodiac-sign.html" class="link-card center"><strong>Pig</strong><span>Water</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feng Shui Objects -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="cinnabar">Feng Shui Objects & Guides</h2>
+                <div class="link-grid col4">
+                    <a href="feng-shui-pagoda-meaning.html" class="link-card fengshui">
+                        <strong>Wen Chang Pagoda</strong><span>Study & career focus</span></a>
+                    <a href="pixiu-feng-shui-meaning.html" class="link-card fengshui">
+                        <strong>Pixiu Wealth Beast</strong><span>Wealth attraction</span></a>
+                    <a href="money-frog-feng-shui.html" class="link-card fengshui">
+                        <strong>Money Frog</strong><span>Wealth retention</span></a>
+                    <a href="dragon-turtle-feng-shui-meaning.html" class="link-card fengshui">
+                        <strong>Dragon Turtle</strong><span>Career & protection</span></a>
+                    <a href="bagua-mirror-meaning.html" class="link-card fengshui">
+                        <strong>Bagua Mirror</strong><span>Sha Qi deflection</span></a>
+                    <a href="amethyst-feng-shui-meaning.html" class="link-card fengshui">
+                        <strong>Amethyst Crystal</strong><span>Calm & meditation</span></a>
+                    <a href="feng-shui-crystal-ball-meaning.html" class="link-card fengshui">
+                        <strong>Crystal Ball</strong><span>Energy amplification</span></a>
+                    <a href="feng-shui-salt-meaning.html" class="link-card fengshui">
+                        <strong>Feng Shui Salt</strong><span>Purification ritual</span></a>
+                    <a href="laughing-buddha-meaning.html" class="link-card fengshui">
+                        <strong>Laughing Buddha</strong><span>Happiness & harmony</span></a>
+                    <a href="lucky-bamboo-meaning.html" class="link-card fengshui">
+                        <strong>Lucky Bamboo</strong><span>Growth & resilience</span></a>
+                    <a href="feng-shui-bracelet-meaning.html" class="link-card fengshui">
+                        <strong>Feng Shui Bracelet</strong><span>Daily energy alignment</span></a>
+                    <a href="feng-shui-mantra-bracelet-meaning.html" class="link-card fengshui">
+                        <strong>Mantra Bracelet</strong><span>Sacred sound protection</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feng Shui Placement Guides -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="pine">Feng Shui Placement Guides</h2>
+                <div class="link-grid col5">
+                    <a href="feng-shui-mirror-placement.html" class="link-card green center">
+                        <strong>Mirror Placement</strong><span>Where to hang, what to avoid</span></a>
+                    <a href="feng-shui-bedroom-layout.html" class="link-card green center">
+                        <strong>Bedroom Layout</strong><span>Element-based sleep design</span></a>
+                    <a href="feng-shui-wealth-corner.html" class="link-card green center">
+                        <strong>Wealth Corner</strong><span>Find & activate money area</span></a>
+                    <a href="feng-shui-front-door-color.html" class="link-card green center">
+                        <strong>Front Door Color</strong><span>Direction-based colors</span></a>
+                    <a href="feng-shui-desk-placement.html" class="link-card green center">
+                        <strong>Desk Placement</strong><span>Command position for career</span></a>
+                </div>
+                <div class="link-grid col3" style="margin-top:10px;">
+                    <a href="do-feng-shui-bracelets-really-work.html" class="link-card center">
+                        <strong>Do Feng Shui Bracelets Work?</strong></a>
+                    <a href="five-elements-explained-mega.html" class="link-card center">
+                        <strong>Five Elements Mega Guide</strong></a>
+                    <a href="bazi-reading-vs-zodiac.html" class="link-card center">
+                        <strong>BaZi vs Western Zodiac</strong></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="kb-section">
+            <div class="container">
+                <h2 class="gold">Common Questions</h2>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>What if I don't know my birth time?</h3>
+                        <p>Leave it blank. We use a day-based reading instead — still accurate enough to recommend the right direction. We'll note the limitation in your recommendation.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>How do I know the reading is accurate?</h3>
+                        <p>BaZi and Feng Shui have been used for over 1,000 years to map energy patterns. The instant preview shows you your Day Master and elemental balance — you can judge for yourself whether it resonates before ordering the full service.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>What does the $199 pay for?</h3>
+                        <p>The birth chart reading and the personalized matching to your situation. You pick the life focus and whether you prefer a bracelet or pendant. We decide the material and style after reading your chart. That matching work is the service.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Can I choose the exact stone or design?</h3>
+                        <p>You choose the life focus and whether you prefer a bracelet or pendant. The material, color, and symbol are recommended after we review your birth chart — and we confirm the final direction with you before anything ships.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Quick-reference footer links for SEO crawl paths -->
+        <div class="container footer-section">
+            <h4>BaZi Knowledge</h4>
+            <a href="birth-element-personality-career-guide.html">Birth Element Guide</a> ·
+            <a href="what-is-day-master.html">What is Day Master</a> ·
+            <a href="five-elements-explained.html">Five Elements</a> ·
+            <a href="bazi-reading-vs-zodiac.html">BaZi vs Zodiac</a>
+        </div>
+        <div class="container footer-section">
+            <h4>Day Master Series</h4>
+            <a href="jia-day-master.html" title="Jia Wood Day Master">Jia</a> ·
+            <a href="yi-day-master.html" title="Yi Wood">Yi</a> ·
+            <a href="bing-day-master.html" title="Bing Fire">Bing</a> ·
+            <a href="ding-day-master.html" title="Ding Fire">Ding</a> ·
+            <a href="wu-day-master.html" title="Wu Earth">Wu</a> ·
+            <a href="ji-day-master.html" title="Ji Earth">Ji</a> ·
+            <a href="geng-day-master.html" title="Geng Metal">Geng</a> ·
+            <a href="xin-day-master.html" title="Xin Metal">Xin</a> ·
+            <a href="ren-day-master.html" title="Ren Water">Ren</a> ·
+            <a href="gui-day-master.html" title="Gui Water">Gui</a>
+        </div>
+        <div class="container footer-section">
+            <h4>Chinese Zodiac</h4>
+            <a href="rat-zodiac-sign.html">Rat</a> · <a href="ox-zodiac-sign.html">Ox</a> ·
+            <a href="tiger-zodiac-sign.html">Tiger</a> · <a href="rabbit-zodiac-sign.html">Rabbit</a> ·
+            <a href="dragon-zodiac-sign.html">Dragon</a> · <a href="snake-zodiac-sign.html">Snake</a> ·
+            <a href="horse-zodiac-sign.html">Horse</a> · <a href="goat-zodiac-sign.html">Goat</a> ·
+            <a href="monkey-zodiac-sign.html">Monkey</a> · <a href="rooster-zodiac-sign.html">Rooster</a> ·
+            <a href="dog-zodiac-sign.html">Dog</a> · <a href="pig-zodiac-sign.html">Pig</a>
+        </div>
+        <div class="container footer-section">
+            <h4>Feng Shui Objects</h4>
+            <a href="feng-shui-pagoda-meaning.html">Pagoda</a> ·
+            <a href="pixiu-feng-shui-meaning.html">Pixiu</a> ·
+            <a href="money-frog-feng-shui.html">Money Frog</a> ·
+            <a href="dragon-turtle-feng-shui-meaning.html">Dragon Turtle</a> ·
+            <a href="amethyst-feng-shui-meaning.html">Amethyst</a> ·
+            <a href="laughing-buddha-meaning.html">Laughing Buddha</a> ·
+            <a href="lucky-bamboo-meaning.html">Lucky Bamboo</a> ·
+            <a href="bagua-mirror-meaning.html">Bagua Mirror</a> ·
+            <a href="feng-shui-crystal-ball-meaning.html">Crystal Ball</a> ·
+            <a href="feng-shui-salt-meaning.html">Feng Shui Salt</a> ·
+            <a href="feng-shui-bracelet-meaning.html">Bracelet</a>
+        </div>
+        <div class="container footer-section">
+            <h4>Tools & Reading</h4>
+            <a href="bazi-guide.html" style="font-weight:600;">BaZi Guide</a> ·
+            <a href="element-calculator.html">Birth Element Calculator</a> ·
+            <a href="kua_calculator.html">Kua Calculator</a> ·
+            <a href="full_bazi_reading.html">Full BaZi Layer</a> ·
+            <a href="daoist-treasures.html">Daoist Treasures</a> ·
+            <a href="report_demo.html">Sample Report</a>
+        </div>
+
+        <div class="container footer-bar">
+            <div>
+                © 2026 Oriental Destiny ·
+                <a href="index.html">Home</a> ·
+                <a href="policies.html#shipping">Shipping</a> ·
+                <a href="policies.html#refund">Refund</a> ·
+                <a href="policies.html#privacy">Privacy</a> ·
+                <a href="mailto:434338480@qq.com">Contact</a>
+            </div>
+            <span style="opacity:0.45;font-size:11px;">v2.1.0</span>
+        </div>
+    </footer>
+
+    <script defer src="config.real.js"></script>
+    <script defer src="config.js"></script>
+    <script defer src="auth.js"></script>
+    <script defer src="version.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof Auth === 'undefined') return;
+        Auth.init().then(function() {
+            var el = document.getElementById('navSignIn');
+            if (el) el.style.display = Auth.currentUser ? 'none' : '';
+            el = document.getElementById('navDashboard');
+            if (el) el.style.display = Auth.currentUser ? '' : 'none';
+        });
+        Auth.onAuthChange(function(user) {
+            var el = document.getElementById('navSignIn');
+            if (el) el.style.display = user ? 'none' : '';
+            el = document.getElementById('navDashboard');
+            if (el) el.style.display = user ? '' : 'none';
+        });
+    });
+    </script>
+</body>
+</html>

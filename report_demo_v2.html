@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>天命书 · BaZi Report v2 — Live Demo | Oriental Destiny</title>
+<title>Destiny Scroll · BaZi Report v2 — Live Demo | Oriental Destiny</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
@@ -241,7 +241,7 @@ body {
   font-family: 'Noto Sans SC', sans-serif;
 }
 
-/* ── 天机 scrolls ── */
+/* ── Secrets scrolls ── */
 .tianji-scroll {
   background: linear-gradient(160deg, #fdfaf3 0%, #f7f1e2 100%);
   border: 1px solid var(--gold-light); border-left: 4px solid var(--gold);
@@ -336,28 +336,28 @@ footer {
 
   <!-- Hero -->
   <div class="hero">
-    <h1>天命书 · <span class="em">八字命理</span>解读</h1>
-    <p class="sub">七层古典子平法引擎 + AI 直击灵魂解读 · 输入生辰，即刻出命书</p>
+    <h1>Destiny Scroll · <span class="em">BaZi Chart</span> Reading</h1>
+    <p class="sub">7-Layer Classical Zi Ping Engine + AI Soul-Deep Reading · Enter your birth details, receive your destiny scroll</p>
   </div>
 
   <!-- Form -->
   <div class="form-card" id="inputForm">
     <div class="form-row">
-      <div class="field"><label>出生日期 Birth Date</label><input type="date" id="birthDate" value="1990-05-15"></div>
-      <div class="field"><label>出生时辰 Birth Time</label><input type="time" id="birthTime" value="14:30"></div>
+      <div class="field"><label>Birth Date</label><input type="date" id="birthDate" value="1990-05-15"></div>
+      <div class="field"><label>Birth Time</label><input type="time" id="birthTime" value="14:30"></div>
     </div>
     <div class="form-row">
-      <div class="field"><label>出生城市 Birth City</label><input type="text" id="birthLocation" value="Beijing" placeholder="如：上海、香港、台北"></div>
-      <div class="field"><label>性别 Gender</label><select id="gender"><option value="male">男 Male</option><option value="female">女 Female</option></select></div>
-      <div class="field"><label>关注领域 Focus</label><select id="focus">
-        <option value="balance">综合平衡</option>
-        <option value="career">事业方向</option>
-        <option value="wealth">财运资源</option>
-        <option value="love">情感关系</option>
-        <option value="protection">护身安康</option>
+      <div class="field"><label>Birth City</label><input type="text" id="birthLocation" value="Beijing" placeholder="e.g. Shanghai, Hong Kong, Taipei"></div>
+      <div class="field"><label>Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+      <div class="field"><label>Focus Area</label><select id="focus">
+        <option value="balance">General Balance</option>
+        <option value="career">Career &amp; Direction</option>
+        <option value="wealth">Wealth &amp; Resources</option>
+        <option value="love">Relationships</option>
+        <option value="protection">Protection &amp; Wellbeing</option>
       </select></div>
     </div>
-    <button class="btn" id="generateBtn" onclick="generateReport()">⚡ 排盘 + AI 解读 · 即刻出命书</button>
+    <button class="btn" id="generateBtn" onclick="generateReport()">⚡ Chart + AI Reading · Generate Now</button>
     <div id="statusArea"></div>
   </div>
 
@@ -365,8 +365,8 @@ footer {
   <div id="output"></div>
 
   <footer>
-    Oriental Destiny · 七层古典子平法引擎<br>
-    本报告描述命理元素格局与自然趋势——并非未来事件之预言
+    Oriental Destiny · 7-Layer Classical Zi Ping Engine<br>
+    This report describes elemental patterns and natural tendencies — not predictions of future events
   </footer>
 </div>
 
@@ -397,8 +397,8 @@ async function generateReport() {
   btn.disabled = true;
   statusArea.innerHTML = `
     <div class="status-panel">
-      <div class="phase">⚙️ 正在排盘...</div>
-      <div class="detail">七层古典子平法计算中</div>
+      <div class="phase">⚙️ Calculating your chart...</div>
+      <div class="detail">7-layer classical Zi Ping engine running</div>
     </div>`;
   output.innerHTML = '';
 
@@ -414,8 +414,8 @@ async function generateReport() {
 
     statusArea.innerHTML = `
       <div class="status-panel">
-        <div class="phase">📐 命盘已出 · ${profile.dayMaster}${profile.dayMasterElement}日主 · ${profile.geJu.patternName}</div>
-        <div class="detail">正在请 AI 老师父为你解读...</div>
+        <div class="phase">📐 Chart complete · ${profile.dayMaster}${profile.dayMasterElement} Day Master · ${profile.geJu.patternName}</div>
+        <div class="detail">Invoking AI master for your reading...</div>
       </div>`;
 
     // ── Step 2: Generate Basic + Deluxe ──
@@ -429,14 +429,14 @@ async function generateReport() {
     if (deluxe.fallback) {
       statusArea.innerHTML = `
         <div class="status-panel error">
-          <div class="phase">⚠️ AI 老师父暂时离线</div>
-          <div class="detail">已使用古典算法直接生成命书——内容准确，但少了些温度</div>
+          <div class="phase">⚠️ AI master is temporarily offline</div>
+          <div class="detail">Report generated by classical algorithm — accurate, but less warmth than a master's hand</div>
         </div>`;
     } else {
       statusArea.innerHTML = `
         <div class="status-panel success">
-          <div class="phase">✅ 天命书已生成</div>
-          <div class="detail">${profile.dayMaster}${profile.dayMasterElement}日主 · 请往下翻阅你的命书</div>
+          <div class="phase">✅ Destiny Scroll generated</div>
+          <div class="detail">${profile.dayMaster}${profile.dayMasterElement} Day Master · Scroll down to read your destiny</div>
         </div>`;
     }
 
@@ -451,8 +451,8 @@ async function generateReport() {
   } catch(e) {
     statusArea.innerHTML = `
       <div class="status-panel error">
-        <div class="phase">❌ 出错了：${esc(e.message)}</div>
-        <div class="detail">请检查输入后重试</div>
+        <div class="phase">❌ Error: ${esc(e.message)}</div>
+        <div class="detail">Please check your input and try again</div>
       </div>`;
     console.error(e);
 
@@ -476,7 +476,7 @@ async function generateReport() {
       };
       output.innerHTML = buildReportHTML(fallbackDeluxe, profile);
     } catch(e2) {
-      output.innerHTML = '<div class="content-card"><p>无法生成命书，请刷新页面后重试。</p></div>';
+      output.innerHTML = '<div class="content-card"><p>Unable to generate report. Please refresh the page and try again.</p></div>';
     }
   } finally {
     btn.disabled = false;
@@ -491,7 +491,7 @@ function buildReportHTML(deluxe, profile) {
   const sn = buildChartSnapshot(profile);
   const elCounts = profile.elementCounts || {};
   const elNames = ['Wood','Fire','Earth','Metal','Water'];
-  const elChinese = {Wood:'木',Fire:'火',Earth:'土',Metal:'金',Water:'水'};
+  const elChinese = {Wood:'Wood',Fire:'Fire',Earth:'Earth',Metal:'Metal',Water:'Water'};
   const elColorsA = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
   const maxCount = Math.max(1, ...elNames.map(e => elCounts[e]||0));
 
@@ -511,25 +511,25 @@ function buildReportHTML(deluxe, profile) {
   const hr = sn.fourPillars.hour.split(' · ');
   const pillarsHTML = `
     <div class="bazi-table">
-      <div class="bazi-col"><span class="bazi-stem">${yr[0].slice(0,-2)}</span><span class="bazi-branch">${yr[0].slice(-2)}</span><span class="bazi-label">年柱 Year</span><span class="bazi-nayin">${yr[1]||''}</span></div>
-      <div class="bazi-col"><span class="bazi-stem">${mo[0].slice(0,-2)}</span><span class="bazi-branch">${mo[0].slice(-2)}</span><span class="bazi-label">月柱 Month</span><span class="bazi-nayin">${mo[1]||''}</span></div>
-      <div class="bazi-col day-master"><span class="bazi-stem">${dy[0].slice(0,-2)}</span><span class="bazi-branch">${dy[0].slice(-2)}</span><span class="bazi-label">日柱 Day</span><span class="bazi-dm">日主</span></div>
-      <div class="bazi-col"><span class="bazi-stem">${hr[0].slice(0,-2)}</span><span class="bazi-branch">${hr[0].slice(-2)}</span><span class="bazi-label">时柱 Hour</span><span class="bazi-nayin">${hr[1]||''}</span></div>
+      <div class="bazi-col"><span class="bazi-stem">${yr[0].slice(0,-2)}</span><span class="bazi-branch">${yr[0].slice(-2)}</span><span class="bazi-label">Year Pillar</span><span class="bazi-nayin">${yr[1]||''}</span></div>
+      <div class="bazi-col"><span class="bazi-stem">${mo[0].slice(0,-2)}</span><span class="bazi-branch">${mo[0].slice(-2)}</span><span class="bazi-label">Month Pillar</span><span class="bazi-nayin">${mo[1]||''}</span></div>
+      <div class="bazi-col day-master"><span class="bazi-stem">${dy[0].slice(0,-2)}</span><span class="bazi-branch">${dy[0].slice(-2)}</span><span class="bazi-label">Day Pillar</span><span class="bazi-dm">DM</span></div>
+      <div class="bazi-col"><span class="bazi-stem">${hr[0].slice(0,-2)}</span><span class="bazi-branch">${hr[0].slice(-2)}</span><span class="bazi-label">Hour Pillar</span><span class="bazi-nayin">${hr[1]||''}</span></div>
     </div>`;
 
   const tagsHTML = `
     <span class="chip gold">${esc(sn.pattern)}</span>
-    <span class="chip gold">用神: ${esc(sn.yongShen)}</span>
-    <span class="chip gold">喜神: ${esc(sn.xiShen)}</span>
-    <span class="chip red">忌神: ${esc(sn.jiShen)}</span>
+    <span class="chip gold">Yong Shen: ${esc(sn.yongShen)}</span>
+    <span class="chip gold">Xi Shen: ${esc(sn.xiShen)}</span>
+    <span class="chip red">Ji Shen: ${esc(sn.jiShen)}</span>
     <span class="chip green">${esc(sn.strength)}</span>`;
 
   // Annotations
   const annotationsHTML = (deluxe.masterAnnotations||[]).map((a,i) => `
     <div class="tianji-scroll" style="animation-delay:${i*0.2}s">
       <div class="tianji-header">
-        <span class="tianji-seal">天机</span>
-        <span class="tianji-num">第${['一','二','三','四','五'][i]||(i+1)}道</span>
+        <span class="tianji-seal">Secrets</span>
+        <span class="tianji-num">Scroll ${['One','Two','Three','Four','Five'][i]||(i+1)}</span>
       </div>
       <h3>${esc(a.title)}</h3>
       <div class="tianji-body">${esc(a.insight)}</div>
@@ -541,16 +541,16 @@ function buildReportHTML(deluxe, profile) {
   const jewelryHTML = jg ? `
     <div class="crystal-grid">
       <div class="crystal-card primary">
-        <div class="crystal-badge">本命灵石</div>
+        <div class="crystal-badge">Primary Crystal</div>
         <div class="crystal-stone">${esc(jg.primaryCrystal?.name||'')}</div>
-        <span class="crystal-element">${esc(jg.primaryCrystal?.element||'')} 元素</span>
+        <span class="crystal-element">${esc(jg.primaryCrystal?.element||'')} Element</span>
         <p class="crystal-why">${esc(jg.primaryCrystal?.whyForThisChart||'')}</p>
         <p class="crystal-wear">${esc(jg.primaryCrystal?.wearingGuidance||'')}</p>
       </div>
       <div class="crystal-card secondary">
-        <div class="crystal-badge sec">护法灵玉</div>
+        <div class="crystal-badge sec">Guardian Stone</div>
         <div class="crystal-stone">${esc(jg.secondaryCrystal?.name||'')}</div>
-        <span class="crystal-element">${esc(jg.secondaryCrystal?.element||'')} 元素</span>
+        <span class="crystal-element">${esc(jg.secondaryCrystal?.element||'')} Element</span>
         <p class="crystal-why">${esc(jg.secondaryCrystal?.whyForThisChart||'')}</p>
         <p class="crystal-wear">${esc(jg.secondaryCrystal?.wearingGuidance||'')}</p>
       </div>
@@ -564,45 +564,45 @@ function buildReportHTML(deluxe, profile) {
   return `
 <section class="chapter">
   <div style="text-align:center;padding:20px 0;">
-    <div class="seal-anim"><div class="seal-inner">天命</div></div>
+    <div class="seal-anim"><div class="seal-inner">Destiny</div></div>
     <h1 style="font-size:clamp(28px,5vw,40px);font-weight:900;margin:20px 0 10px;letter-spacing:0.03em;">
-      ${esc(profile.dayMaster)}<span style="color:var(--cinnabar);">${esc(profile.dayMasterElement)}</span>命主
+      ${esc(profile.dayMaster)}<span style="color:var(--cinnabar);">${esc(profile.dayMasterElement)}</span> Day Master
     </h1>
-    <p style="font-size:15px;color:var(--ink-light);">${esc(profile.pillars.month.branch)}月 · ${esc(profile.season)} · ${esc(sn.pattern)}</p>
+    <p style="font-size:15px;color:var(--ink-light);">${esc(profile.pillars.month.branch)} Branch · ${esc(profile.season)} · ${esc(sn.pattern)}</p>
     <div style="width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto;"></div>
-    <span style="display:inline-block;padding:6px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.08em;background:linear-gradient(135deg,var(--cinnabar),var(--cinnabar-deep));color:#fff;">✦ 天命书 · 八字命理解读</span>
+    <span style="display:inline-block;padding:6px 20px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.08em;background:linear-gradient(135deg,var(--cinnabar),var(--cinnabar-deep));color:#fff;">✦ Destiny Scroll · BaZi Chart Reading</span>
   </div>
 </section>
 
 <section class="chapter">
   <div class="content-card chart-card">
-    <div class="chart-title">命盘总览 Chart Overview</div>
+    <div class="chart-title">Chart Overview</div>
     ${pillarsHTML}
     <div class="chip-row">${tagsHTML}</div>
     <div class="shensha-line">
-      神煞: ${esc(sn.shenSha)} · 起运: ${esc(sn.qiYun)} · 大运: ${esc(sn.currentDaYun)}
+      Shen Sha: ${esc(sn.shenSha)} · Qi Yun: ${esc(sn.qiYun)} · Da Yun: ${esc(sn.currentDaYun)}
     </div>
     <div class="el-bars">${elBarsHTML}</div>
   </div>
 </section>
 
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷一</span><span class="title-cn">命主画像</span><span class="title-en">Who You Are</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. I</span><span class="title-cn">The Day Master</span><span class="title-en">Who You Are</span></div>
   <div class="content-card">${paras(report.opening)}</div>
 </section>
 
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷二</span><span class="title-cn">格局解密</span><span class="title-en">Your Pattern</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. II</span><span class="title-cn">Pattern Revealed</span><span class="title-en">Your Pattern</span></div>
   <div class="content-card">${paras(report.yourPattern || report.thePattern)}</div>
 </section>
 
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷三</span><span class="title-cn">天命所向</span><span class="title-en">Your Compass</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. III</span><span class="title-cn">Destiny's Direction</span><span class="title-en">Your Compass</span></div>
   <div class="content-card guides">${paras(report.whatGuidesYou || report.whatHelps)}</div>
 </section>
 
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷四</span><span class="title-cn">行事锦囊</span><span class="title-en">In Practice</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. IV</span><span class="title-cn">Practical Wisdom</span><span class="title-en">In Practice</span></div>
   <div class="content-card">
     <ul class="pocket-list">${items(report.practicalSteps || report.whatToDo)}</ul>
   </div>
@@ -610,13 +610,13 @@ function buildReportHTML(deluxe, profile) {
 
 ${annotationsHTML ? `
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷五</span><span class="title-cn">大师批注</span><span class="title-en">Master Notes</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. V</span><span class="title-cn">Master Annotations</span><span class="title-en">Master Notes</span></div>
   ${annotationsHTML}
 </section>` : ''}
 
 ${jewelryHTML ? `
 <section class="chapter">
-  <div class="chapter-marker"><span class="vol">卷六</span><span class="title-cn">护身灵石</span><span class="title-en">Crystal Guide</span></div>
+  <div class="chapter-marker"><span class="vol">Vol. VI</span><span class="title-cn">Guardian Crystals</span><span class="title-en">Crystal Guide</span></div>
   <div class="content-card">${jewelryHTML}</div>
 </section>` : ''}
 

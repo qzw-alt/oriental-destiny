@@ -58,7 +58,7 @@ function buildDualHTML(basic, deluxe, brief, profile) {
       <div class="bazi-col"><span class="bazi-stem">${hr[0].slice(0,-2)}</span><span class="bazi-branch">${hr[0].slice(-2)}</span><span class="bazi-label">Hour</span><span class="bazi-nayin">${hr[1]||''}</span></div>
     </div>`;
 
-  // ── Master annotations as "天机" scrolls ──
+  // ── Master annotations as "secrets" scrolls ──
   const annotationsHTML = (deluxe.masterAnnotations||[]).map((a, i) => `
     <div class="tianji-scroll" style="animation-delay:${i*0.25}s">
       <div class="tianji-header">
@@ -70,7 +70,7 @@ function buildDualHTML(basic, deluxe, brief, profile) {
     </div>
   `).join('\n');
 
-  // ── Jewelry as "灵石" cards ──
+  // ── Jewelry as "crystals" cards ──
   const jg = deluxe.jewelryGuide;
   const jewelryHTML = jg ? `
     <div class="crystal-reveal">
@@ -100,7 +100,7 @@ function buildDualHTML(basic, deluxe, brief, profile) {
   // ── Element distribution bars ──
   const elCounts = profile.elementCounts || {};
   const elNames = ['Wood','Fire','Earth','Metal','Water'];
-  const elChinese = {Wood:'木',Fire:'火',Earth:'土',Metal:'金',Water:'水'};
+  const elChinese = {Wood:'Wood',Fire:'Fire',Earth:'Earth',Metal:'Metal',Water:'Water'};
   const elColors = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
   const maxCount = Math.max(1, ...elNames.map(e => elCounts[e]||0));
   const elBarsHTML = elNames.map(e => {
@@ -131,7 +131,7 @@ function buildDualHTML(basic, deluxe, brief, profile) {
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════════════
-   水墨风 · Ink Wash Destiny Scroll
+   Ink-Wash · Destiny Scroll Design System
    Destiny Scroll — Oriental Destiny Report System
    ══════════════════════════════════════════════════════════ */
 :root {
@@ -477,7 +477,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
-   天机 SCROLLS — Master Annotations
+   MASTER SCROLLS — Annotations
    ══════════════════════════════════════════════════════════ */
 .tianji-scroll {
   background: linear-gradient(160deg, #fdfaf3 0%, #f7f1e2 100%);
@@ -530,7 +530,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
-   灵石 CRYSTAL CARDS
+   CRYSTAL CARDS — Crystal Guide
    ══════════════════════════════════════════════════════════ */
 .crystal-reveal {
   padding: 0;

@@ -1319,7 +1319,7 @@
     for (let key in allBranches) {
       if (tianYiBranches.includes(allBranches[key])) {
         results.push({
-          name: "Tian Yi Gui Ren (天乙贵人)",
+          name: "Tian Yi Gui Ren (Heavenly Noble Star)",
           category: "Noble",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Heavenly Noble Star — the strongest benefactor star. Brings noble assistance, crisis resolution, and status elevation. When this star is present, help arrives at critical moments.",
@@ -1333,7 +1333,7 @@
     for (let key in allBranches) {
       if (pillars[key] && STEMS[pillars[key].stemIndex] === tianDeStem) {
         results.push({
-          name: "Tian De Gui Ren (天德贵人)",
+          name: "Tian De Gui Ren (Heavenly Virtue Star)",
           category: "Noble",
           location: key + " pillar stem (" + tianDeStem + ")",
           meaning: "Heavenly Virtue Star — bestowed by heaven. Reduces misfortune, turns danger into safety. More powerful than Yue De for resolving calamities.",
@@ -1347,7 +1347,7 @@
     for (let key in allBranches) {
       if (pillars[key] && STEMS[pillars[key].stemIndex] === yueDeStem) {
         results.push({
-          name: "Yue De Gui Ren (月德贵人)",
+          name: "Yue De Gui Ren (Moon Virtue Star)",
           category: "Noble",
           location: key + " pillar stem (" + yueDeStem + ")",
           meaning: "Monthly Virtue Star — brings social grace, reduces interpersonal friction, and attracts supportive people.",
@@ -1361,7 +1361,7 @@
     for (let key in allBranches) {
       if (allBranches[key] === wenChangBranch) {
         results.push({
-          name: "Wen Chang (文昌贵人)",
+          name: "Wen Chang (Literary Star)",
           category: "Talent",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Literary Star — bestows intelligence, academic talent, writing ability, and examination success. Strong indicator of scholarly achievement and intellectual pursuits.",
@@ -1376,7 +1376,7 @@
     for (let key in allBranches) {
       if (allBranches[key] === taoHuaByDay) {
         results.push({
-          name: "Tao Hua (桃花 / Peach Blossom)",
+          name: "Tao Hua (Peach Blossom Star)",
           category: "Romance",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Peach Blossom Star — bestows charm, attractiveness, and social magnetism. In favorable position: artistic talent and romantic fulfillment. In unfavorable position: romantic complications and reputation risks.",
@@ -1391,7 +1391,7 @@
     for (let key in allBranches) {
       if (allBranches[key] === yiMaByDay) {
         results.push({
-          name: "Yi Ma (驿马 / Traveling Horse)",
+          name: "Yi Ma (Traveling Horse Star)",
           category: "Movement",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Traveling Horse Star — indicates movement, relocation, travel, career mobility, and dynamic change. Active Yi Ma brings frequent moves or career changes as the path to success.",
@@ -1405,7 +1405,7 @@
     for (let key in allBranches) {
       if (allBranches[key] === huaGaiByDay) {
         results.push({
-          name: "Hua Gai (华盖 / Canopy Star)",
+          name: "Hua Gai (Canopy Star)",
           category: "Spiritual",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Canopy Star — bestows talent in arts, philosophy, metaphysics, and spiritual pursuits. Indicates a solitary, introspective nature. Those with Hua Gai are naturally drawn to esoteric knowledge and creative solitude. Often found in charts of artists, monks, and scholars.",
@@ -1419,7 +1419,7 @@
     for (let key in allBranches) {
       if (allBranches[key] === yangRenBranch) {
         results.push({
-          name: "Yang Ren (羊刃 / Sheep Blade)",
+          name: "Yang Ren (Sheep Blade Star)",
           category: "Caution",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: "Sheep Blade Star — the sharp edge of strength. Can bring sudden authority, decisiveness, and courage, but also impulsiveness, injury risk, and interpersonal conflict. Must be controlled (by Officer or Output) to yield benefit rather than harm.",
@@ -1432,7 +1432,7 @@
     const dayPillarStr = describePillar(pillars.day);
     if (KUI_GANG_DAYS.includes(dayPillarStr)) {
       results.push({
-        name: "Kui Gang (魁罡)",
+        name: "Kui Gang (Leadership Star)",
         category: "Character",
         location: "Day pillar (" + dayPillarStr + ")",
         meaning: "Kui Gang Star — four special day pillars (Wu Xu, Geng Chen, Geng Xu, Ren Chen). Bestows iron will, decisive action, and natural leadership. These people are intelligent, strong-willed, and cannot tolerate injustice. However, stubbornness and social friction may arise without flexibility.",
@@ -1445,7 +1445,7 @@
       const kw = getKongWang(pillars[key].branchIndex);
       if (kw.includes(pillars[key].branchIndex)) {
         results.push({
-          name: "Kong Wang (空亡 / Emptiness)",
+          name: "Kong Wang (Emptiness Star)",
           category: "Structure",
           location: key + " pillar (" + allBranches[key] + ")",
           meaning: key + " pillar falls into Kong Wang (Emptiness). This pillar's influence is reduced, delayed, or manifests in unconventional ways. Things governed by this pillar may feel 'not quite there' — neither fully present nor fully absent. In spiritual pursuits, Kong Wang can grant unusual insight.",

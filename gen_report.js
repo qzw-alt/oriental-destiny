@@ -65,7 +65,7 @@ function buildDualHTML(basic, deluxe, brief, profile) {
   const annotationsHTML = (deluxe.masterAnnotations||[]).map((a, i) => `
     <div class="tianji-scroll" style="animation-delay:${i*0.25}s">
       <div class="tianji-header">
-        <span class="tianji-seal">Secrets</span>
+        <span class="tianji-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></span>
         <span class="tianji-num">Scroll ${['I','II','III','IV','V'][i]||(i+1)}</span>
       </div>
       <h3>${esc(a.title)}</h3>
@@ -195,9 +195,8 @@ body {
 .chapter-marker .vol {
   font-size: 12px; letter-spacing: 0.2em;
   color: var(--cinnabar); font-weight: 700;
-  writing-mode: vertical-rl;
   background: rgba(181,52,42,0.06);
-  padding: 10px 6px; border-radius: 2px;
+  padding: 6px 10px; border-radius: 2px;
 }
 .chapter-marker .title-cn {
   font-size: 26px; font-weight: 900; color: var(--ink);
@@ -229,16 +228,8 @@ body {
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 .seal-inner {
-  display: inline-block;
   width: 72px; height: 72px;
-  border: 2.5px solid var(--cinnabar);
-  border-radius: 4px;
-  color: var(--cinnabar);
-  font-size: 13px; font-weight: 900;
-  line-height: 1.3; letter-spacing: 0.12em;
   display: flex; align-items: center; justify-content: center;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
 }
 .hero-title {
   font-size: clamp(30px, 6vw, 48px);
@@ -455,14 +446,8 @@ body {
   margin-bottom: 14px;
 }
 .tianji-seal {
-  display: inline-block;
   width: 38px; height: 38px;
-  border: 2px solid var(--cinnabar);
-  border-radius: 3px;
-  color: var(--cinnabar);
-  font-size: 10px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
-  writing-mode: vertical-rl; letter-spacing: 0.08em;
 }
 .tianji-num {
   font-size: 11px; color: var(--ink-faint);
@@ -578,15 +563,9 @@ footer {
   letter-spacing: 0.03em;
 }
 footer .foot-seal {
-  display: inline-block;
   width: 44px; height: 44px;
-  border: 2px solid var(--cinnabar);
-  border-radius: 3px;
-  color: var(--cinnabar);
-  font-size: 10px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 14px;
-  writing-mode: vertical-rl;
   opacity: 0.6;
 }
 
@@ -614,7 +593,7 @@ footer .foot-seal {
      ═══════════════════════════════════════════════════════ -->
 <section class="chapter hero-cover">
   <div class="seal-anim">
-    <div class="seal-inner">Destiny</div>
+    <div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div>
   </div>
   <h1 class="hero-title">
     ${esc(profile.dayMaster)}<span class="em">${esc(profile.dayMasterElement)}</span> Day Master
@@ -643,7 +622,7 @@ footer .foot-seal {
   <div class="chapter-marker">
     <span class="vol">Vol.1</span>
     <span class="title-cn">Who You Are</span>
-    <span class="title-en">Who You Are</span>
+<!-- -->
   </div>
   <div class="content-card">
     ${paras(basic.opening || basic.report?.opening)}
@@ -657,7 +636,7 @@ footer .foot-seal {
   <div class="chapter-marker">
     <span class="vol">Vol.2</span>
     <span class="title-cn">Your Pattern</span>
-    <span class="title-en">Your Pattern</span>
+<!-- -->
   </div>
   <div class="content-card">
     ${paras(basic.yourPattern || basic.report?.yourPattern || basic.report?.thePattern)}
@@ -671,7 +650,7 @@ footer .foot-seal {
   <div class="chapter-marker">
     <span class="vol">Vol.3</span>
     <span class="title-cn">Your Compass</span>
-    <span class="title-en">Your Compass</span>
+<!-- -->
   </div>
   <div class="content-card guides">
     ${paras(basic.whatGuidesYou || basic.report?.whatGuidesYou || basic.report?.whatHelps)}
@@ -685,7 +664,7 @@ footer .foot-seal {
   <div class="chapter-marker">
     <span class="vol">Vol.4</span>
     <span class="title-cn">In Practice</span>
-    <span class="title-en">In Practice</span>
+<!-- -->
   </div>
   <div class="content-card">
     <ul class="pocket-list">
@@ -702,7 +681,7 @@ ${annotationsHTML ? `
   <div class="chapter-marker">
     <span class="vol">Vol.5</span>
     <span class="title-cn">Master Annotations</span>
-    <span class="title-en">Master Annotations</span>
+<!-- -->
   </div>
   ${annotationsHTML}
 </section>` : ''}
@@ -715,7 +694,7 @@ ${jewelryHTML ? `
   <div class="chapter-marker">
     <span class="vol">Vol.6</span>
     <span class="title-cn">Crystal Guide</span>
-    <span class="title-en">Crystal Guide</span>
+<!-- -->
   </div>
   <div class="content-card">
     ${jewelryHTML}
@@ -735,7 +714,7 @@ ${jewelryHTML ? `
      FOOTER
      ═══════════════════════════════════════════════════════ -->
 <footer>
-  <div class="foot-seal">Destiny</div>
+  <div class="foot-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div>
   Oriental Destiny · Seven-Layer Classical Zi Ping Destiny Engine<br>
   Basic Report (instant generation) + Master Annotations + Crystal Guide<br>
   This report describes elemental patterns and natural tendencies — not a prediction of future events

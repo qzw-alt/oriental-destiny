@@ -137,8 +137,8 @@ body {
 }
 .chapter-marker .vol {
   font-size: 12px; letter-spacing: 0.2em; color: var(--cinnabar); font-weight: 700;
-  writing-mode: vertical-rl; background: rgba(181,52,42,0.06);
-  padding: 10px 6px; border-radius: 2px;
+  background: rgba(181,52,42,0.06);
+  padding: 6px 10px; border-radius: 2px;
 }
 .chapter-marker .title-cn { font-size: 26px; font-weight: 900; letter-spacing: 0.04em; }
 .chapter-marker .title-en {
@@ -154,10 +154,7 @@ body {
 }
 .seal-inner {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 64px; height: 64px; border: 2.5px solid var(--cinnabar);
-  border-radius: 4px; color: var(--cinnabar);
-  font-size: 12px; font-weight: 900; letter-spacing: 0.12em;
-  writing-mode: vertical-rl;
+  width: 64px; height: 64px;
 }
 
 .content-card {
@@ -256,11 +253,13 @@ body {
 .tianji-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .tianji-seal {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border: 2px solid var(--cinnabar); border-radius: 3px;
-  color: var(--cinnabar); font-size: 10px; font-weight: 900;
-  writing-mode: vertical-rl;
+  width: 36px; height: 36px;
 }
 .tianji-num { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.08em; font-family: 'Noto Sans SC', sans-serif; }
+.tianji-num-en {
+  font-size: 11px; color: var(--ink-faint); letter-spacing: 0.06em;
+  font-family: 'Noto Sans SC', sans-serif; text-transform: uppercase;
+}
 .tianji-scroll h3 { font-size: 18px; color: var(--cinnabar); margin-bottom: 8px; font-weight: 700; }
 .tianji-body { font-size: 14px; line-height: 1.85; color: var(--ink-light); }
 
@@ -528,8 +527,8 @@ function buildReportHTML(deluxe, profile) {
   const annotationsHTML = (deluxe.masterAnnotations||[]).map((a,i) => `
     <div class="tianji-scroll" style="animation-delay:${i*0.2}s">
       <div class="tianji-header">
-        <span class="tianji-seal">Secrets</span>
-        <span class="tianji-num">Scroll ${['One','Two','Three','Four','Five'][i]||(i+1)}</span>
+        <span class="tianji-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></span>
+        <span class="tianji-num-en">Scroll ${['I','II','III','IV','V'][i]||(i+1)}</span>
       </div>
       <h3>${esc(a.title)}</h3>
       <div class="tianji-body">${esc(a.insight)}</div>
@@ -564,7 +563,7 @@ function buildReportHTML(deluxe, profile) {
   return `
 <section class="chapter">
   <div style="text-align:center;padding:20px 0;">
-    <div class="seal-anim"><div class="seal-inner">Destiny</div></div>
+    <div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>
     <h1 style="font-size:clamp(28px,5vw,40px);font-weight:900;margin:20px 0 10px;letter-spacing:0.03em;">
       ${esc(profile.dayMaster)}<span style="color:var(--cinnabar);">${esc(profile.dayMasterElement)}</span> Day Master
     </h1>

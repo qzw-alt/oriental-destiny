@@ -117,12 +117,6 @@ a { color: inherit; text-decoration: none; }
 .seal-inner {
   display: inline-flex; align-items: center; justify-content: center;
   width: 68px; height: 68px;
-  border: 2.5px solid var(--cinnabar);
-  border-radius: 4px;
-  color: var(--cinnabar);
-  font-size: 13px; font-weight: 900;
-  letter-spacing: 0.12em;
-  writing-mode: vertical-rl;
 }
 .hero-title {
   font-size: clamp(30px, 6vw, 44px);
@@ -257,9 +251,8 @@ a { color: inherit; text-decoration: none; }
 .chapter-marker .vol {
   font-size: 11px; letter-spacing: 0.2em;
   color: var(--cinnabar); font-weight: 700;
-  writing-mode: vertical-rl;
   background: rgba(181,52,42,0.06);
-  padding: 8px 5px; border-radius: 2px;
+  padding: 6px 10px; border-radius: 2px;
 }
 .chapter-marker .title-cn {
   font-size: 24px; font-weight: 900; color: var(--ink);
@@ -388,7 +381,7 @@ footer a { color: var(--cinnabar); }
     <section id="salesSection">
 
         <div class="hero-cover">
-            <div class="seal-anim"><div class="seal-inner">天命全书</div></div>
+            <div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>
             <h1 class="hero-title">You already know <span class="em">what's wrong</span>.</h1>
             <p class="hero-sub">Now — you want the answer.</p>
             <div class="price-tag">$29</div>
@@ -708,7 +701,7 @@ async function generateReport() {
   var dm = profile.dayMaster;
   var dmEl = profile.dayMasterElement;
   document.getElementById('reportCover').innerHTML =
-    '<div class="seal-anim"><div class="seal-inner">'+esc(dm)+esc(dmEl)+'</div></div>' +
+    '<div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>' +
     '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · Day Master</h1>' +
     '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
     '<div class="hero-divider"></div>' +

@@ -1,7 +1,7 @@
 // DeepSeek API proxy URL — the Cloudflare Worker handles auth server-side.
-// Deploy the worker first: cd workers/deepseek-proxy && wrangler deploy
+// Custom domain on oriental-destiny.com avoids workers.dev blocking in China.
 // API key is kept server-side in the Worker — never exposed to clients.
-window.DEEPSEEK_PROXY_URL = "https://deepseek-proxy.qzwx10000.workers.dev";
+window.DEEPSEEK_PROXY_URL = "https://deepseek-proxy.oriental-destiny.com";
 
 // Firebase configuration — load config.real.js BEFORE this file to override.
 // If config.real.js is not loaded, these placeholder values will safely fail.

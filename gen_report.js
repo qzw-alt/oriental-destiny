@@ -12,7 +12,10 @@ const profile = window.BaziEngineV2.calculateProfile({
 });
 
 const brief = window.buildCompactBrief(profile);
-const engine = new window.ReportEngineV2({ proxyBaseURL: 'https://deepseek-proxy.qzwx10000.workers.dev' });
+// Direct DeepSeek API for server-side generation (no proxy needed)
+const engine = new window.ReportEngineV2({
+  apiKey: 'sk-96495709b9694a4fa931b3a6bb039225'
+});
 
 async function generate() {
   console.log('⏳ Generating BASIC report...');

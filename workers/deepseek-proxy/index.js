@@ -87,9 +87,10 @@ export default {
       });
     }
 
-    // ── Only allow POST to /chat/completions ────────────────
+    // ── Only allow POST to /chat/completions or /api/chat/completions ──
     const url = new URL(request.url);
-    if (request.method !== 'POST' || url.pathname !== '/chat/completions') {
+    const allowedPaths = ['/chat/completions', '/api/chat/completions'];
+    if (request.method !== 'POST' || !allowedPaths.includes(url.pathname)) {
       return new Response(JSON.stringify({ error: 'Not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }

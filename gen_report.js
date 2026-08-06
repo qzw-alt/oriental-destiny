@@ -100,28 +100,8 @@ function buildDualHTML(basic, deluxe, brief, profile) {
     </div>
   ` : '';
 
-  // ── Element distribution bars ──
-  const elCounts = profile.elementCounts || {};
-  const elNames = ['Wood','Fire','Earth','Metal','Water'];
-  const elChinese = {Wood:'Wood',Fire:'Fire',Earth:'Earth',Metal:'Metal',Water:'Water'};
-  const elColors = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
-  const maxCount = Math.max(1, ...elNames.map(e => elCounts[e]||0));
-  const elBarsHTML = elNames.map(e => {
-    const pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
-    return `<div class="el-bar-row">
-      <span class="el-bar-label">${elChinese[e]} ${e}</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:${pct}%;background:${elColors[e]}"></span></span>
-      <span class="el-bar-val">${(elCounts[e]||0).toFixed(1)}</span>
-    </div>`;
-  }).join('\n');
-
-  // ── Key tags ──
-  const tagsHTML = `
-    <span class="chip gold">${sn.pattern}</span>
-    <span class="chip gold">Yong Shen: ${sn.yongShen}</span>
-    <span class="chip gold">Xi Shen: ${sn.xiShen}</span>
-    <span class="chip red">Ji Shen: ${sn.jiShen}</span>
-    <span class="chip green">${sn.strength}</span>`;
+  // ── Element data (passed to AI, not displayed to customer) ──
+  // No visible technical tags, bars, or shensha — the report reads like a letter, not a lab result.
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -375,40 +355,6 @@ body {
 .chip.red  { background: rgba(181,52,42,0.07); color: var(--cinnabar); }
 .chip.green{ background: rgba(49,82,71,0.07); color: #315247; }
 
-.shensha-line {
-  font-size: 11px; color: var(--ink-faint);
-  text-align: center; margin-top: 14px;
-  letter-spacing: 0.03em;
-}
-
-/* ── Element bars ── */
-.el-bars {
-  margin-top: 18px; padding: 0 4px;
-}
-.el-bar-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 6px;
-}
-.el-bar-label {
-  font-size: 11px; width: 80px; text-align: right;
-  color: var(--ink-light); letter-spacing: 0.04em;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-.el-bar-track {
-  flex: 1; height: 8px;
-  background: rgba(26,20,16,0.06);
-  border-radius: 4px; overflow: hidden;
-}
-.el-bar-fill {
-  display: block; height: 100%; border-radius: 4px;
-  transition: width 1.2s cubic-bezier(0.22,0.61,0.36,1);
-}
-.el-bar-val {
-  font-size: 11px; width: 32px;
-  color: var(--ink-faint);
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
 /* ══════════════════════════════════════════════════════════
    CONTENT CARDS
    ══════════════════════════════════════════════════════════ */
@@ -653,7 +599,6 @@ footer .foot-seal {
   .content-card { padding: 26px 20px; }
   .tianji-scroll { padding: 20px 18px; }
   .chapter-marker .title-cn { font-size: 22px; }
-  .el-bar-label { width: 56px; font-size: 10px; }
 }
 </style>
 </head>
@@ -686,13 +631,8 @@ footer .foot-seal {
      ═══════════════════════════════════════════════════════ -->
 <section class="chapter">
   <div class="content-card chart-card">
-    <div class="chart-title">Chart Overview</div>
+    <div class="chart-title">Four Pillars · BaZi Chart</div>
     ${pillarsHTML}
-    <div class="chip-row">${tagsHTML}</div>
-    <div class="shensha-line">
-      Shen Sha: ${esc(sn.shenSha)} · Qi Yun: ${esc(sn.qiYun)} · Da Yun: ${esc(sn.currentDaYun)}
-    </div>
-    <div class="el-bars">${elBarsHTML}</div>
   </div>
 </section>
 

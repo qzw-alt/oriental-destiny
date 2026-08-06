@@ -250,40 +250,6 @@ body {
 .chip.red  { background: rgba(181,52,42,0.07); color: var(--cinnabar); }
 .chip.green{ background: rgba(49,82,71,0.07); color: #315247; }
 
-.shensha-line {
-  font-size: 11px; color: var(--ink-faint);
-  text-align: center; margin-top: 14px;
-  letter-spacing: 0.03em;
-}
-
-/* ── Element bars ── */
-.el-bars {
-  margin-top: 18px; padding: 0 4px;
-}
-.el-bar-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 6px;
-}
-.el-bar-label {
-  font-size: 11px; width: 80px; text-align: right;
-  color: var(--ink-light); letter-spacing: 0.04em;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-.el-bar-track {
-  flex: 1; height: 8px;
-  background: rgba(26,20,16,0.06);
-  border-radius: 4px; overflow: hidden;
-}
-.el-bar-fill {
-  display: block; height: 100%; border-radius: 4px;
-  transition: width 1.2s cubic-bezier(0.22,0.61,0.36,1);
-}
-.el-bar-val {
-  font-size: 11px; width: 32px;
-  color: var(--ink-faint);
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
 /* ══════════════════════════════════════════════════════════
    CONTENT CARDS
    ══════════════════════════════════════════════════════════ */
@@ -528,7 +494,6 @@ footer .foot-seal {
   .content-card { padding: 26px 20px; }
   .tianji-scroll { padding: 20px 18px; }
   .chapter-marker .title-cn { font-size: 22px; }
-  .el-bar-label { width: 56px; font-size: 10px; }
 }
 </style>
 </head>
@@ -550,7 +515,7 @@ footer .foot-seal {
     Wu<span class="em">Earth</span> Day Master
   </h1>
   <p class="hero-sub">
-    Shen · Autumn · 偏财格 (Indirect Wealth Pattern)
+    Shen · Autumn · Indirect Wealth Pattern
   </p>
   <div class="hero-divider"></div>
   <div class="hero-badge">✦ Destiny Scroll · BaZi Chart Reading</div>
@@ -561,7 +526,7 @@ footer .foot-seal {
      ═══════════════════════════════════════════════════════ -->
 <section class="chapter">
   <div class="content-card chart-card">
-    <div class="chart-title">Chart Overview</div>
+    <div class="chart-title">Four Pillars · BaZi Chart</div>
     
     <div class="bazi-table">
       <div class="bazi-col"><span class="bazi-stem">RenSh</span><span class="bazi-branch">en</span><span class="bazi-label">Year</span><span class="bazi-nayin">Sword Metal</span></div>
@@ -569,40 +534,6 @@ footer .foot-seal {
       <div class="bazi-col day-master"><span class="bazi-stem">WuCh</span><span class="bazi-branch">en</span><span class="bazi-label">Day</span><span class="bazi-dm">Day Master</span></div>
       <div class="bazi-col"><span class="bazi-stem">Ding</span><span class="bazi-branch">Si</span><span class="bazi-label">Hour</span><span class="bazi-nayin">Sand Earth</span></div>
     </div>
-    <div class="chip-row">
-    <span class="chip gold">偏财格 (Indirect Wealth Pattern)</span>
-    <span class="chip gold">Yong Shen: Wood</span>
-    <span class="chip gold">Xi Shen: Wood, Fire, Metal</span>
-    <span class="chip red">Ji Shen: —</span>
-    <span class="chip green">Strong (5.6)</span></div>
-    <div class="shensha-line">
-      Shen Sha: Yue De Gui Ren (月德贵人), Wen Chang (文昌贵人), Wen Chang (文昌贵人), Hua Gai (华盖 / Canopy Star) · Qi Yun: 5 years old · Da Yun: YiSi
-    </div>
-    <div class="el-bars"><div class="el-bar-row">
-      <span class="el-bar-label">Wood Wood</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:5%;background:#4a7c59"></span></span>
-      <span class="el-bar-val">0.4</span>
-    </div>
-<div class="el-bar-row">
-      <span class="el-bar-label">Fire Fire</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:57%;background:#b5342a"></span></span>
-      <span class="el-bar-val">4.3</span>
-    </div>
-<div class="el-bar-row">
-      <span class="el-bar-label">Earth Earth</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:100%;background:#c9a24e"></span></span>
-      <span class="el-bar-val">7.5</span>
-    </div>
-<div class="el-bar-row">
-      <span class="el-bar-label">Metal Metal</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:67%;background:#8a8a8a"></span></span>
-      <span class="el-bar-val">5.0</span>
-    </div>
-<div class="el-bar-row">
-      <span class="el-bar-label">Water Water</span>
-      <span class="el-bar-track"><span class="el-bar-fill" style="width:43%;background:#2c3e6b"></span></span>
-      <span class="el-bar-val">3.2</span>
-    </div></div>
   </div>
 </section>
 
@@ -616,7 +547,7 @@ footer .foot-seal {
     <span class="title-en">Who You Are</span>
   </div>
   <div class="content-card">
-    <p>Have you noticed how people naturally turn to you when things get heavy? Since you were young, you've been the mountain in everyone's storm—the one who listens without judgment, who holds the family together, who makes decisions when others freeze. But here's the question you rarely ask yourself: who holds the mountain? Wu Earth, you are the still peak that others anchor to, yet your strength has always been more about endurance than motion. You don't need to chase the wind; you are the ground it passes over. But even mountains have valleys, and it's time you learned to keep one for yourself.</p>
+    <p>Have you noticed that wherever you go, you become the pillar others lean on? Since you were young, you've been the one who holds the family together, the friend who listens without judgment, the colleague who quietly gets things done. But deep inside, there's a question you rarely voice: 'Who holds me when I need it?' You are Wu Earth — the mountain. Not the jagged peak that draws attention, but the solid mass that makes the landscape feel safe. Your strength isn't in speed or flash; it's in stillness. The wind may howl, but mountains remain. Yet even mountains need a valley to rest in — and that's the part you've forgotten. This reading will show you where to find your valley, and how to carry the world without losing yourself.</p>
   </div>
 </section>
 
@@ -630,7 +561,7 @@ footer .foot-seal {
     <span class="title-en">Your Pattern</span>
   </div>
   <div class="content-card">
-    <p>There's a quiet contradiction in your chart: you are Wu Earth—solid, dependable, the bedrock of every room you enter—yet you were born in Shen month, when autumn winds strip the leaves and the earth begins to cool. Part of you wants to stand still and gather strength, while another part whispers that you should be doing more, achieving more, proving more. This is the tension you've carried your whole life: the pull between your steady core and the restless energy of the season around you. You've wrestled with this without knowing why—why you can be so calm on the outside yet so driven on the inside. The Di Tian Sui says, 'Wu Earth is solid and true, centered and upright,' but it also reminds us that even the highest peak must let the rain carve its own paths. Your strongest element is Earth—your resilience, your loyalty, your ability to endure. Your weakest is Wood—the very element that could help you grow, bend, and reach toward new horizons. This isn't a flaw; it's a design. You were built to hold, but you must learn to reach.</p>
+    <p>Your chart is a study in quiet power. You have the Indirect Wealth pattern — wealth that comes not through shouting, but through subtle influence. You're the one who sees opportunities others miss, who turns small seeds into forests. But here's the tension: your Wu Earth is strong, rooted in the autumn ground, yet your wealth element (Metal) is restless, always moving, always pulling you toward the next thing. You've wrestled with this all your life — the part of you that wants to build something lasting, and the part that whispers 'there's more out there.' The Di Tian Sui says, 'Wu Earth is solid and true, centered and upright' — but even the mountain feels the pull of the horizon. Your strongest element is Earth — your reliability, your endurance. Your weakest is Wood — the element of growth, vision, and boundaries. Without Wood, you can become too fixed, too resistant to change, too willing to let others lean on you without ever asking for support. This isn't a flaw; it's a design. The old texts call it the 'Wealth Pattern with Officer to guard' — meaning your wealth and career thrive when you let a clear structure (Wood) protect your resources. You've been carrying this tension without knowing why. Now you know: it's not your fault. It's your blueprint.</p>
   </div>
 </section>
 
@@ -644,7 +575,7 @@ footer .foot-seal {
     <span class="title-en">Your Compass</span>
   </div>
   <div class="content-card guides">
-    <p>Your compass is Wood—not the brittle wood of a broken branch, but the tender green of the first leaf in spring, the kind that pushes through frozen soil because it knows the sun is waiting. You've always been drawn to growth, to learning, to the feeling of something new taking root, even when you didn't understand why. That's your Yong Shen calling you. It's not about becoming someone else; it's about letting the mountain grow forests. Face east—not due east, but a little southeast of that, where the morning light first touches the ridge. Let the sunrise meet your face. Surround yourself with the colors of new life: the pale green of bamboo shoots, the soft jade of river stones, the vibrant chartreuse of moss after rain. Spring is your season, even though you were born in autumn. When the world feels heavy, remember: you are not meant to be a statue. You are meant to be a living mountain, and mountains are never truly still.</p>
+    <p>Your compass is Wood — not the brittle wood of dead branches, but the living, breathing green of a forest after rain. Wood is the element of growth, of reaching toward the sun, of setting roots and then branching out. You've always been drawn to it without knowing why: the calm of a park, the satisfaction of nurturing a plant, the peace that comes from planning a project from seed to harvest. That's your Yong Shen — your destined direction. It's not about becoming someone else; it's about letting the mountain grow trees. Wood gives your Earth a purpose — to support life, not just to stand. Face east — not due east, but a little southeast, where the morning light first touches the hills. Let that direction be your anchor. Wear green — not just any green, but the tender green of the first leaf in spring, the color of new beginnings. Spring is your season — the time when the world remembers how to grow. When you feel stuck, remember: Wood doesn't force its way through stone; it finds the cracks and grows patiently. That's your way too.</p>
   </div>
 </section>
 
@@ -662,22 +593,22 @@ footer .foot-seal {
       
     <li class="pocket-item" style="animation-delay:0s">
       <span class="pocket-num">1</span>
-      <span>Green is your switch. Every morning when you get dressed, pick one green thing—socks, a bracelet, even a green phone case. This isn't superstition. It's a signal to your subconscious. Your Wu Earth sees green and knows: time to grow. Start small, but start today.</span>
+      <span>Green is your switch. Every morning when you get dressed, pick one green thing — socks, a bracelet, even a green phone case. This isn't superstition. It's a signal to your subconscious. Your Wu Earth Day Master sees green and knows: time to grow, not just to stand.</span>
     </li>
 
     <li class="pocket-item" style="animation-delay:0.15s">
       <span class="pocket-num">2</span>
-      <span>Take a walk eastward every day, even if it's just around the block. Let your body face the direction of your growth. Breathe in the morning air, and imagine roots reaching down while branches reach up. You don't need to meditate for an hour—just five minutes of intentional eastward walking can shift your entire day.</span>
+      <span>Face east when you make decisions. Before an important meeting or a tough call, take three breaths and turn your body slightly east — not due east, but a little southeast. This aligns you with your Wood energy, clearing the fog of doubt and helping you see the path ahead.</span>
     </li>
 
     <li class="pocket-item" style="animation-delay:0.3s">
       <span class="pocket-num">3</span>
-      <span>Plant something—anything. A herb pot on your windowsill, a small tree in your yard, even a succulent on your desk. The act of nurturing living wood will remind you that you, too, are alive and growing. Water it every morning, and let it be a mirror for your own need for care.</span>
+      <span>Plant something — even a small herb on a windowsill. Water it daily. Watch it grow. This is not about gardening; it's about reminding your soul that you are a nurturer, not just a carrier. The act of tending life mirrors the way you should tend your own dreams.</span>
     </li>
 
     <li class="pocket-item" style="animation-delay:0.44999999999999996s">
       <span class="pocket-num">4</span>
-      <span>In your career, say 'yes' to projects that involve teaching, mentoring, or building something new—especially if they involve young people or fresh ideas. Your Wood element thrives when it's helping others take root. You'll find that when you guide others toward growth, you grow too.</span>
+      <span>Schedule a 'valley hour' every week — one hour where you are unreachable, doing something that brings you joy without obligation. Read, walk, paint, stare at the sky. This is your Wood time, your growth time. The mountain needs its own forest, or it becomes barren rock.</span>
     </li>
     </ul>
   </div>
@@ -699,8 +630,8 @@ footer .foot-seal {
         <span class="tianji-seal">Secrets</span>
         <span class="tianji-num">Scroll I</span>
       </div>
-      <h3>The Hidden Officer in Your Chen Earth</h3>
-      <div class="tianji-body">Most people look at your chart and see a mountain of Earth — solid, unmovable, perhaps too stubborn. But I've read thousands of charts, and what I see in your Day Pillar's Chen Earth is something few notice: it conceals Yi Wood, your Direct Officer. This is the quiet authority that makes others instinctively respect you, even when you say little. The ancients said in the Di Tian Sui, 'When the Officer is hidden, the command is silent but absolute.' In your career, this means you don't need to chase titles — they will come to you because your presence alone commands the room. But beware: this Wood is weak in autumn, so it needs Fire to thrive. Your current Da Yun, YiSi, brings exactly that — a decade where your hidden authority can finally bloom.</div>
+      <h3>The Officer Hidden in Your Earth: Your Career's Silent Guardian</h3>
+      <div class="tianji-body">Most people look at your Wu Earth Day Master and see a mountain—steady, immovable, reliable. But I've seen this pattern before, and what they miss is the Yi Wood Direct Officer hiding inside your Day Pillar's Chen Earth. That's the secret: while everyone leans on you as the dependable one, your true career authority comes from this hidden Wood—the discipline and structure that turns your reliability into leadership. The Di Tian Sui says, 'When the Officer is hidden, the mountain commands without speaking.' Right now, in your YiSi Da Yun, that Wood is waking up, and it's not just about being the support—it's about stepping into the role where others follow your direction. This is the decade where your quiet authority becomes undeniable.</div>
     </div>
   
 
@@ -709,8 +640,8 @@ footer .foot-seal {
         <span class="tianji-seal">Secrets</span>
         <span class="tianji-num">Scroll II</span>
       </div>
-      <h3>Your Wen Chang Star Is Twice Lit</h3>
-      <div class="tianji-body">You carry not one, but two Wen Chang stars — one in your Year Pillar and one in your Hour Pillar. In all my years, this doubling is rare and powerful. It means your intellect is not just a tool; it's a destiny marker. The Qiong Tong Bao Jian says, 'When the Wen Chang shines twice, the pen becomes a sword.' This is why you've always excelled in learning, writing, or any career that demands sharp analysis. But here's the secret: your Wen Chang is in Shen Metal, which feeds your Wealth — so your intelligence is directly tied to your earning power. The current YiSi Da Yun activates this further, as Si Fire harmonizes with your Shen Metal, turning your knowledge into tangible results. Don't underestimate the power of continued study — it's not just growth, it's your wealth engine.</div>
+      <h3>Your Wen Chang Star: The Scholar's Lamp in the Corporate Fog</h3>
+      <div class="tianji-body">You carry Wen Chang not once, but twice—a rare double blessing that most charts never see. This star isn't just about academic brilliance; it's the cosmic equivalent of a lighthouse in your career, guiding you through negotiations, contracts, and strategic decisions. The Yuan Hai Zi Ping notes, 'Wen Chang shines on the path of the written word,' and in your chart, it's anchored in the Metal of your Shen month—sharpening your intellect into a blade that cuts through ambiguity. In all my years, I've seen this double Wen Chang only in a handful of cases, and it always marks someone who can out-think their competitors without raising their voice. Trust your analytical instincts this year—they're not just intuition; they're your stars aligning.</div>
     </div>
   
 
@@ -719,8 +650,8 @@ footer .foot-seal {
         <span class="tianji-seal">Secrets</span>
         <span class="tianji-num">Scroll III</span>
       </div>
-      <h3>The Canopy Star: Your Solitude Is a Strategy</h3>
-      <div class="tianji-body">Your Hua Gai star sits in your Hour Pillar, and I've seen this pattern in the charts of philosophers, strategists, and artists who changed the world. It's the star of the hermit, the observer — the one who sees patterns others miss. But in a career context, it's often misunderstood. People think it means isolation, but I've learned it means depth. The Yuan Hai Zi Ping says, 'The Canopy Star shelters the wise; their silence is their shield.' In your work, this manifests as a need for solitary focus — you do your best thinking alone, away from the noise. The current YiSi Da Yun, with its Direct Officer energy, will test this: you'll be pulled into leadership roles that demand visibility. My advice: don't abandon your quiet hours. They are your competitive edge. The mountain doesn't shout, yet all the valleys listen.</div>
+      <h3>The Wealth That Isn't What It Seems: Your Hidden Gold</h3>
+      <div class="tianji-body">Your chart shows an Indirect Wealth pattern, and most practitioners would tell you to chase the visible opportunities—the Ren Water Wealth in your Shen month. But here's the truth I've learned from decades at the street corner: that Wealth is a river, always flowing, but it's the Gui Water Direct Wealth hidden in your Day Pillar's Chen Earth that's the deep well. The Qiong Tong Bao Jian warns, 'When the river floods, the well remains,' and this is your career lesson—don't be dazzled by the flashy projects; the steady, behind-the-scenes roles are where your true fortune lies. Your Hua Gai star adds a layer of solitude to this, suggesting that your most profitable moves will come when you work quietly, away from the crowd. This year, resist the urge to chase every opportunity; instead, deepen the one you're already in.</div>
     </div>
   
 </section>
@@ -743,20 +674,20 @@ footer .foot-seal {
           <div class="crystal-badge">Primary Crystal</div>
           <div class="crystal-stone">Green Turquoise</div>
           <span class="crystal-element el">Wood Element</span>
-          <p class="crystal-why">Your chart's weakest element is Wood, and your Yong Shen is Wood — the very force that protects your wealth and activates your hidden Officer. This turquoise is like watering the root of a mountain pine: it strengthens your ability to stand firm while growing upward. It's not decoration; it's your Yong Shen made tangible, a daily reminder that your authority grows from your inner stillness.</p>
-          <p class="crystal-wear">Wear it on your left wrist, closest to your heart, as a bracelet or pendant. Every morning, before you check your phone, hold it for ten seconds and say silently: 'I am the mountain, and my roots run deep.' Let this become a ritual. On days when you feel overwhelmed by others' demands, touch it three times and remember: you carry the Wood of authority within you.</p>
+          <p class="crystal-why">Your chart is starving for Wood—it's your Yong Shen, the element that fuels your career authority and protects your wealth from being scattered. This turquoise isn't just a pretty stone; it's like watering the hidden Yi Wood in your Day Pillar, giving it strength to stand tall as your Direct Officer. Every time you wear it, you're reminding your subconscious that you're not just the mountain—you're the forest that grows on it.</p>
+          <p class="crystal-wear">Wear it on your left wrist, the receiving side, as a bracelet or a ring. Every morning, before you check your phone, hold it for ten seconds and think of one career goal—let that become your ritual. On days when you have a big meeting or negotiation, touch it before you walk in; it's your silent anchor.</p>
         </div>
         <div class="crystal-card secondary">
           <div class="crystal-badge sec">Guardian Jade</div>
-          <div class="crystal-stone">Red Carnelian</div>
+          <div class="crystal-stone">Red Jasper</div>
           <span class="crystal-element el">Fire Element</span>
-          <p class="crystal-why">Fire is your Xi Shen — it warms your autumn Earth and feeds your weak Wood. Carnelian adds the spark of action to your steady nature, helping you move from thought to execution without losing your calm.</p>
-          <p class="crystal-wear">Wear it as a ring on your right index finger, or carry it in your pocket during important meetings. When you feel hesitation, press it and let its warmth remind you: the mountain also has a fire within.</p>
+          <p class="crystal-why">Your Autumn Earth is cold, and Fire is your Xi Shen—it warms your chart and fuels your output, turning your ideas into action. Red Jasper complements the turquoise by adding the heat that makes your Wood grow faster, especially in your YiSi Da Yun where Fire is already stirring.</p>
+          <p class="crystal-wear">Wear it on your right wrist or as a pendant close to your heart. Use it on days when you feel stuck or need a spark of courage—it's your inner furnace.</p>
         </div>
       </div>
       <div class="crystal-master-note">
-        <p class="master-words">A crystal is not a magic charm — it's a mirror. It reflects the energy you already carry but sometimes forget. Your chart is a mountain of Earth, strong and giving, but it needs Wood to grow and Fire to warm. These stones are not engines; they are switches that tell your subconscious: 'I am walking in my direction.' What you're trusting isn't the stone — it's the version of yourself the stone reminds you to become. I've seen clients who wore a stone for years and never changed, and others who wore it for a month and transformed. The difference isn't the stone; it's the intention you bring to it. Let this turquoise be your anchor, and your career will follow the path your chart has already laid out.</p>
-        <p class="crystal-avoid">⚠ Avoid stones of the Water element, like black obsidian or blue sapphire, as they can extinguish your Fire and weaken your Wood, clouding the clarity you need.</p>
+        <p class="master-words">I've told every client the same thing for forty years: a crystal is a mirror, not an engine. It doesn't create your fortune—it reflects the energy already within you, the part that's been waiting for permission to rise. When you hold this turquoise, you're not trusting the stone; you're trusting the version of yourself that it reminds you to become—the one who stands firm like the mountain but grows like the forest. The stone is just the switch; you're the power.</p>
+        <p class="crystal-avoid">⚠ Avoid Earth-element stones like yellow citrine or tiger's eye—they'll only weigh you down further, making your already strong Earth even more immovable.</p>
       </div>
     </div>
   
@@ -768,7 +699,7 @@ footer .foot-seal {
      ═══════════════════════════════════════════════════════ -->
 <section class="chapter">
   <div class="content-card closing-card">
-    <p>Remember, Wu Earth—you are the mountain that others lean on, but you are also the mountain that can grow forests. Let the green climb your slopes. Let the east wind carry your seeds. You are not alone; the earth beneath you is your strength, and the sky above you is your promise. Walk toward the light, and you will never be lost.</p>
+    <p>Remember — you are Wu Earth, the mountain. But a mountain is not meant to stand alone; it's meant to hold the forest, the rivers, the life that grows on its slopes. Let Wood be your guide, and you'll find that carrying others becomes lighter when you also carry yourself. You are not alone. The valley is waiting for you.</p>
   </div>
 </section>
 

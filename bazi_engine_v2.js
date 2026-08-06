@@ -625,13 +625,13 @@
     return Math.floor((hourFloat + 1) / 2);
   }
 
-  const SHI_CHEN_NAMES = ["Zi (子)", "Chou (丑)", "Yin (寅)", "Mao (卯)", "Chen (辰)", "Si (巳)",
-    "Wu (午)", "Wei (未)", "Shen (申)", "You (酉)", "Xu (戌)", "Hai (亥)"];
+  const SHI_CHEN_NAMES = ["Zi", "Chou", "Yin", "Mao", "Chen", "Si",
+    "Wu", "Wei", "Shen", "You", "Xu", "Hai"];
 
   const SHI_CHEN_ORGANS = {
-    0: "Gallbladder (胆)", 1: "Liver (肝)", 2: "Lung (肺)", 3: "Large Intestine (大肠)",
-    4: "Stomach (胃)", 5: "Spleen (脾)", 6: "Heart (心)", 7: "Small Intestine (小肠)",
-    8: "Bladder (膀胱)", 9: "Kidney (肾)", 10: "Pericardium (心包)", 11: "Triple Burner (三焦)"
+    0: "Gallbladder", 1: "Liver", 2: "Lung", 3: "Large Intestine",
+    4: "Stomach", 5: "Spleen", 6: "Heart", 7: "Small Intestine",
+    8: "Bladder", 9: "Kidney", 10: "Pericardium", 11: "Triple Burner"
   };
 
   function computeSolarAdjustment(birthTime, cityName) {
@@ -786,13 +786,13 @@
     const si = elementControlledBy(monthElement);    // controlled by month
 
     let rank;
-    if (dmElement === wang) rank = "Wang (Prosperous — 旺)";
-    else if (dmElement === xiang) rank = "Xiang (Strong — 相)";
-    else if (dmElement === xiu) rank = "Xiu (Resting — 休)";
-    else if (dmElement === qiu) rank = "Qiu (Imprisoned — 囚)";
-    else rank = "Si (Dead — 死)";
+    if (dmElement === wang) rank = "Wang (Prosperous)";
+    else if (dmElement === xiang) rank = "Xiang (Strong)";
+    else if (dmElement === xiu) rank = "Xiu (Resting)";
+    else if (dmElement === qiu) rank = "Qiu (Imprisoned)";
+    else rank = "Si (Dead)";
 
-    const scoreMap = { "Wang (Prosperous — 旺)": 4, "Xiang (Strong — 相)": 3, "Xiu (Resting — 休)": 1.5, "Qiu (Imprisoned — 囚)": 0.8, "Si (Dead — 死)": 0.3 };
+    const scoreMap = { "Wang (Prosperous)": 4, "Xiang (Strong)": 3, "Xiu (Resting)": 1.5, "Qiu (Imprisoned)": 0.8, "Si (Dead)": 0.3 };
     let score = scoreMap[rank] || 1.5;
 
     // Bonus: Day Master sitting on the month branch main qi (通根于月令)
@@ -837,8 +837,8 @@
     const hasRoot = rootCount > 0;
     const strongRoot = rootStrength >= 1.5;
     const note = hasRoot
-      ? (strongRoot ? "Day Master has strong earthly roots (通根有力)" : "Day Master has weak earthly roots (根气不足)")
-      : "Day Master has NO earthly roots (无根) — highly dependent on heavenly support";
+      ? (strongRoot ? "Day Master has strong earthly roots" : "Day Master has weak earthly roots")
+      : "Day Master has NO earthly roots — highly dependent on heavenly support";
 
     return { rootCount, rootStrength, rootDetails, hasRoot, strongRoot, note, score: Math.min(3, rootStrength * 1.5) };
   }
@@ -874,11 +874,11 @@
     const totalScore = monthly.score + roots.score + heavenly.score;
 
     let band, bandLabel;
-    if (totalScore >= 7) { band = "Very Strong"; bandLabel = "极旺"; }
-    else if (totalScore >= 5) { band = "Strong"; bandLabel = "偏旺"; }
-    else if (totalScore >= 3) { band = "Balanced"; bandLabel = "中和"; }
-    else if (totalScore >= 1.5) { band = "Weak"; bandLabel = "偏弱"; }
-    else { band = "Very Weak"; bandLabel = "极弱"; }
+    if (totalScore >= 7) { band = "Very Strong"; bandLabel = "Very Strong"; }
+    else if (totalScore >= 5) { band = "Strong"; bandLabel = "Strong"; }
+    else if (totalScore >= 3) { band = "Balanced"; bandLabel = "Balanced"; }
+    else if (totalScore >= 1.5) { band = "Weak"; bandLabel = "Weak"; }
+    else { band = "Very Weak"; bandLabel = "Very Weak"; }
 
     const canFollow = (band === "Very Strong" || band === "Very Weak");
 
@@ -898,16 +898,16 @@
     "Direct Resource", "Indirect Resource", "Eating God", "Hurting Officer"];
 
   const GE_JU_NAMES = {
-    "Direct Officer": "正官格 (Direct Officer Pattern)",
-    "Seven Killings": "七杀格 (Seven Killings Pattern)",
-    "Direct Wealth": "正财格 (Direct Wealth Pattern)",
-    "Indirect Wealth": "偏财格 (Indirect Wealth Pattern)",
-    "Direct Resource": "正印格 (Direct Resource Pattern)",
-    "Indirect Resource": "偏印格 (Indirect Resource Pattern)",
-    "Eating God": "食神格 (Eating God Pattern)",
-    "Hurting Officer": "伤官格 (Hurting Officer Pattern)",
-    "Friend": "建禄格 (Jian Lu / Build Prosperity Pattern)",
-    "Rob Wealth": "月刃格 (Yue Ren / Moon Blade Pattern)"
+    "Direct Officer": "Direct Officer Pattern",
+    "Seven Killings": "Seven Killings Pattern",
+    "Direct Wealth": "Direct Wealth Pattern",
+    "Indirect Wealth": "Indirect Wealth Pattern",
+    "Direct Resource": "Direct Resource Pattern",
+    "Indirect Resource": "Indirect Resource Pattern",
+    "Eating God": "Eating God Pattern",
+    "Hurting Officer": "Hurting Officer Pattern",
+    "Friend": "Jian Lu Pattern (Build Prosperity)",
+    "Rob Wealth": "Yue Ren Pattern (Moon Blade)"
   };
 
   function identifyGeJu(dayStemIdx, pillars, strength) {
@@ -953,7 +953,7 @@
       const mainQiTenGod = getTenGod(dayStemIdx, stemIndex(monthHidden[0]));
       if (GE_JU_ORDER.includes(mainQiTenGod)) {
         geJuGod = mainQiTenGod;
-        geJuSource = "Main Qi (不透/not transparent)";
+        geJuSource = "Main Qi (not transparent in stems)";
         geJuTransparent = false;
       } else if (mainQiTenGod === "Friend") {
         geJuGod = "Friend"; // 建禄格
@@ -969,7 +969,7 @@
           const midQiTenGod = getTenGod(dayStemIdx, stemIndex(monthHidden[1]));
           if (GE_JU_ORDER.includes(midQiTenGod)) {
             geJuGod = midQiTenGod;
-            geJuSource = "Middle Qi (不透/not transparent)";
+            geJuSource = "Middle Qi (not transparent in stems)";
             geJuTransparent = false;
           }
         }
@@ -994,7 +994,7 @@
         const hasOpposition = checkHasOpposition(dayStemIdx, pillars);
         if (!hasOpposition) {
           isSpecialPattern = true;
-          specialPatternName = "从强格 (Following Strength / Cong Qiang)";
+          specialPatternName = "Following Strength Pattern (Cong Qiang)";
         }
       } else if (strength.band === "Very Weak") {
         const domination = checkDomination(dayStemIdx, pillars);
@@ -1006,7 +1006,7 @@
     }
 
     // Step 4: Assess pattern purity (清浊)
-    let purity = "Pure (清)";
+    let purity = "Pure";
     const patternTenGod = geJuGod;
     let conflictingCount = 0;
     const conflictingGods = [];
@@ -1030,8 +1030,8 @@
       }
     });
 
-    if (conflictingCount >= 2) purity = "Mixed (浊)";
-    else if (conflictingCount === 1) purity = "Slightly Mixed (微浊)";
+    if (conflictingCount >= 2) purity = "Mixed";
+    else if (conflictingCount === 1) purity = "Slightly Mixed";
 
     const geJuName = GE_JU_NAMES[geJuGod] || (geJuGod + " Pattern");
 
@@ -1085,9 +1085,9 @@
       if (branchEl === outputEl) outputCount += 0.5;
     });
 
-    if (officerCount >= 3) return { dominated: true, patternName: "从杀格 (Following Seven Killings / Cong Sha)" };
-    if (wealthCount >= 3) return { dominated: true, patternName: "从财格 (Following Wealth / Cong Cai)" };
-    if (outputCount >= 3) return { dominated: true, patternName: "从儿格 (Following Output / Cong Er)" };
+    if (officerCount >= 3) return { dominated: true, patternName: "Following Seven Killings Pattern (Cong Sha)" };
+    if (wealthCount >= 3) return { dominated: true, patternName: "Following Wealth Pattern (Cong Cai)" };
+    if (outputCount >= 3) return { dominated: true, patternName: "Following Output Pattern (Cong Er)" };
     return { dominated: false, patternName: null };
   }
 
@@ -1138,56 +1138,56 @@
 
     // Shun Yong Patterns
     if (patternGod === "Direct Officer") {
-      yongShen = { element: wealthEl, reason: "Shun Yong: Wealth (财) generates Officer (官), strengthening the pattern. Follow 《子平真诠》: 正官格以财生官为用。" };
-      xiShen = [resourceEl]; // 印护官
-      jiShen = ["Hurting Officer element: " + outputEl + " — 伤官克官, the primary taboo for Direct Officer pattern"];
-      yongShenMethod = "Shun Yong (顺用)";
-      principle = "顺用：财生官、印护官 → 格局得护则贵";
+      yongShen = { element: wealthEl, reason: "Shun Yong: Wealth generates Officer, strengthening the pattern. From Zi Ping Zhen Quan: Direct Officer pattern uses Wealth to produce Officer as primary Yong Shen." };
+      xiShen = [resourceEl];
+      jiShen = ["Hurting Officer element: " + outputEl + " — Hurting Officer destroys Officer, the primary taboo for Direct Officer pattern"];
+      yongShenMethod = "Shun Yong";
+      principle = "Shun Yong: Wealth produces Officer, Resource protects Officer → protected pattern yields authority";
     } else if (patternGod === "Seven Killings") {
       const eatingGodEl = outputEl; // 食神制杀
-      yongShen = { element: eatingGodEl, reason: "Ni Yong: Eating God (食神) controls Seven Killings (制杀). When 食神制杀得力, violence is converted to authority. Follow 《子平真诠》: 七杀格以食神制杀为用。" };
-      xiShen = [companionEl]; // 比劫生食神
-      jiShen = ["Wealth element: " + wealthEl + " — 财生杀, strengthens the enemy"];
-      yongShenMethod = "Ni Yong (逆用)";
-      principle = "逆用：食神制杀 → 杀得制则化为权";
+      yongShen = { element: eatingGodEl, reason: "Ni Yong: Eating God controls Seven Killings. When Eating God controls killing energy with force, violence is converted to authority. From Zi Ping Zhen Quan: Seven Killings pattern uses Eating God to control the killing." };
+      xiShen = [companionEl];
+      jiShen = ["Wealth element: " + wealthEl + " — Wealth produces Seven Killings, strengthens the enemy"];
+      yongShenMethod = "Ni Yong";
+      principle = "Ni Yong: Eating God controls Seven Killings → when killing is controlled, it transforms into power";
     } else if (patternGod === "Direct Wealth" || patternGod === "Indirect Wealth") {
-      yongShen = { element: officerEl, reason: "Shun Yong: Officer (官) protects Wealth (护财) from Rob Wealth. When officer protects wealth, resources are secured. Follow 《子平真诠》: 财格以官护财为用。" };
-      xiShen = [outputEl]; // 食神生财
-      jiShen = ["Companion/Rob Wealth: " + companionEl + " — 比劫夺财, scatters wealth"];
-      yongShenMethod = "Shun Yong (顺用)";
-      principle = "顺用：官护财、食生财 → 财有护有源则富";
+      yongShen = { element: officerEl, reason: "Shun Yong: Officer protects Wealth from Rob Wealth. When officer protects wealth, resources are secured. From Zi Ping Zhen Quan: Wealth pattern uses Officer to guard wealth as primary Yong Shen." };
+      xiShen = [outputEl];
+      jiShen = ["Companion/Rob Wealth: " + companionEl + " — Companion steals wealth, scatters resources"];
+      yongShenMethod = "Shun Yong";
+      principle = "Shun Yong: Officer guards Wealth, Output produces Wealth → wealth with guard and source brings prosperity";
     } else if (patternGod === "Direct Resource" || patternGod === "Indirect Resource") {
-      yongShen = { element: officerEl, reason: "Shun Yong: Officer (官杀) generates Resource (生印), strengthening the pattern. Follow 《子平真诠》: 印格以官杀生印为用。" };
-      xiShen = [companionEl]; // 比劫护印（泄官杀之克身）
-      jiShen = ["Wealth element: " + wealthEl + " — 财破印, destroys resource support"];
-      yongShenMethod = "Shun Yong (顺用)";
-      principle = "顺用：官生印、比劫护印 → 印得护则学而有成";
+      yongShen = { element: officerEl, reason: "Shun Yong: Officer generates Resource, strengthening the pattern. From Zi Ping Zhen Quan: Resource pattern uses Officer to produce Resource as primary Yong Shen." };
+      xiShen = [companionEl];
+      jiShen = ["Wealth element: " + wealthEl + " — Wealth destroys Resource, severs the support structure"];
+      yongShenMethod = "Shun Yong";
+      principle = "Shun Yong: Officer produces Resource, Companion protects Resource → protected resource yields scholarly achievement";
     } else if (patternGod === "Eating God") {
-      yongShen = { element: companionEl, reason: "Shun Yong: Companion (比劫) generates Eating God (生食神), strengthening expression. Follow 《子平真诠》: 食神格以比劫生食为用。" };
-      xiShen = [wealthEl]; // 食神生财 → 秀气流通
-      jiShen = ["Indirect Resource (偏印): " + resourceEl + " — 枭神夺食, the most feared clash"];
-      yongShenMethod = "Shun Yong (顺用)";
-      principle = "顺用：比劫生食、食生财 → 秀气流通则才艺得展";
+      yongShen = { element: companionEl, reason: "Shun Yong: Companion generates Eating God, strengthening the expressive output. From Zi Ping Zhen Quan: Eating God pattern uses Companion to produce Eating God as primary Yong Shen." };
+      xiShen = [wealthEl];
+      jiShen = ["Indirect Resource: " + resourceEl + " — Indirect Resource steals Eating God, the most feared clash in this pattern"];
+      yongShenMethod = "Shun Yong";
+      principle = "Shun Yong: Companion produces Eating God, Eating God produces Wealth → creative flow circulates, talent finds expression";
     } else if (patternGod === "Hurting Officer") {
-      yongShen = { element: resourceEl, reason: "Ni Yong: Resource (印) controls Hurting Officer (印制伤官). Hurting Officer without control damages reputation. Follow 《子平真诠》: 伤官格以印制伤为用。" };
-      xiShen = [wealthEl]; // 财化伤官（伤官生财）
-      jiShen = ["Direct Officer: " + officerEl + " — 伤官见官, classic taboo: '伤官见官，为祸百端'"];
-      yongShenMethod = "Ni Yong (逆用)";
-      principle = "逆用：印制伤官 → 伤官配印则贵；或伤官生财 → 秀气转财则富";
+      yongShen = { element: resourceEl, reason: "Ni Yong: Resource controls Hurting Officer. Uncontrolled Hurting Officer damages reputation and invites conflict. From Zi Ping Zhen Quan: Hurting Officer pattern uses Resource to control it as primary Yong Shen." };
+      xiShen = [wealthEl];
+      jiShen = ["Direct Officer: " + officerEl + " — Hurting Officer clashes with Direct Officer, classic taboo: 'Hurting Officer meets Officer — a hundred disasters follow'"];
+      yongShenMethod = "Ni Yong";
+      principle = "Ni Yong: Resource controls Hurting Officer → Hurting Officer paired with Resource yields nobility; or Hurting Officer produces Wealth → creative expression converts to prosperity";
     } else if (patternGod === "Friend") {
       // 建禄格
-      yongShen = { element: officerEl, reason: "Ni Yong: Officer (官杀) controls excess Companion (制比肩). Jian Lu pattern without officer lacks discipline. Follow 《子平真诠》: 建禄格以官杀为用。" };
-      xiShen = [outputEl]; // 食伤泄秀
-      jiShen = ["Resource: " + resourceEl + " — 印生比肩, strengthens the root that already dominates"];
-      yongShenMethod = "Ni Yong (逆用)";
-      principle = "逆用：官杀制比肩 → 禄得制则成器";
+      yongShen = { element: officerEl, reason: "Ni Yong: Officer controls excess Companion energy. Jian Lu pattern without officer lacks discipline and structure. From Zi Ping Zhen Quan: Jian Lu pattern uses Officer to control Companion as primary Yong Shen." };
+      xiShen = [outputEl];
+      jiShen = ["Resource: " + resourceEl + " — Resource produces Companion, strengthening the root that already dominates"];
+      yongShenMethod = "Ni Yong";
+      principle = "Ni Yong: Officer controls Companion → when prosperity is restrained, character is forged";
     } else if (patternGod === "Rob Wealth") {
       // 月刃格
-      yongShen = { element: officerEl, reason: "Ni Yong: Officer (官杀) controls Rob Wealth (制劫财). Yue Ren pattern is fierce; officer must control it. Follow 《子平真诠》: 月刃格以官杀制劫为用。" };
-      xiShen = [outputEl]; // 食伤泄秀
-      jiShen = ["Resource/Companion: " + resourceEl + "/" + companionEl + " — 印比生劫, fuels the fire"];
-      yongShenMethod = "Ni Yong (逆用)";
-      principle = "逆用：官杀制劫 → 刃得制则不为害";
+      yongShen = { element: officerEl, reason: "Ni Yong: Officer controls Rob Wealth. Yue Ren pattern is fierce and sharp; officer must restrain its cutting edge. From Zi Ping Zhen Quan: Yue Ren pattern uses Officer to control Rob Wealth as primary Yong Shen." };
+      xiShen = [outputEl];
+      jiShen = ["Resource/Companion: " + resourceEl + "/" + companionEl + " — Resource and Companion fuel Rob Wealth, adding fuel to the fire"];
+      yongShenMethod = "Ni Yong";
+      principle = "Ni Yong: Officer controls Rob Wealth → when the blade is restrained, it becomes a tool rather than a weapon";
     } else {
       // Fallback for any unhandled pattern
       yongShen = { element: strength.band.includes("Strong") ? wealthEl : resourceEl, reason: "Fallback determination based on strength: " + (strength.band.includes("Strong") ? "reduce excess with wealth/officer" : "support weakness with resource/companion") };
@@ -1198,26 +1198,26 @@
 
     // Special patterns override
     if (geJu.isSpecialPattern && geJu.specialPatternName) {
-      if (geJu.specialPatternName.includes("从强")) {
-        yongShen = { element: companionEl, reason: "Special pattern (从强格): Follow the strength — use Companion and Resource to reinforce the dominant force." };
+      if (geJu.specialPatternName.includes("Following Strength")) {
+        yongShen = { element: companionEl, reason: "Special pattern (Following Strength): Follow the strength — use Companion and Resource to reinforce the dominant force." };
         xiShen = [resourceEl];
         jiShen = ["Officer/Wealth: " + officerEl + "/" + wealthEl + " — opposing elements break the Following pattern"];
-        yongShenMethod = "Special: Follow Strength (从强)";
-      } else if (geJu.specialPatternName.includes("从杀")) {
-        yongShen = { element: officerEl, reason: "Special pattern (从杀格): Follow the Seven Killings — use Officer and Wealth that dominate the chart." };
+        yongShenMethod = "Special: Follow Strength";
+      } else if (geJu.specialPatternName.includes("Following Seven Killings")) {
+        yongShen = { element: officerEl, reason: "Special pattern (Following Seven Killings): Follow the Seven Killings — use Officer and Wealth that dominate the chart." };
         xiShen = [wealthEl];
         jiShen = ["Resource/Companion: " + resourceEl + "/" + companionEl + " — supporting elements break the Following pattern"];
-        yongShenMethod = "Special: Follow Killings (从杀)";
-      } else if (geJu.specialPatternName.includes("从财")) {
-        yongShen = { element: wealthEl, reason: "Special pattern (从财格): Follow the Wealth — use Wealth and Output that dominate." };
+        yongShenMethod = "Special: Follow Killings";
+      } else if (geJu.specialPatternName.includes("Following Wealth Pattern")) {
+        yongShen = { element: wealthEl, reason: "Special pattern (Following Wealth): Follow the Wealth — use Wealth and Output that dominate." };
         xiShen = [outputEl];
         jiShen = ["Resource/Companion: " + resourceEl + "/" + companionEl + " — supporting elements break the Following pattern"];
-        yongShenMethod = "Special: Follow Wealth (从财)";
-      } else if (geJu.specialPatternName.includes("从儿")) {
-        yongShen = { element: outputEl, reason: "Special pattern (从儿格): Follow the Output — use Output and Wealth." };
+        yongShenMethod = "Special: Follow Wealth";
+      } else if (geJu.specialPatternName.includes("Following Output")) {
+        yongShen = { element: outputEl, reason: "Special pattern (Following Output): Follow the Output — use Output and Wealth." };
         xiShen = [wealthEl];
         jiShen = ["Resource: " + resourceEl + " — Resource controls Output, breaking the Following pattern"];
-        yongShenMethod = "Special: Follow Output (从儿)";
+        yongShenMethod = "Special: Follow Output";
       }
     }
 
@@ -1234,7 +1234,7 @@
           // Tiao Hou overrides as primary Yong Shen
           yongShen = {
             element: thPrimary,
-            reason: "Tiao Hou (调候) overrides: " + thPrimary + " is critically needed for climate survival per 《穷通宝鉴》. " + (tiaoHouResult.note || ""),
+            reason: "Tiao Hou overrides: " + thPrimary + " is critically needed for climate survival per Qiong Tong Bao Jian. " + (tiaoHouResult.note || ""),
             originalYongShen: yongShen.element + " (" + yongShen.reason + ")"
           };
           yongShenMethod += " + Tiao Hou Override";
@@ -1275,9 +1275,9 @@
       method: yongShenMethod,
       principle,
       tiaoHouCorrected: tiaoHouResult ? (tiaoHouResult.primary !== yongShen.originalYongShen?.split(" ")[0]) : false,
-      summary: "Yong Shen (用神): " + yongShenEl + " — " + yongShen.reason
-        + " | Xi Shen (喜神): " + (xiElements.slice(0, 3).join(", ") || "none")
-        + " | Ji Shen (忌神): " + (jiElementsList.slice(0, 3).join(", ") || "none")
+      summary: "Yong Shen: " + yongShenEl + " — " + yongShen.reason
+        + " | Xi Shen: " + (xiElements.slice(0, 3).join(", ") || "none")
+        + " | Ji Shen: " + (jiElementsList.slice(0, 3).join(", ") || "none")
         + " | Method: " + yongShenMethod
     };
   }
@@ -1686,10 +1686,10 @@
     favorScore += combineCount * 0.1;
 
     let label;
-    if (favorScore >= 0.5) label = "Favorable Year (吉)";
-    else if (favorScore >= 0) label = "Neutral Year (平)";
-    else if (favorScore >= -0.4) label = "Challenging Year (注意)";
-    else label = "Caution Year (慎)";
+    if (favorScore >= 0.5) label = "Favorable Year";
+    else if (favorScore >= 0) label = "Neutral Year";
+    else if (favorScore >= -0.4) label = "Challenging Year";
+    else label = "Caution Year";
 
     return {
       stem: annualStem, branch: annualBranch, element: annualElement, animal: annualAnimal,
@@ -1788,10 +1788,10 @@
     const hasYiMa = yiMaStars.length > 0;
 
     let careerArchetype;
-    if (hasGuanYin) careerArchetype = "官印相生 (Officer-Resource Mutual Generation) — Classic career official archetype. Authority plus learning brings steady rank advancement. Suited for government, institutions, and structured organizations.";
-    else if (profile.geJu.patternGod === "Seven Killings") careerArchetype = "七杀格局 — Military, law enforcement, competitive fields, entrepreneurship. Success comes through pressure and decisive action.";
-    else if (profile.geJu.patternGod === "Hurting Officer") careerArchetype = "伤官格局 — Creative, technical, or artistic fields. Independence and innovation are key. Authority structures may feel constraining.";
-    else if (profile.geJu.patternGod.includes("Wealth")) careerArchetype = "财格 — Business, finance, trade, and resource management. Practical skills and wealth-building are natural strengths.";
+    if (hasGuanYin) careerArchetype = "Officer-Resource Mutual Generation — Classic career official archetype. Authority plus learning brings steady rank advancement. Suited for government, institutions, and structured organizations.";
+    else if (profile.geJu.patternGod === "Seven Killings") careerArchetype = "Seven Killings Pattern — Military, law enforcement, competitive fields, entrepreneurship. Success comes through pressure and decisive action.";
+    else if (profile.geJu.patternGod === "Hurting Officer") careerArchetype = "Hurting Officer Pattern — Creative, technical, or artistic fields. Independence and innovation are key. Authority structures may feel constraining.";
+    else if (profile.geJu.patternGod.includes("Wealth")) careerArchetype = "Wealth Pattern — Business, finance, trade, and resource management. Practical skills and wealth-building are natural strengths.";
     else careerArchetype = "Balanced career path — adaptable to multiple fields. Leverage the Yong Shen element (" + yongShenEl + ") for direction.";
 
     return {
@@ -1840,11 +1840,11 @@
     const hasWealthStorage = wealthBranches.length > 0;
 
     let wealthArchetype;
-    if (directWealthCount >= 2) wealthArchetype = "正财旺 — Stable income, salary-based, reliable accumulation. Conservative investment style suits this chart.";
-    else if (indirectWealthCount >= 2) wealthArchetype = "偏财旺 — Business income, investments, windfall potential. Higher risk tolerance but requires discipline.";
-    else if (outputToWealth) wealthArchetype = "食伤生财 — Talent/creativity generates wealth. Monetize skills, content, and intellectual property.";
-    else if (hasWealthStorage) wealthArchetype = "财入库 — Wealth accumulates in storage (财库). Building assets and long-term holdings is natural.";
-    else wealthArchetype = "财星不显 — Wealth comes through the Yong Shen (" + yongShenEl + "). Focus on career income first, investment later.";
+    if (directWealthCount >= 2) wealthArchetype = "Strong Direct Wealth — Stable income, salary-based, reliable accumulation. Conservative investment style suits this chart.";
+    else if (indirectWealthCount >= 2) wealthArchetype = "Strong Indirect Wealth — Business income, investments, windfall potential. Higher risk tolerance but requires discipline.";
+    else if (outputToWealth) wealthArchetype = "Output Produces Wealth — Talent and creativity generate wealth. Monetize skills, content, and intellectual property.";
+    else if (hasWealthStorage) wealthArchetype = "Wealth in Storage — Wealth accumulates in the treasury vault. Building assets and long-term holdings is natural.";
+    else wealthArchetype = "Wealth Star Hidden — Wealth comes through the Yong Shen (" + yongShenEl + "). Focus on career income first, investment later.";
 
     return {
       wealthElement: wealthEl,
@@ -1869,11 +1869,11 @@
     let spouseStar, spouseElement, spouseCondition;
 
     if (gender === "female") {
-      spouseStar = "Officer (官杀) — husband star";
+      spouseStar = "Officer — husband star";
       spouseElement = officerEl;
       spouseCondition = checkSpouseCondition(dayStemIdx, profile.pillars, officerEl);
     } else {
-      spouseStar = "Wealth (财) — wife star";
+      spouseStar = "Wealth — wife star";
       spouseElement = wealthEl;
       spouseCondition = checkSpouseCondition(dayStemIdx, profile.pillars, wealthEl);
     }
@@ -1955,11 +1955,11 @@
 
     // Organ correspondences (五行对应五脏)
     const organMap = {
-      Wood: { organ: "Liver (肝)", system: "Tendons, eyes, gallbladder", risk: "Liver qi stagnation, eye strain, anger-related issues" },
-      Fire: { organ: "Heart (心)", system: "Blood vessels, small intestine, tongue", risk: "Cardiovascular stress, insomnia, anxiety, inflammation" },
-      Earth: { organ: "Spleen (脾)", system: "Stomach, muscles, mouth", risk: "Digestive weakness, fatigue, worry-related issues, weight fluctuation" },
-      Metal: { organ: "Lung (肺)", system: "Skin, large intestine, nose", risk: "Respiratory weakness, skin conditions, grief-related stagnation" },
-      Water: { organ: "Kidney (肾)", system: "Bones, bladder, ears", risk: "Lower back weakness, urinary issues, fear-related depletion, hormonal imbalance" }
+      Wood: { organ: "Liver", system: "Tendons, eyes, gallbladder", risk: "Liver qi stagnation, eye strain, anger-related issues" },
+      Fire: { organ: "Heart", system: "Blood vessels, small intestine, tongue", risk: "Cardiovascular stress, insomnia, anxiety, inflammation" },
+      Earth: { organ: "Spleen", system: "Stomach, muscles, mouth", risk: "Digestive weakness, fatigue, worry-related issues, weight fluctuation" },
+      Metal: { organ: "Lung", system: "Skin, large intestine, nose", risk: "Respiratory weakness, skin conditions, grief-related stagnation" },
+      Water: { organ: "Kidney", system: "Bones, bladder, ears", risk: "Lower back weakness, urinary issues, fear-related depletion, hormonal imbalance" }
     };
 
     const riskOrgans = [];

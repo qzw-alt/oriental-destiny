@@ -2,7 +2,6 @@ name = "deepseek-proxy"
 main = "index.js"
 compatibility_date = "2025-01-01"
 
-# Deploy to: https://deepseek-proxy.qzwx10000.workers.dev
-# After first deploy, set the secret:
-#   wrangler secret put DEEPSEEK_API_KEY
-# Then remove the hardcoded key from index.js
+routes = [
+  { pattern = "oriental-destiny.com/api/*", zone_name = "oriental-destiny.com" }
+]

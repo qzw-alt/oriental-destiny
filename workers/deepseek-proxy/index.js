@@ -38,13 +38,8 @@ function isRateLimited(ip) {
   return false;
 }
 
-// Periodic cleanup (every 5 min) to prevent memory leak
-setInterval(() => {
-  const cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
-  for (const [ip, entry] of rateMap) {
-    if (entry.windowStart < cutoff) rateMap.delete(ip);
-  }
-}, 300_000);
+// Cleanup is done inline in isRateLimited() — no setInterval in global scope
+// (Cloudflare Workers disallow async I/O & timers outside handlers)
 
 // ═══════════════════════════════════════════════════════════════
 // AUTH — requires X-Client-Secret header matching CLIENT_SECRET env var.

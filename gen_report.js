@@ -12,9 +12,16 @@ const profile = window.BaziEngineV2.calculateProfile({
 });
 
 const brief = window.buildCompactBrief(profile);
-// Direct DeepSeek API for server-side generation (no proxy needed)
+// API key from environment variable — NEVER hardcode in source.
+// Set DEEPSEEK_API_KEY in your shell or a .env file (gitignored).
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || '';
+if (!DEEPSEEK_API_KEY) {
+  console.error('ERROR: DEEPSEEK_API_KEY environment variable is not set.');
+  console.error('Create a .env file with: DEEPSEEK_API_KEY=sk-...');
+  process.exit(1);
+}
 const engine = new window.ReportEngineV2({
-  apiKey: 'sk-96495709b9694a4fa931b3a6bb039225'
+  apiKey: DEEPSEEK_API_KEY
 });
 
 async function generate() {

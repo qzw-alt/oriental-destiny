@@ -348,6 +348,7 @@ Focus area: ${focus}
     constructor(options = {}) {
       this.apiKey = options.apiKey || null;
       this.proxyBaseURL = options.proxyBaseURL || null;
+      this.clientSecret = options.clientSecret || null;
       this.baseURL = this.proxyBaseURL || "https://api.deepseek.com/v1";
       this.model = options.model || "deepseek-chat";
       this.timeout = options.timeout || 20000;
@@ -356,6 +357,8 @@ Focus area: ${focus}
     async _call(messages, maxTokens = 2000, temp = 0.7) {
       const headers = { "Content-Type": "application/json" };
       if (!this.proxyBaseURL && this.apiKey) headers["Authorization"] = `Bearer ${this.apiKey}`;
+      // Send client secret for proxy auth
+      if (this.proxyBaseURL) headers["X-Client-Secret"] = this.clientSecret || "oriental-destiny-2026";
 
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), this.timeout);

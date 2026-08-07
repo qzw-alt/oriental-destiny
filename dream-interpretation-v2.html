@@ -497,7 +497,10 @@ async function enhanceWithAI(dream, localResult) {
 
   const response = await fetch(window.DEEPSEEK_PROXY_URL + '/chat/completions', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Client-Secret': window.DEEPSEEK_CLIENT_SECRET || 'oriental-destiny-2026'
+    },
     body: JSON.stringify({
       model: 'deepseek-chat',
       messages: [

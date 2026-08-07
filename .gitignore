@@ -10,5 +10,7 @@ config.real.js
 # OS
 .DS_Store
 Thumbs.db
+# Environment variables (contains API keys)
+.env
 # SEO 生成器开发目录 — 不部署
 seo-generator/output/

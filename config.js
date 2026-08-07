@@ -1,9 +1,8 @@
-// DeepSeek API proxy — Pages Function at /api/chat/completions.
-// Same origin, no CORS issues, no workers.dev blocking.
-// API key is set in Cloudflare Pages Dashboard → Environment variables.
-// Local dev note: set DEEPSEEK_PROXY_URL to your deployed endpoint or use
-// a local wrangler dev server for the Pages Functions.
+// DeepSeek API proxy endpoint
 window.DEEPSEEK_PROXY_URL = "https://oriental-destiny.com/api";
+// Shared secret for Worker proxy authentication. Also set as CLIENT_SECRET
+// in the Worker environment variables (wrangler secret put CLIENT_SECRET).
+window.DEEPSEEK_CLIENT_SECRET = "oriental-destiny-2026";
 
 // Firebase configuration — load config.real.js BEFORE this file to override.
 // If config.real.js is not loaded, these placeholder values will safely fail.

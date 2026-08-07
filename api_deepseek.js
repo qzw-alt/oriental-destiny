@@ -40,6 +40,12 @@ class DeepSeekAPI {
     if (!this.proxyBaseURL && this.apiKey) {
       headers["Authorization"] = `Bearer ${this.apiKey}`;
     }
+    // Send client secret for Worker proxy auth
+    if (this.proxyBaseURL) {
+      const secret = (typeof window !== 'undefined' && window.DEEPSEEK_CLIENT_SECRET)
+        || 'oriental-destiny-2026';
+      headers["X-Client-Secret"] = secret;
+    }
     const response = await fetch(`${this.baseURL}/chat/completions`, {
       method: "POST",
       headers,

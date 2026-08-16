@@ -51,6 +51,83 @@ function isAuthenticated(request, env) {
   return provided === expected;
 }
 
+function jsonError(message, status, request) {
+  return new Response(JSON.stringify({ error: message }), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': request.headers.get('Origin') || '*',
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// EMAIL — POST /send-report
+// Forwards a generated report (HTML body + optional PDF attachment)
+// to the seller's email, which then forwards it to the customer.
+//   RESEND_API_KEY  — Resend API key (secret)
+//   SELLER_EMAIL    — destination (defaults to 434338480@qq.com)
+//   FROM_EMAIL      — verified sender (defaults to Resend test address)
+// ═══════════════════════════════════════════════════════════
+const MAX_EMAIL_HTML = 200000;        // chars
+const MAX_PDF_BASE64 = 7 * 1024 * 1024; // ~5 MB PDF as base64
+
+async function handleSendReport(request, env) {
+  if (!isAuthenticated(request, env)) {
+    return jsonError('Unauthorized', 401, request);
+  }
+
+  if (!env.RESEND_API_KEY) {
+    return jsonError('Email not configured (missing RESEND_API_KEY)', 503, request);
+  }
+
+  let data;
+  try {
+    data = JSON.parse(await request.text());
+  } catch {
+    return jsonError('Invalid JSON body', 400, request);
+  }
+
+  if (!data.subject || !data.html) return jsonError('Missing subject or html', 400, request);
+  if (data.html.length > MAX_EMAIL_HTML) return jsonError('HTML too large', 400, request);
+
+  const payload = {
+    from: env.FROM_EMAIL || 'Oriental Destiny <onboarding@resend.dev>',
+    to: [env.SELLER_EMAIL || '434338480@qq.com'],
+    subject: String(data.subject).slice(0, 200),
+    html: data.html,
+  };
+  if (data.replyTo) payload.reply_to = String(data.replyTo).slice(0, 200);
+
+  if (data.pdfBase64 && data.pdfFilename) {
+    const b64 = String(data.pdfBase64);
+    if (b64.length > MAX_PDF_BASE64) return jsonError('PDF attachment too large', 400, request);
+    payload.attachments = [{ filename: String(data.pdfFilename).slice(0, 200), content: b64 }];
+  }
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const resBody = await res.text();
+    return new Response(resBody, {
+      status: res.status,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': request.headers.get('Origin') || '*',
+      }
+    });
+  } catch (err) {
+    return jsonError('Email send failed: ' + err.message, 502, request);
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════
 // INPUT VALIDATION — reject obviously malicious payloads
 // ═══════════════════════════════════════════════════════════════
@@ -100,8 +177,13 @@ export default {
       });
     }
 
-    // ── Only allow POST to /chat/completions ─────────────────
+    // ── Route: POST /send-report → email report to seller ────
     const url = new URL(request.url);
+    if (url.pathname.endsWith('/send-report')) {
+      return handleSendReport(request, env);
+    }
+
+    // ── Route: POST /chat/completions → DeepSeek proxy ───────
     if (request.method !== 'POST' || !url.pathname.endsWith('/chat/completions')) {
       return new Response(JSON.stringify({ error: 'Not found' }), {
         status: 404,

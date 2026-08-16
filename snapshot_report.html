@@ -406,39 +406,12 @@
         <!-- Section 5: Next Steps -->
         <div class="next-info" id="nextInfo">
             <p data-i18n-html="sr_next_info"><strong>What happens next:</strong> Your complete annotated report with master notes, timing windows, and personalized jewelry recommendation is being prepared. You will receive it by email within 6 hours (orders after 10 PM Eastern: by next morning).</p>
+            <p style="margin-top:8px;" data-i18n-html="sr_next_faster"><strong>Speed up confirmation:</strong> email your PayPal receipt (or the order email you used) to <a href="mailto:434338480@qq.com" style="color:var(--cinnabar);">434338480@qq.com</a> and we will match your payment faster.</p>
             <p style="margin-top:8px;" data-i18n-html="sr_next_contact">Questions? Reply to <a href="mailto:434338480@qq.com" style="color:var(--cinnabar);">434338480@qq.com</a> with your order email.</p>
         </div>
 
-        <!-- Full report generation progress -->
-        <div class="progress-container" id="progressContainer">
-            <div class="progress-steps">
-                <div class="progress-step">
-                    <div class="progress-dot" id="dot1">1</div>
-                    <div class="progress-label" data-i18n="sr_progress_reading">Reading</div>
-                </div>
-                <div class="progress-step">
-                    <div class="progress-dot" id="dot2">2</div>
-                    <div class="progress-label" data-i18n="sr_progress_review">Master Review</div>
-                </div>
-                <div class="progress-step">
-                    <div class="progress-dot" id="dot3">3</div>
-                    <div class="progress-label" data-i18n="sr_progress_complete">Complete</div>
-                </div>
-            </div>
-            <div class="progress-detail" id="progressDetail"></div>
-        </div>
-
-        <div class="warning-banner" id="warningBanner">
-            <span data-i18n="sr_warning">Please do not close or refresh this page while your complete report is being generated.</span>
-        </div>
-
         <div class="btn-row">
-            <button class="btn" id="generateFullBtn" data-i18n="sr_generate_btn">Generate My Complete Report Now</button>
             <a class="btn btn-outline" href="report_demo.html" data-i18n="sr_sample_btn">View Sample Report</a>
-        </div>
-
-        <div id="fullReportLink" style="display:none;text-align:center;margin-top:16px;">
-            <a class="btn" href="full_report.html" data-i18n="sr_view_report">View My Complete Report</a>
         </div>
     </div>
 
@@ -463,7 +436,6 @@
 <script>
 (function () {
     var _t = function(k, f) { return (window.I18n && window.I18n.t(k, f)) || f; };
-    var generating = false;
 
     // Init engine (ReportEngineV2 — same engine as the $29 instant report)
     var engine = new ReportEngineV2({
@@ -472,18 +444,6 @@
         clientSecret: window.DEEPSEEK_CLIENT_SECRET || null,
         timeout: 60000
     });
-
-    // Beforeunload protection
-    function enableUnloadProtection() {
-        window.addEventListener('beforeunload', function (e) {
-            if (generating) {
-                e.preventDefault();
-                e.returnValue = _t('sr_unload_warning', 'Your report is still being generated. Are you sure you want to leave?');
-                return e.returnValue;
-            }
-        });
-    }
-    enableUnloadProtection();
 
     // Read state
     var state = window.ReadingState ? window.ReadingState.read() : {};
@@ -634,65 +594,6 @@
     }
 
     loadAIOverview();
-
-    // Full report generation
-    document.getElementById('generateFullBtn').addEventListener('click', function () {
-        if (generating) return;
-        // Payment gate: full report generation requires a confirmed $199 order
-        var paidReading = null;
-        try { paidReading = localStorage.getItem('od_paid_reading'); } catch(e) {}
-        if (!paidReading) {
-            alert('The complete report unlocks after your $199 order is confirmed. Please complete your order to generate it.');
-            return;
-        }
-        if (!profile) {
-            alert(_t('sr_alert_loading', 'Chart data is still loading. Please wait a moment and try again.'));
-            return;
-        }
-
-        generating = true;
-        var btn = document.getElementById('generateFullBtn');
-        btn.disabled = true;
-        btn.innerHTML = '<span class="loading-spinner"></span> ' + _t('sr_generating', 'Generating...');
-        document.getElementById('warningBanner').classList.add('show');
-        document.getElementById('progressContainer').classList.add('active');
-
-        var dots = [document.getElementById('dot1'), document.getElementById('dot2'),
-                     document.getElementById('dot3')];
-
-        engine.generateFullDeluxe(profile, state.focus || 'balance', function (progress) {
-            document.getElementById('progressDetail').textContent = progress.label || '';
-            for (var i = 0; i < 3; i++) {
-                dots[i].classList.remove('done', 'active');
-                if (i + 1 < progress.step) {
-                    dots[i].classList.add('done');
-                    dots[i].textContent = '✓';
-                } else if (i + 1 === progress.step) {
-                    dots[i].classList.add('active');
-                }
-            }
-        }).then(function (result) {
-            // Persist to localStorage for full_report.html
-            try {
-                localStorage.setItem('oriental_destiny_full_report', JSON.stringify(result));
-            } catch (e) {
-                console.warn('Could not save report to localStorage:', e.message);
-            }
-            generating = false;
-            btn.innerHTML = _t('sr_report_generated', 'Report Generated!');
-            document.getElementById('warningBanner').classList.remove('show');
-            document.getElementById('progressDetail').textContent = _t('sr_report_ready', 'Your complete report is ready!');
-            dots.forEach(function (d) { d.classList.add('done'); d.textContent = '✓'; });
-            document.getElementById('fullReportLink').style.display = 'block';
-        }).catch(function (err) {
-            generating = false;
-            btn.innerHTML = _t('sr_try_again', 'Try Again');
-            btn.disabled = false;
-            document.getElementById('warningBanner').classList.remove('show');
-            document.getElementById('progressDetail').textContent = _t('sr_generation_paused', 'Generation paused. You can try again or your report will arrive by email.');
-            console.error('Report generation failed:', err);
-        });
-    });
 })();
 </script>
 </body>

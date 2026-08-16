@@ -751,7 +751,11 @@
                 <li style="padding-left: 18px; position: relative; color: rgba(36, 25, 21, 0.82);"><span style="position:absolute;left:0;top:0;color:var(--cinnabar);font-weight:700;">·</span> If no reply, ship the #1 recommendation</li>
             </ul>
             <div id="masterCta" style="display:none;">
-                <button onclick="downloadPDF()" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;background:linear-gradient(135deg,#b24636 0%,#8b251a 100%);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 12px 26px rgba(166,58,44,0.22);border:none;font-family:inherit;cursor:pointer;">Download PDF Report</button>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                    <button onclick="downloadPDF()" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;background:linear-gradient(135deg,#b24636 0%,#8b251a 100%);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 12px 26px rgba(166,58,44,0.22);border:none;font-family:inherit;cursor:pointer;">Download PDF Report</button>
+                    <button id="sendEmailBtn" onclick="sendReportEmail()" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:999px;background:rgba(49,82,71,0.96);color:#fff8ef;text-decoration:none;font-weight:700;font-size:15px;border:none;font-family:inherit;cursor:pointer;">Send to Seller Email</button>
+                </div>
+                <p id="sendStatus" style="margin-top:10px;font-size:13px;color:rgba(36,25,21,0.62);"></p>
             </div>
         </section>
 
@@ -788,6 +792,8 @@
         </div>
     </div>
 
+    <!-- html2pdf for PDF report generation (email attachment) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="config.js"></script>
     <script src="bazi_engine.min.js"></script>
     <script src="api_deepseek.js"></script>
@@ -961,6 +967,100 @@
             var name = document.getElementById("fullName").value.trim() || "Client";
             document.title = name + " - BaZi Report - Oriental Destiny";
             window.print();
+        }
+
+        // ─── Email report to seller (automation) ───────────
+
+        function _esc(s) {
+            return String(s == null ? "" : s)
+                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+        }
+
+        function buildEmailHtml() {
+            var name = document.getElementById("fullName").value.trim() || "Client";
+            var birthDate = document.getElementById("birthDate").value;
+            var birthTime = document.getElementById("birthTime").value;
+            var gender = document.getElementById("gender").value;
+            var birthLocation = document.getElementById("birthLocation").value;
+            var focus = document.getElementById("lifeFocus").value;
+            var notes = document.getElementById("notes").value;
+            var reportHtml = document.getElementById("resultsPanel").innerHTML;
+
+            return '<!DOCTYPE html><html><head><meta charset="utf-8"></head>' +
+                '<body style="font-family:Georgia,serif;color:#1a1410;line-height:1.7;">' +
+                '<h1 style="font-size:24px;">BaZi Report — ' + _esc(name) + '</h1>' +
+                '<p style="color:#555;"><strong>Birth date:</strong> ' + _esc(birthDate) +
+                ' &middot; <strong>Time:</strong> ' + _esc(birthTime || "—") +
+                ' &middot; <strong>Gender:</strong> ' + _esc(gender || "—") + '</p>' +
+                '<p style="color:#555;"><strong>Location:</strong> ' + _esc(birthLocation || "—") +
+                ' &middot; <strong>Focus:</strong> ' + _esc(focus || "—") + '</p>' +
+                (notes ? '<p style="color:#555;"><strong>Notes:</strong> ' + _esc(notes) + '</p>' : '') +
+                '<hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">' +
+                reportHtml +
+                '</body></html>';
+        }
+
+        function generatePdfBase64(name) {
+            var element = document.getElementById("resultsPanel");
+            var opt = {
+                margin: [8, 8, 8, 8],
+                filename: name.replace(/\s+/g, "_") + "_BaZi_Report.pdf",
+                image: { type: "jpeg", quality: 0.95 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            };
+            return html2pdf().set(opt).from(element).outputPdf("datauristring").then(function(dataUri) {
+                return dataUri.split(",")[1];
+            });
+        }
+
+        async function sendReportEmail() {
+            var btn = document.getElementById("sendEmailBtn");
+            var status = document.getElementById("sendStatus");
+            var name = document.getElementById("fullName").value.trim() || "Client";
+            var birthDate = document.getElementById("birthDate").value || "unknown-date";
+
+            var emailHtml = buildEmailHtml();
+
+            btn.disabled = true;
+            btn.textContent = "Preparing PDF…";
+            status.textContent = "";
+
+            var pdfBase64 = null;
+            try {
+                pdfBase64 = await generatePdfBase64(name);
+            } catch (e) {
+                console.warn("PDF generation failed, sending HTML only:", e);
+                status.textContent = "PDF skipped (" + e.message + "). Sending HTML only…";
+            }
+
+            btn.textContent = "Sending…";
+            var payload = {
+                subject: name + " — BaZi Report (birth " + birthDate + ")",
+                html: emailHtml,
+                pdfBase64: pdfBase64,
+                pdfFilename: name.replace(/\s+/g, "_") + "_BaZi_Report.pdf"
+            };
+
+            try {
+                var res = await fetch(window.DEEPSEEK_PROXY_URL + "/send-report", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Client-Secret": window.DEEPSEEK_CLIENT_SECRET || "oriental-destiny-2026"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                var result = await res.json().catch(function() { return {}; });
+                if (!res.ok) throw new Error(result.error || ("HTTP " + res.status));
+                btn.textContent = "Sent ✓";
+                status.textContent = "Report sent to 434338480@qq.com. Forward it to the customer.";
+            } catch (e) {
+                btn.disabled = false;
+                btn.textContent = "Send to Seller Email";
+                status.textContent = "Send failed: " + e.message;
+            }
         }
 
         // ─── Product matching & recommendation ─────────

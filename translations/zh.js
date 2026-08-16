@@ -752,6 +752,7 @@ window.I18N_TRANSLATIONS = {
     sr_direction_title: "您当前的关注方向",
     sr_next_info: "<strong>接下来会发生什么：</strong>您的完整批注报告（含老师备注、时间窗口和个性化珠宝推荐）正在准备中。您将在6小时内通过邮件收到（晚10点后的订单：次日早晨）。",
     sr_next_contact: "有问题？用您的订单邮箱回复 <a href=\"mailto:434338480@qq.com\" style=\"color:var(--cinnabar);\">434338480@qq.com</a>。",
+    sr_next_faster: "<strong>加速核对：</strong>将您的 PayPal 收据（或您下单时使用的邮箱）发送至 <a href=\"mailto:434338480@qq.com\" style=\"color:var(--cinnabar);\">434338480@qq.com</a>，我们将更快为您核对付款。",
     sr_progress_analyzing: "分析中",
     sr_progress_planning: "规划中",
     sr_progress_writing: "撰写中",

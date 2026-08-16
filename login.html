@@ -203,6 +203,16 @@
         });
     };
 
+    // Preserve the ?redirect= target when switching to the sign-up page, so the
+    // visitor lands back on checkout after registering (not the default dashboard).
+    var _params = new URLSearchParams(window.location.search);
+    var _redirect = _params.get('redirect');
+    if (_redirect) {
+        document.querySelectorAll('a[href="register.html"]').forEach(function(a) {
+            a.href = 'register.html?redirect=' + encodeURIComponent(_redirect);
+        });
+    }
+
     Auth.init();
 })();
 </script>

@@ -968,6 +968,55 @@
             }
         }
 
+        // ── Force registration before checkout ─────────────────────────────
+        // $199 orders are delivered by email, so a member account (which records
+        // the delivery email) is required before payment. Unregistered visitors
+        // are sent to register.html and returned here once signed in.
+        (function enforceRegistration() {
+            var returnUrl = window.location.pathname + window.location.search;
+
+            function prefillEmail(user) {
+                var email = user && user.email;
+                if (!email) return;
+                var emailField = document.getElementById('email');
+                var emailConfirmField = document.getElementById('emailConfirm');
+                if (emailField) {
+                    emailField.value = email;
+                    emailField.readOnly = true;
+                    if (!emailField.parentElement.querySelector('.account-email-hint')) {
+                        var hint = document.createElement('div');
+                        hint.className = 'hint account-email-hint';
+                        hint.textContent = 'Your account email — the report is delivered here.';
+                        hint.style.color = 'var(--pine)';
+                        emailField.parentElement.appendChild(hint);
+                    }
+                }
+                if (emailConfirmField) {
+                    emailConfirmField.value = email;
+                    emailConfirmField.readOnly = true;
+                    var wrapper = emailConfirmField.closest('.field');
+                    if (wrapper) wrapper.style.display = 'none';
+                }
+            }
+
+            function redirectToRegister() {
+                window.location.href = 'register.html?redirect=' + encodeURIComponent(returnUrl);
+            }
+
+            Auth.init().then(function() {
+                Auth.onAuthChange(function(user) {
+                    if (user) prefillEmail(user);
+                });
+
+                // Let Firebase restore any persisted session first, then decide:
+                // logged in → prefill the delivery email; otherwise → require sign-up.
+                setTimeout(function() {
+                    if (Auth.currentUser) prefillEmail(Auth.currentUser);
+                    else redirectToRegister();
+                }, 1200);
+            });
+        })();
+
         document.getElementById("formNext").value = `${window.location.origin}/thanks.html`;
         orderForm.addEventListener("submit", submitOrderDetails);
 

@@ -529,83 +529,126 @@ footer a { color: var(--cinnabar); }
         }
 
         engine.generateBasicReport(profile, state.focus || 'balance').then(function(basic) {
-            var r = basic.report;
-            var sn = basic.chartSnapshot || window.buildChartSnapshot(profile);
-
-            // Cover
-            var dm = profile.dayMaster, dmEl = profile.dayMasterElement;
-            document.getElementById('coverContent').innerHTML =
-                '<div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>' +
-                '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · Day Master</h1>' +
-                '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
-                '<div class="hero-divider"></div>' +
-                '<p style="font-size:12px;color:var(--ink-faint);">Pattern: '+esc(sn.pattern)+' · Yong Shen: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</p>';
-
-            // Vol. 1
-            document.getElementById('sec1').innerHTML = paras(r.opening || '');
-
-            // Vol. 2
-            document.getElementById('sec2').innerHTML = paras(r.yourPattern || '');
-
-            // Vol. 3
-            document.getElementById('sec3').innerHTML = paras(r.whatGuidesYou || '');
-
-            // Vol. 4 - Practical steps
-            var stepsHTML = '';
-            if (r.practicalSteps && r.practicalSteps.length) {
-                stepsHTML = '<ul style="list-style:none;display:grid;gap:12px;">';
-                r.practicalSteps.forEach(function(s, i) {
-                    stepsHTML += '<li style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--gold-faint);border-radius:var(--radius);border-left:3px solid var(--gold);">' +
-                        '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--cinnabar);color:#fff;font-size:12px;font-weight:700;flex-shrink:0;">'+(i+1)+'</span>' +
-                        '<span style="font-size:14px;color:var(--ink-light);">'+esc(s)+'</span></li>';
-                });
-                stepsHTML += '</ul>';
-            }
-            document.getElementById('sec4').innerHTML = stepsHTML;
-
-            // Vol. 5 - Element bars + chart data
-            var elCounts = profile.elementCounts || {};
-            var maxCount = Math.max(1, elNames.map(function(e){return elCounts[e]||0;}).reduce(function(a,b){return Math.max(a,b);},0));
-            var barsHTML = '<div style="padding:10px 0;">';
-            elNames.forEach(function(e) {
-                var pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
-                barsHTML += '<div class="el-bar-row">' +
-                    '<span class="el-bar-label">'+elChinese[e]+' '+e+'</span>' +
-                    '<span class="el-bar-track"><span class="el-bar-fill" style="width:'+pct+'%;background:'+elColors[e]+'"></span></span>' +
-                    '<span class="el-bar-val">'+(elCounts[e]||0).toFixed(1)+'</span></div>';
-            });
-            barsHTML += '</div>';
-            barsHTML += '<p style="font-size:13px;color:var(--ink-faint);margin-top:10px;text-align:center;">' +
-                'Yong Shen: '+esc(sn.yongShen)+' · Xi Shen: '+esc(sn.xiShen)+' · Ji Shen: '+esc(sn.jiShen)+' · Qi Yun: '+esc(sn.qiYun)+' · Current Da Yun: '+esc(sn.currentDaYun)+'</p>';
-
-            document.getElementById('sec5').innerHTML = barsHTML;
-
-            // Update upgrade link
-            var q = window.ReadingState ? window.ReadingState.toQuery(state) : '';
-            document.getElementById('upgradeBtn').href = 'checkout.html?' + q;
-
-            showReport();
+            renderBasic(basic, state);
+            saveToFirestore(basic, state);
         }).catch(function(e) {
             showError('Generation failed: ' + (e.message || ''));
         });
     }
 
-    function renderFromSaved(data) {
-        showReport();
-        document.getElementById('coverContent').innerHTML =
-            '<h1 class="hero-title">Your <span class="em">BaZi Reading</span></h1>' +
-            '<p class="hero-sub">'+esc(data.birthDate||'')+(data.birthTime?' · '+esc(data.birthTime):'')+' · '+esc(data.lifeFocus||'')+'</p>';
+    // Render a generated (or restored) basic report into the page.
+    function renderBasic(basic, state) {
+        var r = basic.report;
+        var profile = basic.profile;
+        var sn = basic.chartSnapshot || window.buildChartSnapshot(profile);
 
-        if (data.reportContent) {
-            try {
-                var content = typeof data.reportContent === 'string' ? JSON.parse(data.reportContent) : data.reportContent;
-                document.getElementById('sec1').innerHTML = content.dayMaster || '';
-                document.getElementById('sec2').innerHTML = content.elements || '';
-                document.getElementById('sec3').innerHTML = content.focus || '';
-                document.getElementById('sec4').innerHTML = content.support || '';
-                document.getElementById('sec5').innerHTML = content.treasure || '';
-            } catch(e) {}
+        // Cover
+        var dm = profile.dayMaster, dmEl = profile.dayMasterElement;
+        document.getElementById('coverContent').innerHTML =
+            '<div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>' +
+            '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · Day Master</h1>' +
+            '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
+            '<div class="hero-divider"></div>' +
+            '<p style="font-size:12px;color:var(--ink-faint);">Pattern: '+esc(sn.pattern)+' · Yong Shen: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</p>';
+
+        // Vol. 1
+        document.getElementById('sec1').innerHTML = paras(r.opening || '');
+
+        // Vol. 2
+        document.getElementById('sec2').innerHTML = paras(r.yourPattern || '');
+
+        // Vol. 3
+        document.getElementById('sec3').innerHTML = paras(r.whatGuidesYou || '');
+
+        // Vol. 4 - Practical steps
+        var stepsHTML = '';
+        if (r.practicalSteps && r.practicalSteps.length) {
+            stepsHTML = '<ul style="list-style:none;display:grid;gap:12px;">';
+            r.practicalSteps.forEach(function(s, i) {
+                stepsHTML += '<li style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--gold-faint);border-radius:var(--radius);border-left:3px solid var(--gold);">' +
+                    '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--cinnabar);color:#fff;font-size:12px;font-weight:700;flex-shrink:0;">'+(i+1)+'</span>' +
+                    '<span style="font-size:14px;color:var(--ink-light);">'+esc(s)+'</span></li>';
+            });
+            stepsHTML += '</ul>';
         }
+        document.getElementById('sec4').innerHTML = stepsHTML;
+
+        // Vol. 5 - Element bars + chart data
+        var elCounts = profile.elementCounts || {};
+        var maxCount = Math.max(1, elNames.map(function(e){return elCounts[e]||0;}).reduce(function(a,b){return Math.max(a,b);},0));
+        var barsHTML = '<div style="padding:10px 0;">';
+        elNames.forEach(function(e) {
+            var pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
+            barsHTML += '<div class="el-bar-row">' +
+                '<span class="el-bar-label">'+elChinese[e]+' '+e+'</span>' +
+                '<span class="el-bar-track"><span class="el-bar-fill" style="width:'+pct+'%;background:'+elColors[e]+'"></span></span>' +
+                '<span class="el-bar-val">'+(elCounts[e]||0).toFixed(1)+'</span></div>';
+        });
+        barsHTML += '</div>';
+        barsHTML += '<p style="font-size:13px;color:var(--ink-faint);margin-top:10px;text-align:center;">' +
+            'Yong Shen: '+esc(sn.yongShen)+' · Xi Shen: '+esc(sn.xiShen)+' · Ji Shen: '+esc(sn.jiShen)+' · Qi Yun: '+esc(sn.qiYun)+' · Current Da Yun: '+esc(sn.currentDaYun)+'</p>';
+
+        document.getElementById('sec5').innerHTML = barsHTML;
+
+        // Update upgrade link
+        var q = window.ReadingState ? window.ReadingState.toQuery(state) : '';
+        document.getElementById('upgradeBtn').href = 'checkout.html?' + q;
+
+        showReport();
+    }
+
+    // Persist the generated report to Firestore so the dashboard can list it.
+    function saveToFirestore(basic, state) {
+        if (!window.Auth) return;
+        // Auth.init() is idempotent and restores the signed-in user from IndexedDB,
+        // so this works even though the no-reportId path doesn't call Auth.init().
+        Auth.init().then(function() {
+            if (!Auth.currentUser) return; // not signed in — nothing to save
+            var profile = basic.profile;
+            Auth.saveInstantReport({
+                birthDate: state.birth_date || '',
+                birthTime: state.birth_time || '',
+                lifeFocus: state.focus || 'balance',
+                dayMaster: profile.dayMaster || '',
+                dayMasterElement: profile.dayMasterElement || '',
+                reportContent: JSON.stringify({
+                    report: basic.report,
+                    chartSnapshot: basic.chartSnapshot,
+                    elementCounts: profile.elementCounts || {},
+                    dayMaster: profile.dayMaster || '',
+                    dayMasterElement: profile.dayMasterElement || ''
+                })
+            });
+        });
+    }
+
+    function renderFromSaved(data) {
+        var content = null;
+        try {
+            content = typeof data.reportContent === 'string' ? JSON.parse(data.reportContent) : data.reportContent;
+        } catch(e) { content = null; }
+
+        if (!content || !content.report) {
+            showError('Report content is empty or corrupted.');
+            return;
+        }
+
+        var basic = {
+            report: content.report,
+            chartSnapshot: content.chartSnapshot,
+            profile: {
+                dayMaster: content.dayMaster || data.dayMaster || '',
+                dayMasterElement: content.dayMasterElement || data.dayMasterElement || '',
+                elementCounts: content.elementCounts || {}
+            }
+        };
+        var state = {
+            birth_date: data.birthDate || '',
+            birth_time: data.birthTime || '',
+            focus: data.lifeFocus || 'balance'
+        };
+
+        renderBasic(basic, state);
     }
 
     init();

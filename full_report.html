@@ -265,6 +265,13 @@
     var content = document.getElementById('reportContent');
     var empty = document.getElementById('emptyState');
 
+    function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function paras(text) {
+        if (!text) return '';
+        return String(text).split(/\n\n/).filter(Boolean)
+            .map(function (pp) { return '<p>' + esc(pp).replace(/\n/g, '<br>') + '</p>'; }).join('\n');
+    }
+
     function loadReport() {
         var reportData = null;
         try {
@@ -272,87 +279,80 @@
             if (raw) reportData = JSON.parse(raw);
         } catch (e) {}
 
-        if (!reportData || !reportData.report) {
+        if (!reportData || !reportData.basic) {
             content.style.display = 'none';
             empty.style.display = 'block';
             return;
         }
 
-        var r = reportData.report;
+        var b = reportData.basic || {};
+        var sn = reportData.chartSnapshot || {};
         var html = '';
 
-        // Chapter 1: Opening Message
-        html += buildChapter('1', 'Opening Message', r.openingMessage);
+        // Chapter 1: Opening
+        html += buildChapter('1', 'Opening', paras(b.opening));
 
-        // Chapter 2: Core Pattern
-        if (r.corePattern) {
-            var cp = r.corePattern;
-            var cpHTML = '';
-            if (cp.dayMasterNarrative) cpHTML += '<h3>Your Day Master</h3><p>' + cp.dayMasterNarrative + '</p>';
-            if (cp.elementStory) cpHTML += '<h3>Your Element Story</h3><p>' + cp.elementStory + '</p>';
-            if (cp.tenGodNarrative) cpHTML += '<h3>Your Relational Pattern</h3><p>' + cp.tenGodNarrative + '</p>';
-            html += buildChapter('2', 'Your Core Pattern', cpHTML);
+        // Chapter 2: Your Pattern
+        html += buildChapter('2', 'Your Pattern', paras(b.yourPattern));
+
+        // Chapter 3: What Guides You
+        html += buildChapter('3', 'What Guides You', paras(b.whatGuidesYou));
+
+        // Chapter 4: In Practice
+        if (b.practicalSteps && b.practicalSteps.length > 0) {
+            var stepsHTML = '<ul class="advice-list">' + b.practicalSteps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
+            html += buildChapter('4', 'In Practice', stepsHTML);
         }
 
-        // Chapter 3: Main Tension
-        html += buildChapter('3', 'The Main Life Tension', r.mainTension);
+        // Chapter 5: Closing Words
+        html += buildChapter('5', 'Closing Words', paras(b.closingWords));
 
-        // Chapter 4: Focus Guidance
-        if (r.focusGuidance) {
-            var fg = r.focusGuidance;
-            var fgHTML = '';
-            if (fg.narrative) fgHTML += '<p>' + fg.narrative + '</p>';
-            if (fg.actionItems && fg.actionItems.length > 0) {
-                fgHTML += '<ul class="advice-list">' + fg.actionItems.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul>';
-            }
-            if (fg.caution) fgHTML += '<p style="color:var(--cinnabar);font-size:14px;"><strong>Note:</strong> ' + fg.caution + '</p>';
-            html += buildChapter('4', 'Guidance for Your Focus' + (fg.focusArea ? ': ' + fg.focusArea : ''), fgHTML);
-        }
-
-        // Chapter 5: Timing Windows
-        if (r.timingWindows) {
-            var twHTML = '';
-            if (r.timingWindows.narrative) twHTML += '<p>' + r.timingWindows.narrative + '</p>';
-            if (r.timingWindows.windows && r.timingWindows.windows.length > 0) {
-                r.timingWindows.windows.forEach(function (w) {
-                    twHTML += '<div class="timing-card"><div class="period">' + (w.period || '') +
-                        (w.elementActive ? ' &mdash; ' + w.elementActive + ' energy' : '') +
-                        '</div><p>' + (w.guidance || '') + '</p></div>';
-                });
-            }
-            html += buildChapter('5', 'Timing Windows', twHTML);
-        }
-
-        // Chapter 6: Master's Notes
-        if (r.masterNotes && r.masterNotes.length > 0) {
-            var mnHTML = r.masterNotes.map(function (n) {
-                return '<div class="master-note"><div class="note-type">' + (n.type || '') + '</div><p>' + (n.text || '') + '</p></div>';
+        // Chapter 6: Master's Annotations
+        if (reportData.masterAnnotations && reportData.masterAnnotations.length > 0) {
+            var mnHTML = reportData.masterAnnotations.map(function (n) {
+                return '<div class="master-note"><div class="note-type">' + esc(n.title || '') + '</div><p>' + esc(n.insight || '') + '</p></div>';
             }).join('');
-            html += buildChapter('6', "Master's Notes", mnHTML);
+            html += buildChapter('6', "Master's Annotations", mnHTML);
         }
 
-        // Chapter 7: Jewelry Recommendation
-        if (r.jewelryRecommendation) {
-            var jr = r.jewelryRecommendation;
-            var jrHTML = '<div class="jewelry-section">';
-            if (jr.whyThisElement) jrHTML += '<h3>Why This Element</h3><p>' + jr.whyThisElement + '</p>';
-            if (jr.whyThisSymbol) jrHTML += '<h3>Why This Symbol</h3><p>' + jr.whyThisSymbol + '</p>';
-            if (jr.whyThisMaterial) jrHTML += '<h3>Why This Material</h3><p>' + jr.whyThisMaterial + '</p>';
-            if (jr.wearingGuidance) jrHTML += '<h3>Wearing Guidance</h3><p>' + jr.wearingGuidance + '</p>';
-            if (jr.whyNotOthers) jrHTML += '<p style="font-size:13px;color:rgba(36,25,21,0.5);margin-top:12px;">' + jr.whyNotOthers + '</p>';
-            jrHTML += '</div>';
-            html += buildChapter('7', 'Your Jewelry Recommendation', jrHTML);
+        // Chapter 7: Jewelry Guide
+        if (reportData.jewelryGuide) {
+            var jg = reportData.jewelryGuide;
+            var jgHTML = '<div class="jewelry-section">';
+            if (jg.primaryCrystal) {
+                jgHTML += '<h3>' + esc(jg.primaryCrystal.name || 'Primary Crystal') + '</h3>';
+                if (jg.primaryCrystal.element) jgHTML += '<p><em>Element: ' + esc(jg.primaryCrystal.element) + '</em></p>';
+                if (jg.primaryCrystal.whyForThisChart) jgHTML += '<p>' + esc(jg.primaryCrystal.whyForThisChart) + '</p>';
+                if (jg.primaryCrystal.wearingGuidance) jgHTML += '<p><strong>Wearing:</strong> ' + esc(jg.primaryCrystal.wearingGuidance) + '</p>';
+            }
+            if (jg.secondaryCrystal) {
+                jgHTML += '<h3 style="margin-top:16px;">' + esc(jg.secondaryCrystal.name || 'Companion Stone') + '</h3>';
+                if (jg.secondaryCrystal.element) jgHTML += '<p><em>Element: ' + esc(jg.secondaryCrystal.element) + '</em></p>';
+                if (jg.secondaryCrystal.whyForThisChart) jgHTML += '<p>' + esc(jg.secondaryCrystal.whyForThisChart) + '</p>';
+                if (jg.secondaryCrystal.wearingGuidance) jgHTML += '<p><strong>Wearing:</strong> ' + esc(jg.secondaryCrystal.wearingGuidance) + '</p>';
+            }
+            if (jg.masterNote) jgHTML += '<p style="margin-top:16px;">' + esc(jg.masterNote) + '</p>';
+            if (jg.whatToAvoid) jgHTML += '<p style="margin-top:12px;font-size:13px;color:rgba(36,25,21,0.5);">' + esc(jg.whatToAvoid) + '</p>';
+            jgHTML += '</div>';
+            html += buildChapter('7', 'Your Jewelry Guide', jgHTML);
         }
 
-        // Technical Appendix
-        if (r.technicalAppendix) {
-            var ta = r.technicalAppendix;
-            var taHTML = '<div class="appendix-section">';
-            taHTML += '<h3>Technical Appendix</h3>';
-            if (ta.fourPillars) taHTML += '<p>' + ta.fourPillars + '</p>';
-            if (ta.elementBreakdown) taHTML += '<p>' + ta.elementBreakdown + '</p>';
-            if (ta.yongShenSummary) taHTML += '<p>' + ta.yongShenSummary + '</p>';
-            if (ta.luckPhaseNote) taHTML += '<p>' + ta.luckPhaseNote + '</p>';
+        // Technical Appendix: Chart Snapshot
+        if (sn.fourPillars) {
+            var taHTML = '<div class="appendix-section"><h3>Technical Appendix</h3>';
+            if (sn.dayMaster) taHTML += '<p><strong>Day Master:</strong> ' + esc(sn.dayMaster) + '</p>';
+            if (sn.pattern) taHTML += '<p><strong>Pattern:</strong> ' + esc(sn.pattern) + '</p>';
+            if (sn.strength) taHTML += '<p><strong>Constitution:</strong> ' + esc(sn.strength) + '</p>';
+            if (sn.yongShen) taHTML += '<p><strong>Yong Shen:</strong> ' + esc(sn.yongShen) + '</p>';
+            if (sn.xiShen) taHTML += '<p><strong>Xi Shen:</strong> ' + esc(sn.xiShen) + '</p>';
+            if (sn.jiShen) taHTML += '<p><strong>Ji Shen:</strong> ' + esc(sn.jiShen) + '</p>';
+            if (sn.shenSha) taHTML += '<p><strong>Shen Sha:</strong> ' + esc(sn.shenSha) + '</p>';
+            if (sn.currentDaYun) taHTML += '<p><strong>Current Da Yun:</strong> ' + esc(sn.currentDaYun) + '</p>';
+            if (sn.qiYun) taHTML += '<p><strong>Qi Yun:</strong> ' + esc(sn.qiYun) + '</p>';
+            if (sn.fourPillars.year) taHTML += '<p><strong>Year:</strong> ' + esc(sn.fourPillars.year) + '</p>';
+            if (sn.fourPillars.month) taHTML += '<p><strong>Month:</strong> ' + esc(sn.fourPillars.month) + '</p>';
+            if (sn.fourPillars.day) taHTML += '<p><strong>Day:</strong> ' + esc(sn.fourPillars.day) + '</p>';
+            if (sn.fourPillars.hour) taHTML += '<p><strong>Hour:</strong> ' + esc(sn.fourPillars.hour) + '</p>';
             taHTML += '</div>';
             html += taHTML;
         }

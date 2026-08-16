@@ -310,6 +310,8 @@
 
         // ── $29 Instant Report Payment ──────────────────────────────────────
         if (isInstantReport && paid) {
+            // Persist paid marker so report_viewer.html can gate full-report generation on it
+            try { localStorage.setItem('od_paid_instant_report', txId); } catch (e) {}
             // Redirect to report viewer
             gtag('event', 'purchase', {
                 currency: 'USD',
@@ -351,6 +353,8 @@
         // ── $199 Matched Service Payment ────────────────────────────────────
 
         function unlockReading(transactionId) {
+            // Persist paid marker so snapshot_report.html can gate full-report generation
+            try { localStorage.setItem('od_paid_reading', transactionId); } catch (e) {}
             document.getElementById('paymentBadge').classList.add('show');
             document.getElementById('instantPreview').classList.add('show');
             document.getElementById('manualConfirm').classList.remove('show');

@@ -625,22 +625,10 @@ var reportSection = document.getElementById('reportSection');
 var loadingState = document.getElementById('loadingState');
 var reportContent = document.getElementById('reportContent');
 
-// Listen for PayPal approval
-// The PayPal HostedButtons SDK sends onApprove, but to keep it simple
-// we show a "Generate" button after the PayPal section for users who
-// already paid or are testing
-if (hasData) {
-  // Add a "Generate" button underneath PayPal
-  var genBtn = document.createElement('div');
-  genBtn.style.cssText = 'text-align:center;margin-bottom:40px;';
-  genBtn.innerHTML = '<button class="btn btn-primary" id="generateBtn" style="font-size:15px;padding:15px 36px;">📜 Generate My Report from Saved Data</button>' +
-    '<p style="font-size:11px;color:var(--ink-faint);margin-top:10px;">(After entering birth info on the Free Reading page, click here to preview)</p>';
-  salesSection.appendChild(genBtn);
-
-  document.getElementById('generateBtn').addEventListener('click', function() {
-    generateReport();
-  });
-}
+// Payment gate: the full report is generated ONLY after a successful PayPal
+// payment, via thanks.html → report_viewer.html. Do not render a free
+// "Generate" button here — that would let anyone preview the $29 report
+// without paying. PayPal is the sole entry point for the full report.
 
 async function generateReport() {
   // Get data from ReadingState or URL params

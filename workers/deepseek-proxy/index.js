@@ -54,7 +54,7 @@ function isAuthenticated(request, env) {
 // ═══════════════════════════════════════════════════════════════
 // INPUT VALIDATION — reject obviously malicious payloads
 // ═══════════════════════════════════════════════════════════════
-const MAX_MESSAGE_LENGTH = 8000;   // characters per message
+const MAX_MESSAGE_LENGTH = 60000;  // characters per message (was 8000 — too low; full chartData JSON is ~44k chars)
 const MAX_MESSAGES = 20;           // messages per request
 const MAX_TOKENS = 4000;           // max output tokens per request
 

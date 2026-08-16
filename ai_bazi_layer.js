@@ -13,7 +13,7 @@
 (function () {
   // ─── 配置 ────────────────────────────────────────────
   const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24小时缓存
-  const API_TIMEOUT_MS = 8000;               // 8秒超时
+  const API_TIMEOUT_MS = 40000;              // 40秒超时（compact 后真实 DeepSeek 生成 2000+ tokens 需 ~17-35 秒）
 
   // ─── 静态文案回退（当 API 不可用时） ─────────────────
   const FALLBACK_READINGS = {

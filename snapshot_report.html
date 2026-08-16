@@ -414,19 +414,15 @@
             <div class="progress-steps">
                 <div class="progress-step">
                     <div class="progress-dot" id="dot1">1</div>
-                    <div class="progress-label" data-i18n="sr_progress_analyzing">Analyzing</div>
+                    <div class="progress-label" data-i18n="sr_progress_reading">Reading</div>
                 </div>
                 <div class="progress-step">
                     <div class="progress-dot" id="dot2">2</div>
-                    <div class="progress-label" data-i18n="sr_progress_planning">Planning</div>
+                    <div class="progress-label" data-i18n="sr_progress_review">Master Review</div>
                 </div>
                 <div class="progress-step">
                     <div class="progress-dot" id="dot3">3</div>
-                    <div class="progress-label" data-i18n="sr_progress_writing">Writing</div>
-                </div>
-                <div class="progress-step">
-                    <div class="progress-dot" id="dot4">4</div>
-                    <div class="progress-label" data-i18n="sr_progress_reviewing">Reviewing</div>
+                    <div class="progress-label" data-i18n="sr_progress_complete">Complete</div>
                 </div>
             </div>
             <div class="progress-detail" id="progressDetail"></div>
@@ -459,23 +455,23 @@
 </div>
 
 <script src="config.js"></script>
-<script src="bazi_engine.min.js"></script>
-<script src="api_deepseek.js"></script>
-<script src="ai_bazi_layer.js"></script>
+<script src="bazi_engine_v2.js"></script>
+<script src="report_engine_v2.js"></script>
 <script src="reading_state.js"></script>
 <script src="i18n.js"></script>
-<script src="bazi_translator.js"></script>
-<script src="report_engine.js"></script>
 <script src="version.js"></script>
 <script>
 (function () {
     var _t = function(k, f) { return (window.I18n && window.I18n.t(k, f)) || f; };
     var generating = false;
 
-    // Init AI layer
-    if (window.DEEPSEEK_PROXY_URL) {
-        AIBaziLayer.init({ proxyBaseURL: window.DEEPSEEK_PROXY_URL });
-    }
+    // Init engine (ReportEngineV2 — same engine as the $29 instant report)
+    var engine = new ReportEngineV2({
+        proxyBaseURL: (typeof window.DEEPSEEK_PROXY_URL === 'string' && window.DEEPSEEK_PROXY_URL)
+            ? window.DEEPSEEK_PROXY_URL : null,
+        clientSecret: window.DEEPSEEK_CLIENT_SECRET || null,
+        timeout: 60000
+    });
 
     // Beforeunload protection
     function enableUnloadProtection() {
@@ -497,7 +493,7 @@
     // Compute chart
     var profile;
     try {
-        profile = BaziEngine.calculateProfile({
+        profile = BaziEngineV2.calculateProfile({
             birthDate: state.birth_date || '',
             birthTime: state.birth_time || '',
             lifeFocus: state.focus || 'balance',
@@ -509,7 +505,15 @@
         console.warn('Chart computation failed:', e.message);
     }
 
-    var translated = (profile && window.BaziTranslator) ? BaziTranslator.translate(profile) : profile;
+    // Helper: strongest / weakest element from v2 profile
+    function strongestWeakest() {
+        var counts = profile.elementCounts || {};
+        var entries = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; });
+        return {
+            strongest: entries[0] || '',
+            weakest: entries[entries.length - 1] || ''
+        };
+    }
 
     // Render section 1: Core sentence
     function renderCoreSentence() {
@@ -517,14 +521,14 @@
         if (!profile) { el.textContent = _t('sr_chart_received', 'Your chart has been received and is being processed.'); return; }
         var dm = profile.dayMasterElement || '';
         var season = profile.season || '';
-        var yong = (profile.usefulGodAnalysis || {});
-        var fav = profile.favorableElements || [];
-        var diag = (profile.advancedAnalysis || {}).elementDiagnosis || {};
+        var yong = profile.yongShen || {};
+        var fav = yong.xiShen || [];
+        var sw = strongestWeakest();
 
         var sentence = 'Your chart centers on ' + (dm ? dm + ' energy' : 'a distinctive elemental pattern') +
             ', shaped by the ' + (season || 'season of your birth') + '. ' +
-            'Your core strength lies in your ' + (diag.strongest || 'natural') + ' nature, ' +
-            'while your growth edge involves cultivating ' + (diag.weakest || 'balance') + '.';
+            'Your core strength lies in your ' + (sw.strongest || 'natural') + ' nature, ' +
+            'while your growth edge involves cultivating ' + (sw.weakest || 'balance') + '.';
         if (fav.length > 0) {
             sentence += ' The energies most supportive to you right now are ' + fav.slice(0, 2).join(' and ') + '.';
         }
@@ -535,15 +539,14 @@
     function renderKeywords() {
         var el = document.getElementById('keywordsSection');
         if (!profile) { el.innerHTML = ''; return; }
-        var diag = (profile.advancedAnalysis || {}).elementDiagnosis || {};
-        var ten = (profile.advancedAnalysis || {}).tenGodStructure || {};
-        var yong = profile.usefulGodAnalysis || {};
-        var fav = profile.favorableElements || [];
+        var yong = profile.yongShen || {};
+        var fav = yong.xiShen || [];
+        var sw = strongestWeakest();
 
         var keywords = [
-            { word: diag.strongest || 'Strength', desc: 'Your dominant element gives you natural ' + (diag.strongest || 'power') + ' energy that shapes how others perceive you.' },
-            { word: diag.weakest || 'Growth', desc: 'Developing ' + (diag.weakest || 'this area') + ' energy is your path to greater balance and fulfillment.' },
-            { word: (yong.primary || fav[0] || 'Stability'), desc: 'Your most supportive element right now — lean into this to navigate challenges with more ease.' }
+            { word: sw.strongest || 'Strength', desc: 'Your dominant element gives you natural ' + (sw.strongest || 'power') + ' energy that shapes how others perceive you.' },
+            { word: sw.weakest || 'Growth', desc: 'Developing ' + (sw.weakest || 'this area') + ' energy is your path to greater balance and fulfillment.' },
+            { word: (yong.yongShen || fav[0] || 'Stability'), desc: 'Your most supportive element right now — lean into this to navigate challenges with more ease.' }
         ];
 
         el.innerHTML = keywords.map(function (k) {
@@ -555,21 +558,17 @@
     function renderChartData() {
         if (!profile) return;
         var pillars = profile.pillars || {};
-        var labels = profile.pillarLabels || {};
         var grid = document.getElementById('pillarGrid');
-        var stems = window.BaziEngine ? BaziEngine.stems || [] : [];
-        var branches = window.BaziEngine ? BaziEngine.branchElements || [] : [];
+        var labels = { year: 'Year', month: 'Month', day: 'Day', hour: 'Hour' };
 
         var html = '';
         ['year', 'month', 'day', 'hour'].forEach(function (p) {
             var pData = pillars[p];
-            if (!pData) {
-                html += '<div class="pillar"><div class="pillar-label">' + (labels[p] || p) + '</div><div class="pillar-value">—</div></div>';
+            if (!pData || !pData.stem) {
+                html += '<div class="pillar"><div class="pillar-label">' + labels[p] + '</div><div class="pillar-value">—</div></div>';
                 return;
             }
-            var stemName = stems[pData.stemIndex] || '';
-            var branchName = branches[pData.branchIndex] || '';
-            html += '<div class="pillar"><div class="pillar-label">' + (labels[p] || p) + '</div><div class="pillar-value">' + stemName + '</div><div style="font-size:11px;color:rgba(36,25,21,0.5)">' + branchName + '</div></div>';
+            html += '<div class="pillar"><div class="pillar-label">' + labels[p] + '</div><div class="pillar-value">' + pData.stem + '</div><div style="font-size:11px;color:rgba(36,25,21,0.5)">' + pData.branch + '</div></div>';
         });
         grid.innerHTML = html;
 
@@ -589,7 +588,6 @@
     function renderDirection() {
         if (!profile) return;
         var focus = state.focus || 'balance';
-        var fav = profile.favorableElements || [];
         var focusLabels = { career: _t('sr_focus_career', 'Career & Allies'), wealth: _t('sr_focus_wealth', 'Wealth & Retention'), love: _t('sr_focus_love', 'Love & Harmony'), protection: _t('sr_focus_protection', 'Safety & Protection'), balance: _t('sr_focus_balance', 'Personal Balance') };
         var focusGuidance = {
             career: _t('sr_guidance_career', 'Channel your energy into structured professional growth. Your chart suggests that clear boundaries and methodical action will bring more sustainable results than bold leaps.'),
@@ -609,35 +607,18 @@
     renderChartData();
     renderDirection();
 
-    // Async AI overview
+    // Async AI overview — diagnosis-only teaser (same engine as $29, diagnosis tier)
     function loadAIOverview() {
         if (!profile) {
             document.getElementById('aiOverviewContent').innerHTML = '<p>' + _t('sr_ai_computing', 'Your chart is being computed. Overview will appear shortly.') + '</p>';
             return;
         }
 
-        if (!window.AIBaziLayer || !window.AIBaziLayer.isReady()) {
-            document.getElementById('aiOverviewContent').innerHTML =
-                '<p>Your ' + (profile.dayMasterElement || '') + ' Day Master chart, born in ' + (profile.season || '') +
-                '. Your dominant element is ' + ((profile.advancedAnalysis || {}).elementDiagnosis || {}).strongest || 'distinctive' +
-                ', with ' + ((profile.advancedAnalysis || {}).elementDiagnosis || {}).weakest || 'room for growth' + ' as your developmental edge.</p>';
-            document.getElementById('fallbackNotice').style.display = 'block';
-            return;
-        }
-
-        AIBaziLayer.basicOverview({
-            birthDate: state.birth_date,
-            birthTime: state.birth_time,
-            focus: state.focus || 'balance',
-            gender: state.gender,
-            birthLocation: state.birth_location
-        }).then(function (result) {
+        var sw = strongestWeakest();
+        engine.generateDiagnosisReport(profile, state.focus || 'balance').then(function (result) {
             var html = '';
-            if (result.overview) {
-                html += '<p>' + result.overview + '</p>';
-            }
-            if (result.keyObservation) {
-                html += '<p style="margin-top:8px;color:rgba(36,25,21,0.7);font-style:italic;">' + result.keyObservation + '</p>';
+            if (result.report && result.report.opening) {
+                html += '<p>' + result.report.opening + '</p>';
             }
             document.getElementById('aiOverviewContent').innerHTML = html || '<p>Your chart overview has been computed.</p>';
             if (result.fallback) {
@@ -645,7 +626,9 @@
             }
         }).catch(function () {
             document.getElementById('aiOverviewContent').innerHTML =
-                '<p>Your chart has been computed and a master will review it for your complete report.</p>';
+                '<p>Your ' + (profile.dayMasterElement || '') + ' Day Master chart, born in ' + (profile.season || '') +
+                '. Your dominant element is ' + (sw.strongest || 'distinctive') +
+                ', with ' + (sw.weakest || 'room for growth') + ' as your developmental edge.</p>';
             document.getElementById('fallbackNotice').style.display = 'block';
         });
     }
@@ -655,12 +638,15 @@
     // Full report generation
     document.getElementById('generateFullBtn').addEventListener('click', function () {
         if (generating) return;
-        if (!profile) {
-            alert(_t('sr_alert_loading', 'Chart data is still loading. Please wait a moment and try again.'));
+        // Payment gate: full report generation requires a confirmed $199 order
+        var paidReading = null;
+        try { paidReading = localStorage.getItem('od_paid_reading'); } catch(e) {}
+        if (!paidReading) {
+            alert('The complete report unlocks after your $199 order is confirmed. Please complete your order to generate it.');
             return;
         }
-        if (!window.AIBaziLayer || !window.AIBaziLayer.isReady()) {
-            alert(_t('sr_alert_ai_unavailable', 'AI service is not available right now. Please try again later or contact 434338480@qq.com.'));
+        if (!profile) {
+            alert(_t('sr_alert_loading', 'Chart data is still loading. Please wait a moment and try again.'));
             return;
         }
 
@@ -672,18 +658,11 @@
         document.getElementById('progressContainer').classList.add('active');
 
         var dots = [document.getElementById('dot1'), document.getElementById('dot2'),
-                     document.getElementById('dot3'), document.getElementById('dot4')];
+                     document.getElementById('dot3')];
 
-        ReportEngine.generateFullReport({
-            birthDate: state.birth_date,
-            birthTime: state.birth_time,
-            focus: state.focus || 'balance',
-            gender: state.gender,
-            birthLocation: state.birth_location,
-            fullName: state.full_name
-        }, function (progress) {
-            document.getElementById('progressDetail').textContent = progress.detail;
-            for (var i = 0; i < 4; i++) {
+        engine.generateFullDeluxe(profile, state.focus || 'balance', function (progress) {
+            document.getElementById('progressDetail').textContent = progress.label || '';
+            for (var i = 0; i < 3; i++) {
                 dots[i].classList.remove('done', 'active');
                 if (i + 1 < progress.step) {
                     dots[i].classList.add('done');
@@ -693,6 +672,12 @@
                 }
             }
         }).then(function (result) {
+            // Persist to localStorage for full_report.html
+            try {
+                localStorage.setItem('oriental_destiny_full_report', JSON.stringify(result));
+            } catch (e) {
+                console.warn('Could not save report to localStorage:', e.message);
+            }
             generating = false;
             btn.innerHTML = _t('sr_report_generated', 'Report Generated!');
             document.getElementById('warningBanner').classList.remove('show');

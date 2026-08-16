@@ -149,11 +149,73 @@ class DeepSeekAPI {
       .replace(/\{\{CURRENT_YEAR\}\}/g, String(currentYear));
   }
 
+  /**
+   * 压缩 chartData：只保留报告生成所需的「结果」字段，丢弃计算过程类大字段。
+   * 完整 chartData JSON.stringify 后约 44K 字符（advancedAnalysis / usefulGodAnalysis.reasons /
+   * liuYue / daYun.pillars 等），远超 Worker 消息上限且大量浪费 token。压缩后 ~8-10K。
+   */
+  _compactChart(chartData) {
+    if (!chartData) return {};
+    var c = {};
+
+    // 核心结构（小字段，报告必需）
+    [
+      'dayMasterStem', 'dayMasterElement', 'season', 'zodiac',
+      'pillars', 'pillarLabels', 'hiddenStems',
+      'elementCounts', 'tenGodCounts', 'elementRanking', 'tenGodRanking',
+      'strength', 'favorableElements', 'favorableElementReasoning', 'dayMasterProfile'
+    ].forEach(function (k) {
+      if (chartData[k] !== undefined) c[k] = chartData[k];
+    });
+
+    // 现成解读文本（精华，直接可用）
+    [
+      'focusReading', 'focusStrategy', 'deepFocusReading', 'lifePhaseReading',
+      'masterMessage', 'readerCounsel', 'interpretations'
+    ].forEach(function (k) {
+      if (chartData[k] !== undefined) c[k] = chartData[k];
+    });
+
+    // 时机 + 护身符 + 流年（中等大小，报告「时机/建议」章节必需）
+    if (chartData.timingWindows) c.timingWindows = chartData.timingWindows;
+    if (chartData.jewelry) c.jewelry = chartData.jewelry;
+    if (chartData.liuNian) c.liuNian = chartData.liuNian;
+
+    // 大运：只保留当前大运 + 摘要，丢弃 8 个大运的完整对象数组
+    if (chartData.daYun) {
+      c.daYun = {
+        qiYunAge: chartData.daYun.qiYunAge,
+        summary: chartData.daYun.summary,
+        current: chartData.daYun.current
+      };
+    }
+
+    // 喜用神：保留 primary/supporting/avoid + ranked 的元素与分数，丢弃每条 reasons 推理
+    if (chartData.usefulGodAnalysis) {
+      c.usefulGod = {
+        primary: chartData.usefulGodAnalysis.primary,
+        supporting: chartData.usefulGodAnalysis.supporting,
+        avoid: chartData.usefulGodAnalysis.avoid,
+        ranked: (chartData.usefulGodAnalysis.ranked || []).map(function (r) {
+          return { element: r.element, score: r.score };
+        })
+      };
+    }
+
+    // 高级分析只保留结论性 summary，丢弃 12K 字符的计算细节
+    if (chartData.advancedAnalysis) {
+      if (chartData.advancedAnalysis.summary) c.analysisSummary = chartData.advancedAnalysis.summary;
+      if (chartData.advancedAnalysis.depthSummary) c.analysisDepthSummary = chartData.advancedAnalysis.depthSummary;
+    }
+
+    return c;
+  }
+
   _buildAnalyzeUserPrompt(chartData) {
     return `Analyze the following BaZi chart data and provide detailed Five Elements reasoning.
 
 CHART DATA:
-${JSON.stringify(chartData, null, 2)}
+${JSON.stringify(this._compactChart(chartData), null, 2)}
 
 Please respond with a JSON object containing:
 {
@@ -173,7 +235,7 @@ Please respond with a JSON object containing:
 FOCUS AREA: ${focus}
 
 CHART DATA:
-${JSON.stringify(chartData, null, 2)}
+${JSON.stringify(this._compactChart(chartData), null, 2)}
 
 ANALYSIS RESULT:
 ${JSON.stringify(analysisResult, null, 2)}
@@ -259,7 +321,7 @@ IMPORTANT: Write in natural English narrative style, not templated phrases.`;
 FOCUS: ${focus}
 
 CHART DATA:
-${JSON.stringify(chartData, null, 2)}
+${JSON.stringify(this._compactChart(chartData), null, 2)}
 
 Respond with JSON:
 {
@@ -285,7 +347,7 @@ Respond with JSON:
     }
     var userPrompt = 'Generate a structured 7-section report outline for the following BaZi chart.\n\n' +
       'FOCUS: ' + (focus || 'balance') + '\n\n' +
-      'CHART DATA:\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'CHART DATA:\n' + JSON.stringify(this._compactChart(chartData), null, 2) + '\n\n' +
       'Respond with a valid JSON object containing a "sections" key with all 7 sections as specified.';
 
     var response = await this.chat(
@@ -313,7 +375,7 @@ Respond with JSON:
     var userPrompt = 'Write a complete 7-chapter BaZi report following the outline below.\n\n' +
       'FOCUS: ' + (focus || 'balance') + '\n\n' +
       'OUTLINE:\n' + JSON.stringify(outline, null, 2) + '\n\n' +
-      'CHART DATA (for reference — use specific names and scores):\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'CHART DATA (for reference — use specific names and scores):\n' + JSON.stringify(this._compactChart(chartData), null, 2) + '\n\n' +
       'Write the complete report as a valid JSON object. Every chapter must be fully written — no placeholders.';
 
     var response = await this.chat(
@@ -339,7 +401,7 @@ Respond with JSON:
     }
     var userPrompt = 'Review the following BaZi report for quality.\n\n' +
       'REPORT:\n' + JSON.stringify(fullReport, null, 2) + '\n\n' +
-      'ORIGINAL CHART DATA (for fact-checking):\n' + JSON.stringify(chartData, null, 2) + '\n\n' +
+      'ORIGINAL CHART DATA (for fact-checking):\n' + JSON.stringify(this._compactChart(chartData), null, 2) + '\n\n' +
       'Respond with a valid JSON object containing overall verdict, dimension scores, and rewrite instructions.';
 
     var response = await this.chat(

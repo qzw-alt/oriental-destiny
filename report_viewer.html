@@ -444,6 +444,14 @@ footer a { color: var(--cinnabar); }
         if (msg) document.getElementById('errorMsg').textContent = msg;
     }
 
+    function showPaywall() {
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('errorState').style.display = '';
+        document.getElementById('errorMsg').innerHTML =
+            'This full report is available after purchase. ' +
+            '<a href="instant_report.html" style="color:var(--cinnabar);font-weight:600;text-decoration:underline;">Complete your $29 purchase →</a>';
+    }
+
     function showReport() {
         document.getElementById('loadingState').style.display = 'none';
         document.getElementById('reportContent').style.display = '';
@@ -491,6 +499,15 @@ footer a { color: var(--cinnabar); }
 
         if (!state.birth_date) {
             showError('No birth information found. Please start from the free diagnosis page.');
+            return;
+        }
+
+        // Payment gate: a full report requires a paid instant-report marker.
+        var paidMarker = null;
+        try { paidMarker = localStorage.getItem('od_paid_instant_report'); } catch(e) {}
+        var paidViaUrl = params.get('tx') || params.get('paid') || params.get('paymentId') || params.get('token');
+        if (!paidMarker && !paidViaUrl) {
+            showPaywall();
             return;
         }
 

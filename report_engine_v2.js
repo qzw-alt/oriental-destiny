@@ -366,7 +366,7 @@ Focus area: ${focus}
       try {
         const res = await fetch(`${this.baseURL}/chat/completions`, {
           method: "POST", headers,
-          body: JSON.stringify({ model: this.model, messages, temperature: temp, max_tokens: maxTokens }),
+          body: JSON.stringify({ model: this.model, messages, temperature: temp, max_tokens: maxTokens, response_format: { type: "json_object" } }),
           signal: controller.signal
         });
         if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
@@ -468,16 +468,27 @@ Focus area: ${focus}
         basicReport = retry.report;
       }
 
-      try {
-        const systemPrompt = buildDeluxeSystemPrompt(brief, focus);
-        const raw = await this._call([
-          { role: "system", content: systemPrompt },
-          { role: "user", content: `Add your master annotations and jewelry guide. Focus: ${focus}. Output valid JSON.` }
-        ], 2000, 0.6);
+      const systemPrompt = buildDeluxeSystemPrompt(brief, focus);
+      const messages = [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: `Add your master annotations and jewelry guide. Focus: ${focus}. Output valid JSON.` }
+      ];
 
-        const deluxe = this._parse(raw);
-        if (!deluxe) throw new Error("Deluxe parse failed");
+      // Retry once on transient JSON syntax errors from the model.
+      let deluxe = null;
+      let lastErr = null;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const raw = await this._call(messages, 4000, 0.6);
+          deluxe = this._parse(raw);
+          if (deluxe && deluxe.masterAnnotations && deluxe.jewelryGuide) break;
+          lastErr = "Deluxe parse failed";
+        } catch (e) {
+          lastErr = e.message;
+        }
+      }
 
+      if (deluxe) {
         return {
           basic: basicReport,
           masterAnnotations: deluxe.masterAnnotations || [],
@@ -488,19 +499,19 @@ Focus area: ${focus}
           fallback: false,
           generatedAt: new Date().toISOString()
         };
-      } catch (e) {
-        console.warn("Deluxe API failed, using fallback:", e.message);
-        return {
-          basic: basicReport,
-          masterAnnotations: buildFallbackAnnotations(profile),
-          jewelryGuide: buildFallbackJewelry(profile),
-          chartSnapshot: buildChartSnapshot(profile),
-          profile,
-          tier: "deluxe",
-          fallback: true,
-          error: e.message
-        };
       }
+
+      console.warn("Deluxe API failed after retries, using fallback:", lastErr);
+      return {
+        basic: basicReport,
+        masterAnnotations: buildFallbackAnnotations(profile),
+        jewelryGuide: buildFallbackJewelry(profile),
+        chartSnapshot: buildChartSnapshot(profile),
+        profile,
+        tier: "deluxe",
+        fallback: true,
+        error: lastErr
+      };
     }
 
     // ─── Convenience: generate both tiers in sequence ────────

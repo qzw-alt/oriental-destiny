@@ -1,714 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destiny Scroll · WuEarth Day Master — Oriental Destiny</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* ══════════════════════════════════════════════════════════
-   Ink-Wash · Destiny Scroll Design System
-   Destiny Scroll — Oriental Destiny Report System
-   ══════════════════════════════════════════════════════════ */
-:root {
-  --ink: #1a1410;
-  --ink-light: rgba(26,20,16,0.65);
-  --ink-faint: rgba(26,20,16,0.35);
-  --cinnabar: #b5342a;
-  --cinnabar-deep: #8b1a14;
-  --gold: #c9a24e;
-  --gold-light: rgba(201,162,78,0.2);
-  --gold-faint: rgba(201,162,78,0.08);
-  --cream: #f5f0e8;
-  --cream-dark: #ebe3d7;
-  --paper: #faf7f1;
-  --white: #fffdf8;
-  --shadow-sm: 0 4px 20px rgba(26,20,16,0.06);
-  --shadow: 0 12px 40px rgba(26,20,16,0.10);
-  --shadow-lg: 0 24px 64px rgba(26,20,16,0.14);
-  --radius: 8px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
 
-body {
-  font-family: 'Noto Serif SC', Georgia, 'STSong', 'SimSun', 'PingFang SC', serif;
-  color: var(--ink);
-  background:
-    radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
-    radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(26,20,16,0.015) 0%, transparent 70%),
-    linear-gradient(180deg, #f7f2e9 0%, var(--cream) 28%, var(--paper) 62%, #f5efe6 100%);
-  line-height: 1.82;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ── Scroll progress bar ── */
-.scroll-track {
-  position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 9999;
-  background: transparent; pointer-events: none;
-}
-.scroll-track .fill {
-  height: 100%; background: linear-gradient(90deg, var(--cinnabar), var(--gold), var(--cinnabar));
-  width: 0%; transition: width 0.15s linear;
-}
-
-.container { max-width: 780px; margin: 0 auto; padding: 0 22px; }
-
-/* ══════════════════════════════════════════════════════════
-   CHAPTER SYSTEM
-   ══════════════════════════════════════════════════════════ */
-.chapter {
-  position: relative;
-  margin-bottom: 24px;
-  padding: 44px 0 20px;
-  opacity: 0; transform: translateY(36px);
-  animation: chapterEnter 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards;
-}
-.chapter:nth-child(1){animation-delay:0s}
-.chapter:nth-child(2){animation-delay:0.15s}
-.chapter:nth-child(3){animation-delay:0.3s}
-.chapter:nth-child(4){animation-delay:0.45s}
-.chapter:nth-child(5){animation-delay:0.6s}
-.chapter:nth-child(6){animation-delay:0.75s}
-.chapter:nth-child(7){animation-delay:0.9s}
-.chapter:nth-child(8){animation-delay:1.05s}
-.chapter:nth-child(9){animation-delay:1.2s}
-.chapter:nth-child(10){animation-delay:1.35s}
-
-@keyframes chapterEnter {
-  from { opacity: 0; transform: translateY(36px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.chapter-marker {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 28px;
-}
-.chapter-marker .vol {
-  font-size: 12px; letter-spacing: 0.2em;
-  color: var(--cinnabar); font-weight: 700;
-  background: rgba(181,52,42,0.06);
-  padding: 6px 10px; border-radius: 2px;
-}
-.chapter-marker .title-cn {
-  font-size: 26px; font-weight: 900; color: var(--ink);
-  letter-spacing: 0.04em;
-}
-.chapter-marker .title-en {
-  font-size: 11px; color: var(--ink-faint);
-  text-transform: uppercase; letter-spacing: 0.1em;
-  margin-left: 6px; align-self: flex-end;
-  padding-bottom: 2px;
-}
-
-/* ══════════════════════════════════════════════════════════
-   HERO / COVER
-   ══════════════════════════════════════════════════════════ */
-.hero-cover {
-  text-align: center;
-  padding: 60px 0 50px;
-  margin-bottom: 10px;
-}
-.seal-anim {
-  display: inline-block;
-  animation: sealStamp 1s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-@keyframes sealStamp {
-  0%   { transform: scale(2.8) rotate(-25deg); opacity: 0; }
-  60%  { transform: scale(0.92) rotate(3deg); opacity: 1; }
-  80%  { transform: scale(1.06) rotate(-2deg); }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-.seal-inner {
-  width: 72px; height: 72px;
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-title {
-  font-size: clamp(30px, 6vw, 48px);
-  font-weight: 900;
-  line-height: 1.25;
-  margin: 24px 0 12px;
-  letter-spacing: 0.03em;
-}
-.hero-title .em {
-  color: var(--cinnabar);
-  position: relative;
-}
-.hero-title .em::after {
-  content: '';
-  position: absolute; bottom: 2px; left: 0; right: 0;
-  height: 6px;
-  background: rgba(201,162,78,0.35);
-  border-radius: 3px;
-  z-index: -1;
-}
-.hero-sub {
-  font-size: 16px; color: var(--ink-light);
-  margin-bottom: 32px;
-  letter-spacing: 0.04em;
-}
-.hero-divider {
-  width: 80px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 0 auto 10px;
-}
-.hero-badge {
-  display: inline-block;
-  padding: 7px 22px;
-  border-radius: 20px;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.1em;
-  background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(181,52,42,0.25);
-}
-
-/* ══════════════════════════════════════════════════════════
-   BAZI CHART TABLE — ancient almanac style
-   ══════════════════════════════════════════════════════════ */
-.chart-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 32px 24px 24px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(26,20,16,0.06);
-  margin-bottom: 24px;
-}
-.chart-card .chart-title {
-  font-size: 13px; letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint); text-align: center;
-  margin-bottom: 24px;
-}
-.bazi-table {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  margin-bottom: 20px;
-}
-.bazi-col {
-  text-align: center;
-  padding: 18px 8px 14px;
-  background: linear-gradient(180deg, rgba(201,162,78,0.04) 0%, transparent 100%);
-  border-radius: 8px;
-  position: relative;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.bazi-col:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(26,20,16,0.08);
-}
-.bazi-col.day-master {
-  background: linear-gradient(180deg, rgba(201,162,78,0.12) 0%, rgba(201,162,78,0.02) 100%);
-  border: 1.5px solid var(--gold-light);
-}
-.bazi-stem {
-  display: block; font-size: 28px; font-weight: 900;
-  color: var(--ink); letter-spacing: 0.04em;
-}
-.bazi-branch {
-  display: block; font-size: 22px; font-weight: 700;
-  color: var(--ink-light); margin-top: 2px;
-}
-.bazi-label {
-  display: block; font-size: 10px; color: var(--ink-faint);
-  margin-top: 8px; letter-spacing: 0.06em;
-}
-.bazi-nayin {
-  display: block; font-size: 9px; color: var(--gold);
-  margin-top: 2px; letter-spacing: 0.04em;
-}
-.bazi-dm {
-  display: inline-block; margin-top: 4px;
-  padding: 2px 8px; border-radius: 3px;
-  background: var(--cinnabar); color: #fff;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-}
-
-/* ── Tags row ── */
-.chip-row {
-  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
-  margin-top: 4px;
-}
-.chip {
-  display: inline-block; font-size: 10.5px; padding: 5px 13px;
-  border-radius: 14px; font-weight: 600; letter-spacing: 0.04em;
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-}
-.chip.gold { background: var(--gold-faint); color: #8a6d2f; }
-.chip.red  { background: rgba(181,52,42,0.07); color: var(--cinnabar); }
-.chip.green{ background: rgba(49,82,71,0.07); color: #315247; }
-
-/* ══════════════════════════════════════════════════════════
-   CONTENT CARDS
-   ══════════════════════════════════════════════════════════ */
-.content-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 36px 38px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(26,20,16,0.05);
-  margin-bottom: 0;
-}
-.content-card p {
-  font-size: 15px; margin-bottom: 16px;
-  line-height: 1.9; color: var(--ink-light);
-}
-.content-card p:last-child { margin-bottom: 0; }
-.content-card p strong, .content-card p b {
-  color: var(--ink); font-weight: 700;
-}
-
-.content-card.guides {
-  border-left: 4px solid var(--gold);
-  background: linear-gradient(135deg, var(--white) 0%, #fdf9f0 100%);
-}
-.content-card.closing-card {
-  text-align: center;
-  background: linear-gradient(180deg, #fdfaf3 0%, #f8f2e5 100%);
-  border: 1px solid var(--gold-light);
-}
-.content-card.closing-card p {
-  font-style: italic; font-size: 17px; line-height: 2;
-  color: var(--ink-light);
-}
-
-/* ══════════════════════════════════════════════════════════
-   PRACTICAL POCKET ITEMS
-   ══════════════════════════════════════════════════════════ */
-.pocket-list {
-  list-style: none; padding: 0;
-  display: grid; gap: 14px;
-}
-.pocket-item {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(201,162,78,0.04) 0%, transparent 100%);
-  border-radius: 10px;
-  border: 1px solid rgba(26,20,16,0.04);
-  animation: pocketIn 0.5s cubic-bezier(0.22,0.61,0.36,1) both;
-  font-size: 14px; line-height: 1.75; color: var(--ink-light);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.pocket-item:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(26,20,16,0.05);
-}
-@keyframes pocketIn {
-  from { opacity: 0; transform: translateX(-16px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.pocket-num {
-  flex-shrink: 0;
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--cinnabar);
-  color: #fff;
-  font-size: 12px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
-/* ══════════════════════════════════════════════════════════
-   MASTER SCROLLS — Annotations
-   ══════════════════════════════════════════════════════════ */
-.tianji-scroll {
-  background: linear-gradient(160deg, #fdfaf3 0%, #f7f1e2 100%);
-  border: 1px solid var(--gold-light);
-  border-left: 4px solid var(--gold);
-  border-radius: 10px;
-  padding: 26px 28px;
-  margin-bottom: 18px;
-  animation: tianjiIn 0.6s cubic-bezier(0.22,0.61,0.36,1) both;
-  position: relative;
-  overflow: hidden;
-}
-.tianji-scroll::after {
-  content: ''; position: absolute;
-  top: -40px; right: -40px;
-  width: 120px; height: 120px;
-  background: radial-gradient(circle, rgba(201,162,78,0.06) 0%, transparent 70%);
-  border-radius: 50%;
-}
-@keyframes tianjiIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.tianji-header {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 14px;
-}
-.tianji-seal {
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-}
-.tianji-num {
-  font-size: 11px; color: var(--ink-faint);
-  letter-spacing: 0.08em;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-.tianji-scroll h3 {
-  font-size: 18px; color: var(--cinnabar);
-  margin-bottom: 10px; font-weight: 700;
-  letter-spacing: 0.03em;
-}
-.tianji-body {
-  font-size: 14px; line-height: 1.85; color: var(--ink-light);
-}
-
-/* ══════════════════════════════════════════════════════════
-   CRYSTAL CARDS — Crystal Guide
-   ══════════════════════════════════════════════════════════ */
-.crystal-reveal {
-  padding: 0;
-}
-.crystal-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 18px; margin-bottom: 20px;
-}
-@media(max-width:560px){ .crystal-grid{grid-template-columns:1fr} }
-.crystal-card {
-  background: var(--white);
-  border-radius: 12px; padding: 28px 22px 22px;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  border: 1px solid rgba(26,20,16,0.05);
-  text-align: center;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.crystal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.crystal-card.primary { border-top: 3px solid var(--cinnabar); }
-.crystal-card.secondary { border-top: 3px solid var(--gold); }
-.crystal-badge {
-  display: inline-block; padding: 5px 16px;
-  border-radius: 14px; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.08em; margin-bottom: 12px;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-.crystal-badge { background: var(--cinnabar); color: #fff; }
-.crystal-badge.sec { background: var(--gold); color: #fff; }
-.crystal-stone {
-  font-size: 22px; font-weight: 900; color: var(--ink);
-  margin-bottom: 6px; letter-spacing: 0.04em;
-}
-.crystal-element {
-  display: inline-block; font-size: 10px; padding: 3px 12px;
-  border-radius: 10px; font-weight: 600; margin-bottom: 14px;
-  font-family: 'Noto Sans SC', sans-serif;
-}
-.crystal-element.el { background: var(--gold-faint); color: #8a6d2f; }
-.crystal-why {
-  font-size: 13.5px; line-height: 1.75; color: var(--ink-light);
-  margin-bottom: 12px; text-align: left;
-}
-.crystal-wear {
-  font-size: 12px; line-height: 1.7; color: #315247;
-  font-style: italic; text-align: left;
-  padding-top: 10px; border-top: 1px solid rgba(26,20,16,0.06);
-}
-.crystal-master-note {
-  background: linear-gradient(160deg, #fdfaf3 0%, #f7f1e2 100%);
-  border-radius: 10px; padding: 22px 26px;
-  border: 1px solid var(--gold-light);
-}
-.master-words {
-  font-size: 14px; line-height: 1.85; color: var(--ink-light);
-  font-style: italic; margin-bottom: 12px;
-}
-.crystal-avoid {
-  font-size: 12px; color: var(--cinnabar);
-  font-family: 'Noto Sans SC', sans-serif;
-}
-
-/* ══════════════════════════════════════════════════════════
-   DIVIDERS
-   ══════════════════════════════════════════════════════════ */
-.section-divider {
-  text-align: center; margin: 36px 0 18px;
-  padding: 20px 0;
-}
-.section-divider .diamond {
-  display: inline-block;
-  width: 10px; height: 10px;
-  background: var(--gold);
-  transform: rotate(45deg);
-  border-radius: 1px;
-  margin: 0 10px;
-  opacity: 0.7;
-}
-.section-divider .line-h {
-  display: inline-block;
-  width: 50px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  vertical-align: middle;
-  margin: 0 6px;
-}
-
-/* ══════════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════════ */
-footer {
-  text-align: center; padding: 36px 20px 28px;
-  font-size: 11.5px; color: var(--ink-faint);
-  border-top: 1px solid rgba(26,20,16,0.06);
-  margin-top: 32px; line-height: 2;
-  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
-  letter-spacing: 0.03em;
-}
-footer .foot-seal {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 14px;
-  opacity: 0.6;
-}
-
-@media(max-width:600px){
-  .container { padding: 0 14px; }
-  .hero-cover { padding: 36px 0 30px; }
-  .bazi-table { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .bazi-stem { font-size: 24px; }
-  .bazi-branch { font-size: 18px; }
-  .content-card { padding: 26px 20px; }
-  .tianji-scroll { padding: 20px 18px; }
-  .chapter-marker .title-cn { font-size: 22px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A sample BaZi reading from Oriental Destiny — see the full 7-chapter personalized report, master annotations, and jewelry matching you receive with the $199 service.">
+    <link rel="canonical" href="https://oriental-destiny.com/sample_report.html">
+    <meta property="og:title" content="Sample BaZi Reading | Oriental Destiny">
+    <meta property="og:description" content="See exactly what your $199 personalized reading looks like — 7 chapters, master annotations, and a matched Daoist treasure.">
+    <title>Sample BaZi Reading | Oriental Destiny</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --ink: #241915;
+            --paper: #fbf5ec;
+            --cinnabar: #a63a2c;
+            --jade: #2d6a4f;
+            --gold: #b78a42;
+            --line: rgba(36, 25, 21, 0.1);
+            --warm: #f6e7d6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background: linear-gradient(180deg, #f6e7d6 0%, var(--paper) 48%, #fffaf4 100%);
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .report-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .sample-banner {
+            text-align: center;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            background: rgba(183, 138, 66, 0.12);
+            border: 1px solid rgba(183, 138, 66, 0.3);
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            color: rgba(36, 25, 21, 0.8);
+        }
+        .sample-banner strong { color: var(--cinnabar); }
+        .report-header {
+            text-align: center;
+            padding: 36px 24px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--gold);
+        }
+        .report-header .brand {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 16px;
+        }
+        .report-header h1 {
+            font-size: clamp(26px, 5vw, 38px);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .report-header .subtitle {
+            color: rgba(36, 25, 21, 0.6);
+            font-size: 14px;
+        }
+        .chapter {
+            margin-bottom: 36px;
+            padding: 28px 24px;
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(70, 41, 24, 0.05);
+        }
+        .chapter-num {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .chapter h2 {
+            font-size: 22px;
+            line-height: 1.3;
+            margin-bottom: 18px;
+            color: var(--ink);
+        }
+        .chapter h3 {
+            font-size: 17px;
+            margin: 20px 0 10px;
+            color: rgba(36, 25, 21, 0.85);
+        }
+        .chapter p {
+            margin-bottom: 14px;
+            color: rgba(36, 25, 21, 0.82);
+            font-size: 15px;
+        }
+        .chapter .takeaway {
+            margin-top: 16px;
+            padding: 12px 18px;
+            background: rgba(183, 138, 66, 0.08);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.9);
+        }
+        .master-note {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: rgba(242, 227, 208, 0.3);
+        }
+        .master-note .note-type {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cinnabar);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .master-note p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .advice-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+        .advice-list li {
+            padding: 8px 0 8px 22px;
+            position: relative;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.8);
+        }
+        .advice-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+        .jewelry-section {
+            padding: 22px;
+            background: rgba(183, 138, 66, 0.05);
+            border: 1px solid rgba(183, 138, 66, 0.15);
+            border-radius: 16px;
+        }
+        .jewelry-section h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .appendix-section {
+            padding: 18px 22px;
+            background: rgba(36, 25, 21, 0.03);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(36, 25, 21, 0.6);
+        }
+        .appendix-section h3 {
+            color: rgba(36, 25, 21, 0.5);
+            font-size: 13px;
+            margin: 0 0 10px;
+        }
+        .appendix-section p { margin-bottom: 4px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 28px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #b24636 0%, #8b251a 100%);
+            color: #fff8ef;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(36, 25, 21, 0.2);
+            color: var(--ink);
+        }
+        .btn:hover { opacity: 0.9; }
+        .sample-cta {
+            margin: 40px 0 32px;
+            padding: 36px 24px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(70, 41, 24, 0.06);
+        }
+        .sample-cta h2 { font-size: 24px; margin-bottom: 8px; }
+        .sample-cta p { color: rgba(36, 25, 21, 0.6); font-size: 14px; margin-bottom: 22px; }
+        .sample-cta .btn { margin: 6px; }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(36, 25, 21, 0.5);
+        }
+        footer a { color: rgba(36, 25, 21, 0.7); margin: 0 6px; }
+        @media (max-width: 640px) {
+            .chapter { padding: 18px 14px; }
+            .report-header { padding: 24px 12px; }
+        }
+    </style>
 </head>
 <body>
+<div class="report-container">
 
-<!-- Scroll progress -->
-<div class="scroll-track"><div class="fill" id="scrollFill"></div></div>
-
-<div class="container">
-
-<!-- ═══════════════════════════════════════════════════════
-     COVER
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter hero-cover">
-  <div class="seal-anim">
-    <div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div>
-  </div>
-  <h1 class="hero-title">
-    Wu<span class="em">Earth</span> Day Master
-  </h1>
-  <p class="hero-sub">
-    Shen · Autumn · Indirect Wealth Pattern
-  </p>
-  <div class="hero-divider"></div>
-  <div class="hero-badge">✦ Destiny Scroll · BaZi Chart Reading</div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     CHART CARD
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="content-card chart-card">
-    <div class="chart-title">Four Pillars · BaZi Chart</div>
-    
-    <div class="bazi-table">
-      <div class="bazi-col"><span class="bazi-stem">RenSh</span><span class="bazi-branch">en</span><span class="bazi-label">Year</span><span class="bazi-nayin">Sword Metal</span></div>
-      <div class="bazi-col"><span class="bazi-stem">WuSh</span><span class="bazi-branch">en</span><span class="bazi-label">Month</span><span class="bazi-nayin">Great Station Earth</span></div>
-      <div class="bazi-col day-master"><span class="bazi-stem">WuCh</span><span class="bazi-branch">en</span><span class="bazi-label">Day</span><span class="bazi-dm">Day Master</span></div>
-      <div class="bazi-col"><span class="bazi-stem">Ding</span><span class="bazi-branch">Si</span><span class="bazi-label">Hour</span><span class="bazi-nayin">Sand Earth</span></div>
+    <div class="sample-banner">
+        <strong>Sample Report</strong> — this is a demonstration of the full $199 reading. Your report is written to <em>your</em> birth chart, not this one.
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════
-     VOL 1 · Who You Are
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.1</span>
-    <span class="title-cn">Who You Are</span>
-<!-- -->
-  </div>
-  <div class="content-card">
-    <p>Wu Earth is the mountain. Let me tell you what that actually feels like: you're the one everyone calls. Every. Single. Time. Your friend's crisis? You. Your family's logistics? You. The thing at work nobody wants to handle? Somehow it lands on your desk. And you don't complain because... well, who else is going to do it? But late at night, when the phone finally stops buzzing, there's this quiet thought: 'Who holds me?' The Di Tian Sui says 'Wu Earth is solid and true, centered and upright.' Your strength is stillness. You don't chase. You don't bend. But a mountain isn't meant to be a landfill for everyone else's problems. Save a valley for yourself. You've earned it.</p>
-<p>You were born in the Shen month — that's Autumn. The classical texts have a complete method for reading what energy a person carries based on their birth season. Your Four Pillars are RenShen WuShen WuChen DingSi — this is a person's birth energy code. This report was generated directly by the 7-layer classical algorithm — the algorithm is a faithful translation of the ancient texts, though it lacks the warmth of a master's hand. When the AI recovers, you'll receive a reading with more soul.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     VOL 2 · Your Pattern
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.2</span>
-    <span class="title-cn">Your Pattern</span>
-<!-- -->
-  </div>
-  <div class="content-card">
-    <p>Your chart pattern is: Indirect Wealth Pattern. In Zi Ping method, the pattern is like your life's main theme — it determines your fundamental disposition. Earth is the strongest energy in you — it's your natural tool, the element that comes most easily. Wood, on the other hand, needs your conscious attention and cultivation. The Shen month is your Ti Gang — it determines that Autumn energy is the backdrop of your entire chart. Your Day Master falls into the Strong range (score 5.6) — this isn't about good or bad, but about the density and circulation of your energy. Day Master has weak earthly roots. Heavenly stems provide support (1 companions, 1 resources).</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     VOL 3 · Your Compass
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.3</span>
-    <span class="title-cn">Your Compass</span>
-<!-- -->
-  </div>
-  <div class="content-card guides">
-    <p>The classical algorithm identifies Wood as your Yong Shen — the element that supports you most, the direction where things feel "right." This is not superstition — it's resonance. When Wood energy appears in your environment (in colors, directions, seasons, materials), your decisions feel clearer, your emotions steadier, and opportunities become more visible to you. The classical text Zi Ping Zhen Quan describes this principle: Shun Yong: Officer guards Wealth, Output produces Wealth → wealth with guard and source brings prosperity. Your Xi Shen (supporting gods) are Wood, Fire, Metal — they assist your Yong Shen like teammates. What to be mindful of — your Ji Shen: not clearly identified — it's not that these elements are "bad," but when their energy is too strong, you tend to make choices that aren't aligned with your best path. The Qiong Tong Bao Jian adds: Autumn Earth cold; Fire warms, Water needed if too dry</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     VOL 4 · In Practice
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.4</span>
-    <span class="title-cn">In Practice</span>
-<!-- -->
-  </div>
-  <div class="content-card">
-    <ul class="pocket-list">
-      
-    <li class="pocket-item" style="animation-delay:0s">
-      <span class="pocket-num">1</span>
-      <span>Surround yourself with green — not just any green, but the tender green of early spring buds — in your clothing, your desk, the everyday objects you touch. Color doesn't change your destiny — it reminds your subconscious: "I'm walking in my direction."</span>
-    </li>
-
-    <li class="pocket-item" style="animation-delay:0.15s">
-      <span class="pocket-num">2</span>
-      <span>When making important decisions, face East (slightly southeast). This isn't qigong — it's about physically aligning yourself with your most natural orientation.</span>
-    </li>
-
-    <li class="pocket-item" style="animation-delay:0.3s">
-      <span class="pocket-num">3</span>
-      <span>Spring (Feb–Apr) — the season of renewal and growth is your natural high tide. Schedule major decisions and new launches during this window when possible. You'll find things unfold more smoothly.</span>
-    </li>
-
-    <li class="pocket-item" style="animation-delay:0.44999999999999996s">
-      <span class="pocket-num">4</span>
-      <span>Pay attention to your Liver — governed by Wood in the Five Elements, this is your most vulnerable area. You don't need extreme remedies — just give it a little more awareness each day. Small attention, compounded over time.</span>
-    </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     VOL 5 · Master Annotations
-     ═══════════════════════════════════════════════════════ -->
-
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.5</span>
-    <span class="title-cn">Master Annotations</span>
-<!-- -->
-  </div>
-  
-    <div class="tianji-scroll" style="animation-delay:0s">
-      <div class="tianji-header">
-        <span class="tianji-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></span>
-        <span class="tianji-num">Scroll I</span>
-      </div>
-      <h3>The Hidden Officer in Your Chen Earth</h3>
-      <div class="tianji-body">Most people reading your chart would see the strong Earth and think you're unshakeable. But I notice your Day Pillar conceals Yi Wood, your Direct Officer, buried inside Chen Earth. In all my years, I've seen this combination perhaps three times. And every time, the person had the same hidden gift — the ability to lead through quiet integrity — and the same hidden cost: they doubt their own authority. The ancients said, 'The Officer is the root of honor; without it, wealth is but a wandering stream.' In plain language, your career success doesn't come from chasing money — it comes from owning your rightful position. That Yi Wood is the voice inside you that says, 'I deserve to be in charge.' Listen to it.</div>
+    <div class="report-header">
+        <div class="brand">Oriental Destiny</div>
+        <h1>Your Complete BaZi Reading</h1>
+        <p class="subtitle">Sample chart · Male · April 15, 1990 · 07:30 AM · Beijing · Focus: Career</p>
     </div>
-  
 
-    <div class="tianji-scroll" style="animation-delay:0.25s">
-      <div class="tianji-header">
-        <span class="tianji-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></span>
-        <span class="tianji-num">Scroll II</span>
-      </div>
-      <h3>The Canopy That Shields Your Career</h3>
-      <div class="tianji-body">You carry the Hua Gai star — the Canopy of the Scholar. Most see it as a love for solitude, but in your chart, it's a career armor. Hidden in your Hour Pillar, it connects to your Eating God, Geng Metal, which means your creativity isn't just a hobby — it's your professional shield. I recall a client with this exact arrangement, a painter who became a creative director. The Hua Gai gave her the focus to block out noise and produce work that others couldn't replicate. Your career thrives when you create from a place of depth, not distraction. The surface reading says 'you're a team player,' but the truth is: your greatest promotions will come when you step away from the crowd and let your unique output speak.</div>
+    <!-- Chapter 1 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 1</div>
+        <h2>Opening</h2>
+        <p>You know that feeling when you're the one everyone calls — the friend with the crisis, the family member who needs logistics sorted, the colleague who needs that impossible thing handled — and you do it, because who else is going to?</p>
+        <p>That's not just a personality quirk. That's your Wu Earth Day Master speaking. Wu Earth is the mountain: solid, reliable, the thing others lean on. But here's the thing about mountains — they don't move, they don't complain, and they hold everything. And sometimes, late at night, when the phone finally stops buzzing, you wonder: <em>who holds me?</em></p>
+        <p>This reading is about that. It's about the work you're meant to do, the career that actually fits the mountain you are — and the parts of you that you've been burying under everyone else's expectations.</p>
     </div>
-  
 
-    <div class="tianji-scroll" style="animation-delay:0.5s">
-      <div class="tianji-header">
-        <span class="tianji-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></span>
-        <span class="tianji-num">Scroll III</span>
-      </div>
-      <h3>The Water That Feeds Your Mountain</h3>
-      <div class="tianji-body">Your chart is a mountain in autumn — strong Earth, but dry. Hidden in your Year and Month Pillars, you have Ren Water, Indirect Wealth, but it's trapped beneath Geng Metal and Wu Earth. The classical text says, 'When the mountain has no stream, the pine cannot grow tall.' In all my years, I've seen this pattern in entrepreneurs who hit a wall — not from lack of effort, but from lack of flow. Your career needs Water to lubricate the wealth: that means networking, seeking mentors, and allowing resources to circulate. The surface reading says you're self-sufficient, but the secret is: your next breakthrough will come through a connection, not a solo grind. Your Ren Water is the stream — let it run.</div>
+    <!-- Chapter 2 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 2</div>
+        <h2>Your Pattern</h2>
+        <p>On the outside, you look like you have it all together. You're the rock, the fixer, the one who shows up. But inside, there's a quiet weight — like you're carrying a backpack full of stones that everyone else put there, and you've never once set it down.</p>
+        <p>That's your Jian Lu pattern: Build Prosperity. You're not meant to be the center of attention; you're meant to be the foundation. The <em>Di Tian Sui</em> says: "Wu Earth is solid and true, centered and upright." In plain English: you're the one who holds the center, but you're also the one who forgets to hold yourself.</p>
+        <p>Here's the part that might sting: you've been fighting against this your whole life, trying to be something you're not — flashy, loud, quick to move. But you're not built for that. You're built for depth, for patience, for the long game. The struggle you've carried — that feeling of being underappreciated, of being taken for granted — it's not your fault. It's literally in your chart. You're a mountain in a world that rewards rivers.</p>
+        <div class="takeaway">You don't need to become someone else. You need to become the mountain — fully, deliberately, on purpose.</div>
     </div>
-  
-</section>
 
-<!-- ═══════════════════════════════════════════════════════
-     VOL 6 · Crystal Guide
-     ═══════════════════════════════════════════════════════ -->
+    <!-- Chapter 3 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 3</div>
+        <h2>What Guides You</h2>
+        <p>Your most supportive element is <strong>Earth</strong> — and you've been drawn to it your whole life without knowing why. Think about it: the color that calms you isn't blue or green; it's the warm brown of soil after rain, the ochre of a canyon wall at sunset. The places you feel most at peace aren't beaches or forests — they're mountains, hills, quiet fields where the ground feels solid under your feet.</p>
+        <p>That's not a coincidence. That's your compass. Earth is your element, and it's telling you: go where things grow slowly, where roots matter, where stability is valued over speed.</p>
+        <p>The <em>Qiong Tong Bao Jian</em> says: "Earth in Chen month; Fire to warm, Water needed if too dry." What this means for you: you need warmth around you — people, environments, work that feels supportive — and you need to watch for burnout, because you give so much you can dry yourself out.</p>
+        <p>So seek the warm colors: terracotta, amber, the brown of a horse's flank. Face the center of the compass — not east or west, but the still point where all directions meet. And remember: your season is late summer, that golden time when everything is ripe and full. That's when you're at your best.</p>
+        <div class="takeaway">Lean into Earth — grounded, stable, real. Seek Fire — warmth and recognition. Soften your exposure to excess Wood and Water.</div>
+    </div>
 
-<section class="chapter">
-  <div class="chapter-marker">
-    <span class="vol">Vol.6</span>
-    <span class="title-cn">Crystal Guide</span>
-<!-- -->
-  </div>
-  <div class="content-card">
-    
-    <div class="crystal-reveal">
-      <div class="crystal-grid">
-        <div class="crystal-card primary">
-          <div class="crystal-badge">Primary Crystal</div>
-          <div class="crystal-stone">Green Turquoise</div>
-          <span class="crystal-element el">Wood Element</span>
-          <p class="crystal-why">Your chart is starved for Wood — your Yong Shen — and this turquoise isn't decoration; it's your Direct Officer made tangible. Every time your fingers touch it, your body remembers: I am meant to grow, not just to stand. It anchors your authority, turning that hidden Yi Wood into a visible presence in negotiations and career moves.</p>
-          <p class="crystal-wear">Left wrist. First thing every morning — before your phone, before the world floods in. Hold it for ten seconds. Set a word for the day, like 'authority' or 'flow.' This takes less time than scrolling past one video, but it sets your career compass.</p>
+    <!-- Chapter 4 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 4</div>
+        <h2>In Practice</h2>
+        <ul class="advice-list">
+            <li>Tomorrow morning, before you check your phone, put on something brown. A belt, a watch strap, even just brown socks. It doesn't matter if it shows. This isn't superstition — it's a signal to your subconscious that you're grounding yourself for the day. Brown is your switch.</li>
+            <li>This week, find a patch of earth — a park, a garden, even a potted plant — and stand on it barefoot for three minutes. Feel the ground hold you the way you hold everyone else. This is not silly; it's a reminder that you are supported, too.</li>
+            <li>When you feel overwhelmed at work, step outside and face the south. Just for a minute. South is the direction of warmth and recognition for you. Let the sun hit your face and remember: you're allowed to be seen.</li>
+            <li>Once a week, do something that has no purpose other than filling you up. Read a book that has nothing to do with productivity, take a walk with no destination, sit in a café and just watch people. You are not a machine; you are a mountain that needs to be cared for, too.</li>
+        </ul>
+    </div>
+
+    <!-- Chapter 5 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 5</div>
+        <h2>Closing Words</h2>
+        <p>You are Wu Earth — the mountain. And mountains don't move for anyone; they stand, and they hold, and they endure. But even mountains need a valley to rest in.</p>
+        <p>So this is your blessing: may you find the work that lets you be solid without being used, that lets you hold without breaking, that lets you stand tall while also letting someone else hold you for once.</p>
+        <p>You've got this. You always did.</p>
+    </div>
+
+    <!-- Chapter 6 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 6</div>
+        <h2>Master's Annotations</h2>
+
+        <div class="master-note">
+            <div class="note-type">The Hidden Officer in Your Chen Earth</div>
+            <p>Most people would look at your chart and see a mountain of Earth — solid, immovable, reliable. But I've noticed something in your Month Pillar: the Chen Earth hides Yi Wood, your Direct Officer. In all my years, I've seen this combination perhaps three times. And every time, the person had the same hidden gift — an inner authority that guides decisions with quiet wisdom — and the same hidden cost: a tendency to second-guess yourself, because you've been taught to ignore that voice. The ancients said, "When the Officer is hidden, the will is deep." In plain language: your career thrives when you trust that inner compass, not the noise around you.</p>
         </div>
-        <div class="crystal-card secondary">
-          <div class="crystal-badge sec">Guardian Jade</div>
-          <div class="crystal-stone">Red Jasper</div>
-          <span class="crystal-element el">Fire Element</span>
-          <p class="crystal-why">Fire warms your autumn Earth — it's your Indirect Resource, feeding your confidence and turning your output into recognition. This jasper complements the turquoise by igniting your passion when the mountain feels cold.</p>
-          <p class="crystal-wear">Right wrist, or as a pocket stone during high-stakes meetings. Touch it when you need a surge of courage — it's your inner fire.</p>
+
+        <div class="master-note">
+            <div class="note-type">The Star That Sees Through You</div>
+            <p>You carry the Wen Chang star — the Literary Star — and it's not just about intelligence. In your chart, it's a secret weapon for career advancement. But here's what I've learned: Wen Chang rewards those who write, speak, and teach with clarity. In your current Da Yun, Jia Shen, the Wood Seven Killings brings pressure, but it also activates this star. The pressure is not your enemy; it's the forge. The ancients said, "The Literary Star shines when the pen is sharp." So write your proposals, document your ideas, and let your words be your sword. This is your time to be seen, not just to serve.</p>
         </div>
-      </div>
-      <div class="crystal-master-note">
-        <p class="master-words">Crystals are not magic. They are anchors. Tangible reminders that tell the subconscious: 'I'm walking toward my element.' Your turquoise and jasper are mirrors, not engines — they reflect the energy already within you. What you're trusting isn't the stone — it's the version of yourself the stone reminds you to become. In my years, I've seen clients who wore their Yong Shen with intention, and they walked into rooms differently. The stone is a promise you make to yourself.</p>
-        <p class="crystal-avoid">⚠ Avoid heavy Earth-element stones like smoky quartz or tiger's eye — they'll weigh down your already-solid mountain and smother the Wood you need to grow.</p>
-      </div>
+
+        <div class="master-note">
+            <div class="note-type">The Sheep Blade's Double Edge</div>
+            <p>You have Yang Ren — the Sheep Blade — a blade that cuts both ways. On one hand, it gives you immense drive and courage to push through obstacles. On the other, it can make you headstrong, even reckless, especially in career decisions. In your chart, it sits with the Geng Metal Eating God, which tempers it — you're not just bold; you're clever. But in your current Da Yun, Jia Shen, the Metal is strong, and the blade is sharp. The warning I give to every client with this combination: don't let ambition blind you to the people you might cut in the process. Use the blade to carve your path, not to sever relationships.</p>
+        </div>
     </div>
-  
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════
-     CLOSING
-     ═══════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="content-card closing-card">
-    <p>WuEarth — your Day Master is the root of who you are. Everything in this report, at its core, points to one thing: you have a natural direction, and Wood is that compass heading. These aren't rules or dogma — they're an invitation. An invitation to observe: what strength has always been yours, and what direction you might lean into just a little more.</p>
-  </div>
-</section>
+    <!-- Chapter 7 -->
+    <div class="chapter">
+        <div class="chapter-num">Chapter 7</div>
+        <h2>Your Jewelry Guide</h2>
+        <div class="jewelry-section">
+            <h3>Primary Stone — Red Jasper</h3>
+            <p><em>Element: Fire</em></p>
+            <p>Your chart is a mountain of Earth, but it needs Fire to warm it and bring it to life. Red Jasper is the stone of the Fire element, and it's your Yong Shen's ally. It's not just a pretty stone; it's a reminder that your stability is a gift, but your passion is the engine. Every time you touch it, you're telling your subconscious: <em>"I am not just a mountain; I am a volcano."</em> It will help you speak up, take initiative, and be seen in your career.</p>
+            <p><strong>Wearing:</strong> Left wrist, the receiving side. First thing in the morning, before you check your phone, hold it for ten seconds and set an intention for the day — one word, like "courage" or "clarity." This simple ritual anchors you to your Fire element and keeps you from being buried under everyone else's demands.</p>
 
-<!-- ═══════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════ -->
-<footer>
-  <div class="foot-seal"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div>
-  Oriental Destiny · Seven-Layer Classical Zi Ping Destiny Engine<br>
-  Basic Report (instant generation) + Master Annotations + Crystal Guide<br>
-  This report describes elemental patterns and natural tendencies — not a prediction of future events
-</footer>
+            <h3 style="margin-top:16px;">Companion Stone — Tiger's Eye</h3>
+            <p><em>Element: Earth (with Metal energy)</em></p>
+            <p>Tiger's Eye is an Earth stone that also carries Metal energy, which strengthens your Day Master's friend and resource. It complements Red Jasper by grounding the Fire, so you don't burn out. It's the steady hand that guides the blade.</p>
+            <p><strong>Wearing:</strong> Right wrist, the active side, during important meetings or negotiations. It gives you the confidence to move forward without losing your center.</p>
 
+            <p style="margin-top:16px;"><em>Crystals are not magic. They are mirrors. They reflect the energy already within you, and they remind you of the strength you sometimes forget. When you wear Red Jasper, you're not asking the stone to change your fate; you're asking it to remind you of the fire inside. The stone is a promise to yourself: I will not just stand still; I will move, I will speak, I will create. Trust the stone, but trust yourself more.</em></p>
+            <p style="margin-top:12px;font-size:13px;color:rgba(36,25,21,0.5);"><strong>What to avoid:</strong> stones of the Water element, like black obsidian or blue lace agate, as they can dampen your Fire and Earth energy, making you feel more passive and overwhelmed.</p>
+        </div>
+    </div>
+
+    <!-- Appendix -->
+    <div class="chapter">
+        <div class="chapter-num">Appendix</div>
+        <h2>Technical Chart Summary</h2>
+        <div class="appendix-section">
+            <h3>Technical Appendix</h3>
+            <p><strong>Day Master:</strong> Wu Earth (戊土)</p>
+            <p><strong>Four Pillars:</strong> GengWu · GengChen · WuShen · BingChen</p>
+            <p><strong>Pattern:</strong> Jian Lu (Build Prosperity) → Following Strength (Cong Qiang)</p>
+            <p><strong>Constitution:</strong> Very Strong (9.3)</p>
+            <p><strong>Yong Shen:</strong> Earth · <strong>Xi Shen:</strong> Earth, Fire · <strong>Ji Shen:</strong> Wood, Water</p>
+            <p><strong>Shen Sha:</strong> Wen Chang (Literary Star), Hua Gai ×2 (Canopy Star), Yang Ren (Sheep Blade)</p>
+            <p><strong>Qi Yun:</strong> begins age 2 · <strong>Current Da Yun:</strong> Jia Shen (ages 32–41)</p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="sample-cta">
+        <h2>Want your own reading?</h2>
+        <p>This sample was written for a Wu Earth chart. Yours is different — and it tells a different story.</p>
+        <a class="btn" href="checkout.html">Get Your Matched Treasure — $199</a>
+        <a class="btn btn-outline" href="instant_reading.html">Start Free Preview</a>
+    </div>
+
+    <footer>
+        <a href="index.html">Home</a> ·
+        <a href="policies.html#shipping">Shipping</a> ·
+        <a href="policies.html#refund">Refund</a> ·
+        <a href="policies.html#privacy">Privacy</a> ·
+        <a href="mailto:434338480@qq.com">Contact</a>
+    </footer>
+    <p style="text-align:center;font-size:11px;color:rgba(36,25,21,0.4);margin-top:8px;">
+        This reading is for self-reflection and symbolic guidance only. Not medical, legal, financial, or professional advice.
+    </p>
+    <span class="od-version" style="display:block;text-align:center;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
 </div>
 
-<!-- Scroll progress script -->
-<script>
-(function(){
-  var fill = document.getElementById('scrollFill');
-  function onScroll(){
-    var h = document.documentElement;
-    var pct = h.scrollHeight > h.clientHeight
-      ? Math.round((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100)
-      : 0;
-    fill.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-})();
-</script>
+<script src="version.js"></script>
 </body>
 </html>

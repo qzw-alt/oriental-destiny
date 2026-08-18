@@ -1052,45 +1052,60 @@
             };
         }
 
-        Auth.init().then(computeCredit).then(function() {
+        var buttonsStarted = false;
+        function startButtons() {
+            if (buttonsStarted || !Auth.currentUser) return;
             if (typeof paypal === 'undefined' || !paypal.Buttons) return;
-            paypal.Buttons({
-                style: { layout: 'vertical' },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        intent: 'CAPTURE',
-                        purchase_units: [{
-                            amount: { currency_code: 'USD', value: creditApplied ? '170.00' : '199.00' }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return Payment.capture({
-                        orderID: data.orderID,
-                        product: 'treasure_match',
-                        plan: selectedPlan,
-                        carrier: selectedCarrier,
-                        birthData: currentBirthData()
-                    }).then(function(res) {
-                        gtag('event', 'purchase', {
-                            currency: 'USD',
-                            value: creditApplied ? 170 : 199,
-                            transaction_id: data.orderID,
-                            items: [{
-                                item_name: plans[selectedPlan] + ' - ' + carriers[selectedCarrier],
-                                price: creditApplied ? 170 : 199,
-                                quantity: 1
+            buttonsStarted = true;
+            computeCredit().then(function() {
+                paypal.Buttons({
+                    style: { layout: 'vertical' },
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            intent: 'CAPTURE',
+                            purchase_units: [{
+                                amount: { currency_code: 'USD', value: creditApplied ? '170.00' : '199.00' }
                             }]
                         });
-                        window.location.href = 'thanks.html?order=' + encodeURIComponent(res.orderId);
-                    }).catch(function(err) {
-                        var msg = (err && err.message)
-                            ? 'Payment could not be verified: ' + err.message
-                            : 'Payment could not be verified. Please contact support.';
-                        alert(msg);
-                    });
-                }
-            }).render("#paypal-container-HLSEQWZLQCNVC");
+                    },
+                    onApprove: function(data, actions) {
+                        return Payment.capture({
+                            orderID: data.orderID,
+                            product: 'treasure_match',
+                            plan: selectedPlan,
+                            carrier: selectedCarrier,
+                            birthData: currentBirthData()
+                        }).then(function(res) {
+                            gtag('event', 'purchase', {
+                                currency: 'USD',
+                                value: creditApplied ? 170 : 199,
+                                transaction_id: data.orderID,
+                                items: [{
+                                    item_name: plans[selectedPlan] + ' - ' + carriers[selectedCarrier],
+                                    price: creditApplied ? 170 : 199,
+                                    quantity: 1
+                                }]
+                            });
+                            window.location.href = 'thanks.html?order=' + encodeURIComponent(res.orderId);
+                        }).catch(function(err) {
+                            var msg = (err && err.message)
+                                ? 'Payment could not be verified: ' + err.message
+                                : 'Payment could not be verified. Please contact support.';
+                            alert(msg);
+                        });
+                    }
+                }).render("#paypal-container-HLSEQWZLQCNVC");
+            }).catch(function() {
+                buttonsStarted = false;
+            });
+        }
+
+        // Wait for the Firebase session to restore, then compute the $29→$199
+        // credit and render the buttons — a session restored after load would
+        // otherwise miss the credit and charge the full $199.
+        Auth.init().then(startButtons);
+        Auth.onAuthChange(function(user) {
+            if (user) startButtons();
         });
     </script>
 </body>

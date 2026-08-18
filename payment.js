@@ -1,55 +1,63 @@
 // =============================================================================
-// payment.js — Cloud Function callable helpers for the funnel closure.
-// Load AFTER config.real.js + config.js (and auth.js when the page uses auth).
+// payment.js — Client calls to the Cloudflare Worker payment/lead endpoints.
+// Load AFTER config.js (provides DEEPSEEK_PROXY_URL + DEEPSEEK_CLIENT_SECRET)
+// and auth.js (for uid/email on payment pages).
 //
 //   Payment.capture({orderID, product, plan, carrier, birthData})
-//     → capturePayment Cloud Function; resolves to { orderId, status: 'paid' }
+//     → POST /api/verify-payment → { orderId, status: 'paid' }
 //   Payment.saveLead({email, source})
-//     → saveLead Cloud Function (anonymous callers allowed)
+//     → POST /api/lead → { ok: true }
+//
+// The worker verifies the payment server-side with PayPal and writes the order
+// to Firestore using a Google service account (bypassing client security rules),
+// so a client-side flag can no longer unlock paid reports.
 // =============================================================================
 
 (function() {
   'use strict';
 
-  var _cached = null;
-
-  function load() {
-    if (_cached) return _cached;
-    _cached = Promise.all([
-      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js'),
-      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js')
-    ]).then(function(mods) {
-      var fnsMod = mods[0];
-      var appMod = mods[1];
-      var app;
-      try {
-        app = appMod.getApp();
-      } catch (e) {
-        var config = window.FIREBASE_CONFIG;
-        if (!config) throw new Error('FIREBASE_CONFIG missing — load config.js first');
-        app = appMod.initializeApp(config);
-      }
-      return { fnsMod: fnsMod, fns: fnsMod.getFunctions(app) };
-    }).catch(function(err) {
-      _cached = null;
-      throw err;
-    });
-    return _cached;
+  function baseUrl() {
+    var base = (typeof window.DEEPSEEK_PROXY_URL === 'string' && window.DEEPSEEK_PROXY_URL)
+      ? window.DEEPSEEK_PROXY_URL : 'https://oriental-destiny.com/api';
+    return base.replace(/\/$/, '');
   }
 
-  function callable(name) {
-    return function(payload) {
-      return load().then(function(ctx) {
-        var fn = ctx.fnsMod.httpsCallable(ctx.fns, name);
-        return fn(payload);
-      }).then(function(result) {
-        return result.data;
+  function call(path, payload) {
+    return fetch(baseUrl() + path, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Secret': (typeof window.DEEPSEEK_CLIENT_SECRET === 'string')
+          ? window.DEEPSEEK_CLIENT_SECRET : ''
+      },
+      body: JSON.stringify(payload)
+    }).then(function(res) {
+      return res.json().then(function(data) {
+        if (!res.ok) {
+          throw new Error(data.error || ('Request failed: ' + res.status));
+        }
+        return data;
       });
-    };
+    });
+  }
+
+  function attachAccount(payload) {
+    var p = Object.assign({}, payload);
+    try {
+      if (window.Auth && window.Auth.currentUser) {
+        if (!p.uid) p.uid = window.Auth.currentUser.uid;
+        if (!p.email) p.email = window.Auth.currentUser.email;
+      }
+    } catch (e) {}
+    return p;
   }
 
   window.Payment = {
-    capture: callable('capturePayment'),
-    saveLead: callable('saveLead')
+    capture: function(payload) {
+      return call('/verify-payment', attachAccount(payload));
+    },
+    saveLead: function(payload) {
+      return call('/lead', attachAccount(payload));
+    }
   };
 })();

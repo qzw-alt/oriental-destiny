@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "firebase functions:secrets:set PAYPAL_CLIENT_ID": "oriental-destiny-751af"
+  },
+  "targets": {},
+  "etags": {}
+}

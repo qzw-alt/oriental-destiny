@@ -523,12 +523,11 @@ footer a { color: var(--cinnabar); }
 
   var paypalContainer = document.getElementById('paypal-container-V5KL7YYCASY34');
   var loginGate = document.getElementById('loginGate');
+  var buttonsRendered = false;
 
   function renderButtons() {
-    if (typeof paypal === 'undefined' || !paypal.Buttons) {
-      loginGate.style.display = '';
-      return;
-    }
+    if (buttonsRendered || typeof paypal === 'undefined' || !paypal.Buttons) return;
+    buttonsRendered = true;
     paypal.Buttons({
       style: { layout: 'vertical' },
       createOrder: function(data, actions) {
@@ -559,18 +558,27 @@ footer a { color: var(--cinnabar); }
     }).render(paypalContainer);
   }
 
-  // Sign-in required before purchase — the order is tied to the account.
-  Auth.init().then(function() {
-    if (!Auth.currentUser) {
+  function updatePaywall(user) {
+    if (user) {
+      paypalContainer.style.display = '';
+      loginGate.style.display = 'none';
+      renderButtons();
+    } else {
       paypalContainer.style.display = 'none';
       loginGate.style.display = '';
-      return;
     }
-    renderButtons();
+  }
+
+  // Sign-in required before purchase — react to auth state changes so the
+  // PayPal buttons render once the Firebase session is restored (e.g. right
+  // after registering and being redirected back here).
+  Auth.init().then(function() {
+    updatePaywall(Auth.currentUser);
   }).catch(function() {
     paypalContainer.style.display = 'none';
     loginGate.style.display = '';
   });
+  Auth.onAuthChange(updatePaywall);
 
 })();
 </script>

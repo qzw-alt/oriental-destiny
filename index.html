@@ -337,6 +337,36 @@
         .closing-card h2 { font-size: clamp(28px, 4.4vw, 42px); margin-bottom: 14px; }
         .closing-card p { max-width: 640px; margin: 0 auto 24px; color: rgba(255, 248, 239, 0.82); }
 
+        /* ── Learn (pillar library) ── */
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+        }
+        .learn-col {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 20px;
+            padding: 24px 22px;
+            box-shadow: var(--shadow);
+        }
+        .learn-cat {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .learn-col ul { list-style: none; display: grid; gap: 9px; }
+        .learn-col a {
+            color: rgba(36, 25, 21, 0.72);
+            font-size: 14px;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+        .learn-col a:hover { color: var(--cinnabar); }
+
         /* ── Footer ── */
         footer { padding: 0 0 42px; }
         .footer-bar {
@@ -601,6 +631,56 @@
                 </div>
                 <div style="text-align:center;">
                     <a class="btn btn-secondary" href="sample_report.html">See a Sample Reading →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LEARN — pillar library (internal link equity) -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>Learn Chinese Metaphysics</h2>
+                    <p>Understand the framework behind your reading — the pillars, elements, and systems that shape a BaZi chart.</p>
+                </div>
+                <div class="learn-grid">
+                    <div class="learn-col">
+                        <div class="learn-cat">Getting Started</div>
+                        <ul>
+                            <li><a href="what-is-bazi-complete-guide.html">What is BaZi?</a></li>
+                            <li><a href="how-to-read-bazi-chart.html">How to Read a BaZi Chart</a></li>
+                            <li><a href="bazi-reading-vs-zodiac.html">BaZi vs Western Astrology</a></li>
+                            <li><a href="bazi-calculator-guide.html">BaZi Calculator Guide</a></li>
+                        </ul>
+                    </div>
+                    <div class="learn-col">
+                        <div class="learn-cat">Core Concepts</div>
+                        <ul>
+                            <li><a href="what-is-day-master.html">What is a Day Master?</a></li>
+                            <li><a href="five-elements-explained.html">The Five Elements</a></li>
+                            <li><a href="ten-gods-in-bazi.html">The Ten Gods</a></li>
+                            <li><a href="luck-cycles-da-yun.html">Luck Cycles (Da Yun)</a></li>
+                        </ul>
+                    </div>
+                    <div class="learn-col">
+                        <div class="learn-cat">The Four Pillars</div>
+                        <ul>
+                            <li><a href="year-pillar-bazi.html">Year Pillar</a></li>
+                            <li><a href="month-pillar-bazi.html">Month Pillar</a></li>
+                            <li><a href="day-pillar-bazi.html">Day Pillar</a></li>
+                            <li><a href="hour-pillar-bazi.html">Hour Pillar</a></li>
+                        </ul>
+                    </div>
+                    <div class="learn-col">
+                        <div class="learn-cat">Feng Shui</div>
+                        <ul>
+                            <li><a href="feng-shui-mirror-placement.html">Mirror Placement</a></li>
+                            <li><a href="feng-shui-crystal-ball-meaning.html">Crystal Ball Meaning</a></li>
+                            <li><a href="feng-shui-front-door-color.html">Front Door Colors</a></li>
+                            <li><a href="feng-shui-bracelet-meaning.html">Feng Shui Bracelets</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

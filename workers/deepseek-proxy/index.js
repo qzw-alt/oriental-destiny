@@ -458,24 +458,25 @@ async function handleVerifyPayment(request, env) {
       </div>`,
     });
   } else {
-    const snapshotLink = `${base}/snapshot_report.html?order=${encodeURIComponent(orderId)}`;
-    await sendResend(env, {
-      from,
-      to: [email],
-      subject: 'Your $199 order is confirmed — chart snapshot inside',
-      html: `<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#241915;line-height:1.7;">
-        <h2 style="color:#a63a2c;">Thank you — your order is confirmed.</h2>
-        <p>Your chart snapshot is available now:</p>
-        <p><a href="${snapshotLink}" style="display:inline-block;padding:12px 24px;background:#a63a2c;color:#fff;border-radius:8px;text-decoration:none;">View My Chart Snapshot</a></p>
-        <p>A master will review your chart and email the complete annotated report within 6 hours. We will then match your treasure and confirm with you before shipping.</p>
-      </div>`,
-    });
+    // $199 is fulfilled manually: notify the seller only — the seller prepares
+    // the annotated report and emails it to the customer from a personal inbox.
+    // (The customer sees the thanks/告知 page with the chart snapshot link.)
     await sendResend(env, {
       from,
       to: [env.SELLER_EMAIL || '434338480@qq.com'],
-      subject: `New $199 order — ${plan || ''} / ${carrier || ''}`,
-      html: `<p>User uid: ${uid}<br>Email: ${email}<br>Order id: ${orderId}<br>Amount: $${value} USD${creditApplied ? ` (credit applied $${creditApplied})` : ''}</p>
-        <p>Birth data:</p><pre style="background:#f6f0e6;padding:8px;border-radius:6px;">${JSON.stringify(birthData || {}, null, 2)}</pre>`,
+      subject: `NEW $199 ORDER — ${plan || ''} / ${carrier || ''} (${email})`,
+      html: `<div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#241915;line-height:1.6;">
+        <h2 style="color:#a63a2c;">New $199 order — please fulfill within 6 hours.</h2>
+        <p><strong>Customer email:</strong> ${email}</p>
+        <p><strong>User uid:</strong> ${uid}<br>
+           <strong>Order id:</strong> ${orderId}<br>
+           <strong>Amount:</strong> $${value} USD${creditApplied ? ` (credit applied $${creditApplied})` : ''}<br>
+           <strong>Focus:</strong> ${plan || ''}<br>
+           <strong>Form:</strong> ${carrier || ''}</p>
+        <p><strong>Birth data:</strong></p>
+        <pre style="background:#f6f0e6;padding:8px;border-radius:6px;">${JSON.stringify(birthData || {}, null, 2)}</pre>
+        <p><strong>Steps:</strong> (1) read the chart, (2) prepare the annotated report + treasure recommendation, (3) email the report to the customer from your personal inbox, (4) after the customer confirms the recommendation, ship.</p>
+      </div>`,
     });
   }
 

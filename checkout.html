@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <title>Matched Daoist Treasure — $199 | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&intent=capture&disable-funding=venmo&currency=USD"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap');
         :root {
@@ -600,14 +600,12 @@
 
                 <div class="step-section" id="step2">
                 <h2 class="section-title" data-i18n="ck_step_3">2. Your birth details</h2>
-                <form id="orderForm" action="https://formspree.io/f/xwvavoqz" method="POST">
+                <form id="orderForm" action="#" method="POST">
                     <input type="hidden" name="plan_key" id="planKey" value="elements">
                     <input type="hidden" name="plan_name" id="planName" value="Elemental Balance">
                     <input type="hidden" name="carrier_key" id="carrierKey" value="bracelet">
                     <input type="hidden" name="carrier_name" id="carrierName" value="Bracelet">
                     <input type="hidden" name="order_total" id="orderTotal" value="199">
-                    <input type="hidden" name="_subject" value="New Oriental Destiny order">
-                    <input type="hidden" name="_next" id="formNext" value="">
 
                     <div class="field-grid">
                         <div class="field">
@@ -704,7 +702,9 @@
                     <div class="paypal-box" id="paypalBox">
                         <h3 data-i18n="ck_paypal_title">Complete payment</h3>
                         <p data-i18n="ck_paypal_desc">Your details are saved. Complete the $199 payment below — includes a personalized BaZi reading, physical treasure matching, confirmation before shipping, and worldwide delivery.</p>
-                        <p style="font-size:13px;color:var(--gold);margin-bottom:12px;">Already bought the $29 report? Email us after ordering and we will credit $29 toward your matched treasure service.</p>
+                        <div id="creditBanner" style="display:none;padding:12px 16px;border-radius:12px;background:rgba(49,82,71,0.1);border:1px solid rgba(49,82,71,0.25);color:#234136;font-size:13.5px;margin-bottom:12px;">
+                            ✓ <strong>$29 report credit applied</strong> — you will pay <strong>$170</strong> today.
+                        </div>
                         <div id="paypal-container-HLSEQWZLQCNVC"></div>
 
                         <div class="trust-signals" style="margin-top:18px;display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:rgba(36,25,21,0.6);">
@@ -768,6 +768,7 @@
     <script src="config.real.js"></script>
 <script src="config.js"></script>
     <script src="auth.js"></script>
+    <script src="payment.js"></script>
     <script src="reading_state.js"></script>
     <script src="i18n.js"></script>
     <script src="bazi_translator.js"></script>
@@ -920,7 +921,7 @@
             window.ReadingState.merge(data);
         }
 
-        async function submitOrderDetails(event) {
+        function submitOrderDetails(event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value.trim();
@@ -936,36 +937,15 @@
             persistReadingState();
 
             saveDetailsButton.disabled = true;
-            saveDetailsButton.textContent = "Saving your details...";
-            setStatus("Saving your order details now...", "success");
+            saveDetailsButton.textContent = "Details Saved ✓";
+            saveDetailsButton.style.opacity = "0.7";
+            setStatus("Details saved. Complete your payment below.", "success");
 
-            try {
-                const response = await fetch(orderForm.action, {
-                    method: "POST",
-                    body: new FormData(orderForm),
-                    headers: {
-                        Accept: "application/json"
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error("Unable to save details");
-                }
-
-                setStatus("Details saved. Complete your payment below.", "success");
-                saveDetailsButton.textContent = "Details Saved ✓";
-                saveDetailsButton.style.opacity = "0.7";
-
-                gtag('event', 'add_payment_info', {
-                    currency: 'USD',
-                    value: 199,
-                    payment_type: 'paypal'
-                });
-            } catch (error) {
-                setStatus("We could not save your details just now. Please try again in a moment.", "error");
-                saveDetailsButton.disabled = false;
-                saveDetailsButton.textContent = "Save & Continue to Payment";
-            }
+            gtag('event', 'add_payment_info', {
+                currency: 'USD',
+                value: 199,
+                payment_type: 'paypal'
+            });
         }
 
         // ── Force registration before checkout ─────────────────────────────
@@ -1017,7 +997,6 @@
             });
         })();
 
-        document.getElementById("formNext").value = `${window.location.origin}/thanks.html`;
         orderForm.addEventListener("submit", submitOrderDetails);
 
         applyIncomingState();
@@ -1035,9 +1014,83 @@
             }]
         });
 
-        paypal.HostedButtons({
-            hostedButtonId: "HLSEQWZLQCNVC",
-        }).render("#paypal-container-HLSEQWZLQCNVC");
+        // ── PayPal smart buttons — server captures + verifies ──────────────
+        var creditApplied = false;
+
+        function computeCredit() {
+            return Auth.getOrders().then(function(orders) {
+                var cutoff = Date.now() - 7 * 24 * 3600 * 1000;
+                var found = null;
+                (orders || []).forEach(function(o) {
+                    if (found) return;
+                    var created = o.createdAt ? new Date(o.createdAt.seconds * 1000) : null;
+                    if (o.product === 'instant_report' && o.status === 'paid' &&
+                        !o.redeemedFor && created && created.getTime() >= cutoff) {
+                        found = o;
+                    }
+                });
+                creditApplied = !!found;
+                if (creditApplied) {
+                    var banner = document.getElementById('creditBanner');
+                    if (banner) banner.style.display = '';
+                }
+            }).catch(function() {
+                creditApplied = false;
+            });
+        }
+
+        function currentBirthData() {
+            return {
+                birth_date: document.getElementById("birthDate").value,
+                birth_time: document.getElementById("birthTime").value,
+                birth_location: document.getElementById("birthLocation").value,
+                gender: document.getElementById("gender").value,
+                zodiac: document.getElementById("zodiac").value,
+                material: document.getElementById("material").value,
+                notes: document.getElementById("notes").value
+            };
+        }
+
+        Auth.init().then(computeCredit).then(function() {
+            if (typeof paypal === 'undefined' || !paypal.Buttons) return;
+            paypal.Buttons({
+                style: { layout: 'vertical' },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        intent: 'CAPTURE',
+                        purchase_units: [{
+                            amount: { currency_code: 'USD', value: creditApplied ? '170.00' : '199.00' }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return Payment.capture({
+                        orderID: data.orderID,
+                        product: 'treasure_match',
+                        plan: selectedPlan,
+                        carrier: selectedCarrier,
+                        birthData: currentBirthData()
+                    }).then(function(res) {
+                        gtag('event', 'purchase', {
+                            currency: 'USD',
+                            value: creditApplied ? 170 : 199,
+                            transaction_id: data.orderID,
+                            items: [{
+                                item_name: plans[selectedPlan] + ' - ' + carriers[selectedCarrier],
+                                price: creditApplied ? 170 : 199,
+                                quantity: 1
+                            }]
+                        });
+                        window.location.href = 'thanks.html?order=' + encodeURIComponent(res.orderId);
+                    }).catch(function(err) {
+                        var msg = (err && err.message)
+                            ? 'Payment could not be verified: ' + err.message
+                            : 'Payment could not be verified. Please contact support.';
+                        alert(msg);
+                    });
+                }
+            }).render("#paypal-container-HLSEQWZLQCNVC");
+        });
     </script>
 </body>
 </html>

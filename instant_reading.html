@@ -565,6 +565,20 @@ footer a:hover { text-decoration: underline; }
             <div class="content-card" id="closingCard"></div>
         </div>
 
+        <!-- Email capture — save the reading -->
+        <div class="email-capture" id="emailCapture">
+            <div class="content-card" style="text-align:center;padding:28px 24px;">
+                <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">Save my chart</h3>
+                <p style="font-size:13px;color:var(--ink-light);margin-bottom:16px;">We'll keep your reading saved and email you a link so you can always come back to it.</p>
+                <form id="emailForm" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                    <input id="leadEmail" type="email" required placeholder="you@example.com" style="flex:1;min-width:220px;border:1.5px solid rgba(26,20,16,0.12);border-radius:8px;padding:12px 14px;font:inherit;font-size:14px;background:var(--paper);color:var(--ink);">
+                    <button type="submit" class="submit-btn" style="width:auto;padding:12px 24px;font-size:14px;margin-top:0;">Save My Chart</button>
+                </form>
+                <div id="emailSuccess" style="display:none;color:#315247;font-size:13px;margin-top:10px;">✓ Saved. We've emailed you a link — check your inbox.</div>
+                <p style="font-size:11px;color:var(--ink-faint);margin-top:10px;">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
         <!-- CTA Card -->
         <div class="cta-card" id="ctaCard">
             <h2>Unlock Your Full Report</h2>
@@ -600,6 +614,7 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <script src="config.js"></script>
+<script src="payment.js"></script>
 <script src="bazi_engine_v2.js"></script>
 <script src="report_engine_v2.js"></script>
 <script src="reading_state.js"></script>
@@ -655,6 +670,8 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
     alert('Please fill in at least your birth date and what you want to understand.');
     return;
   }
+
+  gtag('event', 'calculator_start', { focus: lifeFocus });
 
   setLoading(true);
 
@@ -773,12 +790,33 @@ document.getElementById('readingForm').addEventListener('submit', async (event) 
   document.getElementById('resultsSection').style.display = '';
 
   // Track free reading completion
-  gtag('event', 'free_diagnosis_complete', { focus: lifeFocus });
+  gtag('event', 'calculator_complete', { focus: lifeFocus });
 
   // Scroll to results
   document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   setLoading(false);
+});
+
+// ─── Email capture (save my chart) ─────────────────────────────
+document.getElementById('emailForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var email = document.getElementById('leadEmail').value.trim();
+  if (!email) return;
+
+  var btn = e.target.querySelector('button');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  window.Payment.saveLead({ email: email, source: 'free_reading' }).then(function() {
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('emailSuccess').style.display = '';
+    gtag('event', 'email_capture', { method: 'save_chart' });
+  }).catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Save My Chart';
+    alert('Could not save right now. Please try again in a moment.');
+  });
 });
 </script>
 </body>

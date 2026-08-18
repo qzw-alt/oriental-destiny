@@ -258,11 +258,6 @@
 
         <p class="followup" data-i18n="th_followup">Please keep an eye on your email after payment — we send updates from <a href="mailto:434338480@qq.com" style="color:var(--cinnabar);text-decoration:underline;">434338480@qq.com</a>. If you need to change birth details, add notes, or ask a question, reply to that address with your order email and we will pick it up.</p>
 
-        <div class="manual-confirm" id="manualConfirm">
-            <p data-i18n="th_manual_confirm_text">If you completed payment but were not redirected back here, click below to access your reading and confirm your order status.</p>
-            <button class="btn" id="manualPaidBtn" data-i18n="th_manual_confirm_btn">I paid — show my reading</button>
-        </div>
-
         <a class="btn btn-outline" href="index.html" data-i18n="th_back_home">Back to Home</a>
 
         <footer>
@@ -275,177 +270,49 @@
         <span class="od-version" style="display:block;margin-top:8px;opacity:0.55;font-size:11px;letter-spacing:0.04em;"></span>
     </main>
 
-    <!-- Dream membership upgrade section -->
-    <div class="card" id="dreamUpgradeCard" style="display:none;margin-top:24px;text-align:center;">
-        <div style="font-size:18px;font-weight:700;margin-bottom:8px;color:var(--gold);">☯ Destiny Membership</div>
-        <p style="margin-bottom:16px;color:rgba(36,25,21,0.7);">Your 36 dream interpretations are being activated...</p>
-        <div id="dreamUpgradeSuccess" style="display:none;padding:20px;background:rgba(49,82,71,0.08);border-radius:12px;border:1px solid rgba(49,82,71,0.2);margin-bottom:16px;">
-            <div style="font-size:36px;margin-bottom:8px;">✓</div>
-            <div style="font-weight:600;color:var(--pine);margin-bottom:4px;">Membership Activated!</div>
-            <div style="font-size:14px;color:rgba(36,25,21,0.6);">You now have 36 dream interpretations.</div>
-            <a href="dashboard.html" style="display:inline-block;margin-top:12px;color:var(--cinnabar);font-weight:600;text-decoration:underline;">Go to Your Dashboard →</a>
-        </div>
-        <div id="dreamUpgradeRegister" style="display:none;">
-            <p style="color:rgba(36,25,21,0.6);margin-bottom:12px;">Create an account with your payment email to activate your 36 dream interpretations.</p>
-            <a href="register.html?redirect=dashboard.html" style="display:inline-block;padding:12px 28px;background:var(--cinnabar);color:#fff;border-radius:8px;font-size:14px;font-weight:600;">Create Free Account</a>
-        </div>
-    </div>
-
     <script src="config.real.js"></script>
 <script src="config.js"></script>
     <script src="auth.js"></script>
-    <script src="bazi_engine.min.js"></script>
-    <script src="api_deepseek.js"></script>
-    <script src="ai_bazi_layer.js"></script>
-    <script src="reading_state.js"></script>
-    <script src="i18n.js"></script>
-    <script src="bazi_translator.js"></script>
     <script src="version.js"></script>
     <script>
     (function() {
+        // This page is only reached after the capturePayment Cloud Function has
+        // server-side-verified the payment and written a Firestore order.
+        // The ?order= param is the Firestore order id — no client-side unlock.
         const params = new URLSearchParams(window.location.search);
-        const paid = params.has('tx') || params.has('paymentId') || params.has('token');
-        const txId = params.get('tx') || params.get('paymentId') || params.get('token') || '';
-        const isInstantReport = params.get('product') === 'instant_report';
+        const orderId = params.get('order') || '';
 
-        // ── $29 Instant Report Payment ──────────────────────────────────────
-        if (isInstantReport && paid) {
-            // Persist paid marker so report_viewer.html can gate full-report generation on it
-            try { localStorage.setItem('od_paid_instant_report', txId); } catch (e) {}
-            // Redirect to report viewer
-            gtag('event', 'purchase', {
-                currency: 'USD',
-                value: 29,
-                transaction_id: txId,
-                items: [{
-                    item_name: 'Instant BaZi Clarity Report',
-                    price: 29,
-                    quantity: 1
-                }]
-            });
-
-            // Try to save purchase record
-            if (window.Auth) {
-                Auth.init().then(function() {
-                    if (Auth.currentUser) {
-                        Auth.purchaseInstantReport(txId).then(function() {
-                            window.location.href = 'report_viewer.html';
-                        });
-                    } else {
-                        // Store intent in ReadingState, redirect to register
-                        if (window.ReadingState) {
-                            window.ReadingState.merge({
-                                pendingProduct: 'instant_report',
-                                purchaseTx: txId
-                            });
-                        }
-                        window.location.href = 'register.html?redirect=report_viewer.html';
-                    }
-                }).catch(function() {
-                    window.location.href = 'report_viewer.html';
-                });
-            } else {
-                window.location.href = 'report_viewer.html';
-            }
-            return;
+        function loadOrder() {
+            if (!orderId) return Promise.resolve(null);
+            return Auth.init().then(function() {
+                if (!Auth.currentUser) return null;
+                return Auth.getOrder(orderId);
+            }).catch(function() { return null; });
         }
 
-        // ── $199 Matched Service Payment ────────────────────────────────────
+        loadOrder().then(function(order) {
+            // Only show the confirmation when an order id was passed — i.e. the
+            // capturePayment Cloud Function verified the payment server-side and
+            // redirected here. A direct visit unlocks nothing.
+            if (!orderId) return;
 
-        function unlockReading(transactionId) {
-            // Persist paid marker so snapshot_report.html can gate full-report generation
-            try { localStorage.setItem('od_paid_reading', transactionId); } catch (e) {}
             document.getElementById('paymentBadge').classList.add('show');
-            document.getElementById('instantPreview').classList.add('show');
-            document.getElementById('manualConfirm').classList.remove('show');
 
-            gtag('event', 'purchase', {
-                currency: 'USD',
-                value: 199,
-                transaction_id: transactionId || '',
-                items: [{
-                    item_name: 'Personalized Feng Shui Reading + Daoist Treasure',
-                    price: 199,
-                    quantity: 1
-                }]
-            });
+            var isTreasure = order && (order.product === 'treasure_match' || order.product === 'destiny_membership');
+            var isInstant = order && order.product === 'instant_report';
+            var preview = document.getElementById('instantPreview');
+            var btn = document.getElementById('viewReadingBtn');
 
-            const state = window.ReadingState ? window.ReadingState.read() : {};
-            const q = new URLSearchParams();
-            if (state.birth_date)       q.set('birth_date', state.birth_date);
-            if (state.birth_time)       q.set('birth_time', state.birth_time);
-            if (state.gender)            q.set('gender', state.gender);
-            if (state.birth_location)   q.set('birth_location', state.birth_location);
-            if (state.focus)            q.set('focus', state.focus);
-            if (state.notes)            q.set('notes', state.notes);
-            if (state.full_name)        q.set('full_name', state.full_name);
-
-            const qs = q.toString();
-            if (qs) {
-                document.getElementById('viewReadingBtn').href = 'snapshot_report.html?' + qs;
+            if (isTreasure) {
+                preview.classList.add('show');
+                btn.href = 'snapshot_report.html?order=' + encodeURIComponent(orderId);
+            } else if (isInstant) {
+                preview.classList.add('show');
+                btn.href = 'report_viewer.html';
+                btn.textContent = 'View My Reading';
             }
-        }
-
-        if (paid) {
-            unlockReading(txId);
-        } else {
-            // Show manual confirmation fallback
-            document.getElementById('manualConfirm').classList.add('show');
-            document.getElementById('manualPaidBtn').addEventListener('click', function() {
-                this.disabled = true;
-                this.textContent = 'Confirmed — unlocking…';
-                unlockReading('manual-' + Date.now());
-            });
-        }
-
-        // Dream membership upgrade detection
-        var state = window.ReadingState ? window.ReadingState.read() : {};
-        var isDreamMembership = params.get('product') === 'destiny_membership'
-            || (state && state.pendingProduct === 'destiny_membership');
-
-        if (isDreamMembership || paid) {
-            if (!isDreamMembership && state && state.pendingProduct === 'destiny_membership') {
-                isDreamMembership = true;
-            }
-        }
-
-        if (isDreamMembership && paid) {
-            var card = document.getElementById('dreamUpgradeCard');
-            if (card) card.style.display = '';
-
-            if (window.Auth) {
-                Auth.init().then(function() {
-                    if (Auth.currentUser) {
-                        Auth.upgradeToPaid(txId).then(function() {
-                            Auth.saveOrder({
-                                amount: 199,
-                                product: 'destiny_membership',
-                                paypalTxId: txId,
-                                status: 'completed'
-                            });
-                            document.getElementById('dreamUpgradeSuccess').style.display = '';
-                            if (window.ReadingState) {
-                                window.ReadingState.merge({ pendingProduct: null });
-                            }
-                        }).catch(function(e) {
-                            console.error('Membership upgrade failed:', e);
-                            document.getElementById('dreamUpgradeRegister').style.display = '';
-                        });
-                    } else {
-                        document.getElementById('dreamUpgradeRegister').style.display = '';
-                        if (window.ReadingState) {
-                            window.ReadingState.merge({
-                                pendingUpgrade: true,
-                                pendingProduct: 'destiny_membership',
-                                upgradeTx: txId
-                            });
-                        }
-                    }
-                });
-            } else {
-                document.getElementById('dreamUpgradeRegister').style.display = '';
-            }
-        }
+            // Order id present but not found / not readable → nothing unlocks.
+        });
     })();
     </script>
 </body>

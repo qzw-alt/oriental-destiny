@@ -475,6 +475,13 @@ footer a { color: var(--cinnabar); }
             <p class="sub">$29 · One-time payment · Instant digital delivery</p>
             <div class="paypal-wrapper">
                 <div id="paypal-container-V5KL7YYCASY34"></div>
+                <div id="loginGate" style="display:none;padding:20px;border:1px solid var(--gold-light);border-radius:8px;background:var(--gold-faint);">
+                    <p style="font-size:14px;margin-bottom:14px;">Sign in to purchase — your report is saved to your account so you can view it anytime.</p>
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                        <a class="btn btn-gold" href="login.html?redirect=instant_report.html">Sign In</a>
+                        <a class="btn btn-primary" href="register.html?redirect=instant_report.html">Create Free Account</a>
+                    </div>
+                </div>
             </div>
             <div class="trust-strip">
                 <span>🔒 Secure Payment</span>
@@ -485,270 +492,84 @@ footer a { color: var(--cinnabar); }
 
     </section><!-- /salesSection -->
 
-    <!-- ═══ Report Section (shown after purchase) ═══ -->
-    <section id="reportSection" style="display:none;">
-
-        <div class="loading-state" id="loadingState">
-            <div class="loading-spinner"></div>
-            <p style="color:var(--ink-light);">Generating your complete BaZi reading… About 10–15 seconds…</p>
-        </div>
-
-        <div id="reportContent" style="display:none;">
-            <!-- Cover -->
-            <div class="hero-cover" id="reportCover"></div>
-
-            <!-- Vol. 1 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.1</span>
-                    <span class="title-cn">Who You Are</span>
-                </div>
-                <div class="content-card" id="chap1"></div>
-            </div>
-
-            <!-- Vol. 2 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.2</span>
-                    <span class="title-cn">Your Pattern</span>
-                </div>
-                <div class="content-card" id="chap2"></div>
-            </div>
-
-            <!-- Vol. 3 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.3</span>
-                    <span class="title-cn">Your Compass</span>
-                </div>
-                <div class="content-card" id="chap3"></div>
-            </div>
-
-            <!-- Vol. 4 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.4</span>
-                    <span class="title-cn">In Practice</span>
-                </div>
-                <div class="content-card" id="chap4"></div>
-            </div>
-
-            <!-- Vol. 5 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.5</span>
-                    <span class="title-cn">Elemental Blueprint</span>
-                </div>
-                <div class="content-card" id="chap5"></div>
-            </div>
-
-            <!-- Vol. 6 -->
-            <div class="chapter">
-                <div class="chapter-marker">
-                    <span class="vol">Vol.6</span>
-                    <span class="title-cn">Closing Words</span>
-                </div>
-                <div class="content-card" id="chap6"></div>
-            </div>
-
-            <!-- Upgrade CTA -->
-            <div class="upgrade-cta">
-                <h2>Ready? Let the treasure find its master.</h2>
-                <p>The report gave you direction. The treasure marks the path. Hand-selected by a Daoist master — a physical crystal matched to your chart, shipped worldwide.</p>
-                <div class="price-tag">$199</div>
-                <a class="cta-btn" id="checkoutLink" href="checkout.html">🔮 Unlock Treasure Match</a>
-                <p class="credit-note">$29 report fully credited · Valid 7 days</p>
-            </div>
-        </div>
-
-    </section>
-
 </main>
 
 <footer>
     <p>&copy; 2026 Oriental Destiny · <a href="index.html">Home</a> · <a href="instant_reading.html">Free Reading</a> · <a href="policies.html">Privacy</a> · <a href="mailto:434338480@qq.com">Support</a> · <span class="od-version"></span></p>
 </footer>
 
-<!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<!-- PayPal SDK (smart buttons; server verifies + captures via capturePayment) -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAuEJ4aj4Glmel3a35W5yg1QY9idTSZt5LkxbWG-z5pvfIMEyG8E6vnCCLJNynRoAVW6XjqCCtnSKBzEY&intent=capture&disable-funding=venmo&currency=USD"></script>
+<script src="config.real.js"></script>
 <script src="config.js"></script>
-<script src="bazi_engine_v2.js"></script>
-<script src="report_engine_v2.js"></script>
+<script src="auth.js"></script>
+<script src="payment.js"></script>
 <script src="reading_state.js"></script>
 <script src="version.js"></script>
 
 <script>
 (function() {
 
-// ─── Helper functions ─────────────────────────────────────────
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function paras(text) {
-  if (!text) return '';
-  return String(text).split(/\n\n/).filter(Boolean)
-    .map(pp => '<p>'+esc(pp).replace(/\n/g,'<br>')+'</p>').join('\n');
-}
+  // ─── Read state (birth data flows to report_viewer.html) ─────
+  var state = {};
+  try { if (window.ReadingState) state = window.ReadingState.read(); } catch(e) {}
 
-// ─── PayPal ───────────────────────────────────────────────────
-paypal.HostedButtons({
-  hostedButtonId: "V5KL7YYCASY34",
-}).render("#paypal-container-V5KL7YYCASY34");
-
-// Track page view
-gtag('event', 'view_item', {
-  currency: 'USD', value: 29,
-  items: [{ item_name: 'Complete BaZi Reading · Full Report', price: 29, quantity: 1 }]
-});
-
-// ─── Read state from instant_reading.html ─────────────────────
-var state = {};
-try {
-  if (window.ReadingState) {
-    state = window.ReadingState.read();
-  }
-} catch(e) {}
-
-// If no birth data, we still show the sales page
-// Post-purchase: we read the URL params or use stored state
-var params = new URLSearchParams(window.location.search);
-var hasData = state.birth_date || params.get('birth_date');
-var fromReading = state.birth_date || (params.get('focus') && params.get('birth_date'));
-
-// ─── Engine ───────────────────────────────────────────────────
-var engine = new ReportEngineV2({
-  proxyBaseURL: (typeof window.DEEPSEEK_PROXY_URL === 'string' && window.DEEPSEEK_PROXY_URL)
-    ? window.DEEPSEEK_PROXY_URL : null
-});
-
-// ── Generate report when user has birth data and presses "Generate My Report" ──
-var salesSection = document.getElementById('salesSection');
-var reportSection = document.getElementById('reportSection');
-var loadingState = document.getElementById('loadingState');
-var reportContent = document.getElementById('reportContent');
-
-// Payment gate: the full report is generated ONLY after a successful PayPal
-// payment, via thanks.html → report_viewer.html. Do not render a free
-// "Generate" button here — that would let anyone preview the $29 report
-// without paying. PayPal is the sole entry point for the full report.
-
-async function generateReport() {
-  // Get data from ReadingState or URL params
-  var birthDate = state.birth_date || params.get('birth_date') || '';
-  var birthTime = state.birth_time || params.get('birth_time') || '';
-  var focus = state.focus || params.get('focus') || 'balance';
-  var gender = state.gender || params.get('gender') || '';
-
-  if (!birthDate) {
-    alert('Please enter your birth info on the Free Reading page first.');
-    return;
-  }
-
-  // Switch to report section
-  salesSection.style.display = 'none';
-  reportSection.style.display = '';
-  loadingState.classList.add('visible');
-
-  // Track generation start
-  gtag('event', 'report_generate_start', { currency: 'USD', value: 29 });
-
-  // Calculate profile
-  var profile;
-  try {
-    profile = window.BaziEngineV2.calculateProfile({
-      birthDate: birthDate,
-      birthTime: birthTime || undefined,
-      gender: gender || undefined,
-      lifeFocus: focus
-    });
-  } catch(e) {
-    alert('Chart calculation failed: ' + (e.message || ''));
-    salesSection.style.display = '';
-    reportSection.style.display = 'none';
-    return;
-  }
-
-  // Save profile for dream page cross-reference
-  try {
-    sessionStorage.setItem('baziProfileV2', JSON.stringify({
-      dayMaster: profile.dayMaster,
-      dayMasterElement: profile.dayMasterElement,
-      yongShen: profile.yongShen?.yongShen,
-      elements: profile.elementCounts
-    }));
-  } catch(e) {}
-
-  // Generate
-  var basic = await engine.generateBasicReport(profile, focus);
-
-  loadingState.classList.remove('visible');
-  reportContent.style.display = '';
-
-  var r = basic.report;
-  var sn = basic.chartSnapshot || window.buildChartSnapshot(profile);
-
-  // Cover
-  var dm = profile.dayMaster;
-  var dmEl = profile.dayMasterElement;
-  document.getElementById('reportCover').innerHTML =
-    '<div class="seal-anim"><div class="seal-inner"><img src="dao.webp" alt="Seal" style="width:100%;height:100%;object-fit:contain;border-radius:2px;"></div></div>' +
-    '<h1 class="hero-title">'+esc(dm)+'<span class="em">'+esc(dmEl)+'</span> · Day Master</h1>' +
-    '<p class="hero-sub">'+esc(sn.fourPillars.year)+' · '+esc(sn.fourPillars.month)+' · '+esc(sn.fourPillars.day)+' · '+esc(sn.fourPillars.hour)+'</p>' +
-    '<div class="hero-divider"></div>' +
-    '<span style="font-size:12px;color:var(--ink-faint);">Pattern: '+esc(sn.pattern)+' · Yong Shen: '+esc(sn.yongShen)+' · '+esc(sn.strength)+'</span>';
-
-  // Vol. 1
-  document.getElementById('chap1').innerHTML = paras(r.opening || '');
-
-  // Vol. 2
-  document.getElementById('chap2').innerHTML = paras(r.yourPattern || '');
-
-  // Vol. 3
-  document.getElementById('chap3').innerHTML = paras(r.whatGuidesYou || '');
-
-  // Vol. 4
-  var stepsHTML = '';
-  if (r.practicalSteps && r.practicalSteps.length) {
-    stepsHTML = '<ul class="pocket-list">';
-    r.practicalSteps.forEach(function(s, i) {
-      stepsHTML += '<li class="pocket-item" style="animation-delay:'+(i*0.15)+'s"><span class="pocket-num">'+(i+1)+'</span><span>'+esc(s)+'</span></li>';
-    });
-    stepsHTML += '</ul>';
-  }
-  document.getElementById('chap4').innerHTML = stepsHTML;
-
-  // Vol. 5 — Element bars
-  var elCounts = profile.elementCounts || {};
-  var elNames = ['Wood','Fire','Earth','Metal','Water'];
-  var elChinese = {Wood:'木',Fire:'火',Earth:'土',Metal:'金',Water:'水'};
-  var elColors = {Wood:'#4a7c59',Fire:'#b5342a',Earth:'#c9a24e',Metal:'#8a8a8a',Water:'#2c3e6b'};
-  var maxCount = Math.max(1, ...elNames.map(function(e){return elCounts[e]||0;}));
-  var barsHTML = '<div style="padding:10px 0;">';
-  elNames.forEach(function(e) {
-    var pct = Math.round(((elCounts[e]||0) / maxCount) * 100);
-    barsHTML += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">' +
-      '<span style="font-size:11px;width:80px;text-align:right;color:var(--ink-light);">'+elChinese[e]+' '+e+'</span>' +
-      '<span style="flex:1;height:8px;background:rgba(26,20,16,0.06);border-radius:4px;overflow:hidden;">' +
-        '<span style="display:block;height:100%;border-radius:4px;width:'+pct+'%;background:'+elColors[e]+';transition:width 0.8s ease;"></span>' +
-      '</span>' +
-      '<span style="width:44px;font-size:11px;color:var(--ink-faint);">'+(elCounts[e]||0).toFixed(1)+'</span>' +
-    '</div>';
+  // Track page view
+  gtag('event', 'view_item', {
+    currency: 'USD', value: 29,
+    items: [{ item_name: 'Complete BaZi Reading · Full Report', price: 29, quantity: 1 }]
   });
-  barsHTML += '</div>';
-  document.getElementById('chap5').innerHTML = barsHTML +
-    '<p style="font-size:13px;color:var(--ink-faint);margin-top:10px;">' +
-    'Yong Shen: '+esc(sn.yongShen)+' · Xi Shen: '+esc(sn.xiShen)+' · Ji Shen: '+esc(sn.jiShen)+' · Qi Yun: '+esc(sn.qiYun)+' · Current Da Yun: '+esc(sn.currentDaYun)+'</p>';
 
-  // Vol. 6
-  document.getElementById('chap6').innerHTML = paras(r.closingWords || '');
+  var paypalContainer = document.getElementById('paypal-container-V5KL7YYCASY34');
+  var loginGate = document.getElementById('loginGate');
 
-  // Update checkout link
-  document.getElementById('checkoutLink').href = 'checkout.html?' + (window.ReadingState ? window.ReadingState.toQuery(window.ReadingState.read()) : '');
+  function renderButtons() {
+    if (typeof paypal === 'undefined' || !paypal.Buttons) {
+      loginGate.style.display = '';
+      return;
+    }
+    paypal.Buttons({
+      style: { layout: 'vertical' },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          intent: 'CAPTURE',
+          purchase_units: [{ amount: { currency_code: 'USD', value: '29.00' } }]
+        });
+      },
+      onApprove: function(data, actions) {
+        // The server captures + verifies via the capturePayment Cloud Function.
+        return Payment.capture({
+          orderID: data.orderID,
+          product: 'instant_report'
+        }).then(function(res) {
+          gtag('event', 'purchase', {
+            currency: 'USD', value: 29,
+            transaction_id: data.orderID,
+            items: [{ item_name: 'Complete BaZi Reading · Full Report', price: 29, quantity: 1 }]
+          });
+          window.location.href = 'report_viewer.html';
+        }).catch(function(err) {
+          var msg = (err && err.message)
+            ? 'Payment could not be verified: ' + err.message
+            : 'Payment could not be verified. Please contact support.';
+          alert(msg);
+        });
+      }
+    }).render(paypalContainer);
+  }
 
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Track
-  gtag('event', 'report_generated', { currency: 'USD', value: 29, focus: focus });
-}
+  // Sign-in required before purchase — the order is tied to the account.
+  Auth.init().then(function() {
+    if (!Auth.currentUser) {
+      paypalContainer.style.display = 'none';
+      loginGate.style.display = '';
+      return;
+    }
+    renderButtons();
+  }).catch(function() {
+    paypalContainer.style.display = 'none';
+    loginGate.style.display = '';
+  });
 
 })();
 </script>

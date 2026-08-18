@@ -394,6 +394,51 @@
         console.error('Auth: failed to load report', e);
         return null;
       });
+    },
+
+    // ── Orders ────────────────────────────────────────────────────────────
+
+    getOrders: function() {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve([]);
+      var h = Auth._helpers;
+      var q = h.query(
+        h.collection(Auth._db, 'orders'),
+        h.where('userId', '==', Auth.currentUser.uid),
+        h.limit(50)
+      );
+      return h.getDocs(q).then(function(snap) {
+        var results = [];
+        snap.forEach(function(doc) {
+          var d = doc.data();
+          d.id = doc.id;
+          results.push(d);
+        });
+        results.sort(function(a, b) {
+          var ta = a.createdAt ? a.createdAt.seconds || 0 : 0;
+          var tb = b.createdAt ? b.createdAt.seconds || 0 : 0;
+          return tb - ta;
+        });
+        return results;
+      }).catch(function(e) {
+        console.error('Auth: failed to load orders', e);
+        return [];
+      });
+    },
+
+    getOrder: function(orderId) {
+      if (!Auth.currentUser || !Auth._db) return Promise.resolve(null);
+      var h = Auth._helpers;
+      return h.getDoc(h.doc(Auth._db, 'orders', orderId)).then(function(snap) {
+        if (snap.exists()) {
+          var d = snap.data();
+          d.id = snap.id;
+          return d;
+        }
+        return null;
+      }).catch(function(e) {
+        console.error('Auth: failed to load order', e);
+        return null;
+      });
     }
   };
 

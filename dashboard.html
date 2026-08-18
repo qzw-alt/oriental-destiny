@@ -569,9 +569,78 @@
     }
 
     function loadOrders() {
-        // Orders are loaded from Firestore in a production setup.
-        // For now, show empty state since this is MVP.
-        document.getElementById('orderEmpty').style.display = '';
+        Auth.getOrders().then(function(orders) {
+            renderOrderList(orders || []);
+            renderReportSteps(orders || []);
+        });
+    }
+
+    function renderOrderList(orders) {
+        var list = document.getElementById('orderList');
+        var empty = document.getElementById('orderEmpty');
+        if (!orders.length) {
+            list.innerHTML = '';
+            empty.style.display = '';
+            return;
+        }
+        empty.style.display = 'none';
+        var productNames = {
+            'instant_report': 'Complete BaZi Reading',
+            'treasure_match': 'Matched Daoist Treasure',
+            'destiny_membership': 'Destiny Membership'
+        };
+        var statusLabels = {
+            'paid': 'Paid',
+            'processing': 'Processing',
+            'shipped': 'Shipped',
+            'refunded': 'Refunded'
+        };
+        list.innerHTML = orders.map(function(o) {
+            var date = o.createdAt ? new Date(o.createdAt.seconds * 1000).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : '';
+            var name = productNames[o.product] || o.product;
+            var planName = o.plan ? ' · ' + o.plan : '';
+            var status = statusLabels[o.status] || o.status;
+            var statusClass = o.status === 'refunded' ? 'os-pending' : 'os-completed';
+            return '<div class="order-item">' +
+                '<div class="order-info">' +
+                    '<div style="font-weight:600;">' + escapeHtml(name) + escapeHtml(planName) + '</div>' +
+                    '<div class="order-date">' + (date || '') + '</div>' +
+                '</div>' +
+                '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
+                    '<span class="order-amount">$' + (o.amount != null ? o.amount : '') + '</span>' +
+                    '<span class="order-status ' + statusClass + '">' + escapeHtml(status) + '</span>' +
+                '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    function renderReportSteps(orders) {
+        var steps = document.getElementById('reportSteps');
+        var freeMsg = document.getElementById('reportFreeMsg');
+        var tm = null;
+        orders.forEach(function(o) {
+            if (o.product === 'treasure_match' || o.product === 'destiny_membership') {
+                if (!tm || (o.createdAt && tm.createdAt && o.createdAt.seconds > tm.createdAt.seconds)) tm = o;
+            }
+        });
+        if (!tm) {
+            steps.style.display = 'none';
+            freeMsg.style.display = '';
+            return;
+        }
+        steps.style.display = '';
+        freeMsg.style.display = 'none';
+        var doneCount = tm.status === 'shipped' ? 5 : (tm.status === 'processing' ? 3 : 1);
+        var children = steps.querySelectorAll('.status-step');
+        children.forEach(function(el, i) {
+            el.className = 'status-step' + (i < doneCount ? ' done' : '');
+            var tag = el.querySelector('.step-tag');
+            if (tag) {
+                if (i < doneCount) { tag.textContent = 'Done'; tag.className = 'step-tag tag-done'; }
+                else if (i === doneCount) { tag.textContent = 'In progress'; tag.className = 'step-tag tag-current'; }
+                else { tag.textContent = 'Pending'; tag.className = 'step-tag tag-pending'; }
+            }
+        });
     }
 
     function escapeHtml(str) {

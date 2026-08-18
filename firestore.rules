@@ -21,11 +21,16 @@ service cloud.firestore {
       allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
     }
 
-    // 订单：只能读写自己的
+    // 订单：只能读自己的；写入只由 Cloud Functions（Admin SDK 绕过本规则）
     match /orders/{docId} {
       allow read: if request.auth != null && resource.data.userId == request.auth.uid;
-      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
-      allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // 邮箱捕获：客户端不可读写，只由 Cloud Functions 写入
+    match /leads/{docId} {
+      allow read: if false;
+      allow write: if false;
     }
   }
 }

@@ -519,20 +519,32 @@ footer a { color: var(--cinnabar); }
         // Payment gate: a full report requires a verified paid order on the account.
         // The capturePayment Cloud Function writes the order after server-side
         // PayPal verification — a client-side flag can no longer unlock it.
-        Auth.init().then(function() {
+        // React to auth state changes so the session is checked again once
+        // Firebase restores it (e.g. right after paying and being redirected here).
+        var started = false;
+        function attemptUnlock() {
+            if (started) return;
             if (!Auth.currentUser) {
                 showPaywall(true);
                 return;
             }
-            return hasPaidInstantReport().then(function(paid) {
+            started = true;
+            hasPaidInstantReport().then(function(paid) {
                 if (!paid) {
                     showPaywall(false);
                     return;
                 }
                 generateReport(state);
             });
+        }
+
+        Auth.init().then(function() {
+            attemptUnlock();
         }).catch(function() {
             showError('Could not verify your order. Please try again.');
+        });
+        Auth.onAuthChange(function(user) {
+            attemptUnlock();
         });
     }
 

@@ -554,14 +554,19 @@
   function computeSolarTerm(year, termIndex) {
     let targetLon = (315 + termIndex * 15) % 360;
     let jan1JD = gregorianToJD(year, 1, 1);
-    let jd = jan1JD + 35 + termIndex * 15.2184;
-    for (let iter = 0; iter < 12; iter++) {
+    // Terms 0-21 occur in Feb-Dec of the calendar year. Xiao Han and Da Han
+    // (22/23) occur in January of the SAME calendar year, so they need a
+    // separate estimate; using the Li Chun-based estimate put them a year late.
+    let offset = termIndex <= 21 ? 35 + termIndex * 15.2184 : 5 + (termIndex - 22) * 15.2184;
+    let jd = jan1JD + offset;
+    for (let iter = 0; iter < 20; iter++) {
       let lon = sunLongitude(jd);
       let diff = angleDiff(lon, targetLon);
-      if (Math.abs(diff) < 0.0001) break;
+      if (Math.abs(diff) < 0.00001) break;
       jd -= diff / 0.9856;
     }
-    return jdToCalendar(jd);
+    // The algorithm works in UT; published Chinese solar terms use UTC+8.
+    return jdToCalendar(jd + 8 / 24);
   }
 
   let _solarTermCache = {};
@@ -704,17 +709,27 @@
   }
 
   function getSolarMonthIndex(month, day, year) {
-    for (let i = 0; i < 12; i++) {
-      const jieIdx = JIE_INDICES[i];
-      const jie = getSolarTermDate(year, jieIdx);
-      let nextJieIdx = JIE_INDICES[(i + 1) % 12];
-      let nextJie;
-      if (nextJieIdx === 0) nextJie = getSolarTermDate(year + 1, 0);
-      else nextJie = getSolarTermDate(year, nextJieIdx);
-      if (isOnOrAfter(month, day, jie[0], jie[1]) && !isOnOrAfter(month, day, nextJie[0], nextJie[1]))
-        return JIE_MONTH_MAP[jieIdx];
+    // Build the Jie boundaries across the previous/current/next year, sort them
+    // chronologically, and return the latest one on or before the birth date.
+    // The previous implementation looped the current year only, so December
+    // (after Da Xue) and early January (before Xiao Han) fell through to the
+    // default Chou month.
+    const boundaries = [];
+    for (let y = year - 1; y <= year + 1; y++) {
+      for (let i = 0; i < 12; i++) {
+        const jieIdx = JIE_INDICES[i];
+        const jie = getSolarTermDate(y, jieIdx);
+        boundaries.push({ y, m: jie[0], d: jie[1], idx: JIE_MONTH_MAP[jieIdx] });
+      }
     }
-    return 11;
+    boundaries.sort((a, b) => (a.y - b.y) || (a.m - b.m) || (a.d - b.d));
+    let result = 11;
+    for (const b of boundaries) {
+      if (b.y < year || (b.y === year && (b.m < month || (b.m === month && b.d <= day)))) {
+        result = b.idx;
+      }
+    }
+    return result;
   }
 
   function getMonthPillar(yearStemIndex, month, day, year) {
@@ -724,7 +739,9 @@
   }
 
   function getDayPillar(year, month, day) {
-    const reference = Date.UTC(1984, 1, 2);
+    // Anchor: 1984-01-31 is a Jia Zi day. The previous anchor (1984-02-02)
+    // was two days late, which shifted every chart's Day Master by two days.
+    const reference = Date.UTC(1984, 0, 31);
     const target = Date.UTC(year, month - 1, day);
     const diffDays = Math.round((target - reference) / 86400000);
     const cycleIndex = mod(diffDays, 60);
@@ -1718,11 +1735,14 @@
     const months = [];
     for (let i = 0; i < 12; i++) {
       const jieIdx = JIE_INDICES[i];
-      const jieDate = getSolarTermDate(targetYear, jieIdx);
-      let nextJieIdx = JIE_INDICES[(i + 1) % 12];
-      let nextJieDate;
-      if (nextJieIdx === 0) nextJieDate = getSolarTermDate(targetYear + 1, 0);
-      else nextJieDate = getSolarTermDate(targetYear, nextJieIdx);
+      const nextJieIdx = JIE_INDICES[(i + 1) % 12];
+      // The 子 month (Da Xue → Xiao Han) and 丑 month (Xiao Han → Li Chun)
+      // straddle the calendar-year boundary, so their bounds use targetYear+1.
+      let startYear = targetYear, endYear = targetYear;
+      if (i === 10) endYear = targetYear + 1;
+      else if (i === 11) { startYear = targetYear + 1; endYear = targetYear + 1; }
+      const jieDate = getSolarTermDate(startYear, jieIdx);
+      const nextJieDate = getSolarTermDate(endYear, nextJieIdx);
 
       const monthStemIdx = mod(tigerStemIdx + i, 10);
       const monthBranchIdx = mod(2 + i, 12);

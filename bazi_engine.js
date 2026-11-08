@@ -345,17 +345,19 @@
 
   function computeSolarTerm(year, termIndex) {
     var targetLon = (315 + termIndex * 15) % 360;
-    // Initial estimate: Li Chun is ~Feb 4 (day 35), each term ~15.218 days apart
     var jan1JD = gregorianToJD(year, 1, 1);
-    var jd = jan1JD + 35 + termIndex * 15.2184;
-    // Newton's method refinement
-    for (var iter = 0; iter < 12; iter++) {
+    // Terms 0-21 fall in Feb-Dec of the calendar year; Xiao Han/Da Han (22/23)
+    // fall in January of the same calendar year.
+    var offset = termIndex <= 21 ? 35 + termIndex * 15.2184 : 5 + (termIndex - 22) * 15.2184;
+    var jd = jan1JD + offset;
+    for (var iter = 0; iter < 20; iter++) {
       var lon = sunLongitude(jd);
       var diff = angleDiff(lon, targetLon);
-      if (Math.abs(diff) < 0.0001) break;
+      if (Math.abs(diff) < 0.00001) break;
       jd -= diff / 0.9856;
     }
-    return jdToCalendar(jd);
+    // The algorithm works in UT; published Chinese solar terms use UTC+8.
+    return jdToCalendar(jd + 8 / 24);
   }
 
   // Get solar term date as [month, day], cached per year for performance
@@ -643,32 +645,25 @@
   }
 
   function getSolarMonthIndex(month, day, year) {
-    // Check each of the 12 Jie (month-starting terms)
-    for (var i = 0; i < 12; i++) {
-      var jieIdx = JIE_INDICES[i];
-      var jie = getSolarTermDate(year, jieIdx);
-      // The term date gives the START of this solar month
-      // Check on-or-after this Jie and before the next Jie
-      var nextJieIdx = JIE_INDICES[(i + 1) % 12];
-      var nextJie;
-      if (nextJieIdx === 0) {
-        // The next Jie after Da Xue (index 20 → Xiao Han 22? No, Jie cycle is:
-        // 0(LiChun),2(JingZhe),4(QingMing),6(LiXia),8(MangZhong),10(XiaoShu),
-        // 12(LiQiu),14(BaiLu),16(HanLu),18(LiDong),20(DaXue),22(XiaoHan)
-        // After XiaoHan(22), the next is LiChun(0) of next year or this year)
-        nextJie = getSolarTermDate(year + 1, 0);
-      } else {
-        nextJie = getSolarTermDate(year, nextJieIdx);
-      }
-      // Handle Xiao Han (22) in January: it's "after" Da Xue but in next calendar year
-      // For year boundaries, if nextJie month is Jan and current month is Dec, it's fine
-      if (isOnOrAfter(month, day, jie[0], jie[1]) &&
-          !isOnOrAfter(month, day, nextJie[0], nextJie[1])) {
-        return JIE_MONTH_MAP[jieIdx];
+    // Build the Jie boundaries across the previous/current/next year, sort them
+    // chronologically, and return the latest one on or before the birth date.
+    var boundaries = [];
+    for (var y = year - 1; y <= year + 1; y++) {
+      for (var i = 0; i < 12; i++) {
+        var jieIdx = JIE_INDICES[i];
+        var jie = getSolarTermDate(y, jieIdx);
+        boundaries.push({ y: y, m: jie[0], d: jie[1], idx: JIE_MONTH_MAP[jieIdx] });
       }
     }
-    // Fallback: should not reach here, but return 11 (Chou month / Xiao Han) for Jan dates
-    return 11;
+    boundaries.sort(function (a, b) { return (a.y - b.y) || (a.m - b.m) || (a.d - b.d); });
+    var result = 11;
+    for (var k = 0; k < boundaries.length; k++) {
+      var b = boundaries[k];
+      if (b.y < year || (b.y === year && (b.m < month || (b.m === month && b.d <= day)))) {
+        result = b.idx;
+      }
+    }
+    return result;
   }
 
   function getMonthPillar(yearStemIndex, month, day, year) {
@@ -681,7 +676,7 @@
   }
 
   function getDayPillar(year, month, day) {
-    const reference = Date.UTC(1984, 1, 2);
+    const reference = Date.UTC(1984, 0, 31);
     const target = Date.UTC(year, month - 1, day);
     const diffDays = Math.round((target - reference) / 86400000);
     const cycleIndex = mod(diffDays, 60);
@@ -1516,14 +1511,12 @@
 
     for (var i = 0; i < 12; i++) {
       var jieIdx = JIE_INDICES[i];
-      var jieDate = getSolarTermDate(targetYear, jieIdx);
       var nextJieIdx = JIE_INDICES[(i + 1) % 12];
-      var nextJieDate;
-      if (nextJieIdx === 0) {
-        nextJieDate = getSolarTermDate(targetYear + 1, 0);
-      } else {
-        nextJieDate = getSolarTermDate(targetYear, nextJieIdx);
-      }
+      var startYear = targetYear, endYear = targetYear;
+      if (i === 10) { endYear = targetYear + 1; }
+      else if (i === 11) { startYear = targetYear + 1; endYear = targetYear + 1; }
+      var jieDate = getSolarTermDate(startYear, jieIdx);
+      var nextJieDate = getSolarTermDate(endYear, nextJieIdx);
 
       var monthStemIdx = mod(tigerStemIdx + i, 10);
       var monthBranchIdx = mod(2 + i, 12); // Yin=2, Mao=3, ..., Chou=1

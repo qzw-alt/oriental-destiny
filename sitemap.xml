@@ -555,16 +555,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://oriental-destiny.com/earth-element-in-bazi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/fire-element-in-bazi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://oriental-destiny.com/hour-pillar-bazi.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -580,11 +570,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://oriental-destiny.com/metal-element-in-bazi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://oriental-destiny.com/month-pillar-bazi.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -596,16 +581,6 @@
   </url>
   <url>
     <loc>https://oriental-destiny.com/ten-gods-in-bazi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/water-element-in-bazi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/wood-element-in-bazi.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -710,56 +685,6 @@
   </url>
   <url>
     <loc>https://oriental-destiny.com/pig-zodiac-sign.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/jia-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/yi-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/bing-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/ding-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/wu-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/ji-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/geng-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/xin-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/ren-day-master.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oriental-destiny.com/gui-day-master.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

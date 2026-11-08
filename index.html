@@ -12,12 +12,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free BaZi Five Elements preview. $29 instant full report with Day Master, element balance, and treasure direction. $199 matched Daoist treasure service — handcrafted piece confirmed to your chart before shipping worldwide.">
+    <meta name="description" content="Wood, Fire, Earth, Metal, or Water — discover the Chinese feng shui element of your birth year in 60 seconds. Free, no sign-up. Then read what your element says about your personality, energy, and direction.">
     <link rel="canonical" href="https://oriental-destiny.com/">
-    <meta property="og:title" content="Free BaZi Preview + $29 Report + $199 Matched Treasure | Oriental Destiny">
-    <meta property="og:description" content="Start with a free Five Elements preview. Upgrade to a $29 instant full report or a $199 handcrafted Daoist treasure matched to your birth chart. Worldwide shipping.">
+    <meta property="og:title" content="Which of the Five Elements Are You? Free Feng Shui Quiz | Oriental Destiny">
+    <meta property="og:description" content="Find your Chinese feng shui element in 60 seconds — free, no sign-up. Then explore what it says about how you love, work, and recharge.">
     <meta property="og:type" content="website">
-    <title>Personalized Feng Shui Reading + BaZi Chart Analysis | Oriental Destiny</title>
+    <title>Five Elements Quiz: Which Element Are You? | Oriental Destiny</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap');
@@ -160,6 +160,70 @@
         }
         .meta-item strong { display: block; font-size: 22px; color: var(--cinnabar); }
         .meta-item span { font-size: 13px; color: rgba(36, 25, 21, 0.72); }
+
+        /* ── Hero element picker ── */
+        .hero-form { margin-top: 26px; }
+        .hero-form label {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(36, 25, 21, 0.6);
+            margin-bottom: 8px;
+        }
+        .hero-form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .hero-form select {
+            flex: 1 1 170px;
+            min-height: 50px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(36, 25, 21, 0.16);
+            background: rgba(255, 253, 248, 0.92);
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .hero-form select:focus { outline: 2px solid rgba(201, 162, 78, 0.5); outline-offset: 2px; }
+        .hero-form .btn { flex: 0 0 auto; }
+        .hero-note { margin-top: 14px; font-size: 13.5px; color: rgba(36, 25, 21, 0.62); }
+        .hero-note a { color: var(--cinnabar); font-weight: 600; }
+
+        /* ── Five elements strip ── */
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .element-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 24px 20px;
+            border-radius: 22px;
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .element-card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(26, 20, 16, 0.14); }
+        .element-card .element-symbol { font-size: 26px; line-height: 1.2; }
+        .element-card h3 { font-size: 19px; }
+        .element-card p { font-size: 13.5px; color: rgba(36, 25, 21, 0.7); flex: 1; }
+        .element-card .element-link { font-size: 12.5px; color: var(--cinnabar); font-weight: 600; margin-top: 4px; }
+
+        /* ── Hero panel element list ── */
+        .element-list { list-style: none; display: grid; gap: 9px; margin: 20px 0; }
+        .element-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 14px;
+            line-height: 1.5;
+            color: rgba(253, 248, 239, 0.84);
+        }
+        .element-list .el-symbol { flex: 0 0 auto; font-size: 15px; }
+        .element-list strong { color: #fdf8ef; }
 
         .hero-panel {
             border-radius: 28px;
@@ -386,13 +450,15 @@
         /* ── Responsive ── */
         @media (max-width: 980px) {
             .hero-grid, .funnel-grid, .steps-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .elements-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 720px) {
             .topbar-inner, .footer-bar { flex-direction: column; align-items: flex-start; }
-            .nav { gap: 12px; }
+            .nav { gap: 9px; font-size: 13px; }
             .hero { padding-top: 36px; }
             .hero-copy, .hero-panel, .closing-card { padding: 26px; }
             .hero-meta { grid-template-columns: 1fr; }
+            .elements-grid { grid-template-columns: 1fr; }
             .btn { width: 100%; }
         }
     </style>
@@ -456,7 +522,7 @@
         <div class="container topbar-inner">
             <a class="brand" href="index.html">
                 <span class="brand-mark">Oriental Destiny</span>
-                <span class="brand-name">Feng Shui Jewelry Matching</span>
+                <span class="brand-name">Feng Shui &amp; BaZi</span>
             </a>
             <nav class="nav">
                 <a href="index.html">Home</a>
@@ -478,47 +544,98 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <div class="eyebrow">Personalized Feng Shui reading + confirmed direction</div>
-                    <h1>Your birth chart says your luck needs a channel. We read it and confirm the direction for you.</h1>
-                    <p>Most services give generic advice. Ours reads your specific chart — then confirms the exact direction before anything ships. One order, one focused reading, matched to your Five Elements and life area.</p>
-                    <div class="hero-actions">
-                        <a class="btn btn-primary" href="instant_reading.html">Start Free Preview</a>
-                        <a class="btn btn-secondary" href="products.html">View Plans</a>
-                    </div>
+                    <div class="eyebrow">Chinese Feng Shui · Five Elements · BaZi</div>
+                    <h1>Which of the five elements are you?</h1>
+                    <p>Wood, Fire, Earth, Metal, or Water — in Chinese feng shui, one of them runs through your birth year. It quietly shapes how you make decisions, what drains you, and the spaces where you feel most like yourself. Find yours in about a minute — free, and no sign-up.</p>
+                    <form class="hero-form" action="element-calculator.html" method="get">
+                        <label for="heroYear">Your birth year</label>
+                        <div class="hero-form-row">
+                            <select id="heroYear" name="year" required>
+                                <option value="">Choose a year</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Reveal my element →</button>
+                        </div>
+                    </form>
+                    <p class="hero-note">Curious about the full picture? <a href="instant_reading.html">The free BaZi reading</a> shows your Day Master, element balance, and chart pattern — no email required.</p>
                     <div class="hero-meta">
                         <div class="meta-item">
-                            <strong>$199</strong>
-                            <span>One order: chart analysis + confirmed jewelry direction, shipped worldwide</span>
+                            <strong>60 sec</strong>
+                            <span>No email, no account — just your element and what it means.</span>
                         </div>
                         <div class="meta-item">
-                            <strong>6 Plans</strong>
-                            <span>Career, wealth, love, protection, zodiac, and elemental balance</span>
+                            <strong>5 elements</strong>
+                            <span>Wood, Fire, Earth, Metal, and Water — each with its own temperament.</span>
                         </div>
                         <div class="meta-item">
-                            <strong>Same Day</strong>
-                            <span>Basic report immediately. Complete annotated report by email within 6 hours.</span>
+                            <strong>Go deeper</strong>
+                            <span>Free BaZi diagnosis, a $29 report, or a matched reading.</span>
                         </div>
                     </div>
                 </div>
 
                 <aside class="hero-panel">
                     <div>
-                        <span class="panel-badge">How we're different</span>
-                        <h2>You don't pick a product. You pick a life area — we read your chart to find the direction.</h2>
-                        <p>The direction comes from your birth chart — not from a generic zodiac description. One handcrafted Daoist treasure from Longhushan, matched to your specific Five Elements.</p>
-                        <ul class="panel-list">
-                            <li>Choose a life focus: career, wealth, love, protection, or elements</li>
-                            <li>Submit your birth date, time, and location</li>
-                            <li>Receive a personalized reading with a confirmed direction</li>
-                            <li>Direction shipped as a symbolic item, confirmed before shipping</li>
+                        <span class="panel-badge">What your element reveals</span>
+                        <h2>Not a horoscope. A pattern you can work with.</h2>
+                        <p>Each element has its own way of moving through the world — its gifts, its blind spots, and the environment where it thrives.</p>
+                        <ul class="element-list">
+                            <li><span class="el-symbol">🌿</span><span><strong>Wood</strong> — the grower: visionary, ambitious, restless when stuck.</span></li>
+                            <li><span class="el-symbol">🔥</span><span><strong>Fire</strong> — the spark: warm, magnetic, easily burned out.</span></li>
+                            <li><span class="el-symbol">🏔️</span><span><strong>Earth</strong> — the keeper: steady, nurturing, quietly over-worried.</span></li>
+                            <li><span class="el-symbol">⚪</span><span><strong>Metal</strong> — the refiner: clear, precise, sometimes rigid.</span></li>
+                            <li><span class="el-symbol">💧</span><span><strong>Water</strong> — the flow: perceptive, adaptable, slow to move.</span></li>
                         </ul>
+                        <p style="font-size:13px;color:rgba(253,248,239,0.66);">Free to try. Your full chart adds the layer your element alone can't show.</p>
                     </div>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="instant_reading.html">Start Free Preview</a>
-                        <a class="btn btn-secondary" href="checkout.html">Order Matched Treasure</a>
-                        <a class="btn" href="sample_report.html" style="color:#fdf8ef;background:transparent;border:1px solid rgba(255,248,235,0.42);">See a Sample Reading</a>
+                        <a class="btn btn-primary" href="element-calculator.html">Find your element</a>
+                        <a class="btn btn-secondary" href="instant_reading.html">Free BaZi reading</a>
                     </div>
                 </aside>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- FIVE ELEMENTS — curiosity + emotional value  -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>The five elements, in plain English</h2>
+                    <p>Chinese feng shui sees the world as five kinds of energy. You don't have to believe in anything to notice which one sounds like you.</p>
+                </div>
+                <div class="elements-grid">
+                    <a class="element-card" href="wood-element-in-bazi.html">
+                        <span class="element-symbol">🌿</span>
+                        <h3>Wood</h3>
+                        <p>The grower — visionary, ambitious, restless when there is nothing to grow toward.</p>
+                        <span class="element-link">Read the Wood guide →</span>
+                    </a>
+                    <a class="element-card" href="fire-element-in-bazi.html">
+                        <span class="element-symbol">🔥</span>
+                        <h3>Fire</h3>
+                        <p>The spark — warm, expressive, magnetic, and easily burned out.</p>
+                        <span class="element-link">Read the Fire guide →</span>
+                    </a>
+                    <a class="element-card" href="earth-element-in-bazi.html">
+                        <span class="element-symbol">🏔️</span>
+                        <h3>Earth</h3>
+                        <p>The keeper — steady, nurturing, reliable, and quietly over-worried.</p>
+                        <span class="element-link">Read the Earth guide →</span>
+                    </a>
+                    <a class="element-card" href="metal-element-in-bazi.html">
+                        <span class="element-symbol">⚪</span>
+                        <h3>Metal</h3>
+                        <p>The refiner — clear, precise, decisive, and sometimes rigid.</p>
+                        <span class="element-link">Read the Metal guide →</span>
+                    </a>
+                    <a class="element-card" href="water-element-in-bazi.html">
+                        <span class="element-symbol">💧</span>
+                        <h3>Water</h3>
+                        <p>The flow — perceptive, adaptable, wise, and slow to move.</p>
+                        <span class="element-link">Read the Water guide →</span>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -542,7 +659,7 @@
                             <li>Day Master reveal</li>
                             <li>Four Pillars table</li>
                             <li>Element distribution</li>
-                            <li>Pattern & Yong Shen name</li>
+                            <li>Pattern &amp; Yong Shen name</li>
                             <li class="no">Colors, directions, seasons</li>
                             <li class="no">Crystal or jewelry advice</li>
                         </ul>
@@ -558,7 +675,7 @@
                         <ul class="funnel-list">
                             <li>Everything in free tier</li>
                             <li>Complete 6-chapter report</li>
-                            <li>Color & direction guidance</li>
+                            <li>Color &amp; direction guidance</li>
                             <li>Practical action steps</li>
                             <li>Element balance deep-dive</li>
                             <li>Treasure type recommendation</li>
@@ -608,7 +725,7 @@
                     </article>
                     <article class="step">
                         <div class="step-no">3</div>
-                        <h3>Submit & pay</h3>
+                        <h3>Submit &amp; pay</h3>
                         <p>Birth date, time, and location. Your basic data report is available immediately after payment.</p>
                     </article>
                     <article class="step">
@@ -641,8 +758,8 @@
         <section>
             <div class="container">
                 <div class="section-head">
-                    <h2>Learn Chinese Metaphysics</h2>
-                    <p>Understand the framework behind your reading — the pillars, elements, and systems that shape a BaZi chart.</p>
+                    <h2>New to all this? Start here.</h2>
+                    <p>Plain-English guides to the ideas behind your element and your chart — no prior knowledge, no jargon you have to take on faith.</p>
                 </div>
                 <div class="learn-grid">
                     <div class="learn-col">
@@ -738,6 +855,19 @@
             if (el) el.style.display = user ? '' : 'none';
         });
     });
+
+    // Populate the homepage "find your element" year picker (1920 → this year)
+    (function () {
+        var sel = document.getElementById('heroYear');
+        if (!sel) return;
+        var currentYear = new Date().getFullYear();
+        for (var y = currentYear; y >= 1920; y--) {
+            var opt = document.createElement('option');
+            opt.value = String(y);
+            opt.textContent = String(y);
+            sel.appendChild(opt);
+        }
+    })();
     </script>
 </body>
 </html>

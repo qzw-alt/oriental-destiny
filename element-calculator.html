@@ -526,20 +526,20 @@
 
             <div class="calculator-box">
                 <div class="form-group">
-                    <label for="birthDate">Birth Date</label>
-                    <input type="date" id="birthDate" required>
+                    <label for="birthYear">Birth year</label>
+                    <select id="birthYear">
+                        <option value="">Select birth year</option>
+                    </select>
                     <div class="zodiac-note" id="zodiacNote">Your zodiac sign will appear here</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="birthYear">Birth Year (confirm)</label>
-                    <select id="birthYear">
-                        <option value="">Select birth year</option>
-                    </select>
+                    <label for="birthDate">Birth date <span style="font-weight:400;opacity:.7;">(optional — reveals your zodiac animal)</span></label>
+                    <input type="date" id="birthDate">
                 </div>
 
-                <button class="btn-primary" id="calcBtn" onclick="calculateElement()">Find My Element</button>
-                <p class="note">Based on Chinese zodiac and Five Elements cycle. No personal data stored. · <a href="five-elements-explained.html">Learn what your element means →</a></p>
+                <button type="button" class="btn-primary" id="calcBtn" onclick="calculateElement()">Find My Element</button>
+                <p class="note">Based on the Chinese year and Five Elements cycle. Born in January or early February? Your Chinese year may be the previous one — adjust the year if needed. No personal data stored. · <a href="five-elements-explained.html">Learn what your element means →</a></p>
             </div>
         </div>
 
@@ -574,6 +574,7 @@
                 <div class="price">$199</div>
                 <a href="checkout.html" class="btn-upsell" id="upsellLink">Open My Full Reading</a>
                 <p class="guarantee-text">Personalized reading + confirmed direction, shipped worldwide</p>
+                <p class="guarantee-text" style="margin-top:14px;">Not ready for a full reading? <a href="instant_reading.html" style="color:#e8c987;text-decoration:underline;">Start with the free BaZi diagnosis &rarr;</a></p>
             </div>
 
             <div class="back-link">
@@ -803,8 +804,21 @@
             document.getElementById('birthDate').value = '';
             document.getElementById('birthYear').value = '';
             document.getElementById('zodiacNote').textContent = 'Your zodiac sign will appear here';
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, '', window.location.pathname);
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Deep link from the homepage: element-calculator.html?year=1990
+        // Runs last so every declaration above is initialized.
+        (function () {
+            const requested = parseInt(new URLSearchParams(window.location.search).get('year'), 10);
+            if (!requested || requested < 1920 || requested > currentYear) return;
+            yearSelect.value = String(requested);
+            updateZodiacNote(requested);
+            calculateElement();
+        })();
     </script>
     <script src="reading_state.js"></script>
 </body>

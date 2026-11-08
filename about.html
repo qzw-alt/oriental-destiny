@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBGDZRZZEJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBGDZRZZEJ');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How Oriental Destiny works: a plain-English practice rooted in the Longhu Mountain tradition. What BaZi is and isn't, how a reading is made, and the questions to ask before you order.">
+    <link rel="canonical" href="https://oriental-destiny.com/about.html">
+    <meta property="og:title" content="About Oriental Destiny — How We Work">
+    <meta property="og:description" content="A practice rooted in the Longhu Mountain tradition, explained in plain English. What BaZi is and isn't, how a reading is made, and what we promise.">
+    <meta property="og:type" content="website">
+    <title>About Oriental Destiny — How We Work</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1410;
+            --paper: #faf7f1;
+            --cinnabar: #b5342a;
+            --gold: #c9a24e;
+            --pine: #315247;
+            --line: rgba(26, 20, 16, 0.1);
+            --shadow: 0 12px 40px rgba(26, 20, 16, 0.10);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Serif SC', Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 25% 8%, rgba(201,162,78,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 72% 92%, rgba(181,52,42,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, #f7f2e9 0%, var(--paper) 50%, #f5efe6 100%);
+            line-height: 1.82;
+            min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(920px, calc(100% - 40px)); margin: 0 auto; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(248, 241, 231, 0.9);
+            border-bottom: 1px solid rgba(36, 25, 21, 0.08);
+        }
+        .topbar-inner {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand-mark { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cinnabar); }
+        .brand-name { font-size: 23px; font-weight: 700; }
+        .nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.78);
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .nav a[aria-current="page"] { color: var(--cinnabar); font-weight: 700; }
+
+        .hero { padding: 64px 0 36px; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+        h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.08; margin-bottom: 16px; }
+        .hero p { color: rgba(36, 25, 21, 0.74); font-size: 17px; max-width: 720px; }
+
+        .article { padding: 12px 0 40px; }
+        .article h2 { font-size: clamp(24px, 3.2vw, 32px); margin: 42px 0 14px; }
+        .article h2:first-child { margin-top: 0; }
+        .article p { color: rgba(36, 25, 21, 0.78); margin-bottom: 14px; }
+        .article ul, .article ol { margin: 6px 0 16px 22px; color: rgba(36, 25, 21, 0.78); }
+        .article li { margin-bottom: 8px; }
+        .article a.inline { color: var(--cinnabar); text-decoration: underline; }
+
+        .trust-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 6px 0 8px; }
+        .trust-card {
+            background: rgba(255, 253, 248, 0.92);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        .trust-card h3 { font-size: 19px; margin-bottom: 12px; }
+        .trust-card ul { list-style: none; margin: 0; }
+        .trust-card li { position: relative; padding-left: 22px; font-size: 14.5px; }
+        .trust-card li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+        .trust-card.is li::before { content: "✓"; color: var(--pine); }
+        .trust-card.isnt li::before { content: "—"; color: var(--cinnabar); }
+
+        .faq { display: grid; gap: 10px; margin-top: 4px; }
+        .faq details {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 6px 20px rgba(26, 20, 16, 0.05);
+        }
+        .faq summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+        .faq details p { margin: 10px 0 0; color: rgba(36, 25, 21, 0.74); }
+
+        .contact-card {
+            margin-top: 10px;
+            background: linear-gradient(180deg, rgba(49, 82, 71, 0.98), rgba(33, 58, 49, 0.98));
+            color: #fdf8ef;
+            border-radius: 24px;
+            padding: 30px;
+        }
+        .contact-card h3 { font-size: 22px; margin-bottom: 8px; }
+        .contact-card p { color: rgba(253, 248, 239, 0.82); margin-bottom: 6px; }
+        .contact-card a { color: #e8c987; text-decoration: underline; }
+
+        footer { padding: 30px 0 46px; }
+        .footer-bar {
+            border-top: 1px solid rgba(36, 25, 21, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            color: rgba(36, 25, 21, 0.55);
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+        .footer-bar a { color: rgba(36, 25, 21, 0.65); margin: 0 6px; }
+        .footer-bar a:hover { color: var(--cinnabar); }
+
+        @media (max-width: 720px) {
+            .topbar-inner, .footer-bar { flex-direction: column; align-items: flex-start; }
+            .nav { gap: 9px; font-size: 13px; }
+            .hero { padding-top: 40px; }
+            .trust-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">Oriental Destiny</span>
+                <span class="brand-name">Feng Shui &amp; BaZi</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="instant_reading.html">Free Reading</a>
+                <a href="instant_report.html">$29 Report</a>
+                <a href="checkout.html">$199 Treasure</a>
+                <a href="knowledge.html">Knowledge</a>
+                <a href="about.html" aria-current="page">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="eyebrow">About Oriental Destiny</div>
+            <h1>A practice rooted in an old tradition — and built for the modern, curious reader.</h1>
+            <p>Oriental Destiny translates classical Chinese metaphysics — BaZi, the Five Elements, and feng shui — into plain English, without the fear, the hype, or the promise of a fixed fate.</p>
+        </section>
+
+        <article class="article">
+            <h2>Why we exist</h2>
+            <p>Most English-language material on BaZi sits at one of two extremes: academic and hard to use, or occult and hard to trust. We wanted a third path — clear, honest, and grounded in the tradition, written for someone who is curious rather than already convinced.</p>
+
+            <h2>Rooted in a tradition</h2>
+            <p>Our work is rooted in the Longhu Mountain (龍虎山) Daoist tradition. BaZi (八字, the Four Pillars) and the Five Elements are ways of describing the relationship between a person and their environment: how you tend to move, what supports you, what drains you, and how timing changes the picture.</p>
+            <p>It is a cultural framework — not a science experiment, and not a verdict on your life.</p>
+
+            <h2>How a reading is made</h2>
+            <ol>
+                <li>You share your birth date and time, and what you would like to understand.</li>
+                <li>We calculate the chart: the Day Master, the Four Pillars, the element balance, and the chart's pattern.</li>
+                <li>We explain what the chart suggests in plain English — strengths, blind spots, and the environment that tends to help you.</li>
+                <li>If you order a handcrafted treasure, we confirm the direction with you before anything ships.</li>
+            </ol>
+
+            <h2>What we promise — and what we don't</h2>
+            <div class="trust-grid">
+                <article class="trust-card is">
+                    <h3>What it is</h3>
+                    <ul>
+                        <li>A centuries-old way of describing patterns — your element, your chart, your timing.</li>
+                        <li>A tool for self-reflection: how you naturally move, what drains you, what to notice.</li>
+                        <li>Rooted in the Longhu Mountain tradition, explained in plain English.</li>
+                    </ul>
+                </article>
+                <article class="trust-card isnt">
+                    <h3>What it isn't</h3>
+                    <ul>
+                        <li>Not a prediction of your future, and not a guarantee of any outcome.</li>
+                        <li>Not medical, legal, or financial advice.</li>
+                        <li>Not a replacement for your own judgment — you stay the decision-maker.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <h2>Honest questions</h2>
+            <div class="faq">
+                <details>
+                    <summary>Do I have to believe in fate?</summary>
+                    <p>No. You can use the framework as a lens for self-reflection while keeping your own judgment. The reading is a perspective, not an instruction.</p>
+                </details>
+                <details>
+                    <summary>Is this scientifically proven?</summary>
+                    <p>No. It is a traditional cultural framework, not a scientific prediction. We present it as such, and we do not claim otherwise.</p>
+                </details>
+                <details>
+                    <summary>Will it tell me exactly what will happen?</summary>
+                    <p>No. It describes patterns and tendencies, not fixed events. What you do with the reading is up to you.</p>
+                </details>
+                <details>
+                    <summary>Is my data private?</summary>
+                    <p>We use your birth details to prepare the reading and keep order records as described in our <a class="inline" href="policies.html#privacy">privacy policy</a>. We do not sell your data.</p>
+                </details>
+                <details>
+                    <summary>Can I ask who will read my chart?</summary>
+                    <p>Yes. Email us before you order and we will introduce ourselves and answer any question about the process.</p>
+                </details>
+            </div>
+
+            <h2>Talk to us</h2>
+            <div class="contact-card">
+                <h3>Questions before you order?</h3>
+                <p>Ask about the reading, the process, shipping, or a custom request. A person will reply.</p>
+                <p><a href="mailto:434338480@qq.com">434338480@qq.com</a></p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container footer-bar">
+            <div>
+                © 2026 Oriental Destiny ·
+                <a href="index.html">Home</a> ·
+                <a href="policies.html#shipping">Shipping</a> ·
+                <a href="policies.html#refund">Refund</a> ·
+                <a href="policies.html#privacy">Privacy</a> ·
+                <a href="mailto:434338480@qq.com">Contact</a>
+            </div>
+            <span style="opacity:0.45;font-size:11px;">v1.0.0</span>
+        </div>
+    </footer>
+</body>
+</html>

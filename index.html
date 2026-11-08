@@ -225,6 +225,43 @@
         .element-list .el-symbol { flex: 0 0 auto; font-size: 15px; }
         .element-list strong { color: #fdf8ef; }
 
+        /* ── Trust / framing ── */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+        .trust-card {
+            background: rgba(255, 253, 248, 0.9);
+            border: 1px solid rgba(36, 25, 21, 0.08);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+        .trust-card h3 { font-size: 22px; margin-bottom: 14px; }
+        .trust-card ul { list-style: none; display: grid; gap: 10px; }
+        .trust-card li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 14.5px;
+            color: rgba(36, 25, 21, 0.74);
+        }
+        .trust-card li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 700;
+        }
+        .trust-card.is li::before { content: "✓"; color: var(--pine); }
+        .trust-card.isnt li::before { content: "—"; color: var(--cinnabar); }
+        .trust-note {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 14px;
+            color: rgba(36, 25, 21, 0.68);
+        }
+        .trust-note a { color: var(--cinnabar); font-weight: 600; }
+
         .hero-panel {
             border-radius: 28px;
             padding: 28px;
@@ -459,6 +496,7 @@
             .hero-copy, .hero-panel, .closing-card { padding: 26px; }
             .hero-meta { grid-template-columns: 1fr; }
             .elements-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: 1fr; }
             .btn { width: 100%; }
         }
     </style>
@@ -636,6 +674,37 @@
                         <span class="element-link">Read the Water guide →</span>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TRUST — what this is / isn't                 -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <h2>What this is — and what it isn't</h2>
+                    <p>Chinese metaphysics is a cultural framework, not a crystal ball. Here is how we approach it.</p>
+                </div>
+                <div class="trust-grid">
+                    <article class="trust-card is">
+                        <h3>What it is</h3>
+                        <ul>
+                            <li>A centuries-old way of describing patterns — your element, your chart, your timing.</li>
+                            <li>A tool for self-reflection: how you naturally move, what drains you, what to notice.</li>
+                            <li>Rooted in the Longhu Mountain (龍虎山) tradition, explained in plain English.</li>
+                        </ul>
+                    </article>
+                    <article class="trust-card isnt">
+                        <h3>What it isn't</h3>
+                        <ul>
+                            <li>Not a prediction of your future, and not a guarantee of any outcome.</li>
+                            <li>Not medical, legal, or financial advice.</li>
+                            <li>Not a replacement for your own judgment — you stay the decision-maker.</li>
+                        </ul>
+                    </article>
+                </div>
+                <p class="trust-note">Want to know who we are and how we work? <a href="about.html">Read our approach →</a></p>
             </div>
         </section>
 
@@ -823,6 +892,7 @@
         <div class="container footer-bar">
             <div>
                 © 2026 Oriental Destiny ·
+                <a href="about.html">About</a> ·
                 <a href="knowledge.html">Knowledge Library</a> ·
                 <a href="policies.html#shipping">Shipping</a> ·
                 <a href="policies.html#refund">Refund</a> ·

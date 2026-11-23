@@ -279,18 +279,22 @@ async function firestorePatch(collection, docId, fields, saJson) {
   return data;
 }
 
-async function firestoreRunQuery(field, value, saJson) {
+// Pass field = null to list the whole collection (no filter).
+async function firestoreRunQuery(collection, field, value, saJson, limit) {
   const token = await getAccessToken(saJson);
+  const structuredQuery = {
+    from: [{ collectionId: collection }],
+    limit: limit || 50,
+  };
+  if (field) {
+    structuredQuery.where = {
+      fieldFilter: { field: { fieldPath: field }, op: 'EQUAL', value: { stringValue: value } },
+    };
+  }
   const res = await fetch(firestoreUrl(saJson, ':runQuery'), {
     method: 'POST',
     headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      structuredQuery: {
-        from: [{ collectionId: 'orders' }],
-        where: { fieldFilter: { field: { fieldPath: field }, op: 'EQUAL', value: { stringValue: value } } },
-        limit: 50,
-      },
-    }),
+    body: JSON.stringify({ structuredQuery }),
   });
   const data = await res.json();
   if (!res.ok) throw new Error('Firestore query failed: ' + JSON.stringify(data));
@@ -360,7 +364,7 @@ async function handleVerifyPayment(request, env) {
 
   // Idempotency: a PayPal order id must map to one of our orders.
   try {
-    const existingOrders = await firestoreRunQuery('paypalOrderId', orderID, env.GOOGLE_SA_JSON);
+    const existingOrders = await firestoreRunQuery('orders', 'paypalOrderId', orderID, env.GOOGLE_SA_JSON);
     if (existingOrders.length) {
       return json({ orderId: existingOrders[0].id, alreadyProcessed: true, status: existingOrders[0].status }, 200, request);
     }
@@ -374,7 +378,7 @@ async function handleVerifyPayment(request, env) {
   let creditFromOrderId = null;
   if (product === 'treasure_match') {
     try {
-      const orders = await firestoreRunQuery('userId', uid, env.GOOGLE_SA_JSON);
+      const orders = await firestoreRunQuery('orders', 'userId', uid, env.GOOGLE_SA_JSON);
       const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
       for (const o of orders) {
         if (o.product !== 'instant_report' || o.status !== 'paid' || o.redeemedFor) continue;
@@ -525,6 +529,134 @@ async function handleLead(request, env) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// BIRTHDAY QUIZ
+//
+// POST /quiz-submit  — store one anonymous answer set.
+// GET  /quiz-stats   — aggregate counts, either site-wide (?scope=global)
+//                      or for one month-day bucket (?mmdd=MM-DD).
+//
+// Privacy: the server never receives the birth year or any identifier.
+// The client keeps the full date in memory for the reading, then sends
+// only MM-DD plus a coarse age band.
+//
+// Option values are integers; -1 means "prefer not to say", which is
+// stored but excluded from every count and denominator.
+// ═══════════════════════════════════════════════════════════════
+
+const QUIZ_MMDD_RE = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+const QUIZ_AGE_BANDS = ['teens', '20s', '30s', '40s', '50s', '60+'];
+const QUIZ_MIN_QUESTIONS = 8;
+const QUIZ_MAX_QUESTIONS = 20;
+const QUIZ_SCAN_LIMIT = 3000;
+const quizRateMap = new Map(); // per-instance coarse limiter
+
+function quizRateLimited(ip) {
+  const now = Date.now();
+  const entry = quizRateMap.get(ip);
+  if (entry && now - entry.t < 60 * 1000) {
+    if (entry.n >= 5) return true;
+    entry.n++;
+  } else {
+    quizRateMap.set(ip, { t: now, n: 1 });
+  }
+  return false;
+}
+
+async function handleQuizSubmit(request, env) {
+  if (!isAuthenticated(request, env)) return jsonError('Unauthorized', 401, request);
+  if (!env.GOOGLE_SA_JSON) return jsonError('Firestore not configured (missing GOOGLE_SA_JSON)', 503, request);
+
+  let data;
+  try {
+    data = JSON.parse(await request.text());
+  } catch {
+    return jsonError('Invalid JSON body', 400, request);
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (quizRateLimited(ip)) return jsonError('Too many attempts. Please try again later.', 429, request);
+
+  const mmdd = String((data && data.mmdd) || '');
+  const ageBand = String((data && data.ageBand) || '');
+  const answers = (data && data.answers) || null;
+
+  if (!QUIZ_MMDD_RE.test(mmdd)) return jsonError('Invalid mmdd', 400, request);
+  if (QUIZ_AGE_BANDS.indexOf(ageBand) === -1) return jsonError('Invalid ageBand', 400, request);
+  if (!Array.isArray(answers) || answers.length < QUIZ_MIN_QUESTIONS || answers.length > QUIZ_MAX_QUESTIONS) {
+    return jsonError('Invalid answers', 400, request);
+  }
+  for (const a of answers) {
+    if (!Number.isInteger(a) || a < -1 || a > 9) return jsonError('Invalid answer value', 400, request);
+  }
+
+  try {
+    await firestoreAdd('quiz_responses', {
+      mmdd,
+      ageBand,
+      answers,
+      createdAt: new Date(),
+    }, env.GOOGLE_SA_JSON);
+  } catch (e) {
+    return jsonError('Answer save failed: ' + e.message, 502, request);
+  }
+
+  return json({ ok: true }, 200, request);
+}
+
+// Tally a set of response docs into { byQ: { "0": {"1": 4, ...} }, totals: [...] }.
+function tallyQuizResponses(docs) {
+  const byQ = {};
+  const totals = [];
+  for (const doc of docs) {
+    const answers = Array.isArray(doc.answers) ? doc.answers : [];
+    for (let i = 0; i < answers.length; i++) {
+      const v = answers[i];
+      if (v === -1 || v === null || typeof v === 'undefined') continue; // skipped — out of the denominator
+      const key = String(i);
+      if (!byQ[key]) byQ[key] = {};
+      byQ[key][String(v)] = (byQ[key][String(v)] || 0) + 1;
+      totals[i] = (totals[i] || 0) + 1;
+    }
+  }
+  return { byQ, totals };
+}
+
+async function handleQuizStats(request, env) {
+  if (!isAuthenticated(request, env)) return jsonError('Unauthorized', 401, request);
+  if (!env.GOOGLE_SA_JSON) return jsonError('Firestore not configured (missing GOOGLE_SA_JSON)', 503, request);
+
+  const url = new URL(request.url);
+  const scope = url.searchParams.get('scope') || '';
+  const mmdd = url.searchParams.get('mmdd') || '';
+
+  let docs;
+  let label;
+  try {
+    if (scope === 'global') {
+      docs = await firestoreRunQuery('quiz_responses', null, null, env.GOOGLE_SA_JSON, QUIZ_SCAN_LIMIT);
+      label = 'global';
+    } else {
+      if (!QUIZ_MMDD_RE.test(mmdd)) return jsonError('Invalid mmdd', 400, request);
+      docs = await firestoreRunQuery('quiz_responses', 'mmdd', mmdd, env.GOOGLE_SA_JSON, QUIZ_SCAN_LIMIT);
+      label = mmdd;
+    }
+  } catch (e) {
+    return jsonError('Stats lookup failed: ' + e.message, 502, request);
+  }
+
+  const { byQ, totals } = tallyQuizResponses(docs);
+  const res = json({
+    scope: label,
+    total: docs.length,
+    truncated: docs.length >= QUIZ_SCAN_LIMIT,
+    byQ,
+    totals,
+  }, 200, request);
+  res.headers.set('Cache-Control', 'public, max-age=300');
+  return res;
+}
+
+// ═══════════════════════════════════════════════════════════════
 // INPUT VALIDATION — reject obviously malicious payloads
 // ═══════════════════════════════════════════════════════════════
 const MAX_MESSAGE_LENGTH = 60000;  // characters per message (was 8000 — too low; full chartData JSON is ~44k chars)
@@ -566,7 +698,7 @@ export default {
         status: 204,
         headers: {
           'Access-Control-Allow-Origin': origin,
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type, X-Client-Secret',
           'Access-Control-Max-Age': '86400',
         }
@@ -587,6 +719,19 @@ export default {
     // ── Route: POST /send-report → email report to seller ────
     if (url.pathname.endsWith('/send-report')) {
       return handleSendReport(request, env);
+    }
+
+    // ── Route: POST /quiz-submit → store anonymous quiz answers ──
+    if (url.pathname.endsWith('/quiz-submit')) {
+      if (request.method !== 'POST') return jsonError('Method not allowed', 405, request);
+      return handleQuizSubmit(request, env);
+    }
+
+    // ── Route: GET /quiz-stats → aggregated counts ───────────
+    // Must come BEFORE the POST-only /chat/completions 404 guard below.
+    if (url.pathname.endsWith('/quiz-stats')) {
+      if (request.method !== 'GET') return jsonError('Method not allowed', 405, request);
+      return handleQuizStats(request, env);
     }
 
     // ── Route: POST /chat/completions → DeepSeek proxy ───────

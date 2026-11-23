@@ -32,5 +32,17 @@ service cloud.firestore {
       allow read: if false;
       allow write: if false;
     }
+
+    // 生日问答测试：匿名答卷与聚合计数
+    // 客户端完全不可达，只由 Cloudflare Worker 用服务账号读写。
+    // 服务端只存 MM-DD + 年龄带 + 答案数组，不含出生年份、邮箱或 uid。
+    match /quiz_responses/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /quiz_stats/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
   }
 }
